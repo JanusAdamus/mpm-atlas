@@ -68,6 +68,8 @@ export interface PathStep {
 export interface Conclusion {
   authorizes: string; assumptions: string[]; weakest_evidence: string; is_hypothesis: boolean;
   kind: string; strength: number; mathematical: boolean; complete: boolean;
+  /** Reader-facing class (mathematical, structural, historical, …); absent on older servers. */
+  category?: string;
   missing_premises: string[]; caveats: string[];
 }
 export interface FoundPath { score: number; cost_terms: Record<string, number>; conclusion: Conclusion; steps: PathStep[] }

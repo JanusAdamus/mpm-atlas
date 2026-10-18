@@ -54,7 +54,10 @@ export function searchBox(opts: { label: string; placeholder: string; onPick(hit
         h("li", { id: `${id}-o${i}`, role: "option", "aria-selected": "false", onmousedown: (e: Event) => { e.preventDefault(); pick(i); } },
           h("span", { class: "hit-label" }, hit.label),
           h("span", { class: "hit-type" }, typeLabel(hit.type)),
-          hit.matched.field !== "label" ? h("span", { class: "hit-match" }, `${hit.matched.field}: ${hit.matched.text.slice(0, 90)}`) : null,
+          hit.matched.field !== "label"
+            ? h("span", { class: "hit-match" }, h("span", { class: "field" }, hit.matched.field),
+              h("span", { class: hit.matched.field === "formula" ? "formula-src" : "" }, hit.matched.text.slice(0, 90)))
+            : null,
         ),
       ),
     );

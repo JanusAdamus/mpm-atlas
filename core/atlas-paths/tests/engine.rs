@@ -128,6 +128,46 @@ fn citation_chain_authorizes_nothing_semantic() {
     );
 }
 
+// ---------------------------------------------------------------- history (SPEC §3, 2026-10-17)
+
+#[test]
+fn historical_chain_is_an_answer_labelled_historical() {
+    let r = run("s:x-nm1", "s:x-nm2");
+    assert!(!r.abstained && r.abstention.is_none(), "{:?}", r.reason);
+    assert!(r.exploration.is_none());
+    let c = &r.paths[0].conclusion;
+    assert_eq!((c.kind.as_str(), c.category, c.strength), ("historical", "historical", 0));
+    assert!(!c.mathematical && !c.is_hypothesis);
+    assert!(c.caveats[0].contains("not a mathematical dependency"), "{:?}", c.caveats);
+    assert_eq!(claims(&r, 0), ["c:x-nm1-named", "c:x-nm2-named"]);
+}
+
+#[test]
+fn historical_chain_never_upgrades_to_logic() {
+    // nm1 -named-> namer <-named- nm2 -depends_on-> axiom: R4, no conclusion at all
+    let r = run("s:x-nm1", "s:x-nm-axiom");
+    assert!(r.abstained && r.paths.is_empty(), "{:?}", kinds(&r));
+    assert_eq!(r.abstention.as_deref(), Some("unauthorized"));
+    assert!(r.reason.as_deref().unwrap().contains("R4"), "{:?}", r.reason);
+    assert_eq!(r.exploration.as_ref().unwrap().conclusion.category, "none");
+}
+
+#[test]
+fn mathematical_route_outranks_an_equally_long_historical_one() {
+    let r = run("s:x-nm3", "s:x-nm2");
+    assert!(!r.abstained, "{:?}", r.reason);
+    assert_eq!(r.paths[0].conclusion.kind, "logical_dependency");
+    assert_eq!(r.paths[0].conclusion.category, "mathematical");
+    assert!(r.paths.iter().all(|p| p.conclusion.category != "historical"), "{:?}", kinds(&r));
+}
+
+#[test]
+fn bibliographic_reach_still_abstains() {
+    let r = run("s:x-cited", "s:pythagoras");
+    assert_eq!(r.abstention.as_deref(), Some("only_weak"));
+    assert_eq!(r.exploration.as_ref().unwrap().conclusion.category, "documentary");
+}
+
 #[test]
 fn citation_followed_by_logic_is_unauthorized() {
     let r = run_with("pub:x-survey-a", "s:sas-congruence", &PathOptions { min_strength: 0, ..Default::default() });

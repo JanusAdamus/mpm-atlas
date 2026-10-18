@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { placeLabels, type LabelCandidate } from "./labels.ts";
+import { displayLabel, placeLabels, type LabelCandidate } from "./labels.ts";
 import { coveringTiles } from "./camera.ts";
 
 const cand = (key: number, x: number, y: number, w = 60): LabelCandidate => ({ key, x, y, r: 3, w, h: 12 });
@@ -38,4 +38,12 @@ test("covering tiles are clamped and nearest-first", () => {
   assert.deepEqual(coveringTiles(3, [2, 2, 3, 3]), []);
   const far = coveringTiles(3, [0, 0, 1, 0.2]);
   assert.ok(far.every(([, y]) => y <= 1));
+});
+
+test("map labels drop source prefixes but keep the rest", () => {
+  assert.equal(displayLabel("Wikipedia (en): Banach space"), "Banach space");
+  assert.equal(displayLabel("Wikipedia (es): Número real"), "Número real");
+  assert.equal(displayLabel("Mathlib/Algebra/Lie"), "Algebra/Lie");
+  assert.equal(displayLabel("teorema de Pitágoras"), "teorema de Pitágoras");
+  assert.equal(displayLabel("Wikipedia"), "Wikipedia");
 });

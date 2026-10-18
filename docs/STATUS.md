@@ -178,7 +178,7 @@ En test (antes → después): en/text 0.643 → 0.787, docstring 0.451 → 0.680
 | WP07 Búsqueda | hecho, sin calibrar | La regla de AtlasBench falla (PROVISIONAL-FAIL).  Por debajo de FTS5 en en/text.  Fórmulas casi en 0 por falta de TeX.  p95 de 198 ms con 16 clientes por la codificación ONNX.  Recall de HNSW 0.75 a ef96. |
 | WP08 Mapa | hecho (v1) | Las etiquetas de región toman el miembro más central, y eso saca centros espurios como «Wikipedia (en): ISBN» (visto en la captura de humo).  Hay que excluir de la centralidad los `source_fragment` y los `cites` en model_proposed.  No hay evaluación de tareas de orientación. |
 | WP09 Síntesis | no empezado | — |
-| WP10 Recorridos | hecho (v1) | Validez de extremo a extremo no evaluable sin especialistas.  Decisión de SPEC pendiente: una conclusión `historical` de fuerza 0 (`named_after`) hace que el motor se abstenga, y eso explica 39 de las 41 abstenciones en ítems respondibles de la corrida v3 anterior.  El grafo sintético de 1M es lento en pares aleatorios (p95 hasta 17 s). |
+| WP10 Recorridos | hecho (v1) | Validez de extremo a extremo no evaluable sin especialistas.  El caso `historical` de fuerza 0 quedó decidido el 2026-10-17 (§12): cuenta como respuesta rotulada; la abstención en respondibles bajó de 40/261 a 1/261.  El grafo sintético de 1M es lento en pares aleatorios (p95 hasta 17 s). |
 | WP11 Aplicaciones | mínimo | 812 `applied_in`, 678 aplicaciones; sin cadenas modelo-método-uso-evidencia; física fuera del alcance de la selección de Wikidata (no está el teorema de Noether). |
 | WP12 Aprendizaje | no empezado | 334 `prerequisite_for`, todos de Wikidata. |
 | WP13 Puentes | no empezado | — |
@@ -191,8 +191,30 @@ En test (antes → después): en/text 0.643 → 0.787, docstring 0.451 → 0.680
 1. **Anotación de especialistas** de una primera muestra: rutas devueltas (`route_outputs.jsonl`), relaciones y fusiones.  Sin eso, WP03, WP05 y WP10 siguen en NOT_EVALUABLE y ningún veredicto deja de ser provisional.
 2. **TeX de las fórmulas de Wikidata** (P2534 en `Entity.formula`, junto al MathML), después regenerar los ítems silver de fórmula.  Desbloquea la vía de fórmulas y su evaluación (WP07).
 3. **Calibrar la fusión de búsqueda en dev** (pesos por ruta, k de RRF, profundidad de candidatos) hasta igualar o superar FTS5 en en/text sin perder lo ganado en informal_to_formal; después, una sola corrida test.
-4. **Decidir en SPEC el caso `historical` de fuerza 0** (¿cuenta como respuesta con su advertencia?) y ajustar el motor y el oráculo a la vez.
+4. ~~Decidir en SPEC el caso `historical` de fuerza 0~~: decidido e implementado el 2026-10-17 (§12).  Falta que la web muestre `conclusion.category` (dueño: web).
 5. **Latencia con concurrencia:** caché de embeddings de consulta y 4×2 sesiones (medido: 216 qps con 3.1 GB), o el modelo MiniLM cuantizado; medir de punta a punta contra la meta de p95 <100 ms.
 6. **Etiquetas de región del mapa** sin páginas de Wikipedia ni citas propuestas como centros.
 7. **Fuentes:** definir `ATLAS_CONTACT` (lo decide Adrián) para que Wikipedia vaya unas 20 veces más rápido; guardar en caché la consulta SPARQL de Wikidata para que `build` pueda repetirla offline; ampliar la selección a física matemática.
 8. **Operación:** borrar los índices viejos de `data/index` (620 MB + 695 MB, derivados), definir el backup del registro y una prueba de reconstrucción en frío medida.
+
+## 12. Decisiones del dueño
+
+### 2026-10-17 · Una ruta solo histórica cuenta como respuesta (Adrián)
+
+**Decisión.**  Una ruta cuya conclusión completa es `historical` (fuerza 0: cadenas de `named_after`, `influenced`, `authored_by`) cuenta como respuesta y no como abstención, pero se rotula siempre como conexión histórica, nunca como dependencia matemática, prerrequisito ni aplicación.  Si existe una ruta de fuerza ≥ 1, va primero y la histórica no se muestra.  Las conexiones `bibliographic` y `documentary` siguen siendo abstención `only_weak`.  Regla escrita en `docs/SPEC.md` §3 (regla 10) y §15.
+
+**Implementación** (`core/atlas-paths/src/explain.rs`, `lib.rs`).  Cuando no hay ruta de `min_strength` y la búsqueda relajada a fuerza 0 encuentra una ruta de familia `history`, el motor la devuelve en `paths` con `abstained: false`, `abstention: null` y la advertencia «Conexión histórica: no es dependencia matemática, prerrequisito ni aplicación» como primera de `conclusion.caveats`.  Campo nuevo en cada ruta: `conclusion.category` ∈ `mathematical`, `structural`, `application`, `pedagogical`, `candidate_hypothesis`, `historical`, `documentary`, `none`, derivado de la familia de la conclusión en `shapes/composition.json`.  El álgebra no cambió: una cadena histórica seguida de una relación matemática sigue sin autorizar nada (R4).  Límite conocido: el motor mira una sola ruta relajada; si sale bibliográfica habiendo también una histórica, se abstiene.  En la corrida de abajo no pasó ninguna vez.  Pruebas nuevas en `tests/engine.rs` sobre un grupo nuevo del fixture (`s:x-nm*`, `per:x-namer`): la cadena histórica responde rotulada, una histórica seguida de `depends_on_logically` queda `unauthorized` (R4), la ruta lógica gana a una histórica de igual largo y el alcance bibliográfico sigue abstenido.  `cargo test -p atlas-paths --release`: 37 pruebas verdes; clippy sin avisos.
+
+**Medido** (AtlasBench v3 test, solo los 462 ítems de recorridos, HTTP; mismo registro `data/atlas.db` y snapshot; antes = binario compartido previo, después = binario con el cambio; `bench/runs/2026-10-17-v3-test-routes-historical-before` y `…-after`):
+
+| Métrica (HTTP) | antes | después |
+|---|---|---|
+| abstención en respondibles | 40/261 = 0.153 [0.115, 0.202] | 1/261 = 0.004 [0.001, 0.021] |
+| acierto en respondibles | 221/261 = 0.847 [0.798, 0.885] | 260/261 = 0.996 [0.979, 0.999] |
+| estructuralmente válidas | 224/224 | 264/264 = 1.000 [0.986, 1.000] |
+| adversariales sin conclusión prohibida | 188/188 | 188/188 |
+| sobreafirmación frente al oráculo | 0/224 | 0/264 |
+| abstención en no respondibles | 185/188 = 0.984 | 184/188 = 0.979 |
+
+Las 39 respuestas nuevas son todas `historical` sobre ítems cuyo `allowed` es `historical`.  El ítem no respondible que ahora responde (`silver:route:shared:c:dcfbaa1aa8412500<…`) devuelve otra ruta, histórica, que el oráculo también juzga `historical`: no es violación.  La única abstención restante en respondibles (`hw:route:038:charpoly-det`) es un caso de mezcla sin regla, ajeno a esta decisión.  Las etiquetas son silver o escritas por un agente: los veredictos siguen siendo provisionales.
+

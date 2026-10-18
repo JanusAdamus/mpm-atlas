@@ -13,6 +13,8 @@
     formal:       s:x-f1 generalizes s:x-f3 (extracted) and s:x-f1 -> s:x-f2 -> s:x-f3 (formally_linked)
     coverage:     c:x-lonely has no claims (unknown, not isolated)
     merge:        s:x-dup merged into s:pythagoras
+    history:      s:x-nm1, s:x-nm2, s:x-nm3 named_after per:x-namer; s:x-nm2 depends_on s:x-nm-axiom;
+                  s:x-nm3 depends_on s:x-nm-mid depends_on s:x-nm2
   Nothing here is editorially reviewed: the states are the ones a test needs.
 - empty_v1.db: an empty schema-v1 registry; tests fill it with atlas_core::synth.
 """
@@ -64,6 +66,12 @@ ENTITIES = [
     ("s:x-f3", "statement", "F3", "F3"),
     ("c:x-lonely", "concept", "Concepto sin afirmaciones", "Concept without claims"),
     ("s:x-dup", "statement", "Pitagoras (duplicado)", "Pythagoras (duplicate)"),
+    ("per:x-namer", "person", "Epónimo", "Namesake"),
+    ("s:x-nm1", "statement", "Teorema epónimo 1", "Eponymous theorem 1"),
+    ("s:x-nm2", "statement", "Teorema epónimo 2", "Eponymous theorem 2"),
+    ("s:x-nm3", "statement", "Teorema epónimo 3", "Eponymous theorem 3"),
+    ("s:x-nm-mid", "statement", "Lema intermedio", "Intermediate lemma"),
+    ("s:x-nm-axiom", "statement", "Axioma del epónimo", "Namesake axiom"),
 ]
 
 BINARY = [
@@ -82,6 +90,12 @@ BINARY = [
     ("c:x-f12", "generalizes", "s:x-f1", "s:x-f2"),
     ("c:x-f23", "generalizes", "s:x-f2", "s:x-f3"),
     ("c:x-dup-prereq", "prerequisite_for", "c:right-triangle", "s:x-dup"),
+    ("c:x-nm1-named", "named_after", "s:x-nm1", "per:x-namer"),
+    ("c:x-nm2-named", "named_after", "s:x-nm2", "per:x-namer"),
+    ("c:x-nm3-named", "named_after", "s:x-nm3", "per:x-namer"),
+    ("c:x-nm2-axiom", "depends_on_logically", "s:x-nm2", "s:x-nm-axiom"),
+    ("c:x-nm3-mid", "depends_on_logically", "s:x-nm3", "s:x-nm-mid"),
+    ("c:x-nm-mid-2", "depends_on_logically", "s:x-nm-mid", "s:x-nm2"),
 ]
 
 

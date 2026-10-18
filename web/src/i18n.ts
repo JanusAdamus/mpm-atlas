@@ -89,6 +89,11 @@ const UI: Record<Lang, Dict> = {
     count: "cuenta",
     relation: "relación",
     swap: "Intercambiar",
+    nodesCount: "{n} nodos",
+    historyNote: "Une ideas por su nombre o su historia. No es una dependencia matemática: no autoriza concluir una idea a partir de la otra.",
+    technical: "Detalles técnicos",
+    advanced: "Opciones avanzadas",
+    weakest: "evidencia más débil",
     fpsLabel: "FPS",
   },
   en: {
@@ -176,6 +181,11 @@ const UI: Record<Lang, Dict> = {
     count: "count",
     relation: "relation",
     swap: "Swap",
+    nodesCount: "{n} nodes",
+    historyNote: "Links ideas through naming or history. It is not a mathematical dependency: it authorizes no conclusion from one idea to the other.",
+    technical: "Technical details",
+    advanced: "Advanced options",
+    weakest: "weakest evidence",
     fpsLabel: "FPS",
   },
 };
@@ -275,6 +285,18 @@ const OBJECTIVES: Record<Lang, Dict> = {
   },
 };
 
+/** Reader-facing class of a path conclusion (`Conclusion.category` from atlas-paths). */
+const CATEGORIES: Record<Lang, Dict> = {
+  es: {
+    mathematical: "Matemática", structural: "Estructural", application: "Aplicación", pedagogical: "Pedagógica",
+    candidate_hypothesis: "Hipótesis candidata", historical: "Conexión histórica", documentary: "Documental", none: "Sin conclusión",
+  },
+  en: {
+    mathematical: "Mathematical", structural: "Structural", application: "Application", pedagogical: "Pedagogical",
+    candidate_hypothesis: "Candidate hypothesis", historical: "Historical connection", documentary: "Documentary", none: "No conclusion",
+  },
+};
+
 let current: Lang = "es";
 
 export const getLang = (): Lang => current;
@@ -294,6 +316,7 @@ export const stateLabel = (s: string): string => STATES[current][s] ?? s;
 export const typeLabel = (ty: string): string => TYPES[current][ty] ?? ty;
 export const projectionLabel = (p: string): string => PROJECTIONS[current][p] ?? p;
 export const objectiveLabel = (o: string): string => OBJECTIVES[current][o] ?? o;
+export const categoryLabel = (c: string): string => CATEGORIES[current][c] ?? c.replaceAll("_", " ");
 export const OBJECTIVE_NAMES = Object.keys(OBJECTIVES.es);
 
 /** Every UI key exists in both languages (checked by i18n.test.ts). */

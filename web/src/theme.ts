@@ -49,8 +49,8 @@ export function gpuTheme(name: ThemeName): Theme {
     palette,
     stateColor,
     stateDash,
-    outline: dark ? [0.07, 0.08, 0.1] : [1, 1, 1],
-    background: dark ? [0.07, 0.08, 0.1] : [0.985, 0.985, 0.98],
+    outline: dark ? [0.059, 0.067, 0.078] : [1, 1, 1],
+    background: dark ? [0.059, 0.067, 0.078] : [0.965, 0.961, 0.945],
   };
 }
 

@@ -34,6 +34,7 @@ let layoutVersion: string | null = null;
 let maxZoom = 0;
 let compareSet: MapItem[] = [];
 let regionFocus: string | null = null;
+let nodeCount: number | null = null;
 const app = document.getElementById("app")!;
 
 // ---- URL <-> state ------------------------------------------------------------------
@@ -93,6 +94,25 @@ function navigate(next: Partial<State>, replace = false): void {
 
 // ---- DOM skeleton ------------------------------------------------------------------
 
+/** A small static mark: three linked points, the atlas in miniature. */
+function brandMark(): SVGSVGElement {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 20 20");
+  svg.setAttribute("class", "brand-mark");
+  svg.setAttribute("aria-hidden", "true");
+  const el = (tag: string, attrs: Record<string, string>): void => {
+    const e = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    svg.append(e);
+  };
+  el("path", { d: "M4 15 L10 4 L16 13 Z", fill: "none", stroke: "currentColor", "stroke-width": "1.3", "stroke-linejoin": "round", opacity: "0.55" });
+  el("circle", { cx: "4", cy: "15", r: "2.4", fill: "currentColor" });
+  el("circle", { cx: "10", cy: "4", r: "2.4", fill: "currentColor" });
+  el("circle", { cx: "16", cy: "13", r: "2.4", fill: "none", stroke: "currentColor", "stroke-width": "1.5" });
+  return svg;
+}
+
 const search = searchBox({ label: t("search"), placeholder: t("searchPlaceholder"), onPick: (hit: SearchHit) => navigate({ panel: { kind: "entity", id: hit.id } }) });
 const layerSelect = h("select", { id: "layer", onchange: () => navigate({ layer: layerSelect.value }, true) });
 const langBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ lang: state.lang === "es" ? "en" : "es" }, true) });
@@ -101,9 +121,13 @@ const textBtn = h("button", { type: "button", class: "chip", "aria-pressed": "fa
 const pathBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ panel: { kind: "path", q: { ...DEFAULT_PATH } } }) });
 const compareBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ panel: { kind: "compare" } }) });
 const backBtn = h("button", { type: "button", class: "chip", onclick: () => history.back() });
-const titleEl = h("h1", {});
+const titleEl = h("span", { class: "title" });
 const layerLabel = h("label", { for: "layer", class: "sr-only" });
-const header = h("header", { class: "top" }, titleEl, search.root, layerLabel, layerSelect, pathBtn, compareBtn, textBtn, langBtn, themeBtn, backBtn);
+compareBtn.classList.add("wide");
+backBtn.classList.add("wide");
+const sep = (): HTMLElement => h("span", { class: "sep", "aria-hidden": "true" });
+const tools = h("div", { class: "tools" }, layerLabel, layerSelect, sep(), pathBtn, compareBtn, textBtn, sep(), langBtn, themeBtn, backBtn);
+const header = h("header", { class: "top" }, h("h1", {}, brandMark(), titleEl), search.root, tools);
 const mapHost = h("div", { class: "map-host", id: "map" });
 const focusChip = h("button", { type: "button", class: "chip focus-chip", hidden: true, onclick: () => setRegionFocus(null, null) });
 const zoomIn = h("button", { type: "button", class: "zbtn", onclick: () => zoomBy(1.6) }, "+");
@@ -193,14 +217,18 @@ async function locateAndSelect(id: string, fly: boolean): Promise<void> {
   }
 }
 
-async function showPath(steps: PathStep[]): Promise<void> {
-  if (!layoutVersion || !steps.length) return;
+async function showPath(steps: PathStep[], historical = false): Promise<void> {
+  if (!steps.length) {
+    map.setPath(null);
+    return;
+  }
+  if (!layoutVersion) return;
   const ids = [steps[0].from, ...steps.map((s) => s.to)];
   const labels = [steps[0].from_label, ...steps.map((s) => s.to_label)];
   try {
     const locs = await Promise.all(ids.map((id) => api.locate(id, layoutVersion!)));
     const marks: PathMark[] = locs.map((l, i) => ({ id: l.id, label: labels[i], x: l.x, y: l.y }));
-    map.setPath(marks);
+    map.setPath(marks, historical);
   } catch (err) {
     status.textContent = `${t("error")}: ${(err as Error).message}`;
   }
@@ -212,6 +240,7 @@ async function renderPanel(): Promise<void> {
   const p = state.panel;
   side.hidden = !p;
   mainEl.classList.toggle("with-side", !!p);
+  if (p?.kind !== "path") map.setPath(null);
   if (!p) {
     clear(side);
     map.setSelected(null);
@@ -233,7 +262,7 @@ async function renderPanel(): Promise<void> {
   } else if (p.kind === "path") {
     side.replaceChildren(closeBtn, pathView(p.q, {
       open: (id) => navigate({ panel: { kind: "entity", id } }),
-      showPath: (steps) => void showPath(steps),
+      showPath: (steps, historical) => void showPath(steps, historical),
       changed: (q) => {
         state.panel = { kind: "path", q };
         history.replaceState(null, "", encode(state));
@@ -300,7 +329,11 @@ function renderChrome(): void {
   zoomIn.setAttribute("aria-label", t("zoomIn"));
   zoomOut.setAttribute("aria-label", t("zoomOut"));
   zoomReset.setAttribute("aria-label", t("resetView"));
-  help.textContent = t("help");
+  help.replaceChildren(...t("help").split(" · ").map((part) => {
+    const i = part.indexOf(":");
+    return i > 0 ? h("span", {}, h("kbd", {}, part.slice(0, i).trim()), ` ${part.slice(i + 1).trim()}`) : h("span", {}, part);
+  }));
+  if (nodeCount !== null) status.textContent = t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
   map.canvas.setAttribute("aria-label", `${t("title")} — ${t("help")}`);
   textPane.setAttribute("aria-label", t("textView"));
 }
@@ -360,7 +393,9 @@ async function boot(): Promise<void> {
   try {
     const health = await api.health();
     layoutVersion = health.layout_version;
-    status.textContent = `${health.snapshot.nodes.toLocaleString()} · ${map.rendererName}`;
+    nodeCount = health.snapshot.nodes;
+    status.textContent = t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
+    status.title = map.rendererName;
     if (layoutVersion) {
       const root = await api.tile(state.layer, 0, 0, 0, state.lang, layoutVersion);
       maxZoom = root.maxZoom;

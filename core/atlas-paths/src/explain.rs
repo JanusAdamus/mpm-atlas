@@ -27,6 +27,26 @@ const RAW_BUDGET: usize = 4_000_000;
 /// answer says when the diagnosis hit this bound.
 const DIAGNOSE_EXPANSIONS: usize = 5_000;
 
+/// Composition family whose strength-0 route counts as an answer when nothing of
+/// `min_strength` exists (SPEC §3, decision of 2026-10-17): shown labelled as a
+/// historical connection, never as a dependency, prerequisite or application.
+const ANSWER_FAMILY_BELOW_MIN: &str = "history";
+
+/// Reader-facing class of a conclusion (`Conclusion.category`), from its family.
+fn category(family: &str, mathematical: bool) -> &'static str {
+    match family {
+        "proof" | "formal" => "mathematical",
+        "structure" if mathematical => "mathematical",
+        "structure" => "structural",
+        "application" => "application",
+        "learning" => "pedagogical",
+        "hypothetical" => "candidate_hypothesis",
+        "history" => "historical",
+        "biblio" | "documentary" => "documentary",
+        _ => "none",
+    }
+}
+
 fn tr(lang: &str, es: String, en: String) -> String {
     if lang == "en" { en } else { es }
 }
@@ -268,7 +288,17 @@ fn diagnose_bounded(ctx: &mut QueryCtx, resp: &mut PathResponse, total: &Stats, 
         let p = relaxed_search(ctx, cut);
         ctx.min_strength = min;
         if let Some(p) = p {
-            let e = explain_path(ctx, &p, lang);
+            let mut e = explain_path(ctx, &p, lang);
+            // ponytail: one relaxed route; if it comes out bibliographic while a purely
+            // historical one also exists, this still abstains.  Add a family filter to
+            // the search if the bench shows such misses.
+            if ctx.table.conclusion(p.kind).family == ANSWER_FAMILY_BELOW_MIN {
+                e.conclusion.caveats.insert(0, tr(lang,
+                    "Conexion historica: no es dependencia matematica, prerrequisito ni aplicacion; solo hay esta conexion.".into(),
+                    "Historical connection: not a mathematical dependency, prerequisite or application; it is the only connection found.".into()));
+                resp.paths = vec![e];
+                return;
+            }
             abstain(resp, "only_weak", tr(lang,
                 format!("Solo hay una conexion de tipo «{}» (fuerza {} < {min}): no autoriza una conclusion.", e.conclusion.authorizes, e.conclusion.strength),
                 format!("Only a «{}» connection exists (strength {} < {min}): it authorizes no conclusion.", e.conclusion.authorizes, e.conclusion.strength)));
@@ -658,6 +688,7 @@ fn explain_path(ctx: &QueryCtx, p: &RawPath, lang: &str) -> FoundPath {
             weakest_evidence: weakest,
             is_hypothesis: table.is_hypothetical(kind),
             kind: info.name.clone(),
+            category: if kind == NONE { "none" } else { category(&info.family, info.mathematical) },
             strength,
             mathematical: info.mathematical && kind != NONE,
             complete: missing_all.is_empty(),

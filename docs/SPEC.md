@@ -93,6 +93,7 @@ Estas reglas son el piso; `atlas/paths/` puede ser más estricto, nunca más lax
 7. Una afirmación conjuntiva (varios `premise`) solo cuenta como salto completo si todas sus premisas están satisfechas.  `Edge.conjunct_count > 1` lo marca; las aristas de una conjunción no son independientes.
 8. Las afirmaciones en `superseded` o `retracted` no se usan.  Las `disputed` se usan solo si el usuario lo pide y se muestran como tales.
 9. Ningún puntaje de ruta multiplica probabilidades de aristas como si fueran independientes (principio 9).
+10. **Conexión histórica como respuesta (decisión de Adrián, 2026-10-17).**  Si entre dos nodos no hay ninguna ruta de fuerza ≥ `min_strength` y sí una cuya conclusión completa es `historical` (fuerza 0, cadenas de `named_after`, `influenced` o `authored_by`), el motor la devuelve como respuesta, no como abstención, con `conclusion.category = "historical"` y la advertencia de que no es dependencia matemática, prerrequisito ni aplicación.  Una ruta de fuerza ≥ 1 siempre va antes: si existe, la histórica no se muestra.  La regla 4 no cambia: una cadena histórica seguida de una relación matemática no autoriza nada.  Las conexiones `bibliographic` y `documentary` (fuerza 0 con citas) siguen siendo abstención `only_weak` con la conexión como exploración.
 
 ## 4. Afirmaciones n-arias (`Claim`)
 
@@ -336,12 +337,15 @@ Las aristas son `Edge`.  `hidden` cuenta por relación lo que quedó fuera por `
  "abstained": false, "reason": null,
  "paths": [{"score": 0.0,
    "conclusion": {"authorizes": "study order suggestion", "assumptions": ["Euclidean plane"],
-                  "weakest_evidence": "extracted", "is_hypothesis": false},
+                  "weakest_evidence": "extracted", "is_hypothesis": false,
+                  "category": "pedagogical"},
    "steps": [{"claim_id": "c:rt-prereq", "relation": "prerequisite_for", "from": "c:right-triangle",
               "to": "s:pythagoras", "direction": "forward", "evidence_state": "extracted",
               "authorizes": "a study order suggestion; never a logical necessity",
               "assumptions": [], "premises": [], "premises_missing": []}]}]}
 ```
+
+`conclusion.category` (desde 2026-10-17) dice cómo rotular la ruta ante el lector: `mathematical` (familias proof, formal y structure matemática), `structural` (pertenencia a área), `application`, `pedagogical` (ruta de estudio), `candidate_hypothesis` (analogía), `historical`, `documentary` (bibliográfica o mixta) o `none`.  Se deriva de la familia de la conclusión en `shapes/composition.json`, nunca de los saltos sueltos.  Una respuesta `historical` se presenta como «conexión histórica» (regla 10 de §3).
 
 `abstained: true` con `reason` cuando no hay conexión suficiente; nunca se inventa una ruta.  `direction: "inverse"` cuando se recorre la relación al revés (vía `RelationSpec.inverse` o simetría).  Los pesos son visibles y ajustables.
 

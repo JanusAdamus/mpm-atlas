@@ -16,10 +16,10 @@ export interface StateStyle {
 
 export const STATE_STYLE: Record<string, StateStyle> = {
   extracted: { light: "#0072B2", dark: "#56B4E9", dash: 0, duty: 1, width: 1, glyph: "○" },
-  model_proposed: { light: "#B07800", dark: "#E69F00", dash: 6, duty: 0.35, width: 1, glyph: "◌" },
-  editorially_reviewed: { light: "#007A5A", dark: "#2BC79A", dash: 0, duty: 1, width: 2, glyph: "✓" },
-  formally_linked: { light: "#A4447F", dark: "#E08CC0", dash: 0, duty: 1, width: 2.75, glyph: "⊢" },
-  disputed: { light: "#C25200", dark: "#FF8A3D", dash: 12, duty: 0.6, width: 1.5, glyph: "!" },
+  model_proposed: { light: "#8F6200", dark: "#E69F00", dash: 6, duty: 0.35, width: 1, glyph: "◌" },
+  editorially_reviewed: { light: "#007A5A", dark: "#2BC79A", dash: 0, duty: 1, width: 1.6, glyph: "✓" },
+  formally_linked: { light: "#A4447F", dark: "#E08CC0", dash: 0, duty: 1, width: 2, glyph: "⊢" },
+  disputed: { light: "#B04A00", dark: "#FF8A3D", dash: 12, duty: 0.6, width: 1.5, glyph: "!" },
   superseded: { light: "#6E6E6E", dark: "#9A9A9A", dash: 4, duty: 0.5, width: 1, glyph: "↷" },
   retracted: { light: "#6E6E6E", dark: "#9A9A9A", dash: 2, duty: 0.5, width: 1, glyph: "✕" },
 };

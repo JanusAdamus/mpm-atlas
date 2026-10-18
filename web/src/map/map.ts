@@ -5,15 +5,26 @@
 import { centralOf, KIND_CLUSTER, NONE, type Tile } from "../tile.ts";
 import { Camera, coveringTiles, type View } from "./camera.ts";
 import { Renderer, type Frame, type Layer, type Theme } from "./gl.ts";
-import { placeLabels, type LabelCandidate, type PlacedLabel } from "./labels.ts";
+import { typeName } from "../vocab.ts";
+import { displayLabel, placeLabels, type LabelCandidate, type PlacedLabel } from "./labels.ts";
 import { clusterRadius, entityRadius, TileStore, type Entry } from "./tiles.ts";
 
 const FADE_IN_MS = 220;
 const FADE_OUT_MS = 260;
 const MAX_LABELS = 220;
 const MAX_LABEL_CANDIDATES = 5000;
-const LABEL_FONT = "12px system-ui, -apple-system, 'Segoe UI', sans-serif";
-const REGION_FONT = "600 13px system-ui, -apple-system, 'Segoe UI', sans-serif";
+// Cartographic hierarchy: regions in semibold ink, entities lighter, source fragments
+// (pages of a source, not ideas) in muted italic so they recede.
+const FONT_STACK = "system-ui, -apple-system, 'Segoe UI', sans-serif";
+const LABEL_FONT = `11.5px ${FONT_STACK}`;
+const SOURCE_FONT = `italic 11.5px ${FONT_STACK}`;
+const REGION_FONT = `600 12.5px ${FONT_STACK}`;
+const MARK_FONT = `700 11px ${FONT_STACK}`;
+const PATH_LABEL_FONT = `600 12.5px ${FONT_STACK}`;
+/** Edge opacity falls with the number of edges in view (dense views read as a tint, not a hairball). */
+const EDGE_REF = 900;
+const EDGE_MIN_FACTOR = 0.28;
+const PATH_DIM = 0.5;
 const KEY_PAN_PX = 80;
 const KEY_ZOOM = 1.5;
 const LABEL_CHARS = 34;
@@ -88,6 +99,23 @@ function itemOf(t: Tile, i: number): MapItem {
 
 const short = (s: string): string => (s.length > LABEL_CHARS ? `${s.slice(0, LABEL_CHARS - 1)}…` : s);
 
+type LabelStyle = "region" | "entity" | "source";
+const styleOf = (it: MapItem): LabelStyle =>
+  it.kind === "cluster" ? "region" : typeName(it.type) === "source_fragment" ? "source" : "entity";
+const FONTS: Record<LabelStyle, string> = { region: REGION_FONT, entity: LABEL_FONT, source: SOURCE_FONT };
+
+interface MapColors {
+  fg: string;
+  fg2: string;
+  muted: string;
+  halo: string;
+  wash: string;
+  accent: string;
+  route: string;
+  routeFg: string;
+  history: string;
+}
+
 export class MapView {
   readonly camera = new Camera();
   readonly canvas: HTMLCanvasElement;
@@ -110,6 +138,8 @@ export class MapView {
   private kbIndex = -1;
   private selected: { x: number; y: number } | null = null;
   private path: PathMark[] | null = null;
+  private pathDashed = false;
+  private colors: MapColors = { fg: "#111", fg2: "#333", muted: "#666", halo: "#fff", wash: "rgba(255,255,255,.6)", accent: "#1f56b8", route: "#111", routeFg: "#fff", history: "#7a5a2a" };
   private compare: MapItem[] = [];
   private dirty = true;
   private raf = 0;
@@ -158,6 +188,14 @@ export class MapView {
   setTheme(theme: Theme, dark: boolean): void {
     this.dark = dark;
     this.renderer.setTheme(theme);
+    // CSS tokens are read once per theme switch, not per frame.
+    const cs = getComputedStyle(document.documentElement);
+    const v = (name: string, fallback: string): string => cs.getPropertyValue(name).trim() || fallback;
+    const c = this.colors;
+    this.colors = {
+      fg: v("--fg", c.fg), fg2: v("--fg-2", c.fg2), muted: v("--muted", c.muted), halo: v("--halo", c.halo), wash: v("--wash", c.wash),
+      accent: v("--accent", c.accent), route: v("--route", c.route), routeFg: v("--route-fg", c.routeFg), history: v("--history", c.history),
+    };
     this.invalidate();
   }
 
@@ -171,8 +209,10 @@ export class MapView {
     this.invalidate();
   }
 
-  setPath(marks: PathMark[] | null): void {
+  /** `dashed`: a historical or exploration-only route, never drawn like a dependency. */
+  setPath(marks: PathMark[] | null, dashed = false): void {
     this.path = marks;
+    this.pathDashed = dashed;
     if (marks && marks.length) {
       const xs = marks.map((m) => m.x), ys = marks.map((m) => m.y);
       this.camera.fit(Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys));
@@ -287,7 +327,10 @@ export class MapView {
     }
     const f = this.frameInfo();
     this.renderer.begin(f);
-    const edgeAlpha = this.dark ? 0.55 : 0.45;
+    let nEdges = 0;
+    for (const [l] of cur) nEdges += l.nEdges;
+    const density = Math.max(EDGE_MIN_FACTOR, Math.min(1, Math.sqrt(EDGE_REF / Math.max(1, nEdges))));
+    const edgeAlpha = (this.dark ? 0.4 : 0.5) * density;
     this.renderer.drawEdges([...prev, ...cur], f, edgeAlpha);
     this.renderer.drawPoints([...prev, ...cur], f);
     this.drawOverlay(z);
@@ -317,12 +360,12 @@ export class MapView {
     return it.kind === "cluster" ? clusterRadius(it.size) : entityRadius(it.priority === NONE ? 1e9 : it.priority);
   }
 
-  private textWidth(s: string, cluster: boolean): number {
-    const key = (cluster ? "R" : "E") + s;
+  private textWidth(s: string, style: LabelStyle): number {
+    const key = style[0] + s;
     let w = this.widths.get(key);
     if (w === undefined) {
       if (this.widths.size > 50_000) this.widths.clear();
-      this.ctx.font = cluster ? REGION_FONT : LABEL_FONT;
+      this.ctx.font = FONTS[style];
       w = this.ctx.measureText(s).width;
       this.widths.set(key, w);
     }
@@ -341,35 +384,39 @@ export class MapView {
     for (const it of this.items) {
       const [sx, sy] = this.camera.toScreen(it.x, it.y);
       if (sx < -40 || sy < -20 || sx > width + 40 || sy > height + 20) continue;
-      const s = short(it.label);
-      cands.push({ key: visible.length, x: sx, y: sy, r: this.radiusOf(it), w: this.textWidth(s, it.kind === "cluster"), h: 14 });
+      cands.push({ key: visible.length, x: sx, y: sy, r: this.radiusOf(it), w: this.textWidth(short(displayLabel(it.label)), styleOf(it)), h: 14 });
       visible.push(it);
       if (cands.length >= MAX_LABEL_CANDIDATES) break;
     }
     this.placed = placeLabels(cands, width, height, MAX_LABELS);
     this.placedItems = this.placed.map((p) => visible[p.key]);
+    const routed = !!this.path?.length;
+    if (routed) {
+      // A route is on: wash the base map so the route reads first.
+      ctx.fillStyle = this.colors.wash;
+      ctx.fillRect(0, 0, width, height);
+    }
+    ctx.globalAlpha = routed ? PATH_DIM : 1;
     this.paintLabels(this.placed, this.placedItems);
+    ctx.globalAlpha = 1;
     this.paintMarks();
-  }
-
-  private css(name: string): string {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
 
   private paintLabels(placed: PlacedLabel[], items: MapItem[]): void {
     const ctx = this.ctx;
-    const fg = this.css("--fg") || "#111";
-    const halo = this.css("--halo") || "#fff";
+    const { fg, fg2, muted, halo } = this.colors;
+    const ink: Record<LabelStyle, string> = { region: fg, entity: fg2, source: muted };
     ctx.textBaseline = "top";
     ctx.lineJoin = "round";
     ctx.lineWidth = 3;
+    ctx.strokeStyle = halo;
     for (let i = 0; i < placed.length; i++) {
       const p = placed[i], it = items[i];
-      ctx.font = it.kind === "cluster" ? REGION_FONT : LABEL_FONT;
-      const s = short(it.label);
-      ctx.strokeStyle = halo;
+      const style = styleOf(it);
+      ctx.font = FONTS[style];
+      const s = short(displayLabel(it.label));
       ctx.strokeText(s, p.x, p.y + 1);
-      ctx.fillStyle = fg;
+      ctx.fillStyle = ink[style];
       ctx.fillText(s, p.x, p.y + 1);
     }
   }
@@ -386,34 +433,58 @@ export class MapView {
     ctx.setLineDash([]);
   }
 
-  private paintMarks(): void {
+  private paintRoute(path: PathMark[]): void {
     const ctx = this.ctx;
-    const accent = this.css("--accent") || "#0a58ca";
-    const fg = this.css("--fg") || "#111";
-    if (this.path && this.path.length) {
+    const { halo, route, routeFg, history, fg } = this.colors;
+    const color = this.pathDashed ? history : route;
+    const pts = path.map((m) => this.camera.toScreen(m.x, m.y));
+    const line = (): void => {
       ctx.beginPath();
-      this.path.forEach((m, i) => {
-        const [sx, sy] = this.camera.toScreen(m.x, m.y);
-        if (i === 0) ctx.moveTo(sx, sy);
-        else ctx.lineTo(sx, sy);
-      });
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 3;
+      pts.forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
+    };
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    line();
+    ctx.strokeStyle = halo;
+    ctx.lineWidth = 7;
+    ctx.stroke();
+    line();
+    ctx.setLineDash(this.pathDashed ? [7, 6] : []);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.lineCap = "butt";
+    ctx.font = MARK_FONT;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    pts.forEach(([sx, sy], i) => {
+      ctx.beginPath();
+      ctx.arc(sx, sy, 10, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = halo;
       ctx.stroke();
-      this.path.forEach((m, i) => {
-        const [sx, sy] = this.camera.toScreen(m.x, m.y);
-        ctx.beginPath();
-        ctx.arc(sx, sy, 9, 0, Math.PI * 2);
-        ctx.fillStyle = accent;
-        ctx.fill();
-        ctx.fillStyle = "#fff";
-        ctx.font = "700 11px system-ui, sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(String(i + 1), sx, sy + 0.5);
-        ctx.textAlign = "start";
-      });
-    }
+      ctx.fillStyle = routeFg;
+      ctx.fillText(String(i + 1), sx, sy + 0.5);
+    });
+    ctx.textAlign = "start";
+    // Stop names next to their markers, haloed, above everything else.
+    ctx.font = PATH_LABEL_FONT;
+    ctx.lineWidth = 4;
+    pts.forEach(([sx, sy], i) => {
+      const s = short(path[i].label);
+      ctx.strokeStyle = halo;
+      ctx.strokeText(s, sx + 15, sy);
+      ctx.fillStyle = fg;
+      ctx.fillText(s, sx + 15, sy);
+    });
+  }
+
+  private paintMarks(): void {
+    const { accent, fg } = this.colors;
+    if (this.path && this.path.length) this.paintRoute(this.path);
     this.compare.forEach((it, i) => this.ring(it.x, it.y, this.radiusOf(it) + 6, accent, 3, i === 0 ? [] : [6, 4]));
     if (this.selected) this.ring(this.selected.x, this.selected.y, 11, accent, 3);
     if (this.hover) this.ring(this.hover.x, this.hover.y, this.radiusOf(this.hover) + 4, fg, 1.5);
@@ -690,7 +761,7 @@ export class MapView {
     for (const it of this.items) {
       const [sx, sy] = this.camera.toScreen(it.x, it.y);
       if (sx < 0 || sy < 0 || sx > width || sy > height) continue;
-      cands.push({ key: vis.length, x: sx, y: sy, r: 3, w: this.textWidth(it.label, false), h: 14 });
+      cands.push({ key: vis.length, x: sx, y: sy, r: 3, w: this.textWidth(it.label, "entity"), h: 14 });
       vis.push(it);
       if (cands.length >= MAX_LABEL_CANDIDATES) break;
     }

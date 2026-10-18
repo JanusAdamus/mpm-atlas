@@ -84,8 +84,9 @@ export class Camera {
   /** Fit the world rectangle with a margin. */
   fit(x0: number, y0: number, x1: number, y1: number, ms = 600): void {
     const w = Math.max(x1 - x0, 1e-6), h = Math.max(y1 - y0, 1e-6);
-    const scale = Math.min(this.width / w, this.height / h) * 0.8;
-    this.flyTo({ cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, scale }, ms);
+    const scale = Math.min(this.width / w, this.height / h) * 0.7;
+    // Shift the content left a little: route stop names are drawn to the right of their markers.
+    this.flyTo({ cx: (x0 + x1) / 2 + 0.08 * w, cy: (y0 + y1) / 2, scale }, ms);
   }
 
   /** Advance an animation; true while one is running. */

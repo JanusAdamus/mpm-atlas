@@ -7,7 +7,9 @@ function precompress(): Plugin {
   return {
     name: "atlas-precompress",
     apply: "build",
-    generateBundle(_, bundle) {
+    // "post": Vite rewrites the dynamic-import preload placeholder (__VITE_PRELOAD__) in its own
+    // generateBundle; compressing before that shipped .br/.gz with the placeholder still in.
+    generateBundle: { order: "post", handler(_, bundle) {
       for (const [name, out] of Object.entries(bundle)) {
         if (!/\.(js|css|html|svg|json)$/.test(name)) continue;
         const src = out.type === "chunk" ? out.code : out.source;
@@ -16,7 +18,7 @@ function precompress(): Plugin {
         this.emitFile({ type: "asset", fileName: `${name}.br`, source: brotliCompressSync(buf, { params: { [constants.BROTLI_PARAM_QUALITY]: 11 } }) });
         this.emitFile({ type: "asset", fileName: `${name}.gz`, source: gzipSync(buf, { level: 9 }) });
       }
-    },
+    } },
   };
 }
 

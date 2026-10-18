@@ -4,6 +4,7 @@ import type { ClaimJson, EntityResponse } from "./api.ts";
 import { h, safeLink } from "./dom.ts";
 import { badge } from "./evidence.ts";
 import { getLang, relLabel, stateLabel, t, typeLabel } from "./i18n.ts";
+import { typeColor } from "./theme.ts";
 
 export interface PanelActions {
   open(id: string): void;
@@ -32,9 +33,59 @@ function typeset(el: HTMLElement, tex: string, display: boolean): void {
   });
 }
 
-export function renderFormula(tex: string): HTMLElement {
-  const el = h("div", { class: "formula", role: "math", "aria-label": tex });
-  typeset(el, tex, true);
+const MATHML_NS = "http://www.w3.org/1998/Math/MathML";
+const MATHML_TAGS = new Set([
+  "math", "mrow", "mi", "mn", "mo", "ms", "mtext", "mspace", "msup", "msub", "msubsup", "mfrac", "msqrt", "mroot",
+  "mstyle", "mover", "munder", "munderover", "mtable", "mtr", "mtd", "mpadded", "mphantom", "menclose", "mfenced", "semantics",
+]);
+const MATHML_ATTRS = new Set([
+  "mathvariant", "displaystyle", "scriptlevel", "stretchy", "fence", "separator", "lspace", "rspace", "accent",
+  "accentunder", "columnalign", "rowspacing", "columnspacing", "linethickness", "form", "largeop", "movablelimits",
+  "symmetric", "minsize", "maxsize", "notation", "open", "close", "separators", "width", "height", "depth", "display",
+]);
+
+/** Some registry formulas arrive as MathML (Wikidata P2534 rendered by MediaWiki), not TeX.
+ *  Rebuild them element by element from an allow-list (no attributes that can carry code,
+ *  no foreign elements), and use an embedded TeX annotation through KaTeX when present.
+ *  Returns null when the string is not usable MathML. */
+function mathmlNode(src: string): { node?: Element; tex?: string } | null {
+  const doc = new DOMParser().parseFromString(src, "application/xml");
+  const root = doc.documentElement;
+  if (root.localName !== "math" || doc.getElementsByTagName("parsererror").length) return null;
+  const tex = [...root.getElementsByTagName("annotation")].find((a) => a.getAttribute("encoding") === "application/x-tex")?.textContent?.trim();
+  if (tex) return { tex };
+  const copy = (n: Element): Element | null => {
+    if (!MATHML_TAGS.has(n.localName)) return null;
+    const out = document.createElementNS(MATHML_NS, n.localName);
+    for (const a of [...n.attributes]) if (MATHML_ATTRS.has(a.name)) out.setAttribute(a.name, a.value);
+    for (const c of [...n.childNodes]) {
+      if (c.nodeType === Node.TEXT_NODE) out.append(c.textContent ?? "");
+      else if (c.nodeType === Node.ELEMENT_NODE) {
+        const k = copy(c as Element);
+        if (k) out.append(k);
+      }
+    }
+    return out;
+  };
+  const node = copy(root);
+  if (node) node.setAttribute("display", "block");
+  return node ? { node } : null;
+}
+
+export function renderFormula(src: string): HTMLElement {
+  const isMathml = /^\s*<math[\s>]/.test(src);
+  const parsed = isMathml ? mathmlNode(src) : null;
+  const tex = parsed?.tex ?? (isMathml ? null : src);
+  const el = h("div", { class: "formula" });
+  if (tex !== null) {
+    el.setAttribute("role", "math");
+    el.setAttribute("aria-label", tex);
+    typeset(el, tex, true);
+  } else if (parsed?.node) {
+    el.append(parsed.node); // native MathML carries its own semantics
+  } else {
+    el.textContent = src.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  }
   return el;
 }
 
@@ -101,7 +152,7 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
   const root = h("article", { class: "entity", "aria-labelledby": "entity-title" });
   root.append(
     h("header", {},
-      h("p", { class: "eyebrow" }, typeLabel(e.type)),
+      h("p", { class: "eyebrow" }, h("span", { class: "type-dot", style: `background:${typeColor(e.type, document.documentElement.dataset.theme === "dark")}`, "aria-hidden": "true" }), typeLabel(e.type)),
       h("h2", { id: "entity-title", tabindex: -1 }, r.label),
       h("p", { class: "id" }, e.id),
       r.merged_from.length ? h("p", { class: "muted" }, `${t("mergedFrom")}: ${r.merged_from.join(", ")}`) : null,
@@ -115,13 +166,19 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
   );
   if (r.coverage === "unknown") root.append(h("p", { class: "notice", role: "note" }, t("coverageUnknown")));
   const intu = localized(e.descriptions);
-  if (intu) root.append(h("section", {}, h("h3", {}, t("intuition")), h("p", { lang: intu.lang }, richText(intu.text))));
+  if (intu) root.append(h("section", {}, h("h3", {}, t("intuition")), h("p", { class: "lede", lang: intu.lang }, richText(intu.text))));
   const form = localized(e.statements);
   if (form || e.formula) {
     root.append(h("section", {}, h("h3", {}, t("formulation")), form ? h("p", { lang: form.lang }, richText(form.text)) : null, e.formula ? renderFormula(e.formula) : null));
   }
-  if (e.aliases.length) root.append(h("p", { class: "muted" }, `${t("aliases")}: `, e.aliases.map(([lang, text]) => `${text} (${lang})`).join(", ")));
-  if (e.external_ids.length) root.append(h("p", { class: "muted" }, `${t("externalIds")}: `, e.external_ids.map(([s, v]) => `${s}:${v}`).join(", ")));
+  if (e.aliases.length || e.external_ids.length) {
+    root.append(h("section", { class: "meta-list" },
+      e.aliases.length ? h("p", {}, `${t("aliases")}: `, e.aliases.map(([lang, text]) => `${text} (${lang})`).join(", ")) : null,
+      e.external_ids.length
+        ? h("details", {}, h("summary", {}, `${t("externalIds")} `, h("span", { class: "count" }, `(${e.external_ids.length})`)),
+          h("p", { class: "prov", style: "white-space:normal" }, e.external_ids.map(([s, v]) => `${s}:${v}`).join(" · ")))
+        : null));
+  }
 
   const assumptions = new Set<string>();
   for (const c of r.claims) for (const a of c.assumptions) assumptions.add(a);
@@ -137,7 +194,7 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
       const summary = [...states].map(([s, n]) => `${n} ${stateLabel(s)}`).join(", ");
       sec.append(
         h("details", { open: claims.length <= 12 },
-          h("summary", {}, h("strong", {}, relLabel(rel)), ` · ${r.counts_by_relation[rel] ?? claims.length} `, h("span", { class: "muted" }, `(${summary})`)),
+          h("summary", {}, h("strong", {}, relLabel(rel)), " ", h("span", { class: "count" }, `${r.counts_by_relation[rel] ?? claims.length}`), h("span", { class: "muted small" }, ` · ${summary}`)),
           h("ul", { class: "claims" }, claims.map((c) => claimRow(c, r.canonical_id, selfIds, actions))),
         ),
       );

@@ -60,3 +60,10 @@ export function placeLabels(cands: Iterable<LabelCandidate>, width: number, heig
   }
   return placed;
 }
+
+/** Map-only label text: drops the source prefix of Wikipedia fragments (they are drawn
+ *  in muted italic instead) and the `Mathlib/` root of library areas.  Panels, search
+ *  and the text view keep the full label. */
+export function displayLabel(label: string): string {
+  return label.replace(/^Wikipedia \([a-z-]{2,12}\): /, "").replace(/^Mathlib\//, "");
+}

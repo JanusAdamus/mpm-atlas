@@ -192,6 +192,11 @@ pub struct Conclusion {
     pub is_hypothesis: bool,
     /// Name in shapes/composition.json `conclusions`.
     pub kind: String,
+    /// What the reader may call the route, from the conclusion's family:
+    /// mathematical, structural, application, pedagogical, candidate_hypothesis,
+    /// historical, documentary, none.  A `historical` route is an answer only as a
+    /// historical connection, never a dependency, prerequisite or application.
+    pub category: &'static str,
     /// 0..=5 (composition.json `strength_scale`).
     pub strength: u8,
     pub mathematical: bool,

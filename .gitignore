@@ -11,3 +11,6 @@ __pycache__/
 # AtlasBench generated items (rebuildable from data/atlas.db); manifests with hashes stay tracked
 bench/silver/**/*.jsonl
 bench/splits/**/*.jsonl
+
+# design screenshots (large; kept on disk, not versioned)
+docs/design/**/*.png
