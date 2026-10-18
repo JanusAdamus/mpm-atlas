@@ -2,7 +2,7 @@
 //!
 //!     cargo run --release -p atlas-paths --example bench -- \
 //!         --snapshot <dir|file> [--composition shapes/composition.json] [--queries 200] \
-//!         [--k 3] [--landmarks 16] [--max-hops 6] [--seed 1] [--compile-db <atlas.db>]
+//!         [--k 3] [--landmarks 16] [--max-hops 6] [--seed 1] [--compile-db <atlas.db>] [--concepts 0|1]
 //!
 //! Query classes (reported apart, never pooled):
 //! - `reachable`: t is the end of a random authorized walk of 2..=5 steps from s, so
@@ -32,6 +32,7 @@ struct Args {
     derive_budget: usize,
     alt_factor: f64,
     alt_min: usize,
+    concepts: bool,
 }
 
 fn args() -> Args {
@@ -47,6 +48,7 @@ fn args() -> Args {
         derive_budget: PathOptions::default().derive_budget,
         alt_factor: PathOptions::default().alt_budget_factor,
         alt_min: PathOptions::default().alt_min_expansions,
+        concepts: true,
     };
     let v: Vec<String> = std::env::args().skip(1).collect();
     for p in v.chunks(2) {
@@ -63,6 +65,7 @@ fn args() -> Args {
             "--derive-budget" => a.derive_budget = val.parse().expect("--derive-budget"),
             "--alt-factor" => a.alt_factor = val.parse().expect("--alt-factor"),
             "--alt-min" => a.alt_min = val.parse().expect("--alt-min"),
+            "--concepts" => a.concepts = val != "0",
             x => panic!("unknown argument {x}"),
         }
     }
@@ -248,7 +251,7 @@ fn main() {
         let (s, t) = pair.split_once(',').expect("BENCH_PAIR=s,t");
         let (s, t): (NodeIx, NodeIx) = (s.parse().unwrap(), t.parse().unwrap());
         let o: Objective = serde_json::from_value(json!(std::env::var("BENCH_OBJECTIVE").unwrap_or("best_supported".into()))).unwrap();
-        let opts = PathOptions { k: a.k, derive_budget: a.derive_budget, alt_budget_factor: a.alt_factor, alt_min_expansions: a.alt_min, ..Default::default() };
+        let opts = PathOptions { k: a.k, derive_budget: a.derive_budget, alt_budget_factor: a.alt_factor, alt_min_expansions: a.alt_min, concepts: a.concepts, ..Default::default() };
         let t0 = Instant::now();
         let r = engine.find_with(&query(&snap, s, t, o, a.max_hops), &opts).unwrap();
         eprintln!("{:.1} ms {:?} {:?}", t0.elapsed().as_secs_f64() * 1000.0, r.abstention, r.stats);
@@ -297,7 +300,7 @@ fn main() {
         return;
     }
 
-    let opts = PathOptions { k: a.k, derive_budget: a.derive_budget, alt_budget_factor: a.alt_factor, alt_min_expansions: a.alt_min, ..Default::default() };
+    let opts = PathOptions { k: a.k, derive_budget: a.derive_budget, alt_budget_factor: a.alt_factor, alt_min_expansions: a.alt_min, concepts: a.concepts, ..Default::default() };
     let mut peak = mem();
     let mut per = serde_json::Map::new();
     let only = std::env::var("BENCH_OBJECTIVES").unwrap_or_default();

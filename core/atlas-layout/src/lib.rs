@@ -17,9 +17,14 @@
 //! level whose label says their relations are unknown (principle 7), never
 //! "isolated".  Merged nodes take their survivor's place and never show on tiles.
 //!
+//! Concept layer (when the snapshot has one): each declaration is drawn in a disc
+//! around its primary concept; the general zooms show only concepts and areas, and
+//! a visible concept stands for its hidden declarations (`concept`, `tiles`).
+//!
 //! Positions are stable within a `layout_version`.  An aggregated edge carries one
 //! relation and its count: distinct relations are never merged into one line.
 
+mod concept;
 pub mod force;
 pub mod graph;
 mod io;
@@ -162,8 +167,12 @@ pub struct Layout {
     /// Hash of (snapshot content hash, params, prior version): what `/api/map/tiles` reports.
     pub version: String,
     pub snapshot_hash: String,
-    /// Node positions in [0,1]^2, indexed by snapshot node (NaN for excluded nodes).
+    /// Node positions in [0,1]^2, indexed by snapshot node (NaN for excluded nodes):
+    /// what the map draws, declarations around their concept.
     pub positions: Vec<[f32; 2]>,
+    /// The force layout's positions, before the concept placement: what a warm
+    /// start continues from (equal to `positions` without a concept layer).
+    pub force_positions: Vec<[f32; 2]>,
     /// Community of each node per level (`levels[l][node]`), coarse to fine.
     pub levels: Vec<Vec<u32>>,
     pub communities: Vec<LevelInfo>,
@@ -226,7 +235,7 @@ impl Prior {
             version: l.version.clone(),
             affine: l.affine,
             map,
-            positions: l.positions.clone(),
+            positions: l.force_positions.clone(),
             levels,
             unknown,
         }
@@ -361,6 +370,8 @@ impl Layout {
 pub enum TileNodeKind {
     Entity,
     Cluster,
+    /// An entity that is a concept of the snapshot (it has member declarations).
+    Concept,
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -370,7 +381,8 @@ pub struct TileNode {
     pub label: String,
     pub x: f32,
     pub y: f32,
-    /// 1 for an entity; members it stands for (hidden at this zoom) for a cluster.
+    /// 1 for an entity; members it stands for (hidden at this zoom) for a cluster;
+    /// primary member declarations (all of them, at every zoom) for a concept.
     pub size: u32,
     pub community: String,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -392,12 +404,14 @@ pub struct TileEdge {
     pub count: u32,
 }
 
+/// What a cluster or a concept stands for at this zoom.
 #[derive(Clone, Debug, Serialize)]
 pub struct Aggregate {
+    /// The cluster's or the concept's id.
     pub cluster_id: String,
     pub members: u32,
     pub hidden_members: u32,
-    /// Edges between hidden members of this cluster, per relation.
+    /// Edges between hidden members of this cluster (or concept), per relation.
     pub hidden_relations: BTreeMap<RelationType, u32>,
 }
 

@@ -14,6 +14,7 @@
 //! ```
 
 mod compile;
+mod concepts;
 mod error;
 pub mod format;
 pub mod hashidx;
@@ -29,7 +30,8 @@ pub use compile::{CompileOptions, CompileReport, Phase, compile, current_snapsho
 pub use error::{Error, Result};
 pub use format::NONE;
 pub use snapshot::{
-    ClaimIx, Csr, Dir, EdgeRef, EdgeSlice, EvidenceSummary, GroupIx, NodeIx, ProvRef, Snapshot, SourceIx, StrId,
+    ClaimIx, ConceptEdge, ConceptEdgeStat, Csr, Dir, EdgeRef, EdgeSlice, EvidenceSummary, GroupIx, NodeIx, ProvRef,
+    Snapshot, SourceIx, StrId,
 };
 pub use stats::SnapshotStats;
 pub use vocab::{CURRENT_STATES_MASK, EntityType, EvidenceState, Projection, RELATIONS, RelationSpec, RelationType, Role};

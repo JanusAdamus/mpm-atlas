@@ -1,6 +1,6 @@
 # Especificación ejecutable del atlas · v1
 
-Fecha: 2026-10-16.  Esquema: `SCHEMA_VERSION = 1` (`atlas/model.py`).  Este documento es el contrato que usan ingesta, búsqueda, recorridos, mapa, evaluación e integración.  Lo que aquí se describe está implementado en `atlas/model.py` y `atlas/store.py` y probado en `tests/test_model.py` y `tests/test_store.py`.  Si el código y este texto discrepan, manda el código y se corrige el texto.
+Fecha: 2026-10-16 (actualizada 2026-10-17).  Esquema: `SCHEMA_VERSION = 3` (`atlas/model.py`); snapshot `FORMAT_VERSION = 2`.  Este documento es el contrato que usan ingesta, búsqueda, recorridos, mapa, evaluación e integración.  Lo que aquí se describe está implementado en `atlas/model.py` y `atlas/store.py` y probado en `tests/test_model.py` y `tests/test_store.py`.  Si el código y este texto discrepan, manda el código y se corrige el texto.
 
 Fuentes de diseño: `research/2026-10-16/atlas-investigacion-y-plan.md` (secciones "Arquitectura del atlas" y "Búsqueda y motor de recorridos"), WP01 de `plan-ejecucion.md`, y R01, R02, R50, R51, R52 de `bibliografia-y-evidencia.md` (MMT, Math-in-the-Middle, nanopublicaciones, PROV-O, SHACL).
 
@@ -77,6 +77,7 @@ Toda afirmación se lee **SUJETO —relación→ OBJETO**.  Las propiedades vive
 | `counterexample_to` | proof | no | no | — | no | counterexample/model/concept/statement/definition → statement/conjecture | Refuta el destino bajo los supuestos declarados. |
 | `appears_in` | biblio | no | no | — | no | cualquiera salvo persona → doc | Localización en la literatura. |
 | `authored_by` | history | no | no | — | no | doc/matemático → person | Atribución de autoría. |
+| `member_of_concept` | structure | no | no | — | no | matemático/resource → matemático/area | Proyección conceptual (§12.1): la declaración trata de ese concepto.  Solo agrupa; no autoriza ninguna conclusión ni equivale a dependencia, equivalencia o formalización. |
 
 "Matemático" = concept, definition, theory, statement, proof, conjecture, counterexample, algorithm, model, problem.  "Doc" = publication, source_fragment, resource.  "Mundo" = phenomenon, application, experiment, problem, model.  El store rechaza afirmaciones cuyos extremos no cumplan estos tipos (tabla `relation_endpoints`, derivada de `RELATIONS`).
 
@@ -204,7 +205,20 @@ Español e inglés son de primera clase: etiquetas, alias, descripciones, enunci
 
 ## 12. Almacenamiento
 
-SQLite en modo WAL, `synchronous=NORMAL`, llaves foráneas activas, caché de 256 MiB por conexión.  Tablas: `sources`, `entities`, `external_ids`, `claims`, `claim_participants` (WITHOUT ROWID, llave `(claim_id, position)`, índice por entidad y rol), `provenance`, `events`, `merges`, `relation_endpoints`, `fts`, `meta`.  Versión en `PRAGMA user_version`; `MIGRATIONS[n]` es el DDL que lleva de n-1 a n, se aplica al abrir y registra un evento.  Las migraciones se agregan, nunca se editan una vez publicadas.  Una conexión por hilo; para lectores concurrentes, `Store(path, read_only=True)`.
+SQLite en modo WAL, `synchronous=NORMAL`, llaves foráneas activas, caché de 256 MiB por conexión.  Tablas: `sources`, `entities`, `external_ids`, `claims`, `claim_participants` (WITHOUT ROWID, llave `(claim_id, position)`, índice por entidad y rol), `provenance`, `events`, `merges`, `relation_endpoints`, `fts`, `meta`.  Versión en `PRAGMA user_version`; `MIGRATIONS[n]` es el DDL que lleva de n-1 a n, se aplica al abrir y registra un evento.  Las migraciones se agregan, nunca se editan una vez publicadas.  Una conexión por hilo; para lectores concurrentes, `Store(path, read_only=True)`.  Historial: v1 esquema inicial; v2 (2026-10-17) relación `member_of_concept`; v3 (2026-10-17) `member_of_concept` admite áreas como objeto.
+
+### 12.1 Proyección conceptual (`atlas/concepts.py`, `core/atlas-core/src/concepts.rs`)
+
+Plan: `docs/plans/2026-10-17-capa-conceptual.md`.  `python -m atlas.concepts` asigna cada declaración de Mathlib de contenido a hasta 3 conceptos (ítems de Wikidata, incluidas áreas, o conceptos derivados `concept:Mathlib/<zona>` rotulados «derivado») y escribe una afirmación `member_of_concept` por asignación:
+
+- procedencia: fuente `src:concept-projection`, extractor `concept-projection` y su versión, localizador `decl -> concepto`, y en `quote` la señal (`curated`, `name_doc`, `resolve`, `namespace`, `signature`, `zone`, `zone_derived`), la evidencia y el rango;
+- estado `extracted` para enlaces curados y zonas derivadas (leídas de la ruta del módulo); `model_proposed` para el resto;
+- `confidence.value` es una puntuación heurística **no calibrada** (así lo dice `calibration`); no se muestra como probabilidad;
+- la infraestructura (`resource`: tácticas, meta) queda sin asignar a propósito;
+- reversible: una corrida conserva los pares que reproduce sin cambios, reemplaza (`supersede`) los que cambian de puntuación, rango o señal y retracta los que ya no produce; `--retract RAZÓN` deshace todo.  No se borra ni sobrescribe nada fuente;
+- guarda de homónimos: una etiqueta de una palabra no se asigna fuera del dominio del ítem (directorios de Mathlib que corresponden a sus áreas `part_of_area`) ni se lee como sustantivo tras `Is` en un nombre Lean (`IsIntegral` no es «integral»).  Las propuestas `formalized_as` en `model_proposed` que la guarda rechaza se retractan con razón registrada.
+
+`atlas compile` deriva del registro, en cada compilación, la capa conceptual del snapshot (formato v2, secciones 100–110): el **concepto primario** de cada declaración (su pertenencia de mayor confianza; empate al Q-número menor, luego id), los **miembros** de cada concepto y las **aristas agregadas** concepto A → concepto B, que existen solo si hay aristas vigentes (cualquier relación salvo `member_of_concept`) de un miembro primario de A a uno de B, con conteo por (relación, estado de evidencia) y la afirmación de índice menor como ejemplo trazable.  Una conjunción con k premisas en B cuenta k.  Las aristas entre conceptos que ya existen en el registro (p. ej. `special_case_of` de Wikidata) no se agregan aquí: son aristas ordinarias.
 
 ### Rendimiento medido
 
@@ -375,8 +389,8 @@ Exactamente `Store.coverage()` más `generated_at`:
 
 ## 16. Pendiente y límites conocidos
 
-- Varias evaluaciones simultáneas por afirmación (tabla `assessments`, migración v2).
-- Llaves enteras para escalar a decenas de millones de afirmaciones (migración v2, medir antes y después).
+- Varias evaluaciones simultáneas por afirmación (tabla `assessments`, migración futura).
+- Llaves enteras para escalar a decenas de millones de afirmaciones (migración futura, medir antes y después).
 - Validación SHACL externa del `.ttl` (requiere rdflib + pyshacl; decidir en `docs/STATUS.md`).
 - Registrar el dominio del vocabulario (w3id) antes de publicar exportaciones.
 - La búsqueda léxica no indexa las explicaciones de las afirmaciones; si búsqueda lo necesita, se agrega como campo con su propia fila.

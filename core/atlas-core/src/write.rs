@@ -5,6 +5,7 @@ use rayon::prelude::*;
 use std::fs::{self, OpenOptions};
 use std::path::{Path, PathBuf};
 
+use crate::concepts::ConceptLayer;
 use crate::error::{Error, Result};
 use crate::format::{
     ENTRY_SIZE, FORMAT_VERSION, HASH_FIELD, HEADER_SIZE, Header, MAGIC, Section, SectionEntry, align_up,
@@ -60,6 +61,7 @@ pub(crate) struct Columns {
     pub in_claim: Vec<u32>,
     pub in_rel: Vec<u8>,
     pub in_state: Vec<u8>,
+    pub concepts: ConceptLayer,
 }
 
 impl Columns {
@@ -123,6 +125,17 @@ impl Columns {
             (S::InClaim, b(&self.in_claim)),
             (S::InRel, &self.in_rel),
             (S::InState, &self.in_state),
+            (S::NodeConcept, b(&self.concepts.node_concept)),
+            (S::ConceptNode, b(&self.concepts.concepts)),
+            (S::ConceptMemberOff, b(&self.concepts.member_off)),
+            (S::ConceptMember, b(&self.concepts.members)),
+            (S::ConceptEdgeOff, b(&self.concepts.edge_off)),
+            (S::ConceptEdgeDst, b(&self.concepts.edge_dst)),
+            (S::ConceptStatOff, b(&self.concepts.stat_off)),
+            (S::ConceptStatRel, &self.concepts.stat_rel),
+            (S::ConceptStatState, &self.concepts.stat_state),
+            (S::ConceptStatCount, b(&self.concepts.stat_count)),
+            (S::ConceptStatExample, b(&self.concepts.stat_example)),
         ]
     }
 

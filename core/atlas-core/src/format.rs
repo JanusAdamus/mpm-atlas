@@ -14,9 +14,9 @@ compile_error!("the snapshot format is little-endian and is mapped in place");
 
 pub const MAGIC: [u8; 8] = *b"ATLSNAP\0";
 /// Bump on any change to sections or their meaning.
-pub const FORMAT_VERSION: u32 = 1;
+pub const FORMAT_VERSION: u32 = 2;
 /// Highest registry `PRAGMA user_version` the compiler understands.
-pub const SUPPORTED_SCHEMA: u32 = 1;
+pub const SUPPORTED_SCHEMA: u32 = 3;
 pub const SECTION_ALIGN: u64 = 64;
 /// "No value" in any u32 column (no label, no area, no group, ...).
 pub const NONE: u32 = u32::MAX;
@@ -63,7 +63,7 @@ const _: () = assert!(ENTRY_SIZE == 24);
 
 macro_rules! sections {
     ($($name:ident = $code:literal : $ty:ty, $doc:literal;)+) => {
-        /// Every section of format v1.  `elem_size` is fixed per kind.
+        /// Every section of the current format.  `elem_size` is fixed per kind.
         #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
         #[repr(u32)]
         pub enum Section { $(#[doc = $doc] $name = $code),+ }
@@ -135,6 +135,19 @@ sections! {
     InClaim = 92: u32, "claim of each in edge";
     InRel = 93: u8, "RelationType code of each in edge";
     InState = 94: u8, "EvidenceState code of each in edge";
+
+    // v2: concept layer (src/concepts.rs), derived from current member_of_concept claims
+    NodeConcept = 100: u32, "node -> primary concept node, or NONE";
+    ConceptNode = 101: u32, "concept nodes (objects of a current membership), ascending";
+    ConceptMemberOff = 102: u32, "concept -> range in ConceptMember (C+1)";
+    ConceptMember = 103: u32, "primary members of each concept, ascending";
+    ConceptEdgeOff = 104: u32, "concept -> range in ConceptEdgeDst (C+1)";
+    ConceptEdgeDst = 105: u32, "target concept node of each aggregated edge, ascending per concept";
+    ConceptStatOff = 106: u32, "aggregated edge -> range in ConceptStat* (E+1)";
+    ConceptStatRel = 107: u8, "RelationType code of each (relation, state) count";
+    ConceptStatState = 108: u8, "EvidenceState code of each count";
+    ConceptStatCount = 109: u32, "declaration-level edges behind each (relation, state)";
+    ConceptStatExample = 110: u32, "smallest claim behind each (relation, state): a traceable example";
 }
 
 /// Section codes are below this; loaders index a table by code.

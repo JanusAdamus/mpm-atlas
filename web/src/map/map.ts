@@ -2,12 +2,13 @@
 // labels, focus rings and the path.  Zoom is continuous; when the tile level
 // changes, the new level fades in over the old one, which fades out once the
 // viewport is covered, so regions dissolve into their members instead of popping.
-import { centralOf, KIND_CLUSTER, NONE, type Tile } from "../tile.ts";
+import { centralOf, KIND_CLUSTER, KIND_CONCEPT, type Tile } from "../tile.ts";
 import { Camera, coveringTiles, type View } from "./camera.ts";
 import { Renderer, type Frame, type Layer, type Theme } from "./gl.ts";
 import { typeName } from "../vocab.ts";
+import { t, typeLabel } from "../i18n.ts";
 import { displayLabel, placeLabels, type LabelCandidate, type PlacedLabel } from "./labels.ts";
-import { clusterRadius, entityRadius, TileStore, type Entry } from "./tiles.ts";
+import { itemRadius, TileStore, type Entry } from "./tiles.ts";
 
 const FADE_IN_MS = 220;
 const FADE_OUT_MS = 260;
@@ -19,6 +20,7 @@ const FONT_STACK = "system-ui, -apple-system, 'Segoe UI', sans-serif";
 const LABEL_FONT = `11.5px ${FONT_STACK}`;
 const SOURCE_FONT = `italic 11.5px ${FONT_STACK}`;
 const REGION_FONT = `600 12.5px ${FONT_STACK}`;
+const CONCEPT_FONT = `600 12px ${FONT_STACK}`;
 const MARK_FONT = `700 11px ${FONT_STACK}`;
 const PATH_LABEL_FONT = `600 12.5px ${FONT_STACK}`;
 /** Edge opacity falls with the number of edges in view (dense views read as a tint, not a hairball). */
@@ -32,7 +34,7 @@ const LABEL_CHARS = 34;
 export interface MapItem {
   id: string;
   label: string;
-  kind: "entity" | "cluster";
+  kind: "entity" | "cluster" | "concept";
   type: number;
   x: number;
   y: number;
@@ -85,7 +87,7 @@ function itemOf(t: Tile, i: number): MapItem {
   return {
     id: t.strings[t.id[i]],
     label: t.strings[t.label[i]],
-    kind: t.kind[i] === KIND_CLUSTER ? "cluster" : "entity",
+    kind: t.kind[i] === KIND_CLUSTER ? "cluster" : t.kind[i] === KIND_CONCEPT ? "concept" : "entity",
     type: t.type[i],
     x: t.px[i],
     y: t.py[i],
@@ -97,12 +99,17 @@ function itemOf(t: Tile, i: number): MapItem {
   };
 }
 
+/** Spoken kind of an item (region, concept, or the entity's type). */
+export function kindLabel(it: MapItem): string {
+  return it.kind === "cluster" ? t("region") : it.kind === "concept" ? t("conceptMap") : typeLabel(typeName(it.type));
+}
+
 const short = (s: string): string => (s.length > LABEL_CHARS ? `${s.slice(0, LABEL_CHARS - 1)}…` : s);
 
-type LabelStyle = "region" | "entity" | "source";
+type LabelStyle = "region" | "concept" | "entity" | "source";
 const styleOf = (it: MapItem): LabelStyle =>
-  it.kind === "cluster" ? "region" : typeName(it.type) === "source_fragment" ? "source" : "entity";
-const FONTS: Record<LabelStyle, string> = { region: REGION_FONT, entity: LABEL_FONT, source: SOURCE_FONT };
+  it.kind === "cluster" ? "region" : it.kind === "concept" ? "concept" : typeName(it.type) === "source_fragment" ? "source" : "entity";
+const FONTS: Record<LabelStyle, string> = { region: REGION_FONT, concept: CONCEPT_FONT, entity: LABEL_FONT, source: SOURCE_FONT };
 
 interface MapColors {
   fg: string;
@@ -348,8 +355,10 @@ export class MapView {
       const t = e.tile!;
       for (let i = 0; i < t.nNodes; i++) out.push(itemOf(t, i));
     }
+    // Label order: regions by size, then concepts, then entities, each by priority.
+    const order = { cluster: 0, concept: 1, entity: 2 };
     out.sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind === "cluster" ? -1 : 1;
+      if (a.kind !== b.kind) return order[a.kind] - order[b.kind];
       return a.kind === "cluster" ? b.size - a.size : a.priority - b.priority;
     });
     this.items = out;
@@ -357,7 +366,7 @@ export class MapView {
   }
 
   private radiusOf(it: MapItem): number {
-    return it.kind === "cluster" ? clusterRadius(it.size) : entityRadius(it.priority === NONE ? 1e9 : it.priority);
+    return it.tile.kind ? itemRadius(it.tile, it.index) : 3;
   }
 
   private textWidth(s: string, style: LabelStyle): number {
@@ -405,7 +414,7 @@ export class MapView {
   private paintLabels(placed: PlacedLabel[], items: MapItem[]): void {
     const ctx = this.ctx;
     const { fg, fg2, muted, halo } = this.colors;
-    const ink: Record<LabelStyle, string> = { region: fg, entity: fg2, source: muted };
+    const ink: Record<LabelStyle, string> = { region: fg, concept: fg, entity: fg2, source: muted };
     ctx.textBaseline = "top";
     ctx.lineJoin = "round";
     ctx.lineWidth = 3;
@@ -491,7 +500,7 @@ export class MapView {
     const kb = this.placedItems[this.kbIndex];
     if (kb) {
       this.ring(kb.x, kb.y, this.radiusOf(kb) + 7, accent, 3, [3, 3]);
-      this.canvas.setAttribute("aria-label", `${kb.label} (${kb.kind})`);
+      this.canvas.setAttribute("aria-label", `${kb.label} (${kindLabel(kb)})`);
     }
   }
 
@@ -518,6 +527,13 @@ export class MapView {
       for (let k = 0; k < t.hiddenRel.length; k++) out.set(t.hiddenRel[k], (out.get(t.hiddenRel[k]) ?? 0) + t.hiddenCount[k]);
     }
     return out;
+  }
+
+  /** Edges drawn by the tiles in view (0 does not mean "no relation": see the legend). */
+  drawnEdges(): number {
+    let n = 0;
+    for (const e of this.store.readyAt(this.curZ)) if (this.wanted.has(e.key)) n += e.tile!.nEdges;
+    return n;
   }
 
   region(it: MapItem): RegionInfo {

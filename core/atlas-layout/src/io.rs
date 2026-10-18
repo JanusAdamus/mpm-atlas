@@ -3,11 +3,12 @@
 //! `<dir>/layout-<version>.lay`:
 //!   magic "ATLSLAY1" | u64 meta length | meta JSON (`LayoutMeta`) | zero pad to 8 |
 //!   positions [f32; 2] × n | id hash u64 × n | per level: community u32 × n |
-//!   per level: size u32 × count, centroid [f32; 2] × count, central members [u32; 3] × count
+//!   per level: size u32 × count, centroid [f32; 2] × count, central members [u32; 3] × count |
+//!   force positions [f32; 2] × n (if meta `force_positions`; else equal to positions)
 //! The meta records the BLAKE3 hash of everything after the padding; `open` checks it.
 //!
 //! `<dir>/tiles-<version>.til`:
-//!   magic "ATLSTIL1" | u64 meta length | meta JSON (`TileMeta`) | zero pad to 8 |
+//!   magic "ATLSTIL2" | u64 meta length | meta JSON (`TileMeta`) | zero pad to 8 |
 //!   index [u64; 3] × count (key, offset, length; sorted by key) | tile blobs
 //! The tile file is memory-mapped; tiles are read in place.
 //!
@@ -24,7 +25,8 @@ use crate::tiles::{Bytes, TileMeta, TileSet};
 use crate::{Layout, LayoutStats, LevelInfo};
 
 const LAYOUT_MAGIC: &[u8; 8] = b"ATLSLAY1";
-const TILES_MAGIC: &[u8; 8] = b"ATLSTIL1";
+/// v2: entities carry the hidden members and internal relations of a concept.
+const TILES_MAGIC: &[u8; 8] = b"ATLSTIL2";
 
 #[derive(Serialize, Deserialize)]
 struct LayoutMeta {
@@ -36,6 +38,9 @@ struct LayoutMeta {
     counts: Vec<usize>,
     stats: LayoutStats,
     payload_blake3: String,
+    /// The payload ends with the force layout's positions (layouts with a concept layer).
+    #[serde(default)]
+    force_positions: bool,
 }
 
 fn io(p: &Path) -> impl Fn(std::io::Error) -> Error + '_ {
@@ -88,6 +93,10 @@ pub(crate) fn write(layout: &Layout, dir: &Path) -> Result<(PathBuf, PathBuf)> {
         payload.extend_from_slice(bytemuck::cast_slice(&c.centroids));
         payload.extend_from_slice(bytemuck::cast_slice(&c.central));
     }
+    let force_positions = layout.force_positions != layout.positions;
+    if force_positions {
+        payload.extend_from_slice(bytemuck::cast_slice(&layout.force_positions));
+    }
     let meta = LayoutMeta {
         version: layout.version.clone(),
         snapshot_hash: layout.snapshot_hash.clone(),
@@ -97,6 +106,7 @@ pub(crate) fn write(layout: &Layout, dir: &Path) -> Result<(PathBuf, PathBuf)> {
         counts: layout.communities.iter().map(|c| c.count).collect(),
         stats: layout.stats.clone(),
         payload_blake3: blake3::hash(&payload).to_hex().to_string(),
+        force_positions,
     };
     let lp = layout_path(dir, &layout.version);
     let tp = tiles_path(dir, &layout.version);
@@ -209,6 +219,11 @@ pub(crate) fn read_layout(dir: &Path, version: &str) -> Result<Layout> {
             ..info
         });
     }
+    let force_positions = if meta.force_positions {
+        c.take::<[f32; 2]>(n)?
+    } else {
+        positions.clone()
+    };
     for (l, m) in levels.iter().enumerate() {
         if m.iter().any(|&x| x as usize >= meta.counts[l]) {
             return Err(Error::Integrity(format!(
@@ -221,6 +236,7 @@ pub(crate) fn read_layout(dir: &Path, version: &str) -> Result<Layout> {
         version: meta.version,
         snapshot_hash: meta.snapshot_hash,
         positions,
+        force_positions,
         levels,
         communities,
         id_hash,

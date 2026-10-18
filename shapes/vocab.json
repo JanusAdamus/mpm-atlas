@@ -1,6 +1,6 @@
 {
   "generated_from": "atlas/model.py (core/atlas-core/vocab_gen.py)",
-  "schema_version": 1,
+  "schema_version": 3,
   "entity_types": [
     "concept",
     "definition",
@@ -38,7 +38,8 @@
     "named_after",
     "counterexample_to",
     "appears_in",
-    "authored_by"
+    "authored_by",
+    "member_of_concept"
   ],
   "evidence_states": [
     "extracted",
@@ -553,6 +554,40 @@
         "person"
       ],
       "chain_authorizes": "authorship attribution"
+    },
+    "member_of_concept": {
+      "projection": "structure",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "resource"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "area"
+      ],
+      "chain_authorizes": "grouping only: the declaration is about the concept; implies no dependency, no equivalence and no formalization"
     }
   },
   "transitions": {

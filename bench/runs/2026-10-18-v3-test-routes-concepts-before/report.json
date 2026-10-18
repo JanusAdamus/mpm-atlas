@@ -1,0 +1,456 @@
+{
+ "date": "2026-10-18T16:09:59.440161+00:00",
+ "protocol": "bench/PROTOCOL.md v1.3 (thresholds frozen 2026-10-16; clarifications 6.1-6.3)",
+ "data": {
+  "items": [
+   "C:/Users/ADRIAN~1/AppData/Local/Temp/claude/C--Users-AdrianGonzalez-OneDrive---Delos-Advisors-Documentos-ChatGPT-MPM/4e777e56-671e-4d95-a7b5-b0a7fd109ec2/scratchpad/routes-test-v3.jsonl"
+  ],
+  "split": "adhoc",
+  "manifest": null
+ },
+ "registry": {
+  "path": "C:/MPM/data/atlas.db",
+  "sqlite": "C:/MPM/data/atlas.db",
+  "bytes": 5179146240,
+  "mtime_ns": 1792338329159387300,
+  "schema_version": 3,
+  "event_seq": 2943391
+ },
+ "registry_at_end": {
+  "path": "C:/MPM/data/atlas.db",
+  "sqlite": "C:/MPM/data/atlas.db",
+  "bytes": 5179146240,
+  "mtime_ns": 1792338329159387300,
+  "schema_version": 3,
+  "event_seq": 2943391
+ },
+ "hardware": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "ram_bytes": 33811132416,
+  "python": "3.14.6"
+ },
+ "backends": {
+  "store": "registry C:\\MPM\\data\\atlas.db",
+  "cli": "skipped by --skip-cli (the HTTP API serves the same engine)",
+  "http": {
+   "url": "http://127.0.0.1:8768",
+   "snapshot": "C:/Users/ADRIAN~1/AppData/Local/Temp/claude/C--Users-AdrianGonzalez-OneDrive---Delos-Advisors-Documentos-ChatGPT-MPM/4e777e56-671e-4d95-a7b5-b0a7fd109ec2/scratchpad/concepts/snap-base\\atlas-03c61399814c97c4.snap",
+   "content_hash": "03c61399814c97c4eeba3bca8f4489e0f4a0134f64aa753c0d88ceec6d6e76d0",
+   "source_event_seq": 2049417,
+   "registry_event_seq": 2943391,
+   "stale": true
+  }
+ },
+ "system_under_test": "http",
+ "baseline": "store",
+ "sealed_openings": 0,
+ "items": {
+  "route": 462
+ },
+ "evidence": {
+  "route": [
+   "handwritten/authored_by_agent_pending_expert_review",
+   "silver/silver_auto"
+  ]
+ },
+ "summary": {
+  "retrieval": {
+   "n_items": 0,
+   "unresolved": 0,
+   "missing": {},
+   "backends": [],
+   "cells": {},
+   "by_generator": {},
+   "by_area": {},
+   "qrels_resolved_share": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "lanes_used": {}
+  },
+  "routes": {
+   "n_items": 449,
+   "unresolved": 13,
+   "missing": {},
+   "by_backend": {
+    "http": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 264,
+      "n": 264,
+      "value": 1.0,
+      "ci95": [
+       0.9856577139416427,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 188,
+      "n": 188,
+      "value": 1.0,
+      "ci95": [
+       0.9799758673421861,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 260,
+      "n": 261,
+      "value": 0.9961685823754789,
+      "ci95": [
+       0.9786202232618056,
+       0.9993233402319711
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 1,
+      "n": 261,
+      "value": 0.0038314176245210726,
+      "ci95": [
+       0.000676659768028786,
+       0.02137977673819426
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 184,
+      "n": 188,
+      "value": 0.9787234042553191,
+      "ci95": [
+       0.9465791835027934,
+       0.9916955831014275
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 0,
+      "n": 264,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.01434228605835731
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "co_dependency_as_dependency": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "reverse_dependency": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "shared_target": {
+       "k": 185,
+       "n": 185,
+       "value": 1.0,
+       "ci95": [
+        0.9796577571223828,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "unrelated_hub": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": []
+    },
+    "store": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 370,
+      "n": 449,
+      "value": 0.8240534521158129,
+      "ci95": [
+       0.7861263428174468,
+       0.8564826637824186
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 2,
+      "n": 188,
+      "value": 0.010638297872340425,
+      "ci95": [
+       0.002922269566028632,
+       0.03795241346076797
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 198,
+      "n": 261,
+      "value": 0.7586206896551724,
+      "ci95": [
+       0.7031963186343029,
+       0.806542604422299
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 0,
+      "n": 261,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.01450474875723635
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 0,
+      "n": 188,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.02002413265781392
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 194,
+      "n": 449,
+      "value": 0.43207126948775054,
+      "ci95": [
+       0.3870192135610875,
+       0.4782758056739924
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "co_dependency_as_dependency": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "reverse_dependency": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "shared_target": {
+       "k": 2,
+       "n": 185,
+       "value": 0.010810810810810811,
+       "ci95": [
+        0.0029697381686438866,
+        0.03855429405216007
+       ],
+       "interval": "wilson"
+      },
+      "unrelated_hub": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": [
+      "step 0: conjunctive claim c:2a37c2638416f76a shown without all its premises (R7)",
+      "step 0: conjunctive claim c:802d2b2a87d55c30 shown without all its premises (R7)",
+      "step 0: conjunctive claim c:5166da991014cda9 shown without all its premises (R7)",
+      "step 0: conjunctive claim c:9634035a3b56eb2c shown without all its premises (R7)",
+      "step 2: conjunctive claim c:d0abca947b3082f2 shown without all its premises (R7)"
+     ]
+    }
+   }
+  },
+  "er": {
+   "n_items": 0,
+   "unresolved": 0,
+   "abstention": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "false_merge_rate_on_negatives": {},
+   "merge_recall_on_positives": {},
+   "system_merges_sampled": 0,
+   "system_merges_labeled": 0
+  },
+  "relations": {
+   "n_items": 0,
+   "unresolved": 0,
+   "labeled": 0,
+   "still_current": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "corroborated_by_another_source": {},
+   "by_relation": {}
+  },
+  "sourced": {
+   "n_items": 0,
+   "missing": {},
+   "by_backend": {}
+  },
+  "latency_ms": {
+   "http.path": {
+    "p50": 1.433999976143241,
+    "p95": 5.731680011376737,
+    "p99": 11.260172009933731,
+    "n": 449,
+    "mean": 2.1425316247410806,
+    "max": 29.044899973087013,
+    "p95_ci": [
+     4.984559991862623,
+     6.845639983657743
+    ]
+   },
+   "store.path": {
+    "p50": 1.4581999857909977,
+    "p95": 16.894739982672025,
+    "p99": 30.20984798669805,
+    "n": 449,
+    "mean": 4.144630067409296,
+    "max": 70.74880000436679,
+    "p95_ci": [
+     14.871040033176534,
+     19.91249999264255
+    ]
+   }
+  }
+ },
+ "verdicts": {
+  "retrieval": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "each lang x modality cell with n >= 30 (trivial silver excluded): delta nDCG@10 >= +0.05 and paired-bootstrap LB >= +0.02 vs lexical baseline",
+   "reason": "snapshot stale vs registry (PROTOCOL §6.1 d); rerun with --compile"
+  },
+  "routes.structure": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "0 structurally invalid steps in returned paths",
+   "reason": "snapshot stale vs registry (PROTOCOL §6.1 d); rerun with --compile"
+  },
+  "routes.adversarial": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "reason": "snapshot stale vs registry (PROTOCOL §6.1 d); rerun with --compile"
+  },
+  "routes.end_to_end": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB > 0.90 of expert-valid top-1 routes (n >= 100)",
+   "reason": "snapshot stale vs registry (PROTOCOL §6.1 d); rerun with --compile"
+  },
+  "routes.null_model_adversarial": {
+   "verdict": "PROVISIONAL-FAIL",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "no_forbidden": {
+    "k": 2,
+    "n": 188,
+    "value": 0.010638297872340425,
+    "ci95": [
+     0.002922269566028632,
+     0.03795241346076797
+    ],
+    "interval": "wilson"
+   }
+  },
+  "er": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB of merge precision >= 0.99 on sampled system merges (n >= 381); strata n >= 50 point >= 0.99",
+   "reason": "no labeled sample of system merges (needs experts)"
+  },
+  "relations": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "each priority family (proof, structure, application): Wilson LB of precision >= 0.97, n >= 125",
+   "reason": "no labeled relation items (needs experts)"
+  },
+  "provenance.registry": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "0 served claims without complete, matching provenance; n >= 1000 (mechanical check)",
+   "reason": "no items"
+  },
+  "provenance.served": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "0 served claims without complete, matching provenance; n >= 1000 (mechanical check)",
+   "reason": "no items"
+  },
+  "latency.search_hot.c1": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "reason": "no HTTP search c=1 samples"
+  },
+  "latency.search_hot.c8": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "reason": "no HTTP search c=8 samples"
+  },
+  "latency.interaction_server.entity": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no HTTP entity samples"
+  },
+  "latency.interaction_server.neighborhood": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no HTTP neighborhood samples"
+  },
+  "latency.interaction_server.tiles": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no HTTP tiles samples"
+  }
+ },
+ "seconds": 22.32,
+ "registry_changed_during_run": false,
+ "http_connection_retries": 1,
+ "server_alive_at_end": true
+}

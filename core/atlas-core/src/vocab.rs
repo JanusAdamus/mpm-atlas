@@ -116,6 +116,7 @@ str_enum!(
         CounterexampleTo = "counterexample_to",
         AppearsIn = "appears_in",
         AuthoredBy = "authored_by",
+        MemberOfConcept = "member_of_concept",
     }
 );
 
@@ -214,6 +215,7 @@ pub const RELATIONS: [RelationSpec; RelationType::COUNT] = [
     spec(R::CounterexampleTo, P::Proof, false, false, None, false),
     spec(R::AppearsIn, P::Biblio, false, false, None, false),
     spec(R::AuthoredBy, P::History, false, false, None, false),
+    spec(R::MemberOfConcept, P::Structure, false, false, None, false),
 ];
 
 impl RelationType {

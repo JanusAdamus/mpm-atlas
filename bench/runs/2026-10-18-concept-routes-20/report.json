@@ -1,0 +1,469 @@
+{
+ "summary": {
+  "items": 20,
+  "errors": 0,
+  "answerable_allowed_hit": {
+   "k": 14,
+   "n": 14,
+   "value": 1.0,
+   "ci95": [
+    0.7846891972623643,
+    1.0
+   ],
+   "interval": "wilson"
+  },
+  "abstain_on_answerable": {
+   "k": 0,
+   "n": 14,
+   "value": 0.0,
+   "ci95": [
+    0.0,
+    0.2153108027376358
+   ],
+   "interval": "wilson"
+  },
+  "adversarial_no_forbidden": {
+   "k": 10,
+   "n": 10,
+   "value": 1.0,
+   "ci95": [
+    0.7224672001371107,
+    1.0
+   ],
+   "interval": "wilson"
+  },
+  "abstain_on_unanswerable": {
+   "k": 5,
+   "n": 6,
+   "value": 0.8333333333333334,
+   "ci95": [
+    0.43649717781352987,
+    0.9699466302516935
+   ],
+   "interval": "wilson"
+  },
+  "structurally_valid": {
+   "k": 15,
+   "n": 15,
+   "value": 1.0,
+   "ci95": [
+    0.7961166989641515,
+    1.0
+   ],
+   "interval": "wilson"
+  },
+  "overclaim_vs_oracle": {
+   "k": 0,
+   "n": 15,
+   "value": 0.0,
+   "ci95": [
+    0.0,
+    0.20388330103584862
+   ],
+   "interval": "wilson"
+  }
+ },
+ "latency_ms": {
+  "p50": 1.5474999672733247,
+  "p95": 6.740414982778034,
+  "p99": 21.96800298581363,
+  "n": 20,
+  "mean": 3.1820999894989654,
+  "max": 25.774899986572564
+ },
+ "records": [
+  {
+   "id": "hw:concept-route:001:ftc-derivative",
+   "ms": 25.774899986572564,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q1217677",
+    "wd:Q29175"
+   ],
+   "witnesses": [
+    "c:bafe6a2d4695d668"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:002:ftc-integral",
+   "ms": 3.053199965506792,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 2,
+   "concepts": [
+    "wd:Q1217677",
+    "wd:Q122889481",
+    "wd:Q80091"
+   ],
+   "witnesses": [
+    "c:82a35917c26ff1ee",
+    "c:6dc48d304f5a936c"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:003:lagrange-group",
+   "ms": 1.947399985510856,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 2,
+   "concepts": [
+    "wd:Q505798",
+    "wd:Q466109",
+    "wd:Q83478"
+   ],
+   "witnesses": [
+    "c:9634035a3b56eb2c",
+    "c:ec42faccb7c03af4"
+   ],
+   "weakest_evidence": "extracted"
+  },
+  {
+   "id": "hw:concept-route:004:bayes-measurable-set",
+   "ms": 5.738599982578307,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q182505",
+    "wd:Q3054889"
+   ],
+   "witnesses": [
+    "c:b2bf47cbd13e3d5f"
+   ],
+   "weakest_evidence": "extracted"
+  },
+  {
+   "id": "hw:concept-route:005:radon-nikodym-measure",
+   "ms": 1.6401999746449292,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q1191319",
+    "wd:Q192276"
+   ],
+   "witnesses": [
+    "c:086e588060aff154"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:006:pigeonhole-cardinality",
+   "ms": 1.4547999599017203,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q188276",
+    "wd:Q4049983"
+   ],
+   "witnesses": [
+    "c:84e09b8a7fc18664"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:007:ivt-continuous-function",
+   "ms": 1.3537000049836934,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 2,
+   "concepts": [
+    "wd:Q245098",
+    "wd:Q2000555",
+    "wd:Q170058"
+   ],
+   "witnesses": [
+    "c:3309e5e53474ce81",
+    "c:4878b32689f7d1b8"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:008:taylor-derivative",
+   "ms": 1.3151000021025538,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q1137206",
+    "wd:Q29175"
+   ],
+   "witnesses": [
+    "c:d71a43e8cf01e767"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:009:complex-imaginary-unit",
+   "ms": 1.174700038973242,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q11567",
+    "wd:Q193796"
+   ],
+   "witnesses": [
+    "c:bd8fb1472b5fc91e"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:010:derivative-limit",
+   "ms": 1.2604999938048422,
+   "answerable": true,
+   "attack": null,
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q29175",
+    "wd:Q33540"
+   ],
+   "witnesses": [
+    "c:f4a35c3a2684dba9"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:011:derivative-ftc-support",
+   "ms": 1.1282999766990542,
+   "answerable": true,
+   "attack": "reverse_dependency",
+   "abstained": false,
+   "conclusion": "logical_support",
+   "oracle": "logical_support",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q29175",
+    "wd:Q1217677"
+   ],
+   "witnesses": [
+    "c:bafe6a2d4695d668"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:012:cardinality-pigeonhole-support",
+   "ms": 1.0836999863386154,
+   "answerable": true,
+   "attack": "reverse_dependency",
+   "abstained": false,
+   "conclusion": "logical_support",
+   "oracle": "logical_support",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q4049983",
+    "wd:Q188276"
+   ],
+   "witnesses": [
+    "c:84e09b8a7fc18664"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:013:imaginary-unit-complex-support",
+   "ms": 0.9572000126354396,
+   "answerable": true,
+   "attack": "reverse_dependency",
+   "abstained": false,
+   "conclusion": "logical_support",
+   "oracle": "logical_support",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 1,
+   "concepts": [
+    "wd:Q193796",
+    "wd:Q11567"
+   ],
+   "witnesses": [
+    "c:bd8fb1472b5fc91e"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:014:group-lagrange-support",
+   "ms": 1.2854000087827444,
+   "answerable": true,
+   "attack": "reverse_dependency",
+   "abstained": false,
+   "conclusion": "logical_support",
+   "oracle": "logical_support",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": true,
+   "structural_problems": [],
+   "hops": 2,
+   "concepts": [
+    "wd:Q83478",
+    "wd:Q466109",
+    "wd:Q505798"
+   ],
+   "witnesses": [
+    "c:ec42faccb7c03af4",
+    "c:9634035a3b56eb2c"
+   ],
+   "weakest_evidence": "extracted"
+  },
+  {
+   "id": "hw:concept-route:015:ivt-cauchy-schwarz",
+   "ms": 2.5141999940387905,
+   "answerable": false,
+   "attack": "shared_target",
+   "abstained": true,
+   "abstention": "no_route",
+   "reason": "Ninguna ruta autorizada de a lo sumo 6 pasos une estos conceptos por aristas agregadas."
+  },
+  {
+   "id": "hw:concept-route:016:bayes-pigeonhole",
+   "ms": 2.7734999894164503,
+   "answerable": false,
+   "attack": "shared_target",
+   "abstained": true,
+   "abstention": "no_route",
+   "reason": "Ninguna ruta autorizada de a lo sumo 6 pasos une estos conceptos por aristas agregadas."
+  },
+  {
+   "id": "hw:concept-route:017:flt-jensen",
+   "ms": 2.457799972034991,
+   "answerable": false,
+   "attack": "shared_target",
+   "abstained": true,
+   "abstention": "no_route",
+   "reason": "Ninguna ruta autorizada de a lo sumo 6 pasos une estos conceptos por aristas agregadas."
+  },
+  {
+   "id": "hw:concept-route:018:cauchy-schwarz-pythagoras",
+   "ms": 2.519100031349808,
+   "answerable": false,
+   "attack": "related_but_unlinked",
+   "abstained": true,
+   "abstention": "no_route",
+   "reason": "Ninguna ruta autorizada de a lo sumo 6 pasos une estos conceptos por aristas agregadas."
+  },
+  {
+   "id": "hw:concept-route:019:integration-isintegral-homonym",
+   "ms": 3.465999965555966,
+   "answerable": false,
+   "attack": "homonym",
+   "abstained": false,
+   "conclusion": "logical_dependency",
+   "oracle": "logical_dependency",
+   "overclaim": false,
+   "forbidden_violation": false,
+   "allowed_hit": false,
+   "structural_problems": [],
+   "hops": 2,
+   "concepts": [
+    "wd:Q80091",
+    "wd:Q12916",
+    "wd:Q2030545"
+   ],
+   "witnesses": [
+    "c:2a1890efaaf4656e",
+    "c:19fd658613061dec"
+   ],
+   "weakest_evidence": "model_proposed"
+  },
+  {
+   "id": "hw:concept-route:020:euler-person-not-a-concept",
+   "ms": 0.7436999585479498,
+   "answerable": false,
+   "attack": "not_a_concept",
+   "abstained": true,
+   "abstention": "not_a_concept",
+   "reason": "wd:Q7604 no es un concepto ni tiene concepto primario asignado: no hay ruta a nivel de concepto."
+  }
+ ],
+ "health": {
+  "claims": 2426549,
+  "content_hash": "ad7463ed1d4fcce6bade5ffd7b0dd19e8aa34f7a7468420fe4931d0bc1b9f8cb",
+  "edges": 2445567,
+  "nodes": 319634,
+  "path": "data/snapshot\\atlas-ad7463ed1d4fcce6.snap",
+  "source_event_seq": 2943391
+ }
+}

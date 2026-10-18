@@ -96,8 +96,24 @@ CREATE VIRTUAL TABLE fts USING fts5(
   tokenize = 'unicode61 remove_diacritics 2', prefix = '2 3');
 """
 
+
+def _endpoint_rows(relation: RelationType) -> str:
+    """INSERT OR IGNORE of one relation's endpoint types (a fresh v1 already has them from RELATIONS)."""
+    spec = RELATIONS[relation]
+    rows = [f"('{relation.value}','{side}','{t.value}')"
+            for side, types in (("subject", spec.subject_types), ("object", spec.object_types))
+            for t in sorted(types or (), key=lambda t: t.value)]
+    return f"INSERT OR IGNORE INTO relation_endpoints VALUES {','.join(rows)};"
+
+
+# v2 (2026-10-17): relation member_of_concept (concept projection, docs/plans/2026-10-17-capa-conceptual.md).
+_DDL_V2 = _endpoint_rows(RelationType.MEMBER_OF_CONCEPT)
+
+# v3 (2026-10-17): member_of_concept also takes areas as objects (Wikidata areas are concept candidates).
+_DDL_V3 = _endpoint_rows(RelationType.MEMBER_OF_CONCEPT)
+
 # version -> DDL applied when upgrading from version-1.  Append, never edit.
-MIGRATIONS: dict[int, str] = {1: _DDL_V1}
+MIGRATIONS: dict[int, str] = {1: _DDL_V1, 2: _DDL_V2, 3: _DDL_V3}
 
 
 def _dumps(obj: Any) -> str:

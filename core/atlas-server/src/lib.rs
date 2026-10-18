@@ -11,12 +11,14 @@
 //! | `/api/map/tiles`, `/api/map/tiles/{z}/{x}/{y}` | atlas-layout; JSON or binary (`format=bin`) |
 //! | `/api/map/locate?id=` | atlas-layout: position and communities of one entity (region focus) |
 //! | `/api/coverage` | snapshot, computed once at start |
+//! | `/api/concept?id=`, `/api/concept/edges?from=&to=` | snapshot concept layer + registry (membership evidence) |
 //!
 //! Snapshot-derived routes carry a weak ETag (snapshot hash, layout version, URI) and
 //! answer `If-None-Match` with 304 before doing any work.  Responses are gzip/brotli
 //! compressed on request; static files are served traversal-safe, precompressed when
 //! `.br`/`.gz` siblings exist.  CORS is off unless an origin is configured.
 
+mod concept;
 mod coverage;
 mod entity;
 mod graph;
@@ -241,6 +243,8 @@ pub fn router(state: AppState) -> Router {
         .route("/api/health", get(coverage::health))
         .route("/api/search", get(search::handler))
         .route("/api/entity/{id}", get(entity::handler))
+        .route("/api/concept", get(concept::handler))
+        .route("/api/concept/edges", get(concept::edges))
         .merge(cached)
         .route("/api/{*rest}", get(http::api_not_found))
         .fallback_service(web)

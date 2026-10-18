@@ -17,7 +17,8 @@ atlas:ClaimShape
         sh:in ( atlas:depends_on_logically atlas:proves atlas:prerequisite_for atlas:generalizes
                 atlas:special_case_of atlas:equivalent_to atlas:analogous_to atlas:applied_in atlas:models
                 atlas:cites atlas:influenced atlas:part_of_area atlas:formalized_as atlas:named_after
-                atlas:counterexample_to atlas:appears_in atlas:authored_by )
+                atlas:counterexample_to atlas:appears_in atlas:authored_by
+                atlas:member_of_concept )
     ] ;
     sh:property [
         sh:path atlas:evidenceState ; sh:minCount 1 ; sh:maxCount 1 ;

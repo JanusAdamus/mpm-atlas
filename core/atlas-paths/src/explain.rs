@@ -33,7 +33,7 @@ const DIAGNOSE_EXPANSIONS: usize = 5_000;
 const ANSWER_FAMILY_BELOW_MIN: &str = "history";
 
 /// Reader-facing class of a conclusion (`Conclusion.category`), from its family.
-fn category(family: &str, mathematical: bool) -> &'static str {
+pub(crate) fn category(family: &str, mathematical: bool) -> &'static str {
     match family {
         "proof" | "formal" => "mathematical",
         "structure" if mathematical => "mathematical",
@@ -47,12 +47,12 @@ fn category(family: &str, mathematical: bool) -> &'static str {
     }
 }
 
-fn tr(lang: &str, es: String, en: String) -> String {
+pub(crate) fn tr(lang: &str, es: String, en: String) -> String {
     if lang == "en" { en } else { es }
 }
 
 /// Evidence order for "weakest": disputed < model_proposed < extracted < reviewed < formal.
-fn evidence_rank(s: EvidenceState) -> u8 {
+pub(crate) fn evidence_rank(s: EvidenceState) -> u8 {
     match s {
         EvidenceState::FormallyLinked => 4,
         EvidenceState::EditoriallyReviewed => 3,
@@ -101,6 +101,9 @@ pub fn run(engine: &PathEngine, q: &PathQuery, opts: &PathOptions) -> Result<Pat
         from: snap.node_id(s).to_owned(),
         to: snap.node_id(t).to_owned(),
         objective: q.objective,
+        concepts: opts
+            .concepts
+            .then(|| crate::concept::route(engine, q, opts, (s, t), Weights::from_map(&weights), state_mask)),
         weights,
         abstained: false,
         reason: None,
@@ -337,7 +340,7 @@ fn diagnose_bounded(ctx: &mut QueryCtx, resp: &mut PathResponse, total: &Stats, 
             let step = &p.steps[blocked_at];
             let word = format!("{}{}", step.rel, if step.way == Way::Converse { "^-1" } else { "" });
             let pre = ctx.table.conclusion(prefix).name.clone();
-            let rule = block_rule(ctx, prefix, ctx.table.step_kind(step.rel, step.way));
+            let rule = block_rule(ctx, prefix, step.rel, step.way);
             abstain(resp, "unauthorized", tr(lang,
                 format!("Hay una conexion de {} saltos, pero «{pre}» seguido de {word} (salto {}) no autoriza nada ({rule}). Se muestra solo como exploracion.", p.steps.len(), blocked_at + 1),
                 format!("A {}-hop connection exists, but «{pre}» followed by {word} (step {}) authorizes nothing ({rule}). Shown as exploration only.", p.steps.len(), blocked_at + 1)));
@@ -358,9 +361,12 @@ fn diagnose_bounded(ctx: &mut QueryCtx, resp: &mut PathResponse, total: &Stats, 
     }
 }
 
-fn block_rule(ctx: &QueryCtx, prefix: Kind, step: Kind) -> &'static str {
+fn block_rule(ctx: &QueryCtx, prefix: Kind, rel: RelationType, way: Way) -> &'static str {
     let t = ctx.table;
-    if step == NONE {
+    let step = t.step_kind(rel, way);
+    if step == NONE && t.step(rel, Way::Forward).is_none() && t.step(rel, Way::Converse).is_none() {
+        "this relation authorizes no conclusion and is never walked (concept grouping: see `concepts`)"
+    } else if step == NONE {
         "direction: this relation is not walked against its stored direction"
     } else if t.is_hypothetical(prefix) && t.is_hypothetical(step) {
         "R10"
@@ -534,7 +540,7 @@ fn entity_text(snap: &Snapshot, n: NodeIx, lang: &str) -> String {
     format!("{} ({})", snap.label(n, lang), snap.node_id(n))
 }
 
-fn explain_path(ctx: &QueryCtx, p: &RawPath, lang: &str) -> FoundPath {
+pub(crate) fn explain_path(ctx: &QueryCtx, p: &RawPath, lang: &str) -> FoundPath {
     let (snap, table) = (ctx.snap, ctx.table);
     let mut steps = Vec::with_capacity(p.steps.len());
     let mut terms: BTreeMap<String, f64> = BTreeMap::new();

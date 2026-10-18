@@ -35,6 +35,9 @@ pub struct Params {
     min_strength: Option<u8>,
     strict_conjunctions: Option<bool>,
     known: Option<String>,
+    /// concept-level search first (default on) and the full declaration route per step.
+    concepts: Option<bool>,
+    drill_down: Option<bool>,
 }
 
 fn parse_weights(raw: Option<&str>) -> Result<BTreeMap<String, f64>, ApiError> {
@@ -69,6 +72,10 @@ fn parse_options(p: &Params) -> Result<PathOptions, ApiError> {
         o.min_strength = m;
     }
     o.strict_conjunctions = p.strict_conjunctions.unwrap_or(false);
+    if let Some(c) = p.concepts {
+        o.concepts = c;
+    }
+    o.drill_down = p.drill_down.unwrap_or(false);
     let known: Vec<String> =
         p.known.as_deref().unwrap_or("").split(',').map(str::trim).filter(|s| !s.is_empty()).map(String::from).collect();
     if known.len() > MAX_KNOWN {

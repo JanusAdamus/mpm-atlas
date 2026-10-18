@@ -41,10 +41,41 @@ export interface ClaimJson {
   labels: Record<string, string>;
 }
 export interface SourceJson { id: string; title: string; license: string; uri?: string | null; version?: string | null; terms?: string | null }
+export interface NodeRef { id: string; label: string; type: string; derived: boolean }
+export interface EntityConceptInfo {
+  /** Present when the entity is a concept of the snapshot (it groups declarations). */
+  as_concept: { members: number; memberships: number; derived: boolean } | null;
+  /** The concept a declaration is primarily assigned to. */
+  primary_concept: NodeRef | null;
+}
 export interface EntityResponse {
   entity: EntityJson; canonical_id: string; merged_from: string[]; coverage: "known" | "unknown";
   label: string; counts_by_relation: Record<string, number>; limit: number; truncated: boolean;
   claims: ClaimJson[]; sources: Record<string, SourceJson>;
+  /** Absent on servers without the concept layer. */
+  concept?: EntityConceptInfo;
+}
+
+export interface HeuristicScore { value: number; estimates: string; calibration: string }
+export interface ConceptMember {
+  id: string; label: string; type: string; primary: boolean; claim_id: string; evidence_state: string;
+  /** How the projection assigned it: curated, name_doc, resolve, namespace, signature, zone, zone_derived. */
+  signal?: string | null; evidence?: unknown; rank?: number | null;
+  /** Heuristic, not calibrated: never shown as a probability. */
+  score?: HeuristicScore | null;
+  provenance: { source_id: string; locator: string; license: string; extractor?: string; extractor_version?: string }[];
+}
+export interface ConceptEdgeStat { relation: string; evidence_state: string; count: number; example_claim: string }
+export interface ConceptEdgeJson { concept: NodeRef; total: number; stats: ConceptEdgeStat[] }
+export interface ConceptResponse {
+  concept: NodeRef; description: string | null; members_total: number; memberships_total: number;
+  memberships_by_state: Record<string, number>; offset: number; limit: number; truncated: boolean;
+  members: ConceptMember[];
+  edges_out_total: number; edges_out: ConceptEdgeJson[]; edges_in_total: number; edges_in: ConceptEdgeJson[];
+}
+export interface ConceptEdgesResponse {
+  from: NodeRef; to: NodeRef; relation: string | null; total: number; complete: boolean; offset: number; limit: number;
+  edges: { claim_id: string; relation: string; evidence_state: string; source: NodeRef; target: NodeRef }[];
 }
 
 export interface NeighborhoodNode { id: string; type: string; label: string; coverage: string; degree: number }
@@ -84,6 +115,9 @@ export interface Health {
   status: string; version: string;
   snapshot: { content_hash: string; nodes: number; claims: number; edges: number };
   layout_version: string | null; components: Record<string, string>;
+  /** Zoom semantics of the map (absent on older servers; null zooms without a concept layer). */
+  map?: { max_zoom: number; general_zoom: number | null; detail_zoom: number | null; general_nodes: number } | null;
+  concepts?: number;
 }
 export interface Locate { id: string; x: number; y: number; communities: string[]; layout_version: string }
 
@@ -119,6 +153,10 @@ export const api = {
   path: (p: { from: string; to: string; objective: string; max_hops: number; include_disputed: boolean; lang: string; weights?: string }, signal?: AbortSignal) =>
     getJson<PathResponse>("/api/path", p, signal),
   locate: (id: string, v: string, signal?: AbortSignal) => getJson<Locate>("/api/map/locate", { id, v }, signal),
+  concept: (id: string, lang: string, offset = 0, limit = 50, signal?: AbortSignal) =>
+    getJson<ConceptResponse>("/api/concept", { id, lang, offset, limit }, signal),
+  conceptEdges: (from: string, to: string, lang: string, offset = 0, limit = 50, signal?: AbortSignal) =>
+    getJson<ConceptEdgesResponse>("/api/concept/edges", { from, to, lang, offset, limit }, signal),
   async tile(layer: string, z: number, x: number, y: number, lang: string, v: string, signal?: AbortSignal): Promise<Tile> {
     const url = `/api/map/tiles/${z}/${x}/${y}?layer=${layer}&lang=${lang}&format=bin&v=${encodeURIComponent(v)}`;
     const res = await check(await fetch(url, { signal }));

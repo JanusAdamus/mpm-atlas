@@ -7,6 +7,8 @@
 //! - `search`: bidirectional label-setting A* over (node, kind) with ALT potentials,
 //!   hop limits and an expansion budget; k routes by the penalty method.
 //! - `explain`: per-step justification, conclusion, abstention with reasons.
+//! - `concept`: concept-first routes over the aggregated concept edges, with the
+//!   declaration-level witness of each concept step (drill-down).
 //!
 //! Floor rules (SPEC §3): only current claims; `disputed` only on request;
 //! `analogous_to` degrades to hypothesis; a conjunction counts only when every
@@ -14,6 +16,7 @@
 //! product of edge probabilities.  Abstain rather than invent a route.
 
 pub mod algebra;
+pub mod concept;
 pub mod derive;
 mod explain;
 pub mod index;
@@ -24,6 +27,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 pub use algebra::{CompositionTable, Way};
+pub use concept::{ConceptGraph, ConceptLevel};
 pub use index::GraphIndex;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -110,6 +114,13 @@ pub struct PathOptions {
     /// Ablation switches for benchmarks; both on by default.
     pub bidirectional: bool,
     pub heuristic: bool,
+    /// Search the concept graph first (aggregated concept edges) and answer at
+    /// concept level in `PathResponse.concepts`, when both endpoints map to concepts.
+    pub concepts: bool,
+    /// Drill-down: explain the declaration-level claim that witnesses each concept
+    /// step as a full route (`ConceptStep.drill_down`).  Off: witness id, sources and
+    /// memberships only.
+    pub drill_down: bool,
 }
 
 impl Default for PathOptions {
@@ -126,6 +137,8 @@ impl Default for PathOptions {
             alt_min_expansions: 5_000,
             bidirectional: true,
             heuristic: true,
+            concepts: true,
+            drill_down: false,
         }
     }
 }
@@ -137,6 +150,10 @@ pub struct PathResponse {
     pub objective: Objective,
     /// The weights actually used (objective defaults plus overrides).
     pub weights: BTreeMap<String, f64>,
+    /// Concept-first answer (searched before the declaration/entity level), or None
+    /// when `PathOptions.concepts` is off.  `abstained`, `paths` and `exploration`
+    /// below are the entity-level answer and do not depend on it.
+    pub concepts: Option<ConceptLevel>,
     pub abstained: bool,
     pub reason: Option<String>,
     /// Machine-readable abstention cause: disconnected, coverage_unknown,
@@ -273,6 +290,7 @@ pub struct PathEngine<'s> {
     pub snapshot: &'s Snapshot,
     pub table: CompositionTable,
     pub index: GraphIndex,
+    pub concepts: ConceptGraph,
 }
 
 impl<'s> PathEngine<'s> {
@@ -281,8 +299,9 @@ impl<'s> PathEngine<'s> {
     }
 
     pub fn with_options(snapshot: &'s Snapshot, table: CompositionTable, opts: EngineOptions) -> Self {
-        let index = GraphIndex::build_typed(snapshot, opts.landmarks, &table);
-        PathEngine { snapshot, table, index }
+        let (index, concepts) =
+            rayon::join(|| GraphIndex::build_typed(snapshot, opts.landmarks, &table), || ConceptGraph::build(snapshot));
+        PathEngine { snapshot, table, index, concepts }
     }
 
     pub fn find(&self, query: &PathQuery) -> Result<PathResponse> {

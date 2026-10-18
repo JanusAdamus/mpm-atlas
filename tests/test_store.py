@@ -17,6 +17,7 @@ from atlas import (
     FormalArtifact,
     LangString,
     Provenance,
+    SCHEMA_VERSION,
     RelationType,
     Role,
     Source,
@@ -224,14 +225,14 @@ def test_events_are_append_only(st):
 def test_migration_hook_and_wal_and_read_only(tmp_path, monkeypatch):
     db = tmp_path / "atlas.db"
     with Store(db) as s:
-        assert s.schema_version == 1
+        assert s.schema_version == SCHEMA_VERSION == 3
         assert s._conn.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
         s.add_source(Source("src:x", "X", "CC0-1.0"))
-    monkeypatch.setitem(store_mod.MIGRATIONS, 2, "CREATE TABLE notes(id TEXT PRIMARY KEY);")
+    monkeypatch.setitem(store_mod.MIGRATIONS, 4, "CREATE TABLE notes(id TEXT PRIMARY KEY);")
     with Store(db) as s:
-        assert s.schema_version == 2
+        assert s.schema_version == 4
         assert s._conn.execute("SELECT COUNT(*) FROM notes").fetchone()[0] == 0
-        assert any(e.payload == {"from": 1, "to": 2} for e in s.events(kinds=[EventKind.MIGRATION]))
+        assert any(e.payload == {"from": 3, "to": 4} for e in s.events(kinds=[EventKind.MIGRATION]))
     with Store(db, read_only=True) as ro:
         assert ro.get_source("src:x").title == "X"
         with pytest.raises(sqlite3.OperationalError):

@@ -6,6 +6,8 @@ export const TILE_MAGIC = 0x31545441; // "ATT1" read as a little-endian u32
 export const NONE = 0xffffffff;
 export const KIND_ENTITY = 0;
 export const KIND_CLUSTER = 1;
+/** An entity that is a concept with member declarations; `size` = its primary members. */
+export const KIND_CONCEPT = 2;
 export const NO_TYPE = 255;
 
 export interface Tile {
@@ -27,6 +29,7 @@ export interface Tile {
   label: Uint32Array; // string index
   community: Uint32Array; // string index
   priority: Uint32Array; // NONE for clusters
+  /** 0 entity, 1 cluster (region), 2 concept. */
   centralOff: Uint32Array;
   central: Uint32Array; // string indexes
   kind: Uint8Array;

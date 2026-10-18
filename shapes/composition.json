@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "status": "v2 (atlas-paths, 2026-10-16).  v1 was the Rust architect's initial floor; v2 keeps its keys and makes them an executable algebra checked on load (core/atlas-paths/src/algebra.rs).",
+  "version": 3,
+  "status": "v3 (2026-10-18): member_of_concept concludes none, so the engine never walks it (a relation whose single_hop is none and has no step override is not walkable); concept routes use the aggregated concept edges (core/atlas-paths/src/concept.rs).  v2 (atlas-paths, 2026-10-16).  v1 was the Rust architect's initial floor; v2 keeps its keys and makes them an executable algebra checked on load (core/atlas-paths/src/algebra.rs).",
   "derived_from": "docs/SPEC.md section 3 'Reglas minimas de composicion' and atlas.model.RELATIONS (shapes/vocab.json)",
   "note": "The floor of SPEC section 3; the engine may be stricter, never laxer.  Relation flags (symmetric, transitive, inverse, allows_premises) are read from the vocabulary, never repeated here.  A path is a word over steps (relation, direction); its conclusion is the product of its steps in the monoid below.  Kinds = base conclusion x modality.  'compose' lists the non-none products of base conclusions; anything not listed is none, and none absorbs.  The loader checks closure, identity, two-sided absorption of none, associativity over every triple (bidirectional search splices prefix and suffix, so it relies on it), monotone non-strengthening, the taint rules and every entry of 'expect'.",
 
@@ -87,7 +87,9 @@
       "converse": {"kind": "bibliographic", "intuition": 1.0, "authorizes": {"es": "contiene", "en": "contains"}}},
     "authored_by": {"chain": "none", "single_hop": "historical", "chain_result": "historical", "assumptions": "ignore", "intuition": 1.0,
       "authorizes": {"es": "atribucion de autoria", "en": "authorship attribution"},
-      "converse": {"kind": "historical", "intuition": 1.0, "authorizes": {"es": "es autor de", "en": "is the author of"}}}
+      "converse": {"kind": "historical", "intuition": 1.0, "authorizes": {"es": "es autor de", "en": "is the author of"}}},
+    "member_of_concept": {"chain": "none", "single_hop": "none", "chain_result": "none", "assumptions": "ignore", "intuition": 0.5,
+      "authorizes": {"es": "agrupacion por concepto (proyeccion conceptual); no autoriza ninguna conclusion y las rutas entre entidades no la recorren: las rutas por concepto van por las aristas agregadas", "en": "concept grouping (concept projection); authorizes no conclusion and entity routes never walk it: concept routes go through the aggregated concept edges"}}
   },
 
   "compose": [

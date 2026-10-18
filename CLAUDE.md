@@ -30,6 +30,16 @@ Objetivo: un sistema de conocimiento matemático que se pueda recorrer, interrog
 9. **Confianza con significado.** Un score dice qué evento estima y cómo se calibró. No se multiplican probabilidades de aristas como si los errores fueran independientes.
 10. **Bilingüe ES/EN** como idiomas de primera clase. Accesible: todo lo que hace el mapa se puede hacer con teclado y en vista textual.
 
+## Criterio de diseño y pedagogía
+
+Referencias vinculantes: `docs/design/codex/` (auditorías de Codex del 2026-10-17) y `docs/design/CRITIQUE.md`.  Orden de prioridad:
+
+1. Primero lo que puede enseñar algo falso: homónimos, asociaciones erróneas, falsa precisión y verbos de relación.
+2. Después, orientación y lectura.
+3. Al final, pulido visual.
+
+El lector debe poder responder siempre: qué estoy estudiando, por qué importa, qué debo saber antes, qué significa esta conexión y cómo compruebo que lo entendí.  La cobertura documental nunca se presenta como cobertura educativa.
+
 ## Arquitectura del código (políglota: cada parte en el lenguaje que la hace más rápida)
 
 El registro (SQLite, `data/atlas.db`) es el contrato entre lenguajes. Python escribe el registro; Rust lo compila a un snapshot binario mapeado en memoria y sirve todo lo que es caliente.

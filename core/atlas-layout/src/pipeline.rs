@@ -8,6 +8,7 @@ use rayon::prelude::*;
 use std::collections::BTreeMap;
 use std::time::Instant;
 
+use crate::concept;
 use crate::graph::Graph;
 use crate::leiden::{self, LeidenParams};
 use crate::multilevel;
@@ -21,6 +22,9 @@ use crate::{
 /// A warm start needs at least this share of active nodes with a previous position.
 const WARM_MIN_SHARE: f64 = 0.5;
 const MARGIN: f64 = 0.02;
+/// Part of the layout version: a change in how positions or tiles are computed must
+/// change the version (it keys warm starts, ETags and client caches).
+const ALGORITHM: &str = "atlas-layout/concept-layer-4";
 
 fn validate(p: &LayoutParams) -> Result<()> {
     let bad = |m: &str| Err(Error::BadRequest(format!("layout params: {m}")));
@@ -44,13 +48,27 @@ fn validate(p: &LayoutParams) -> Result<()> {
     if t.entities == 0 || t.clusters == 0 || t.edges == 0 || t.full == 0 || t.max_zoom > 20 {
         return bad("tile budgets must be > 0 and max_zoom <= 20");
     }
+    if t.general_nodes == 0
+        || t.general_edges == 0
+        || t.detail_zoom <= t.general_zoom
+        || t.detail_zoom > 20
+    {
+        return bad(
+            "general_nodes and general_edges must be > 0 and general_zoom < detail_zoom <= 20",
+        );
+    }
     Ok(())
 }
 
+/// Relations of `layers` that pull nodes together.  `member_of_concept` is not one:
+/// it is the grouping the map draws around each concept (`concept`), and the force
+/// layout runs on the same graph as without the concept layer, so adding the
+/// projection does not move the map.
 pub(crate) fn relation_mask(layers: &[Projection]) -> u32 {
     RELATIONS
         .iter()
         .filter(|s| layers.contains(&s.projection))
+        .filter(|s| s.relation != RelationType::MemberOfConcept)
         .fold(0, |m, s| m | 1 << s.relation.code())
 }
 
@@ -83,8 +101,14 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
         iterations: params.leiden_iterations,
         theta: 0.01,
     };
+    let concept_of = concept::primary_concepts(snap, &active);
+    // Concepts with members but no relation in the layers (derived ones) sit at
+    // their members' centroid; they are not "unknown".
+    let hub: Vec<bool> = (0..n)
+        .map(|v| active[v] && g.degree(v as u32) == 0 && !snap.concept_members(v as u32).is_empty())
+        .collect();
     let unknown_flag: Vec<bool> = (0..n)
-        .map(|v| !merged[v] && (!active[v] || g.degree(v as u32) == 0))
+        .map(|v| !merged[v] && !hub[v] && (!active[v] || g.degree(v as u32) == 0))
         .collect();
     let id_hash: Vec<u64> = (0..n as u32)
         .into_par_iter()
@@ -198,7 +222,9 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
             .collect(),
     });
     // Unknown nodes stay out of the force layout and are placed apart afterwards.
-    let placed: Vec<bool> = (0..n).map(|v| active[v] && !unknown_flag[v]).collect();
+    let placed: Vec<bool> = (0..n)
+        .map(|v| active[v] && !unknown_flag[v] && !hub[v])
+        .collect();
     let unknown_nodes: Vec<u32> = (0..n as u32)
         .filter(|&v| active[v as usize] && unknown_flag[v as usize])
         .collect();
@@ -237,6 +263,7 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
                 params.seed,
             );
             multilevel::place_unknown(&mut raw, &placed, &unknown_nodes, has, params.seed);
+            concept::center_hubs(&mut raw, &hub, &concept_of);
             (raw, runs, *affine)
         }
         None => {
@@ -256,6 +283,7 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
                 &vec![false; n],
                 params.seed,
             );
+            concept::center_hubs(&mut raw, &hub, &concept_of);
             let affine = fit(&raw, &active);
             (raw, runs, affine)
         }
@@ -271,11 +299,17 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
             [q(p[0], affine[1]), q(p[1], affine[2])]
         })
         .collect();
-    for v in 0..n {
-        if merged[v] {
-            positions[v] = positions[snap.canonical(v as u32) as usize];
+    let copy_merged = |p: &mut [[f32; 2]]| {
+        for v in (0..n).filter(|&v| merged[v]) {
+            p[v] = p[snap.canonical(v as u32) as usize];
         }
-    }
+    };
+    copy_merged(&mut positions);
+    // What the next warm start continues from: the force layout, before the placement.
+    let force_positions = positions.clone();
+    // Declarations next to their concept.
+    concept::place_members(&concept_of, &mut positions, &|v| snap.node_id(v));
+    copy_merged(&mut positions);
     let secs_layout = t.elapsed().as_secs_f64();
 
     let strength = g.strength();
@@ -300,6 +334,12 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
         let counts: Vec<usize> = levels.iter().map(|l| l.1).collect();
         let centroids: Vec<Vec<[f32; 2]>> = infos.iter().map(|i| i.centroids.clone()).collect();
         let sizes: Vec<Vec<u32>> = infos.iter().map(|i| i.sizes.clone()).collect();
+        let general = concept::general_set(
+            snap,
+            &active,
+            &strength,
+            params.tiles.general_nodes as usize,
+        );
         let inp = tiles::Input {
             snap,
             pos: &positions,
@@ -309,6 +349,8 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
             counts: &counts,
             centroids: &centroids,
             sizes: &sizes,
+            concept_of: &concept_of,
+            general: &general,
         };
         tiles::build(&inp, &params.tiles)
     };
@@ -317,6 +359,7 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
     let version = {
         let mut h = blake3::Hasher::new();
         h.update(snap.content_hash_hex().as_bytes());
+        h.update(ALGORITHM.as_bytes());
         h.update(format!("{params:?}").as_bytes());
         if let Some(w) = &warm {
             h.update(w.prior_version.as_bytes());
@@ -348,6 +391,7 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
         version,
         snapshot_hash: snap.content_hash_hex(),
         positions,
+        force_positions,
         levels: memberships,
         communities: infos,
         id_hash,
@@ -587,11 +631,19 @@ pub(crate) fn tile(
     let in_layer = |rel: u8| RelationType::from_code(rel).filter(|r| r.spec().projection == layer);
     let entity = |v: u32, rank: Option<u32>, px: f32, py: f32| TileNode {
         id: snap.node_id(v).to_string(),
-        kind: TileNodeKind::Entity,
+        kind: if snap.concept_index(v).is_some() {
+            TileNodeKind::Concept
+        } else {
+            TileNodeKind::Entity
+        },
         label: snap.label(v, lang).to_string(),
         x: px,
         y: py,
-        size: 1,
+        size: if snap.concept_index(v).is_some() {
+            snap.concept_members(v).len() as u32
+        } else {
+            1
+        },
         community: layout.community_id(entity_level, layout.levels[entity_level][v as usize]),
         entity_type: Some(snap.node_type(v)),
         priority: rank,
@@ -619,22 +671,34 @@ pub(crate) fn tile(
             central,
         }
     };
-    for &(v, rank, px, py) in &d.entities {
-        resp.nodes.push(entity(v, Some(rank), px, py));
-    }
-    for (c, px, py, members, hidden, rels) in &d.clusters {
-        let node = cluster(*c, *px, *py, *hidden);
+    let layer_rels = |rels: &[(u8, u32)]| {
         let mut hr = BTreeMap::new();
         for &(rel, count) in rels {
             if let Some(r) = in_layer(rel) {
                 *hr.entry(r).or_insert(0) += count;
             }
         }
+        hr
+    };
+    for (&(v, rank, px, py), (hidden, rels)) in d.entities.iter().zip(&d.entity_hidden) {
+        let node = entity(v, Some(rank), px, py);
+        if node.kind == TileNodeKind::Concept {
+            resp.aggregates.push(Aggregate {
+                cluster_id: node.id.clone(),
+                members: node.size,
+                hidden_members: *hidden,
+                hidden_relations: layer_rels(rels),
+            });
+        }
+        resp.nodes.push(node);
+    }
+    for (c, px, py, members, hidden, rels) in &d.clusters {
+        let node = cluster(*c, *px, *py, *hidden);
         resp.aggregates.push(Aggregate {
             cluster_id: node.id.clone(),
             members: *members,
             hidden_members: *hidden,
-            hidden_relations: hr,
+            hidden_relations: layer_rels(rels),
         });
         resp.nodes.push(node);
     }

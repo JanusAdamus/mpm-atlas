@@ -2,6 +2,8 @@
 import "./style.css";
 import { api, type PathStep, type SearchHit } from "./api.ts";
 import { renderCompare } from "./compare.ts";
+import { renderConcept, type ConceptActions } from "./conceptpanel.ts";
+import { TILE_PX } from "./map/camera.ts";
 import { clear, h } from "./dom.ts";
 import { projectionLabel, setLang, t } from "./i18n.ts";
 import { MapView, type MapItem, type PathMark, type RegionInfo } from "./map/map.ts";
@@ -17,6 +19,7 @@ type Panel =
   | { kind: "path"; q: PathQueryState }
   | { kind: "compare" }
   | { kind: "region"; id: string }
+  | { kind: "concept"; id: string; offset: number }
   | null;
 
 interface State {
@@ -32,6 +35,9 @@ const state: State = { lang: "es", layer: "structure", text: false, panel: null 
 let theme: ThemeName = initialTheme();
 let layoutVersion: string | null = null;
 let maxZoom = 0;
+/** Zoom semantics from /api/health: last zoom of concepts-only view, first zoom with declarations. */
+let generalZoom: number | null = null;
+let detailZoom: number | null = null;
 let compareSet: MapItem[] = [];
 let regionFocus: string | null = null;
 let nodeCount: number | null = null;
@@ -47,6 +53,10 @@ function encode(s: State): string {
   const panel = s.panel;
   if (panel?.kind === "entity") p.set("e", panel.id);
   if (panel?.kind === "region") p.set("r", panel.id);
+  if (panel?.kind === "concept") {
+    p.set("c", panel.id);
+    if (panel.offset) p.set("co", String(panel.offset));
+  }
   if (panel?.kind === "compare") p.set("compare", "1");
   if (panel?.kind === "path") {
     p.set("path", "1");
@@ -70,6 +80,7 @@ function decode(hash: string): State {
   let panel: Panel = null;
   if (p.get("e")) panel = { kind: "entity", id: p.get("e")! };
   else if (p.get("r")) panel = { kind: "region", id: p.get("r")! };
+  else if (p.get("c")) panel = { kind: "concept", id: p.get("c")!, offset: Math.max(0, Math.floor(Number(p.get("co") ?? 0)) || 0) };
   else if (p.get("compare")) panel = { kind: "compare" };
   else if (p.get("path")) {
     panel = {
@@ -144,6 +155,7 @@ const map = new MapView(mapHost, {
   onSelect: (it, shift) => {
     if (shift) addCompare(it);
     else if (it.kind === "entity") navigate({ panel: { kind: "entity", id: it.id } });
+    else if (it.kind === "concept") navigate({ panel: { kind: "concept", id: it.id, offset: 0 } });
     else {
       map.flyTo(it.x, it.y, map.camera.scale * 3);
       selectedRegion = map.region(it);
@@ -200,7 +212,44 @@ const entityActions: PanelActions = {
   focusRegion: (id) => void setRegionFocus(id, side.querySelector("#entity-title")?.textContent ?? id),
   pathFrom: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), from: { id, label } } } }),
   pathTo: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), to: { id, label } } } }),
+  openConcept: (id) => navigate({ panel: { kind: "concept", id, offset: 0 } }),
 };
+
+/** Camera scale at which the map fetches tiles of zoom `z` (camera.tileZoom rounds log2(scale / TILE_PX)). */
+const scaleForZoom = (z: number): number => TILE_PX * 2 ** z * 1.05;
+
+/** Radius (unit square) of the disc a concept's declarations are drawn in: atlas-layout's
+ *  MEMBER_DISC (5e-4) times the square root of its members. */
+const memberDisc = (members: number): number => 5e-4 * Math.sqrt(Math.max(1, members));
+
+/** Fly to a concept: unfolded (at least `detailZoom`, with its disc filling about a third
+ *  of the view) or folded (concepts only, `generalZoom`). */
+async function flyToConcept(id: string, unfold: boolean, members = 1): Promise<void> {
+  if (!layoutVersion) return;
+  try {
+    const loc = await api.locate(id, layoutVersion);
+    map.setSelected({ x: loc.x, y: loc.y });
+    const c = map.camera;
+    const scale = unfold
+      ? Math.min(scaleForZoom(maxZoom), Math.max(scaleForZoom(Math.min(detailZoom ?? maxZoom, maxZoom)), (0.35 * Math.min(c.width, c.height)) / memberDisc(members)))
+      : scaleForZoom(Math.min(generalZoom ?? 0, maxZoom));
+    map.flyTo(loc.x, loc.y, scale);
+  } catch (err) {
+    status.textContent = `${t("error")}: ${(err as Error).message}`;
+  }
+}
+
+const conceptActions = (offsetBase: number): ConceptActions => ({
+  open: (id) => navigate({ panel: { kind: "entity", id } }),
+  openConcept: (id) => navigate({ panel: { kind: "concept", id, offset: 0 } }),
+  expand: (id, members) => void flyToConcept(id, true, members),
+  collapse: (id) => void flyToConcept(id, false),
+  page: (offset) => {
+    const p = state.panel;
+    if (p?.kind === "concept" && offset !== offsetBase) navigate({ panel: { ...p, offset } }, true);
+  },
+  drill: (from, to, offset) => api.conceptEdges(from, to, state.lang, offset, 20),
+});
 
 function pathState(): PathQueryState {
   return state.panel?.kind === "path" ? state.panel.q : { ...DEFAULT_PATH };
@@ -272,6 +321,18 @@ async function renderPanel(): Promise<void> {
     const [a, b] = compareSet.map((it) => map.region(it));
     const between = a && b ? map.edgesBetween(a.item, b.item) : new Map<string, number>();
     side.replaceChildren(closeBtn, renderCompare(a ?? null, b ?? null, between, entityActions.open, (r) => void setRegionFocus(r.central[0] ?? null, r.item.label)));
+  } else if (p.kind === "concept") {
+    side.replaceChildren(closeBtn, h("p", { class: "muted" }, t("loading")));
+    try {
+      const r = await api.concept(p.id, state.lang, p.offset, 50, panelCtrl.signal);
+      side.replaceChildren(closeBtn, renderConcept(r, conceptActions(p.offset)));
+      (side.querySelector("#entity-title") as HTMLElement | null)?.focus();
+      document.title = `${r.concept.label} · Atlas`;
+      void locateAndSelect(r.concept.id, false);
+    } catch (err) {
+      if ((err as Error).name === "AbortError") return;
+      side.replaceChildren(closeBtn, h("p", { class: "notice error", role: "alert" }, `${t("error")}: ${(err as Error).message}`));
+    }
   } else if (p.kind === "region") {
     const r = selectedRegion?.item.id === p.id ? selectedRegion : (() => {
       const it = map.findItem(p.id);
@@ -301,13 +362,19 @@ function renderText(): void {
   const items = map.visibleItems();
   textPane.replaceChildren(h("h2", {}, t("textView")), renderTextView(items, map.hiddenEdges(), {
     open: (it) => navigate({ panel: { kind: "entity", id: it.id } }),
+    openConcept: (it) => navigate({ panel: { kind: "concept", id: it.id, offset: 0 } }),
     zoomInto: (it) => {
+      if (it.kind === "concept") {
+        void flyToConcept(it.id, true, it.size);
+        navigate({ panel: { kind: "concept", id: it.id, offset: 0 } });
+        return;
+      }
       map.flyTo(it.x, it.y, map.camera.scale * 3);
       selectedRegion = map.region(it);
       navigate({ panel: { kind: "region", id: it.id } });
     },
     compare: (it) => addCompare(it),
-  }));
+  }, map.drawnEdges()));
 }
 
 // ---- chrome ---------------------------------------------------------------------
@@ -393,6 +460,8 @@ async function boot(): Promise<void> {
   try {
     const health = await api.health();
     layoutVersion = health.layout_version;
+    generalZoom = health.map?.general_zoom ?? null;
+    detailZoom = health.map?.detail_zoom ?? null;
     nodeCount = health.snapshot.nodes;
     status.textContent = t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
     status.title = map.rendererName;

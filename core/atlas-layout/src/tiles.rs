@@ -19,9 +19,30 @@
 //!   largest counts first, up to `edges`; the rest are counted per relation in the
 //!   tile's `hidden_edges`, never dropped silently.
 //!
+//! Concept layer (when the snapshot has concepts; `concept.rs`):
+//! - Zooms `0..=general_zoom` are the general layer.  They show only the general
+//!   set (concepts, then areas; at most `general_nodes`), all of them from zoom 0
+//!   and outside the per-tile entity budget, and no clusters.
+//! - A declaration is drawn only from `detail_zoom` on (infrastructure too); other
+//!   entities from `general_zoom + 1`.  Above that, the budget rule applies.
+//! - A hidden declaration is represented by its primary concept when the concept
+//!   is visible: its edges are counted on the concept, edges between members of one
+//!   concept go to that concept's hidden relations.
+//! - `member_of_concept` claims are never drawn as edges, at any zoom: they are the
+//!   grouping itself, shown as placement (a declaration sits in its primary
+//!   concept's disc) and member counts; `/api/concept` lists every one with its
+//!   evidence.  Drawn, they were 57 % of the deep-zoom edges, mostly long lines to
+//!   secondary concepts.
+//! - In the general layer, a hidden node with no visible concept (sources, people,
+//!   infrastructure...) is not represented: an edge with one such endpoint is
+//!   counted in the other endpoint's tile `hidden_edges`; one with two is counted
+//!   in the zoom's `edges_unplaced`.  Nothing is dropped silently.
+//!
 //! Binary tile (all integers LEB128 varints unless noted):
 //!   ne nc nx nedges nhidden
-//!   ne × entity   : node, rank, qx u16, qy u16           (sorted by rank = label priority)
+//!   ne × entity   : node, rank, qx u16, qy u16, hidden_members, nrel, nrel × (rel u8, count)
+//!                   (sorted by rank = label priority; hidden members and internal
+//!                   relations are those a visible concept stands for)
 //!   nc × cluster  : community, qx u16, qy u16, members, hidden_members, nrel, nrel × (rel u8, count)
 //!   nx × external : ref (node<<1 | is_cluster), gx u32, gy u32    (endpoints outside the tile)
 //!   nedges × edge : a, b (local: entities, then clusters, then externals), rel u8, state u8, count
@@ -43,12 +64,39 @@ pub struct TileBudget {
     pub entities: u32,
     /// Display level: finest with at most `clusters · 4^z` communities.
     pub clusters: u32,
-    /// Max edges per tile (the rest are counted in `hidden_edges`).
+    /// Max edges per tile and projection (the rest are counted in `hidden_edges`).
     pub edges: u32,
     /// `zmax` is the first zoom whose fullest tile holds at most this many nodes...
     pub full: u32,
     /// ...or this zoom, whichever comes first.
     pub max_zoom: u32,
+    /// Zooms `0..=general_zoom` show only concepts and areas (with a concept layer).
+    #[serde(default = "default_general_zoom")]
+    pub general_zoom: u32,
+    /// Most nodes in the general layer.
+    #[serde(default = "default_general_nodes")]
+    pub general_nodes: u32,
+    /// First zoom at which declarations (and infrastructure) can be drawn.
+    #[serde(default = "default_detail_zoom")]
+    pub detail_zoom: u32,
+    /// Max edges per tile and projection in the general layer (fewer lines over the overview; the
+    /// rest are counted in `hidden_edges` like any edge over budget).
+    #[serde(default = "default_general_edges")]
+    pub general_edges: u32,
+}
+
+fn default_general_edges() -> u32 {
+    1024
+}
+
+fn default_general_zoom() -> u32 {
+    2
+}
+fn default_general_nodes() -> u32 {
+    6000
+}
+fn default_detail_zoom() -> u32 {
+    4
 }
 
 impl Default for TileBudget {
@@ -56,9 +104,13 @@ impl Default for TileBudget {
         TileBudget {
             entities: 256,
             clusters: 64,
-            edges: 4096,
+            edges: 2048,
             full: 1024,
             max_zoom: 16,
+            general_zoom: default_general_zoom(),
+            general_nodes: default_general_nodes(),
+            detail_zoom: default_detail_zoom(),
+            general_edges: default_general_edges(),
         }
     }
 }
@@ -78,6 +130,17 @@ pub struct ZoomStats {
     pub max_entities: u32,
     pub max_edges: u32,
     pub tiles_with_hidden_edges: usize,
+    /// Visible concepts, and hidden nodes each of them stands for.
+    #[serde(default)]
+    pub concepts: usize,
+    #[serde(default)]
+    pub represented_by_concept: usize,
+    /// General layer: hidden nodes with no visible concept (not represented), and
+    /// edges between two of them (counted here, in no tile).
+    #[serde(default)]
+    pub unplaced: usize,
+    #[serde(default)]
+    pub edges_unplaced: u64,
     pub secs: f64,
 }
 
@@ -89,6 +152,12 @@ pub struct TileMeta {
     pub budget: TileBudget,
     pub count: usize,
     pub zooms: Vec<ZoomStats>,
+    /// Last zoom of the general layer, if the snapshot has a concept layer.
+    #[serde(default)]
+    pub general_zoom: Option<u32>,
+    /// Nodes in the general layer.
+    #[serde(default)]
+    pub general_nodes: usize,
 }
 
 /// Tile bytes, owned after a build or memory-mapped after `Layout::open`.
@@ -168,7 +237,20 @@ pub(crate) struct Input<'a> {
     pub counts: &'a [usize],
     pub centroids: &'a [Vec<[f32; 2]>],
     pub sizes: &'a [Vec<u32>],
+    /// Primary concept of each declaration (`NONE` otherwise).
+    pub concept_of: &'a [u32],
+    /// Nodes of the general layer (all false without a concept layer).
+    pub general: &'a [bool],
 }
+
+impl Input<'_> {
+    fn has_concepts(&self) -> bool {
+        self.general.iter().any(|&g| g)
+    }
+}
+
+/// Not represented at this zoom (general layer only).
+const UNPLACED: u32 = u32::MAX;
 
 pub(crate) fn build(inp: &Input, budget: &TileBudget) -> TileSet {
     let n = inp.pos.len();
@@ -183,7 +265,23 @@ pub(crate) fn build(inp: &Input, budget: &TileBudget) -> TileSet {
         rank[v as usize] = r as u32;
     }
     let zmax = choose_zmax(inp, &order, budget);
-    let minzoom = min_zooms(inp, &order, zmax, budget.entities);
+    let concepts_on = inp.has_concepts();
+    let floor: Vec<u8> = (0..n)
+        .map(|v| {
+            let f = if !concepts_on || inp.general[v] {
+                0
+            } else if inp.concept_of[v] != atlas_core::NONE
+                || inp.snap.node_type(v as u32) == atlas_core::EntityType::Resource
+            {
+                budget.detail_zoom
+            } else {
+                budget.general_zoom + 1
+            };
+            f.min(zmax) as u8
+        })
+        .collect();
+    let minzoom = min_zooms(inp, &order, zmax, budget.entities, &floor);
+    let general_zoom = concepts_on.then_some(budget.general_zoom);
     let display_level: Vec<Option<u32>> = (0..=zmax)
         .map(|z| {
             if z == zmax || inp.levels.is_empty() {
@@ -201,8 +299,16 @@ pub(crate) fn build(inp: &Input, budget: &TileBudget) -> TileSet {
     let mut zooms = Vec::new();
     for z in 0..=zmax {
         let t = std::time::Instant::now();
-        let (tiles, mut st) =
-            build_zoom(inp, budget, &rank, &minzoom, z, display_level[z as usize]);
+        let general = general_zoom.is_some_and(|g| z <= g);
+        let (tiles, mut st) = build_zoom(
+            inp,
+            budget,
+            &rank,
+            &minzoom,
+            z,
+            display_level[z as usize],
+            general,
+        );
         let mut sizes: Vec<u32> = tiles.iter().map(|t| t.1.len() as u32).collect();
         sizes.sort_unstable();
         let pct = |p: f64| {
@@ -228,6 +334,8 @@ pub(crate) fn build(inp: &Input, budget: &TileBudget) -> TileSet {
         budget: budget.clone(),
         count: index.len(),
         zooms,
+        general_zoom,
+        general_nodes: inp.general.iter().filter(|&&g| g).count(),
     };
     TileSet {
         meta,
@@ -264,26 +372,30 @@ fn choose_zmax(inp: &Input, order: &[u32], budget: &TileBudget) -> u32 {
         .unwrap_or(budget.max_zoom)
 }
 
-/// Greedy minimum zoom per node, in priority order (see module doc).
-fn min_zooms(inp: &Input, order: &[u32], zmax: u32, k: u32) -> Vec<u8> {
+/// Greedy minimum zoom per node, in priority order (see module doc), never below
+/// its `floor`.  General-layer nodes (floor 0 with a concept layer) skip the budget.
+fn min_zooms(inp: &Input, order: &[u32], zmax: u32, k: u32, floor: &[u8]) -> Vec<u8> {
     let mut minzoom = vec![u8::MAX; inp.pos.len()];
     let mut counts: Vec<AHashMap<u64, u32>> = (0..zmax).map(|_| AHashMap::new()).collect();
     let mut cells = vec![0u64; zmax as usize];
     for &v in order {
         let p = inp.pos[v as usize];
         let mut first = 0u32;
+        let general = inp.general[v as usize];
         for z in 0..zmax {
             let (x, y) = cell(p, z);
             cells[z as usize] = (x as u64) << 32 | y as u64;
-            if counts[z as usize]
-                .get(&cells[z as usize])
-                .copied()
-                .unwrap_or(0)
-                >= k
+            if !general
+                && counts[z as usize]
+                    .get(&cells[z as usize])
+                    .copied()
+                    .unwrap_or(0)
+                    >= k
             {
                 first = z + 1;
             }
         }
+        first = first.max(floor[v as usize] as u32);
         for z in first..zmax {
             *counts[z as usize].entry(cells[z as usize]).or_insert(0) += 1;
         }
@@ -309,16 +421,26 @@ fn build_zoom(
     minzoom: &[u8],
     z: u32,
     level: Option<u32>,
+    general: bool,
 ) -> (Vec<(u64, Vec<u8>)>, ZoomStats) {
     let n = inp.pos.len();
     let lv = level.map(|l| &inp.levels[l as usize]);
+    // Visible node, else its visible primary concept, else (general layer) nothing,
+    // else its community at the display level.
     let rep = |v: usize| -> u32 {
         if minzoom[v] as u32 <= z {
-            v as u32
+            return v as u32;
+        }
+        let c = inp.concept_of[v];
+        if c != atlas_core::NONE && minzoom[c as usize] as u32 <= z {
+            c
+        } else if general {
+            UNPLACED
         } else {
             CLUSTER_BIT | lv.expect("hidden nodes exist only below zmax")[v]
         }
     };
+    let membership = atlas_core::RelationType::MemberOfConcept.code();
     // Aggregate edges: sort packed keys, count runs.
     let out = inp.snap.csr(Dir::Out);
     let mut keys: Vec<u128> = (0..n.div_ceil(CHUNK))
@@ -332,10 +454,14 @@ fn build_zoom(
                 let a = rep(u);
                 for i in out.range(u as u32) {
                     let v = out.nbr[i] as usize;
-                    if !inp.active[v] || v == u {
+                    if !inp.active[v] || v == u || out.rel[i] == membership {
                         continue;
                     }
-                    let b = rep(v);
+                    // An unrepresented endpoint goes second (see the module doc).
+                    let (a, b) = match rep(v) {
+                        b if a == UNPLACED => (b, a),
+                        b => (a, b),
+                    };
                     ks.push(
                         (a as u128) << 64
                             | (b as u128) << 32
@@ -349,7 +475,11 @@ fn build_zoom(
         .collect();
     keys.par_sort_unstable();
     let mut edges: Vec<AggEdge> = Vec::new();
+    // Keyed by representative (CLUSTER_BIT kept): a cluster's or a concept's.
     let mut internal: AHashMap<u32, Vec<(u8, u32)>> = AHashMap::new();
+    // (representative, relation, count) of edges whose other end is not represented.
+    let mut halves: Vec<(u32, u8, u32)> = Vec::new();
+    let mut edges_unplaced = 0u64;
     let mut i = 0;
     while i < keys.len() {
         let mut j = i + 1;
@@ -364,8 +494,15 @@ fn build_zoom(
             state: k as u8,
             count: (j - i) as u32,
         };
-        if e.a == e.b {
-            let list = internal.entry(e.a & !CLUSTER_BIT).or_default();
+        if e.a == UNPLACED {
+            edges_unplaced += e.count as u64;
+        } else if e.b == UNPLACED {
+            match halves.last_mut() {
+                Some(h) if h.0 == e.a && h.1 == e.rel => h.2 += e.count,
+                _ => halves.push((e.a, e.rel, e.count)),
+            }
+        } else if e.a == e.b {
+            let list = internal.entry(e.a).or_default();
             match list.last_mut() {
                 Some(last) if last.0 == e.rel => last.1 += e.count,
                 _ => list.push((e.rel, e.count)),
@@ -394,12 +531,25 @@ fn build_zoom(
         .map(|v| (tkey(v as u32), rank[v], v as u32))
         .collect();
     ents.par_sort_unstable();
-    let mut hidden = vec![0u32; level.map_or(0, |l| inp.counts[l as usize])];
-    if let Some(m) = lv {
-        for v in 0..n {
-            if inp.active[v] && minzoom[v] as u32 > z {
-                hidden[m[v] as usize] += 1;
-            }
+    let mut hidden = vec![
+        0u32;
+        if general {
+            0
+        } else {
+            level.map_or(0, |l| inp.counts[l as usize])
+        }
+    ];
+    // Hidden members each visible concept stands for.
+    let mut hidden_ent: AHashMap<u32, u32> = AHashMap::new();
+    let mut unplaced = 0usize;
+    for (v, &mz) in minzoom.iter().enumerate() {
+        if !inp.active[v] || mz as u32 <= z {
+            continue;
+        }
+        match rep(v) {
+            UNPLACED => unplaced += 1,
+            r if r & CLUSTER_BIT != 0 => hidden[(r & !CLUSTER_BIT) as usize] += 1,
+            r => *hidden_ent.entry(r).or_insert(0) += 1,
         }
     }
     let mut clus: Vec<(u64, u32, u32)> = (0..hidden.len() as u32)
@@ -418,6 +568,11 @@ fn build_zoom(
         })
         .collect();
     recs.par_sort_unstable();
+    let mut halves: Vec<(u64, u8, u32)> = halves
+        .into_iter()
+        .map(|(r, rel, c)| (tkey(r), rel, c))
+        .collect();
+    halves.sort_unstable();
     // Group by tile key.
     let mut tiles: Vec<u64> = ents
         .iter()
@@ -435,10 +590,15 @@ fn build_zoom(
     let ctx = ZoomCtx {
         inp,
         level,
+        edge_cap: if general {
+            budget.general_edges
+        } else {
+            budget.edges
+        } as usize,
         internal: &internal,
         hidden: &hidden,
+        hidden_ent: &hidden_ent,
         edges: &edges,
-        budget,
         pos_of: &pos_of,
         tkey: &tkey,
     };
@@ -449,7 +609,9 @@ fn build_zoom(
             let cr = range(t, &|i| clus[i].0, clus.len());
             let rr = range(t, &|i| (recs[i] >> 64) as u64, recs.len());
             let rec_idx: Vec<u32> = recs[rr].iter().map(|r| *r as u32).collect();
-            let (b, ne, nedges, dropped) = encode(&ctx, t, &ents[er], &clus[cr], &rec_idx);
+            let hr = range(t, &|i| halves[i].0, halves.len());
+            let (b, ne, nedges, dropped) =
+                encode(&ctx, t, &ents[er], &clus[cr], &rec_idx, &halves[hr]);
             (t, b, ne, nedges, dropped)
         })
         .collect();
@@ -463,6 +625,13 @@ fn build_zoom(
         max_entities: out.iter().map(|o| o.2).max().unwrap_or(0),
         max_edges: out.iter().map(|o| o.3).max().unwrap_or(0),
         tiles_with_hidden_edges: out.iter().filter(|o| o.4).count(),
+        concepts: ents
+            .iter()
+            .filter(|e| inp.snap.concept_index(e.2).is_some())
+            .count(),
+        represented_by_concept: hidden_ent.values().map(|&h| h as usize).sum(),
+        unplaced,
+        edges_unplaced,
         ..Default::default()
     };
     (out.into_iter().map(|o| (o.0, o.1)).collect(), st)
@@ -484,10 +653,11 @@ fn partition_point(len: usize, pred: impl Fn(usize) -> bool) -> usize {
 struct ZoomCtx<'a> {
     inp: &'a Input<'a>,
     level: Option<u32>,
+    edge_cap: usize,
     internal: &'a AHashMap<u32, Vec<(u8, u32)>>,
     hidden: &'a [u32],
+    hidden_ent: &'a AHashMap<u32, u32>,
     edges: &'a [AggEdge],
-    budget: &'a TileBudget,
     pos_of: &'a (dyn Fn(u32) -> [f32; 2] + Sync),
     tkey: &'a (dyn Fn(u32) -> u64 + Sync),
 }
@@ -504,6 +674,7 @@ fn encode(
     ents: &[(u64, u32, u32)],
     clus: &[(u64, u32, u32)],
     recs: &[u32],
+    halves: &[(u64, u8, u32)],
 ) -> (Vec<u8>, u32, u32, bool) {
     let (z, x, y) = (
         (t >> 48) as u32,
@@ -519,8 +690,15 @@ fn encode(
     for (i, c) in clus.iter().enumerate() {
         local.insert(CLUSTER_BIT | c.2, (ents.len() + i) as u32);
     }
-    let cap = ctx.budget.edges as usize;
-    let kept = &recs[..recs.len().min(cap)];
+    // The cap applies per projection: a tile is read one layer at a time, so the
+    // heavy layer (dependencies) must not crowd the others out of the tile.
+    let mut per_layer = [0usize; 32];
+    let (kept, over): (Vec<u32>, Vec<u32>) = recs.iter().partition(|&&i| {
+        let k = &mut per_layer[projection_of(ctx.edges[i as usize].rel)];
+        *k += 1;
+        *k <= ctx.edge_cap
+    });
+    let kept = &kept[..];
     let mut ext: Vec<u32> = Vec::new();
     for &i in kept {
         let e = ctx.edges[i as usize];
@@ -532,11 +710,14 @@ fn encode(
         }
     }
     let mut hidden_rel: Vec<(u8, u32)> = Vec::new();
-    for &i in &recs[kept.len()..] {
+    let over = over.iter().map(|&i| {
         let e = ctx.edges[i as usize];
-        match hidden_rel.iter_mut().find(|h| h.0 == e.rel) {
-            Some(h) => h.1 += e.count,
-            None => hidden_rel.push((e.rel, e.count)),
+        (e.rel, e.count)
+    });
+    for (rel, count) in over.chain(halves.iter().map(|h| (h.1, h.2))) {
+        match hidden_rel.iter_mut().find(|h| h.0 == rel) {
+            Some(h) => h.1 += count,
+            None => hidden_rel.push((rel, count)),
         }
     }
     hidden_rel.sort_unstable();
@@ -550,12 +731,25 @@ fn encode(
     ] {
         put(&mut b, v as u64);
     }
+    let put_rels = |b: &mut Vec<u8>, r: u32| {
+        let rels = ctx.internal.get(&r).map(|v| v.as_slice()).unwrap_or(&[]);
+        put(b, rels.len() as u64);
+        for &(rel, count) in rels {
+            b.push(rel);
+            put(b, count as u64);
+        }
+    };
     for e in ents {
         let p = ctx.inp.pos[e.2 as usize];
         put(&mut b, e.2 as u64);
         put(&mut b, e.1 as u64);
         b.extend_from_slice(&quant(p[0], x0, size).to_le_bytes());
         b.extend_from_slice(&quant(p[1], y0, size).to_le_bytes());
+        put(
+            &mut b,
+            ctx.hidden_ent.get(&e.2).copied().unwrap_or(0) as u64,
+        );
+        put_rels(&mut b, e.2);
     }
     let l = ctx.level.map(|l| l as usize);
     for c in clus {
@@ -565,12 +759,7 @@ fn encode(
         b.extend_from_slice(&quant(p[1], y0, size).to_le_bytes());
         put(&mut b, ctx.inp.sizes[l.unwrap()][c.2 as usize] as u64);
         put(&mut b, ctx.hidden[c.2 as usize] as u64);
-        let rels = ctx.internal.get(&c.2).map(|v| v.as_slice()).unwrap_or(&[]);
-        put(&mut b, rels.len() as u64);
-        for &(rel, count) in rels {
-            b.push(rel);
-            put(&mut b, count as u64);
-        }
+        put_rels(&mut b, CLUSTER_BIT | c.2);
     }
     for &r in &ext {
         let p = (ctx.pos_of)(r);
@@ -601,6 +790,11 @@ fn encode(
     )
 }
 
+/// Projection (map layer) code of a relation code.
+fn projection_of(rel: u8) -> usize {
+    atlas_core::RelationType::from_code(rel).map_or(31, |r| r.spec().projection.code() as usize)
+}
+
 fn put(b: &mut Vec<u8>, mut v: u64) {
     while v >= 0x80 {
         b.push((v as u8) | 0x80);
@@ -617,6 +811,8 @@ pub type DecodedCluster = (u32, f32, f32, u32, u32, Vec<(u8, u32)>);
 pub struct Decoded {
     /// (node, priority rank, x, y), by rank.
     pub entities: Vec<(u32, u32, f32, f32)>,
+    /// Per entity: (hidden members it stands for, [(relation code, count)] among them).
+    pub entity_hidden: Vec<(u32, Vec<(u8, u32)>)>,
     /// (community, x, y, members, hidden members, [(relation code, count)])
     pub clusters: Vec<DecodedCluster>,
     /// (node or community, is_cluster, x, y)
@@ -670,21 +866,28 @@ pub fn decode(blob: &[u8], z: u32, x: u32, y: u32) -> Result<Decoded, String> {
     let mut r = Reader { b: blob, at: 0 };
     let (ne, nc, nx, nedges, nh) = (r.v()?, r.v()?, r.v()?, r.v()?, r.v()?);
     let mut d = Decoded::default();
+    let rels = |r: &mut Reader| -> Result<Vec<(u8, u32)>, String> {
+        let nrel = r.v()?;
+        let mut out = Vec::with_capacity(nrel.min(64) as usize);
+        for _ in 0..nrel {
+            out.push((r.u8()?, r.v()? as u32));
+        }
+        Ok(out)
+    };
     for _ in 0..ne {
         let (node, rank) = (r.v()? as u32, r.v()? as u32);
         let (qx, qy) = (r.u16()?, r.u16()?);
         d.entities.push((node, rank, deq(qx, x0), deq(qy, y0)));
+        let hidden = r.v()? as u32;
+        d.entity_hidden.push((hidden, rels(&mut r)?));
     }
     for _ in 0..nc {
         let c = r.v()? as u32;
         let (qx, qy) = (r.u16()?, r.u16()?);
-        let (members, hidden, nrel) = (r.v()? as u32, r.v()? as u32, r.v()?);
-        let mut rels = Vec::with_capacity(nrel as usize);
-        for _ in 0..nrel {
-            rels.push((r.u8()?, r.v()? as u32));
-        }
+        let (members, hidden) = (r.v()? as u32, r.v()? as u32);
+        let internal = rels(&mut r)?;
         d.clusters
-            .push((c, deq(qx, x0), deq(qy, y0), members, hidden, rels));
+            .push((c, deq(qx, x0), deq(qy, y0), members, hidden, internal));
     }
     for _ in 0..nx {
         let rf = r.v()?;

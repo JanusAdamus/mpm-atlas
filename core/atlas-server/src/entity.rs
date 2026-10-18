@@ -88,7 +88,9 @@ fn fill_provenance_quotes(v: &mut Value) {
     }
 }
 
-/// Current claims with any participant in `ids` (as `Store.claims_for(current_only=True)`).
+/// Current claims with any participant in `ids` (as `Store.claims_for(current_only=True)`),
+/// except the `member_of_concept` claims whose object is the entity: a concept can have
+/// thousands; `/api/concept` pages them and `counts_by_relation` counts them.
 fn claims(c: &Connection, ids: &[&str], limit: usize) -> atlas_core::Result<(Vec<Value>, bool)> {
     let states: Vec<String> = EvidenceState::ALL
         .iter()
@@ -98,7 +100,8 @@ fn claims(c: &Connection, ids: &[&str], limit: usize) -> atlas_core::Result<(Vec
     let marks = vec!["?"; ids.len()].join(",");
     let sql = format!(
         "SELECT data, evidence_state, superseded_by, formal FROM claims WHERE id IN \
-         (SELECT DISTINCT claim_id FROM claim_participants WHERE entity_id IN ({marks})) \
+         (SELECT DISTINCT cp.claim_id FROM claim_participants cp JOIN claims c2 ON c2.id = cp.claim_id \
+          WHERE cp.entity_id IN ({marks}) AND NOT (cp.role = 'object' AND c2.relation = 'member_of_concept')) \
          AND evidence_state IN ({}) ORDER BY id LIMIT {}",
         states.join(","),
         limit + 1
@@ -208,6 +211,7 @@ impl Engine {
             "truncated": truncated,
             "claims": claims,
             "sources": sources,
+            "concept": crate::concept::entity_concept_info(snap, n, lang),
         }))
     }
 }

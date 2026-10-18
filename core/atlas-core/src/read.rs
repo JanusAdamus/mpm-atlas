@@ -154,6 +154,8 @@ pub(crate) struct ClaimChunk {
     pub asm: Vec<u32>,
     pub validity: Vec<u32>,
     pub texts: DedupStrVec,
+    /// `confidence.value`, or -1 when the claim has none (read by the concept layer).
+    pub conf: Vec<f64>,
 }
 
 #[derive(serde::Deserialize)]
@@ -162,6 +164,13 @@ struct ClaimData {
     assumptions: Vec<String>,
     #[serde(default)]
     validity_domain: Option<String>,
+    #[serde(default)]
+    confidence: Option<ConfData>,
+}
+
+#[derive(serde::Deserialize)]
+struct ConfData {
+    value: f64,
 }
 
 pub(crate) fn read_claims(db: &Path, (lo, hi): (i64, i64)) -> Result<ClaimChunk> {
@@ -188,6 +197,7 @@ pub(crate) fn read_claims(db: &Path, (lo, hi): (i64, i64)) -> Result<ClaimChunk>
         }
         out.asm_off.push(out.asm.len() as u32);
         out.validity.push(data.validity_domain.map_or(NONE, |v| out.texts.intern(&v)));
+        out.conf.push(data.confidence.map_or(-1.0, |c| c.value));
     }
     Ok(out)
 }

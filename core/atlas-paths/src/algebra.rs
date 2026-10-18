@@ -473,6 +473,13 @@ fn build(raw: &RawTable) -> atlas_core::Result<CompositionTable> {
             "ignore" => false,
             x => return Err(fail(format!("{name}.assumptions: {x:?}"))),
         };
+        // a relation that concludes nothing on its own is never walked (member_of_concept)
+        if r.single_hop == "none" && r.step.is_none() {
+            if r.converse.is_some() {
+                return Err(fail(format!("{name}: single_hop none is not walkable, so it cannot declare a converse")));
+            }
+            continue;
+        }
         let fwd_kind = match &r.step {
             Some(o) => kind_of(&o.kind, o.modality.as_deref())?,
             None => kind_of(&r.single_hop, None)?,

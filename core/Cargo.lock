@@ -217,6 +217,7 @@ dependencies = [
  "memmap2",
  "memory-stats",
  "rayon",
+ "rusqlite",
  "serde",
  "serde_json",
 ]

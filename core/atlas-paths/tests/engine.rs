@@ -2,7 +2,7 @@
 //! by make_fixture.py through the Python Store).  Each test is one way a route can
 //! pretend to authorize more than it does; the engine must reject or downgrade it.
 
-use atlas_core::{CompileOptions, EvidenceState, Snapshot, compile};
+use atlas_core::{CompileOptions, EvidenceState, RelationType, Snapshot, compile};
 use atlas_paths::{CompositionTable, Direction, Objective, PathEngine, PathOptions, PathQuery, PathResponse};
 use std::path::{Path, PathBuf};
 use std::sync::OnceLock;
@@ -489,4 +489,96 @@ fn all_objectives_and_search_modes_agree_on_the_fixture() {
             }
         }
     }
+}
+
+// ------------------------------------------------------------------ concept-first routes
+
+fn concepts(from: &str, to: &str, opts: &PathOptions) -> (PathResponse, atlas_paths::ConceptLevel) {
+    let r = run_with(from, to, opts);
+    let c = r.concepts.clone().expect("concept search on by default");
+    (r, c)
+}
+
+#[test]
+fn concept_route_aggregates_dependencies_but_is_not_a_declaration_chain() {
+    let (r, c) = concepts("c:x-ca", "c:x-cc", &PathOptions::default());
+    assert!(!c.abstained, "{:?}", c.reason);
+    let route = c.route.unwrap();
+    assert_eq!(route.conclusion.kind, "logical_dependency");
+    let hops: Vec<(&str, &str, &str)> =
+        route.steps.iter().map(|s| (s.from.as_str(), s.to.as_str(), s.witness.claim_id.as_str())).collect();
+    assert_eq!(hops, [("c:x-ca", "c:x-cb", "c:x-a1-b1"), ("c:x-cb", "c:x-cc", "c:x-b2-c1")]);
+    assert!(route.steps.iter().all(|s| s.relation == RelationType::DependsOnLogically && s.direction == Direction::Forward));
+    // b1 != b2: the caveat says so; heuristic memberships make the steps model_proposed
+    assert!(route.conclusion.caveats.iter().any(|x| x.contains("not a chain")), "{:?}", route.conclusion.caveats);
+    assert_eq!(route.conclusion.weakest_evidence, EvidenceState::ModelProposed);
+    for s in &route.steps {
+        assert!(!s.witness.sources.is_empty());
+        assert_eq!(s.witness.memberships.len(), 2);
+        assert!(s.drill_down.is_none(), "drill-down is opt-in");
+    }
+    // no declaration-level route exists: membership never stands in for one
+    assert!(r.abstained, "{:?}", r.paths.first().map(|p| &p.conclusion.kind));
+}
+
+#[test]
+fn concept_route_walked_backwards_is_support_and_flags_conjunctive_witnesses() {
+    let (_, c) = concepts("c:x-cc", "c:x-ca", &PathOptions::default());
+    let route = c.route.unwrap();
+    assert_eq!(route.conclusion.kind, "logical_support");
+    assert!(route.steps.iter().all(|s| s.direction == Direction::Inverse));
+    let (_, c) = concepts("c:x-cb", "c:x-cd", &PathOptions::default());
+    let route = c.route.unwrap();
+    assert_eq!(route.steps[0].witness.claim_id, "c:x-dc1-dep");
+    assert_eq!(route.steps[0].witness.other_premises, 1);
+    assert!(route.conclusion.caveats.iter().any(|x| x.contains("R7")), "{:?}", route.conclusion.caveats);
+}
+
+#[test]
+fn concept_route_never_mixes_dependency_and_support_through_a_shared_concept() {
+    // A -> B <- D (and A -> B -> C <- D): dependency then support composes to none
+    let (_, c) = concepts("c:x-ca", "c:x-cd", &PathOptions::default());
+    assert!(c.abstained && c.route.is_none());
+    assert_eq!(c.abstention.as_deref(), Some("no_route"));
+}
+
+#[test]
+fn concept_endpoints_map_declarations_to_their_primary_concept() {
+    let (_, c) = concepts("s:x-a2", "c:x-cc", &PathOptions::default());
+    assert_eq!((c.from.via, c.from.concept.as_deref()), ("primary_concept", Some("c:x-ca")));
+    assert_eq!((c.to.via, c.to.concept.as_deref()), ("concept", Some("c:x-cc")));
+    assert!(!c.abstained);
+    let (_, c) = concepts("s:x-a1", "s:x-a2", &PathOptions::default());
+    assert_eq!(c.abstention.as_deref(), Some("same_concept"));
+    let (_, c) = concepts("s:pythagoras", "s:x-axiom", &PathOptions::default());
+    assert_eq!(c.abstention.as_deref(), Some("not_a_concept"));
+    let r = run_with("s:x-a1", "s:x-b1", &PathOptions { concepts: false, ..Default::default() });
+    assert!(r.concepts.is_none());
+}
+
+#[test]
+fn drill_down_explains_each_witness_as_a_declaration_route_with_sources() {
+    let (_, c) = concepts("c:x-ca", "c:x-cc", &PathOptions { drill_down: true, ..Default::default() });
+    for s in c.route.unwrap().steps {
+        let d = s.drill_down.expect("drill-down requested");
+        assert_eq!(d.steps.len(), 1);
+        assert_eq!(d.steps[0].claim_id, s.witness.claim_id);
+        assert_eq!((d.steps[0].from.as_str(), d.steps[0].to.as_str()), (s.witness.from.as_str(), s.witness.to.as_str()));
+        assert_eq!(d.conclusion.kind, "logical_dependency");
+        assert!(!d.steps[0].sources.is_empty());
+    }
+}
+
+#[test]
+fn membership_alone_never_authorizes_an_entity_level_conclusion() {
+    // s:x-a1 member_of_concept c:x-ca: concludes none, so it is never walked; the
+    // membership shows only as an unauthorized exploration, and at concept level
+    let r = run("s:x-a1", "c:x-ca");
+    assert!(r.abstained);
+    assert_eq!(r.abstention.as_deref(), Some("unauthorized"));
+    assert!(r.reason.as_deref().unwrap().contains("never walked"), "{:?}", r.reason);
+    assert_eq!(r.exploration.unwrap().conclusion.category, "none");
+    assert_eq!(r.concepts.unwrap().abstention.as_deref(), Some("same_concept"));
+    let r = run("s:x-a2", "s:x-b1");
+    assert!(r.abstained, "{:?}", r.paths.first().map(|p| &p.conclusion.kind));
 }

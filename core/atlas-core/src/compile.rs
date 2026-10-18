@@ -10,6 +10,7 @@ use serde::Serialize;
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 
+use crate::concepts;
 use crate::error::{Error, Result};
 use crate::format::{NONE, SUPPORTED_SCHEMA};
 use crate::hashidx;
@@ -58,6 +59,10 @@ pub struct CompileReport {
     pub sources: u32,
     pub provenance_rows: u32,
     pub strings: u32,
+    /// Concept layer: concepts, declarations with a primary concept, aggregated concept -> concept edges.
+    pub concepts: u32,
+    pub declarations_with_concept: u32,
+    pub concept_edges: u32,
     pub threads: usize,
     pub phases: Vec<Phase>,
     pub total_secs: f64,
@@ -144,6 +149,7 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
         .collect::<Result<_>>()?;
     tm.lap("read_claims");
     let n_groups = append_claims(&mut cols, &mut st, &claims)?;
+    let conf: Vec<f64> = claims.iter().flat_map(|c| c.conf.iter().copied()).collect();
     drop(claims);
     let n_claims = cols.claim_rel.len();
     cols.claim_hash = hashidx::build(n_claims, |i| st.get(cols.claim_id[i as usize]));
@@ -187,6 +193,19 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
     build_csr(&mut cols)?;
     tm.lap("build_csr");
     cols.strings = st;
+    cols.concepts = {
+        let csr = concepts::OutCsr {
+            off: &cols.out_off,
+            nbr: &cols.out_nbr,
+            claim: &cols.out_claim,
+            rel: &cols.out_rel,
+            state: &cols.out_state,
+        };
+        let (strings, ids) = (&cols.strings, &cols.node_id);
+        concepts::build(&csr, &conf, &|n| strings.get(ids[n as usize]))
+    };
+    drop(conf);
+    tm.lap("concepts");
 
     let written = write::write_snapshot(&opts.out_dir, &cols, schema, seq0)?;
     tm.lap("write");
@@ -203,6 +222,9 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
         sources: cols.source_id.len() as u32,
         provenance_rows: cols.prov_src.len() as u32,
         strings: cols.strings.len() as u32,
+        concepts: cols.concepts.concepts.len() as u32,
+        declarations_with_concept: cols.concepts.members.len() as u32,
+        concept_edges: cols.concepts.edge_dst.len() as u32,
         threads: rayon::current_num_threads(),
         phases: tm.phases,
         total_secs: start.elapsed().as_secs_f64(),

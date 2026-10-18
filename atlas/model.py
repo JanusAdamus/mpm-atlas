@@ -14,7 +14,7 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any, Iterable, Mapping
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 3
 
 
 class ValidationError(ValueError):
@@ -63,6 +63,7 @@ class RelationType(StrEnum):
     COUNTEREXAMPLE_TO = "counterexample_to"
     APPEARS_IN = "appears_in"
     AUTHORED_BY = "authored_by"
+    MEMBER_OF_CONCEPT = "member_of_concept"  # schema v2 (v3: areas as objects): concept projection
 
 
 class EvidenceState(StrEnum):
@@ -195,6 +196,9 @@ RELATIONS: Mapping[RelationType, RelationSpec] = {
               chain="location in literature; not a citation of correctness"),
         _spec(R.AUTHORED_BY, Projection.HISTORY, subj=DOCS | MATH, obj=frozenset({E.PERSON}),
               chain="authorship attribution"),
+        _spec(R.MEMBER_OF_CONCEPT, Projection.STRUCTURE, subj=MATH | frozenset({E.RESOURCE}), obj=MATH | frozenset({E.AREA}),
+              chain="grouping only: the declaration is about the concept; implies no dependency, no equivalence "
+                    "and no formalization"),
     )
 }
 del R, E

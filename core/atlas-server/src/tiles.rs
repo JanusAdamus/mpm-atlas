@@ -9,7 +9,8 @@
 //! str_off: u32x(n_strings+1) | str_bytes: UTF-8, padded
 //! items (N = n_nodes + n_external; nodes first, then external endpoints):
 //!   x f32xN | y f32xN | size u32xN | id u32xN | label u32xN | community u32xN | priority u32xN
-//!   central_off u32x(N+1) | central u32 x n_central (strings) | kind u8xN | type u8xN (255 = none), padded
+//!   central_off u32x(N+1) | central u32 x n_central (strings) | kind u8xN (0 entity, 1 cluster, 2 concept)
+//!   | type u8xN (255 = none), padded
 //! edges:  source u32xe | target u32xe (item indexes) | count u32xe | relation u8xe | state u8xe, padded
 //! aggs:   item u32xa | members u32xa | hidden_members u32xa | rel_off u32x(a+1) | rel_count u32 x n_agg_rel | rel u8 x n_agg_rel, padded
 //! hidden: count u32 x n_hidden | relation u8 x n_hidden, padded   (tile edges over budget, per relation)
@@ -159,6 +160,7 @@ fn kind_code(k: TileNodeKind) -> u8 {
     match k {
         TileNodeKind::Entity => 0,
         TileNodeKind::Cluster => 1,
+        TileNodeKind::Concept => 2,
     }
 }
 

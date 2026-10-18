@@ -31,6 +31,10 @@ pub struct SnapshotStats {
     pub claims_by_state: BTreeMap<&'static str, u64>,
     /// Edges of the CSR (current claims only), by relation.
     pub edges_by_relation: BTreeMap<&'static str, u64>,
+    /// Concept layer: concepts, declarations with a primary concept, aggregated concept edges.
+    pub concepts: u32,
+    pub declarations_with_concept: u32,
+    pub concept_edges: u32,
 }
 
 fn histogram(codes: &[u8], buckets: usize) -> Vec<u64> {
@@ -107,6 +111,9 @@ impl Snapshot {
                 &histogram(self.claim_states(), EvidenceState::COUNT),
             ),
             edges_by_relation: named(RelationType::ALL, RelationType::as_str, &histogram(out.rel, RelationType::COUNT)),
+            concepts: self.concepts().len() as u32,
+            declarations_with_concept: self.concepts().iter().map(|&c| self.concept_members(c).len() as u32).sum(),
+            concept_edges: self.num_concept_edges() as u32,
         }
     }
 }

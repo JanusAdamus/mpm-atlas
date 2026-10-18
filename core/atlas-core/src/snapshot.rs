@@ -156,6 +156,45 @@ impl EvidenceSummary {
     }
 }
 
+/// One (relation, evidence state) count of an aggregated concept edge.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct ConceptEdgeStat {
+    pub relation: RelationType,
+    pub state: EvidenceState,
+    /// Declaration-level edges (primary member of the source -> primary member of the target).
+    pub count: u32,
+    /// The smallest claim behind this count: open it to trace the aggregated edge to its source.
+    pub example: ClaimIx,
+}
+
+/// Aggregated edge concept -> `target` concept; slices point into the memory map.
+#[derive(Clone, Copy, Debug)]
+pub struct ConceptEdge<'a> {
+    pub target: NodeIx,
+    rel: &'a [u8],
+    state: &'a [u8],
+    count: &'a [u32],
+    example: &'a [u32],
+}
+
+impl<'a> ConceptEdge<'a> {
+    /// Declaration-level edges behind this aggregated edge, all relations and states.
+    pub fn total(&self) -> u32 {
+        self.count.iter().sum()
+    }
+
+    /// Counts per (relation, state), sorted by relation then state.
+    pub fn stats(&self) -> impl ExactSizeIterator<Item = ConceptEdgeStat> + 'a {
+        let s = *self;
+        (0..s.rel.len()).map(move |i| ConceptEdgeStat {
+            relation: RelationType::from_code(s.rel[i]).expect("relation code checked by verify()"),
+            state: EvidenceState::from_code(s.state[i]).expect("state code checked by verify()"),
+            count: s.count[i],
+            example: s.example[i],
+        })
+    }
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct ProvRef<'a> {
     pub source: SourceIx,
@@ -262,6 +301,10 @@ impl Snapshot {
             (&[S::SourceId, S::SourceTitle, S::SourceLicense], src),
             (&[S::OutOff, S::InOff], n + 1),
             (&[S::OutNbr, S::OutClaim, S::OutRel, S::OutState, S::InNbr, S::InClaim, S::InRel, S::InState], e),
+            (&[S::NodeConcept], n),
+            (&[S::ConceptMemberOff, S::ConceptEdgeOff], len(S::ConceptNode) + 1),
+            (&[S::ConceptStatOff], len(S::ConceptEdgeDst) + 1),
+            (&[S::ConceptStatState, S::ConceptStatCount, S::ConceptStatExample], len(S::ConceptStatRel)),
         ];
         for (secs, want) in expect {
             for s in *secs {
@@ -280,6 +323,9 @@ impl Snapshot {
             (S::ProvOff, p),
             (S::OutOff, e),
             (S::InOff, e),
+            (S::ConceptMemberOff, len(S::ConceptMember)),
+            (S::ConceptEdgeOff, len(S::ConceptEdgeDst)),
+            (S::ConceptStatOff, len(S::ConceptStatRel)),
         ];
         for (s, want) in ends {
             let o = self.u32s(*s);
@@ -435,6 +481,65 @@ impl Snapshot {
         self.csr(Dir::In).edges(n)
     }
 
+    // ------------------------------------------------------------ concept layer (src/concepts.rs)
+
+    /// Primary concept of a declaration (its membership with the highest confidence), if it has one.
+    pub fn primary_concept(&self, n: NodeIx) -> Option<NodeIx> {
+        Some(self.u32s(Section::NodeConcept)[n as usize]).filter(|&c| c != NONE)
+    }
+
+    /// Concept nodes (objects of at least one current `member_of_concept` claim), ascending.
+    pub fn concepts(&self) -> &[NodeIx] {
+        self.u32s(Section::ConceptNode)
+    }
+
+    /// Position of `c` in `concepts()`.
+    pub fn concept_index(&self, c: NodeIx) -> Option<usize> {
+        self.concepts().binary_search(&c).ok()
+    }
+
+    /// Declarations whose primary concept is `c`, ascending (empty if `c` is not a concept).
+    pub fn concept_members(&self, c: NodeIx) -> &[NodeIx] {
+        let Some(k) = self.concept_index(c) else { return &[] };
+        let o = self.u32s(Section::ConceptMemberOff);
+        &self.u32s(Section::ConceptMember)[o[k] as usize..o[k + 1] as usize]
+    }
+
+    /// Every current membership of `c` (primary and secondary): `nbr` is the declaration, `claim` the
+    /// `member_of_concept` claim (its provenance and confidence are in the registry).
+    pub fn concept_memberships(&self, c: NodeIx) -> EdgeSlice<'_> {
+        self.csr(Dir::In).edges_rel(c, RelationType::MemberOfConcept)
+    }
+
+    /// Aggregated edges `c` -> other concepts, by target node ascending.
+    pub fn concept_edges(&self, c: NodeIx) -> impl ExactSizeIterator<Item = ConceptEdge<'_>> + '_ {
+        let r = self.concept_index(c).map_or(0..0, |k| {
+            let o = self.u32s(Section::ConceptEdgeOff);
+            o[k] as usize..o[k + 1] as usize
+        });
+        let (dst, so) = (self.u32s(Section::ConceptEdgeDst), self.u32s(Section::ConceptStatOff));
+        r.map(move |e| {
+            let s = so[e] as usize..so[e + 1] as usize;
+            ConceptEdge {
+                target: dst[e],
+                rel: &self.u8s(Section::ConceptStatRel)[s.clone()],
+                state: &self.u8s(Section::ConceptStatState)[s.clone()],
+                count: &self.u32s(Section::ConceptStatCount)[s.clone()],
+                example: &self.u32s(Section::ConceptStatExample)[s],
+            }
+        })
+    }
+
+    /// Number of aggregated concept -> concept edges.
+    pub fn num_concept_edges(&self) -> usize {
+        self.u32s(Section::ConceptEdgeDst).len()
+    }
+
+    /// A concept derived from a Mathlib zone (`concept:Mathlib/...`), not a Wikidata item.
+    pub fn is_derived_concept(&self, n: NodeIx) -> bool {
+        self.node_id(n).starts_with("concept:")
+    }
+
     // ------------------------------------------------------------ claims
 
     pub fn claim_id(&self, c: ClaimIx) -> &str {
@@ -572,7 +677,10 @@ impl Snapshot {
         use Section as S;
         let h = &self.header;
         let (n, c, g, src, st) = (h.num_nodes, h.num_claims, h.num_groups, h.num_sources, h.num_strings);
-        let monotone = [S::StrOffsets, S::ClaimTgtOff, S::ClaimCtxOff, S::ClaimAsmOff, S::GroupOff, S::ProvOff, S::OutOff, S::InOff];
+        let monotone = [
+            S::StrOffsets, S::ClaimTgtOff, S::ClaimCtxOff, S::ClaimAsmOff, S::GroupOff, S::ProvOff, S::OutOff, S::InOff,
+            S::ConceptMemberOff, S::ConceptEdgeOff, S::ConceptStatOff,
+        ];
         for s in monotone {
             if !self.u32s(s).par_windows(2).all(|w| w[0] <= w[1]) {
                 return Err(format!("offsets {s:?} not monotone"));
@@ -584,9 +692,9 @@ impl Snapshot {
             (&[S::NodeLabelEs, S::ClaimValidity], st, true),
             (&[S::NodeCanon, S::MergedNodes, S::ClaimSubject, S::ClaimTgt, S::ClaimCtxNode], n, false),
             (&[S::NodeHash], n, true),
-            (&[S::OutNbr, S::InNbr], n, false),
-            (&[S::NodeArea], n, true),
-            (&[S::GroupClaims, S::OutClaim, S::InClaim], c, false),
+            (&[S::OutNbr, S::InNbr, S::ConceptNode, S::ConceptMember, S::ConceptEdgeDst], n, false),
+            (&[S::NodeArea, S::NodeConcept], n, true),
+            (&[S::GroupClaims, S::OutClaim, S::InClaim, S::ConceptStatExample], c, false),
             (&[S::ClaimHash], c, true),
             (&[S::ClaimGroup], g, true),
             (&[S::ProvSource], src, false),
@@ -600,8 +708,8 @@ impl Snapshot {
         }
         let codes: &[(&[Section], usize)] = &[
             (&[S::NodeType], EntityType::COUNT),
-            (&[S::ClaimRel, S::OutRel, S::InRel], RelationType::COUNT),
-            (&[S::ClaimState, S::OutState, S::InState], EvidenceState::COUNT),
+            (&[S::ClaimRel, S::OutRel, S::InRel, S::ConceptStatRel], RelationType::COUNT),
+            (&[S::ClaimState, S::OutState, S::InState, S::ConceptStatState], EvidenceState::COUNT),
             (&[S::ClaimCtxRole], Role::COUNT),
         ];
         for (secs, bound) in codes {

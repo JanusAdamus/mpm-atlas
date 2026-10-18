@@ -5,7 +5,7 @@
 //! *any* route v -> t that walks a subset of those edges.
 //!
 //! Two landmark sets:
-//! - `all`: every edge.  Valid for any route (also `min_strength = 0`).
+//! - `all`: every relation a route can walk.  Valid for any route (also `min_strength = 0`).
 //! - `semantic`: only relations with a step of strength >= 1 in some direction.  A
 //!   route authorized at `min_strength >= 1` never uses another relation (strength
 //!   never increases along a route), so the bound stays admissible, and it is much
@@ -96,14 +96,16 @@ impl GraphIndex {
         GraphIndex { component, all, semantic: None }
     }
 
-    /// Both landmark sets; the semantic one follows `table`.
+    /// Both landmark sets, following `table`: `all` over the relations a route can
+    /// walk at all (a relation without a step, such as member_of_concept, would only
+    /// shrink the bounds: concept hubs join everything in two hops), `semantic` over
+    /// those of strength >= 1.  Components stay over every edge.
     pub fn build_typed(snap: &Snapshot, num_landmarks: usize, table: &CompositionTable) -> GraphIndex {
-        let keep = semantic_relations(table);
-        let (base, semantic) = rayon::join(
-            || GraphIndex::build(snap, num_landmarks),
-            || Landmarks::build(snap, num_landmarks, &keep, &components(snap, &keep)),
-        );
-        GraphIndex { semantic: Some(semantic), ..base }
+        let (walk, keep) = (relations_with_strength(table, 0), relations_with_strength(table, 1));
+        let landmarks = |k: &Keep| Landmarks::build(snap, num_landmarks, k, &components(snap, k));
+        let (component, (all, semantic)) =
+            rayon::join(|| components(snap, &[true; 32]), || rayon::join(|| landmarks(&walk), || landmarks(&keep)));
+        GraphIndex { component, all, semantic: Some(semantic) }
     }
 
     pub fn connected(&self, a: u32, b: u32) -> bool {
@@ -131,13 +133,13 @@ impl GraphIndex {
     }
 }
 
-/// Relation codes with a step of strength >= 1 in either direction.
-fn semantic_relations(table: &CompositionTable) -> Keep {
+/// Relation codes with a walkable step of strength >= `min` in either direction.
+fn relations_with_strength(table: &CompositionTable, min: u8) -> Keep {
     let mut keep = [false; 32];
     for rel in RelationType::ALL {
         keep[rel.code() as usize] = [Way::Forward, Way::Converse].iter().any(|&w| {
             let k = table.step_kind(*rel, w);
-            k != NONE && table.strength(k) >= 1
+            k != NONE && table.strength(k) >= min
         });
     }
     keep

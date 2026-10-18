@@ -229,6 +229,11 @@ impl<'a> QueryCtx<'a> {
         c.max(MIN_STEP_COST)
     }
 
+    /// Lower bound on the cost of any single step under these weights.
+    pub fn min_step(&self) -> f64 {
+        self.min_step
+    }
+
     pub fn terminal_cost(&self, k: Kind) -> f64 {
         self.w.conclusion * (MAX_STRENGTH - self.table.strength(k).min(MAX_STRENGTH)) as f64
     }

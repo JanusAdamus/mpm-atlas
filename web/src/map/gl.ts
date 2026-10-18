@@ -2,7 +2,7 @@
 // layer and primitive; colors, dash patterns and widths come from small uniform
 // tables indexed by code, so a theme switch touches uniforms, never buffers.
 
-export const POINT_FLOATS = 4; // x, y, radius px, code (+256 if cluster, +512 if dimmed)
+export const POINT_FLOATS = 4; // x, y, radius px, code (+256 if cluster, +512 if dimmed, +1024 if concept)
 export const EDGE_FLOATS = 6; // x0, y0, x1, y1, state code (+16 if dimmed), weight
 
 const POINT_VS = `#version 300 es
@@ -19,9 +19,11 @@ out float v_radius;
 out vec3 v_color;
 flat out int v_cluster;
 flat out int v_dim;
+flat out int v_concept;
 void main() {
   int code = int(a_inst.w + 0.5);
   v_dim = (code >> 9) & 1;
+  v_concept = (code >> 10) & 1;
   v_cluster = (code >> 8) & 1;
   int idx = v_cluster == 1 ? 31 : (code & 31);
   v_color = u_palette[idx];
@@ -40,6 +42,7 @@ in float v_radius;
 in vec3 v_color;
 flat in int v_cluster;
 flat in int v_dim;
+flat in int v_concept;
 uniform float u_alpha;
 uniform vec3 u_outline;
 out vec4 o;
@@ -53,6 +56,11 @@ void main() {
     // Region: translucent disc with a solid ring, so it never reads as one entity.
     float ring = clamp(1.5 - abs(d - (edge - 1.5)), 0.0, 1.0);
     o = vec4(v_color, (0.16 + 0.75 * ring) * aa * a);
+  } else if (v_concept == 1) {
+    // Concept: solid core, a gap, then a ring (a target), never a plain dot.
+    float ring = clamp(1.6 - abs(d - (edge - 1.2)), 0.0, 1.0);
+    float core = clamp(edge - 3.4 - d + 0.5, 0.0, 1.0);
+    o = vec4(v_color, max(core, ring) * aa * a);
   } else {
     float rim = clamp(d - (edge - 1.2), 0.0, 1.0);
     o = vec4(mix(v_color, u_outline, rim * 0.6), aa * a);

@@ -19,6 +19,7 @@ ahash.workspace = true
 
 [dev-dependencies]
 memory-stats.workspace = true
+rusqlite.workspace = true
 
 [[example]]
 name = "bench_layout"

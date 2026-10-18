@@ -15,6 +15,11 @@
     merge:        s:x-dup merged into s:pythagoras
     history:      s:x-nm1, s:x-nm2, s:x-nm3 named_after per:x-namer; s:x-nm2 depends_on s:x-nm-axiom;
                   s:x-nm3 depends_on s:x-nm-mid depends_on s:x-nm2
+    concepts:     member_of_concept groups declarations under c:x-ca, c:x-cb, c:x-cc, c:x-cd;
+                  s:x-a1 depends_on s:x-b1 and s:x-b2 depends_on s:x-c1 (A -> B -> C at concept
+                  level, but no declaration chain: b1 != b2); s:x-dc1 depends_on (s:x-b1 AND s:x-c1)
+                  (D -> B, D -> C); s:x-a1 in A is extracted (curated), every other membership
+                  model_proposed
   Nothing here is editorially reviewed: the states are the ones a test needs.
 - empty_v1.db: an empty schema-v1 registry; tests fill it with atlas_core::synth.
 """
@@ -31,6 +36,7 @@ ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT))
 
 from atlas import (  # noqa: E402
+    Confidence,
     Entity,
     FormalArtifact,
     LangString,
@@ -72,7 +78,28 @@ ENTITIES = [
     ("s:x-nm3", "statement", "Teorema epónimo 3", "Eponymous theorem 3"),
     ("s:x-nm-mid", "statement", "Lema intermedio", "Intermediate lemma"),
     ("s:x-nm-axiom", "statement", "Axioma del epónimo", "Namesake axiom"),
+    ("c:x-ca", "concept", "Concepto A", "Concept A"),
+    ("c:x-cb", "concept", "Concepto B", "Concept B"),
+    ("c:x-cc", "concept", "Concepto C", "Concept C"),
+    ("c:x-cd", "concept", "Concepto D", "Concept D"),
+    ("s:x-a1", "statement", "A1", "A1"),
+    ("s:x-a2", "statement", "A2", "A2"),
+    ("s:x-b1", "statement", "B1", "B1"),
+    ("s:x-b2", "statement", "B2", "B2"),
+    ("s:x-c1", "statement", "C1", "C1"),
+    ("s:x-dc1", "statement", "DC1", "DC1"),
 ]
+
+# (claim, declaration, concept): the concept cluster's memberships
+MEMBERS = [
+    ("c:x-m-a1", "s:x-a1", "c:x-ca"),
+    ("c:x-m-a2", "s:x-a2", "c:x-ca"),
+    ("c:x-m-b1", "s:x-b1", "c:x-cb"),
+    ("c:x-m-b2", "s:x-b2", "c:x-cb"),
+    ("c:x-m-c1", "s:x-c1", "c:x-cc"),
+    ("c:x-m-dc1", "s:x-dc1", "c:x-cd"),
+]
+MEMBER_CONFIDENCE = Confidence(0.6, "heuristic membership score (fixture)", "not calibrated")
 
 BINARY = [
     ("c:x-analog-pyth", "analogous_to", "s:x-analog", "s:pythagoras"),
@@ -96,6 +123,8 @@ BINARY = [
     ("c:x-nm2-axiom", "depends_on_logically", "s:x-nm2", "s:x-nm-axiom"),
     ("c:x-nm3-mid", "depends_on_logically", "s:x-nm3", "s:x-nm-mid"),
     ("c:x-nm-mid-2", "depends_on_logically", "s:x-nm-mid", "s:x-nm2"),
+    ("c:x-a1-b1", "depends_on_logically", "s:x-a1", "s:x-b1"),
+    ("c:x-b2-c1", "depends_on_logically", "s:x-b2", "s:x-c1"),
 ]
 
 
@@ -105,6 +134,9 @@ def build_fixture(out: Path) -> None:
         s.add_entities([Entity(i, t, (LangString(es, "es"), LangString(en, "en"))) for i, t, es, en in ENTITIES])
         claims = [binary(cid, rel, a, b, PROV) for cid, rel, a, b in BINARY]
         claims.append(conjunction("c:x-goal", "depends_on_logically", "s:x-goal", ["s:x-q", "s:x-r"], PROV))
+        claims.append(conjunction("c:x-dc1-dep", "depends_on_logically", "s:x-dc1", ["s:x-b1", "s:x-c1"], PROV))
+        claims += [binary(cid, "member_of_concept", d, c, PROV, evidence_state="extracted" if d == "s:x-a1"
+                          else "model_proposed", confidence=MEMBER_CONFIDENCE) for cid, d, c in MEMBERS]
         s.add_claims(claims)
         s.set_evidence_state("c:x-d", "disputed", actor=ACTOR, reason="fixture: disputed generalization")
         lean = FormalArtifact("mathlib", "fixture", "X.F", ("propext",))

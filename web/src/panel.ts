@@ -12,7 +12,24 @@ export interface PanelActions {
   focusRegion(id: string): void;
   pathFrom(id: string, label: string): void;
   pathTo(id: string, label: string): void;
+  openConcept(id: string): void;
 }
+
+/** Extraction limits recorded as `assumptions` by the importers (atlas/ingest/mathlib.py):
+ *  they describe the verification status, never a hypothesis of the mathematics. */
+const LIMITS: [RegExp, string][] = [
+  [/^axioms not computed/i, "limit_axioms"],
+  [/resolved by name from source text/i, "limit_sigdep"],
+];
+
+export function extractionLimit(a: string): string | null {
+  const hit = LIMITS.find(([re]) => re.test(a));
+  return hit ? hit[1] : null;
+}
+
+/** Model-proposed and disputed claims are candidates: never under the heading of established ones. */
+export const isCandidate = (c: Pick<ClaimJson, "evidence_state">): boolean =>
+  c.evidence_state === "model_proposed" || c.evidence_state === "disputed";
 
 /** Text in the UI language, else the other one, tagged with its language. */
 function localized(m: Record<string, string>): { text: string; lang: string } | null {
@@ -130,14 +147,18 @@ function claimRow(c: ClaimJson, self: string, selfIds: Set<string>, actions: Pan
   if (premises.length > 1) meta.append(h("span", { class: "tag" }, `${t("premises")} (Y/AND): ${premises.length}`));
   if (c.alternative_group) meta.append(h("span", { class: "tag", title: c.alternative_group }, `${t("alternatives")}: ${c.alternative_group}`));
   if (c.formal) meta.append(h("span", { class: "tag" }, `⊢ ${c.formal.library} ${c.formal.version}: ${c.formal.declaration}`));
-  if (c.confidence) meta.append(h("span", { class: "tag", title: `${c.confidence.estimates} · ${c.confidence.calibration}` }, `p=${c.confidence.value.toFixed(2)}`));
+  // A heuristic score is labelled as such, never shown as a probability (Codex E02).
+  if (c.confidence) meta.append(h("span", { class: "tag", title: `${c.confidence.estimates} · ${c.confidence.calibration}` }, `${t("heuristicScore")}: ${c.confidence.value.toFixed(2)}`));
   const extra: HTMLElement[] = [];
   const via = others(["via"]), ctx = others(["context"]), assm = others(["assumption"]);
   if (via.length) extra.push(h("div", { class: "muted" }, `${t("via")}: `, ...via.map((p) => entityLink(p.entity, label(p.entity), actions))));
   if (ctx.length) extra.push(h("div", { class: "muted" }, "context: ", ...ctx.map((p) => entityLink(p.entity, label(p.entity), actions))));
-  if (c.assumptions.length || assm.length) {
-    extra.push(h("div", { class: "assumptions" }, `${t("assumptions")}: `, c.assumptions.join("; "), ...assm.map((p) => entityLink(p.entity, label(p.entity), actions))));
+  const hyp = c.assumptions.filter((a) => !extractionLimit(a));
+  const limits = c.assumptions.map(extractionLimit).filter((k): k is string => !!k);
+  if (hyp.length || assm.length) {
+    extra.push(h("div", { class: "assumptions" }, `${t("assumptions")}: `, hyp.join("; "), ...assm.map((p) => entityLink(p.entity, label(p.entity), actions))));
   }
+  if (limits.length) extra.push(h("div", { class: "muted small" }, `${t("verification")}: `, limits.map((k) => t(k)).join(" ")));
   if (c.validity_domain) extra.push(h("div", { class: "muted" }, `⟂ ${c.validity_domain}`));
   const expl = localized(c.explanation);
   if (expl) extra.push(h("div", { class: "explanation", lang: expl.lang }, richText(expl.text)));
@@ -165,6 +186,16 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
     ),
   );
   if (r.coverage === "unknown") root.append(h("p", { class: "notice", role: "note" }, t("coverageUnknown")));
+  const ci = r.concept;
+  if (ci?.as_concept) {
+    root.append(h("p", { class: "concept-link" }, t("groupsDecls", { n: ci.as_concept.members.toLocaleString() }), " ",
+      h("button", { type: "button", class: "mini", onclick: () => actions.openConcept(r.canonical_id) }, t("viewConcept"))));
+  }
+  if (ci?.primary_concept) {
+    const pc = ci.primary_concept;
+    root.append(h("p", { class: "concept-link" }, `${t("conceptOf")}: `,
+      h("button", { type: "button", class: "link", title: pc.id, onclick: () => actions.openConcept(pc.id) }, pc.label + (pc.derived ? ` (${t("derivedShort")})` : ""))));
+  }
   const intu = localized(e.descriptions);
   if (intu) root.append(h("section", {}, h("h3", {}, t("intuition")), h("p", { class: "lede", lang: intu.lang }, richText(intu.text))));
   const form = localized(e.statements);
@@ -181,27 +212,40 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
   }
 
   const assumptions = new Set<string>();
-  for (const c of r.claims) for (const a of c.assumptions) assumptions.add(a);
+  const limits = new Set<string>();
+  for (const c of r.claims) {
+    for (const a of c.assumptions) {
+      const k = extractionLimit(a);
+      if (k) limits.add(k);
+      else assumptions.add(a);
+    }
+  }
   if (assumptions.size) root.append(h("section", {}, h("h3", {}, t("assumptions")), h("ul", {}, [...assumptions].map((a) => h("li", {}, richText(a))))));
+  if (limits.size) root.append(h("section", {}, h("h3", {}, t("verification")), h("ul", {}, [...limits].map((k) => h("li", {}, t(k))))));
 
-  const groups = new Map<string, ClaimJson[]>();
-  for (const c of r.claims) groups.set(c.relation, [...(groups.get(c.relation) ?? []), c]);
-  if (groups.size) {
-    const sec = h("section", {}, h("h3", {}, t("connections")));
+  const established = r.claims.filter((c) => !isCandidate(c));
+  const candidates = r.claims.filter(isCandidate);
+  const connections = (title: string, claims: ClaimJson[], note?: string): void => {
+    if (!claims.length) return;
+    const groups = new Map<string, ClaimJson[]>();
+    for (const c of claims) groups.set(c.relation, [...(groups.get(c.relation) ?? []), c]);
+    const sec = h("section", {}, h("h3", {}, title), note ? h("p", { class: "muted small" }, note) : null);
     for (const [rel, claims] of [...groups].sort((a, b) => b[1].length - a[1].length)) {
       const states = new Map<string, number>();
       for (const c of claims) states.set(c.evidence_state, (states.get(c.evidence_state) ?? 0) + 1);
       const summary = [...states].map(([s, n]) => `${n} ${stateLabel(s)}`).join(", ");
       sec.append(
         h("details", { open: claims.length <= 12 },
-          h("summary", {}, h("strong", {}, relLabel(rel)), " ", h("span", { class: "count" }, `${r.counts_by_relation[rel] ?? claims.length}`), h("span", { class: "muted small" }, ` · ${summary}`)),
+          h("summary", {}, h("strong", {}, relLabel(rel)), " ", h("span", { class: "count" }, `${claims.length}`), h("span", { class: "muted small" }, ` · ${summary}`)),
           h("ul", { class: "claims" }, claims.map((c) => claimRow(c, r.canonical_id, selfIds, actions))),
         ),
       );
     }
-    if (r.truncated) sec.append(h("p", { class: "muted" }, t("claimsTruncated", { n: r.claims.length })));
     root.append(sec);
-  }
+  };
+  connections(t("established"), established);
+  connections(t("candidates"), candidates, t("candidatesNote"));
+  if (r.truncated) root.append(h("p", { class: "muted" }, t("claimsTruncated", { n: r.claims.length })));
 
   const sources = Object.values(r.sources);
   if (sources.length) {

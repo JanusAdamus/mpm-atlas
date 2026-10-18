@@ -242,7 +242,7 @@ def _full_overlap(idx: MathlibIndex, core: tuple[str, ...], i: int) -> float:
 
 
 def item_candidates(idx: MathlibIndex, item_id: str, item_type: EntityType,
-                    phrases: list[tuple[str, float]]) -> list[Candidate]:
+                    phrases: list[tuple[str, float]], top_k: int = TOP_K) -> list[Candidate]:
     """Best Mathlib declarations for one item.  `phrases` = [(label or alias, weight)]."""
     best: dict[int, tuple[float, dict]] = {}
 
@@ -295,7 +295,7 @@ def item_candidates(idx: MathlibIndex, item_id: str, item_type: EntityType,
                     spec = 1.0 if len(hits) <= 3 else 3 / len(hits)
                     offer(i, weight * (0.95 if bold else 0.8) * spec,
                           {"doc_phrase": text, "bold": bold, "doc_hits": len(hits)})
-    ranked = sorted(best.items(), key=lambda kv: (-kv[1][0], len(idx.rows[kv[0]].name)))[:TOP_K]
+    ranked = sorted(best.items(), key=lambda kv: (-kv[1][0], len(idx.rows[kv[0]].name)))[:top_k]
     return [Candidate(item_id, idx.rows[i].id, s, "formalization", tuple(sorted(f.items(), key=lambda x: x[0])))
             for i, (s, f) in ranked if s >= PROPOSAL_FLOOR]
 
@@ -382,10 +382,15 @@ def apply_links(store: Store, candidates: Iterable[Candidate], report: Counter, 
     store.add_claims(claims, actor=ACTOR)
 
 
+# A curated link is a current, non-proposed one.  Retracted, superseded and disputed links are not gold (the
+# homonym guard of atlas/concepts.py retracts model_proposed candidates; they must not turn into curated links).
+CURATED_STATES = frozenset({EvidenceState.EXTRACTED, EvidenceState.EDITORIALLY_REVIEWED, EvidenceState.FORMALLY_LINKED})
+
+
 def curated_pairs(store: Store) -> set[tuple[str, str]]:
     out = set()
     for c in store.iter_claims(RelationType.FORMALIZED_AS):
-        if c.evidence_state is not EvidenceState.MODEL_PROPOSED:
+        if c.evidence_state in CURATED_STATES:
             out.add((c.subject, c.ids(Role.OBJECT)[0]))
     return out
 

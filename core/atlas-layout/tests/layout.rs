@@ -257,6 +257,7 @@ fn small_params() -> LayoutParams {
             edges: 1000,
             full: 4,
             max_zoom: 8,
+            ..Default::default()
         },
         ..Default::default()
     }

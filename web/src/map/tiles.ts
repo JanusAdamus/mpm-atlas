@@ -2,7 +2,7 @@
 // concurrency), abort what scrolled away, keep an LRU of decoded tiles with their
 // GPU buffers.  Turning a tile into GPU instances happens once, on arrival.
 import { api } from "../api.ts";
-import { KIND_CLUSTER, NONE, type Tile } from "../tile.ts";
+import { KIND_CLUSTER, KIND_CONCEPT, NONE, type Tile } from "../tile.ts";
 import { EDGE_FLOATS, POINT_FLOATS, type Layer, type Renderer } from "./gl.ts";
 
 const MAX_TILES = 384;
@@ -39,17 +39,28 @@ export function clusterRadius(hidden: number): number {
   return Math.min(34, Math.max(7, 4 + Math.sqrt(hidden) * 0.9));
 }
 
+/** A concept grows with its member declarations (stable across zooms). */
+export function conceptRadius(members: number): number {
+  return Math.min(18, 5.5 + Math.sqrt(members) * 0.35);
+}
+
+export function itemRadius(t: Tile, i: number): number {
+  if (t.kind[i] === KIND_CLUSTER) return clusterRadius(t.size[i]);
+  if (t.kind[i] === KIND_CONCEPT) return conceptRadius(t.size[i]);
+  return entityRadius(t.priority[i] === NONE ? 1e9 : t.priority[i]);
+}
+
 /** Instance data of one tile.  Only the tile's own nodes are drawn as points;
  *  external endpoints exist to anchor edges that leave the tile. */
 export function tileInstances(t: Tile, dimmed?: Uint8Array): { points: Float32Array; edges: Float32Array } {
   const points = new Float32Array(t.nNodes * POINT_FLOATS);
   for (let i = 0; i < t.nNodes; i++) {
     const o = i * POINT_FLOATS;
-    const cluster = t.kind[i] === KIND_CLUSTER;
+    const kind = t.kind[i];
     points[o] = t.px[i];
     points[o + 1] = t.py[i];
-    points[o + 2] = cluster ? clusterRadius(t.size[i]) : entityRadius(t.priority[i] === NONE ? 1e9 : t.priority[i]);
-    points[o + 3] = (cluster ? 256 : t.type[i] & 31) + (dimmed?.[i] ? 512 : 0);
+    points[o + 2] = itemRadius(t, i);
+    points[o + 3] = (kind === KIND_CLUSTER ? 256 : t.type[i] & 31) + (dimmed?.[i] ? 512 : 0) + (kind === KIND_CONCEPT ? 1024 : 0);
   }
   // ponytail: an edge between two tiles is carried (and drawn) by both, so it is
   // slightly darker; dropping one copy loses the edge when the other tile is off-screen.

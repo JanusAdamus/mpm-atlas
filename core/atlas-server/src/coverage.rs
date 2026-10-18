@@ -73,6 +73,16 @@ pub async fn health(State(st): State<AppState>) -> Response {
             "edges": snap.num_edges(),
         },
         "layout_version": e.layout.as_ref().map(|l| l.version.as_str()),
+        // Zoom semantics of the map: z0..=general_zoom show concepts and areas only;
+        // declarations appear from detail_zoom (null without a concept layer).
+        "map": e.layout.as_ref().map(|l| {
+            let m = &l.tiles.meta;
+            json!({
+                "max_zoom": m.zmax, "general_zoom": m.general_zoom,
+                "detail_zoom": m.general_zoom.map(|_| m.budget.detail_zoom), "general_nodes": m.general_nodes,
+            })
+        }),
+        "concepts": snap.concepts().len(),
         "components": e.components,
     }))
     .into_response()

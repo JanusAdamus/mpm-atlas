@@ -218,3 +218,100 @@ En test (antes → después): en/text 0.643 → 0.787, docstring 0.451 → 0.680
 
 Las 39 respuestas nuevas son todas `historical` sobre ítems cuyo `allowed` es `historical`.  El ítem no respondible que ahora responde (`silver:route:shared:c:dcfbaa1aa8412500<…`) devuelve otra ruta, histórica, que el oráculo también juzga `historical`: no es violación.  La única abstención restante en respondibles (`hw:route:038:charpoly-det`) es un caso de mezcla sin regla, ajeno a esta decisión.  Las etiquetas son silver o escritas por un agente: los veredictos siguen siendo provisionales.
 
+
+## 13. Ronda 2 · capa conceptual (2026-10-17, cerrada el 2026-10-18 por el integrador)
+
+Plan: `docs/plans/2026-10-17-capa-conceptual.md`.  Las reglas de decisión del plan no se movieron.  Cada cifra lleva su comando.  Las cifras de los tres trabajadores que el integrador no repitió se marcan «(trabajador)» y salen de sus reportes.
+
+### 13.1 Qué se hizo
+
+- Proyección conceptual (esquema v3, relación `member_of_concept`, extractor `concept-projection/5`), 5,941 conceptos y 78,163 aristas agregadas dentro de `atlas compile` (snapshot formato 2, secciones 100–110).
+- Mapa: capa general por conceptos, tope de aristas por capa, panel de concepto, `/api/concept` y `/api/concept/edges`.
+- Recorridos: búsqueda concepto-primero (`PathResponse.concepts`), `composition.json` v3, `bench/concept_routes.py` y 20 consultas.
+- Integrador: `concepts` y `drill_down` expuestos en `/api/path` (`core/atlas-server/src/paths.rs`; el archivo estaba en CRLF y quedó en LF).  La CLI `atlas path` sigue sin esos dos flags.  Se recompiló el binario compartido y se reconstruyó todo.
+
+### 13.2 Build y pruebas
+
+| Comando | Resultado |
+|---|---|
+| `cargo build --release -p atlas-server` (binario compartido) | 2 min 6 s |
+| `python -m atlas build --skip-ingest --no-cargo --json` (reporte `data/cache/reports/build-logs/build7.json`) | 73.47 s en total; `compile --all` 70.42 s (índice 38.69 s, layout 2.39 s).  Snapshot `ad7463ed1d4fcce6` (372,733,708 bytes), layout `846e9337c8a1c382` (11,813 teselas, 105.7 MB, zmax 7) |
+| `python -m pytest -q` | 153 passed en 53.18 s |
+| `cargo test --workspace --release` (en `core/`) | 142 passed, 0 failed |
+| `cargo clippy --workspace --all-targets --release` | 0 advertencias, 0 errores |
+| `npm test` (en `web/`) | 14 passed |
+| `npm run build` | verde en 553 ms; JS principal 98.05 kB (32.81 kB gzip), KaTeX 259 kB diferido |
+
+El `build` no corrió la ingesta (`--skip-ingest`): el registro se compiló tal como estaba.
+
+### 13.3 AtlasBench
+
+`ATLAS_BIN=…/atlas/release/atlas.exe python -m bench run --split test --serve --skip-cli --out bench/runs/2026-10-18-v3-test-concepts-integrated` (102.64 s de evaluación).
+
+| Métrica (HTTP, test) | Antes (§8 y §12) | Ahora |
+|---|---|---|
+| estructura válida | 264/264 | 264/264 [0.986, 1.000] |
+| acierto en respondibles | 260/261 | 260/261 = 0.996 [0.979, 0.999] |
+| abstención en respondibles | 1/261 | 1/261 = 0.004 [0.001, 0.021] |
+| sobreafirmación frente al oráculo | 0/264 | 0/264 [0.000, 0.014] |
+| adversariales sin conclusión prohibida | 188/188 | 188/188 [0.980, 1.000] |
+| `http.path` p95 | 5.73 ms (trabajador, mismos 449 ítems) | 3.24 ms [3.01, 3.71] |
+| `http.tiles.load_c1` p95 | 2.57 ms [2.51, 2.66] | **8.78 ms [7.63, 15.19]** |
+| `http.search.load_c1` p95 / c8 | 11.86 / 56.88 ms | 11.75 / 62.24 ms |
+| retrieval en/text nDCG@10 | 0.787 [0.752, 0.822] | 0.771 [0.735, 0.807] |
+
+Veredictos: retrieval PROVISIONAL-FAIL (sin cambio de regla), routes.structure PASS, routes.adversarial PROVISIONAL-PASS, provenance PASS, latencias PASS.  `routes.null_model_adversarial` sigue PROVISIONAL-FAIL, como antes: es el control (BFS del registro) y sobreafirma 2/188 (antes 1/188).
+
+Las 20 consultas concepto→concepto: `python -m bench.concept_routes --http http://127.0.0.1:8769 --out bench/runs/2026-10-18-concept-routes-20-integrated`.  Aciertan 14/14 respondibles [0.785, 1.000]; 0/14 abstenciones en respondibles; 10/10 adversariales sin conclusión prohibida [0.722, 1.000]; 5/6 abstenciones en no respondibles (el homónimo integración→IsIntegral devuelve una dependencia agregada vía «número real», no prohibida); estructura 15/15; sobreafirmación 0/15; p50 1.58 ms, p95 5.55 ms (n = 20).  **Las 20 las escribió un agente** (`authored_by_agent_pending_expert_review`), no una persona a mano como pide el plan; el veredicto es provisional.  `GET /api/path?…&concepts=true&drill_down=true` devuelve la ruta de declaraciones de cada paso (probado con wd:Q1217677 → wd:Q29175: 1 paso, mismo `claim_id` que el testigo); un parámetro desconocido da 400.
+
+### 13.4 Auditoría independiente de la muestra de 200 (juicio de agente, provisional)
+
+Archivo: `bench/concepts/audit-sample-200.judged.jsonl` (veredicto por fila; el original queda intacto).  Lo juzgó el integrador, que no construyó la proyección.  Criterio: correcta si la declaración trata realmente de ese concepto matemático; incorrecta si el concepto es otro (homónimo o asociación sin relación); dudosa si es una generalidad o una relación laxa.  Se juzgó con la etiqueta, el nombre Lean, el módulo y el docstring; no se consultó Wikidata, así que algunos Q poco claros quedaron como dudosos.  Un solo juez, sin acuerdo entre jueces.
+
+| Medida | k / n | Valor [Wilson 95 %] |
+|---|---|---|
+| correctas (estricto: las dudosas no cuentan) | 84 / 200 | 0.420 [0.354, 0.489] |
+| correctas o dudosas (laxo) | 135 / 200 | 0.675 [0.607, 0.736] |
+| correctas entre las decididas (sin dudosas) | 84 / 149 | 0.564 [0.484, 0.641] |
+| solo asignaciones primarias (rango 0), estricto | 58 / 107 | 0.542 |
+| rango 1 / rango 2, estricto | 17 / 55 ; 9 / 38 | 0.309 ; 0.237 |
+| señal `name_doc`, estricto | 55 / 148 | 0.372 |
+| derivadas (`zone_derived`) | 6 / 6 | 1.000 |
+
+Totales: 84 correctas, 65 incorrectas, 51 dudosas.  La auditoría sale **bastante peor** que la medida contra los 355 curados (top-1 0.714).  Esos ítems son conceptos populares con enlace conocido; la muestra cubre 27 áreas de Mathlib con lemas técnicos.  Los fallos son casi todos homónimos de la señal `name_doc` con la etiqueta de un concepto de Wikidata: «Jacobian matrix» para coordenadas jacobianas, «overtone» para funciones armónicas, «snooker ball» para `ball`, «mobile app» para `app`, «sorting algorithm» para `desc`, «Mandelbrot set» para `M`.  Es una falla de P0 semántico (E01–E04).  Las asignaciones secundarias (rango 1 y 2) casi no sirven y la web las muestra como candidatas.  Ideas, a validar en dev y no en test: ocultar el rango 2, exigir un filtro de dominio por zona.  No se cambió ningún umbral.
+
+### 13.5 Mapa y navegador
+
+`python -m atlas serve` con el binario compartido; Edge sin interfaz (puppeteer-core) con capturas en `docs/design/concepts/`: `01-overview.png`, `02-zoom-concepts.png`, `03-concept-panel.png` («integración»), `04-path.png`, `05-concept-panel-mobile.png` (390×844).  Cero errores de consola, cero respuestas HTTP ≥ 400, ningún `p=` en el texto de las vistas y ningún desbordamiento horizontal.  Al terminar no quedó `atlas.exe` ni Edge sin interfaz.
+
+Teselas de la capa estructura (cliente HTTP con keep-alive, todas las teselas de cada zoom): z0, z1 y z2 tienen 5,373 nodos únicos: 4,074 concept, 605 area, 561 statement, 58 algorithm, 50 model, 25 conjecture; 0 declaraciones de Mathlib, 0 `mathlib-…` (directorios), 0 `source_fragment`, 0 `resource`.  Aristas: 1,024 en z0.  z3 ya trae 3,619 `mathlib-…` de zona y 0 declaraciones; z4 trae 11,634 declaraciones.  Los 694 nodos que no son concept ni area son entidades de Wikidata (teoremas, algoritmos) que son objeto de pertenencias; 44 etiquetas del z0 son números («10», «1105») o «Wikipedia».
+
+### 13.6 Veredicto contra las reglas del plan
+
+| Regla | Veredicto | Cifra y comentario |
+|---|---|---|
+| Asignación vs 355 curados | **FAIL** | test: recall@3 0.7638 [0.700, 0.818], pasa 0.75; precisión top-1 0.7143 [0.647, 0.773], no pasa 0.75 (trabajador: `data/cache/reports/concepts-run4.json`).  Dev: 0.8104 y 0.7321.  Se publica igual, con la confianza baja visible |
+| Cobertura ≥ 85 % | PASS | 237,640 declaraciones de contenido: 90.15 % por señales propias y 100 % con respaldo de zona (9,202 de baja confianza y 14,201 con concepto derivado); 4,343 de infraestructura sin asignar (trabajador).  Reserva: el respaldo de zona asigna todo, y el plan pedía no forzar |
+| Muestra auditada de 200 | PASS (procedimiento) | hecha y reportada en §13.4: 0.420 estricto, 0.675 laxo.  Provisional.  El resultado es malo y es el hallazgo principal de la ronda |
+| Mapa | PASS | 5,373 ≤ 6,000 en z0–z2; sin declaraciones ni infraestructura; aristas agregadas con conteos por relación y estado; declaraciones desde z4.  Reserva: 694 nodos de la capa son entidades Wikidata de tipo statement, algorithm, model o conjecture |
+| Recorridos | PASS (provisional) | AtlasBench v3 test sin regresión (§13.3).  Las 20 consultas las escribió un agente.  La web **no muestra** `PathResponse.concepts` (no hay rastro en `web/src/pathview.ts`): la ruta por conceptos solo existe en la API |
+| Rendimiento | **FAIL** | `compile --all` 70.42 s contra 64.35 s (1.09×, pasa); p95 de recorridos 3.24 ms contra 5.73 ms (pasa en los 449 ítems fijos; con pares aleatorios de `bench.exe` el trabajador midió 1.7–2.9× por el snapshot nuevo); **p95 de teselas en AtlasBench 8.78 ms contra 2.57 ms = 3.4×, no pasa 2×**.  El trabajador del mapa midió 1.3× con `load.mjs` sobre 600 entidades (teselas profundas).  AtlasBench pide solo las 85 teselas z0–z3, y la z0 nueva pesa 523 KB |
+| Reproducibilidad | PASS | `build7` dio `ad7463ed1d4fcce6`, el mismo hash de las seis compilaciones del trabajador |
+| Integración no asignada ni enlazada a `IsIntegral` | PASS | registro: 0 pertenencias vigentes de declaraciones `IsIntegral*` a wd:Q80091 (de 1,394 vigentes); `formalized_as` hacia `mathlib:IsIntegral*`: solo 1, retractado |
+| `integral`, `derivada` y `Bayes` en el top 3 | **FAIL** | `/api/search` en español: derivada, 1.º (wd:Q29175); Bayes, 2.º «teorema de Bayes»; **integral**: 5 declaraciones de Mathlib antes que cualquier concepto, sin concepto en los primeros 5.  En inglés `derivative` queda 5.º.  No se hizo trabajo de búsqueda en esta ronda (B01, B02) |
+| Ninguna vista con `p=` | PASS | en las 5 vistas capturadas.  No es una revisión exhaustiva de toda la web |
+| Capa general sin fuentes documentales ni infraestructura | PASS (con reservas) | 0 `source_fragment`, 0 `resource`, 0 directorios de Mathlib; quedan 44 etiquetas numéricas o «Wikipedia» |
+| Todo verificado con capturas | **FAIL** (parcial) | hay capturas de la vista general, un zoom, el panel de concepto y móvil.  No hay captura de una ruta a nivel de concepto porque la web no la dibuja; `04-path.png` es la ruta de entidades y dice «Sin ruta autorizada» (alcance bibliográfico), aunque en la API los dos conceptos sí tienen ruta |
+
+Resultado global: la capa conceptual se publica.  La asignación **no está aprobada** (precisión top-1 y auditoría).  Tres reglas quedan en FAIL (asignación, rendimiento de teselas, búsqueda) y falta una captura.
+
+### 13.7 Pendiente y riesgos observados
+
+1. Calidad de la asignación: los homónimos de `name_doc` (§13.4).  Nada se tocó en esta ronda.
+2. Que la web dibuje `PathResponse.concepts` y use `drill_down`; que `atlas path` tenga `--concepts` y `--drill-down`.
+3. Búsqueda: conceptos antes que declaraciones de biblioteca (B01, B02), sin dueño en esta ronda.
+4. Teselas: la z0–z2 pesa 523 KB (p95 8.78 ms en AtlasBench).  Opciones: menos nodos en z0 o una tesela general separada.
+5. Las respuestas grandes (≥ ~200 KB) se cortan con `ConnectionResetError` si el cliente manda `Connection: close` (`urllib` de Python lo hace siempre; reproducido en la tesela z0).  Con keep-alive, curl y navegador no falla.  Sin diagnosticar.
+6. Las 20 consultas de concepto y la muestra de 200 siguen sin juez humano.
+7. `data/index` conserva índices de versiones anteriores (derivados, se pueden borrar).
+8. No se hizo commit.
