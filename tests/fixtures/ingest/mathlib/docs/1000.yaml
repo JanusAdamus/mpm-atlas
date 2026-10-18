@@ -1,0 +1,23 @@
+# Hand-written fixture in the format of mathlib4 docs/1000.yaml.
+
+Q11518:
+  title: Pythagorean theorem
+  decl: EuclideanGeometry.dist_sq_eq_dist_sq_add_dist_sq_iff_angle_eq_pi_div_two
+  authors: Fixture Author
+
+Q12524:
+  title: A theorem with no Lean declaration yet
+
+Q132469:
+  title: Fermat's Last Theorem
+  statement: FermatLastTheorem
+  comment: "Statement only; not in this fixture."
+
+Q154210:
+  title: Two declarations
+  decls:
+    - Nat.Prime.two_le
+    - Nat.Prime.one_lt
+
+Q180345X:
+  title: A malformed key that must be counted, not crash

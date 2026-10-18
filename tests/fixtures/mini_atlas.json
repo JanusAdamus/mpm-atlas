@@ -1,0 +1,897 @@
+{
+ "sources": [
+  {
+   "id": "src:fixture-hand",
+   "title": "Hand-written test fixture (MPM)",
+   "license": "CC0-1.0",
+   "uri": null,
+   "version": "1",
+   "retrieved_at": "2026-10-16T00:00:00+00:00",
+   "terms": "Test data written for the MPM atlas; locators cite Euclid's Elements by proposition."
+  }
+ ],
+ "entities": [
+  {
+   "id": "a:euclidean-geometry",
+   "type": "area",
+   "labels": {
+    "es": "Geometría euclidiana",
+    "en": "Euclidean geometry"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "c:right-triangle",
+   "type": "concept",
+   "labels": {
+    "es": "Triángulo rectángulo",
+    "en": "Right triangle"
+   },
+   "aliases": [],
+   "descriptions": {
+    "es": "Triángulo con un ángulo recto.",
+    "en": "Triangle with one right angle."
+   },
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:pythagoras",
+   "type": "statement",
+   "labels": {
+    "es": "Teorema de Pitágoras",
+    "en": "Pythagorean theorem"
+   },
+   "aliases": [
+    [
+     "en",
+     "Pythagoras' theorem"
+    ],
+    [
+     "es",
+     "Pitágoras"
+    ]
+   ],
+   "descriptions": {},
+   "statements": {
+    "es": "En un triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.",
+    "en": "In a right triangle, the square of the hypotenuse equals the sum of the squares of the legs."
+   },
+   "formula": "a^2 + b^2 = c^2",
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:pythagoras-converse",
+   "type": "statement",
+   "labels": {
+    "es": "Recíproco del teorema de Pitágoras",
+    "en": "Converse of the Pythagorean theorem"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {
+    "en": "If the square on one side of a triangle equals the sum of the squares on the other two, the angle they contain is right."
+   },
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:law-of-cosines",
+   "type": "statement",
+   "labels": {
+    "es": "Ley de los cosenos",
+    "en": "Law of cosines"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": "c^2 = a^2 + b^2 - 2ab\\cos\\gamma",
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:parallel-postulate",
+   "type": "statement",
+   "labels": {
+    "es": "Quinto postulado de Euclides",
+    "en": "Parallel postulate"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:sas-congruence",
+   "type": "statement",
+   "labels": {
+    "es": "Criterio de congruencia LAL",
+    "en": "Side-angle-side congruence"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:parallelogram-area",
+   "type": "statement",
+   "labels": {
+    "es": "Paralelogramo y triángulo de misma base",
+    "en": "Parallelogram is double the triangle on the same base"
+   },
+   "aliases": [],
+   "descriptions": {
+    "en": "Elements I.41: a parallelogram with the same base as a triangle and between the same parallels is double the triangle."
+   },
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:similar-triangles",
+   "type": "statement",
+   "labels": {
+    "es": "Semejanza de triángulos",
+    "en": "Similar triangles have proportional sides"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "s:parseval",
+   "type": "statement",
+   "labels": {
+    "es": "Identidad de Parseval",
+    "en": "Parseval's identity"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": "\\|x\\|^2 = \\sum_k |\\langle x, e_k\\rangle|^2",
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "d:inner-product-space",
+   "type": "definition",
+   "labels": {
+    "es": "Espacio con producto interior",
+    "en": "Inner product space"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "p:euclid-i47",
+   "type": "proof",
+   "labels": {
+    "es": "Demostración de Euclides (Elementos I.47)",
+    "en": "Euclid's proof (Elements I.47)"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "p:similarity",
+   "type": "proof",
+   "labels": {
+    "es": "Demostración por semejanza",
+    "en": "Proof by similar triangles"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "per:pythagoras",
+   "type": "person",
+   "labels": {
+    "es": "Pitágoras de Samos",
+    "en": "Pythagoras of Samos"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "per:euclid",
+   "type": "person",
+   "labels": {
+    "es": "Euclides",
+    "en": "Euclid"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "pub:elements",
+   "type": "publication",
+   "labels": {
+    "es": "Elementos",
+    "en": "Elements"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  },
+  {
+   "id": "app:surveying",
+   "type": "application",
+   "labels": {
+    "es": "Agrimensura",
+    "en": "Land surveying"
+   },
+   "aliases": [],
+   "descriptions": {},
+   "statements": {},
+   "formula": null,
+   "external_ids": [],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "id": "c:pyth-euclid",
+   "relation": "depends_on_logically",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "premise",
+     "entity": "s:sas-congruence"
+    },
+    {
+     "role": "premise",
+     "entity": "s:parallelogram-area"
+    },
+    {
+     "role": "via",
+     "entity": "p:euclid-i47"
+    },
+    {
+     "role": "context",
+     "entity": "a:euclidean-geometry"
+    },
+    {
+     "role": "assumption",
+     "entity": "s:parallel-postulate"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements I.47",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted",
+   "alternative_group": "g:pythagoras-proofs",
+   "explanation": {
+    "es": "La prueba de Euclides combina LAL y la relación de áreas de I.41.",
+    "en": "Euclid's proof combines SAS and the area relation of I.41."
+   }
+  },
+  {
+   "id": "c:pyth-similarity",
+   "relation": "depends_on_logically",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "premise",
+     "entity": "s:similar-triangles"
+    },
+    {
+     "role": "via",
+     "entity": "p:similarity"
+    },
+    {
+     "role": "context",
+     "entity": "a:euclidean-geometry"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "standard textbook proof",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted",
+   "alternative_group": "g:pythagoras-proofs"
+  },
+  {
+   "id": "c:similar-parallel",
+   "relation": "depends_on_logically",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:similar-triangles"
+    },
+    {
+     "role": "premise",
+     "entity": "s:parallel-postulate"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements VI.2-4",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:area-parallel",
+   "relation": "depends_on_logically",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:parallelogram-area"
+    },
+    {
+     "role": "premise",
+     "entity": "s:parallel-postulate"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements I.35-41",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:converse-uses",
+   "relation": "depends_on_logically",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras-converse"
+    },
+    {
+     "role": "premise",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements I.48",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:euclid-proves",
+   "relation": "proves",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "p:euclid-i47"
+    },
+    {
+     "role": "object",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements I.47",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:similarity-proves",
+   "relation": "proves",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "p:similarity"
+    },
+    {
+     "role": "object",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "standard textbook proof",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:cosines-gen",
+   "relation": "generalizes",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:law-of-cosines"
+    },
+    {
+     "role": "object",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements II.12-13 (geometric form)",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted",
+   "validity_domain": "Euclidean plane triangles"
+  },
+  {
+   "id": "c:parseval-gen",
+   "relation": "generalizes",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:parseval"
+    },
+    {
+     "role": "object",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "model_proposed",
+   "validity_domain": "orthonormal bases of inner product spaces",
+   "confidence": {
+    "value": 0.8,
+    "estimates": "P(reviewer accepts relation)",
+    "calibration": "uncalibrated fixture value"
+   }
+  },
+  {
+   "id": "c:named",
+   "relation": "named_after",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "object",
+     "entity": "per:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:in-elements",
+   "relation": "appears_in",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "object",
+     "entity": "pub:elements"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "Elements I.47",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:elements-by",
+   "relation": "authored_by",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "pub:elements"
+    },
+    {
+     "role": "object",
+     "entity": "per:euclid"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:pyth-area",
+   "relation": "part_of_area",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "object",
+     "entity": "a:euclidean-geometry"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:pyth-surveying",
+   "relation": "applied_in",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "s:pythagoras"
+    },
+    {
+     "role": "object",
+     "entity": "app:surveying"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:rt-prereq",
+   "relation": "prerequisite_for",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "c:right-triangle"
+    },
+    {
+     "role": "object",
+     "entity": "s:pythagoras"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  },
+  {
+   "id": "c:ips-prereq",
+   "relation": "prerequisite_for",
+   "participants": [
+    {
+     "role": "subject",
+     "entity": "d:inner-product-space"
+    },
+    {
+     "role": "object",
+     "entity": "s:parseval"
+    }
+   ],
+   "provenance": [
+    {
+     "source_id": "src:fixture-hand",
+     "locator": "fixture",
+     "extractor": "hand-written-fixture",
+     "extractor_version": "1",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T00:00:00+00:00",
+     "quote": null
+    }
+   ],
+   "evidence_state": "extracted"
+  }
+ ]
+}

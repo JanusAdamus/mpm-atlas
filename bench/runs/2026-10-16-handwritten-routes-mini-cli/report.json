@@ -1,0 +1,643 @@
+{
+ "date": "2026-10-17T01:11:10.846367+00:00",
+ "protocol": "bench/PROTOCOL.md v1.1 (rules frozen 2026-10-16)",
+ "data": {
+  "items": [
+   "bench/items/handwritten/routes.jsonl"
+  ],
+  "split": "adhoc",
+  "manifest": null
+ },
+ "registry": {
+  "path": "tests/fixtures/mini_atlas.json",
+  "sqlite": "C:/Users/ADRIAN~1/AppData/Local/Temp/atlasbench/mini_atlas-5e368179f613b3f5.db",
+  "bytes": 19779,
+  "mtime_ns": 1792173970450716100,
+  "schema_version": 1,
+  "event_seq": 35
+ },
+ "registry_at_end": {
+  "path": "tests/fixtures/mini_atlas.json",
+  "sqlite": "C:/Users/ADRIAN~1/AppData/Local/Temp/atlasbench/mini_atlas-5e368179f613b3f5.db",
+  "bytes": 19779,
+  "mtime_ns": 1792173970450716100,
+  "schema_version": 1,
+  "event_seq": 35
+ },
+ "hardware": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "ram_bytes": 33811132416,
+  "python": "3.14.6"
+ },
+ "backends": {
+  "store": "registry C:\\Users\\ADRIAN~1\\AppData\\Local\\Temp\\atlasbench\\mini_atlas-5e368179f613b3f5.db",
+  "compile": {
+   "bytes": 8977,
+   "claims": 16,
+   "content_hash": "eb44b8dfd5a599584299fcb063b841c2534fb8c56876845b540f2db650026ae6",
+   "edges": 17,
+   "groups": 1,
+   "nodes": 17,
+   "phases": [
+    {
+     "name": "read_entities",
+     "secs": 0.009869
+    },
+    {
+     "name": "index_entities",
+     "secs": 0.0001377
+    },
+    {
+     "name": "read_claims",
+     "secs": 0.0042373
+    },
+    {
+     "name": "index_claims",
+     "secs": 9.95e-05
+    },
+    {
+     "name": "read_participants",
+     "secs": 0.0037371
+    },
+    {
+     "name": "read_provenance",
+     "secs": 0.005941
+    },
+    {
+     "name": "assemble_claims",
+     "secs": 0.000106
+    },
+    {
+     "name": "node_stats",
+     "secs": 2.6e-06
+    },
+    {
+     "name": "build_csr",
+     "secs": 0.0001301
+    },
+    {
+     "name": "write",
+     "secs": 0.0041887
+    }
+   ],
+   "provenance_rows": 16,
+   "schema_version": 1,
+   "snapshot": "C:\\Users\\ADRIAN~1\\AppData\\Local\\Temp\\atlasbench\\snapshots\\mini_atlas-5e368179f613b3f5-35\\atlas-eb44b8dfd5a59958.snap",
+   "source_event_seq": 35,
+   "sources": 1,
+   "strings": 80,
+   "threads": 16,
+   "total_secs": 0.0284496,
+   "wall_ms": 2483.0687000066973
+  },
+  "cli": {
+   "binary": "C:\\Users\\AdrianGonzalez\\.cargo-target\\bench\\bin\\atlas-server-1716.exe",
+   "snapshot": "C:\\Users\\ADRIAN~1\\AppData\\Local\\Temp\\atlasbench\\snapshots\\mini_atlas-5e368179f613b3f5-35\\atlas-eb44b8dfd5a59958.snap",
+   "content_hash": "eb44b8dfd5a599584299fcb063b841c2534fb8c56876845b540f2db650026ae6",
+   "nodes": 17,
+   "claims": 16,
+   "source_event_seq": 35,
+   "registry_event_seq": 35,
+   "stale": false
+  },
+  "http": "missing: no --http URL given"
+ },
+ "system_under_test": "cli",
+ "baseline": "store",
+ "sealed_openings": 0,
+ "items": {
+  "route": 42
+ },
+ "evidence": {
+  "route": [
+   "handwritten/authored_by_agent_pending_expert_review"
+  ]
+ },
+ "summary": {
+  "retrieval": {
+   "n_items": 0,
+   "unresolved": 0,
+   "missing": {},
+   "backends": [],
+   "cells": {},
+   "by_generator": {},
+   "by_area": {},
+   "qrels_resolved_share": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "lanes_used": {}
+  },
+  "routes": {
+   "n_items": 20,
+   "unresolved": 22,
+   "missing": {},
+   "by_backend": {
+    "cli": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 12,
+      "n": 12,
+      "value": 1.0,
+      "ci95": [
+       0.7575059933447592,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 10,
+      "n": 10,
+      "value": 1.0,
+      "ci95": [
+       0.7224672001371107,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 11,
+      "n": 12,
+      "value": 0.9166666666666666,
+      "ci95": [
+       0.646120088858883,
+       0.9851349055950829
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 1,
+      "n": 12,
+      "value": 0.08333333333333333,
+      "ci95": [
+       0.014865094404917095,
+       0.35387991114111694
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 7,
+      "n": 8,
+      "value": 0.875,
+      "ci95": [
+       0.5291118177871464,
+       0.9775825085499433
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 0,
+      "n": 12,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.24249400665524085
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "application_backwards": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "citation_chain_as_authorship": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "co_premise_as_dependency": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "converse_as_equivalence": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "learning_mixed_with_structure": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "missing_premise": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "prerequisite_mixed_with_logic": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "proof_transfer_to_converse": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "shared_conclusion_as_equivalence": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "siblings_as_related": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": []
+    },
+    "store": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 16,
+      "n": 20,
+      "value": 0.8,
+      "ci95": [
+       0.5839825677481064,
+       0.919342337420202
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 2,
+      "n": 10,
+      "value": 0.2,
+      "ci95": [
+       0.05668215145437519,
+       0.5098375284633583
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 7,
+      "n": 12,
+      "value": 0.5833333333333334,
+      "ci95": [
+       0.31951131254954973,
+       0.8067396863412435
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 0,
+      "n": 12,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.24249400665524085
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 0,
+      "n": 8,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.32440756488388023
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 9,
+      "n": 20,
+      "value": 0.45,
+      "ci95": [
+       0.2581978582556243,
+       0.6579146575496577
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "application_backwards": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "citation_chain_as_authorship": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "co_premise_as_dependency": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "converse_as_equivalence": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "learning_mixed_with_structure": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "missing_premise": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "prerequisite_mixed_with_logic": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "proof_transfer_to_converse": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "shared_conclusion_as_equivalence": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "siblings_as_related": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": [
+      "step 1: conjunctive claim c:pyth-euclid shown without all its premises (R7)",
+      "step 0: conjunctive claim c:pyth-euclid shown without all its premises (R7)",
+      "step 0: conjunctive claim c:pyth-euclid shown without all its premises (R7)",
+      "step 0: conjunctive claim c:pyth-euclid shown without all its premises (R7)"
+     ]
+    }
+   }
+  },
+  "er": {
+   "n_items": 0,
+   "unresolved": 0,
+   "abstention": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "false_merge_rate_on_negatives": {},
+   "merge_recall_on_positives": {},
+   "system_merges_sampled": 0,
+   "system_merges_labeled": 0
+  },
+  "relations": {
+   "n_items": 0,
+   "unresolved": 0,
+   "labeled": 0,
+   "still_current": {
+    "k": 0,
+    "n": 0,
+    "value": null,
+    "ci95": [
+     0.0,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "corroborated_by_another_source": {},
+   "by_relation": {}
+  },
+  "sourced": {
+   "n_items": 0,
+   "missing": {},
+   "by_backend": {}
+  },
+  "latency_ms": {
+   "cli.path": {
+    "p50": 1223.318400036078,
+    "p95": 1858.4508849977283,
+    "p99": 1884.6128970052814,
+    "n": 20,
+    "mean": 1361.6815500048688,
+    "max": 1891.1534000071697,
+    "p95_ci": [
+     1719.4144450186286,
+     1891.1534000071697
+    ]
+   },
+   "store.path": {
+    "p50": 0.026049965526908636,
+    "p95": 0.09065498015843378,
+    "p99": 0.5824510089587411,
+    "n": 20,
+    "mean": 0.06184999365359545,
+    "max": 0.7054000161588192,
+    "p95_ci": [
+     0.03612998407334089,
+     0.7054000161588192
+    ]
+   }
+  }
+ },
+ "verdicts": {
+  "retrieval": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "each lang x modality cell with n >= 30 (trivial silver excluded): delta nDCG@10 >= +0.05 and paired-bootstrap LB >= +0.02 vs lexical baseline",
+   "reason": "no non-trivial resolved items for system and baseline"
+  },
+  "routes.structure": {
+   "verdict": "PASS",
+   "rule": "0 structurally invalid steps in returned paths",
+   "invalid_paths": 0,
+   "answered": 12
+  },
+  "routes.adversarial": {
+   "verdict": "INSUFFICIENT",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "no_forbidden": {
+    "k": 10,
+    "n": 10,
+    "value": 1.0,
+    "ci95": [
+     0.7224672001371107,
+     1.0
+    ],
+    "interval": "wilson"
+   }
+  },
+  "routes.end_to_end": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB > 0.90 of expert-valid top-1 routes (n >= 100)",
+   "reason": "no expert judgments of returned routes yet; route_outputs.jsonl is the queue"
+  },
+  "routes.null_model_adversarial": {
+   "verdict": "INSUFFICIENT",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "no_forbidden": {
+    "k": 2,
+    "n": 10,
+    "value": 0.2,
+    "ci95": [
+     0.05668215145437519,
+     0.5098375284633583
+    ],
+    "interval": "wilson"
+   }
+  },
+  "er": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB of merge precision >= 0.99 on sampled system merges (n >= 381); strata n >= 50 point >= 0.99",
+   "reason": "no labeled sample of system merges (needs experts)"
+  },
+  "relations": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "each priority family (proof, structure, application): Wilson LB of precision >= 0.97, n >= 125",
+   "reason": "no labeled relation items (needs experts)"
+  },
+  "provenance.registry": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "0 served claims without complete, matching provenance; n >= 1000 (mechanical check)",
+   "reason": "no items"
+  },
+  "provenance.served": {
+   "verdict": "MISSING",
+   "rule": "served provenance",
+   "reason": "no --http server"
+  },
+  "latency.search_hot.c1": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "reason": "no --http server"
+  },
+  "latency.search_hot.c8": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "reason": "no --http server"
+  },
+  "latency.interaction_server.entity": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no --http server"
+  },
+  "latency.interaction_server.neighborhood": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no --http server"
+  },
+  "latency.interaction_server.tiles": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "no --http server"
+  }
+ },
+ "seconds": 27.4,
+ "registry_changed_during_run": false
+}

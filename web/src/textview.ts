@@ -1,0 +1,46 @@
+// Equivalent text view of the map: what is in view (regions, then entities in the
+// same priority as the labels), what is counted but not drawn, and the legend.
+// Every map action has a button here, so the map is never the only way in.
+import { h } from "./dom.ts";
+import { STATE_STYLE, swatch } from "./evidence.ts";
+import { relLabel, stateLabel, t, typeLabel } from "./i18n.ts";
+import type { MapItem } from "./map/map.ts";
+import { CURRENT_STATES, relationName, typeName } from "./vocab.ts";
+
+export interface TextActions {
+  open(item: MapItem): void;
+  zoomInto(item: MapItem): void;
+  compare(item: MapItem): void;
+}
+
+export function legend(): HTMLElement {
+  return h("section", { class: "legend", "aria-label": t("legend") },
+    h("h3", {}, t("evidence")),
+    h("ul", {}, CURRENT_STATES.map((s) => h("li", {}, swatch(s), ` ${STATE_STYLE[s].glyph} ${stateLabel(s)}`))),
+    h("p", { class: "muted small" }, `◯ ${t("region")} · ● ${t("entity")}`),
+  );
+}
+
+export function renderTextView(items: MapItem[], hidden: Map<number, number>, actions: TextActions): HTMLElement {
+  const regions = items.filter((i) => i.kind === "cluster");
+  const entities = items.filter((i) => i.kind === "entity");
+  const hiddenRows = [...hidden].sort((a, b) => b[1] - a[1]);
+  return h("div", { class: "textview" },
+    h("section", { "aria-label": t("visibleRegions") },
+      h("h3", {}, `${t("visibleRegions")} (${regions.length})`),
+      h("ul", {}, regions.map((r) => h("li", {},
+        h("button", { type: "button", class: "link", onclick: () => actions.zoomInto(r) }, r.label),
+        h("span", { class: "muted" }, ` · ${t("members")}: ${r.size} `),
+        h("button", { type: "button", class: "mini", onclick: () => actions.compare(r) }, t("compareWith")))))),
+    h("section", { "aria-label": t("visibleEntities") },
+      h("h3", {}, `${t("visibleEntities")} (${entities.length})`),
+      h("ul", {}, entities.map((e) => h("li", {},
+        h("button", { type: "button", class: "link", onclick: () => actions.open(e) }, e.label),
+        h("span", { class: "muted" }, ` · ${typeLabel(typeName(e.type))}`))))),
+    hiddenRows.length
+      ? h("section", {}, h("h3", {}, t("hiddenEdges")),
+        h("ul", {}, hiddenRows.map(([rel, n]) => h("li", {}, `${relLabel(relationName(rel))}: ${n}`))))
+      : null,
+    legend(),
+  );
+}

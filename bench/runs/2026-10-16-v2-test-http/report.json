@@ -1,0 +1,7638 @@
+{
+ "date": "2026-10-17T01:03:12.331082+00:00",
+ "protocol": "bench/PROTOCOL.md v1.1 (rules frozen 2026-10-16)",
+ "data": {
+  "split": "test",
+  "manifest": "bench/manifest/v2.json"
+ },
+ "registry": {
+  "path": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "sqlite": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "bytes": 1650872320,
+  "mtime_ns": 1792197666313402600,
+  "schema_version": 1,
+  "event_seq": 801797
+ },
+ "registry_at_end": {
+  "path": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "sqlite": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "bytes": 1650872320,
+  "mtime_ns": 1792197666313402600,
+  "schema_version": 1,
+  "event_seq": 801797
+ },
+ "hardware": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "ram_bytes": 33811132416,
+  "python": "3.14.6"
+ },
+ "backends": {
+  "store": "registry C:\\Users\\AdrianGonzalez\\.cargo-target\\bench\\frozen\\atlas-801797.db",
+  "cli": "skipped by --skip-cli (the HTTP API serves the same engine)",
+  "http": {
+   "url": "http://127.0.0.1:49275",
+   "snapshot": "C:/Users/ADRIAN~1/AppData/Local/Temp/atlasbench/snapshots/atlas-801797-801797\\atlas-495af04283bfc217.snap",
+   "content_hash": "495af04283bfc217b31a9211001ad74a83cd18d10a3004ca901522f555fa776e",
+   "source_event_seq": 801797,
+   "registry_event_seq": 801797,
+   "stale": false
+  },
+  "load_errors.search_c1": 0,
+  "load_errors.search_c8": 0,
+  "load_errors.entity": 0,
+  "load_errors.neighborhood": 0,
+  "load_tiles": "ComponentMissing: GET /api/map/tiles: HTTP 501 not implemented yet: map tiles: no layout loaded (--layout)"
+ },
+ "system_under_test": "http",
+ "baseline": "store",
+ "sealed_openings": 0,
+ "items": {
+  "retrieval": 1593,
+  "route": 462,
+  "er_pair": 655,
+  "sourced_answer": 3608,
+  "relation": 1074
+ },
+ "evidence": {
+  "retrieval": [
+   "handwritten/authored_by_agent_pending_expert_review",
+   "silver/silver_auto"
+  ],
+  "route": [
+   "handwritten/authored_by_agent_pending_expert_review",
+   "silver/silver_auto"
+  ],
+  "er_pair": [
+   "silver/silver_auto"
+  ],
+  "sourced_answer": [
+   "silver/silver_auto"
+  ],
+  "relation": [
+   "silver/unlabeled"
+  ]
+ },
+ "summary": {
+  "retrieval": {
+   "n_items": 1593,
+   "unresolved": 0,
+   "missing": {},
+   "backends": [
+    "http",
+    "store"
+   ],
+   "cells": {
+    "en/formula": {
+     "n": 163,
+     "trivial": 2,
+     "http": {
+      "ndcg@10": {
+       "value": 0.001305799981650479,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.0032644999541261983
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.006134969325153374,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.015337423312883436
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.006134969325153374,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.015337423312883436
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0015337423312883436,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.003834355828220859
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 155,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.001305799981650479,
+         "n": 163,
+         "clusters": 163,
+         "ci95": [
+          0.0,
+          0.0032644999541261983
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.006134969325153374,
+         "n": 163,
+         "clusters": 163,
+         "ci95": [
+          0.0,
+          0.015337423312883436
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.001305799981650479,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.0032644999541261983
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.006134969325153374,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.015337423312883436
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.006134969325153374,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.015337423312883436
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0015337423312883436,
+       "n": 163,
+       "clusters": 163,
+       "ci95": [
+        0.0,
+        0.003834355828220859
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "en/informal_to_formal": {
+     "n": 215,
+     "trivial": 157,
+     "http": {
+      "ndcg@10": {
+       "value": 0.3091129346583747,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.2731463742567474,
+        0.35015062452745566
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.4325581395348837,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.3598130841121495,
+        0.5159929899028876
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.6,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.5178571428571429,
+        0.6807511737089202
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.1361221853082318,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.10640592175087012,
+        0.17106585914881786
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.3091129346583747,
+         "n": 215,
+         "clusters": 171,
+         "ci95": [
+          0.2731463742567474,
+          0.35015062452745566
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.4325581395348837,
+         "n": 215,
+         "clusters": 171,
+         "ci95": [
+          0.3598130841121495,
+          0.5159929899028876
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": -0.00015960718226288578,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        -0.0004902806988098041,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.30927254184063757,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.2731541379545272,
+        0.35047484012475366
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.4325581395348837,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.3598130841121495,
+        0.5159929899028876
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.6186046511627907,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.5371158822578037,
+        0.6981244921910263
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.1361221853082318,
+       "n": 215,
+       "clusters": 171,
+       "ci95": [
+        0.10640592175087012,
+        0.17106585914881786
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "en/lean_name": {
+     "n": 377,
+     "trivial": 377,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9828722725969834,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9736418928579691,
+        0.9904869190358148
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9986737400530504,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9960212201591512,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9986737400530504,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9960212201591512,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9777851458885941,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9657382847038021,
+        0.987955901856764
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9828722725969834,
+         "n": 377,
+         "clusters": 377,
+         "ci95": [
+          0.9736418928579691,
+          0.9904869190358148
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9986737400530504,
+         "n": 377,
+         "clusters": 377,
+         "ci95": [
+          0.9960212201591512,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9828722725969834,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9736418928579691,
+        0.9904869190358148
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9986737400530504,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9960212201591512,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9986737400530504,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9960212201591512,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9777851458885941,
+       "n": 377,
+       "clusters": 377,
+       "ci95": [
+        0.9657382847038021,
+        0.987955901856764
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "en/text": {
+     "n": 420,
+     "trivial": 415,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8921160421766703,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.869351297598369,
+        0.9147294652727409
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9666666666666667,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.9488064694851688,
+        0.982252136679282
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9833333333333333,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.9712230215827338,
+        0.9940476190476191
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8708295540438398,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.8454935593680173,
+        0.8969588163427662
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8921160421766703,
+         "n": 420,
+         "clusters": 417,
+         "ci95": [
+          0.869351297598369,
+          0.9147294652727409
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9666666666666667,
+         "n": 420,
+         "clusters": 417,
+         "ci95": [
+          0.9488064694851688,
+          0.982252136679282
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8921160421766703,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.869351297598369,
+        0.9147294652727409
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9666666666666667,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.9488064694851688,
+        0.982252136679282
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9833333333333333,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.9712230215827338,
+        0.9940476190476191
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8708295540438398,
+       "n": 420,
+       "clusters": 417,
+       "ci95": [
+        0.8454935593680173,
+        0.8969588163427662
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "es/formula": {
+     "n": 197,
+     "trivial": 0,
+     "http": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 197,
+      "by_lane": {},
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 197,
+       "clusters": 197,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "es/informal_to_formal": {
+     "n": 180,
+     "trivial": 1,
+     "http": {
+      "ndcg@10": {
+       "value": 0.13237317054152764,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.12937762927485494,
+        0.13782504200482737
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.005555555555555556,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.020635007677122084
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.005555555555555556,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.020635007677122084
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0018518518518518517,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.006878335892374028
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.13237317054152764,
+         "n": 180,
+         "clusters": 137,
+         "ci95": [
+          0.12937762927485494,
+          0.13782504200482737
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.005555555555555556,
+         "n": 180,
+         "clusters": 137,
+         "ci95": [
+          0.0,
+          0.020635007677122084
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.13237317054152764,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.12937762927485494,
+        0.13782504200482737
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.005555555555555556,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.020635007677122084
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.005555555555555556,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.020635007677122084
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0018518518518518517,
+       "n": 180,
+       "clusters": 137,
+       "ci95": [
+        0.0,
+        0.006878335892374028
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "es/text": {
+     "n": 41,
+     "trivial": 33,
+     "http": {
+      "ndcg@10": {
+       "value": 0.7685385907545561,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.6362046689492378,
+        0.8816736198039973
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7195121951219512,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.5853658536585366,
+        0.8414634146341463
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.7195121951219512,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.5853658536585366,
+        0.8414634146341463
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8048780487804879,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.6585365853658537,
+        0.926829268292683
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.7685385907545561,
+         "n": 41,
+         "clusters": 41,
+         "ci95": [
+          0.6362046689492378,
+          0.8816736198039973
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.7195121951219512,
+         "n": 41,
+         "clusters": 41,
+         "ci95": [
+          0.5853658536585366,
+          0.8414634146341463
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.7685385907545561,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.6362046689492378,
+        0.8816736198039973
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7195121951219512,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.5853658536585366,
+        0.8414634146341463
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.7195121951219512,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.5853658536585366,
+        0.8414634146341463
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8048780487804879,
+       "n": 41,
+       "clusters": 41,
+       "ci95": [
+        0.6585365853658537,
+        0.926829268292683
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    }
+   },
+   "by_generator": {
+    "handwritten:handwritten": {
+     "n": 19,
+     "trivial": 0,
+     "http": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.0,
+         "n": 19,
+         "clusters": 16,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.0,
+         "n": 19,
+         "clusters": 16,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 19,
+       "clusters": 16,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "handwritten:handwritten:trivial": {
+     "n": 13,
+     "trivial": 13,
+     "http": {
+      "ndcg@10": {
+       "value": 0.6262012889002935,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5083027955163454,
+        0.7607407620851225
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5384615384615384,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5,
+        0.6363636363636364
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.5384615384615384,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5,
+        0.6363636363636364
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8653846153846154,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.7265625,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.6262012889002935,
+         "n": 13,
+         "clusters": 10,
+         "ci95": [
+          0.5083027955163454,
+          0.7607407620851225
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.5384615384615384,
+         "n": 13,
+         "clusters": 10,
+         "ci95": [
+          0.5,
+          0.6363636363636364
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.6262012889002935,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5083027955163454,
+        0.7607407620851225
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5384615384615384,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5,
+        0.6363636363636364
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.5384615384615384,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.5,
+        0.6363636363636364
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8653846153846154,
+       "n": 13,
+       "clusters": 10,
+       "ci95": [
+        0.7265625,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "silver:docstring:trivial": {
+     "n": 260,
+     "trivial": 260,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8800701118678714,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.8486539891970774,
+        0.9082923481062025
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9730769230769231,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.95,
+        0.9923076923076923
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9961538461538462,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.9884615384615385,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8493528693528694,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.8119351343101343,
+        0.8828561507936509
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8800701118678714,
+         "n": 260,
+         "clusters": 260,
+         "ci95": [
+          0.8486539891970774,
+          0.9082923481062025
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9730769230769231,
+         "n": 260,
+         "clusters": 260,
+         "ci95": [
+          0.95,
+          0.9923076923076923
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8800701118678714,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.8486539891970774,
+        0.9082923481062025
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9730769230769231,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.95,
+        0.9923076923076923
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9961538461538462,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.9884615384615385,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8493528693528694,
+       "n": 260,
+       "clusters": 260,
+       "ci95": [
+        0.8119351343101343,
+        0.8828561507936509
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "silver:formula": {
+     "n": 352,
+     "trivial": 0,
+     "http": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 352,
+      "by_lane": {},
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 352,
+       "clusters": 352,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "silver:informal_to_formal": {
+     "n": 237,
+     "trivial": 0,
+     "http": {
+      "ndcg@10": {
+       "value": 0.12919586810451064,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.12777464677449188,
+        0.13046530767718348
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.12919586810451064,
+         "n": 237,
+         "clusters": 148,
+         "ci95": [
+          0.12777464677449188,
+          0.13046530767718348
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.0,
+         "n": 237,
+         "clusters": 148,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.12919586810451064,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.12777464677449188,
+        0.13046530767718348
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.0,
+       "n": 237,
+       "clusters": 148,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "silver:informal_to_formal:trivial": {
+     "n": 158,
+     "trivial": 158,
+     "http": {
+      "ndcg@10": {
+       "value": 0.3776394361282058,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.3336742589652929,
+        0.42560439768417385
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5949367088607594,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.5061709575429088,
+        0.6903342529711375
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8227848101265823,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.7469116268166901,
+        0.8967907361455747
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.18733926059875428,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.1505078744046301,
+        0.2290637779056853
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.3776394361282058,
+         "n": 158,
+         "clusters": 125,
+         "ci95": [
+          0.3336742589652929,
+          0.42560439768417385
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.5949367088607594,
+         "n": 158,
+         "clusters": 125,
+         "ci95": [
+          0.5061709575429088,
+          0.6903342529711375
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": -0.00021718698852228127,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        -0.0006641718229649118,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.3778566231167281,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.3338920404076608,
+        0.42560548319361846
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5949367088607594,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.5061709575429088,
+        0.6903342529711375
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8481012658227848,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.7735704363931011,
+        0.9187542229729729
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.18733926059875428,
+       "n": 158,
+       "clusters": 125,
+       "ci95": [
+        0.1505078744046301,
+        0.2290637779056853
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "silver:label_exact:trivial": {
+     "n": 554,
+     "trivial": 554,
+     "http": {
+      "ndcg@10": {
+       "value": 0.974721419241624,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9650993631278638,
+        0.9830787583109832
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9981949458483754,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9945848375451264,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.966681708784597,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9543452918170877,
+        0.9774405836341756
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.974721419241624,
+         "n": 554,
+         "clusters": 554,
+         "ci95": [
+          0.9650993631278638,
+          0.9830787583109832
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9981949458483754,
+         "n": 554,
+         "clusters": 554,
+         "ci95": [
+          0.9945848375451264,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.974721419241624,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9650993631278638,
+        0.9830787583109832
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9981949458483754,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9945848375451264,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.966681708784597,
+       "n": 554,
+       "clusters": 554,
+       "ci95": [
+        0.9543452918170877,
+        0.9774405836341756
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    }
+   },
+   "by_area": {
+    "Mathlib/Algebra": {
+     "n": 33,
+     "trivial": 26,
+     "http": {
+      "ndcg@10": {
+       "value": 0.7190861828193083,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5615732182739916,
+        0.8841394173850088
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7272727272727273,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5405405405405406,
+        0.9310344827586207
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.7575757575757576,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5833333333333334,
+        0.9310919540229882
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.6666666666666666,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.4864864864864865,
+        0.8620689655172413
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.7190861828193083,
+         "n": 33,
+         "clusters": 28,
+         "ci95": [
+          0.5615732182739916,
+          0.8841394173850088
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.7272727272727273,
+         "n": 33,
+         "clusters": 28,
+         "ci95": [
+          0.5405405405405406,
+          0.9310344827586207
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.7190861828193083,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5615732182739916,
+        0.8841394173850088
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7272727272727273,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5405405405405406,
+        0.9310344827586207
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.7575757575757576,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.5833333333333334,
+        0.9310919540229882
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.6666666666666666,
+       "n": 33,
+       "clusters": 28,
+       "ci95": [
+        0.4864864864864865,
+        0.8620689655172413
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/AlgebraicGeometry": {
+     "n": 32,
+     "trivial": 32,
+     "http": {
+      "ndcg@10": {
+       "value": 0.988466554799108,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        0.9653996643973242,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.984375,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        0.953125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.988466554799108,
+         "n": 32,
+         "clusters": 32,
+         "ci95": [
+          0.9653996643973242,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 32,
+         "clusters": 32,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.988466554799108,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        0.9653996643973242,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.984375,
+       "n": 32,
+       "clusters": 32,
+       "ci95": [
+        0.953125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/AlgebraicTopology": {
+     "n": 23,
+     "trivial": 23,
+     "http": {
+      "ndcg@10": {
+       "value": 0.924428674223605,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8214256200310597,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9565217391304348,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8695652173913043,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9130434782608695,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8043478260869565,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.924428674223605,
+         "n": 23,
+         "clusters": 23,
+         "ci95": [
+          0.8214256200310597,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9565217391304348,
+         "n": 23,
+         "clusters": 23,
+         "ci95": [
+          0.8695652173913043,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.924428674223605,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8214256200310597,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9565217391304348,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8695652173913043,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9130434782608695,
+       "n": 23,
+       "clusters": 23,
+       "ci95": [
+        0.8043478260869565,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Analysis": {
+     "n": 39,
+     "trivial": 30,
+     "http": {
+      "ndcg@10": {
+       "value": 0.661479852332001,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5192439546564899,
+        0.8131369207216543
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.717948717948718,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5580749354005168,
+        0.8857142857142857
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.717948717948718,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5580749354005168,
+        0.8857142857142857
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.589173789173789,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.4235648148148148,
+        0.7706398809523809
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.661479852332001,
+         "n": 39,
+         "clusters": 32,
+         "ci95": [
+          0.5192439546564899,
+          0.8131369207216543
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.717948717948718,
+         "n": 39,
+         "clusters": 32,
+         "ci95": [
+          0.5580749354005168,
+          0.8857142857142857
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.661479852332001,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5192439546564899,
+        0.8131369207216543
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.717948717948718,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5580749354005168,
+        0.8857142857142857
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.717948717948718,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.5580749354005168,
+        0.8857142857142857
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.589173789173789,
+       "n": 39,
+       "clusters": 32,
+       "ci95": [
+        0.4235648148148148,
+        0.7706398809523809
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Basic": {
+     "n": 28,
+     "trivial": 25,
+     "http": {
+      "ndcg@10": {
+       "value": 0.7629773718793508,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5770573824944921,
+        0.9409487605714333
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8214285714285714,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5882352941176471,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8571428571428571,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.6470588235294118,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.71875,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5080645161290323,
+        0.92
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.7629773718793508,
+         "n": 28,
+         "clusters": 25,
+         "ci95": [
+          0.5770573824944921,
+          0.9409487605714333
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.8214285714285714,
+         "n": 28,
+         "clusters": 25,
+         "ci95": [
+          0.5882352941176471,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.7629773718793508,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5770573824944921,
+        0.9409487605714333
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8214285714285714,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5882352941176471,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8571428571428571,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.6470588235294118,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.71875,
+       "n": 28,
+       "clusters": 25,
+       "ci95": [
+        0.5080645161290323,
+        0.92
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/CategoryTheory": {
+     "n": 32,
+     "trivial": 29,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8486008797480571,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.708870180110733,
+        0.9827586206896551
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.84375,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.84375,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8229166666666667,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6574007936507936,
+        0.9770114942528735
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8486008797480571,
+         "n": 32,
+         "clusters": 29,
+         "ci95": [
+          0.708870180110733,
+          0.9827586206896551
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.84375,
+         "n": 32,
+         "clusters": 29,
+         "ci95": [
+          0.6857142857142857,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8486008797480571,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.708870180110733,
+        0.9827586206896551
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.84375,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.84375,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8229166666666667,
+       "n": 32,
+       "clusters": 29,
+       "ci95": [
+        0.6574007936507936,
+        0.9770114942528735
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Combinatorics": {
+     "n": 30,
+     "trivial": 29,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9136687636541246,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.7917937333799016,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9333333333333333,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.8125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9333333333333333,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.8125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.765625,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9136687636541246,
+         "n": 30,
+         "clusters": 29,
+         "ci95": [
+          0.7917937333799016,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9333333333333333,
+         "n": 30,
+         "clusters": 29,
+         "ci95": [
+          0.8125,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": -0.0005719257364420073,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        -0.0016085411337431457,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9142406893905668,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.7934022745136446,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9333333333333333,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.8125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9333333333333333,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.8125,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 29,
+       "ci95": [
+        0.765625,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Computability": {
+     "n": 25,
+     "trivial": 24,
+     "http": {
+      "ndcg@10": {
+       "value": 0.841906791288155,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.6990030020495127,
+        0.9538662191964322
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.96,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.8888888888888888,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.6427339901477833,
+        0.9375
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.841906791288155,
+         "n": 25,
+         "clusters": 24,
+         "ci95": [
+          0.6990030020495127,
+          0.9538662191964322
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.92,
+         "n": 25,
+         "clusters": 24,
+         "ci95": [
+          0.7777777777777778,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.841906791288155,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.6990030020495127,
+        0.9538662191964322
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.96,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.8888888888888888,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8,
+       "n": 25,
+       "clusters": 24,
+       "ci95": [
+        0.6427339901477833,
+        0.9375
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Condensed": {
+     "n": 22,
+     "trivial": 22,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9496722391233806,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8993444782467612,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9318181818181818,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8636363636363636,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9496722391233806,
+         "n": 22,
+         "clusters": 22,
+         "ci95": [
+          0.8993444782467612,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 22,
+         "clusters": 22,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9496722391233806,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8993444782467612,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9318181818181818,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8636363636363636,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Control": {
+     "n": 18,
+     "trivial": 18,
+     "http": {
+      "ndcg@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 1.0,
+         "n": 18,
+         "clusters": 18,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 18,
+         "clusters": 18,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 1.0,
+       "n": 18,
+       "clusters": 18,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Data": {
+     "n": 34,
+     "trivial": 32,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9086182651278408,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.7758417438394626,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9117647058823529,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9411764705882353,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.8333333333333334,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8970588235294118,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.75,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9086182651278408,
+         "n": 34,
+         "clusters": 33,
+         "ci95": [
+          0.7758417438394626,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9117647058823529,
+         "n": 34,
+         "clusters": 33,
+         "ci95": [
+          0.7777777777777778,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9086182651278408,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.7758417438394626,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9117647058823529,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9411764705882353,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.8333333333333334,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8970588235294118,
+       "n": 34,
+       "clusters": 33,
+       "ci95": [
+        0.75,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Dynamics": {
+     "n": 13,
+     "trivial": 13,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9331484425824198,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        0.8401328219387797,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9102564102564101,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        0.7857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9331484425824198,
+         "n": 13,
+         "clusters": 12,
+         "ci95": [
+          0.8401328219387797,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 13,
+         "clusters": 12,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9331484425824198,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        0.8401328219387797,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9102564102564101,
+       "n": 13,
+       "clusters": 12,
+       "ci95": [
+        0.7857142857142857,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/FieldTheory": {
+     "n": 25,
+     "trivial": 25,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9704743802857166,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        0.9261859507142916,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.96,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        0.9,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9704743802857166,
+         "n": 25,
+         "clusters": 25,
+         "ci95": [
+          0.9261859507142916,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 25,
+         "clusters": 25,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9704743802857166,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        0.9261859507142916,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.96,
+       "n": 25,
+       "clusters": 25,
+       "ci95": [
+        0.9,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Geometry": {
+     "n": 27,
+     "trivial": 26,
+     "http": {
+      "ndcg@10": {
+       "value": 0.817682972620176,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.6747507505123781,
+        0.9473434520604407
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8888888888888888,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.7333333333333333,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9629629629629629,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.896551724137931,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7885802469135802,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.6357253086419753,
+        0.9358974358974359
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.817682972620176,
+         "n": 27,
+         "clusters": 26,
+         "ci95": [
+          0.6747507505123781,
+          0.9473434520604407
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.8888888888888888,
+         "n": 27,
+         "clusters": 26,
+         "ci95": [
+          0.7333333333333333,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.817682972620176,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.6747507505123781,
+        0.9473434520604407
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8888888888888888,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.7333333333333333,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9629629629629629,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.896551724137931,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7885802469135802,
+       "n": 27,
+       "clusters": 26,
+       "ci95": [
+        0.6357253086419753,
+        0.9358974358974359
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/GroupTheory": {
+     "n": 39,
+     "trivial": 33,
+     "http": {
+      "ndcg@10": {
+       "value": 0.7269198480498831,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5871755283348913,
+        0.8778245805192119
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7435897435897436,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5813953488372093,
+        0.9142857142857143
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8205128205128205,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.6976744186046512,
+        0.9428571428571428
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.6703296703296703,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5066407429779523,
+        0.846938775510204
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.7269198480498831,
+         "n": 39,
+         "clusters": 33,
+         "ci95": [
+          0.5871755283348913,
+          0.8778245805192119
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.7435897435897436,
+         "n": 39,
+         "clusters": 33,
+         "ci95": [
+          0.5813953488372093,
+          0.9142857142857143
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.7269198480498831,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5871755283348913,
+        0.8778245805192119
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7435897435897436,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5813953488372093,
+        0.9142857142857143
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8205128205128205,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.6976744186046512,
+        0.9428571428571428
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.6703296703296703,
+       "n": 39,
+       "clusters": 33,
+       "ci95": [
+        0.5066407429779523,
+        0.846938775510204
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/InformationTheory": {
+     "n": 25,
+     "trivial": 25,
+     "http": {
+      "ndcg@10": {
+       "value": 0.84,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7321428571428571,
+        0.9523809523809523
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.88,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7692307692307693,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8266666666666667,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7222222222222221,
+        0.9365800865800861
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.84,
+         "n": 25,
+         "clusters": 19,
+         "ci95": [
+          0.7321428571428571,
+          0.9523809523809523
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.88,
+         "n": 25,
+         "clusters": 19,
+         "ci95": [
+          0.7692307692307693,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.84,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7321428571428571,
+        0.9523809523809523
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.88,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7692307692307693,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8266666666666667,
+       "n": 25,
+       "clusters": 19,
+       "ci95": [
+        0.7222222222222221,
+        0.9365800865800861
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Lean": {
+     "n": 15,
+     "trivial": 15,
+     "http": {
+      "ndcg@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 1.0,
+         "n": 15,
+         "clusters": 15,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 15,
+         "clusters": 15,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 1.0,
+       "n": 15,
+       "clusters": 15,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/LinearAlgebra": {
+     "n": 44,
+     "trivial": 40,
+     "http": {
+      "ndcg@10": {
+       "value": 0.790107045504361,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.6577781692648725,
+        0.9124622435729166
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8409090909090909,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.6998469387755102,
+        0.975609756097561
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8863636363636364,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.7755102040816326,
+        0.975609756097561
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7426406926406927,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.5867013888888889,
+        0.8870045731707316
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.790107045504361,
+         "n": 44,
+         "clusters": 40,
+         "ci95": [
+          0.6577781692648725,
+          0.9124622435729166
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.8409090909090909,
+         "n": 44,
+         "clusters": 40,
+         "ci95": [
+          0.6998469387755102,
+          0.975609756097561
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.790107045504361,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.6577781692648725,
+        0.9124622435729166
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8409090909090909,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.6998469387755102,
+        0.975609756097561
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8863636363636364,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.7755102040816326,
+        0.975609756097561
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7426406926406927,
+       "n": 44,
+       "clusters": 40,
+       "ci95": [
+        0.5867013888888889,
+        0.8870045731707316
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Logic": {
+     "n": 32,
+     "trivial": 32,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9147222023133962,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        0.8431602537700965,
+        0.9784946236559139
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8888392857142857,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        0.7964285714285715,
+        0.9723502304147466
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9147222023133962,
+         "n": 32,
+         "clusters": 31,
+         "ci95": [
+          0.8431602537700965,
+          0.9784946236559139
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 32,
+         "clusters": 31,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9147222023133962,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        0.8431602537700965,
+        0.9784946236559139
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.8888392857142857,
+       "n": 32,
+       "clusters": 31,
+       "ci95": [
+        0.7964285714285715,
+        0.9723502304147466
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/MeasureTheory": {
+     "n": 34,
+     "trivial": 31,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8283268593271693,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.6816194290684946,
+        0.9642835245391733
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8823529411764706,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.7368421052631579,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9117647058823529,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.7948717948717948,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7904411764705882,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.6185897435897436,
+        0.9516129032258065
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8283268593271693,
+         "n": 34,
+         "clusters": 31,
+         "ci95": [
+          0.6816194290684946,
+          0.9642835245391733
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.8823529411764706,
+         "n": 34,
+         "clusters": 31,
+         "ci95": [
+          0.7368421052631579,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8283268593271693,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.6816194290684946,
+        0.9642835245391733
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8823529411764706,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.7368421052631579,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9117647058823529,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.7948717948717948,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7904411764705882,
+       "n": 34,
+       "clusters": 31,
+       "ci95": [
+        0.6185897435897436,
+        0.9516129032258065
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/ModelTheory": {
+     "n": 38,
+     "trivial": 38,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9487085350910739,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        0.8946058238437955,
+        0.9900251284749043
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9324561403508773,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        0.8621621621621622,
+        0.9864864864864865
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9487085350910739,
+         "n": 38,
+         "clusters": 37,
+         "ci95": [
+          0.8946058238437955,
+          0.9900251284749043
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 38,
+         "clusters": 37,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9487085350910739,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        0.8946058238437955,
+        0.9900251284749043
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9324561403508773,
+       "n": 38,
+       "clusters": 37,
+       "ci95": [
+        0.8621621621621622,
+        0.9864864864864865
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/NumberTheory": {
+     "n": 25,
+     "trivial": 23,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8504360267995134,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.7178856144506136,
+        0.9679069350931703
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.8214285714285714,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.8214285714285714,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.804,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.6321428571428571,
+        0.9565217391304348
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8504360267995134,
+         "n": 25,
+         "clusters": 23,
+         "ci95": [
+          0.7178856144506136,
+          0.9679069350931703
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.92,
+         "n": 25,
+         "clusters": 23,
+         "ci95": [
+          0.8214285714285714,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8504360267995134,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.7178856144506136,
+        0.9679069350931703
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.8214285714285714,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.92,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.8214285714285714,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.804,
+       "n": 25,
+       "clusters": 23,
+       "ci95": [
+        0.6321428571428571,
+        0.9565217391304348
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Order": {
+     "n": 30,
+     "trivial": 27,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8306759017278539,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.696087137258909,
+        0.9511046340561234
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.7575757575757576,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.7575757575757576,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7866666666666667,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.6252272727272727,
+        0.9345238095238094
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8306759017278539,
+         "n": 30,
+         "clusters": 28,
+         "ci95": [
+          0.696087137258909,
+          0.9511046340561234
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9,
+         "n": 30,
+         "clusters": 28,
+         "ci95": [
+          0.7575757575757576,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8306759017278539,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.696087137258909,
+        0.9511046340561234
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.7575757575757576,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.7575757575757576,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7866666666666667,
+       "n": 30,
+       "clusters": 28,
+       "ci95": [
+        0.6252272727272727,
+        0.9345238095238094
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Probability": {
+     "n": 33,
+     "trivial": 30,
+     "http": {
+      "ndcg@10": {
+       "value": 0.7703267709155472,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.6264406987263885,
+        0.9093214022649637
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8181818181818182,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.6486486486486487,
+        0.967741935483871
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8484848484848485,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.7027027027027027,
+        0.967741935483871
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7242424242424242,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.5552010233918128,
+        0.8870967741935484
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.7703267709155472,
+         "n": 33,
+         "clusters": 30,
+         "ci95": [
+          0.6264406987263885,
+          0.9093214022649637
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.8181818181818182,
+         "n": 33,
+         "clusters": 30,
+         "ci95": [
+          0.6486486486486487,
+          0.967741935483871
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.7703267709155472,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.6264406987263885,
+        0.9093214022649637
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.8181818181818182,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.6486486486486487,
+        0.967741935483871
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8484848484848485,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.7027027027027027,
+        0.967741935483871
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.7242424242424242,
+       "n": 33,
+       "clusters": 30,
+       "ci95": [
+        0.5552010233918128,
+        0.8870967741935484
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/RepresentationTheory": {
+     "n": 17,
+     "trivial": 17,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9705882352941176,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        0.9117647058823529,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9607843137254901,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        0.8823529411764706,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9705882352941176,
+         "n": 17,
+         "clusters": 17,
+         "ci95": [
+          0.9117647058823529,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 17,
+         "clusters": 17,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9705882352941176,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        0.9117647058823529,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9607843137254901,
+       "n": 17,
+       "clusters": 17,
+       "ci95": [
+        0.8823529411764706,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/RingTheory": {
+     "n": 37,
+     "trivial": 31,
+     "http": {
+      "ndcg@10": {
+       "value": 0.751247974360255,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5915421868586231,
+        0.9043541694665037
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7567567567567568,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5853658536585366,
+        0.9393939393939394
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8108108108108109,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.6666666666666666,
+        0.9411764705882353
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.706081081081081,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5182926829268293,
+        0.8826620989304808
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.751247974360255,
+         "n": 37,
+         "clusters": 32,
+         "ci95": [
+          0.5915421868586231,
+          0.9043541694665037
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.7567567567567568,
+         "n": 37,
+         "clusters": 32,
+         "ci95": [
+          0.5853658536585366,
+          0.9393939393939394
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.751247974360255,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5915421868586231,
+        0.9043541694665037
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.7567567567567568,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5853658536585366,
+        0.9393939393939394
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.8108108108108109,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.6666666666666666,
+        0.9411764705882353
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.706081081081081,
+       "n": 37,
+       "clusters": 32,
+       "ci95": [
+        0.5182926829268293,
+        0.8826620989304808
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/SetTheory": {
+     "n": 31,
+     "trivial": 29,
+     "http": {
+      "ndcg@10": {
+       "value": 0.8317068825530468,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.6811001356662125,
+        0.9736378395408184
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9032258064516129,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9354838709677419,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.8571428571428571,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.789068100358423,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.6063353174603174,
+        0.9642857142857143
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.8317068825530468,
+         "n": 31,
+         "clusters": 28,
+         "ci95": [
+          0.6811001356662125,
+          0.9736378395408184
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.9032258064516129,
+         "n": 31,
+         "clusters": 28,
+         "ci95": [
+          0.7777777777777778,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.8317068825530468,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.6811001356662125,
+        0.9736378395408184
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.9032258064516129,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.7777777777777778,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.9354838709677419,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.8571428571428571,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.789068100358423,
+       "n": 31,
+       "clusters": 28,
+       "ci95": [
+        0.6063353174603174,
+        0.9642857142857143
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Tactic": {
+     "n": 22,
+     "trivial": 22,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9437208866883143,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8755390685064962,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9242424242424242,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8333333333333333,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9437208866883143,
+         "n": 22,
+         "clusters": 22,
+         "ci95": [
+          0.8755390685064962,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 22,
+         "clusters": 22,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9437208866883143,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8755390685064962,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9242424242424242,
+       "n": 22,
+       "clusters": 22,
+       "ci95": [
+        0.8333333333333333,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Testing": {
+     "n": 27,
+     "trivial": 27,
+     "http": {
+      "ndcg@10": {
+       "value": 0.9863307316137577,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        0.9589921948412731,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9814814814814815,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        0.9444444444444444,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.9863307316137577,
+         "n": 27,
+         "clusters": 21,
+         "ci95": [
+          0.9589921948412731,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 1.0,
+         "n": 27,
+         "clusters": 21,
+         "ci95": [
+          1.0,
+          1.0
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.9863307316137577,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        0.9589921948412731,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 1.0,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 1.0,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.9814814814814815,
+       "n": 27,
+       "clusters": 21,
+       "ci95": [
+        0.9444444444444444,
+        1.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "Mathlib/Topology": {
+     "n": 73,
+     "trivial": 49,
+     "http": {
+      "ndcg@10": {
+       "value": 0.5357938477575916,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.4248072351471558,
+        0.6511600892438647
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5342465753424658,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.4025974025974026,
+        0.6714285714285714
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.6027397260273972,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.48,
+        0.730188343994314
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.4597195042400522,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.33166134531344177,
+        0.593109937326355
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.5357938477575916,
+         "n": 73,
+         "clusters": 53,
+         "ci95": [
+          0.4248072351471558,
+          0.6511600892438647
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.5342465753424658,
+         "n": 73,
+         "clusters": 53,
+         "ci95": [
+          0.4025974025974026,
+          0.6714285714285714
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.5357938477575916,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.4248072351471558,
+        0.6511600892438647
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.5342465753424658,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.4025974025974026,
+        0.6714285714285714
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.6301369863013698,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.5125,
+        0.75
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.4597195042400522,
+       "n": 73,
+       "clusters": 53,
+       "ci95": [
+        0.33166134531344177,
+        0.593109937326355
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "number_theory": {
+     "n": 13,
+     "trivial": 7,
+     "http": {
+      "ndcg@10": {
+       "value": 0.3191244932279913,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.14006099204053815,
+        0.4481951745297221
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.2692307692307692,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.11527777777777778,
+        0.39285714285714285
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.2692307692307692,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.11527777777777778,
+        0.39285714285714285
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.40384615384615385,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.17708333333333334,
+        0.5666666666666667
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.3191244932279913,
+         "n": 13,
+         "clusters": 7,
+         "ci95": [
+          0.14006099204053815,
+          0.4481951745297221
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.2692307692307692,
+         "n": 13,
+         "clusters": 7,
+         "ci95": [
+          0.11527777777777778,
+          0.39285714285714285
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.3191244932279913,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.14006099204053815,
+        0.4481951745297221
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.2692307692307692,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.11527777777777778,
+        0.39285714285714285
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.2692307692307692,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.11527777777777778,
+        0.39285714285714285
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.40384615384615385,
+       "n": 13,
+       "clusters": 7,
+       "ci95": [
+        0.17708333333333334,
+        0.5666666666666667
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "src:mathlib4": {
+     "n": 171,
+     "trivial": 69,
+     "http": {
+      "ndcg@10": {
+       "value": 0.29017913571814585,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.25905268044872887,
+        0.3204944886450162
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.3567251461988304,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.29545454545454547,
+        0.417203011712214
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.40350877192982454,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.3430232558139535,
+        0.46153846153846156
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.11897567994059222,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.09229449894138135,
+        0.14660205278665722
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.29017913571814585,
+         "n": 171,
+         "clusters": 102,
+         "ci95": [
+          0.25905268044872887,
+          0.3204944886450162
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.3567251461988304,
+         "n": 171,
+         "clusters": 102,
+         "ci95": [
+          0.29545454545454547,
+          0.417203011712214
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": 0.0,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.0,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.29017913571814585,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.25905268044872887,
+        0.3204944886450162
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.3567251461988304,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.29545454545454547,
+        0.417203011712214
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.40350877192982454,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.3430232558139535,
+        0.46153846153846156
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.11897567994059222,
+       "n": 171,
+       "clusters": 102,
+       "ci95": [
+        0.09229449894138135,
+        0.14660205278665722
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    },
+    "src:wikidata": {
+     "n": 478,
+     "trivial": 71,
+     "http": {
+      "ndcg@10": {
+       "value": 0.1088712936795867,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.0850481208119235,
+        0.13373389182601456
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.10251046025104603,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.07610993657505286,
+        0.12951656317458624
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.12343096234309624,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.09533394399254667,
+        0.1524416081025217
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.08246413628212791,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.05963295100648955,
+        0.10764078047995732
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 352,
+      "by_lane": {
+       "lexical": {
+        "ndcg@10": {
+         "value": 0.1088712936795867,
+         "n": 478,
+         "clusters": 428,
+         "ci95": [
+          0.0850481208119235,
+          0.13373389182601456
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        },
+        "recall@10": {
+         "value": 0.10251046025104603,
+         "n": 478,
+         "clusters": 428,
+         "ci95": [
+          0.07610993657505286,
+          0.12951656317458624
+         ],
+         "interval": "bootstrap-percentile",
+         "B": 2000,
+         "seed": 20261016
+        }
+       }
+      },
+      "delta_ndcg@10_vs_baseline": {
+       "value": -3.589492069719712e-05,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        -0.00010928517256853644,
+        0.0
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      }
+     },
+     "store": {
+      "ndcg@10": {
+       "value": 0.10890718860028391,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.08508311835960326,
+        0.13380434775094202
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@10": {
+       "value": 0.10251046025104603,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.07610993657505286,
+        0.12951656317458624
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "recall@50": {
+       "value": 0.12761506276150628,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.09957100816999319,
+        0.1570277449822904
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "mrr@10": {
+       "value": 0.08246413628212791,
+       "n": 478,
+       "clusters": 428,
+       "ci95": [
+        0.05963295100648955,
+        0.10764078047995732
+       ],
+       "interval": "bootstrap-percentile",
+       "B": 2000,
+       "seed": 20261016
+      },
+      "failed": 0
+     }
+    }
+   },
+   "qrels_resolved_share": {
+    "k": 2020,
+    "n": 2020,
+    "value": 1.0,
+    "ci95": [
+     0.9981018973576455,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "lanes_used": {
+    "http": [
+     "lexical"
+    ],
+    "store": [
+     "lexical"
+    ]
+   }
+  },
+  "routes": {
+   "n_items": 449,
+   "unresolved": 13,
+   "missing": {},
+   "by_backend": {
+    "http": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 223,
+      "n": 223,
+      "value": 1.0,
+      "ci95": [
+       0.9830654464987788,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 225,
+      "n": 285,
+      "value": 0.7894736842105263,
+      "ci95": [
+       0.7384510335874758,
+       0.8327966005772168
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 162,
+      "n": 164,
+      "value": 0.9878048780487805,
+      "ci95": [
+       0.9566312989526548,
+       0.9966492619064401
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 2,
+      "n": 164,
+      "value": 0.012195121951219513,
+      "ci95": [
+       0.0033507380935597665,
+       0.04336870104734519
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 224,
+      "n": 285,
+      "value": 0.7859649122807018,
+      "ci95": [
+       0.7347089205526138,
+       0.829614499864628
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 60,
+      "n": 223,
+      "value": 0.26905829596412556,
+      "ci95": [
+       0.21512677711001782,
+       0.3308116041035508
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "co_dependency_as_dependency": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      },
+      "reverse_dependency": {
+       "k": 1,
+       "n": 59,
+       "value": 0.01694915254237288,
+       "ci95": [
+        0.0029982339183556445,
+        0.08995725964142297
+       ],
+       "interval": "wilson"
+      },
+      "shared_target": {
+       "k": 222,
+       "n": 224,
+       "value": 0.9910714285714286,
+       "ci95": [
+        0.968035666199927,
+        0.9975480389726019
+       ],
+       "interval": "wilson"
+      },
+      "unrelated_hub": {
+       "k": 1,
+       "n": 1,
+       "value": 1.0,
+       "ci95": [
+        0.20654931437723745,
+        1.0
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": []
+    },
+    "store": {
+     "errors": 0,
+     "structurally_valid": {
+      "k": 368,
+      "n": 449,
+      "value": 0.8195991091314031,
+      "ci95": [
+       0.7813686860496462,
+       0.8524072070574374
+      ],
+      "interval": "wilson"
+     },
+     "adversarial_no_forbidden": {
+      "k": 0,
+      "n": 285,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.01329954098825824
+      ],
+      "interval": "wilson"
+     },
+     "answerable_allowed_hit": {
+      "k": 161,
+      "n": 164,
+      "value": 0.9817073170731707,
+      "ci95": [
+       0.9476049010042733,
+       0.9937596528440829
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_answerable": {
+      "k": 0,
+      "n": 164,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.022887425119427582
+      ],
+      "interval": "wilson"
+     },
+     "abstain_on_unanswerable": {
+      "k": 0,
+      "n": 285,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.01329954098825824
+      ],
+      "interval": "wilson"
+     },
+     "overclaim_vs_oracle": {
+      "k": 256,
+      "n": 449,
+      "value": 0.5701559020044543,
+      "ci95": [
+       0.523960827061434,
+       0.6151607104498771
+      ],
+      "interval": "wilson"
+     },
+     "by_attack": {
+      "co_dependency_as_dependency": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      },
+      "reverse_dependency": {
+       "k": 0,
+       "n": 59,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.061129370526788386
+       ],
+       "interval": "wilson"
+      },
+      "shared_target": {
+       "k": 0,
+       "n": 224,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.016860227460697846
+       ],
+       "interval": "wilson"
+      },
+      "unrelated_hub": {
+       "k": 0,
+       "n": 1,
+       "value": 0.0,
+       "ci95": [
+        0.0,
+        0.7934506856227626
+       ],
+       "interval": "wilson"
+      }
+     },
+     "example_problems": [
+      "step 2: conjunctive claim c:a5e523acd372a624 shown without all its premises (R7)",
+      "step 2: conjunctive claim c:a5e523acd372a624 shown without all its premises (R7)",
+      "step 0: conjunctive claim c:2a37c2638416f76a shown without all its premises (R7)",
+      "step 0: conjunctive claim c:802d2b2a87d55c30 shown without all its premises (R7)",
+      "step 0: conjunctive claim c:5166da991014cda9 shown without all its premises (R7)"
+     ]
+    }
+   }
+  },
+  "er": {
+   "n_items": 655,
+   "unresolved": 0,
+   "abstention": {
+    "k": 0,
+    "n": 655,
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.00583062703365726
+    ],
+    "interval": "wilson"
+   },
+   "false_merge_rate_on_negatives": {
+    "label_collision": {
+     "k": 0,
+     "n": 159,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.023590176902824132
+     ],
+     "interval": "wilson"
+    },
+    "random": {
+     "k": 0,
+     "n": 142,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.02633996431300811
+     ],
+     "interval": "wilson"
+    },
+    "related_not_same": {
+     "k": 0,
+     "n": 146,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.025636822084673896
+     ],
+     "interval": "wilson"
+    }
+   },
+   "merge_recall_on_positives": {
+    "alias (circular)": {
+     "k": 0,
+     "n": 185,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.020342242877617298
+     ],
+     "interval": "wilson"
+    },
+    "shared_external_id": {
+     "k": 0,
+     "n": 23,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.14311661845042686
+     ],
+     "interval": "wilson"
+    }
+   },
+   "system_merges_sampled": 0,
+   "system_merges_labeled": 0
+  },
+  "relations": {
+   "n_items": 1074,
+   "unresolved": 0,
+   "labeled": 0,
+   "still_current": {
+    "k": 1074,
+    "n": 1074,
+    "value": 1.0,
+    "ci95": [
+     0.99643597043957,
+     1.0
+    ],
+    "interval": "wilson"
+   },
+   "corroborated_by_another_source": {
+    "application": {
+     "k": 0,
+     "n": 72,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.05065117259645781
+     ],
+     "interval": "wilson"
+    },
+    "history": {
+     "k": 0,
+     "n": 305,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.01243828738331528
+     ],
+     "interval": "wilson"
+    },
+    "learning": {
+     "k": 0,
+     "n": 89,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.04137654523625252
+     ],
+     "interval": "wilson"
+    },
+    "proof": {
+     "k": 65,
+     "n": 217,
+     "value": 0.2995391705069124,
+     "ci95": [
+      0.24251310702279108,
+      0.36353912400038313
+     ],
+     "interval": "wilson"
+    },
+    "structure": {
+     "k": 0,
+     "n": 391,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.009729117180773596
+     ],
+     "interval": "wilson"
+    }
+   },
+   "by_relation": {
+    "applied_in": 72,
+    "authored_by": 74,
+    "depends_on_logically": 86,
+    "equivalent_to": 87,
+    "formalized_as": 131,
+    "generalizes": 51,
+    "influenced": 165,
+    "named_after": 66,
+    "part_of_area": 162,
+    "prerequisite_for": 89,
+    "special_case_of": 91
+   }
+  },
+  "sourced": {
+   "n_items": 3608,
+   "missing": {},
+   "by_backend": {
+    "http": {
+     "complete_and_matching": {
+      "k": 3608,
+      "n": 3608,
+      "value": 1.0,
+      "ci95": [
+       0.9989364265113815,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "failure_rate": {
+      "k": 0,
+      "n": 3608,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.001063573488618297
+      ],
+      "interval": "wilson"
+     },
+     "not_served_truncated": 0,
+     "problems": {}
+    },
+    "store": {
+     "complete_and_matching": {
+      "k": 3608,
+      "n": 3608,
+      "value": 1.0,
+      "ci95": [
+       0.9989364265113815,
+       1.0
+      ],
+      "interval": "wilson"
+     },
+     "failure_rate": {
+      "k": 0,
+      "n": 3608,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.001063573488618297
+      ],
+      "interval": "wilson"
+     },
+     "not_served_truncated": 0,
+     "problems": {}
+    }
+   }
+  },
+  "latency_ms": {
+   "http.entity": {
+    "p50": 0.8868500008247793,
+    "p95": 1.5550549869658417,
+    "p99": 2.687564966035992,
+    "n": 3608,
+    "mean": 1.003157094831087,
+    "max": 101.09199996804819,
+    "p95_ci": [
+     1.4918487591785374,
+     1.6041999915614724
+    ]
+   },
+   "http.entity.load_c1": {
+    "p50": 0.9255499753635377,
+    "p95": 1.7312049865722605,
+    "p99": 3.3300250320462506,
+    "n": 500,
+    "mean": 1.0305545995943248,
+    "max": 6.572199985384941,
+    "p95_ci": [
+     1.4715199678903441,
+     2.210000006016344
+    ]
+   },
+   "http.neighborhood.load_c1": {
+    "p50": 0.6062500178813934,
+    "p95": 1.1440899776061992,
+    "p99": 5.202745032729539,
+    "n": 500,
+    "mean": 0.8401859995210543,
+    "max": 24.89709999645129,
+    "p95_ci": [
+     1.0040299617685375,
+     1.414965037838539
+    ]
+   },
+   "http.path": {
+    "p50": 1.1570000206120312,
+    "p95": 8.188419986981875,
+    "p99": 40.35223999293509,
+    "n": 449,
+    "mean": 2.7431066829622006,
+    "max": 102.32589999213815,
+    "p95_ci": [
+     6.063040008302769,
+     14.086399984080344
+    ]
+   },
+   "http.search": {
+    "p50": 2.716099959798157,
+    "p95": 13.38050002232194,
+    "p99": 56.15625999635085,
+    "n": 1241,
+    "mean": 5.350983400242275,
+    "max": 79.53819999238476,
+    "p95_ci": [
+     12.861099967267364,
+     14.070500037632883
+    ]
+   },
+   "http.search.load_c1": {
+    "p50": 2.074699994409457,
+    "p95": 11.087810003664341,
+    "p99": 53.667094982811236,
+    "n": 500,
+    "mean": 4.342687398660928,
+    "max": 61.01880001369864,
+    "p95_ci": [
+     9.680400020442903,
+     12.743586125070575
+    ]
+   },
+   "http.search.load_c8": {
+    "p50": 2.6952500047627836,
+    "p95": 14.829044972429967,
+    "p99": 77.58757096715269,
+    "n": 500,
+    "mean": 5.751548399799503,
+    "max": 92.51149999909103,
+    "p95_ci": [
+     12.746599968522787,
+     16.839774989057332
+    ]
+   },
+   "store.entity": {
+    "p50": 0.3704500268213451,
+    "p95": 0.8892850193660703,
+    "p99": 2.0773879939224553,
+    "n": 3608,
+    "mean": 0.4651586196933586,
+    "max": 13.078799995128065,
+    "p95_ci": [
+     0.8329699980095022,
+     0.9687245043460257
+    ]
+   },
+   "store.path": {
+    "p50": 0.7115000043995678,
+    "p95": 11.580099968705314,
+    "p99": 18.961032021325018,
+    "n": 449,
+    "mean": 2.6835253882742505,
+    "max": 259.6598999807611,
+    "p95_ci": [
+     7.02655998757109,
+     13.6344999889843
+    ]
+   },
+   "store.search": {
+    "p50": 2.9010999714955688,
+    "p95": 14.349919976666564,
+    "p99": 35.26950801257026,
+    "n": 1593,
+    "mean": 5.122703264886309,
+    "max": 79.15720000164583,
+    "p95_ci": [
+     13.350650495558506,
+     15.331899980083108
+    ]
+   }
+  }
+ },
+ "verdicts": {
+  "retrieval": {
+   "verdict": "MISSING",
+   "rule": "each lang x modality cell with n >= 30 (trivial silver excluded): delta nDCG@10 >= +0.05 and paired-bootstrap LB >= +0.02 vs lexical baseline",
+   "reason": "hybrid search absent: the system answered every query with the lexical lane only (registry FTS5 fallback = the baseline)",
+   "top10_identical_to_baseline": {
+    "k": 1557,
+    "n": 1593,
+    "value": 0.9774011299435028,
+    "ci95": [
+     0.9688732613874628,
+     0.9836320681793779
+    ],
+    "interval": "wilson"
+   }
+  },
+  "routes.structure": {
+   "verdict": "PASS",
+   "rule": "0 structurally invalid steps in returned paths",
+   "invalid_paths": 0,
+   "answered": 223
+  },
+  "routes.adversarial": {
+   "verdict": "PROVISIONAL-FAIL",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "no_forbidden": {
+    "k": 225,
+    "n": 285,
+    "value": 0.7894736842105263,
+    "ci95": [
+     0.7384510335874758,
+     0.8327966005772168
+    ],
+    "interval": "wilson"
+   }
+  },
+  "routes.end_to_end": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB > 0.90 of expert-valid top-1 routes (n >= 100)",
+   "reason": "no expert judgments of returned routes yet; route_outputs.jsonl is the queue"
+  },
+  "routes.null_model_adversarial": {
+   "verdict": "PROVISIONAL-FAIL",
+   "rule": "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
+   "no_forbidden": {
+    "k": 0,
+    "n": 285,
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.01329954098825824
+    ],
+    "interval": "wilson"
+   }
+  },
+  "er": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "Wilson LB of merge precision >= 0.99 on sampled system merges (n >= 381); strata n >= 50 point >= 0.99",
+   "reason": "no labeled sample of system merges (needs experts)"
+  },
+  "relations": {
+   "verdict": "NOT_EVALUABLE",
+   "rule": "each priority family (proof, structure, application): Wilson LB of precision >= 0.97, n >= 125",
+   "reason": "no labeled relation items (needs experts)"
+  },
+  "provenance.registry": {
+   "verdict": "PASS",
+   "rule": "0 served claims without complete, matching provenance; n >= 1000 (mechanical check)",
+   "failures": {
+    "k": 0,
+    "n": 3608,
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.001063573488618297
+    ],
+    "interval": "wilson"
+   }
+  },
+  "provenance.served": {
+   "verdict": "PASS",
+   "rule": "0 served claims without complete, matching provenance; n >= 1000 (mechanical check)",
+   "failures": {
+    "k": 0,
+    "n": 3608,
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.001063573488618297
+    ],
+    "interval": "wilson"
+   }
+  },
+  "latency.search_hot.c1": {
+   "verdict": "PASS",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "p95": {
+    "value": 11.087810003664341,
+    "n": 500,
+    "clusters": null,
+    "ci95": [
+     9.680400020442903,
+     12.743586125070575
+    ],
+    "interval": "bootstrap-percentile",
+    "B": 2000,
+    "seed": 20261016
+   }
+  },
+  "latency.search_hot.c8": {
+   "verdict": "PASS",
+   "rule": "bootstrap 95% upper bound of p95 < 2000 ms, n >= 500",
+   "p95": {
+    "value": 14.829044972429967,
+    "n": 500,
+    "clusters": null,
+    "ci95": [
+     12.746599968522787,
+     16.839774989057332
+    ],
+    "interval": "bootstrap-percentile",
+    "B": 2000,
+    "seed": 20261016
+   }
+  },
+  "latency.interaction_server.entity": {
+   "verdict": "PASS",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "p95": {
+    "value": 1.7312049865722605,
+    "n": 500,
+    "clusters": null,
+    "ci95": [
+     1.4715199678903441,
+     2.210000006016344
+    ],
+    "interval": "bootstrap-percentile",
+    "B": 2000,
+    "seed": 20261016
+   }
+  },
+  "latency.interaction_server.neighborhood": {
+   "verdict": "PASS",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "p95": {
+    "value": 1.1440899776061992,
+    "n": 500,
+    "clusters": null,
+    "ci95": [
+     1.0040299617685375,
+     1.414965037838539
+    ],
+    "interval": "bootstrap-percentile",
+    "B": 2000,
+    "seed": 20261016
+   }
+  },
+  "latency.interaction_server.tiles": {
+   "verdict": "MISSING",
+   "rule": "bootstrap 95% upper bound of p95 < 100 ms, n >= 500",
+   "reason": "ComponentMissing: GET /api/map/tiles: HTTP 501 not implemented yet: map tiles: no layout loaded (--layout)"
+  }
+ },
+ "seconds": 58.21,
+ "registry_changed_during_run": false,
+ "http_connection_retries": 0,
+ "server_alive_at_end": true
+}

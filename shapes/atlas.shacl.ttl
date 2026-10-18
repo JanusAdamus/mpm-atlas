@@ -1,0 +1,93 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix atlas: <https://w3id.org/mpm-atlas/vocab#> .
+
+# Constraints on the JSON-LD exported by atlas.store.Store.export_jsonld.
+# The pure-Python twin is atlas.store.validate_jsonld; keep both in sync
+# (docs/SPEC.md section 9).  Schema version 1.
+
+atlas:ClaimShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:Claim ;
+    sh:property [
+        sh:path atlas:relation ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:in ( atlas:depends_on_logically atlas:proves atlas:prerequisite_for atlas:generalizes
+                atlas:special_case_of atlas:equivalent_to atlas:analogous_to atlas:applied_in atlas:models
+                atlas:cites atlas:influenced atlas:part_of_area atlas:formalized_as atlas:named_after
+                atlas:counterexample_to atlas:appears_in atlas:authored_by )
+    ] ;
+    sh:property [
+        sh:path atlas:evidenceState ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:extracted atlas:model_proposed atlas:editorially_reviewed atlas:formally_linked
+                atlas:disputed atlas:superseded atlas:retracted )
+    ] ;
+    # exactly one subject
+    sh:property [
+        sh:path atlas:participant ;
+        sh:qualifiedValueShape [ sh:property [ sh:path atlas:role ; sh:hasValue atlas:subject ] ] ;
+        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1
+    ] ;
+    sh:property [ sh:path atlas:participant ; sh:node atlas:ParticipantShape ; sh:minCount 2 ] ;
+    sh:property [ sh:path atlas:provenance ; sh:node atlas:ProvenanceShape ; sh:minCount 1 ] ;
+    # either exactly one object, or >=1 premises (conjunction) and no object
+    sh:xone (
+        [ sh:property [ sh:path atlas:participant ;
+              sh:qualifiedValueShape [ sh:property [ sh:path atlas:role ; sh:hasValue atlas:object ] ] ;
+              sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ] ;
+          sh:property [ sh:path atlas:participant ;
+              sh:qualifiedValueShape [ sh:property [ sh:path atlas:role ; sh:hasValue atlas:premise ] ] ;
+              sh:qualifiedMaxCount 0 ] ]
+        [ sh:property [ sh:path atlas:participant ;
+              sh:qualifiedValueShape [ sh:property [ sh:path atlas:role ; sh:hasValue atlas:premise ] ] ;
+              sh:qualifiedMinCount 1 ] ;
+          sh:property [ sh:path atlas:participant ;
+              sh:qualifiedValueShape [ sh:property [ sh:path atlas:role ; sh:hasValue atlas:object ] ] ;
+              sh:qualifiedMaxCount 0 ] ;
+          # only relations with allows_premises (model.RELATIONS) take premise sets
+          sh:property [ sh:path atlas:relation ; sh:in ( atlas:depends_on_logically ) ] ]
+    ) ;
+    # formally_linked => formal artifact present
+    sh:or (
+        [ sh:not [ sh:property [ sh:path atlas:evidenceState ; sh:hasValue atlas:formally_linked ] ] ]
+        [ sh:property [ sh:path atlas:formalArtifact ; sh:minCount 1 ; sh:node atlas:FormalArtifactShape ] ]
+    ) ;
+    # superseded => supersededBy present
+    sh:or (
+        [ sh:not [ sh:property [ sh:path atlas:evidenceState ; sh:hasValue atlas:superseded ] ] ]
+        [ sh:property [ sh:path atlas:supersededBy ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ]
+    ) ;
+    sh:property [ sh:path atlas:confidence ; sh:maxCount 1 ; sh:node atlas:ConfidenceShape ] .
+
+atlas:ParticipantShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path atlas:role ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:subject atlas:object atlas:premise atlas:assumption atlas:context atlas:via )
+    ] ;
+    sh:property [ sh:path atlas:entity ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+                  sh:property [ sh:path skos:prefLabel ; sh:minCount 1 ] ] .
+
+atlas:ProvenanceShape
+    a sh:NodeShape ;
+    sh:property [ sh:path prov:hadPrimarySource ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path atlas:locator ; sh:minCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:extractor ; sh:minCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:extractorVersion ; sh:minCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path dct:license ; sh:minCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:retrievedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+atlas:FormalArtifactShape
+    a sh:NodeShape ;
+    sh:property [ sh:path atlas:library ; sh:minCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:version ; sh:minCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:declaration ; sh:minCount 1 ; sh:minLength 1 ] .
+
+atlas:ConfidenceShape
+    a sh:NodeShape ;
+    sh:property [ sh:path atlas:value ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:double ;
+                  sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
+    sh:property [ sh:path atlas:estimates ; sh:minCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:calibration ; sh:minCount 1 ; sh:minLength 1 ] .

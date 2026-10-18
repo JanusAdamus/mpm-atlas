@@ -1,0 +1,13 @@
+# generated, rebuildable from sources (see CLAUDE.md)
+data/
+web/dist/
+node_modules/
+target/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.log
+.env
+# AtlasBench generated items (rebuildable from data/atlas.db); manifests with hashes stay tracked
+bench/silver/**/*.jsonl
+bench/splits/**/*.jsonl

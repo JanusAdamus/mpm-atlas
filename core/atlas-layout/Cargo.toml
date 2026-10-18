@@ -1,0 +1,24 @@
+[package]
+name = "atlas-layout"
+description = "Atlas map: multiresolution Leiden, multilevel Barnes-Hut ForceAtlas2 layout and z/x/y tiles"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+atlas-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon.workspace = true
+bytemuck = { workspace = true, features = ["extern_crate_alloc"] }
+blake3.workspace = true
+memmap2.workspace = true
+ahash.workspace = true
+
+[dev-dependencies]
+memory-stats.workspace = true
+
+[[example]]
+name = "bench_layout"

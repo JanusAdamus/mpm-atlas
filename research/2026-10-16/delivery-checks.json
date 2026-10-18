@@ -1,0 +1,17 @@
+{
+  "references": 60,
+  "pdf_pages": 15,
+  "work_packages": 16,
+  "pdf_path": "C:\\Users\\AdrianGonzalez\\OneDrive - Delos Advisors\\Documentos\\ChatGPT\\MPM\\output\\pdf\\atlas-investigacion-y-plan.pdf",
+  "html_path": "C:\\Users\\AdrianGonzalez\\OneDrive - Delos Advisors\\Documentos\\ChatGPT\\MPM\\research\\2026-10-16\\atlas-investigacion.html",
+  "source_types": {
+    "trabajo de investigación; versión consultada indicada por URL": 46,
+    "preprint o informe técnico; estado editorial no confirmado": 7,
+    "estándar o documentación primaria": 7
+  },
+  "checks": [
+    "60 unique IDs and source URLs",
+    "all references present in PDF",
+    "all work package dependencies and reference IDs resolve"
+  ]
+}

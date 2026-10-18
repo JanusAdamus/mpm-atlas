@@ -1,0 +1,204 @@
+[
+  {
+    "url": "https://api.crossref.org/works/10.1016%2Fj.ic.2013.06.001",
+    "file": "R01-crossref.json",
+    "status": 200,
+    "bytes": 20555,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2020.acl-main.447",
+    "file": "R07-crossref.json",
+    "status": 200,
+    "bytes": 2149,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://grobid.readthedocs.io/en/latest/Introduction/",
+    "file": "R13.html",
+    "status": 200,
+    "bytes": 46152,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2FD18-1360",
+    "file": "R14-crossref.json",
+    "status": 200,
+    "bytes": 2067,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2020.acl-main.670",
+    "file": "R15-crossref.json",
+    "status": 200,
+    "bytes": 2059,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2021.acl-long.59",
+    "file": "R17-crossref.json",
+    "status": 200,
+    "bytes": 2116,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://aclanthology.org/2020.lrec-1.269/",
+    "file": "R18.html",
+    "status": 200,
+    "bytes": 46564,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://github.com/BehroozMansouri/TangentCFT",
+    "file": "R24.html",
+    "status": 200,
+    "bytes": 290589,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://www.cs.rit.edu/~dprl/ARQMath/",
+    "file": "R25.html",
+    "error": "<urlopen error [WinError 10054] An existing connection was forcibly closed by the remote host>",
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2020.acl-main.207",
+    "file": "R26-crossref.json",
+    "status": 200,
+    "bytes": 2187,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2023.emnlp-main.338",
+    "file": "R27-crossref.json",
+    "status": 200,
+    "bytes": 2189,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2F2022.naacl-main.272",
+    "file": "R28-crossref.json",
+    "status": 200,
+    "bytes": 2319,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1038%2Fs41598-019-41695-z",
+    "file": "R37-crossref.json",
+    "status": 200,
+    "bytes": 15699,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1109%2FTVCG.2013.124",
+    "file": "R40-crossref.json",
+    "status": 200,
+    "bytes": 10114,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1007%2FBF01099821",
+    "file": "R42-crossref.json",
+    "status": 200,
+    "bytes": 14262,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.18653%2Fv1%2FD15-1193",
+    "file": "R43-crossref.json",
+    "status": 200,
+    "bytes": 1996,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://phet.colorado.edu/en/research",
+    "file": "R44.html",
+    "status": 200,
+    "bytes": 118768,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1016%2FS0364-0213%2883%2980009-3",
+    "file": "R45-crossref.json",
+    "status": 200,
+    "bytes": 1955,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1086%2F601720",
+    "file": "R46-crossref.json",
+    "status": 200,
+    "bytes": 1757,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1038%2Fs41586-019-1335-8",
+    "file": "R47-crossref.json",
+    "status": 200,
+    "bytes": 18199,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1145%2F2629489",
+    "file": "R49-crossref.json",
+    "status": 200,
+    "bytes": 5487,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.3233%2FISU-2010-0613",
+    "file": "R50-crossref.json",
+    "status": 200,
+    "bytes": 3586,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://www.w3.org/TR/prov-o/",
+    "file": "R51.html",
+    "status": 200,
+    "bytes": 464179,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://www.w3.org/TR/shacl/",
+    "file": "R52.html",
+    "status": 200,
+    "bytes": 531275,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://www.mardi4nfdi.de/portal/portal",
+    "file": "R54.html",
+    "status": 200,
+    "bytes": 74249,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1145%2F3097983.3098036",
+    "file": "R56-crossref.json",
+    "status": 200,
+    "bytes": 13580,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://openmath.org/standard/",
+    "file": "R58.html",
+    "status": 200,
+    "bytes": 5622,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://api.crossref.org/works/10.47397%2Ftb%2F43-2%2Ftb134mueller-stex3",
+    "file": "R59-crossref.json",
+    "status": 200,
+    "bytes": 4092,
+    "access_date": "2026-10-16"
+  },
+  {
+    "url": "https://www.w3.org/TR/MathML3/",
+    "file": "R60.html",
+    "status": 200,
+    "bytes": 51136,
+    "access_date": "2026-10-16"
+  }
+]

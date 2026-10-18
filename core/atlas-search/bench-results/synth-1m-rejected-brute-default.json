@@ -1,0 +1,439 @@
+{
+  "concurrent_1": {
+    "clients": 1,
+    "latency": {
+      "max_ms": 105.26,
+      "mean_ms": 55.99,
+      "n": 179,
+      "p50_ms": 57.9,
+      "p95_ms": 92.58,
+      "p99_ms": 96.43
+    },
+    "qps": 18.0,
+    "queries": 179,
+    "secs": 10.0
+  },
+  "concurrent_16": {
+    "clients": 16,
+    "latency": {
+      "max_ms": 10045.66,
+      "mean_ms": 140.66,
+      "n": 1141,
+      "p50_ms": 50.94,
+      "p95_ms": 396.86,
+      "p99_ms": 1641.75
+    },
+    "qps": 114.0,
+    "queries": 1141,
+    "secs": 10.0
+  },
+  "corpus": {
+    "documents": 1000000,
+    "load_s": 0.2337572,
+    "text_bytes": 214558062,
+    "texts": 4550178
+  },
+  "dense": {
+    "methods": {
+      "brute_parallel": {
+        "max_ms": 3.69,
+        "mean_ms": 2.2,
+        "n": 800,
+        "p50_ms": 2.16,
+        "p95_ms": 2.58,
+        "p99_ms": 2.97
+      },
+      "hnsw_ef256": {
+        "latency": {
+          "max_ms": 8.38,
+          "mean_ms": 3.68,
+          "n": 800,
+          "p50_ms": 3.65,
+          "p95_ms": 6.36,
+          "p99_ms": 7.26
+        },
+        "recall_at_10": 0.453125,
+        "recall_at_10_ids": 0.43025
+      },
+      "hnsw_ef32": {
+        "latency": {
+          "max_ms": 2.61,
+          "mean_ms": 0.5,
+          "n": 800,
+          "p50_ms": 0.42,
+          "p95_ms": 1.02,
+          "p99_ms": 1.72
+        },
+        "recall_at_10": 0.258375,
+        "recall_at_10_ids": 0.236875
+      },
+      "hnsw_ef96": {
+        "latency": {
+          "max_ms": 3.4,
+          "mean_ms": 1.57,
+          "n": 800,
+          "p50_ms": 1.59,
+          "p95_ms": 2.66,
+          "p99_ms": 3.0
+        },
+        "recall_at_10": 0.348,
+        "recall_at_10_ids": 0.32525
+      }
+    },
+    "queries": 800
+  },
+  "env": {
+    "ATLAS_QUERY_SESSIONS": null,
+    "ATLAS_QUERY_THREADS": null
+  },
+  "memory_end": {
+    "private_mib": 178,
+    "working_set_mib": 1188
+  },
+  "mode": "synth",
+  "open": {
+    "memory_after": {
+      "private_mib": 81,
+      "working_set_mib": 467
+    },
+    "memory_before": {
+      "private_mib": 24,
+      "working_set_mib": 24
+    },
+    "ms": 208.66889999999998,
+    "status": {
+      "dense_method": "brute",
+      "dim": 128,
+      "dir": "C:/Users/AdrianGonzalez/.cargo-target/search/bench-1m-index\\28423033291dcac7",
+      "documents": 1000000,
+      "encoder": "lsi-tfidf-svd-128",
+      "formula_documents": 441423,
+      "semantic": "ok"
+    }
+  },
+  "query_samples": {
+    "cross_domain": [
+      "relación entre teorema discreto de y conjunto analítico de",
+      "relación entre primo noetheriano de y forma denso de",
+      "relación entre primo aleatorio de y categoría acotado de"
+    ],
+    "formula": [
+      "ν < int_0^1 τ , dx",
+      "\\sqrt{f(\\int_0^1 ρ \\, dx, \\int_0^1 o \\, dx)} = \\int_0^1 σ \\, dx",
+      "f({λ + h}^{4}, sqrt{s} + f - h) = sum_{i=1}^{β} sqrt{r 1}"
+    ],
+    "named_object": [
+      "teorema discreto de Ramanujan",
+      "Lebesgue's noetherian prime",
+      "Hausdorff's random prime"
+    ],
+    "natural_language": [
+      "hize campo kiri sasa group grupo grafo kijune",
+      "teorema operador lafone teorema fotode ripemi hivene zeki",
+      "space módulo espacio functor matriz matrix anillo gami"
+    ]
+  },
+  "sequential": {
+    "cross_domain": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 15.37,
+          "mean_ms": 7.34,
+          "n": 200,
+          "p50_ms": 6.71,
+          "p95_ms": 12.47,
+          "p99_ms": 14.85
+        },
+        "fused": {
+          "max_ms": 103.79,
+          "mean_ms": 79.38,
+          "n": 200,
+          "p50_ms": 79.89,
+          "p95_ms": 94.91,
+          "p99_ms": 101.38
+        },
+        "lexical": {
+          "max_ms": 101.48,
+          "mean_ms": 62.37,
+          "n": 200,
+          "p50_ms": 61.64,
+          "p95_ms": 77.95,
+          "p99_ms": 89.49
+        },
+        "semantic": {
+          "max_ms": 8.8,
+          "mean_ms": 5.05,
+          "n": 200,
+          "p50_ms": 4.97,
+          "p95_ms": 6.53,
+          "p99_ms": 7.79
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        },
+        "lexical": {
+          "max_ms": 100.99,
+          "mean_ms": 77.58,
+          "n": 200,
+          "p50_ms": 78.11,
+          "p95_ms": 92.71,
+          "p99_ms": 98.62
+        },
+        "semantic": {
+          "max_ms": 5.68,
+          "mean_ms": 3.92,
+          "n": 200,
+          "p50_ms": 3.87,
+          "p95_ms": 4.79,
+          "p99_ms": 5.05
+        }
+      },
+      "routes": {
+        "CrossDomain": 200
+      },
+      "semantic_query_encode": {
+        "max_ms": 0.15,
+        "mean_ms": 0.04,
+        "n": 200,
+        "p50_ms": 0.04,
+        "p95_ms": 0.06,
+        "p99_ms": 0.06
+      }
+    },
+    "formula": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 29.9,
+          "mean_ms": 10.32,
+          "n": 200,
+          "p50_ms": 10.05,
+          "p95_ms": 20.9,
+          "p99_ms": 29.07
+        },
+        "fused": {
+          "max_ms": 32.75,
+          "mean_ms": 9.61,
+          "n": 200,
+          "p50_ms": 8.62,
+          "p95_ms": 20.48,
+          "p99_ms": 27.98
+        },
+        "lexical": {
+          "max_ms": 88.18,
+          "mean_ms": 34.23,
+          "n": 200,
+          "p50_ms": 31.17,
+          "p95_ms": 72.21,
+          "p99_ms": 83.94
+        },
+        "semantic": {
+          "max_ms": 5.27,
+          "mean_ms": 3.21,
+          "n": 200,
+          "p50_ms": 3.15,
+          "p95_ms": 3.74,
+          "p99_ms": 4.45
+        }
+      },
+      "fused_empty": 5,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": 31.75,
+          "mean_ms": 8.98,
+          "n": 200,
+          "p50_ms": 7.95,
+          "p95_ms": 19.56,
+          "p99_ms": 27.02
+        },
+        "lexical": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        },
+        "semantic": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        }
+      },
+      "routes": {
+        "Formula": 200
+      },
+      "semantic_query_encode": {
+        "max_ms": null,
+        "mean_ms": -0.0,
+        "n": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null
+      }
+    },
+    "named_object": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 12.34,
+          "mean_ms": 5.23,
+          "n": 200,
+          "p50_ms": 4.91,
+          "p95_ms": 9.03,
+          "p99_ms": 11.32
+        },
+        "fused": {
+          "max_ms": 96.61,
+          "mean_ms": 57.99,
+          "n": 200,
+          "p50_ms": 58.42,
+          "p95_ms": 71.45,
+          "p99_ms": 80.44
+        },
+        "lexical": {
+          "max_ms": 72.74,
+          "mean_ms": 39.9,
+          "n": 200,
+          "p50_ms": 42.55,
+          "p95_ms": 61.35,
+          "p99_ms": 68.2
+        },
+        "semantic": {
+          "max_ms": 5.65,
+          "mean_ms": 3.77,
+          "n": 200,
+          "p50_ms": 3.69,
+          "p95_ms": 4.58,
+          "p99_ms": 5.39
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        },
+        "lexical": {
+          "max_ms": 94.64,
+          "mean_ms": 56.34,
+          "n": 200,
+          "p50_ms": 56.97,
+          "p95_ms": 69.71,
+          "p99_ms": 78.77
+        },
+        "semantic": {
+          "max_ms": 5.28,
+          "mean_ms": 3.88,
+          "n": 200,
+          "p50_ms": 3.85,
+          "p95_ms": 4.63,
+          "p99_ms": 5.17
+        }
+      },
+      "routes": {
+        "NamedObject": 200
+      },
+      "semantic_query_encode": {
+        "max_ms": 0.1,
+        "mean_ms": 0.03,
+        "n": 200,
+        "p50_ms": 0.03,
+        "p95_ms": 0.04,
+        "p99_ms": 0.05
+      }
+    },
+    "natural_language": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 18.77,
+          "mean_ms": 8.91,
+          "n": 200,
+          "p50_ms": 8.93,
+          "p95_ms": 15.12,
+          "p99_ms": 17.06
+        },
+        "fused": {
+          "max_ms": 89.42,
+          "mean_ms": 45.25,
+          "n": 200,
+          "p50_ms": 43.67,
+          "p95_ms": 76.34,
+          "p99_ms": 86.66
+        },
+        "lexical": {
+          "max_ms": 83.13,
+          "mean_ms": 35.94,
+          "n": 200,
+          "p50_ms": 33.73,
+          "p95_ms": 65.86,
+          "p99_ms": 75.1
+        },
+        "semantic": {
+          "max_ms": 5.78,
+          "mean_ms": 3.83,
+          "n": 200,
+          "p50_ms": 3.75,
+          "p95_ms": 4.72,
+          "p99_ms": 5.48
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        },
+        "lexical": {
+          "max_ms": 86.88,
+          "mean_ms": 43.27,
+          "n": 200,
+          "p50_ms": 41.69,
+          "p95_ms": 74.05,
+          "p99_ms": 84.51
+        },
+        "semantic": {
+          "max_ms": 5.34,
+          "mean_ms": 3.76,
+          "n": 200,
+          "p50_ms": 3.76,
+          "p95_ms": 4.5,
+          "p99_ms": 4.83
+        }
+      },
+      "routes": {
+        "NaturalLanguage": 200
+      },
+      "semantic_query_encode": {
+        "max_ms": 0.1,
+        "mean_ms": 0.04,
+        "n": 200,
+        "p50_ms": 0.04,
+        "p95_ms": 0.05,
+        "p99_ms": 0.06
+      }
+    }
+  },
+  "snapshot": {
+    "hash": "28423033291dcac7",
+    "nodes": 1000000
+  },
+  "threads": 16
+}

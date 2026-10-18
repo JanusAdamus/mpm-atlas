@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+
+<!-- 
+	MaRDI – The NFDI Consortium of Mathematics
+
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2026 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at https://typo3.org/
+-->
+
+<link rel="icon" href="/typo3conf/ext/mardi/Resources/Public/Icons/favicon.png" type="image/png">
+<title>Portal - MaRDI</title>
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta name="generator" content="TYPO3 CMS">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="robots" content="index,follow">
+<meta name="twitter:card" content="summary">
+<meta name="mobile-web-app-capable" content="no">
+<meta name="google" content="notranslate">
+
+<link rel="stylesheet" href="/typo3temp/assets/bootstrappackage/fonts/9bf43c9dbb114aee9370dda8f49bb97f7618ed5a7d961ec10683f74ae765c173/webfont.css?1792011522" media="all">
+<link rel="stylesheet" href="/typo3conf/ext/bootstrap_package/Resources/Public/Fonts/bootstrappackageicon.min.css?1755723275" media="all">
+<link rel="stylesheet" href="/typo3temp/assets/bootstrappackage/css/theme-486be0d23ac5d6813009ed1205bb70bcef4ee587ec38e99bf242dbaf1c910083.css?1755723656" media="all">
+<link rel="stylesheet" href="/typo3conf/ext/mardi/Resources/Public/Css/mardi.css?1758543914" media="all">
+<link rel="stylesheet" href="/typo3conf/ext/mardi/Resources/Public/Css/navigation.css?1768916041" media="all">
+
+
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/jquery.js?687787200"></script>
+
+
+
+<link rel="prev" href="/portal/services">	  <!-- Matomo -->
+	  <script>
+	  
+	    function getCookie(name) {
+              var dc = document.cookie;
+	      var prefix = name + "=";
+	      var begin = dc.indexOf("; " + prefix);
+	      if (begin == -1) {
+	          begin = dc.indexOf(prefix);
+		  if (begin != 0) return null;
+	      }
+	      else
+	      {
+	          begin += 2;
+		  var end = document.cookie.indexOf(";", begin);
+		  if (end == -1) {
+		      end = dc.length;
+		  }
+	      }
+	      // because unescape has been deprecated, replaced with decodeURI
+	      // return unescape(dc.substring(begin + prefix.length, end));
+	      return decodeURI(dc.substring(begin + prefix.length, end));
+	    }
+	    
+	    if (getCookie("acceptmardicookies")==1) {
+	        // only if we're allowed to
+ 	        var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be
+		   called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+		    var u="https://analytics.wias-berlin.de/matomo/";
+		    _paq.push(['setTrackerUrl', u+'matomo.php']);
+		    _paq.push(['setSiteId', '3']);
+		    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+		})();
+	    }
+	  </script>
+	  <!-- End Matomo Code -->
+<link rel="canonical" href="https://www.mardi4nfdi.de/portal/portal">
+</head>
+<body id="p213" class="page-213 pagelevel-2 language-0 backendlayout-3_columns layout-default">
+
+<div id="top"></div><div class="body-bg"><a class="sr-only sr-only-focusable" href="#page-content"><span>Skip to main content</span></a><!-- MaRDI definitions --><script type="text/javascript">
+    var logourls = [
+    "fileadmin/layout/header/logo_anim_gif/1.gif",
+    
+    "fileadmin/layout/header/logo_anim_gif/2.gif",
+    
+    "fileadmin/layout/header/logo_anim_gif/3.gif",
+    
+    "fileadmin/layout/header/logo_anim_gif/4.gif",
+    ];
+    var logonum = Math.floor(Math.random()*logourls.length%logourls.length)
+</script><div id="metamenu"><div id="marditopleft"><a href="/">Mathematical Research Data Initiative</a></div><div class="top-meta"><div style="border-right: 2px solid #ccc;
+	                width: 73px;
+	                display: inline-block;
+		            margin-left: 10px;
+			        padding-top: 10px;
+			        padding-bottom: 10px;
+			        height: 40px;"><a class="twitter-link"
+           href="https://twitter.com/mardi4nfdi"
+           target="_blank"><img src="/fileadmin/layout/icons/X_from_Twitter.svg"
+                     style="display: inline-block;
+                     vertical-align: top;
+		     margin-top: 2px;
+		     margin-right: 20px;
+		     width: 16px;"></a><a class="twitter-link" rel="me"
+                   href="https://nfdi.social/@mardi"
+                   target="_blank"><img src="/fileadmin/layout/icons/Mastodon_from_Mastodon.svg"
+                   style="display: inline-block;
+                          vertical-align: top;
+                          margin-left: 0px;
+		                  width: 23px;"></a></div><div class="tx-indexedsearch-searchbox"
+		     style="vertical-align: top;"><form class="headersearchform"
+                          action="/search?tx_indexedsearch_pi2%5Baction%5D=search&amp;tx_indexedsearch_pi2%5Bcontroller%5D=Search&amp;cHash=f2d423a1c6298e96299eac7231ee9821" method="POST" role="search"><div class="tx-indexedsearch-form"><input type="text" name="tx_indexedsearch_pi2[search][sword]"
+                                class="tx-indexedsearch-searchbox-sword"
+                                placeholder="Search"
+                                spellcheck="false" autocomplete="off" /><button><img src="/fileadmin/layout/icons/search_formfield.svg"></button></div></form></div></div><div class="language"><ul id="language_menu" class="language-menu navbar-nav"
+        style=""><li class="nav-item
+                       active
+                       "><a href="/portal/portal" hreflang="en-US" title="EN"><span>EN</span></a></li><li class="nav-item
+                       
+                       inactive"><span>DE</span></li><li class="nav-item"><a href="/easy-language"
+                       class="easylang_link"
+                       hreflang="en-US" title="easy language"><img src="/fileadmin/layout/icons/LS_Filled.svg"
+                             class="easylangicon">
+                      Easy language
+                    </a></li></ul></div></div><button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobilemainnavigation" aria-controls="mainnavigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div id="mobilemainnavigation" class="collapse"><ul class="navbar-nav"><li class="nav-item "><a
+                            id="nav-item-174"
+                            href="/news"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                News
+                                
+                            </span></a><div class="dropdown-menu"></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-165"
+                            href="/about"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                About
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-165"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "About"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/mission" title="Mission"><span class="nav-link-text">
+                                    Mission
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/organization" title="Organization"><span class="nav-link-text">
+                                    Organization
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/task-areas" title="Task Areas"><span class="nav-link-text">
+                                    Task Areas
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-members" title="Consortium Members"><span class="nav-link-text">
+                                    Consortium Members
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-management" title="Consortium Management"><span class="nav-link-text">
+                                    Consortium Management
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-participants" title="Consortium Participants"><span class="nav-link-text">
+                                    Consortium Participants
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/partner-consortia" title="Partner Consortia"><span class="nav-link-text">
+                                    Partner Consortia
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/nfdi-story" title="NFDI Story"><span class="nav-link-text">
+                                    NFDI Story
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/fair-data-principles" title="FAIR Data Principles"><span class="nav-link-text">
+                                    FAIR Data Principles
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-mega "><a
+                            id="nav-item-250"
+                            href="/community"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Community
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-250"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Community"</span></button><div class="dropdown-menu dropdown-menu-mega"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/help-desk" title="Help Desk"><span class="nav-link-text">
+                                    Help Desk
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/start-here" title="Start here"><span class="nav-link-text">
+                                    Start here
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/teaching-and-training" title="Teaching and Training"><span class="nav-link-text">
+                                    Teaching and Training
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/newsletter" title="Newsletter"><span class="nav-link-text">
+                                    Newsletter
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/data-type" title="Your Math Type (Poster)"><span class="nav-link-text">
+                                    Your Math Type (Poster)
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/making-mardi" title="Making MaRDI"><span class="nav-link-text">
+                                    Making MaRDI
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/love-data-week" title="Love Data Week I"><span class="nav-link-text">
+                                    Love Data Week I
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/love-data-week-2024" title="Love Data Week II"><span class="nav-link-text">
+                                    Love Data Week II
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple  active"><a
+                            id="nav-item-168"
+                            href="/portal"
+                            class="nav-link nav-link-main active"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Portal
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-168"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Portal"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown active" href="/portal/portal" title="Portal"><span class="nav-link-text">
+                                    Portal
+                                     <span class="visually-hidden">(current)</span></span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/portal/services" title="Services"><span class="nav-link-text">
+                                    Services
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-170"
+                            href="/events"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Events
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-170"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Events"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/events/upcoming-events" title="Upcoming events"><span class="nav-link-text">
+                                    Upcoming events
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/events/past-events" title="Past events"><span class="nav-link-text">
+                                    Past events
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-171"
+                            href="/jobs"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Jobs
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-171"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Jobs"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/science" title="Science"><span class="nav-link-text">
+                                    Science
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/management" title="Management"><span class="nav-link-text">
+                                    Management
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/others" title="Others"><span class="nav-link-text">
+                                    Others
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-265"
+                            href="/resources"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Resources
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-265"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Resources"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/resources/publications" title="Publications"><span class="nav-link-text">
+                                    Publications
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/downloads" title="Downloads"><span class="nav-link-text">
+                                    Downloads
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-172"
+                            href="/press"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Press
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-172"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Press"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/media-coverage" title="Media Coverage"><span class="nav-link-text">
+                                    Media Coverage
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/press-releases" title="Press Releases"><span class="nav-link-text">
+                                    Press Releases
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/press-kit" title="Press Kit"><span class="nav-link-text">
+                                    Press Kit
+                                    
+                                </span></a></li></ul></div></li></ul><div class="mobile-language"><ul id="mobilelanguage_menu" class="language-menu navbar-nav"
+        style="border-top: 2px solid #000;"><li class="nav-item
+                       active
+                       "><a href="/portal/portal" hreflang="en-US" title="EN"><span>EN</span></a></li><li class="nav-item
+                       
+                       inactive"><span>DE</span></li></ul></div></div><header id="page-header" class="bp-page-header navbar navbar-mainnavigation navbar-default navbar-top"><div class="container"><div id="hands" style="background-image: url(/fileadmin/layout/header/hands/v2/vb_mardi_1233_bnw_mask_rgba_h1200.png) !important;">
+        &nbsp;
+        </div><a class="navbar-brand navbar-brand-text" title="MaRDI" href="/"><div id="logo" style="">
+                &nbsp;
+            <script type="text/javascript">
+                document.getElementById("logo").style.backgroundImage = "url(/"+logourls[logonum]+"?"+Math.random()+")";
+            </script></div></a><div id="NFDIheader_large">
+            The NFDI<br>
+            Consortium of<br>
+            Mathematics<br></div><div id="NFDIheader_small">
+            The NFDI Consortium of
+            Mathematics<br></div></div></header><header class="bp-page-header navbar navbar-mainnavigation navbar-default navbar-top"><div id="mainnavigationcontainer" class="container container-mainnavigation"><!-- f:render partial="Header/Logo" arguments="Array" /--><nav aria-label="Main navigation"
+                 id="mainnavigation" class="collapse navbar-collapse"><ul class="navbar-nav"><li class="nav-item "><a
+                            id="nav-item-174"
+                            href="/news"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                News
+                                
+                            </span></a><div class="dropdown-menu"></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-165"
+                            href="/about"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                About
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-165"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "About"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/mission" title="Mission"><span class="nav-link-text">
+                                    Mission
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/organization" title="Organization"><span class="nav-link-text">
+                                    Organization
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/task-areas" title="Task Areas"><span class="nav-link-text">
+                                    Task Areas
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-members" title="Consortium Members"><span class="nav-link-text">
+                                    Consortium Members
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-management" title="Consortium Management"><span class="nav-link-text">
+                                    Consortium Management
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/consortium-participants" title="Consortium Participants"><span class="nav-link-text">
+                                    Consortium Participants
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/partner-consortia" title="Partner Consortia"><span class="nav-link-text">
+                                    Partner Consortia
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/about/nfdi-story" title="NFDI Story"><span class="nav-link-text">
+                                    NFDI Story
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/fair-data-principles" title="FAIR Data Principles"><span class="nav-link-text">
+                                    FAIR Data Principles
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-mega "><a
+                            id="nav-item-250"
+                            href="/community"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Community
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-250"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Community"</span></button><div class="dropdown-menu dropdown-menu-mega"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/help-desk" title="Help Desk"><span class="nav-link-text">
+                                    Help Desk
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/start-here" title="Start here"><span class="nav-link-text">
+                                    Start here
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/teaching-and-training" title="Teaching and Training"><span class="nav-link-text">
+                                    Teaching and Training
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/newsletter" title="Newsletter"><span class="nav-link-text">
+                                    Newsletter
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/data-type" title="Your Math Type (Poster)"><span class="nav-link-text">
+                                    Your Math Type (Poster)
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/making-mardi" title="Making MaRDI"><span class="nav-link-text">
+                                    Making MaRDI
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/love-data-week" title="Love Data Week I"><span class="nav-link-text">
+                                    Love Data Week I
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/community/love-data-week-2024" title="Love Data Week II"><span class="nav-link-text">
+                                    Love Data Week II
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple  active"><a
+                            id="nav-item-168"
+                            href="/portal"
+                            class="nav-link nav-link-main active"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Portal
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-168"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Portal"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown active" href="/portal/portal" title="Portal"><span class="nav-link-text">
+                                    Portal
+                                     <span class="visually-hidden">(current)</span></span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/portal/services" title="Services"><span class="nav-link-text">
+                                    Services
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-170"
+                            href="/events"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Events
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-170"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Events"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/events/upcoming-events" title="Upcoming events"><span class="nav-link-text">
+                                    Upcoming events
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/events/past-events" title="Past events"><span class="nav-link-text">
+                                    Past events
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-171"
+                            href="/jobs"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Jobs
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-171"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Jobs"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/science" title="Science"><span class="nav-link-text">
+                                    Science
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/management" title="Management"><span class="nav-link-text">
+                                    Management
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/jobs/others" title="Others"><span class="nav-link-text">
+                                    Others
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-265"
+                            href="/resources"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Resources
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-265"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Resources"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/resources/publications" title="Publications"><span class="nav-link-text">
+                                    Publications
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/downloads" title="Downloads"><span class="nav-link-text">
+                                    Downloads
+                                    
+                                </span></a></li></ul></div></li><li class="nav-item nav-style-simple "><a
+                            id="nav-item-172"
+                            href="/press"
+                            class="nav-link nav-link-main"
+                            
+                            
+                            aria-current="false"
+                            ><span class="nav-link-text">
+                                Press
+                                
+                            </span></a><button
+                                type="button"
+                                id="nav-toggle-172"
+                                class="nav-link nav-link-toggle"
+                                data-bs-toggle="dropdown"
+                                data-bs-display="static"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                ><span class="nav-link-indicator" aria-hidden="true"></span><span class="nav-link-text visually-hidden">Submenu for "Press"</span></button><div class="dropdown-menu dropdown-menu-simple"><ul class="dropdown-nav" data-level="2"><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/media-coverage" title="Media Coverage"><span class="nav-link-text">
+                                    Media Coverage
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/press-releases" title="Press Releases"><span class="nav-link-text">
+                                    Press Releases
+                                    
+                                </span></a></li><li class="nav-item"><a class="nav-link nav-link-dropdown" href="/press/press-kit" title="Press Kit"><span class="nav-link-text">
+                                    Press Kit
+                                    
+                                </span></a></li></ul></div></li></ul><!-- MainAfter --><!-- Language --></nav></div></header><div class="footer-meta mobile-meta"><div class="tx-indexedsearch-searchbox" style="border-left: 2px solid #fff;"><form class="tx-indexedsearch-form"
+                      action="/search?tx_indexedsearch_pi2%5Baction%5D=search&amp;tx_indexedsearch_pi2%5Bcontroller%5D=Search&amp;cHash=f2d423a1c6298e96299eac7231ee9821" method="POST" role="search"><div class="tx-indexedsearch-form"><input type="text" name="tx_indexedsearch_pi2[search][sword]"
+                            class="tx-indexedsearch-searchbox-sword"
+                            placeholder="Search"
+                            spellcheck="false" autocomplete="off" /><button><img src="/fileadmin/layout/icons/search_formfield.svg"></button></div></form></div><div style="display: inline-flex;
+                    align-items: center;
+                    height: 40px;
+			        float: left;"><a class="twitter-link"
+                   href="https://twitter.com/mardi4nfdi"
+                   target="_blank"><img src="/fileadmin/layout/icons/X_from_Twitter.svg"
+  		           class="twitter-link-icon"
+                   style="display: inline-block;
+                          margin-top: 2px;
+                          margin-right: 20px;
+                          width: 16px;
+                          opacity: 0.3;"></a><a class="twitter-link" rel="me"
+                   href="https://nfdi.social/@mardi"
+                   target="_blank"><img src="/fileadmin/layout/icons/Mastodon_from_Mastodon.svg"
+		           class="twitter-link-icon"
+                   style="display: inline-block;
+                          margin-left: 0px;
+                          margin-right: 20px;
+		                  width: 23px;
+		                  opacity: 0.3;"></a><div class="mobile-searchlink"><a href="/search"
+                       style="display: inline-block;
+                              padding-left: 10px;
+                              padding-right: 10px;
+                              "><img style="width: 30px;"
+                             src="/fileadmin/layout/icons/search_formfield.svg"></a></div><div style="display: inline-block"><a href="/easy-language"
+                       class="easylang_link"
+                       hreflang="en-US" title="easy language"><img src="/fileadmin/layout/icons/LS_Filled.svg"
+                             class="easylangicon">
+                      Easy language
+                    </a></div></div></div><div class="cookiebanner"><div class="cookiebannercontent"><div class="cookiebannerheader"><b>Information on cookies</b></div><div class="cookiebannertext">
+	  On the basis of your freely given consent, which can be
+	  revoked at any time, your visit to our website is recorded
+	  using Matomo, an open source web analytics software program.
+	  The information produced will be used solely for statistical
+	  purposes and to improve the website and server. No personal
+	  data will be stored or shared with third parties. For more
+	  information, please refer to the <b><a href="/privacy">Privacy
+	  Policy</a></b> on our website.
+	  By clicking <b
+	  class="clickable" onclick="acceptcookies()">“Accept”</b>, you consent
+	  to our use of cookies for
+	  analytical purposes.
+	  If you do not agree to this,       please click
+	  <b class="clickable"
+	  onclick="refusecookies()">“Reject”</b>. In principle, you can visit
+	  our website without
+	  cookies being enabled.
+	  This does not apply in the case of essential cookies.
+	</div></div><div class="cookiebannerbuttons"><button onclick="acceptcookies()" class="cookiebannerbutton">Accept</button><button onclick="refusecookies()" class="cookiebannerbutton">Reject</button></div></div><div id="page-content" class="bp-page-content main-section"><!--TYPO3SEARCH_begin--><div class="section section-default"><div class="container"><div class="section-row"><div class="section-column maincontent-wrap"><div id="c399" class=" frame frame-default frame-type-textpic frame-layout-default frame-size-default frame-height-default frame-background-none frame-space-before-none frame-space-after-none frame-no-backgroundimage"><div class="frame-group-container"><div class="frame-group-inner"><div class="frame-container frame-container-default"><div class="frame-inner"><div class="textpic textpic-below"><div class="textpic-item textpic-gallery"><div class="gallery-row"><div class="gallery-item gallery-item-size-1"><figure class="image"><a class="lightbox" rel="lightbox-group-399" href="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg" data-lightbox-width="1025" data-lightbox-height="636" data-lightbox-title="" data-lightbox-alt="" data-lightbox-caption=""><picture><source data-variant="default" data-maxwidth="530" media="(min-width: 1200px)" srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><source data-variant="xlarge" data-maxwidth="530" media="(min-width: 1200px)" srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><source data-variant="large" data-maxwidth="440" media="(min-width: 992px)" srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><source data-variant="medium" data-maxwidth="680" media="(min-width: 768px)" srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><source data-variant="small" data-maxwidth="500" media="(min-width: 576px)" srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><source data-variant="extrasmall" data-maxwidth="374"  srcset="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg 1x"><img loading="lazy" src="/fileadmin/user_upload/Portal/MaRDI_ResearchDataInfrastucture.svg" width="530" height="329" title="" alt=""></picture></a></figure></div></div></div><div class="textpic-item textpic-text"><div class="frame-header"><h2 class="element-header  "><span>Portal</span></h2></div><p>The <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> is the central entry point for MaRDI’s research data infrastructure, which includes services, data, and a highly curated connected mathematical knowledge graph. It is driven by the fact that while there are available many sources research data and related services in mathematics they are hosted as stand-alone solutions and often do not allow for a <a href="https://www.mardi4nfdi.de/fair-data-principles" target="_blank">FAIR </a>use. This hinders the development of services for automatic or systematic data retrieval in a standardized way in many areas of the mathematical science.<br><br> With the <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a>, we provide metadata of the federated data sources according to the FAIR principles and access to services developed within MaRDI for specific data types. Furthermore, through connections of the different items (data, publications, software, algorithms, models and many more) the <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> provides access to a very large knowledge graph dedicated to mathematics. Based on the knowledge graph many new services can be built to provide specific solutions for the mathematical community and beyond.<br><br> The <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> includes newly developed and existing data repositories that are integrated into the MaRDI knowledge graph for convenient use and machine access. Through the integration into the MaRDI infrastructure improvements are made at the original data sources. Furthermore important mathematical contributions such as the possibility to search for mathematical formulae at the <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> are introduced at Wikidata as well because both are based on the same technological platform.<br><br> The <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> allows researchers, mathematicians and those using mathematics, to find and explore information, from multiple sources in the mathematical domain. Modern artificial intelligence (AI) technologies ease the interaction with the available information.<br><br> The infrastructure for the front- and backend of the portal is being developed and hosted by <a href="https://www.mardi4nfdi.de/about/task-areas" target="_blank">MaRDI’s Task Area TA5</a>.<br><br> The <a href="https://portal.mardi4nfdi.de/wiki/Portal" target="_blank" rel="noreferrer">MaRDI Portal</a> is the entry point to many of the <a href="https://www.mardi4nfdi.de/portal/services" target="_blank">services</a> provided by MaRDI. Whether you are a researcher, a student, or simply someone passionate about mathematics, the MaRDI Portal is here to support your exploration, learning, and discovery with resources tailored to diverse needs and interests. We embrace the open-source philosophy – our source code repositories and detailed technical documentation are freely accessible.&nbsp;</p></div></div></div></div></div></div></div></div><div class="section-column subcontent-wrap"></div><div class="section-column subcontent-wrap"><div class="featuredcontainer
+			
+			"
+	 id="featured_container_1067"
+	 onmouseover="featuredhover(1067)"
+     onmouseout="featuredunhover(1067)"><div id="featured_bg_1067" class="featuredbgimage"
+		 style="background-image: url('/fileadmin/user_upload/Community/Newsletter/assets/sphere_tophalf.png');"></div><div id="featured_ov_1067" class="featuredoverlay"></div><div id="featured_header_1067" class="featuredheader"><a href="https://mardi4nfdi.us14.list-manage.com/subscribe?u=662c3bf24eb077b96e76d1dd4&amp;id=0078fc5798" target="_blank" rel="noreferrer">
+				  Subscribe to our Newsletter
+			  </a></div><div id="featured_content_1067" class="featuredcontent"><p>Our Newsletter "Math &amp; Data Quarterly" is prepared by our partner IMAGINARY. <a href="https://mardi4nfdi.us14.list-manage.com/subscribe?u=662c3bf24eb077b96e76d1dd4&amp;id=0078fc5798" target="_blank" rel="noreferrer">Sign up</a> to get it delivered straight to your inbox quarterly or <a href="/community/newsletter">check it out online</a>.</p></div></div><script type="text/javascript">
+	  var eid = "featured_ov_1067";
+	  var el = document.getElementById(eid);
+	  if (el.offsetWidth > 400) {
+		  el.classList.add("wide");
+	  }
+  </script></div></div></div></div><!--TYPO3SEARCH_end--></div><footer id="page-footer" class="bp-page-footer"><section class="section footer-section footer-section-content"><div class="container"><div class="section-row"><div class="section-column footer-section-content-column footer-section-content-column-left"><div class="externalcounter-container
+			
+			"
+	 id="externalcountercontainer-1066"
+	 style="
+		   "><div class="externalcounter-headercontainer"><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_database-restore.svg" width="24" height="24" alt="" /><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_graph-up.svg" width="24" height="24" alt="" /><div class="externalcounter-header">
+		  zbMathOpen Articles
+	  </div></div><img class="openclose"
+	   id="externalcounter-toggler-1066"
+       onclick="externalcounterToggle(1066)"
+       src="/fileadmin/layout/icons/remove-empty.svg"><div class="externalcounter-inner" id="externalcounter-inner-1066" togglestate="1"><div class="externalcounter-counter" id="externalcountercounter-1066"
+		   style="font-size: 70px; color: #D0662B"><span style="font-size: 20%">loading…</span></div><div class="externalcounter-teaser clickable" style="color: #D0662B"
+				   id="externalcounter-teaser-1066"
+				   onclick="externalcounterTeaserToggle(1066)"
+				   ><img id="externalcounter-teasertoggler-1066" class="externalcounter-toggler clickable" src="/fileadmin/layout/icons/nav-arrow-right.svg" width="24" height="24" alt="" />
+				  
+					  zbMathOpen Articles,
+				   October 15, 2026
+			  </div><div class="externalcounter-text" id="externalcounter-text-1066"><p>zbMathOpen is an information service for mathematicians from research and teaching with networked information on mathematical topics, the authors and their publications with references. Besides bibliographic information it provides the user with an overview of the current mathematical literature without having to read all the journals himself. The <a href="/portal/portal">MaRDI portal</a> ensures FAIR access.</p></div></div>
+  &nbsp;
+</div><script type="text/javascript">
+
+        
+
+            if (0) {
+
+                const endpointUrl1066 = "https://query.portal.mardi4nfdi.de/sparql";
+                const sparqlQuery1066 = `PREFIX wdt: &lt;https://portal.mardi4nfdi.de/prop/direct/&gt;
+PREFIX wd: &lt;https://portal.mardi4nfdi.de/entity/&gt;
+SELECT (COUNT(*) as ?cnt)
+WHERE { ?item wdt:P1451 ?zblno }
+                `.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+
+                function showCounter1066() {
+                makeSPARQLQuery( endpointUrl1066, sparqlQuery1066, function( data ) {
+                    val = data.results.bindings[0].cnt.value;
+                    if ("0"!="0") {
+                        vval = numberWithCommas(val)
+                    } else {
+                        vval = val;
+                    }
+                    el = $("#externalcountercounter-1066");
+                    el.html(val);
+
+                    c = $.cookie("hideexternalcounter-1066")
+                    if (c=="1") {
+                        hideExternalCounter("1066");
+                    } else {
+
+                    }
+                    IO.observe(el[0]);
+                } );
+                }
+
+            } else if (1) {
+
+                function showCounter1066() {
+                url = "/fileadmin/user_upload/sparql_data/articles_latest.csv";
+                var rq = $.ajax({url: url})
+                        .done(function(data) {
+                            val = data.split(",")[1];
+                            el = $("#externalcountercounter-1066");
+                            el.html(val);
+                            IO.observe(el[0]);
+                            });
+
+                }
+            } else {
+                el = $("#externalcountercounter-1066");
+                el.html("no data retrieval active");
+            }
+
+            $(document).ready(showCounter1066);
+        
+    </script></div><div class="section-column footer-section-content-column footer-section-content-column-middle"><div class="externalcounter-container
+			
+			"
+	 id="externalcountercontainer-1069"
+	 style="
+		   "><div class="externalcounter-headercontainer"><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_database-restore.svg" width="24" height="24" alt="" /><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_graph-up.svg" width="24" height="24" alt="" /><div class="externalcounter-header">
+		  Triplets
+	  </div></div><img class="openclose"
+	   id="externalcounter-toggler-1069"
+       onclick="externalcounterToggle(1069)"
+       src="/fileadmin/layout/icons/remove-empty.svg"><div class="externalcounter-inner" id="externalcounter-inner-1069" togglestate="1"><div class="externalcounter-counter" id="externalcountercounter-1069"
+		   style="font-size: 70px; color: #005FAD"><span style="font-size: 20%">loading…</span></div><div class="externalcounter-teaser clickable" style="color: #005FAD"
+				   id="externalcounter-teaser-1069"
+				   onclick="externalcounterTeaserToggle(1069)"
+				   ><img id="externalcounter-teasertoggler-1069" class="externalcounter-toggler clickable" src="/fileadmin/layout/icons/nav-arrow-right.svg" width="24" height="24" alt="" />
+				  
+					  Triplets,
+				   October 15, 2026
+			  </div><div class="externalcounter-text" id="externalcounter-text-1069"><p>Knowledge graphs store interlinked descriptions of entities, such as objects or concepts, and their relationships, forming triplets that represent semantic connections. Small, domain-specific, and manually curated knowledge graphs typically contain around 100,000 triples, while larger general-purpose graphs, such as Wikidata, contain around 15 billion triples. The <a href="https://portal.mardi4nfdi.de/wiki/Service:6503328" target="_blank" rel="noreferrer">MaRDI knowledge graph</a> is highly curated and focused on mathematics.</p></div></div>
+  &nbsp;
+</div><script type="text/javascript">
+
+        
+
+            if (0) {
+
+                const endpointUrl1069 = "https://query.portal.mardi4nfdi.de/sparql";
+                const sparqlQuery1069 = `PREFIX wdt: &lt;https://portal.mardi4nfdi.de/prop/direct/&gt;
+PREFIX wd: &lt;https://portal.mardi4nfdi.de/entity/&gt;
+SELECT (COUNT(*) as ?cnt)
+WHERE {  ?item ?p ?o }
+                `.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+
+                function showCounter1069() {
+                makeSPARQLQuery( endpointUrl1069, sparqlQuery1069, function( data ) {
+                    val = data.results.bindings[0].cnt.value;
+                    if ("1"!="0") {
+                        vval = numberWithCommas(val)
+                    } else {
+                        vval = val;
+                    }
+                    el = $("#externalcountercounter-1069");
+                    el.html(val);
+
+                    c = $.cookie("hideexternalcounter-1069")
+                    if (c=="1") {
+                        hideExternalCounter("1069");
+                    } else {
+
+                    }
+                    IO.observe(el[0]);
+                } );
+                }
+
+            } else if (1) {
+
+                function showCounter1069() {
+                url = "/fileadmin/user_upload/sparql_data/triplets_latest.csv";
+                var rq = $.ajax({url: url})
+                        .done(function(data) {
+                            val = data.split(",")[1];
+                            el = $("#externalcountercounter-1069");
+                            el.html(val);
+                            IO.observe(el[0]);
+                            });
+
+                }
+            } else {
+                el = $("#externalcountercounter-1069");
+                el.html("no data retrieval active");
+            }
+
+            $(document).ready(showCounter1069);
+        
+    </script><div class="externalcounter-container
+            
+            "
+            id="externalcountercontainer-1129"
+            style="
+"><div class="externalcounter-headercontainer"><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_database-restore.svg" width="24" height="24" alt="" /><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_graph-up.svg" width="24" height="24" alt="" /><div class="externalcounter-header">
+            Triplets-Graph
+        </div></div><img class="openclose" id="externalcounter-toggler-1129"
+        onclick="externalcounterToggle(1129)" src="/fileadmin/layout/icons/remove-empty.svg"><div class="externalcounter-inner" id="externalcounter-inner-1129" togglestate="1"><div class="externalcounter-counter" id="externalcountercounter-1129"
+            style="font-size: 80px; color: "><div id="error1129"></div><canvas id="lineChart1129"
+                    style="width: 100%; min-width: 100%;"></canvas></div></div>
+    &nbsp;
+</div><script type="text/javascript">
+
+          
+
+            function addScriptLoad1129(source) {
+                var jqTag = document.createElement('script');
+                jqTag.type = 'text/javascript';
+                jqTag.src = source;
+	            jqTag.async = false;
+                var headTag = document.getElementsByTagName("head")[0];
+                headTag.appendChild(jqTag);
+            }
+
+            function isDefined1129(symbol) {
+                var isdefined = false;
+                try {
+                    eval(symbol);
+                    isdefined = true;
+                } catch(err) {
+                    isdefined = false;
+                }
+                return isdefined
+            }
+
+
+            var addluxon = false;
+            if (! isDefined1129("luxon")) {
+                source = "/typo3conf/ext/mardi/Resources/Public/JavaScript/luxon.min.js?1758316520";
+                addScriptLoad1129(source);
+                addluxon = true;
+            }
+
+            if (! isDefined1129("Chart")) {
+                source = "/typo3conf/ext/mardi/Resources/Public/JavaScript/chart.umd.min.js?1758316519";
+                addScriptLoad1129(source);
+            }
+
+            if (addluxon) {
+                source = "/typo3conf/ext/mardi/Resources/Public/JavaScript/chartjs-adapter-luxon.umd.min.js?1758316519";
+                addScriptLoad1129(source);
+            }
+
+
+
+
+
+
+            async function fetchAndDrawChart1129() {
+                //try {
+                    console.log('Fetching CSV file...');
+                    const url = "/fileadmin/user_upload/sparql_data/triplets.csv";
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error $`);
+                    }
+
+                    const csvText = await response.text();
+                    console.log('CSV file loaded successfully.');
+
+                    const lines = csvText.trim().split('\n');
+                    const dataPoints = [];
+
+                    var lastvalue = 0;
+                    for (const line of lines) {
+                        const [timestamp, value] = line.split(',').map(s => s.trim());
+                        if (!timestamp || isNaN(Number(value))) {
+                            console.warn('Invalid line:', line);
+                            continue;
+                        }
+
+                        lastvalue = value;
+                        dataPoints.push({ x: new Date(timestamp), y: Number(value) });
+                    }
+
+                    // duplicate the last value as current
+                    dataPoints.push({ x: new Date(), y: Number(lastvalue)});
+
+                    // console.log('Parsed data points:', dataPoints);
+
+                    const ctx = document.getElementById('lineChart1129').getContext('2d');
+
+                    new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        datasets: [{
+                        label: ' # of triplets',
+                        data: dataPoints,
+                        borderColor: 'rgba(0,95,173,1)',
+                        borderWidth: 3,
+                        pointRadius: 0,
+                        fill: true,
+                        backgroundColor: 'rgba(0,95,173,0.4)',
+                        tension: 0.2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                tooltipFormat: 'yyyy-MM-dd, HH:mm',
+                                unit: 'day',
+                                displayFormats: {
+                                day: 'yyyy-MM-dd' // Axis tick format
+                                }
+                            },
+                            title: {
+                                display: false,
+                                text: 'Timestamp'
+                            },
+                            ticks: {
+                                maxTicksLimit: 5
+                            }
+                        },
+                        y: {
+                                ticks: {
+                                    callback: function(value) {
+                                    // Format number with dots as thousands separator
+                                    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                    },
+                                    maxTicksLimit: 5
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Value'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { mode: 'index', intersect: false,
+                                        titleColor: '#444',
+                                        bodyColor: '#444',
+                                        borderColor: '#aaa',
+                                        borderWidth: '2',
+                                        backgroundColor: '#fff'
+                                        }
+                        }
+                    }
+                    });
+                /* } catch (error) {
+                    console.error('Error loading or rendering chart:', error);
+                    const errorDiv = document.getElementById('error1129');
+                    errorDiv.textContent = '⚠️ Error: ' + error.message;
+                } */
+            }
+
+            var checkCounter1129 = 0
+
+            function waitForChartJS1129() {
+                console.log("wait for Chart to be defined.")
+                checkCounter1129 += 1
+                if (checkCounter1129 < 50) {
+                    if (!isDefined1129("Chart")) {
+                        window.setTimeout(waitForChartJS1129,1);
+                    } else {
+                        window.setTimeout(fetchAndDrawChart1129,1);
+                    }
+                } else {
+                    const errorDiv = document.getElementById('error1129');
+                    errorDiv.textContent = "⚠️ Error: couldn't load Chart";
+                }
+            }
+
+            // Run the function when the page loads
+            window.setTimeout(waitForChartJS1129,1);
+          
+        </script></div><div class="section-column footer-section-content-column footer-section-content-column-right"><div class="externalcounter-container
+			
+			"
+	 id="externalcountercontainer-1070"
+	 style="
+		   "><div class="externalcounter-headercontainer"><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_database-restore.svg" width="24" height="24" alt="" /><img class="externalcounter-icon" src="/fileadmin/user_upload/Icons/source_icons_graph-up.svg" width="24" height="24" alt="" /><div class="externalcounter-header">
+		  Datasets
+	  </div></div><img class="openclose"
+	   id="externalcounter-toggler-1070"
+       onclick="externalcounterToggle(1070)"
+       src="/fileadmin/layout/icons/remove-empty.svg"><div class="externalcounter-inner" id="externalcounter-inner-1070" togglestate="1"><div class="externalcounter-counter" id="externalcountercounter-1070"
+		   style="font-size: 70px; color: #999999"><span style="font-size: 20%">loading…</span></div><div class="externalcounter-teaser clickable" style="color: #999999"
+				   id="externalcounter-teaser-1070"
+				   onclick="externalcounterTeaserToggle(1070)"
+				   ><img id="externalcounter-teasertoggler-1070" class="externalcounter-toggler clickable" src="/fileadmin/layout/icons/nav-arrow-right.svg" width="24" height="24" alt="" />
+				  
+					  Datasets,
+				   October 15, 2026
+			  </div><div class="externalcounter-text" id="externalcounter-text-1070"><p>The MaRDI Portal registers metadata from datasets using different sources: E.g. OpenML is an open science online platform for machine learning, which holds open data, open algorithms and tasks accessible through the MaRDI portal. Furthermore, Zenodo is a general purpose data repository provided by OpenAIRE and CERN. It also hosts mathematical research data which is now accessible through the <a href="/portal">MaRDI Portal</a>.</p></div></div>
+  &nbsp;
+</div><script type="text/javascript">
+
+        
+
+            if (0) {
+
+                const endpointUrl1070 = "https://query.portal.mardi4nfdi.de/sparql";
+                const sparqlQuery1070 = `PREFIX wdt: &lt;https://portal.mardi4nfdi.de/prop/direct/&gt;
+PREFIX wd: &lt;https://portal.mardi4nfdi.de/entity/&gt;
+SELECT (COUNT(*) as ?cnt)
+WHERE {?item wdt:P31 wd:Q56885}
+                `.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+
+                function showCounter1070() {
+                makeSPARQLQuery( endpointUrl1070, sparqlQuery1070, function( data ) {
+                    val = data.results.bindings[0].cnt.value;
+                    if ("0"!="0") {
+                        vval = numberWithCommas(val)
+                    } else {
+                        vval = val;
+                    }
+                    el = $("#externalcountercounter-1070");
+                    el.html(val);
+
+                    c = $.cookie("hideexternalcounter-1070")
+                    if (c=="1") {
+                        hideExternalCounter("1070");
+                    } else {
+
+                    }
+                    IO.observe(el[0]);
+                } );
+                }
+
+            } else if (1) {
+
+                function showCounter1070() {
+                url = "/fileadmin/user_upload/sparql_data/datasets_latest.csv";
+                var rq = $.ajax({url: url})
+                        .done(function(data) {
+                            val = data.split(",")[1];
+                            el = $("#externalcountercounter-1070");
+                            el.html(val);
+                            IO.observe(el[0]);
+                            });
+
+                }
+            } else {
+                el = $("#externalcountercounter-1070");
+                el.html("no data retrieval active");
+            }
+
+            $(document).ready(showCounter1070);
+        
+    </script></div></div></div></section><div style="background-color: #fff; padding-top: 1rem"><section class="section footer-section footer-section-meta" style="background-color: #999"><div class="frame frame-background-none frame-space-before-none frame-space-after-none"><div class="frame-container"><div class="frame-inner"><ul class="footermenu navbar-nav"><li><a href="/" title="Home">Home</a></li><li><a href="/contact" title="Contact">Contact</a></li><li><a href="/privacy" title="Privacy">Privacy</a></li><li><a href="/accessibility" title="Accessibility">Accessibility</a></li><li><a href="/imprint" title="Imprint">Imprint</a></li></ul></div></div></div></section></div><section class="section footer-section footer-section-meta footer-copyright" style="background-color: #fff"><div class="frame frame-background-none frame-space-before-none frame-space-after-none"><div class="frame-container"><div class="frame-inner"><div class="footer-copyright">
+		      © MaRDI4nfdi.de, all rights reserved,
+		      2026-10-15
+                   </div></div></div></div></section></footer><a class="scroll-top" title="Scroll to top" href="#top"><span class="scroll-top-icon"></span></a></div>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/Contrib/photoswipe/photoswipe.umd.min.js?1755723276"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/Contrib/photoswipe/photoswipe-lightbox.umd.min.js?1755723276"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/Contrib/photoswipe/photoswipe-dynamic-caption-plugin.umd.min.js?1755723276"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.accordion.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.popover.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.stickyheader.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.smoothscroll.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.lightbox.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/Dist/bootstrap.navbar.min.js?1755723275"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/Contrib/popper-core/popper.min.js?1755723276"></script>
+<script src="/typo3conf/ext/bootstrap_package/Resources/Public/Contrib/bootstrap5/js/bootstrap.min.js?1755723275"></script>
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/paginga.jquery.js?1639080028"></script>
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/jquery.cookie.js?1634510193"></script>
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/md5.js?1666857086"></script>
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/counterup.js?1741164738"></script>
+<script src="/typo3conf/ext/mardi/Resources/Public/JavaScript/mardi.js?1755808513"></script>
+
+
+</body>
+</html>

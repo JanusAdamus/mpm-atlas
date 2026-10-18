@@ -1,0 +1,762 @@
+Mathematical Markup Language (MathML) Version 3.0 2nd Edition
+Mathematical Markup Language (MathML) Version 3.0 2nd Edition
+W3C Recommendation 10 April 2014
+This version:
+http://www.w3.org/TR/2014/REC-MathML3-20140410/
+Latest MathML 3 version:
+http://www.w3.org/TR/MathML3/
+Latest MathML Recommendation:
+http://www.w3.org/TR/MathML/
+Previous versions:
+http://www.w3.org/TR/2014/PER-MathML3-20140211/
+http://www.w3.org/TR/2010/REC-MathML3-20101021/
+Editors' version:
+http://www.w3.org/Math/draft-spec/
+Editors:
+David Carlisle, NAG
+Patrick Ion, Mathematical Reviews, American Mathematical Society
+Robert Miner (deceased), Design Science, Inc.
+Principal Authors:
+Ron Ausbrooks, Stephen Buswell, David Carlisle, Giorgi Chavchanidze, Stéphane Dalmas, Stan Devitt, Angel Diaz, Sam Dooley, Roger Hunter, Patrick Ion, Michael Kohlhase, Azzeddine Lazrek, Paul Libbrecht, Bruce Miller, Robert Miner (deceased), Chris Rowley, Murray Sargent, Bruce Smith, Neil Soiffer, Robert Sutor, Stephen Watt
+Please refer to the
+errata
+for this document, which may include some normative corrections.
+In addition to the
+HTML
+version, this document is also available in these non-normative formats:
+diff marked HTML version
+,
+XHTML+MathML version
+,
+single page HTML5+MathML version
+, and
+PDF version
+.
+See also
+translations
+.
+Copyright
+© 1998-2014
+W3C
+®
+(
+MIT
+,
+ERCIM
+,
+Keio
+,
+Beihang
+),
+            All Rights Reserved. W3C
+liability
+,
+trademark
+and
+document use
+rules apply.
+Abstract
+This specification defines the Mathematical Markup Language, or
+MathML. MathML is a markup language
+            for describing mathematical notation and capturing
+            both its structure and content. The goal of MathML is to enable
+            mathematics to be served, received, and processed on the World Wide
+            Web, just as
+HTML has
+            enabled this functionality for text.
+This specification of the markup language MathML is intended
+            primarily for a readership consisting of those who will be
+            developing or implementing renderers or editors using it, or
+            software that will communicate using MathML as a protocol for input
+            or output. It is
+not
+a User's Guide but rather a
+            reference document.
+MathML can be used to encode both mathematical notation and
+            mathematical content. About thirty-eight of the MathML tags describe
+            abstract notational structures, while another about one hundred and
+            seventy provide a way of unambiguously specifying the intended
+            meaning of an expression. Additional chapters discuss how the MathML
+            content and presentation elements interact, and how MathML renderers
+            might be implemented and should interact with browsers. Finally,
+            this document addresses the issue of special characters used for
+            mathematics, their handling in MathML, their presence in Unicode,
+            and their relation to fonts.
+While MathML is human-readable, authors typically will
+            use equation editors, conversion
+            programs, and other specialized software tools to generate
+            MathML. Several versions of such MathML tools exist,
+            both freely available software and commercial
+            products, and more are under development.
+MathML was originally specified as an XML application and most of the
+            examples in this specification assume that syntax. Other syntaxes are possible most notably
+[HTML5]
+specifies the syntax for MathML in HTML. Unless explictly noted,
+            the examples in this specification are also valid HTML syntax.
+Status of this Document
+This section describes the status of this document at the time
+               of its publication. Other documents may supersede this document. A
+               list of current W3C publications and the latest revision of this
+               technical report can be found in the
+W3C technical reports index
+at
+               http://www.w3.org/TR/.
+This document was produced by the
+W3C Math Working Group
+as
+            a
+Recommendation
+and is part of the
+            W3C
+Math Activity
+.
+            The goals of the W3C Math Working Group are discussed in the
+W3C Math WG
+               Charter
+(revised July 2006).  The authors of this document are 
+            the W3C Math Working Group members.  A list of
+participants in the W3C Math Working Group
+is available.
+This document has been reviewed by W3C Members, by software
+            developers, and by other W3C groups and interested parties, and is
+            endorsed by the Director as a W3C Recommendation. It is a stable
+            document and may be used as reference material or cited from another
+            document. W3C's role in making the Recommendation is to draw attention
+            to the specification and to promote its widespread deployment. This
+            enhances the functionality and interoperability of the Web.
+All reported errata to
+            the first edition have been addressed in this addition, and a full change log appears in
+Appendix F Changes
+. The diff-marked version linked in the frontmatter highlights all changes between the first and second editions. In addition
+            to incorporating errata, the main change in this addition is to recognise that MathML parsing is also specified in
+[HTML5]
+and where necessary to note where HTML and XML usage differ.
+The Working Group maintains a comprehensive
+Test Suite
+.  This 
+            is publicly available and developers are encouraged to submit their results for display.  
+            The
+Test Results
+are public.  They show at least two interoperable implementations for each 
+            essential test. Further details may be found in the
+Implementation Report
+.
+The MathML 2.0 (Second Edition) specification has been a W3C
+            Recommendation since 2001.  After its
+            recommendation, a W3C Math Interest Group collected 
+            reports of  experience
+            with the deployment of MathML and identified issues with MathML that
+            might be ameliorated.  The rechartering of a Math Working Group
+            did not signal any change in the overall design of MathML.
+            The major additions in MathML 3 are support for
+            bidirectional layout, better linebreaking and explicit positioning,
+            elementary math notations, and a new strict content MathML vocabulary
+            with well-defined semantics.  The MathML 3 Specification has also been
+            restructured.
+This document was produced by a group operating under 
+            the
+5 February 2004 W3C Patent Policy
+. W3C maintains a
+public list of any patent disclosures
+made in connection with 
+            the deliverables of the group; that page also includes instructions 
+            for disclosing a patent. An individual who has actual knowledge of 
+            a patent which the individual believes contains
+Essential Claim(s)
+must disclose the information in accordance with
+section 6 of the W3C Patent Policy
+.
+Public discussion of MathML and issues of support through the W3C
+            for mathematics on the Web takes place on
+the public mailing list of the Math Working
+               Group
+(
+list archives
+).
+            To subscribe send an email to
+www-math-request@w3.org
+with the word
+subscribe
+in the subject line.
+The basic chapter structure of this document is based on the earlier
+            MathML 2.0 Recommendation
+[MathML2]
+.  That MathML 2.0
+            itself was a revision of the earlier W3C Recommendation MathML 1.01
+[MathML1]
+; MathML 3.0 is a revision of the W3C
+            Recommendation MathML 2.0.  It differs from it in that all previous
+            chapters have been updated, some new
+            elements and attributes added and some
+            deprecated.  
+            Much has been moved to separate documents containing explanatory
+            material, material on characters and entities and on the MathML DOM.
+            The discussion of character entities has led to the document
+XML Entity Definitions for Characters
+[Entities]
+,
+            which is now a W3C Recommendation.  The concern with 
+            use of CSS with MathML has led to the document
+A MathML for CSS Profile
+[MathMLforCSS]
+, which was  a W3C Recommendation 
+            accompanying MathML 3.0.
+The biggest differences from MathML 2.0 (Second Edition) are in Chapters 4 and 5, although there have been
+            smaller improvements throughout the specification.  A more detailed
+            description of changes from the previous Recommendation follows.
+Much of the non-normative explication
+                  that formerly was found in Chapters 1 and 2, and many examples from
+                  elsewhere in the previous MathML specifications, were removed
+                  from the MathML3 specification and planned to be incorporated into a MathML Primer
+                  to be prepared as a separate document.  It is expected this will help
+                  the use of this formal MathML3 specification as a reference document
+                  in implementations, and offer the new user better help in
+                  understanding MathML's deployment. The remaining content of Chapters 1
+                  and 2 has been edited to reflect the changes elsewhere in the
+                  document, and in the rapidly evolving Web environment. Some of the
+                  text in them went back to early days of the Web and XML, and its
+                  explanations are now commonplace.
+Chapter 3, on presentation-oriented markup, adds new material on linebreaking,
+                  and on markup for elementary math notations used in many
+                  countries (
+mstack
+,
+mlongdiv
+and other 
+                  associated elements). Other changes include revisions to 
+                  the
+mglyph
+,
+mpadded
+and
+maction
+elements and significant unification and cleanup of attribute 
+                  values.
+                  Earlier work, as recorded in the W3C Note
+Arabic
+                     mathematical notation
+, has allowed clarification of the
+                  relationship with bidirectional text and examples
+                  with RTL text have been added.
+Chapter 4, on content-oriented markup, contains major changes and additions.
+                  The  meaning of the actual content remains as before in principle, 
+                  but a lot of work has been done on expressing it better. A few new elements have been added.
+Chapter 5 has been refined as its purpose has been further
+                  clarified to deal with the mixing of markup languages.  This chapter deals,
+                  in particular, with interrelations of parts of the
+                  MathML specification, especially with presentation and content
+                  markup.
+Chapter 6 is a new addition which deals with the issues of interaction
+                  of MathML with a host environment.  This chapter deals with interrelations 
+                  of  the MathML specification with XML and HTML, but in the context of deployment
+                  on the Web.  In particular there is a discussion of the interaction of CSS
+                  with MathML.
+Chapter 7 replaces the previous Chapter 6, and has been rewritten 
+                  and reorganized to reflect the new
+                  situation in regard to Unicode, and the changed
+                  W3C context with regard to named character entities.  The
+                  new W3C specification
+XML Entity Definitions for 
+                     Characters
+, which  incorporates those used for mathematics has
+                  become a  a W3C Recommendation,
+[Entities]
+.
+The Appendices, of which there are eight shown, have been 
+                  reworked.  
+                  Appendix A now contains the new RelaxNG schema
+                  for MathML3 as well as discussion of MathML3 DTD issues.
+                  Appendix B addresses media types associated with MathML and
+                  implicitly constitutes a request for the registration of three new ones,
+                  as is now standard for work from the W3C.
+                  Appendix C contains a new simplified and reconsidered Operator Dictionary.
+                  Appendices D, E, F, G and H contain similar non-normative material to
+                  that in the previous specification, now appropriately updated.
+A fuller discussion of the document's evolution can be found in
+Appendix F Changes
+.
+Table of Contents
+1
+Introduction
+1.1
+Mathematics and its Notation
+1.2
+Origins and Goals
+1.2.1
+Design Goals of MathML
+1.3
+Overview
+1.4
+A First Example
+2
+MathML Fundamentals
+2.1
+MathML Syntax and Grammar
+2.1.1
+General Considerations
+2.1.2
+MathML and Namespaces
+2.1.3
+Children versus Arguments
+2.1.4
+MathML and Rendering
+2.1.5
+MathML Attribute Values
+2.1.6
+Attributes Shared by all MathML Elements
+2.1.7
+Collapsing Whitespace in Input
+2.2
+The Top-Level
+<math>
+Element
+2.2.1
+Attributes
+2.2.2
+Deprecated Attributes
+2.3
+Conformance
+2.3.1
+MathML Conformance
+2.3.2
+Handling of Errors
+2.3.3
+Attributes for unspecified data
+3
+Presentation Markup
+3.1
+Introduction
+3.1.1
+What Presentation Elements Represent
+3.1.2
+Terminology Used In This Chapter
+3.1.3
+Required Arguments
+3.1.4
+Elements with Special Behaviors
+3.1.5
+Directionality
+3.1.6
+Displaystyle and Scriptlevel
+3.1.7
+Linebreaking of Expressions
+3.1.8
+Warning about fine-tuning of presentation
+3.1.9
+Summary of Presentation Elements
+3.1.10
+Mathematics style attributes common to presentation elements
+3.2
+Token Elements
+3.2.1
+Token Element Content Characters,
+<mglyph/>
+3.2.2
+Mathematics style attributes common to token elements
+3.2.3
+Identifier
+<mi>
+3.2.4
+Number
+<mn>
+3.2.5
+Operator, Fence, Separator or Accent
+<mo>
+3.2.6
+Text
+<mtext>
+3.2.7
+Space
+<mspace/>
+3.2.8
+String Literal
+<ms>
+3.3
+General Layout Schemata
+3.3.1
+Horizontally Group Sub-Expressions
+<mrow>
+3.3.2
+Fractions
+<mfrac>
+3.3.3
+Radicals
+<msqrt>
+,
+<mroot>
+3.3.4
+Style Change
+<mstyle>
+3.3.5
+Error Message
+<merror>
+3.3.6
+Adjust Space Around Content
+<mpadded>
+3.3.7
+Making Sub-Expressions Invisible
+<mphantom>
+3.3.8
+Expression Inside Pair of Fences
+<mfenced>
+3.3.9
+Enclose Expression Inside Notation
+<menclose>
+3.4
+Script and Limit Schemata
+3.4.1
+Subscript
+<msub>
+3.4.2
+Superscript
+<msup>
+3.4.3
+Subscript-superscript Pair
+<msubsup>
+3.4.4
+Underscript
+<munder>
+3.4.5
+Overscript
+<mover>
+3.4.6
+Underscript-overscript Pair
+<munderover>
+3.4.7
+Prescripts and Tensor Indices
+<mmultiscripts>
+,
+<mprescripts/>
+,
+<none/>
+3.5
+Tabular Math
+3.5.1
+Table or Matrix
+<mtable>
+3.5.2
+Row in Table or Matrix
+<mtr>
+3.5.3
+Labeled Row in Table or Matrix
+<mlabeledtr>
+3.5.4
+Entry in Table or Matrix
+<mtd>
+3.5.5
+Alignment Markers
+<maligngroup/>
+,
+<malignmark/>
+3.6
+Elementary Math
+3.6.1
+Stacks of Characters
+<mstack>
+3.6.2
+Long Division
+<mlongdiv>
+3.6.3
+Group Rows with Similiar Positions
+<msgroup>
+3.6.4
+Rows in Elementary Math
+<msrow>
+3.6.5
+Carries, Borrows, and Crossouts
+<mscarries>
+3.6.6
+A Single Carry
+<mscarry>
+3.6.7
+Horizontal Line
+<msline/>
+3.6.8
+Elementary Math Examples
+3.7
+Enlivening Expressions
+3.7.1
+Bind Action to Sub-Expression
+<maction>
+3.8
+Semantics and Presentation
+4
+Content Markup
+4.1
+Introduction
+4.1.1
+The Intent of Content Markup
+4.1.2
+The Structure and Scope of Content MathML Expressions
+4.1.3
+Strict Content MathML
+4.1.4
+Content Dictionaries
+4.1.5
+Content MathML Concepts
+4.2
+Content MathML Elements Encoding Expression Structure
+4.2.1
+Numbers
+<cn>
+4.2.2
+Content Identifiers
+<ci>
+4.2.3
+Content Symbols
+<csymbol>
+4.2.4
+String Literals
+<cs>
+4.2.5
+Function Application
+<apply>
+4.2.6
+Bindings and Bound Variables
+<bind>
+and
+<bvar>
+4.2.7
+Structure Sharing
+<share>
+4.2.8
+Attribution via
+semantics
+4.2.9
+Error Markup
+<cerror>
+4.2.10
+Encoded Bytes
+<cbytes>
+4.3
+Content MathML for Specific Structures
+4.3.1
+Container Markup
+4.3.2
+Bindings with
+<apply>
+4.3.3
+Qualifiers
+4.3.4
+Operator Classes
+4.3.5
+Non-strict Attributes
+4.4
+Content MathML for Specific Operators and Constants
+4.4.1
+Functions and Inverses
+4.4.2
+Arithmetic, Algebra and Logic
+4.4.3
+Relations
+4.4.4
+Calculus and Vector Calculus
+4.4.5
+Theory of Sets
+4.4.6
+Sequences and Series
+4.4.7
+Elementary classical functions
+4.4.8
+Statistics
+4.4.9
+Linear Algebra
+4.4.10
+Constant and Symbol Elements
+4.5
+Deprecated Content Elements
+4.5.1
+Declare
+<declare>
+4.5.2
+Relation
+<reln>
+4.5.3
+Relation
+<fn>
+4.6
+The Strict Content MathML Transformation
+5
+Mixing Markup Languages for Mathematical Expressions
+5.1
+Annotation Framework
+5.1.1
+Annotation elements
+5.1.2
+Annotation keys
+5.1.3
+Alternate representations
+5.1.4
+Content equivalents
+5.1.5
+Annotation references
+5.2
+Elements for Semantic Annotations
+5.2.1
+The
+<semantics>
+element
+5.2.2
+The
+<annotation>
+element
+5.2.3
+The
+<annotation-xml>
+element
+5.3
+Combining Presentation and Content Markup
+5.3.1
+Presentation Markup in Content Markup
+5.3.2
+Content Markup in Presentation Markup
+5.4
+Parallel Markup
+5.4.1
+Top-level Parallel Markup
+5.4.2
+Parallel Markup via Cross-References
+6
+Interactions with the Host Environment
+6.1
+Introduction
+6.2
+Invoking MathML Processors
+6.2.1
+Recognizing MathML in XML
+6.2.2
+Recognizing MathML in HTML
+6.2.3
+Resource Types for MathML Documents
+6.2.4
+Names of MathML Encodings
+6.3
+Transferring MathML
+6.3.1
+Basic Transfer Flavor Names and Contents
+6.3.2
+Recommended Behaviors when Transferring
+6.3.3
+Discussion
+6.3.4
+Examples
+6.4
+Combining MathML and Other Formats
+6.4.1
+Mixing MathML and XHTML
+6.4.2
+Mixing MathML and  non-XML contexts
+6.4.3
+Mixing MathML and HTML
+6.4.4
+Linking
+6.4.5
+MathML and Graphical Markup
+6.5
+Using CSS with MathML
+6.5.1
+Order of processing attributes versus style sheets
+7
+Characters, Entities and Fonts
+7.1
+Introduction
+7.2
+Unicode Character Data
+7.3
+Entity Declarations
+7.4
+Special Characters Not in Unicode
+7.5
+Mathematical Alphanumeric Symbols
+7.6
+Non-Marking Characters
+7.7
+Anomalous Mathematical Characters
+7.7.1
+Keyboard Characters
+7.7.2
+Pseudo-scripts
+7.7.3
+Combining Characters
+Appendices
+A
+Parsing MathML
+A.1
+Use of MathML as Well-Formed
+               XML
+A.2
+Using the RelaxNG Schema for MathML3
+A.2.1
+Full MathML
+A.2.2
+Elements Common to Presentation and Content MathML
+A.2.3
+The Grammar for Presentation MathML
+A.2.4
+The Grammar for Strict Content MathML3
+A.2.5
+The Grammar for Content MathML
+A.2.6
+MathML as a module in a RelaxNG Schema
+A.3
+Using the MathML DTD
+A.3.1
+Document Validation Issues
+A.3.2
+Attribute values in the MathML DTD
+A.3.3
+DOCTYPE declaration for MathML
+A.4
+Using the MathML XML Schema
+A.4.1
+Associating the MathML schema with MathML fragments
+A.5
+Parsing MathML in XHTML
+A.6
+Parsing MathML in HTML
+B
+Media Types Registrations
+B.1
+Selection of Media Types for
+               MathML Instances
+B.2
+Media type for Generic MathML
+B.3
+Media type for Presentation MathML
+B.4
+Media type for Content MathML
+C
+Operator Dictionary (Non-Normative)
+C.1
+Indexing of the operator dictionary
+C.2
+Format of operator dictionary entries
+C.3
+Notes on lspace and 
+               rspace attributes
+C.4
+Operator dictionary entries
+D
+Glossary (Non-Normative)
+E
+Working Group Membership and Acknowledgments (Non-Normative)
+E.1
+The Math Working Group Membership
+E.2
+Acknowledgments
+F
+Changes (Non-Normative)
+F.1
+Changes between MathML 3.0 First Edition and Second Edition
+F.2
+Changes between MathML 2.0 Second Edition and MathML 3.0
+G
+Normative References
+H
+References (Non-Normative)
+I
+Index (Non-Normative)
+I.1
+MathML Elements
+I.2
+MathML Attributes

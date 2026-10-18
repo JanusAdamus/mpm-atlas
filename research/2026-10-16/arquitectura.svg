@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="490" height="285" preserveAspectRatio="xMinYMin meet" viewBox="0 0 490 285" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="490" height="285"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-285)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="6" y="235" width="478" height="40" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
+			<text x="18" y="259" style="font-family: AtlasBold; font-size: 9px;fill: rgb(3%,49%,48%); stroke:none;" transform="translate(0,518) scale(1,-1)">FUENTES</text>
+			<text x="18" y="244" style="font-family: Atlas; font-size: 8.2px;fill: rgb(7%,17%,23%); stroke:none;" transform="translate(0,488) scale(1,-1)">Bibliotecas formales · artículos · libros · aplicaciones</text>
+			<path d="M 245,235 L 245,225 Z" style="stroke: rgb(3%,49%,48%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="242 228, 245 224, 248 228" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(3%,49%,48%); fill-rule: evenodd;"/>
+			<rect x="6" y="184" width="478" height="40" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,17%,23%); fill-rule: evenodd;"/>
+			<text x="18" y="208" style="font-family: AtlasBold; font-size: 9px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,416) scale(1,-1)">AFIRMACIONES CON CONTEXTO</text>
+			<text x="18" y="193" style="font-family: Atlas; font-size: 8.2px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,386) scale(1,-1)">Participantes · supuestos · evidencia · versión · revisión</text>
+			<path d="M 245,184 L 245,174 Z" style="stroke: rgb(3%,49%,48%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="242 177, 245 173, 248 177" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(3%,49%,48%); fill-rule: evenodd;"/>
+			<rect x="6" y="133" width="478" height="40" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
+			<text x="18" y="157" style="font-family: AtlasBold; font-size: 9px;fill: rgb(3%,49%,48%); stroke:none;" transform="translate(0,314) scale(1,-1)">ÍNDICES Y PROYECCIONES</text>
+			<text x="18" y="142" style="font-family: Atlas; font-size: 8.2px;fill: rgb(7%,17%,23%); stroke:none;" transform="translate(0,284) scale(1,-1)">Texto y fórmulas · vectores · grafos · regiones y niveles</text>
+			<path d="M 245,133 L 245,123 Z" style="stroke: rgb(3%,49%,48%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="242 126, 245 122, 248 126" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(3%,49%,48%); fill-rule: evenodd;"/>
+			<rect x="6" y="82" width="478" height="40" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
+			<text x="18" y="106" style="font-family: AtlasBold; font-size: 9px;fill: rgb(3%,49%,48%); stroke:none;" transform="translate(0,212) scale(1,-1)">SERVICIOS DE COMPRENSIÓN</text>
+			<text x="18" y="91" style="font-family: Atlas; font-size: 8.2px;fill: rgb(7%,17%,23%); stroke:none;" transform="translate(0,182) scale(1,-1)">Búsqueda · recorridos · explicaciones · experimentos</text>
+			<path d="M 245,82 L 245,72 Z" style="stroke: rgb(3%,49%,48%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="242 75, 245 71, 248 75" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(3%,49%,48%); fill-rule: evenodd;"/>
+			<rect x="6" y="31" width="478" height="40" rx="7" ry="7" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
+			<text x="18" y="55" style="font-family: AtlasBold; font-size: 9px;fill: rgb(3%,49%,48%); stroke:none;" transform="translate(0,110) scale(1,-1)">EXPERIENCIA ABIERTA</text>
+			<text x="18" y="40" style="font-family: Atlas; font-size: 8.2px;fill: rgb(7%,17%,23%); stroke:none;" transform="translate(0,80) scale(1,-1)">Mapa · lectura · cuadernos · autoría · API · exportación</text>
+			<text x="6" y="7" style="font-family: AtlasItalic; font-size: 8.4px;fill: rgb(30%,38%,43%); stroke:none;" transform="translate(0,14) scale(1,-1)">La procedencia, las versiones y la evaluación atraviesan todas las capas.</text>
+		</g>
+	</g>
+</svg>

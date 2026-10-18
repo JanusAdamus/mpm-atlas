@@ -1,0 +1,599 @@
+{
+  "generated_from": "atlas/model.py (core/atlas-core/vocab_gen.py)",
+  "schema_version": 1,
+  "entity_types": [
+    "concept",
+    "definition",
+    "theory",
+    "statement",
+    "proof",
+    "conjecture",
+    "counterexample",
+    "algorithm",
+    "model",
+    "problem",
+    "phenomenon",
+    "application",
+    "publication",
+    "source_fragment",
+    "person",
+    "resource",
+    "experiment",
+    "area"
+  ],
+  "relation_types": [
+    "depends_on_logically",
+    "proves",
+    "prerequisite_for",
+    "generalizes",
+    "special_case_of",
+    "equivalent_to",
+    "analogous_to",
+    "applied_in",
+    "models",
+    "cites",
+    "influenced",
+    "part_of_area",
+    "formalized_as",
+    "named_after",
+    "counterexample_to",
+    "appears_in",
+    "authored_by"
+  ],
+  "evidence_states": [
+    "extracted",
+    "model_proposed",
+    "editorially_reviewed",
+    "formally_linked",
+    "disputed",
+    "superseded",
+    "retracted"
+  ],
+  "current_states": [
+    "extracted",
+    "model_proposed",
+    "editorially_reviewed",
+    "formally_linked",
+    "disputed"
+  ],
+  "roles": [
+    "subject",
+    "object",
+    "premise",
+    "assumption",
+    "context",
+    "via"
+  ],
+  "projections": [
+    "structure",
+    "proof",
+    "learning",
+    "application",
+    "history",
+    "biblio"
+  ],
+  "relations": {
+    "depends_on_logically": {
+      "projection": "proof",
+      "symmetric": false,
+      "transitive": true,
+      "inverse": null,
+      "allows_premises": true,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)"
+    },
+    "proves": {
+      "projection": "proof",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "proof",
+        "algorithm"
+      ],
+      "object_types": [
+        "statement",
+        "conjecture",
+        "problem"
+      ],
+      "chain_authorizes": "not chainable; a single hop says this proof establishes that statement"
+    },
+    "prerequisite_for": {
+      "projection": "learning",
+      "symmetric": false,
+      "transitive": true,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "chain_authorizes": "a study order suggestion; never a logical necessity"
+    },
+    "generalizes": {
+      "projection": "structure",
+      "symmetric": false,
+      "transitive": true,
+      "inverse": "special_case_of",
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "generalization (transitive, same validity domain or wider)"
+    },
+    "special_case_of": {
+      "projection": "structure",
+      "symmetric": false,
+      "transitive": true,
+      "inverse": "generalizes",
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "specialization (transitive)"
+    },
+    "equivalent_to": {
+      "projection": "structure",
+      "symmetric": true,
+      "transitive": true,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "equivalence under the intersection of all hops' assumptions"
+    },
+    "analogous_to": {
+      "projection": "structure",
+      "symmetric": true,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "publication",
+        "source_fragment",
+        "resource",
+        "experiment",
+        "area"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "publication",
+        "source_fragment",
+        "resource",
+        "experiment",
+        "area"
+      ],
+      "chain_authorizes": "nothing beyond a hypothesis; analogy chains never conclude application or equivalence"
+    },
+    "applied_in": {
+      "projection": "application",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "experiment"
+      ],
+      "chain_authorizes": "single hop: documented use; chained only after equivalence/specialization on the math side"
+    },
+    "models": {
+      "projection": "application",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "experiment"
+      ],
+      "chain_authorizes": "single hop: a model of a phenomenon; empirical adequacy needs its own evidence"
+    },
+    "cites": {
+      "projection": "biblio",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "object_types": [
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "chain_authorizes": "bibliographic reach only; implies neither dependency nor agreement"
+    },
+    "influenced": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": null,
+      "object_types": null,
+      "chain_authorizes": "historical influence; each hop needs its own historical source"
+    },
+    "part_of_area": {
+      "projection": "structure",
+      "symmetric": false,
+      "transitive": true,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "publication",
+        "source_fragment",
+        "resource",
+        "experiment",
+        "area"
+      ],
+      "object_types": [
+        "area"
+      ],
+      "chain_authorizes": "area membership (area hierarchy is transitive)"
+    },
+    "formalized_as": {
+      "projection": "proof",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "resource"
+      ],
+      "chain_authorizes": "translation to a formal artifact; fidelity is a separate assessment from compilation"
+    },
+    "named_after": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "publication",
+        "source_fragment",
+        "resource",
+        "experiment",
+        "area"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "chain_authorizes": "naming only; implies no authorship or priority"
+    },
+    "counterexample_to": {
+      "projection": "proof",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "statement",
+        "counterexample",
+        "model"
+      ],
+      "object_types": [
+        "statement",
+        "conjecture"
+      ],
+      "chain_authorizes": "single hop: refutes the target under the stated assumptions"
+    },
+    "appears_in": {
+      "projection": "biblio",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "phenomenon",
+        "application",
+        "publication",
+        "source_fragment",
+        "resource",
+        "experiment",
+        "area"
+      ],
+      "object_types": [
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "chain_authorizes": "location in literature; not a citation of correctness"
+    },
+    "authored_by": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "publication",
+        "source_fragment",
+        "resource"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "chain_authorizes": "authorship attribution"
+    }
+  },
+  "transitions": {
+    "extracted": [
+      "model_proposed",
+      "editorially_reviewed",
+      "formally_linked",
+      "disputed",
+      "retracted"
+    ],
+    "model_proposed": [
+      "extracted",
+      "editorially_reviewed",
+      "formally_linked",
+      "disputed",
+      "retracted"
+    ],
+    "editorially_reviewed": [
+      "extracted",
+      "model_proposed",
+      "formally_linked",
+      "disputed",
+      "retracted"
+    ],
+    "formally_linked": [
+      "extracted",
+      "model_proposed",
+      "editorially_reviewed",
+      "disputed",
+      "retracted"
+    ],
+    "disputed": [
+      "extracted",
+      "model_proposed",
+      "editorially_reviewed",
+      "formally_linked",
+      "retracted"
+    ],
+    "superseded": [
+      "retracted"
+    ],
+    "retracted": []
+  }
+}

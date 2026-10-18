@@ -1,0 +1,35 @@
+{
+ "entities_scanned": 286757,
+ "current_claims_scanned": 515036,
+ "seed": 20261016,
+ "caps": {
+  "label_exact": 12,
+  "docstring": 12,
+  "informal_to_formal": 500,
+  "formula": 300,
+  "er": 400,
+  "relation": 200,
+  "route": 150,
+  "sourced": 1000
+ },
+ "items": 17653,
+ "db": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+ "registry": {
+  "path": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "sqlite": "C:/Users/AdrianGonzalez/.cargo-target/bench/frozen/atlas-801797.db",
+  "bytes": 1650872320,
+  "mtime_ns": 1792197666313402600,
+  "schema_version": 1,
+  "event_seq": 801797
+ },
+ "written": 17653,
+ "seconds": 36.32,
+ "by_task": {
+  "retrieval": 3900,
+  "er_pair": 1653,
+  "relation": 2418,
+  "sourced_answer": 8533,
+  "route": 1149
+ },
+ "created": "2026-10-17T01:07:17.214766+00:00"
+}

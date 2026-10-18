@@ -1,0 +1,445 @@
+MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions - ACL Anthology
+ACL Anthology
+About
+Announcements
+Communication channels
+Related work
+Copyright
+Credits
+Volunteer
+Development
+Feedback
+Using
+Author directory
+Citing papers
+Links in the Anthology
+Data access
+All FAQs
+Details
+Anthology identifiers
+Names
+ORCID iDs
+DOIs
+Verified authors
+Contributions
+Submissions
+Corrections
+Maintain author pages
+Attachments
+GitHub
+M
+ath
+A
+lign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+Maria Alexeeva
+,
+Rebecca Sharp
+,
+Marco A. Valenzuela-Escárcega
+,
+Jennifer Kadowaki
+,
+Adarsh Pyarelal
+,
+Clayton Morrison
+Correct Metadata for
+Use this form to create a GitHub issue with structured data describing the correction. You will need a GitHub account.
+Once you create that issue, the correction will be reviewed by a staff member.
+⚠️ Mobile Users: Submitting this form to create a new issue will only work with github.com, not the GitHub Mobile app.
+Important
+: The Anthology treat PDFs as authoritative. Please use this form only to correct data
+that is out of line with the PDF. See
+our corrections
+guidelines
+if you need to change the PDF.
+Title
+Adjust the title. Retain tags such as
+<fixed-case>.
+Authors
+Adjust author names and order to match the
+PDF.
+Add Author
+Abstract
+Correct abstract if needed. Retain XML formatting tags such as <tex-math>. You may use <b>...</b> for
+bold
+, <i>...</i> for
+italic
+, <u>...</u> for
+underline
+, <sc>...</sc> for
+small-caps
+, <tt>...<tt> for
+typewriter text
+, <url>...</url> for URLs, <a href=...> for hyperlinks, and <par/> for paragraph breaks.
+Verification against PDF
+Ensure that the new title/authors match the snapshot below. (If there
+is no snapshot or it is too small, consult
+the PDF
+.)
+Authors concatenated from the text boxes above:
+ALL author names match the snapshot above—including
+middle initials, hyphens, and accents.
+Create GitHub issue for staff review
+Abstract
+Extending machine reading approaches to extract mathematical concepts and their descriptions is useful for a variety of tasks, ranging from mathematical information retrieval to increasing accessibility of scientific documents for the visually impaired. This entails segmenting mathematical formulae into identifiers and linking them to their natural language descriptions. We propose a rule-based approach for this task, which extracts LaTeX representations of formula identifiers and links them to their in-text descriptions, given only the original PDF and the location of the formula of interest. We also present a novel evaluation dataset for this task, as well as the tool used to create it.
+Anthology ID:
+2020.lrec-1.269
+Volume:
+Proceedings of the Twelfth Language Resources and Evaluation Conference
+Month:
+May
+Year:
+2020
+Address:
+Marseille, France
+Editors:
+Nicoletta Calzolari
+,
+Frédéric Béchet
+,
+Philippe Blache
+,
+Khalid Choukri
+,
+Christopher Cieri
+,
+Thierry Declerck
+,
+Sara Goggi
+,
+Hitoshi Isahara
+,
+Bente Maegaard
+,
+Joseph Mariani
+,
+Hélène Mazo
+,
+Asuncion Moreno
+,
+Jan Odijk
+,
+Stelios Piperidis
+Venue:
+LREC
+SIG:
+Publisher:
+European Language Resources Association
+Note:
+Pages:
+2204–2212
+Language:
+English
+URL:
+https://aclanthology.org/2020.lrec-1.269/
+DOI:
+Bibkey:
+alexeeva-etal-2020-mathalign
+Cite (ACL):
+Maria Alexeeva, Rebecca Sharp, Marco A. Valenzuela-Escárcega, Jennifer Kadowaki, Adarsh Pyarelal, and Clayton Morrison. 2020.
+MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+. In
+Proceedings of the Twelfth Language Resources and Evaluation Conference
+, pages 2204–2212, Marseille, France. European Language Resources Association.
+Cite (Informal):
+MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+(Alexeeva et al., LREC 2020)
+Copy Citation:
+BibTeX
+Markdown
+MODS XML
+Endnote
+More
+options…
+PDF:
+https://aclanthology.org/2020.lrec-1.269.pdf
+PDF
+Cite
+Search
+Fix data
+Export citation
+BibTeX
+MODS XML
+Endnote
+Preformatted
+@inproceedings{alexeeva-etal-2020-mathalign,
+    title = "{M}ath{A}lign: Linking Formula Identifiers to their Contextual Natural Language Descriptions",
+    author = "Alexeeva, Maria  and
+      Sharp, Rebecca  and
+      Valenzuela-Esc{\'a}rcega, Marco A.  and
+      Kadowaki, Jennifer  and
+      Pyarelal, Adarsh  and
+      Morrison, Clayton",
+    editor = "Calzolari, Nicoletta  and
+      B{\'e}chet, Fr{\'e}d{\'e}ric  and
+      Blache, Philippe  and
+      Choukri, Khalid  and
+      Cieri, Christopher  and
+      Declerck, Thierry  and
+      Goggi, Sara  and
+      Isahara, Hitoshi  and
+      Maegaard, Bente  and
+      Mariani, Joseph  and
+      Mazo, H{\'e}l{\`e}ne  and
+      Moreno, Asuncion  and
+      Odijk, Jan  and
+      Piperidis, Stelios",
+    booktitle = "Proceedings of the Twelfth Language Resources and Evaluation Conference",
+    month = may,
+    year = "2020",
+    address = "Marseille, France",
+    publisher = "European Language Resources Association",
+    url = "https://aclanthology.org/2020.lrec-1.269/",
+    pages = "2204--2212",
+    language = "eng",
+    ISBN = "979-10-95546-34-4",
+    abstract = "Extending machine reading approaches to extract mathematical concepts and their descriptions is useful for a variety of tasks, ranging from mathematical information retrieval to increasing accessibility of scientific documents for the visually impaired. This entails segmenting mathematical formulae into identifiers and linking them to their natural language descriptions. We propose a rule-based approach for this task, which extracts LaTeX representations of formula identifiers and links them to their in-text descriptions, given only the original PDF and the location of the formula of interest. We also present a novel evaluation dataset for this task, as well as the tool used to create it."
+}
+Download as
+File
+Copy to Clipboard
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns="http://www.loc.gov/mods/v3">
+<mods ID="alexeeva-etal-2020-mathalign">
+    <titleInfo>
+        <title>MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions</title>
+    </titleInfo>
+    <name type="personal">
+        <namePart type="given">Maria</namePart>
+        <namePart type="family">Alexeeva</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Rebecca</namePart>
+        <namePart type="family">Sharp</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Marco</namePart>
+        <namePart type="given">A</namePart>
+        <namePart type="family">Valenzuela-Escárcega</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Jennifer</namePart>
+        <namePart type="family">Kadowaki</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Adarsh</namePart>
+        <namePart type="family">Pyarelal</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Clayton</namePart>
+        <namePart type="family">Morrison</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <originInfo>
+        <dateIssued>2020-05</dateIssued>
+    </originInfo>
+    <typeOfResource>text</typeOfResource>
+    <language>
+        <languageTerm type="text">eng</languageTerm>
+    </language>
+    <relatedItem type="host">
+        <titleInfo>
+            <title>Proceedings of the Twelfth Language Resources and Evaluation Conference</title>
+        </titleInfo>
+        <name type="personal">
+            <namePart type="given">Nicoletta</namePart>
+            <namePart type="family">Calzolari</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Frédéric</namePart>
+            <namePart type="family">Béchet</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Philippe</namePart>
+            <namePart type="family">Blache</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Khalid</namePart>
+            <namePart type="family">Choukri</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Christopher</namePart>
+            <namePart type="family">Cieri</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Thierry</namePart>
+            <namePart type="family">Declerck</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Sara</namePart>
+            <namePart type="family">Goggi</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Hitoshi</namePart>
+            <namePart type="family">Isahara</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Bente</namePart>
+            <namePart type="family">Maegaard</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Joseph</namePart>
+            <namePart type="family">Mariani</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Hélène</namePart>
+            <namePart type="family">Mazo</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Asuncion</namePart>
+            <namePart type="family">Moreno</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Jan</namePart>
+            <namePart type="family">Odijk</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Stelios</namePart>
+            <namePart type="family">Piperidis</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <originInfo>
+            <publisher>European Language Resources Association</publisher>
+            <place>
+                <placeTerm type="text">Marseille, France</placeTerm>
+            </place>
+        </originInfo>
+        <genre authority="marcgt">conference publication</genre>
+        <identifier type="isbn">979-10-95546-34-4</identifier>
+    </relatedItem>
+    <abstract>Extending machine reading approaches to extract mathematical concepts and their descriptions is useful for a variety of tasks, ranging from mathematical information retrieval to increasing accessibility of scientific documents for the visually impaired. This entails segmenting mathematical formulae into identifiers and linking them to their natural language descriptions. We propose a rule-based approach for this task, which extracts LaTeX representations of formula identifiers and links them to their in-text descriptions, given only the original PDF and the location of the formula of interest. We also present a novel evaluation dataset for this task, as well as the tool used to create it.</abstract>
+    <identifier type="citekey">alexeeva-etal-2020-mathalign</identifier>
+    <location>
+        <url>https://aclanthology.org/2020.lrec-1.269/</url>
+    </location>
+    <part>
+        <date>2020-05</date>
+        <extent unit="page">
+            <start>2204</start>
+            <end>2212</end>
+        </extent>
+    </part>
+</mods>
+</modsCollection>
+Download as
+File
+Copy to Clipboard
+%0 Conference Proceedings
+%T MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+%A Alexeeva, Maria
+%A Sharp, Rebecca
+%A Valenzuela-Escárcega, Marco A.
+%A Kadowaki, Jennifer
+%A Pyarelal, Adarsh
+%A Morrison, Clayton
+%Y Calzolari, Nicoletta
+%Y Béchet, Frédéric
+%Y Blache, Philippe
+%Y Choukri, Khalid
+%Y Cieri, Christopher
+%Y Declerck, Thierry
+%Y Goggi, Sara
+%Y Isahara, Hitoshi
+%Y Maegaard, Bente
+%Y Mariani, Joseph
+%Y Mazo, Hélène
+%Y Moreno, Asuncion
+%Y Odijk, Jan
+%Y Piperidis, Stelios
+%S Proceedings of the Twelfth Language Resources and Evaluation Conference
+%D 2020
+%8 May
+%I European Language Resources Association
+%C Marseille, France
+%@ 979-10-95546-34-4
+%G eng
+%F alexeeva-etal-2020-mathalign
+%X Extending machine reading approaches to extract mathematical concepts and their descriptions is useful for a variety of tasks, ranging from mathematical information retrieval to increasing accessibility of scientific documents for the visually impaired. This entails segmenting mathematical formulae into identifiers and linking them to their natural language descriptions. We propose a rule-based approach for this task, which extracts LaTeX representations of formula identifiers and links them to their in-text descriptions, given only the original PDF and the location of the formula of interest. We also present a novel evaluation dataset for this task, as well as the tool used to create it.
+%U https://aclanthology.org/2020.lrec-1.269/
+%P 2204-2212
+Download as
+File
+Copy to Clipboard
+Markdown (Informal)
+[MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions](https://aclanthology.org/2020.lrec-1.269/) (Alexeeva et al., LREC 2020)
+MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+(Alexeeva et al., LREC 2020)
+ACL
+Maria Alexeeva, Rebecca Sharp, Marco A. Valenzuela-Escárcega, Jennifer Kadowaki, Adarsh Pyarelal, and Clayton Morrison. 2020.
+MathAlign: Linking Formula Identifiers to their Contextual Natural Language Descriptions
+. In
+Proceedings of the Twelfth Language Resources and Evaluation Conference
+, pages 2204–2212, Marseille, France. European Language Resources Association.
+Copy Markdown to
+Clipboard
+Copy ACL to
+Clipboard
+ACL materials are Copyright © 1963–2026 ACL; other materials are copyrighted by their respective copyright holders. Materials prior to 2016 here are licensed under the
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 International License
+. Permission is granted to make copies for the purposes of teaching and research. Materials published in or after 2016 are licensed on a
+Creative Commons Attribution 4.0 International License
+.
+The ACL Anthology is managed and built by the
+ACL Anthology team
+of volunteers.
+Site last built on 16 October 2026 at 15:11 UTC with
+commit e3e087c
+.

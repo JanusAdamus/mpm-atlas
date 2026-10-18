@@ -1,0 +1,12 @@
+# The build directory must live outside OneDrive with a short path, or the MSVC
+# linker fails with LNK1104.  CARGO_TARGET_DIR in the environment overrides this
+# (parallel workers each use their own directory to avoid cargo's lock).
+[build]
+target-dir = "C:/Users/AdrianGonzalez/.cargo-target/atlas"
+
+# Bundled SQLite build flags (measured on the compile scan, see core/README.md):
+# - memory-mapped reads beyond the 2 GiB default cap: parallel readers on Windows
+#   scale with mmap and serialize on ReadFile without it (16 threads: 0.19 s vs 1.27 s);
+# - no global malloc statistics (a process-wide mutex on every allocation).
+[env]
+LIBSQLITE3_FLAGS = "-DSQLITE_MAX_MMAP_SIZE=1099511627776 -DSQLITE_DEFAULT_MEMSTATUS=0"

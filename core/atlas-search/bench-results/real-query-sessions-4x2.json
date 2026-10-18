@@ -1,0 +1,446 @@
+{
+  "concurrent_1": {
+    "clients": 1,
+    "latency": {
+      "max_ms": 46.86,
+      "mean_ms": 18.52,
+      "n": 540,
+      "p50_ms": 17.26,
+      "p95_ms": 32.75,
+      "p99_ms": 38.98
+    },
+    "qps": 54.0,
+    "queries": 540,
+    "secs": 10.0
+  },
+  "concurrent_16": {
+    "clients": 16,
+    "latency": {
+      "max_ms": 1025.08,
+      "mean_ms": 74.14,
+      "n": 2160,
+      "p50_ms": 61.35,
+      "p95_ms": 188.64,
+      "p99_ms": 321.02
+    },
+    "qps": 216.0,
+    "queries": 2160,
+    "secs": 10.0
+  },
+  "corpus": {
+    "documents": 286757,
+    "load_s": 0.2569207,
+    "text_bytes": 71868194,
+    "texts": 1293212
+  },
+  "dense": {
+    "methods": {
+      "brute_parallel": {
+        "max_ms": 2.84,
+        "mean_ms": 1.71,
+        "n": 800,
+        "p50_ms": 1.68,
+        "p95_ms": 1.88,
+        "p99_ms": 2.34
+      },
+      "hnsw_ef256": {
+        "latency": {
+          "max_ms": 8.6,
+          "mean_ms": 2.7,
+          "n": 800,
+          "p50_ms": 2.25,
+          "p95_ms": 5.49,
+          "p99_ms": 6.69
+        },
+        "recall_at_10": 0.815875,
+        "recall_at_10_ids": 0.8145
+      },
+      "hnsw_ef32": {
+        "latency": {
+          "max_ms": 2.12,
+          "mean_ms": 0.59,
+          "n": 800,
+          "p50_ms": 0.53,
+          "p95_ms": 1.25,
+          "p99_ms": 1.54
+        },
+        "recall_at_10": 0.630125,
+        "recall_at_10_ids": 0.62825
+      },
+      "hnsw_ef96": {
+        "latency": {
+          "max_ms": 4.44,
+          "mean_ms": 1.45,
+          "n": 800,
+          "p50_ms": 1.32,
+          "p95_ms": 2.79,
+          "p99_ms": 3.5
+        },
+        "recall_at_10": 0.746375,
+        "recall_at_10_ids": 0.744625
+      }
+    },
+    "queries": 800
+  },
+  "env": {
+    "ATLAS_QUERY_SESSIONS": "4",
+    "ATLAS_QUERY_THREADS": "2"
+  },
+  "memory_end": {
+    "private_mib": 3175,
+    "working_set_mib": 3748
+  },
+  "mode": "real",
+  "open": {
+    "memory_after": {
+      "private_mib": 3114,
+      "working_set_mib": 3258
+    },
+    "memory_before": {
+      "private_mib": 14,
+      "working_set_mib": 39
+    },
+    "ms": 8957.873599999999,
+    "status": {
+      "dense_method": "brute",
+      "dim": 384,
+      "dir": "data/index\\0dd04e66745eaceb",
+      "documents": 286757,
+      "encoder": "multilingual-e5-small",
+      "formula_documents": 249306,
+      "semantic": "ok"
+    }
+  },
+  "query_samples": {
+    "cross_domain": [
+      "relación entre Fin.odd_iff_of_even y LocallyConstant.comap_comp",
+      "relación entre MeasurableEmbedding.variation_map y SSet.Subcomplex.mem_nonDegenerate_iff",
+      "relación entre Algebra.Generators.toKaehler_tmul_D y Mathlib.Tactic.Have"
+    ],
+    "formula": [
+      "(μ.map φ).variation = μ.variation.map φ",
+      "encode cf < encode (rfind' cf)",
+      "μ.outerMeasure U = μ.innerContent U"
+    ],
+    "named_object": [
+      "Fin.odd_iff_of_even",
+      "MeasurableEmbedding.variation_map",
+      "Algebra.Generators.toKaehler_tmul_D"
+    ],
+    "natural_language": [
+      "`X`, a set `s` is open when `f",
+      "Hence, we cannot allow `R` arbitrarily close to",
+      "rise to a terminal object in `Sheaf J`"
+    ]
+  },
+  "sequential": {
+    "cross_domain": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 3.23,
+          "mean_ms": 1.02,
+          "n": 200,
+          "p50_ms": 0.9,
+          "p95_ms": 1.86,
+          "p99_ms": 2.5
+        },
+        "fused": {
+          "max_ms": 34.43,
+          "mean_ms": 17.65,
+          "n": 200,
+          "p50_ms": 17.28,
+          "p95_ms": 23.89,
+          "p99_ms": 31.69
+        },
+        "lexical": {
+          "max_ms": 27.06,
+          "mean_ms": 9.46,
+          "n": 200,
+          "p50_ms": 8.48,
+          "p95_ms": 17.33,
+          "p99_ms": 22.74
+        },
+        "semantic": {
+          "max_ms": 45.23,
+          "mean_ms": 22.33,
+          "n": 200,
+          "p50_ms": 20.68,
+          "p95_ms": 33.8,
+          "p99_ms": 39.09
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": null,
+          "mean_ms": -0.0,
+          "n": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "p99_ms": null
+        },
+        "lexical": {
+          "max_ms": 21.76,
+          "mean_ms": 8.83,
+          "n": 200,
+          "p50_ms": 8.45,
+          "p95_ms": 14.66,
+          "p99_ms": 19.28
+        },
+        "semantic": {
+          "max_ms": 33.09,
+          "mean_ms": 16.54,
+          "n": 200,
+          "p50_ms": 16.14,
+          "p95_ms": 22.62,
+          "p99_ms": 30.74
+        }
+      },
+      "routes": {
+        "CrossDomain": 200
+      },
+      "semantic_query_encode": {
+        "max_ms": 30.76,
+        "mean_ms": 14.13,
+        "n": 200,
+        "p50_ms": 13.61,
+        "p95_ms": 20.18,
+        "p99_ms": 28.03
+      }
+    },
+    "formula": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 8.43,
+          "mean_ms": 2.05,
+          "n": 200,
+          "p50_ms": 1.74,
+          "p95_ms": 4.7,
+          "p99_ms": 6.24
+        },
+        "fused": {
+          "max_ms": 52.54,
+          "mean_ms": 12.97,
+          "n": 200,
+          "p50_ms": 12.6,
+          "p95_ms": 25.98,
+          "p99_ms": 46.07
+        },
+        "lexical": {
+          "max_ms": 24.92,
+          "mean_ms": 6.07,
+          "n": 200,
+          "p50_ms": 5.08,
+          "p95_ms": 14.82,
+          "p99_ms": 21.39
+        },
+        "semantic": {
+          "max_ms": 71.12,
+          "mean_ms": 17.34,
+          "n": 200,
+          "p50_ms": 14.93,
+          "p95_ms": 30.33,
+          "p99_ms": 50.41
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": 8.34,
+          "mean_ms": 2.24,
+          "n": 177,
+          "p50_ms": 1.95,
+          "p95_ms": 4.89,
+          "p99_ms": 6.69
+        },
+        "lexical": {
+          "max_ms": 18.52,
+          "mean_ms": 6.53,
+          "n": 163,
+          "p50_ms": 6.11,
+          "p95_ms": 12.45,
+          "p99_ms": 15.23
+        },
+        "semantic": {
+          "max_ms": 51.18,
+          "mean_ms": 14.76,
+          "n": 163,
+          "p50_ms": 12.66,
+          "p95_ms": 27.38,
+          "p99_ms": 45.44
+        }
+      },
+      "routes": {
+        "Formula": 167,
+        "NamedObject": 31,
+        "NaturalLanguage": 2
+      },
+      "semantic_query_encode": {
+        "max_ms": 48.49,
+        "mean_ms": 12.37,
+        "n": 163,
+        "p50_ms": 10.38,
+        "p95_ms": 24.82,
+        "p99_ms": 42.56
+      }
+    },
+    "named_object": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 6.86,
+          "mean_ms": 0.73,
+          "n": 200,
+          "p50_ms": 0.11,
+          "p95_ms": 3.9,
+          "p99_ms": 5.81
+        },
+        "fused": {
+          "max_ms": 23.67,
+          "mean_ms": 12.72,
+          "n": 200,
+          "p50_ms": 12.18,
+          "p95_ms": 18.18,
+          "p99_ms": 22.6
+        },
+        "lexical": {
+          "max_ms": 19.2,
+          "mean_ms": 4.92,
+          "n": 200,
+          "p50_ms": 3.85,
+          "p95_ms": 12.08,
+          "p99_ms": 16.97
+        },
+        "semantic": {
+          "max_ms": 28.59,
+          "mean_ms": 16.84,
+          "n": 200,
+          "p50_ms": 16.03,
+          "p95_ms": 25.93,
+          "p99_ms": 27.88
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": 4.89,
+          "mean_ms": 0.46,
+          "n": 135,
+          "p50_ms": 0.03,
+          "p95_ms": 2.8,
+          "p99_ms": 4.39
+        },
+        "lexical": {
+          "max_ms": 20.86,
+          "mean_ms": 4.81,
+          "n": 199,
+          "p50_ms": 4.26,
+          "p95_ms": 9.8,
+          "p99_ms": 13.99
+        },
+        "semantic": {
+          "max_ms": 22.66,
+          "mean_ms": 11.68,
+          "n": 199,
+          "p50_ms": 11.15,
+          "p95_ms": 16.71,
+          "p99_ms": 21.6
+        }
+      },
+      "routes": {
+        "Formula": 1,
+        "NamedObject": 198,
+        "NaturalLanguage": 1
+      },
+      "semantic_query_encode": {
+        "max_ms": 20.13,
+        "mean_ms": 9.35,
+        "n": 199,
+        "p50_ms": 8.93,
+        "p95_ms": 14.32,
+        "p99_ms": 19.13
+      }
+    },
+    "natural_language": {
+      "end_to_end": {
+        "formula": {
+          "max_ms": 6.35,
+          "mean_ms": 2.31,
+          "n": 200,
+          "p50_ms": 2.2,
+          "p95_ms": 3.76,
+          "p99_ms": 4.2
+        },
+        "fused": {
+          "max_ms": 28.82,
+          "mean_ms": 15.41,
+          "n": 200,
+          "p50_ms": 13.61,
+          "p95_ms": 24.87,
+          "p99_ms": 26.77
+        },
+        "lexical": {
+          "max_ms": 27.74,
+          "mean_ms": 7.61,
+          "n": 200,
+          "p50_ms": 7.11,
+          "p95_ms": 13.5,
+          "p99_ms": 18.75
+        },
+        "semantic": {
+          "max_ms": 31.78,
+          "mean_ms": 15.76,
+          "n": 200,
+          "p50_ms": 14.42,
+          "p95_ms": 24.08,
+          "p99_ms": 26.85
+        }
+      },
+      "fused_empty": 0,
+      "lane_inside_fused": {
+        "formula": {
+          "max_ms": 8.79,
+          "mean_ms": 3.67,
+          "n": 24,
+          "p50_ms": 3.47,
+          "p95_ms": 8.09,
+          "p99_ms": 8.79
+        },
+        "lexical": {
+          "max_ms": 24.69,
+          "mean_ms": 9.38,
+          "n": 197,
+          "p50_ms": 8.2,
+          "p95_ms": 19.02,
+          "p99_ms": 23.4
+        },
+        "semantic": {
+          "max_ms": 28.21,
+          "mean_ms": 13.86,
+          "n": 197,
+          "p50_ms": 12.21,
+          "p95_ms": 22.92,
+          "p99_ms": 25.02
+        }
+      },
+      "routes": {
+        "CrossDomain": 3,
+        "Formula": 14,
+        "NamedObject": 48,
+        "NaturalLanguage": 135
+      },
+      "semantic_query_encode": {
+        "max_ms": 25.96,
+        "mean_ms": 11.45,
+        "n": 197,
+        "p50_ms": 9.75,
+        "p95_ms": 20.26,
+        "p99_ms": 22.28
+      }
+    }
+  },
+  "snapshot": {
+    "hash": "0dd04e66745eaceb",
+    "nodes": 286757
+  },
+  "threads": 16
+}

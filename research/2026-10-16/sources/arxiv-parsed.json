@@ -1,0 +1,967 @@
+{
+  "total_results": 33,
+  "returned": 33,
+  "query_as_executed": "arXiv Query: search_query=&id_list=1105.0548,1603.06424,1910.09336,2606.25363,2505.13406,2604.24797,2303.14957,2308.13418,2408.09869,2509.22186,2412.07626,1904.01608,2306.15626,2302.12433,2205.12615,2606.31002,2105.00377,2404.16130,2401.18059,2405.14831,2307.03172,2305.14627,2004.14974,2309.15217,1506.06745,1810.08473,1802.03426,1705.08039,1506.05908,2307.15759,2205.01833,1901.10816,1703.06103&start=0&max_results=33",
+  "entries": [
+    {
+      "arxiv_id": "2303.14957",
+      "arxiv_id_versioned": "2303.14957v1",
+      "version": "1",
+      "title": "unarXive 2022: All arXiv Publications Pre-Processed for NLP, Including Structured Full-Text and Citation Network",
+      "abstract": "Large-scale data sets on scholarly publications are the basis for a variety of bibliometric analyses and natural language processing (NLP) applications. Especially data sets derived from publication's full-text have recently gained attention. While several such data sets already exist, we see key shortcomings in terms of their domain and time coverage, citation network completeness, and representation of full-text content. To address these points, we propose a new version of the data set unarXive. We base our data processing pipeline and output format on two existing data sets, and improve on each of them. Our resulting data set comprises 1.9 M publications spanning multiple disciplines and 32 years. It furthermore has a more complete citation network than its predecessors and retains a richer representation of document structure as well as non-textual publication content such as mathematical notation. In addition to the data set, we provide ready-to-use training/test data for citation recommendation and IMRaD classification. All data and source code is publicly available at https://github.com/IllDepence/unarXive.",
+      "authors": [
+        "Tarek Saier",
+        "Johan Krause",
+        "Michael Färber"
+      ],
+      "published": "2023-03-27T07:40:59Z",
+      "updated": "2023-03-27T07:40:59Z",
+      "primary_category": "cs.DL",
+      "categories": [
+        "cs.DL",
+        "cs.CL"
+      ],
+      "doi": "10.1109/JCDL57899.2023.00020",
+      "journal_ref": null,
+      "comment": "submitted to JCDL2023",
+      "abstract_url": "https://arxiv.org/abs/2303.14957v1",
+      "pdf_url": "https://arxiv.org/pdf/2303.14957v1"
+    },
+    {
+      "arxiv_id": "2307.03172",
+      "arxiv_id_versioned": "2307.03172v3",
+      "version": "3",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "abstract": "While recent language models have the ability to take long contexts as input, relatively little is known about how well they use longer context. We analyze the performance of language models on two tasks that require identifying relevant information in their input contexts: multi-document question answering and key-value retrieval. We find that performance can degrade significantly when changing the position of relevant information, indicating that current language models do not robustly make use of information in long input contexts. In particular, we observe that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models. Our analysis provides a better understanding of how language models use their input context and provides new evaluation protocols for future long-context language models.",
+      "authors": [
+        "Nelson F. Liu",
+        "Kevin Lin",
+        "John Hewitt",
+        "Ashwin Paranjape",
+        "Michele Bevilacqua",
+        "Fabio Petroni",
+        "Percy Liang"
+      ],
+      "published": "2023-07-06T17:54:11Z",
+      "updated": "2023-11-20T23:09:34Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "18 pages, 16 figures. Accepted for publication in Transactions of the Association for Computational Linguistics (TACL), 2023",
+      "abstract_url": "https://arxiv.org/abs/2307.03172v3",
+      "pdf_url": "https://arxiv.org/pdf/2307.03172v3"
+    },
+    {
+      "arxiv_id": "2308.13418",
+      "arxiv_id_versioned": "2308.13418v1",
+      "version": "1",
+      "title": "Nougat: Neural Optical Understanding for Academic Documents",
+      "abstract": "Scientific knowledge is predominantly stored in books and scientific journals, often in the form of PDFs. However, the PDF format leads to a loss of semantic information, particularly for mathematical expressions. We propose Nougat (Neural Optical Understanding for Academic Documents), a Visual Transformer model that performs an Optical Character Recognition (OCR) task for processing scientific documents into a markup language, and demonstrate the effectiveness of our model on a new dataset of scientific documents. The proposed approach offers a promising solution to enhance the accessibility of scientific knowledge in the digital age, by bridging the gap between human-readable documents and machine-readable text. We release the models and code to accelerate future work on scientific text recognition.",
+      "authors": [
+        "Lukas Blecher",
+        "Guillem Cucurull",
+        "Thomas Scialom",
+        "Robert Stojnic"
+      ],
+      "published": "2023-08-25T15:03:36Z",
+      "updated": "2023-08-25T15:03:36Z",
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "17 pages, 10 figures",
+      "abstract_url": "https://arxiv.org/abs/2308.13418v1",
+      "pdf_url": "https://arxiv.org/pdf/2308.13418v1"
+    },
+    {
+      "arxiv_id": "2307.15759",
+      "arxiv_id_versioned": "2307.15759v1",
+      "version": "1",
+      "title": "Lessons in Reproducibility: Insights from NLP Studies in Materials Science",
+      "abstract": "Natural Language Processing (NLP), a cornerstone field within artificial intelligence, has been increasingly utilized in the field of materials science literature. Our study conducts a reproducibility analysis of two pioneering works within this domain: \"Machine-learned and codified synthesis parameters of oxide materials\" by Kim et al., and \"Unsupervised word embeddings capture latent knowledge from materials science literature\" by Tshitoyan et al. We aim to comprehend these studies from a reproducibility perspective, acknowledging their significant influence on the field of materials informatics, rather than critiquing them. Our study indicates that both papers offered thorough workflows, tidy and well-documented codebases, and clear guidance for model evaluation. This makes it easier to replicate their results successfully and partially reproduce their findings. In doing so, they set commendable standards for future materials science publications to aspire to. However, our analysis also highlights areas for improvement such as to provide access to training data where copyright restrictions permit, more transparency on model architecture and the training process, and specifications of software dependency versions. We also cross-compare the word embedding models between papers, and find that some key differences in reproducibility and cross-compatibility are attributable to design choices outside the bounds of the models themselves. In summary, our study appreciates the benchmark set by these seminal papers while advocating for further enhancements in research reproducibility practices in the field of NLP for materials science. This balance of understanding and continuous improvement will ultimately propel the intersecting domains of NLP and materials science literature into a future of exciting discoveries.",
+      "authors": [
+        "Xiangyun Lei",
+        "Edward Kim",
+        "Viktoriia Baibakova",
+        "Shijing Sun"
+      ],
+      "published": "2023-07-28T18:36:42Z",
+      "updated": "2023-07-28T18:36:42Z",
+      "primary_category": "physics.chem-ph",
+      "categories": [
+        "physics.chem-ph",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2307.15759v1",
+      "pdf_url": "https://arxiv.org/pdf/2307.15759v1"
+    },
+    {
+      "arxiv_id": "2306.15626",
+      "arxiv_id_versioned": "2306.15626v2",
+      "version": "2",
+      "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+      "abstract": "Large language models (LLMs) have shown promise in proving formal theorems using proof assistants such as Lean. However, existing methods are difficult to reproduce or build on, due to private code, data, and large compute requirements. This has created substantial barriers to research on machine learning methods for theorem proving. This paper removes these barriers by introducing LeanDojo: an open-source Lean playground consisting of toolkits, data, models, and benchmarks. LeanDojo extracts data from Lean and enables interaction with the proof environment programmatically. It contains fine-grained annotations of premises in proofs, providing valuable data for premise selection: a key bottleneck in theorem proving. Using this data, we develop ReProver (Retrieval-Augmented Prover): an LLM-based prover augmented with retrieval for selecting premises from a vast math library. It is inexpensive and needs only one GPU week of training. Our retriever leverages LeanDojo's program analysis capability to identify accessible premises and hard negative examples, which makes retrieval much more effective. Furthermore, we construct a new benchmark consisting of 98,734 theorems and proofs extracted from Lean's math library. It features challenging data split requiring the prover to generalize to theorems relying on novel premises that are never used in training. We use this benchmark for training and evaluation, and experimental results demonstrate the effectiveness of ReProver over non-retrieval baselines and GPT-4. We thus provide the first set of open-source LLM-based theorem provers without any proprietary datasets and release it under a permissive MIT license to facilitate further research.",
+      "authors": [
+        "Kaiyu Yang",
+        "Aidan M. Swope",
+        "Alex Gu",
+        "Rahul Chalamala",
+        "Peiyang Song",
+        "Shixing Yu",
+        "Saad Godil",
+        "Ryan Prenger",
+        "Anima Anandkumar"
+      ],
+      "published": "2023-06-27T17:05:32Z",
+      "updated": "2023-10-27T16:00:20Z",
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.LO",
+        "stat.ML"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accepted to NeurIPS 2023 (Datasets and Benchmarks Track) as an oral presentation. Data, code, and models available at https://leandojo.org/",
+      "abstract_url": "https://arxiv.org/abs/2306.15626v2",
+      "pdf_url": "https://arxiv.org/pdf/2306.15626v2"
+    },
+    {
+      "arxiv_id": "2105.00377",
+      "arxiv_id_versioned": "2105.00377v1",
+      "version": "1",
+      "title": "MathBERT: A Pre-Trained Model for Mathematical Formula Understanding",
+      "abstract": "Large-scale pre-trained models like BERT, have obtained a great success in various Natural Language Processing (NLP) tasks, while it is still a challenge to adapt them to the math-related tasks. Current pre-trained models neglect the structural features and the semantic correspondence between formula and its context. To address these issues, we propose a novel pre-trained model, namely \\textbf{MathBERT}, which is jointly trained with mathematical formulas and their corresponding contexts. In addition, in order to further capture the semantic-level structural features of formulas, a new pre-training task is designed to predict the masked formula substructures extracted from the Operator Tree (OPT), which is the semantic structural representation of formulas. We conduct various experiments on three downstream tasks to evaluate the performance of MathBERT, including mathematical information retrieval, formula topic classification and formula headline generation. Experimental results demonstrate that MathBERT significantly outperforms existing methods on all those three tasks. Moreover, we qualitatively show that this pre-trained model effectively captures the semantic-level structural information of formulas. To the best of our knowledge, MathBERT is the first pre-trained model for mathematical formula understanding.",
+      "authors": [
+        "Shuai Peng",
+        "Ke Yuan",
+        "Liangcai Gao",
+        "Zhi Tang"
+      ],
+      "published": "2021-05-02T02:10:31Z",
+      "updated": "2021-05-02T02:10:31Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2105.00377v1",
+      "pdf_url": "https://arxiv.org/pdf/2105.00377v1"
+    },
+    {
+      "arxiv_id": "1506.06745",
+      "arxiv_id_versioned": "1506.06745v1",
+      "version": "1",
+      "title": "GraphMaps: Browsing Large Graphs as Interactive Maps",
+      "abstract": "Algorithms for laying out large graphs have seen significant progress in the past decade. However, browsing large graphs remains a challenge. Rendering thousands of graphical elements at once often results in a cluttered image, and navigating these elements naively can cause disorientation. To address this challenge we propose a method called GraphMaps, mimicking the browsing experience of online geographic maps. GraphMaps creates a sequence of layers, where each layer refines the previous one. During graph browsing, GraphMaps chooses the layer corresponding to the zoom level, and renders only those entities of the layer that intersect the current viewport. The result is that, regardless of the graph size, the number of entities rendered at each view does not exceed a predefined threshold, yet all graph elements can be explored by the standard zoom and pan operations. GraphMaps preprocesses a graph in such a way that during browsing, the geometry of the entities is stable, and the viewer is responsive. Our case studies indicate that GraphMaps is useful in gaining an overview of a large graph, and also in exploring a graph on a finer level of detail.",
+      "authors": [
+        "Lev Nachmanson",
+        "Roman Prutkin",
+        "Bongshin Lee",
+        "Nathalie Henry Riche",
+        "Alexander E. Holroyd",
+        "Xiaoji Chen"
+      ],
+      "published": "2015-06-22T17:17:34Z",
+      "updated": "2015-06-22T17:17:34Z",
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.DM",
+        "cs.MS",
+        "cs.SI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "submitted to GD 2015",
+      "abstract_url": "https://arxiv.org/abs/1506.06745v1",
+      "pdf_url": "https://arxiv.org/pdf/1506.06745v1"
+    },
+    {
+      "arxiv_id": "2606.25363",
+      "arxiv_id_versioned": "2606.25363v1",
+      "version": "1",
+      "title": "TheoremGraph: Bridging Formal and Informal Mathematics",
+      "abstract": "Mathematical knowledge is organized around statements and their dependencies, but this structure is exposed unevenly: informal papers cite mostly at the document level, while formal libraries record fine-grained dependencies over a much smaller body of mathematics. We introduce TheoremGraph, a unified statement-level dependency graph spanning both informal and formal mathematics. On the informal side, we parse 11.7M theorem-like environments from mathematics arXiv and recover 18.3M candidate directed dependencies, each labeled by the extractor that proposed it so downstream users can trade coverage for precision. On the formal side, we release LeanGraph, a Lean 4 elaborator-level extractor producing 388,105 declaration nodes and 11.3M typed edges across 25 Lean projects. We bridge the two graphs by embedding generated natural-language slogans into a shared semantic space, linking related statements across papers and across the informal/formal divide; an LLM judge affirms 47,952 such matches above a 0.8 cosine floor, with the judge-acceptance rate rising from 48% across the floor to 87% in the >=0.9 tier. On formal concept retrieval, our name-and-signature representation with graph expansion comes within 0.5pp of LeanSearch v2's reranked Recall@10 (0.775 vs. 0.780) without an LM reranker. We release the dataset, extractors, HTTP API, and MCP interface as infrastructure for mathematical search, attribution, and retrieval-augmented reasoning, available at theoremsearch.com and huggingface.co/datasets/uw-math-ai/theorem-matching.",
+      "authors": [
+        "Simon Kurgan",
+        "Evan Wang",
+        "Eric Leonen",
+        "Sophie Szeto",
+        "Luke Alexander",
+        "Artemii Remizov",
+        "Jarod Alper",
+        "Giovanni Inchiostro",
+        "Vasily Ilin"
+      ],
+      "published": "2026-06-24T03:47:05Z",
+      "updated": "2026-06-24T03:47:05Z",
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "math.HO"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "31 pages, 9 figures, 21 tables",
+      "abstract_url": "https://arxiv.org/abs/2606.25363v1",
+      "pdf_url": "https://arxiv.org/pdf/2606.25363v1"
+    },
+    {
+      "arxiv_id": "2205.12615",
+      "arxiv_id_versioned": "2205.12615v1",
+      "version": "1",
+      "title": "Autoformalization with Large Language Models",
+      "abstract": "Autoformalization is the process of automatically translating from natural language mathematics to formal specifications and proofs. A successful autoformalization system could advance the fields of formal verification, program synthesis, and artificial intelligence. While the long-term goal of autoformalization seemed elusive for a long time, we show large language models provide new prospects towards this goal. We make the surprising observation that LLMs can correctly translate a significant portion ($25.3\\%$) of mathematical competition problems perfectly to formal specifications in Isabelle/HOL. We demonstrate the usefulness of this process by improving a previously introduced neural theorem prover via training on these autoformalized theorems. Our methodology results in a new state-of-the-art result on the MiniF2F theorem proving benchmark, improving the proof rate from $29.6\\%$ to $35.2\\%$.",
+      "authors": [
+        "Yuhuai Wu",
+        "Albert Q. Jiang",
+        "Wenda Li",
+        "Markus N. Rabe",
+        "Charles Staats",
+        "Mateja Jamnik",
+        "Christian Szegedy"
+      ],
+      "published": "2022-05-25T09:53:30Z",
+      "updated": "2022-05-25T09:53:30Z",
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.LO",
+        "cs.SE"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "44 pages",
+      "abstract_url": "https://arxiv.org/abs/2205.12615v1",
+      "pdf_url": "https://arxiv.org/pdf/2205.12615v1"
+    },
+    {
+      "arxiv_id": "1910.09336",
+      "arxiv_id_versioned": "1910.09336v2",
+      "version": "2",
+      "title": "The Lean mathematical library",
+      "abstract": "This paper describes mathlib, a community-driven effort to build a unified library of mathematics formalized in the Lean proof assistant. Among proof assistant libraries, it is distinguished by its dependently typed foundations, focus on classical mathematics, extensive hierarchy of structures, use of large- and small-scale automation, and distributed organization. We explain the architecture and design decisions of the library and the social organization that has led us here.",
+      "authors": [
+        "The mathlib Community"
+      ],
+      "published": "2019-10-21T13:08:24Z",
+      "updated": "2019-12-16T20:37:52Z",
+      "primary_category": "cs.LO",
+      "categories": [
+        "cs.LO",
+        "math.LO"
+      ],
+      "doi": "10.1145/3372885.3373824",
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/1910.09336v2",
+      "pdf_url": "https://arxiv.org/pdf/1910.09336v2"
+    },
+    {
+      "arxiv_id": "2305.14627",
+      "arxiv_id_versioned": "2305.14627v2",
+      "version": "2",
+      "title": "Enabling Large Language Models to Generate Text with Citations",
+      "abstract": "Large language models (LLMs) have emerged as a widely-used tool for information seeking, but their generated outputs are prone to hallucination. In this work, our aim is to allow LLMs to generate text with citations, improving their factual correctness and verifiability. Existing work mainly relies on commercial search engines and human evaluation, making it challenging to reproduce and compare different modeling approaches. We propose ALCE, the first benchmark for Automatic LLMs' Citation Evaluation. ALCE collects a diverse set of questions and retrieval corpora and requires building end-to-end systems to retrieve supporting evidence and generate answers with citations. We develop automatic metrics along three dimensions -- fluency, correctness, and citation quality -- and demonstrate their strong correlation with human judgements. Our experiments with state-of-the-art LLMs and novel prompting strategies show that current systems have considerable room for improvement -- For example, on the ELI5 dataset, even the best models lack complete citation support 50% of the time. Our analyses further highlight promising future directions, including developing better retrievers, advancing long-context LLMs, and improving the ability to synthesize information from multiple sources.",
+      "authors": [
+        "Tianyu Gao",
+        "Howard Yen",
+        "Jiatong Yu",
+        "Danqi Chen"
+      ],
+      "published": "2023-05-24T01:53:49Z",
+      "updated": "2023-10-31T15:04:35Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accepted by EMNLP 2023. Code and data are available at https://github.com/princeton-nlp/ALCE",
+      "abstract_url": "https://arxiv.org/abs/2305.14627v2",
+      "pdf_url": "https://arxiv.org/pdf/2305.14627v2"
+    },
+    {
+      "arxiv_id": "2408.09869",
+      "arxiv_id_versioned": "2408.09869v5",
+      "version": "5",
+      "title": "Docling Technical Report",
+      "abstract": "This technical report introduces Docling, an easy to use, self-contained, MIT-licensed open-source package for PDF document conversion. It is powered by state-of-the-art specialized AI models for layout analysis (DocLayNet) and table structure recognition (TableFormer), and runs efficiently on commodity hardware in a small resource budget. The code interface allows for easy extensibility and addition of new features and models.",
+      "authors": [
+        "Christoph Auer",
+        "Maksym Lysak",
+        "Ahmed Nassar",
+        "Michele Dolfi",
+        "Nikolaos Livathinos",
+        "Panos Vagenas",
+        "Cesar Berrospi Ramis",
+        "Matteo Omenetti",
+        "Fabian Lindlbauer",
+        "Kasper Dinkla",
+        "Lokesh Mishra",
+        "Yusik Kim",
+        "Shubham Gupta",
+        "Rafael Teixeira de Lima",
+        "Valery Weber",
+        "Lucas Morin",
+        "Ingmar Meijer",
+        "Viktor Kuropiatnyk",
+        "Peter W. J. Staar"
+      ],
+      "published": "2024-08-19T10:20:06Z",
+      "updated": "2024-12-09T09:20:54Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.CV",
+        "cs.SE"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Docling v1 report",
+      "abstract_url": "https://arxiv.org/abs/2408.09869v5",
+      "pdf_url": "https://arxiv.org/pdf/2408.09869v5"
+    },
+    {
+      "arxiv_id": "1105.0548",
+      "arxiv_id_versioned": "1105.0548v1",
+      "version": "1",
+      "title": "A Scalable Module System",
+      "abstract": "Symbolic and logic computation systems ranging from computer algebra systems to theorem provers are finding their way into science, technology, mathematics and engineering. But such systems rely on explicitly or implicitly represented mathematical knowledge that needs to be managed to use such systems effectively. While mathematical knowledge management (MKM) \"in the small\" is well-studied, scaling up to large, highly interconnected corpora remains difficult. We hold that in order to realize MKM \"in the large\", we need representation languages and software architectures that are designed systematically with large-scale processing in mind. Therefore, we have designed and implemented the MMT language -- a module system for mathematical theories. MMT is designed as the simplest possible language that combines a module system, a foundationally uncommitted formal semantics, and web-scalable implementations. Due to a careful choice of representational primitives, MMT allows us to integrate existing representation languages for formal mathematical knowledge in a simple, scalable formalism. In particular, MMT abstracts from the underlying mathematical and logical foundations so that it can serve as a standardized representation format for a formal digital library. Moreover, MMT systematically separates logic-dependent and logic-independent concerns so that it can serve as an interface layer between computation systems and MKM systems.",
+      "authors": [
+        "Florian Rabe",
+        "Michael Kohlhase"
+      ],
+      "published": "2011-05-03T11:05:34Z",
+      "updated": "2011-05-03T11:05:34Z",
+      "primary_category": "cs.LO",
+      "categories": [
+        "cs.LO"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "This is a preprint of the main paper on the MMT language",
+      "abstract_url": "https://arxiv.org/abs/1105.0548v1",
+      "pdf_url": "https://arxiv.org/pdf/1105.0548v1"
+    },
+    {
+      "arxiv_id": "2404.16130",
+      "arxiv_id_versioned": "2404.16130v2",
+      "version": "2",
+      "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "abstract": "The use of retrieval-augmented generation (RAG) to retrieve relevant information from an external knowledge source enables large language models (LLMs) to answer questions over private and/or previously unseen document collections. However, RAG fails on global questions directed at an entire text corpus, such as \"What are the main themes in the dataset?\", since this is inherently a query-focused summarization (QFS) task, rather than an explicit retrieval task. Prior QFS methods, meanwhile, do not scale to the quantities of text indexed by typical RAG systems. To combine the strengths of these contrasting methods, we propose GraphRAG, a graph-based approach to question answering over private text corpora that scales with both the generality of user questions and the quantity of source text. Our approach uses an LLM to build a graph index in two stages: first, to derive an entity knowledge graph from the source documents, then to pregenerate community summaries for all groups of closely related entities. Given a question, each community summary is used to generate a partial response, before all partial responses are again summarized in a final response to the user. For a class of global sensemaking questions over datasets in the 1 million token range, we show that GraphRAG leads to substantial improvements over a conventional RAG baseline for both the comprehensiveness and diversity of generated answers.",
+      "authors": [
+        "Darren Edge",
+        "Ha Trinh",
+        "Newman Cheng",
+        "Joshua Bradley",
+        "Alex Chao",
+        "Apurva Mody",
+        "Steven Truitt",
+        "Dasha Metropolitansky",
+        "Robert Osazuwa Ness",
+        "Jonathan Larson"
+      ],
+      "published": "2024-04-24T18:38:11Z",
+      "updated": "2025-02-19T10:49:41Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2404.16130v2",
+      "pdf_url": "https://arxiv.org/pdf/2404.16130v2"
+    },
+    {
+      "arxiv_id": "2505.13406",
+      "arxiv_id_versioned": "2505.13406v1",
+      "version": "1",
+      "title": "AutoMathKG: The automated mathematical knowledge graph based on LLM and vector database",
+      "abstract": "A mathematical knowledge graph (KG) presents knowledge within the field of mathematics in a structured manner. Constructing a math KG using natural language is an essential but challenging task. There are two major limitations of existing works: first, they are constrained by corpus completeness, often discarding or manually supplementing incomplete knowledge; second, they typically fail to fully automate the integration of diverse knowledge sources. This paper proposes AutoMathKG, a high-quality, wide-coverage, and multi-dimensional math KG capable of automatic updates. AutoMathKG regards mathematics as a vast directed graph composed of Definition, Theorem, and Problem entities, with their reference relationships as edges. It integrates knowledge from ProofWiki, textbooks, arXiv papers, and TheoremQA, enhancing entities and relationships with large language models (LLMs) via in-context learning for data augmentation. To search for similar entities, MathVD, a vector database, is built through two designed embedding strategies using SBERT. To automatically update, two mechanisms are proposed. For knowledge completion mechanism, Math LLM is developed to interact with AutoMathKG, providing missing proofs or solutions. For knowledge fusion mechanism, MathVD is used to retrieve similar entities, and LLM is used to determine whether to merge with a candidate or add as a new entity. A wide range of experiments demonstrate the advanced performance and broad applicability of the AutoMathKG system, including superior reachability query results in MathVD compared to five baselines and robust mathematical reasoning capability in Math LLM.",
+      "authors": [
+        "Rong Bian",
+        "Yu Geng",
+        "Zijian Yang",
+        "Bing Cheng"
+      ],
+      "published": "2025-05-19T17:41:29Z",
+      "updated": "2025-05-19T17:41:29Z",
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "doi": "10.1111/coin.70096",
+      "journal_ref": "Computational Intelligence, vol. 41, no. 4 (2025): e70096",
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2505.13406v1",
+      "pdf_url": "https://arxiv.org/pdf/2505.13406v1"
+    },
+    {
+      "arxiv_id": "2606.31002",
+      "arxiv_id_versioned": "2606.31002v3",
+      "version": "3",
+      "title": "Beyond Compilation: Evaluating Faithful Natural-Language-to-Lean Statement Formalization",
+      "abstract": "Lean verifies that a generated declaration is well typed, but not that it states what the user intended. For statement autoformalization without canonical Lean targets, we study two questions: how far an LLM-based semantic criterion can be trusted, and how much compilation overstates faithfulness across systems. Our criterion requires Lean compilation and agreement of GPT-5.2 and Gemini-2.5-Pro. On an independently audited random sample, it agrees with the human majority on 91.5\\% of cases (Wilson 95\\% CI: 81.6--96.3\\%); humans confirm 95.7\\% of the outputs it accepts and 77--81\\% of the outputs it rejects, so the criterion is reliable in aggregate and errs on the conservative side. A comparison with LeanScorer, an independent third-family judge, and a BEq formal cross-check support the same picture. Across eight systems evaluated on 227 graduate-level statements, the compile--faithfulness gap varies widely with the system, from 1.3 percentage points for one-shot Gemini-2.5-Pro to 29.5 points for a tool-augmented GPT-5.2 agent, which compiles 87.2\\% of statements but is faithful on 57.7\\%. A $2^3$ tool ablation of this agent shows that Lean feedback drives most of its gain in compilation, and nearly half of that gain consists of outputs that fail the semantic criterion.",
+      "authors": [
+        "Ke Zhang",
+        "Patricio Gallardo Candela",
+        "Sudhir Murthy",
+        "Yi Xie",
+        "Zhi Wang",
+        "Maziar Raissi"
+      ],
+      "published": "2026-06-30T00:27:53Z",
+      "updated": "2026-10-02T23:39:05Z",
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LO"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "v3: results recomputed on a revised 227-statement benchmark; conclusions unchanged",
+      "abstract_url": "https://arxiv.org/abs/2606.31002v3",
+      "pdf_url": "https://arxiv.org/pdf/2606.31002v3"
+    },
+    {
+      "arxiv_id": "2004.14974",
+      "arxiv_id_versioned": "2004.14974v6",
+      "version": "6",
+      "title": "Fact or Fiction: Verifying Scientific Claims",
+      "abstract": "We introduce scientific claim verification, a new task to select abstracts from the research literature containing evidence that SUPPORTS or REFUTES a given scientific claim, and to identify rationales justifying each decision. To study this task, we construct SciFact, a dataset of 1.4K expert-written scientific claims paired with evidence-containing abstracts annotated with labels and rationales. We develop baseline models for SciFact, and demonstrate that simple domain adaptation techniques substantially improve performance compared to models trained on Wikipedia or political news. We show that our system is able to verify claims related to COVID-19 by identifying evidence from the CORD-19 corpus. Our experiments indicate that SciFact will provide a challenging testbed for the development of new systems designed to retrieve and reason over corpora containing specialized domain knowledge. Data and code for this new task are publicly available at https://github.com/allenai/scifact. A leaderboard and COVID-19 fact-checking demo are available at https://scifact.apps.allenai.org.",
+      "authors": [
+        "David Wadden",
+        "Shanchuan Lin",
+        "Kyle Lo",
+        "Lucy Lu Wang",
+        "Madeleine van Zuylen",
+        "Arman Cohan",
+        "Hannaneh Hajishirzi"
+      ],
+      "published": "2020-04-30T17:22:57Z",
+      "updated": "2020-10-03T04:31:06Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "EMNLP 2020. GitHub: https://github.com/allenai/scifact. Leaderboard and demo: https://scifact.apps.allenai.org",
+      "abstract_url": "https://arxiv.org/abs/2004.14974v6",
+      "pdf_url": "https://arxiv.org/pdf/2004.14974v6"
+    },
+    {
+      "arxiv_id": "1904.01608",
+      "arxiv_id_versioned": "1904.01608v2",
+      "version": "2",
+      "title": "Structural Scaffolds for Citation Intent Classification in Scientific Publications",
+      "abstract": "Identifying the intent of a citation in scientific papers (e.g., background information, use of methods, comparing results) is critical for machine reading of individual publications and automated analysis of the scientific literature. We propose structural scaffolds, a multitask model to incorporate structural information of scientific papers into citations for effective classification of citation intents. Our model achieves a new state-of-the-art on an existing ACL anthology dataset (ACL-ARC) with a 13.3% absolute increase in F1 score, without relying on external linguistic resources or hand-engineered features as done in existing methods. In addition, we introduce a new dataset of citation intents (SciCite) which is more than five times larger and covers multiple scientific domains compared with existing datasets. Our code and data are available at: https://github.com/allenai/scicite.",
+      "authors": [
+        "Arman Cohan",
+        "Waleed Ammar",
+        "Madeleine van Zuylen",
+        "Field Cady"
+      ],
+      "published": "2019-04-02T18:22:09Z",
+      "updated": "2019-09-30T16:37:20Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "NAACL 2019",
+      "abstract_url": "https://arxiv.org/abs/1904.01608v2",
+      "pdf_url": "https://arxiv.org/pdf/1904.01608v2"
+    },
+    {
+      "arxiv_id": "1901.10816",
+      "arxiv_id_versioned": "1901.10816v3",
+      "version": "3",
+      "title": "Open Research Knowledge Graph: Next Generation Infrastructure for Semantic Scholarly Knowledge",
+      "abstract": "Despite improved digital access to scholarly knowledge in recent decades, scholarly communication remains exclusively document-based. In this form, scholarly knowledge is hard to process automatically. In this paper, we present the first steps towards a knowledge graph based infrastructure that acquires scholarly knowledge in machine actionable form thus enabling new possibilities for scholarly knowledge curation, publication and processing. The primary contribution is to present, evaluate and discuss multi-modal scholarly knowledge acquisition, combining crowdsourced and automated techniques. We present the results of the first user evaluation of the infrastructure with the participants of a recent international conference. Results suggest that users were intrigued by the novelty of the proposed infrastructure and by the possibilities for innovative scholarly knowledge processing it could enable.",
+      "authors": [
+        "Mohamad Yaser Jaradeh",
+        "Allard Oelen",
+        "Kheir Eddine Farfar",
+        "Manuel Prinz",
+        "Jennifer D'Souza",
+        "Gábor Kismihók",
+        "Markus Stocker",
+        "Sören Auer"
+      ],
+      "published": "2019-01-30T13:34:45Z",
+      "updated": "2019-08-01T14:55:14Z",
+      "primary_category": "cs.DL",
+      "categories": [
+        "cs.DL",
+        "cs.IR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "8 pages",
+      "abstract_url": "https://arxiv.org/abs/1901.10816v3",
+      "pdf_url": "https://arxiv.org/pdf/1901.10816v3"
+    },
+    {
+      "arxiv_id": "1603.06424",
+      "arxiv_id_versioned": "1603.06424v1",
+      "version": "1",
+      "title": "Interoperability in the OpenDreamKit Project: The Math-in-the-Middle Approach",
+      "abstract": "OpenDreamKit --- \"Open Digital Research Environment Toolkit for the Advancement of Mathematics\" --- is an H2020 EU Research Infrastructure project that aims at supporting, over the period 2015--2019, the ecosystem of open-source mathematical software systems. From that, OpenDreamKit will deliver a flexible toolkit enabling research groups to set up Virtual Research Environments, customised to meet the varied needs of research projects in pure mathematics and applications. An important step in the OpenDreamKit endeavor is to foster the interoperability between a variety of systems, ranging from computer algebra systems over mathematical databases to front-ends. This is the mission of the integration work package (WP6). We report on experiments and future plans with the \\emph{Math-in-the-Middle} approach. This information architecture consists in a central mathematical ontology that documents the domain and fixes a joint vocabulary, combined with specifications of the functionalities of the various systems. Interaction between systems can then be enriched by pivoting off this information architecture.",
+      "authors": [
+        "Paul-Olivier Dehaye",
+        "Michael Kohlhase",
+        "Alexander Konovalov",
+        "Samuel Lelièvre",
+        "Markus Pfeiffer",
+        "Nicolas M. Thiéry"
+      ],
+      "published": "2016-03-21T13:18:44Z",
+      "updated": "2016-03-21T13:18:44Z",
+      "primary_category": "cs.MS",
+      "categories": [
+        "cs.MS"
+      ],
+      "doi": "10.1007/978-3-319-42547-4_9",
+      "journal_ref": null,
+      "comment": "15 pages, 7 figures",
+      "abstract_url": "https://arxiv.org/abs/1603.06424v1",
+      "pdf_url": "https://arxiv.org/pdf/1603.06424v1"
+    },
+    {
+      "arxiv_id": "2405.14831",
+      "arxiv_id_versioned": "2405.14831v3",
+      "version": "3",
+      "title": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",
+      "abstract": "In order to thrive in hostile and ever-changing natural environments, mammalian brains evolved to store large amounts of knowledge about the world and continually integrate new information while avoiding catastrophic forgetting. Despite the impressive accomplishments, large language models (LLMs), even with retrieval-augmented generation (RAG), still struggle to efficiently and effectively integrate a large amount of new experiences after pre-training. In this work, we introduce HippoRAG, a novel retrieval framework inspired by the hippocampal indexing theory of human long-term memory to enable deeper and more efficient knowledge integration over new experiences. HippoRAG synergistically orchestrates LLMs, knowledge graphs, and the Personalized PageRank algorithm to mimic the different roles of neocortex and hippocampus in human memory. We compare HippoRAG with existing RAG methods on multi-hop question answering and show that our method outperforms the state-of-the-art methods remarkably, by up to 20%. Single-step retrieval with HippoRAG achieves comparable or better performance than iterative retrieval like IRCoT while being 10-30 times cheaper and 6-13 times faster, and integrating HippoRAG into IRCoT brings further substantial gains. Finally, we show that our method can tackle new types of scenarios that are out of reach of existing methods. Code and data are available at https://github.com/OSU-NLP-Group/HippoRAG.",
+      "authors": [
+        "Bernal Jiménez Gutiérrez",
+        "Yiheng Shu",
+        "Yu Gu",
+        "Michihiro Yasunaga",
+        "Yu Su"
+      ],
+      "published": "2024-05-23T17:47:55Z",
+      "updated": "2025-01-14T16:17:49Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "NeurIPS 2024. Code and data: https://github.com/OSU-NLP-Group/HippoRAG",
+      "abstract_url": "https://arxiv.org/abs/2405.14831v3",
+      "pdf_url": "https://arxiv.org/pdf/2405.14831v3"
+    },
+    {
+      "arxiv_id": "2205.01833",
+      "arxiv_id_versioned": "2205.01833v2",
+      "version": "2",
+      "title": "OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts",
+      "abstract": "OpenAlex is a new, fully-open scientific knowledge graph (SKG), launched to replace the discontinued Microsoft Academic Graph (MAG). It contains metadata for 209M works (journal articles, books, etc); 2013M disambiguated authors; 124k venues (places that host works, such as journals and online repositories); 109k institutions; and 65k Wikidata concepts (linked to works via an automated hierarchical multi-tag classifier). The dataset is fully and freely available via a web-based GUI, a full data dump, and high-volume REST API. The resource is under active development and future work will improve accuracy and coverage of citation information and author/institution parsing and deduplication.",
+      "authors": [
+        "Jason Priem",
+        "Heather Piwowar",
+        "Richard Orr"
+      ],
+      "published": "2022-05-04T00:57:11Z",
+      "updated": "2022-06-17T00:34:23Z",
+      "primary_category": "cs.DL",
+      "categories": [
+        "cs.DL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Submitted to the 26th International Conference on Science, Technology and Innovation Indicators (STI 2022)",
+      "abstract_url": "https://arxiv.org/abs/2205.01833v2",
+      "pdf_url": "https://arxiv.org/pdf/2205.01833v2"
+    },
+    {
+      "arxiv_id": "1810.08473",
+      "arxiv_id_versioned": "1810.08473v3",
+      "version": "3",
+      "title": "From Louvain to Leiden: guaranteeing well-connected communities",
+      "abstract": "Community detection is often used to understand the structure of large and complex networks. One of the most popular algorithms for uncovering community structure is the so-called Louvain algorithm. We show that this algorithm has a major defect that largely went unnoticed until now: the Louvain algorithm may yield arbitrarily badly connected communities. In the worst case, communities may even be disconnected, especially when running the algorithm iteratively. In our experimental analysis, we observe that up to 25% of the communities are badly connected and up to 16% are disconnected. To address this problem, we introduce the Leiden algorithm. We prove that the Leiden algorithm yields communities that are guaranteed to be connected. In addition, we prove that, when the Leiden algorithm is applied iteratively, it converges to a partition in which all subsets of all communities are locally optimally assigned. Furthermore, by relying on a fast local move approach, the Leiden algorithm runs faster than the Louvain algorithm. We demonstrate the performance of the Leiden algorithm for several benchmark and real-world networks. We find that the Leiden algorithm is faster than the Louvain algorithm and uncovers better partitions, in addition to providing explicit guarantees.",
+      "authors": [
+        "Vincent Traag",
+        "Ludo Waltman",
+        "Nees Jan van Eck"
+      ],
+      "published": "2018-10-19T12:48:33Z",
+      "updated": "2019-10-30T13:32:35Z",
+      "primary_category": "cs.SI",
+      "categories": [
+        "cs.SI",
+        "physics.soc-ph"
+      ],
+      "doi": "10.1038/s41598-019-41695-z",
+      "journal_ref": "Scientific Reports, vol. (9): 5233 (2019)",
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/1810.08473v3",
+      "pdf_url": "https://arxiv.org/pdf/1810.08473v3"
+    },
+    {
+      "arxiv_id": "1703.06103",
+      "arxiv_id_versioned": "1703.06103v4",
+      "version": "4",
+      "title": "Modeling Relational Data with Graph Convolutional Networks",
+      "abstract": "Knowledge graphs enable a wide variety of applications, including question answering and information retrieval. Despite the great effort invested in their creation and maintenance, even the largest (e.g., Yago, DBPedia or Wikidata) remain incomplete. We introduce Relational Graph Convolutional Networks (R-GCNs) and apply them to two standard knowledge base completion tasks: Link prediction (recovery of missing facts, i.e. subject-predicate-object triples) and entity classification (recovery of missing entity attributes). R-GCNs are related to a recent class of neural networks operating on graphs, and are developed specifically to deal with the highly multi-relational data characteristic of realistic knowledge bases. We demonstrate the effectiveness of R-GCNs as a stand-alone model for entity classification. We further show that factorization models for link prediction such as DistMult can be significantly improved by enriching them with an encoder model to accumulate evidence over multiple inference steps in the relational graph, demonstrating a large improvement of 29.8% on FB15k-237 over a decoder-only baseline.",
+      "authors": [
+        "Michael Schlichtkrull",
+        "Thomas N. Kipf",
+        "Peter Bloem",
+        "Rianne van den Berg",
+        "Ivan Titov",
+        "Max Welling"
+      ],
+      "published": "2017-03-17T17:09:14Z",
+      "updated": "2017-10-26T19:53:49Z",
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.AI",
+        "cs.DB",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/1703.06103v4",
+      "pdf_url": "https://arxiv.org/pdf/1703.06103v4"
+    },
+    {
+      "arxiv_id": "1705.08039",
+      "arxiv_id_versioned": "1705.08039v2",
+      "version": "2",
+      "title": "Poincaré Embeddings for Learning Hierarchical Representations",
+      "abstract": "Representation learning has become an invaluable approach for learning from symbolic data such as text and graphs. However, while complex symbolic datasets often exhibit a latent hierarchical structure, state-of-the-art methods typically learn embeddings in Euclidean vector spaces, which do not account for this property. For this purpose, we introduce a new approach for learning hierarchical representations of symbolic data by embedding them into hyperbolic space -- or more precisely into an n-dimensional Poincaré ball. Due to the underlying hyperbolic geometry, this allows us to learn parsimonious representations of symbolic data by simultaneously capturing hierarchy and similarity. We introduce an efficient algorithm to learn the embeddings based on Riemannian optimization and show experimentally that Poincaré embeddings outperform Euclidean embeddings significantly on data with latent hierarchies, both in terms of representation capacity and in terms of generalization ability.",
+      "authors": [
+        "Maximilian Nickel",
+        "Douwe Kiela"
+      ],
+      "published": "2017-05-22T23:14:36Z",
+      "updated": "2017-05-26T17:40:55Z",
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/1705.08039v2",
+      "pdf_url": "https://arxiv.org/pdf/1705.08039v2"
+    },
+    {
+      "arxiv_id": "2302.12433",
+      "arxiv_id_versioned": "2302.12433v1",
+      "version": "1",
+      "title": "ProofNet: Autoformalizing and Formally Proving Undergraduate-Level Mathematics",
+      "abstract": "We introduce ProofNet, a benchmark for autoformalization and formal proving of undergraduate-level mathematics. The ProofNet benchmarks consists of 371 examples, each consisting of a formal theorem statement in Lean 3, a natural language theorem statement, and a natural language proof. The problems are primarily drawn from popular undergraduate pure mathematics textbooks and cover topics such as real and complex analysis, linear algebra, abstract algebra, and topology. We intend for ProofNet to be a challenging benchmark that will drive progress in autoformalization and automatic theorem proving. We report baseline results on statement autoformalization via in-context learning. Moreover, we introduce two novel statement autoformalization methods: prompt retrieval and distilled backtranslation.",
+      "authors": [
+        "Zhangir Azerbayev",
+        "Bartosz Piotrowski",
+        "Hailey Schoelkopf",
+        "Edward W. Ayers",
+        "Dragomir Radev",
+        "Jeremy Avigad"
+      ],
+      "published": "2023-02-24T03:28:46Z",
+      "updated": "2023-02-24T03:28:46Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LO"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2302.12433v1",
+      "pdf_url": "https://arxiv.org/pdf/2302.12433v1"
+    },
+    {
+      "arxiv_id": "1506.05908",
+      "arxiv_id_versioned": "1506.05908v1",
+      "version": "1",
+      "title": "Deep Knowledge Tracing",
+      "abstract": "Knowledge tracing---where a machine models the knowledge of a student as they interact with coursework---is a well established problem in computer supported education. Though effectively modeling student knowledge would have high educational impact, the task has many inherent challenges. In this paper we explore the utility of using Recurrent Neural Networks (RNNs) to model student learning. The RNN family of models have important advantages over previous methods in that they do not require the explicit encoding of human domain knowledge, and can capture more complex representations of student knowledge. Using neural networks results in substantial improvements in prediction performance on a range of knowledge tracing datasets. Moreover the learned model can be used for intelligent curriculum design and allows straightforward interpretation and discovery of structure in student tasks. These results suggest a promising new line of research for knowledge tracing and an exemplary application task for RNNs.",
+      "authors": [
+        "Chris Piech",
+        "Jonathan Spencer",
+        "Jonathan Huang",
+        "Surya Ganguli",
+        "Mehran Sahami",
+        "Leonidas Guibas",
+        "Jascha Sohl-Dickstein"
+      ],
+      "published": "2015-06-19T08:29:00Z",
+      "updated": "2015-06-19T08:29:00Z",
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/1506.05908v1",
+      "pdf_url": "https://arxiv.org/pdf/1506.05908v1"
+    },
+    {
+      "arxiv_id": "1802.03426",
+      "arxiv_id_versioned": "1802.03426v3",
+      "version": "3",
+      "title": "UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction",
+      "abstract": "UMAP (Uniform Manifold Approximation and Projection) is a novel manifold learning technique for dimension reduction. UMAP is constructed from a theoretical framework based in Riemannian geometry and algebraic topology. The result is a practical scalable algorithm that applies to real world data. The UMAP algorithm is competitive with t-SNE for visualization quality, and arguably preserves more of the global structure with superior run time performance. Furthermore, UMAP has no computational restrictions on embedding dimension, making it viable as a general purpose dimension reduction technique for machine learning.",
+      "authors": [
+        "Leland McInnes",
+        "John Healy",
+        "James Melville"
+      ],
+      "published": "2018-02-09T19:39:33Z",
+      "updated": "2020-09-18T01:56:41Z",
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.CG",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Reference implementation available at http://github.com/lmcinnes/umap",
+      "abstract_url": "https://arxiv.org/abs/1802.03426v3",
+      "pdf_url": "https://arxiv.org/pdf/1802.03426v3"
+    },
+    {
+      "arxiv_id": "2509.22186",
+      "arxiv_id_versioned": "2509.22186v2",
+      "version": "2",
+      "title": "MinerU2.5: A Decoupled Vision-Language Model for Efficient High-Resolution Document Parsing",
+      "abstract": "We introduce MinerU2.5, a 1.2B-parameter document parsing vision-language model that achieves state-of-the-art recognition accuracy while maintaining exceptional computational efficiency. Our approach employs a coarse-to-fine, two-stage parsing strategy that decouples global layout analysis from local content recognition. In the first stage, the model performs efficient layout analysis on downsampled images to identify structural elements, circumventing the computational overhead of processing high-resolution inputs. In the second stage, guided by the global layout, it performs targeted content recognition on native-resolution crops extracted from the original image, preserving fine-grained details in dense text, complex formulas, and tables. To support this strategy, we developed a comprehensive data engine that generates diverse, large-scale training corpora for both pretraining and fine-tuning. Ultimately, MinerU2.5 demonstrates strong document parsing ability, achieving state-of-the-art performance on multiple benchmarks, surpassing both general-purpose and domain-specific models across various recognition tasks, while maintaining significantly lower computational overhead.",
+      "authors": [
+        "Junbo Niu",
+        "Zheng Liu",
+        "Zhuangcheng Gu",
+        "Bin Wang",
+        "Linke Ouyang",
+        "Zhiyuan Zhao",
+        "Tao Chu",
+        "Tianyao He",
+        "Fan Wu",
+        "Qintong Zhang",
+        "Zhenjiang Jin",
+        "Guang Liang",
+        "Rui Zhang",
+        "Wenzheng Zhang",
+        "Yuan Qu",
+        "Zhifei Ren",
+        "Yuefeng Sun",
+        "Yuanhong Zheng",
+        "Dongsheng Ma",
+        "Zirui Tang",
+        "Boyu Niu",
+        "Ziyang Miao",
+        "Hejun Dong",
+        "Siyi Qian",
+        "Junyuan Zhang",
+        "Jingzhou Chen",
+        "Fangdong Wang",
+        "Xiaomeng Zhao",
+        "Liqun Wei",
+        "Wei Li",
+        "Shasha Wang",
+        "Ruiliang Xu",
+        "Yuanyuan Cao",
+        "Lu Chen",
+        "Qianqian Wu",
+        "Huaiyu Gu",
+        "Lindong Lu",
+        "Keming Wang",
+        "Dechen Lin",
+        "Guanlin Shen",
+        "Xuanhe Zhou",
+        "Linfeng Zhang",
+        "Yuhang Zang",
+        "Xiaoyi Dong",
+        "Jiaqi Wang",
+        "Bo Zhang",
+        "Lei Bai",
+        "Pei Chu",
+        "Weijia Li",
+        "Jiang Wu",
+        "Lijun Wu",
+        "Zhenxiang Li",
+        "Guangyu Wang",
+        "Zhongying Tu",
+        "Chao Xu",
+        "Kai Chen",
+        "Yu Qiao",
+        "Bowen Zhou",
+        "Dahua Lin",
+        "Wentao Zhang",
+        "Conghui He"
+      ],
+      "published": "2025-09-26T10:45:48Z",
+      "updated": "2025-09-29T16:41:28Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Technical Report; GitHub Repo: https://github.com/opendatalab/MinerU Hugging Face Model: https://huggingface.co/opendatalab/MinerU2.5-2509-1.2B Hugging Face Demo: https://huggingface.co/spaces/opendatalab/MinerU",
+      "abstract_url": "https://arxiv.org/abs/2509.22186v2",
+      "pdf_url": "https://arxiv.org/pdf/2509.22186v2"
+    },
+    {
+      "arxiv_id": "2401.18059",
+      "arxiv_id_versioned": "2401.18059v1",
+      "version": "1",
+      "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+      "abstract": "Retrieval-augmented language models can better adapt to changes in world state and incorporate long-tail knowledge. However, most existing methods retrieve only short contiguous chunks from a retrieval corpus, limiting holistic understanding of the overall document context. We introduce the novel approach of recursively embedding, clustering, and summarizing chunks of text, constructing a tree with differing levels of summarization from the bottom up. At inference time, our RAPTOR model retrieves from this tree, integrating information across lengthy documents at different levels of abstraction. Controlled experiments show that retrieval with recursive summaries offers significant improvements over traditional retrieval-augmented LMs on several tasks. On question-answering tasks that involve complex, multi-step reasoning, we show state-of-the-art results; for example, by coupling RAPTOR retrieval with the use of GPT-4, we can improve the best performance on the QuALITY benchmark by 20% in absolute accuracy.",
+      "authors": [
+        "Parth Sarthi",
+        "Salman Abdullah",
+        "Aditi Tuli",
+        "Shubh Khanna",
+        "Anna Goldie",
+        "Christopher D. Manning"
+      ],
+      "published": "2024-01-31T18:30:21Z",
+      "updated": "2024-01-31T18:30:21Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2401.18059v1",
+      "pdf_url": "https://arxiv.org/pdf/2401.18059v1"
+    },
+    {
+      "arxiv_id": "2309.15217",
+      "arxiv_id_versioned": "2309.15217v2",
+      "version": "2",
+      "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation",
+      "abstract": "We introduce Ragas (Retrieval Augmented Generation Assessment), a framework for reference-free evaluation of Retrieval Augmented Generation (RAG) pipelines. RAG systems are composed of a retrieval and an LLM based generation module, and provide LLMs with knowledge from a reference textual database, which enables them to act as a natural language layer between a user and textual databases, reducing the risk of hallucinations. Evaluating RAG architectures is, however, challenging because there are several dimensions to consider: the ability of the retrieval system to identify relevant and focused context passages, the ability of the LLM to exploit such passages in a faithful way, or the quality of the generation itself. With Ragas, we put forward a suite of metrics which can be used to evaluate these different dimensions \\textit{without having to rely on ground truth human annotations}. We posit that such a framework can crucially contribute to faster evaluation cycles of RAG architectures, which is especially important given the fast adoption of LLMs.",
+      "authors": [
+        "Shahul Es",
+        "Jithin James",
+        "Luis Espinosa-Anke",
+        "Steven Schockaert"
+      ],
+      "published": "2023-09-26T19:23:54Z",
+      "updated": "2025-04-28T05:09:12Z",
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Reference-free (not tied to having ground truth available) evaluation framework for retrieval agumented generation",
+      "abstract_url": "https://arxiv.org/abs/2309.15217v2",
+      "pdf_url": "https://arxiv.org/pdf/2309.15217v2"
+    },
+    {
+      "arxiv_id": "2412.07626",
+      "arxiv_id_versioned": "2412.07626v2",
+      "version": "2",
+      "title": "OmniDocBench: Benchmarking Diverse PDF Document Parsing with Comprehensive Annotations",
+      "abstract": "Document content extraction is a critical task in computer vision, underpinning the data needs of large language models (LLMs) and retrieval-augmented generation (RAG) systems. Despite recent progress, current document parsing methods have not been fairly and comprehensively evaluated due to the narrow coverage of document types and the simplified, unrealistic evaluation procedures in existing benchmarks. To address these gaps, we introduce OmniDocBench, a novel benchmark featuring high-quality annotations across nine document sources, including academic papers, textbooks, and more challenging cases such as handwritten notes and densely typeset newspapers. OmniDocBench supports flexible, multi-level evaluations--ranging from an end-to-end assessment to the task-specific and attribute--based analysis using 19 layout categories and 15 attribute labels. We conduct a thorough evaluation of both pipeline-based methods and end-to-end vision-language models, revealing their strengths and weaknesses across different document types. OmniDocBench sets a new standard for the fair, diverse, and fine-grained evaluation in document parsing. Dataset and code are available at https://github.com/opendatalab/OmniDocBench.",
+      "authors": [
+        "Linke Ouyang",
+        "Yuan Qu",
+        "Hongbin Zhou",
+        "Jiawei Zhu",
+        "Rui Zhang",
+        "Qunshu Lin",
+        "Bin Wang",
+        "Zhiyuan Zhao",
+        "Man Jiang",
+        "Xiaomeng Zhao",
+        "Jin Shi",
+        "Fan Wu",
+        "Pei Chu",
+        "Minghao Liu",
+        "Zhenxiang Li",
+        "Chao Xu",
+        "Bo Zhang",
+        "Botian Shi",
+        "Zhongying Tu",
+        "Conghui He"
+      ],
+      "published": "2024-12-10T16:05:56Z",
+      "updated": "2025-03-25T06:19:32Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": "Accepted by CVPR2025",
+      "abstract_url": "https://arxiv.org/abs/2412.07626v2",
+      "pdf_url": "https://arxiv.org/pdf/2412.07626v2"
+    },
+    {
+      "arxiv_id": "2604.24797",
+      "arxiv_id_versioned": "2604.24797v2",
+      "version": "2",
+      "title": "The Network Structure of Mathlib",
+      "abstract": "The ongoing development of Lean 4's Mathlib has produced a macroscopic structural complexity that interweaves logical, mathematical, and infrastructural dependencies. We present a network analysis of this library, extracting its dependency structure into a multilayer graph of 308,129 declarations, 8.4 million edges, and 7,563 modules. By introducing graph decompositions that isolate explicit edges from those synthesized by the compiler or driven by proofs, we quantify the structural properties of formalized mathematics. Our analysis reveals three findings. First, taxonomies designed by humans diverge from logical structures, exhibiting a 50.9% coupling across namespaces. Second, developers utilize a median of 1.6% of the imported scope. Third, formalization compresses semantic hierarchies, with network centrality capturing language infrastructure rather than mathematical relevance.",
+      "authors": [
+        "Xinze Li",
+        "Nanyun Peng",
+        "Simone Severini",
+        "Patrick Shafto"
+      ],
+      "published": "2026-04-26T19:46:06Z",
+      "updated": "2026-05-04T23:21:56Z",
+      "primary_category": "cs.LO",
+      "categories": [
+        "cs.LO",
+        "cs.PL",
+        "cs.SI",
+        "math.HO"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "comment": null,
+      "abstract_url": "https://arxiv.org/abs/2604.24797v2",
+      "pdf_url": "https://arxiv.org/pdf/2604.24797v2"
+    }
+  ]
+}

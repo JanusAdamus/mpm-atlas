@@ -1,0 +1,68 @@
+{
+  "total_dois": 6,
+  "verified": [
+    "10.1007/BF01099821",
+    "10.1016/S0364-0213%2883%2980009-3",
+    "10.1086/601720",
+    "10.1145/2629489",
+    "10.3233/ISU-2010-0613",
+    "10.47397/tb/43-2/tb134mueller-stex3"
+  ],
+  "failed": [],
+  "metadata": {
+    "10.1007/BF01099821": {
+      "title": "Knowledge tracing: Modeling the acquisition of procedural knowledge",
+      "authors": "Corbett, A., Anderson, J.",
+      "year": "1995",
+      "journal": "User Modelling and User-Adapted Interaction",
+      "volume": "4",
+      "pages": "253-278",
+      "doi": "10.1007/BF01099821"
+    },
+    "10.1016/S0364-0213%2883%2980009-3": {
+      "title": "Structure-mapping: A theoretical framework for analogy",
+      "authors": "GENTNER, D.",
+      "year": "1983",
+      "journal": "Cognitive Science",
+      "volume": "7",
+      "pages": "155-170",
+      "doi": "10.1016/S0364-0213%2883%2980009-3"
+    },
+    "10.1086/601720": {
+      "title": "Undiscovered Public Knowledge",
+      "authors": "Swanson, D.",
+      "year": "1986",
+      "journal": "The Library Quarterly",
+      "volume": "56",
+      "pages": "103-118",
+      "doi": "10.1086/601720"
+    },
+    "10.1145/2629489": {
+      "title": "Wikidata",
+      "authors": "Vrande\u010di\u0107, D., Kr\u00f6tzsch, M.",
+      "year": "2014",
+      "journal": "Communications of the ACM",
+      "volume": "57",
+      "pages": "78-85",
+      "doi": "10.1145/2629489"
+    },
+    "10.3233/ISU-2010-0613": {
+      "title": "The anatomy of a nanopublication",
+      "authors": "Groth, P., Gibson, A., Velterop, J.",
+      "year": "2010",
+      "journal": "Information Services and Use",
+      "volume": "30",
+      "pages": "51-56",
+      "doi": "10.3233/ISU-2010-0613"
+    },
+    "10.47397/tb/43-2/tb134mueller-stex3": {
+      "title": "A LaTeX-based ecosystem for semantic/active mathematical documents",
+      "authors": "M\u00fcller, D., Kohlhase, M.",
+      "year": "2022",
+      "journal": "TUGboat",
+      "volume": "43",
+      "pages": "197-201",
+      "doi": "10.47397/tb/43-2/tb134mueller-stex3"
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "version": 2,
+  "status": "v2 (atlas-paths, 2026-10-16).  v1 was the Rust architect's initial floor; v2 keeps its keys and makes them an executable algebra checked on load (core/atlas-paths/src/algebra.rs).",
+  "derived_from": "docs/SPEC.md section 3 'Reglas minimas de composicion' and atlas.model.RELATIONS (shapes/vocab.json)",
+  "note": "The floor of SPEC section 3; the engine may be stricter, never laxer.  Relation flags (symmetric, transitive, inverse, allows_premises) are read from the vocabulary, never repeated here.  A path is a word over steps (relation, direction); its conclusion is the product of its steps in the monoid below.  Kinds = base conclusion x modality.  'compose' lists the non-none products of base conclusions; anything not listed is none, and none absorbs.  The loader checks closure, identity, two-sided absorption of none, associativity over every triple (bidirectional search splices prefix and suffix, so it relies on it), monotone non-strengthening, the taint rules and every entry of 'expect'.",
+
+  "strength_scale": {
+    "5": "mathematical conclusion stated by the claims (dependency, support, proof, refutation, equivalence)",
+    "4": "structural mathematical conclusion (generalization, specialization, formalization as translation)",
+    "3": "documented non-mathematical link (application, model, area membership)",
+    "2": "pedagogical suggestion (study order)",
+    "1": "hypothesis to check (any analogy in the path)",
+    "0": "no semantic conclusion (bibliographic or historical reach)"
+  },
+
+  "conclusions": {
+    "logical_dependency": {"strength": 5, "mathematical": true, "family": "proof", "es": "dependencia logica", "en": "logical dependency"},
+    "logical_support": {"strength": 5, "mathematical": true, "family": "proof", "es": "se usa para establecer", "en": "used to establish"},
+    "proof_of": {"strength": 5, "mathematical": true, "family": "proof", "es": "demostracion de", "en": "proof of"},
+    "refutation": {"strength": 5, "mathematical": true, "family": "proof", "es": "refutacion bajo supuestos", "en": "refutation under assumptions"},
+    "equivalence": {"strength": 5, "mathematical": true, "family": "structure", "es": "equivalencia bajo supuestos", "en": "equivalence under assumptions"},
+    "generalization": {"strength": 4, "mathematical": true, "family": "structure", "es": "generalizacion", "en": "generalization"},
+    "specialization": {"strength": 4, "mathematical": true, "family": "structure", "es": "especializacion", "en": "specialization"},
+    "formalization": {"strength": 4, "mathematical": true, "family": "formal", "es": "formalizacion (traduccion, no fidelidad)", "en": "formalization (translation, not fidelity)"},
+    "area_membership": {"strength": 3, "mathematical": false, "family": "structure", "es": "pertenencia a area", "en": "area membership"},
+    "application": {"strength": 3, "mathematical": false, "family": "application", "es": "aplicacion documentada", "en": "documented application"},
+    "application_via_special_case": {"strength": 3, "mathematical": false, "family": "application", "es": "se aplica a traves de su caso particular", "en": "applies through its special case"},
+    "model_of": {"strength": 3, "mathematical": false, "family": "application", "es": "modelo de un fenomeno", "en": "model of a phenomenon"},
+    "model_via_special_case": {"strength": 3, "mathematical": false, "family": "application", "es": "modela a traves de su caso particular", "en": "models through its special case"},
+    "study_route": {"strength": 2, "mathematical": false, "family": "learning", "es": "ruta de estudio sugerida; nunca necesidad logica", "en": "suggested study route; never a logical necessity"},
+    "bibliographic": {"strength": 0, "mathematical": false, "family": "biblio", "es": "alcance bibliografico; no implica dependencia ni acuerdo", "en": "bibliographic reach; implies neither dependency nor agreement"},
+    "historical": {"strength": 0, "mathematical": false, "family": "history", "es": "conexion historica; cada salto necesita su propia fuente", "en": "historical connection; each hop needs its own source"},
+    "documentary": {"strength": 0, "mathematical": false, "family": "documentary", "es": "conexion documental (bibliografica e historica)", "en": "documentary connection (bibliographic and historical)"},
+    "hypothesis": {"strength": 1, "mathematical": false, "family": "hypothetical", "hypothetical": true, "es": "hipotesis por analogia; hay que comprobarla", "en": "hypothesis by analogy; to be checked"},
+    "transfer_hypothesis": {"strength": 1, "mathematical": false, "family": "hypothetical", "hypothetical": true, "es": "hipotesis de transferencia candidata; nunca una aplicacion demostrada", "en": "candidate transfer hypothesis; never a demonstrated application"},
+    "none": {"strength": 0, "mathematical": false, "family": "none", "es": "sin conclusion", "en": "no conclusion"}
+  },
+
+  "modalities": {
+    "hypothetical": {
+      "strength_cap": 1,
+      "max_per_path": 1,
+      "names": {"application": "transfer_hypothesis", "application_via_special_case": "transfer_hypothesis", "model_of": "transfer_hypothesis", "model_via_special_case": "transfer_hypothesis", "*": "hypothesis"},
+      "es": "Un salto analogous_to vuelve hipotetica toda la ruta (R3); dos analogias no concluyen nada (R10).",
+      "en": "One analogous_to step makes the whole route hypothetical (R3); two analogies conclude nothing (R10)."
+    }
+  },
+
+  "relations": {
+    "depends_on_logically": {"chain": "transitive", "single_hop": "logical_dependency", "chain_result": "logical_dependency", "assumptions": "union", "intuition": 0.8,
+      "authorizes": {"es": "el sujeto depende logicamente del destino (junto con las demas premisas de la afirmacion)", "en": "the subject logically depends on the target (together with the claim's other premises)"},
+      "converse": {"kind": "logical_support", "conjunction": "require_all", "intuition": 0.6,
+        "authorizes": {"es": "la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)", "en": "the premise is used to establish the subject; counts only if every premise is satisfied (R7)"}}},
+    "proves": {"chain": "none", "single_hop": "proof_of", "chain_result": "none", "assumptions": "union", "intuition": 0.7,
+      "authorizes": {"es": "esta demostracion establece el enunciado", "en": "this proof establishes the statement"}},
+    "prerequisite_for": {"chain": "transitive", "single_hop": "study_route", "chain_result": "study_route", "assumptions": "union", "intuition": 0.2,
+      "authorizes": {"es": "sugerencia de orden de estudio; nunca necesidad logica", "en": "a study order suggestion; never a logical necessity"}},
+    "generalizes": {"chain": "transitive", "single_hop": "generalization", "chain_result": "generalization", "assumptions": "union", "intuition": 0.5,
+      "authorizes": {"es": "el sujeto generaliza al destino", "en": "the subject generalizes the target"}},
+    "special_case_of": {"chain": "transitive", "single_hop": "specialization", "chain_result": "specialization", "assumptions": "union", "intuition": 0.3,
+      "authorizes": {"es": "el sujeto es caso particular del destino", "en": "the subject is a special case of the target"}},
+    "equivalent_to": {"chain": "transitive", "single_hop": "equivalence", "chain_result": "equivalence", "assumptions": "union", "intuition": 0.6, "transparent_in": ["structure", "proof", "learning"],
+      "authorizes": {"es": "equivalencia bajo la union de los supuestos", "en": "equivalence under the union of the assumptions"}},
+    "analogous_to": {"chain": "none", "single_hop": "hypothesis", "chain_result": "none", "assumptions": "union", "intuition": 0.5, "step": {"kind": "equivalence", "modality": "hypothetical"},
+      "authorizes": {"es": "solo una analogia: vuelve hipotetica la ruta", "en": "only an analogy: makes the route hypothetical"}},
+    "applied_in": {"chain": "none", "single_hop": "application", "chain_result": "none", "assumptions": "union", "intuition": 0.4,
+      "authorizes": {"es": "uso documentado en un salto", "en": "documented use in one hop"}},
+    "models": {"chain": "none", "single_hop": "model_of", "chain_result": "none", "assumptions": "union", "intuition": 0.5,
+      "authorizes": {"es": "modelo de un fenomeno; la adecuacion empirica requiere su propia evidencia", "en": "model of a phenomenon; empirical adequacy needs its own evidence"}},
+    "cites": {"chain": "none", "single_hop": "bibliographic", "chain_result": "bibliographic", "assumptions": "ignore", "intuition": 1.0,
+      "authorizes": {"es": "cita bibliografica; no implica dependencia ni acuerdo", "en": "a citation; implies neither dependency nor agreement"},
+      "converse": {"kind": "bibliographic", "intuition": 1.0, "authorizes": {"es": "es citado por", "en": "is cited by"}}},
+    "influenced": {"chain": "none", "single_hop": "historical", "chain_result": "historical", "assumptions": "ignore", "intuition": 0.8,
+      "authorizes": {"es": "influencia historica documentada en este salto", "en": "historical influence documented for this hop"},
+      "converse": {"kind": "historical", "intuition": 0.8, "authorizes": {"es": "fue influido por", "en": "was influenced by"}}},
+    "part_of_area": {"chain": "transitive", "single_hop": "area_membership", "chain_result": "area_membership", "assumptions": "ignore", "intuition": 0.6,
+      "authorizes": {"es": "pertenece al area", "en": "belongs to the area"}},
+    "formalized_as": {"chain": "none", "single_hop": "formalization", "chain_result": "none", "assumptions": "union", "intuition": 1.0,
+      "authorizes": {"es": "traduccion a un artefacto formal; fidelidad, compilacion y prueba se registran aparte", "en": "translation to a formal artifact; fidelity, compilation and proof are recorded separately"}},
+    "named_after": {"chain": "none", "single_hop": "historical", "chain_result": "historical", "assumptions": "ignore", "intuition": 1.0,
+      "authorizes": {"es": "solo el nombre; no implica autoria ni prioridad", "en": "only the name; implies neither authorship nor priority"},
+      "converse": {"kind": "historical", "intuition": 1.0, "authorizes": {"es": "da nombre a", "en": "gives its name to"}}},
+    "counterexample_to": {"chain": "none", "single_hop": "refutation", "chain_result": "none", "assumptions": "union", "intuition": 0.6,
+      "authorizes": {"es": "refuta el destino bajo los supuestos declarados", "en": "refutes the target under the declared assumptions"}},
+    "appears_in": {"chain": "none", "single_hop": "bibliographic", "chain_result": "bibliographic", "assumptions": "ignore", "intuition": 1.0,
+      "authorizes": {"es": "aparece en esta obra", "en": "appears in this work"},
+      "converse": {"kind": "bibliographic", "intuition": 1.0, "authorizes": {"es": "contiene", "en": "contains"}}},
+    "authored_by": {"chain": "none", "single_hop": "historical", "chain_result": "historical", "assumptions": "ignore", "intuition": 1.0,
+      "authorizes": {"es": "atribucion de autoria", "en": "authorship attribution"},
+      "converse": {"kind": "historical", "intuition": 1.0, "authorizes": {"es": "es autor de", "en": "is the author of"}}}
+  },
+
+  "compose": [
+    {"rule": "R1", "left": ["logical_dependency"], "right": ["logical_dependency"], "result": "logical_dependency"},
+    {"rule": "R1", "left": ["logical_support"], "right": ["logical_support"], "result": "logical_support"},
+    {"rule": "R1", "left": ["equivalence"], "right": ["equivalence"], "result": "equivalence"},
+    {"rule": "R1", "left": ["generalization"], "right": ["generalization"], "result": "generalization"},
+    {"rule": "R1", "left": ["specialization"], "right": ["specialization"], "result": "specialization"},
+    {"rule": "R1", "left": ["area_membership"], "right": ["area_membership"], "result": "area_membership"},
+    {"rule": "R1", "left": ["study_route"], "right": ["study_route"], "result": "study_route"},
+    {"rule": "R2", "left": ["equivalence"], "right": ["logical_dependency", "logical_support", "proof_of", "refutation", "generalization", "specialization", "area_membership", "study_route", "application", "application_via_special_case", "model_of", "model_via_special_case"], "result": "=right"},
+    {"rule": "R2", "left": ["logical_dependency", "logical_support", "proof_of", "refutation", "generalization", "specialization", "area_membership", "study_route"], "right": ["equivalence"], "result": "=left"},
+    {"rule": "R5", "left": ["logical_support"], "right": ["study_route"], "result": "study_route", "why": "A is used for B and B comes before C: A before C, as a study order only"},
+    {"rule": "R5", "left": ["study_route"], "right": ["logical_support"], "result": "study_route"},
+    {"rule": "R6", "left": ["generalization"], "right": ["application", "application_via_special_case"], "result": "application_via_special_case"},
+    {"rule": "R6", "left": ["generalization"], "right": ["model_of", "model_via_special_case"], "result": "model_via_special_case"},
+    {"rule": "R4", "left": ["bibliographic"], "right": ["bibliographic"], "result": "bibliographic", "why": "reach, not the cites relation: strength 0"},
+    {"rule": "R4", "left": ["historical"], "right": ["historical"], "result": "historical", "why": "a connection, not transitive influence: strength 0"},
+    {"rule": "R4", "left": ["bibliographic"], "right": ["historical", "documentary"], "result": "documentary"},
+    {"rule": "R4", "left": ["historical"], "right": ["bibliographic", "documentary"], "result": "documentary"},
+    {"rule": "R4", "left": ["documentary"], "right": ["bibliographic", "historical", "documentary"], "result": "documentary"}
+  ],
+
+  "pairs": [
+    {"first": "generalizes", "then": "applied_in", "result": "application_via_special_case", "rule": "R6",
+     "reading": "A generalizes B and B applied_in X: A applies in X through its special case B"},
+    {"first": "special_case_of", "then": "applied_in", "result": "none", "rule": "R6",
+     "reading": "A special_case_of B and B applied_in X say nothing about A"},
+    {"first": "equivalent_to", "then": "applied_in", "result": "application", "rule": "R2",
+     "reading": "an equivalent statement inherits the documented use, under the union of assumptions"},
+    {"first": "generalizes", "then": "models", "result": "model_via_special_case", "rule": "R6",
+     "reading": "same as applied_in: through the special case (v2: named, no longer plain model_of)"},
+    {"first": "special_case_of", "then": "models", "result": "none", "rule": "R6",
+     "reading": "a special case's model says nothing about the general object"},
+    {"first": "analogous_to", "then": "applied_in", "result": "transfer_hypothesis", "rule": "R3",
+     "reading": "an analogy followed by a use is a candidate transfer, never a demonstrated application"},
+    {"first": "prerequisite_for", "then": "depends_on_logically", "result": "none", "rule": "R5",
+     "reading": "A before B and B needs C: C should come before B, so the word reads in opposite study directions"}
+  ],
+
+  "expect": [
+    {"path": ["analogous_to", "applied_in"], "conclusion": "transfer_hypothesis", "rule": "R3"},
+    {"path": ["analogous_to", "models"], "conclusion": "transfer_hypothesis", "rule": "R3"},
+    {"path": ["analogous_to", "analogous_to"], "conclusion": "none", "rule": "R10"},
+    {"path": ["analogous_to", "analogous_to", "applied_in"], "conclusion": "none", "rule": "R10"},
+    {"path": ["analogous_to", "equivalent_to", "analogous_to"], "conclusion": "none", "rule": "R10"},
+    {"path": ["analogous_to", "generalizes", "applied_in"], "conclusion": "transfer_hypothesis", "rule": "R3"},
+    {"path": ["analogous_to", "depends_on_logically"], "conclusion": "hypothesis", "rule": "R3"},
+    {"path": ["prerequisite_for", "prerequisite_for"], "conclusion": "study_route", "rule": "R1"},
+    {"path": ["prerequisite_for", "depends_on_logically"], "conclusion": "none", "rule": "R5"},
+    {"path": ["prerequisite_for", "depends_on_logically^-1"], "conclusion": "study_route", "rule": "R5"},
+    {"path": ["depends_on_logically^-1", "prerequisite_for"], "conclusion": "study_route", "rule": "R5"},
+    {"path": ["depends_on_logically^-1", "depends_on_logically^-1"], "conclusion": "logical_support", "rule": "R1"},
+    {"path": ["depends_on_logically", "depends_on_logically"], "conclusion": "logical_dependency", "rule": "R1"},
+    {"path": ["depends_on_logically", "depends_on_logically^-1"], "conclusion": "none", "rule": "mixing"},
+    {"path": ["depends_on_logically", "prerequisite_for"], "conclusion": "none", "rule": "R5"},
+    {"path": ["cites", "cites"], "conclusion": "bibliographic", "rule": "R4"},
+    {"path": ["appears_in", "cites", "appears_in^-1"], "conclusion": "bibliographic", "rule": "R4"},
+    {"path": ["cites", "depends_on_logically"], "conclusion": "none", "rule": "R4"},
+    {"path": ["generalizes", "applied_in"], "conclusion": "application_via_special_case", "rule": "R6"},
+    {"path": ["generalizes", "generalizes", "applied_in"], "conclusion": "application_via_special_case", "rule": "R6"},
+    {"path": ["special_case_of", "applied_in"], "conclusion": "none", "rule": "R6"},
+    {"path": ["generalizes^-1", "applied_in"], "conclusion": "none", "rule": "R6"},
+    {"path": ["special_case_of^-1", "applied_in"], "conclusion": "application_via_special_case", "rule": "R6"},
+    {"path": ["equivalent_to", "applied_in"], "conclusion": "application", "rule": "R2"},
+    {"path": ["equivalent_to", "depends_on_logically", "equivalent_to"], "conclusion": "logical_dependency", "rule": "R2"},
+    {"path": ["equivalent_to", "formalized_as"], "conclusion": "none", "rule": "R2"},
+    {"path": ["depends_on_logically", "applied_in"], "conclusion": "none", "rule": "mixing"},
+    {"path": ["proves", "depends_on_logically^-1"], "conclusion": "none", "rule": "mixing"},
+    {"path": ["generalizes", "special_case_of"], "conclusion": "none", "rule": "mixing"},
+    {"path": ["models", "applied_in"], "conclusion": "none", "rule": "R1"},
+    {"path": ["counterexample_to", "equivalent_to"], "conclusion": "refutation", "rule": "R2"},
+    {"path": ["influenced", "influenced"], "conclusion": "historical", "rule": "R4"},
+    {"path": ["named_after", "authored_by^-1"], "conclusion": "historical", "rule": "R4"},
+    {"path": ["appears_in", "authored_by"], "conclusion": "documentary", "rule": "R4"},
+    {"path": ["part_of_area", "part_of_area"], "conclusion": "area_membership", "rule": "R1"}
+  ],
+
+  "evidence_penalty": {
+    "note": "Ordinal penalties per step, not probabilities (R9).  Summed along the route; the weakest state is reported apart.",
+    "formally_linked": 0.0, "editorially_reviewed": 0.25, "extracted": 1.0, "model_proposed": 2.0, "disputed": 4.0
+  },
+
+  "weights": {
+    "note": "Visible, adjustable route-cost terms; each step adds sum(weight * term).  'conclusion' is charged once per route: weight * (5 - strength).  'intuition' uses the per-relation 'intuition' values above, an editorial prior that AtlasBench has not calibrated yet.",
+    "terms": {
+      "length": "1 per step",
+      "evidence": "evidence_penalty of the step's claim",
+      "formal": "1 if the claim is not formally_linked",
+      "new": "1 per node the reader does not know (option 'known'), counting intermediate nodes and missing premises",
+      "missing_premise": "1 per premise of a conjunction that is not satisfied (R7)",
+      "diversity": "1 if the step stays in the same area, 0.5 if an area is unknown, 0 if it changes area",
+      "intuition": "the relation's intuition prior",
+      "conclusion": "5 - strength of the route's conclusion, once"
+    },
+    "objectives": {
+      "shortest": {"length": 1.0},
+      "best_supported": {"evidence": 1.0, "length": 0.2, "missing_premise": 2.0, "conclusion": 0.5},
+      "most_formal": {"formal": 1.0, "evidence": 0.2, "length": 0.1, "missing_premise": 2.0, "conclusion": 0.5},
+      "fewest_new": {"new": 1.0, "missing_premise": 1.0, "length": 0.1, "conclusion": 0.5},
+      "most_diverse": {"diversity": 1.0, "length": 0.3, "missing_premise": 2.0, "conclusion": 0.5},
+      "most_intuitive": {"intuition": 1.0, "length": 0.2, "missing_premise": 2.0, "conclusion": 0.5}
+    }
+  },
+
+  "rules": [
+    {"id": "R1", "kind": "same_transitive", "es": "Una cadena solo de una relacion transitiva autoriza esa misma relacion.  Una no transitiva no encadena (si su conclusion tiene fuerza > 0)."},
+    {"id": "R2", "kind": "transparent", "relation": "equivalent_to", "families": ["structure", "proof", "learning"], "es": "equivalent_to puede intercalarse en una cadena structure o proof sin cambiar lo que autoriza; los supuestos se acumulan.  Por la izquierda tambien hereda aplicaciones y modelos.  Nunca transfiere una formalizacion."},
+    {"id": "R2b", "kind": "transparent_learning", "relation": "equivalent_to", "es": "v2: equivalent_to tambien es transparente en rutas de estudio.  Lo exige la asociatividad: con R5 (logical_support compuesto con study_route), (support o equivalencia) o estudio debe valer lo mismo que support o (equivalencia o estudio)."},
+    {"id": "R3", "kind": "degrade", "relation": "analogous_to", "to": "hypothesis", "es": "Cualquier analogous_to vuelve hipotetica la conclusion (fuerza 1).  Seguida de applied_in o models es una hipotesis de transferencia candidata, nunca una aplicacion demostrada."},
+    {"id": "R4", "kind": "non_mathematical", "relations": ["cites", "appears_in", "influenced", "named_after", "authored_by"], "es": "Estas relaciones nunca producen una conclusion matematica: fuerza 0, y no se componen con relaciones matematicas."},
+    {"id": "R5", "kind": "cap", "relation": "prerequisite_for", "cap": "study_route", "es": "prerequisite_for mezclado con relaciones logicas produce como mucho una ruta de estudio, y solo en el sentido de estudio (premisa antes que conclusion); depends_on_logically tampoco determina el mejor orden de estudio."},
+    {"id": "R6", "kind": "pairs", "es": "B applied_in X y A generalizes B autorizan aplicacion a traves del caso particular; special_case_of seguido de applied_in no autoriza nada."},
+    {"id": "R7", "kind": "conjunction", "require": "all_premises", "es": "Al recorrer depends_on_logically al reves (de premisa a sujeto), la afirmacion solo cuenta como salto completo si todas sus premisas estan satisfechas: derivables desde el origen o conocidas.  Si falta alguna, la ruta se degrada (incompleta, con la premisa como supuesto) o se rechaza en modo estricto."},
+    {"id": "R8", "kind": "states", "exclude": ["superseded", "retracted"], "opt_in": ["disputed"], "es": "superseded y retracted no se usan; disputed solo si el usuario lo pide y se muestra como tal."},
+    {"id": "R9", "kind": "scoring", "forbid": "product_of_independent_edge_probabilities", "es": "Ningun puntaje de ruta multiplica probabilidades de aristas como si fueran independientes.  El costo es una suma de terminos ordinales con pesos visibles."},
+    {"id": "R10", "kind": "analogy_budget", "relation": "analogous_to", "es": "Como mucho una analogia por ruta; dos analogias no concluyen nada."},
+    {"id": "R11", "kind": "alternatives", "es": "Una dependencia hacia delante a traves de una demostracion con alternativas no es necesaria: si otra demostracion del mismo grupo no usa esa premisa, se dice."}
+  ],
+
+  "mixing": {
+    "default": "none",
+    "es": "Una cadena que mezcla familias sin regla explicita no autoriza nada; el motor se abstiene y muestra la conexion cruda como exploracion, con el primer salto que la invalida."
+  }
+}

@@ -1,0 +1,318 @@
+[
+  {
+    "id": "WP01",
+    "title": "Modelo semántico y procedencia",
+    "owner_role": "Arquitectura + semántica",
+    "start_month": 1,
+    "end_month": 2,
+    "dependencies": [],
+    "references": [
+      "R01",
+      "R02",
+      "R50",
+      "R51",
+      "R52"
+    ],
+    "deliverable": "Esquema versionado; relaciones n-arias; supuestos; fuentes; historial; validaciones.",
+    "acceptance": "Todos los ejemplos de evaluación conservan contexto, evidencia y alternativas."
+  },
+  {
+    "id": "WP02",
+    "title": "Inventario y acuerdos de reutilización",
+    "owner_role": "Datos + edición",
+    "start_month": 1,
+    "end_month": 3,
+    "dependencies": [],
+    "references": [
+      "R04",
+      "R07",
+      "R08",
+      "R53",
+      "R54"
+    ],
+    "deliverable": "Registro por fuente de versión, identificadores, acceso, derechos y cobertura.",
+    "acceptance": "Cada conjunto incorporado tiene condiciones de uso y procedencia registradas."
+  },
+  {
+    "id": "WP03",
+    "title": "Corpus y benchmark de evaluación",
+    "owner_role": "Evaluación + especialistas",
+    "start_month": 1,
+    "end_month": 6,
+    "dependencies": [
+      "WP01"
+    ],
+    "references": [
+      "R12",
+      "R20",
+      "R25",
+      "R33",
+      "R34"
+    ],
+    "deliverable": "AtlasBench con 20,000 elementos anotados, particiones y adjudicación.",
+    "acceptance": "Separación temporal/documental; acuerdo entre revisores e incertidumbre reportados."
+  },
+  {
+    "id": "WP04",
+    "title": "Ingesta documental",
+    "owner_role": "Ingeniería de datos",
+    "start_month": 2,
+    "end_month": 5,
+    "dependencies": [
+      "WP01",
+      "WP02"
+    ],
+    "references": [
+      "R08",
+      "R09",
+      "R10",
+      "R11",
+      "R13"
+    ],
+    "deliverable": "Adaptadores LaTeX, HTML/XML y PDF; origen de cada bloque.",
+    "acceptance": "Pruebas por componente, fórmulas y referencias; reconstrucción de una importación."
+  },
+  {
+    "id": "WP05",
+    "title": "Extracción y resolución de entidades",
+    "owner_role": "NLP + semántica",
+    "start_month": 2,
+    "end_month": 8,
+    "dependencies": [
+      "WP01",
+      "WP03",
+      "WP04"
+    ],
+    "references": [
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R23"
+    ],
+    "deliverable": "Candidatos tipados y fusiones reversibles con evidencia.",
+    "acceptance": "Precisión por clase; fusiones >99% y abstenciones declaradas en evaluación."
+  },
+  {
+    "id": "WP06",
+    "title": "Adaptadores formales",
+    "owner_role": "Matemáticas formales",
+    "start_month": 2,
+    "end_month": 10,
+    "dependencies": [
+      "WP01",
+      "WP02"
+    ],
+    "references": [
+      "R03",
+      "R04",
+      "R06",
+      "R19",
+      "R20",
+      "R22"
+    ],
+    "deliverable": "Importación versionada; separación de pruebas, enunciados e infraestructura.",
+    "acceptance": "Resultados reproducibles; fidelidad y prueba evaluadas de forma independiente."
+  },
+  {
+    "id": "WP07",
+    "title": "Recuperación híbrida",
+    "owner_role": "Búsqueda + ML",
+    "start_month": 3,
+    "end_month": 7,
+    "dependencies": [
+      "WP03",
+      "WP04"
+    ],
+    "references": [
+      "R23",
+      "R24",
+      "R25",
+      "R26",
+      "R27",
+      "R28"
+    ],
+    "deliverable": "Índices de texto, fórmulas y vectores; ranking y diagnóstico.",
+    "acceptance": "Evaluación contra baseline por idioma y dominio; p95 caliente <2s en carga declarada."
+  },
+  {
+    "id": "WP08",
+    "title": "Mapa multiescala",
+    "owner_role": "Visualización + UX",
+    "start_month": 2,
+    "end_month": 8,
+    "dependencies": [
+      "WP01"
+    ],
+    "references": [
+      "R36",
+      "R37",
+      "R38",
+      "R39",
+      "R40"
+    ],
+    "deliverable": "Geometría estable, capas, agregación y vistas accesibles.",
+    "acceptance": "Tareas de orientación evaluadas; interacción local p95 <100ms en hardware declarado."
+  },
+  {
+    "id": "WP09",
+    "title": "Síntesis con fuentes",
+    "owner_role": "NLP + edición",
+    "start_month": 5,
+    "end_month": 10,
+    "dependencies": [
+      "WP05",
+      "WP07"
+    ],
+    "references": [
+      "R29",
+      "R30",
+      "R31",
+      "R32",
+      "R33",
+      "R35"
+    ],
+    "deliverable": "Explicaciones y resúmenes regionales reconstruibles.",
+    "acceptance": "Respaldo y cobertura por afirmación; condiciones conservadas y errores auditados."
+  },
+  {
+    "id": "WP10",
+    "title": "Motor de recorridos",
+    "owner_role": "Semántica + producto",
+    "start_month": 5,
+    "end_month": 12,
+    "dependencies": [
+      "WP05",
+      "WP07"
+    ],
+    "references": [
+      "R01",
+      "R15",
+      "R31",
+      "R43"
+    ],
+    "deliverable": "Reglas de composición; rutas alternativas con supuestos y evidencia.",
+    "acceptance": "Validez de extremo a extremo >90% en conjunto independiente y abstenciones visibles."
+  },
+  {
+    "id": "WP11",
+    "title": "Aplicaciones interdisciplinarias",
+    "owner_role": "Edición + especialistas",
+    "start_month": 4,
+    "end_month": 18,
+    "dependencies": [
+      "WP01",
+      "WP05"
+    ],
+    "references": [
+      "R16",
+      "R34",
+      "R45",
+      "R46",
+      "R47"
+    ],
+    "deliverable": "Cadenas modelo-método-uso-evidencia y comparaciones.",
+    "acceptance": "Afirmaciones empíricas e influencias históricas con fuente propia."
+  },
+  {
+    "id": "WP12",
+    "title": "Aprendizaje y laboratorios",
+    "owner_role": "Aprendizaje + visualización",
+    "start_month": 7,
+    "end_month": 15,
+    "dependencies": [
+      "WP08",
+      "WP10"
+    ],
+    "references": [
+      "R41",
+      "R42",
+      "R43",
+      "R44"
+    ],
+    "deliverable": "Perfiles voluntarios, rutas educativas y 120 laboratorios.",
+    "acceptance": "Estudio de comprensión, retención y transferencia; simulaciones accesibles."
+  },
+  {
+    "id": "WP13",
+    "title": "Descubrimiento de puentes",
+    "owner_role": "ML + especialistas",
+    "start_month": 10,
+    "end_month": 18,
+    "dependencies": [
+      "WP05",
+      "WP10",
+      "WP11"
+    ],
+    "references": [
+      "R45",
+      "R46",
+      "R47",
+      "R48",
+      "R56",
+      "R57"
+    ],
+    "deliverable": "Candidatos de analogía y transferencia con contrastación.",
+    "acceptance": "Evaluación temporal y prospectiva; utilidad y carga de revisión publicadas."
+  },
+  {
+    "id": "WP14",
+    "title": "Contribución y federación",
+    "owner_role": "Plataforma + comunidad",
+    "start_month": 4,
+    "end_month": 18,
+    "dependencies": [
+      "WP01",
+      "WP02"
+    ],
+    "references": [
+      "R49",
+      "R50",
+      "R51",
+      "R54",
+      "R55",
+      "R59"
+    ],
+    "deliverable": "Edición revisable, APIs, exportaciones, réplicas y autoría semántica.",
+    "acceptance": "Edición reconstruible y exportación completa de datos publicables."
+  },
+  {
+    "id": "WP15",
+    "title": "Producción editorial bilingüe",
+    "owner_role": "Edición matemática",
+    "start_month": 3,
+    "end_month": 18,
+    "dependencies": [
+      "WP01",
+      "WP05",
+      "WP14"
+    ],
+    "references": [
+      "R18",
+      "R40",
+      "R44",
+      "R59",
+      "R60"
+    ],
+    "deliverable": "20,000 fichas, 100,000 conexiones revisadas y 1,000 recorridos como metas.",
+    "acceptance": "Doble control de casos críticos; conteos separados de automático, adaptado y original."
+  },
+  {
+    "id": "WP16",
+    "title": "Operación, calidad y reproducibilidad",
+    "owner_role": "Plataforma + evaluación",
+    "start_month": 1,
+    "end_month": 18,
+    "dependencies": [],
+    "references": [
+      "R12",
+      "R25",
+      "R33",
+      "R35",
+      "R48"
+    ],
+    "deliverable": "CI de datos; costos; auditorías; backups; pruebas de reconstrucción.",
+    "acceptance": "Métricas por edición; correcciones propagadas; benchmark y costos publicados."
+  }
+]

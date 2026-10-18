@@ -1,0 +1,32 @@
+[package]
+name = "atlas-search"
+description = "Hybrid retrieval over the atlas snapshot: tantivy BM25 (ES/EN/Lean), Tangent-style formula index, dense vectors, RRF and a query router"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+default = ["neural"]
+# Multilingual neural encoder (fastembed + ONNX Runtime).  Without it the semantic
+# lane uses the TF-IDF + SVD encoder only.
+neural = ["dep:fastembed"]
+
+[dependencies]
+atlas-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rusqlite.workspace = true
+memmap2.workspace = true
+rayon.workspace = true
+ahash.workspace = true
+blake3.workspace = true
+bytemuck.workspace = true
+tantivy.workspace = true
+fastembed = { version = "7.1", optional = true }
+# numkong (default feature) fails to link on MSVC (__imp_nk_* unresolved): plain kernels
+usearch = { version = "2.26", default-features = false }
+
+[dev-dependencies]
+memory-stats.workspace = true

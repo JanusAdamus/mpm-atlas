@@ -1,0 +1,190 @@
+Portal - MaRDI
+Skip to main content
+Mathematical Research Data Initiative
+EN
+DE
+Easy language
+News
+About
+Submenu for "About"
+Mission
+Organization
+Task Areas
+Consortium Members
+Consortium Management
+Consortium Participants
+Partner Consortia
+NFDI Story
+FAIR Data Principles
+Community
+Submenu for "Community"
+Help Desk
+Start here
+Teaching and Training
+Newsletter
+Your Math Type (Poster)
+Making MaRDI
+Love Data Week I
+Love Data Week II
+Portal
+Submenu for "Portal"
+Portal
+(current)
+Services
+Events
+Submenu for "Events"
+Upcoming events
+Past events
+Jobs
+Submenu for "Jobs"
+Science
+Management
+Others
+Resources
+Submenu for "Resources"
+Publications
+Downloads
+Press
+Submenu for "Press"
+Media Coverage
+Press Releases
+Press Kit
+EN
+DE
+The NFDI
+Consortium of
+Mathematics
+The NFDI Consortium of
+            Mathematics
+News
+About
+Submenu for "About"
+Mission
+Organization
+Task Areas
+Consortium Members
+Consortium Management
+Consortium Participants
+Partner Consortia
+NFDI Story
+FAIR Data Principles
+Community
+Submenu for "Community"
+Help Desk
+Start here
+Teaching and Training
+Newsletter
+Your Math Type (Poster)
+Making MaRDI
+Love Data Week I
+Love Data Week II
+Portal
+Submenu for "Portal"
+Portal
+(current)
+Services
+Events
+Submenu for "Events"
+Upcoming events
+Past events
+Jobs
+Submenu for "Jobs"
+Science
+Management
+Others
+Resources
+Submenu for "Resources"
+Publications
+Downloads
+Press
+Submenu for "Press"
+Media Coverage
+Press Releases
+Press Kit
+Easy language
+Information on cookies
+On the basis of your freely given consent, which can be
+	  revoked at any time, your visit to our website is recorded
+	  using Matomo, an open source web analytics software program.
+	  The information produced will be used solely for statistical
+	  purposes and to improve the website and server. No personal
+	  data will be stored or shared with third parties. For more
+	  information, please refer to the
+Privacy
+	  Policy
+on our website.
+	  By clicking
+“Accept”
+, you consent
+	  to our use of cookies for
+	  analytical purposes.
+	  If you do not agree to this,       please click
+“Reject”
+. In principle, you can visit
+	  our website without
+	  cookies being enabled.
+	  This does not apply in the case of essential cookies.
+Accept
+Reject
+Portal
+The
+MaRDI Portal
+is the central entry point for MaRDI’s research data infrastructure, which includes services, data, and a highly curated connected mathematical knowledge graph. It is driven by the fact that while there are available many sources research data and related services in mathematics they are hosted as stand-alone solutions and often do not allow for a
+FAIR
+use. This hinders the development of services for automatic or systematic data retrieval in a standardized way in many areas of the mathematical science.
+With the
+MaRDI Portal
+, we provide metadata of the federated data sources according to the FAIR principles and access to services developed within MaRDI for specific data types. Furthermore, through connections of the different items (data, publications, software, algorithms, models and many more) the
+MaRDI Portal
+provides access to a very large knowledge graph dedicated to mathematics. Based on the knowledge graph many new services can be built to provide specific solutions for the mathematical community and beyond.
+The
+MaRDI Portal
+includes newly developed and existing data repositories that are integrated into the MaRDI knowledge graph for convenient use and machine access. Through the integration into the MaRDI infrastructure improvements are made at the original data sources. Furthermore important mathematical contributions such as the possibility to search for mathematical formulae at the
+MaRDI Portal
+are introduced at Wikidata as well because both are based on the same technological platform.
+The
+MaRDI Portal
+allows researchers, mathematicians and those using mathematics, to find and explore information, from multiple sources in the mathematical domain. Modern artificial intelligence (AI) technologies ease the interaction with the available information.
+The infrastructure for the front- and backend of the portal is being developed and hosted by
+MaRDI’s Task Area TA5
+.
+The
+MaRDI Portal
+is the entry point to many of the
+services
+provided by MaRDI. Whether you are a researcher, a student, or simply someone passionate about mathematics, the MaRDI Portal is here to support your exploration, learning, and discovery with resources tailored to diverse needs and interests. We embrace the open-source philosophy – our source code repositories and detailed technical documentation are freely accessible.
+Subscribe to our Newsletter
+Our Newsletter "Math & Data Quarterly" is prepared by our partner IMAGINARY.
+Sign up
+to get it delivered straight to your inbox quarterly or
+check it out online
+.
+zbMathOpen Articles
+loading…
+zbMathOpen Articles,
+				   October 15, 2026
+zbMathOpen is an information service for mathematicians from research and teaching with networked information on mathematical topics, the authors and their publications with references. Besides bibliographic information it provides the user with an overview of the current mathematical literature without having to read all the journals himself. The
+MaRDI portal
+ensures FAIR access.
+Triplets
+loading…
+Triplets,
+				   October 15, 2026
+Knowledge graphs store interlinked descriptions of entities, such as objects or concepts, and their relationships, forming triplets that represent semantic connections. Small, domain-specific, and manually curated knowledge graphs typically contain around 100,000 triples, while larger general-purpose graphs, such as Wikidata, contain around 15 billion triples. The
+MaRDI knowledge graph
+is highly curated and focused on mathematics.
+Triplets-Graph
+Datasets
+loading…
+Datasets,
+				   October 15, 2026
+The MaRDI Portal registers metadata from datasets using different sources: E.g. OpenML is an open science online platform for machine learning, which holds open data, open algorithms and tasks accessible through the MaRDI portal. Furthermore, Zenodo is a general purpose data repository provided by OpenAIRE and CERN. It also hosts mathematical research data which is now accessible through the
+MaRDI Portal
+.
+Home
+Contact
+Privacy
+Accessibility
+Imprint
+© MaRDI4nfdi.de, all rights reserved,
+		      2026-10-15

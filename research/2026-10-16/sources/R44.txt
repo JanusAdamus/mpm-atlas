@@ -1,0 +1,1302 @@
+Research
+Skip to Main Content
+Website Navigation
+Simulations
+All Sims
+Physics
+Math & Statistics
+Chemistry
+Earth & Space
+Biology
+Translated Sims
+Customizable Sims
+Studio
+About Studio
+Customizable Sims
+Start a Free Trial
+Purchase a License
+Teaching
+Activities
+Contribute an Activity
+Activity Contribution Guidelines
+Virtual Workshops
+Professional Learning with PhET
+Teaching with PhET
+Research
+Initiatives
+Inclusive Design
+PhET Global
+Data Fluency
+DEIB in STEM Ed
+SceneryStack OSE
+Impact Report
+Sign in / Register
+Sign in / Register
+My Account
+My Account
+My Bookmarks
+My Contributions
+My Presets
+My License
+Administration
+Activity Review
+Edit profile
+Sign out
+Search the PhET Website
+Research
+PhET: Research and Development:
+How PhET simulations are designed, and the research process of refining the simulations to best promote learning.
+PhET conducts research on both the
+design
+and
+use
+of interactive simulations to better understand:
+Which characteristics make these tools effective for learning and why
+How students engage and interact with these tools to learn, and what influences this process
+When, how, and why these tools are effective in a variety of learning environments
+The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000) and from our simulation interviews (see
+PhET Design Process
+). Between four and six think-aloud style interviews with individual students are done with each simulation. These interviews provide a rich data source for studying interface design and student learning. The
+PhET Look and Feel
+briefly describes our interface design principles and a complete discussion is found in the pair of papers by
+Adams et al., 2008
+.
+Research answers to commonly asked questions:
+"Can PhET sims replace real lab equipment?"
+Our studies have shown that PhET sims are more effective for conceptual understanding; however, there are many goals of hands-on labs that simulations do not address. For example, specific skills relating to the functioning of equipment. Depending on the goals of your laboratory, it may be more effective to use just sims or a combination of sims and real equipment
+"Do students learn if I just tell them to go home and play with a sim?"
+Most students do not have the necessary drive to spend time playing with a science simulation (they're fun, but not that fun) on their own time unless there is a
+direct
+motivation such as their grade. This is one of the reasons we are pursuing the project of how to best integrate sims into homework.
+"Where is the best place to use PhET sims in my course?"
+We have found PhET sims to be very effective in lecture, in class activities, lab and homework. They are designed with minimal text so that they can easily be integrated into every aspect of a course.
+Our immediate interests are:
+Use of analogy to construct understanding:
+Students use analogies in sims to make sense of unfamiliar phenomena. Representations play a key role in student use of analogy.
+Simulations as tools for changing classroom norms:
+Sims are shaped by socio-cultural norms of science, but can also be used to change the traditional norms of how students engage in the classroom.
+Specific features of sims that promote learning and engaged exploration:
+Our design principles identify key characteristics of sims that make them productive tools for student engagement. Now we wish to study in detail how each feature impacts student understanding.
+Integrating simulations into homework:
+Simulations have unique features that are not available in most learning tools (interactivity, animation, dynamic feedback, allow for productive exploration)
+Effectiveness of Chemistry simulations:
+We have just begun investigating the envelope of where and how chemistry simulations can be effective learning tools.
+Publications and Presentations
+Important features for effective simulation design (predominantly interview data)
+Research on in-class use
+About PhET sims
+Students Perceptions About Learning
+Other Work by PhET Researchers
+Publications on PhET Simulations by Other Researchers
+Important features for effective simulation design (predominantly interview data)
+Designing accessible interactive chemistry simulations
+,
+Moore, E. B.
+,
+ConfChem: Interactive Visualizations for Chemistry Teaching and Learning.
+2015
+.
+Tilting the Tablet: The Effect of Tablet Tilt on Hand Occlusion
+,
+Moore, E. B.
+,
+In Proceedings of the 33rd Annual ACM Conference Extended Abstracts on Human Factors in Computing Systems
+,
+(pp. 1633-1638).
+ACM.
+2015
+.
+Blending Implicit Scaffolding and Games in PhET Interactive Simulations
+,
+Perkins, K.K. & Moore, E.B.
+,
+In Polman, J. L., Kyza, E. A., O'Neill, D. K., Tabak, I., Penuel, W. R., Jurow, A. S., O'Connor, K., Lee, T., and D'Amico, L. (Eds.). The International Conference of the Learning Sciences (ICLS): Learning and becoming in practice, Boulder, CO (Vol. 3, pp 1201-1202).
+June 2014
+.
+Insights from using PhET's design principles for interactive chemistry simulations
+,
+Lancaster, K. V., Moore, E. B., Parson, R., & Perkins, K.
+,
+In J. Suits & M. Sanger, M. (Eds.), Pedagogic Roles of Animations and Simulations in Chemistry Courses
+,
+(97-126). ACS    Symposium Series
+,
+2013
+.
+Guiding without feeling guided: implicit scaffolding through
+                      interactive simulation design
+,
+Paul, A., Podolefsky, N., & Perkins, K.
+,
+Proceedings of the 2012 Physics Education Research Conference, 1513
+,
+pp. 302-305
+,
+2013
+.
+PhET interactive simulations: Using implicit scaffolding to support productive inquiry learning
+,
+Perkins, K., & Moore, E.
+,
+Proceedings from EARLI SIG 20 Conference on Computer-Supported Inquiry Learning
+,
+2012
+.
+Factors promoting engaged exploration with computer simulations
+,
+N. S. Podolefsky, K. K. Perkins, and W. K. Adams
+,
+Phys. Rev. ST Phys. Educ.
+,
+Res. 6, 020117
+,
+2010
+.
+Characterizing Complexity of Computer Simulations and Implications
+                      for Student Learning
+,
+Podolefsky, N. S., Adams, W. K., Lancaster, K., Perkins, K. K., Singh, C., Sabella, M., & Rebello, S.
+,
+In AIP Conference Proceedings
+,
+Vol. 1289, No. 1, p. 257
+,
+2010
+.
+Student engagement and learning with PhET interactive simulations
+,
+Adams, W. K.
+,
+Il Nuovo Cimento C: Multimedia in Physics Teaching and Learning - MPTL14
+,
+Vol 33, no. 3, pp. 21-32
+,
+2010
+.
+Computer simulations to classrooms: tools for
+                      change
+,
+N. S. Podolefsky, K. K. Perkins and W. K. Adams
+,
+2009 Physics Education Research - Conference Proceedings. AIP Press
+,
+2010
+.
+Student Choices when Learning with Computer
+                          Simulations
+,
+N. S. Podolefsky, K. K. Perkins and W. K. Adams
+,
+2009 Physics Education Research - Conference Proceedings. AIP Press
+,
+2010
+.
+Developing and Researching PhET simulations for Teaching Quantum Mechanics
+,
+S. B. McKagan, K. K. Perkins, M. Dubson, C. Malley, S. Reid, R. LeMaster, and C. E. Wieman
+,
+American Journal of Physics
+,
+76, 406
+,
+May 2008
+.
+A Study of Educational Simulations Part II - Interface Design
+,
+W. K. Adams, S. Reid, R. LeMaster, S. B. McKagan, K. K. Perkins, M. Dubson and C. E. Wieman
+,
+Journal of Interactive Learning Research
+,
+19(4),  551-577
+,
+October 2008
+.
+Chapter
+                2:
+                Simulation Interviews and Studies
+,
+Adams, W.
+,
+Doctoral Dissertation
+,
+University of Colorado at Boulder
+,
+July 2008
+.
+A Study of Educational Simulations Part I - Engagement and Learning
+,
+W. K. Adams, S. Reid, R. LeMaster, S. B. McKagan, K. K. Perkins, M. Dubson and C. E. Wieman
+,
+Journal of Interactive Learning Research
+,
+19(3), 397-419
+,
+July 2008
+.
+What Levels of Guidance Promote Engaged Exploration with Interactive Simulations?
+,
+W. K. Adams, A. Paulson and C. E. Wieman
+,
+PERC Proceedings
+,
+2009
+.
+What
+                levels of
+                guidance promote engaged exploration with interactive simulations?
+,
+Adams, W. K., Paulson, A., & Wieman, C. E.
+,
+AIP Conference Proceedings
+,
+1064, 59
+,
+2008
+.
+Research-Based Design Features of Web-based Simulations
+,
+W. K. Adams, N. D. Finkelstein, S. Reid, M. Dubson, N. Podolefsky, C. E. Wieman, R. LeMaster
+,
+Talk presented at AAPT Summer Meeting
+,
+2004
+.
+Research on in-class use
+Variations on play with interactive computer
+            simulations: Balancing competing priorities
+, Whitacre, I., Hensberry, K. K. R., Schellinger, J., & Findley, K., International Journal
+          of Mathematical Education in Science and Technology, DOI: 10.1080/0020739X.2018.1532536, 2018.
+ConfChem Conference on Interactive Visualizations for Chemistry Teaching and Learning:
+            Using an Interactive Simulation To Support Development of Expert Practices for Balancing Chemical Equations.
+,
+Carpenter, Y., Moore, E. B., & Perkins, K. K.. J.
+Chem. Educ., 2016, 93 (6), p. 1150–1151
+,
+2016
+.
+Using an interactive simulation to support development of expert practices for balancing chemical equations
+,
+Carpenter, Y., Moore, E. B., & Perkins, K. K.
+,
+Spring 2015 ConfChem: Interactive Visualizations for Chemistry Teaching and Learning
+,
+2015
+.
+Effective Student Learning of Fractions with an Interactive Simulation
+,
+Hensberry, K., Moore, E., & Perkins, K.
+,
+Journal of Computers in Mathematics and Science Teaching, 34(3)
+,
+273-298.
+2015
+.
+Examining the Use of PhET Interactive Simulations in US College and High School Classrooms
+,
+Perkins, K.K., Moore, E.B., and Chasteen, S.V.
+Proceedings of the 2014 Physics Education Research Conference
+,
+June 2014
+.
+How guidance
+                  affects student engagement with an interactive simulation
+,
+J. M. Chamberlain, K. Lancaster, R. Parson, & K. K. Perkins.
+Chemistry Education Research and Practice. 15
+p. 628-638
+,
+2014
+.
+Assessing the implicit scaffolding design framework: Effectiveness of the Build a Molecule simulation
+,
+,
+Moore, E. B., & Perkins, K. K.
+,
+NARST 2014: Awakening Dialogues - Advancing Science Education Research Practices and Policies. Proceedings of the National Association for Research in Science Teaching, Annual International Conference. National Association for Research in Science Teaching.
+,
+2014
+.
+Tools for high-tech tool use: A framework and
+                      heuristics for using interactive simulations
+,
+Rehn, D. A., Moore, E. B., Podolefsky, N. S., & Finkelstein, N.
+,
+JoTLT. 2(1)
+,
+p. 31-55
+,
+2013
+.
+Interactive simulations as implicit support for
+                      guided-inquiry
+,
+Moore, E. B., Herzog, T. A., & Perkins, K. K.
+,
+Chemistry Education Research and Practice, 14(3)
+,
+257-268
+,
+2013
+.
+Affordances of play for student agency and
+                      student-centered
+                      pedagogy
+,
+Podolefsky, N. S., Rehn, D., & Perkins, K. K.
+,
+American Institute of Physics Conference Series
+,
+Vol. 1513, pp. 306-309
+,
+2013
+.
+Towards research-based strategies for using PhET
+                      simulations in
+                      middle school physical science classes
+,
+Perkins, K., Moore, E., Podolefsky, N., Lancaster, K., & Denison, C.
+,
+2011 PERC Proceedings, AIP Press 1413(1)
+,
+295-298
+,
+2012
+.
+Teaching Physics using PhET Simulations
+,
+C. Wieman, W. Adams, P. Loeblein, and K. Perkins
+,
+The Physics Teacher
+,
+2010
+.
+A Research-Based Curriculum for Teaching the Photoelectric Effect
+,
+S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman
+,
+American Journal of Physics
+,
+77, 87
+,
+January 2009
+.
+Innovative teaching to promote innovative thinking: How technology can help
+,
+S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman
+,
+Education for Innovation: Implications for India, China, and America, R.L. DaHann and K.M. Narayan (eds), Sense Publishers, The Netherlands
+,
+2008
+.
+Assessing the Effectiveness of a Computer Simulation in Introductory Undergraduate Environments
+,
+Keller, C. J., Finkelstein, N. D., Perkins, K. K., & Pollock, S. J.
+,
+2006 PERC Proceedings, AIP Conf. Proc. 883, 121
+,
+2007
+.
+Assessing the Use of a Computer Simulation in Introductory College Physics Classroom Environments
+,
+Keller, C.
+,
+Master's Thesis, University of Colorado at Boulder
+,
+2006
+.
+Assessing the effectiveness of a computer simulation in conjunction with Tutorials in
+                      Introductory
+                      Physics in undergraduate physics recitations
+,
+C. J. Keller, N.D. Finkelstein, K. K. Perkins, and S. J. Pollock
+,
+PERC Proceedings
+,
+2005
+.
+High-tech tools for teaching
+                physics: The
+                Physics Education Technology project
+,
+Finkelstein, N., Adams, W., Keller, C., Perkins, K., & Wieman, C.
+,
+Journal of Online Learning and Teaching, 2(3)
+,
+2006
+.
+When learning about the real
+                world is
+                better done virtually: A study of substituting computer simulations for laboratory equipment
+,
+Finkelstein, N., Adams, W., Keller, C., Kohl, P., Perkins, K., Podolefsky, N., et al.
+,
+Physical Review Special Topics - Physics Education Research, 1(1), 1.010103
+,
+2005
+.
+Can Computer Simulations Replace Real Equipment in Undergraduate Laboratories?
+,
+N. D. Finkelstein, K. K. Perkins, W. Adams, P. Kohl, and N. Podolefsky
+,
+PERC Proceedings
+,
+2005
+.
+About PhET sims
+Engaging students with mathematics
+            through play
+, Hensberry, K. K. R., Whitacre, I., Findley, K., Schellinger, J., & Burr, M., Mathematics Teaching in the Middle School,
+          24(3), 197-183, 2018
+PhET Interactive Simulations:
+            Transformative Tools for Teaching Chemistry
+,
+Moore, E. B., Chamberlain, J. M., Parson, R., & Perkins, K. K.
+,
+Journal of Chemical Education, 91(8)
+,
+1191-1197
+,
+2014
+.
+PhET
+                Interactive
+                Simulations: New Tools to Achieve Common Core Mathematics Standards
+,
+Hensberry, K. K. R., Paul, A. J., Moore, E. B., Podolefsky, N. S., Perkins, K. K.
+,
+D. Polly (Ed.) Common Core Mathematics Standards and Implementing Digital Technologies (147-167)
+,
+Hershey, PA: IGI Global
+,
+2013
+.
+Creating effective
+                interactive tools for learning: Insights from the PhET Interactive Simulations Project
+,
+Perkins, K. K., Podolefsky, N. S., Lancaster, K., & Moore, E.
+,
+B. Wilson & T. Amiel (Eds.)
+,
+pp. 436-441
+,
+2012
+.
+Computer simulations to classrooms: tools
+                for
+                change
+,
+Podolefsky, N. S., Perkins, K. K., & Adams, W. K.
+,
+Proceedings of the 2009 Physics Education Research Conference
+,
+2010
+.
+An interactive optical tweezer simulation for science education
+,
+T. T. Perkins, C. V. Malley, M. Dubson, and K. K. Perkins
+,
+Proc. of SPIE Vol. 7762
+,
+776215
+,
+2010
+.
+Sims for
+                science: Powerful tools to support inquiry-based teaching
+,
+Perkins, K. K., Loeblein, P. J., & Dessau, K. L.
+,
+Science Teacher, 77(7)
+,
+46-51
+,
+2010
+.
+PhET Interactive Simulations: New tools for
+                teaching and
+                learning chemistry
+,
+Perkins, K. K., Lancaster, K., Loeblein, P. J., Parson, R., & Podolefsky, N. S.
+,
+Newsletter: Using Computers in Chemical Education
+,
+1-8
+,
+2010
+.
+Laptops and Diesel Generators: Introducing PhET Simulations to Teachers in Uganda
+,
+Sam McKagan
+,
+The Physics Teacher
+,
+48, 63-66
+,
+January 2010
+.
+Student Choices when Learning with Computer Simulations
+,
+Podolefsky, N. S., Adams, W. K., & Wieman, C. E.
+,
+Proceedings of the 2009 Physics Education Research Conference
+,
+2006
+.
+PhET: Simulations That Enhance Learning
+,
+C.E. Wieman, W.K. Adams, K.K. Perkins
+,
+Science
+,
+322/682-683
+,
+October 2008
+.
+Oersted Medal Lecture 2007: Interactive simulations for teaching physics: What works, what
+                      doesn't, and
+                      why
+,
+C.E. Wieman, K.K. Perkins, W.K. Adams
+,
+American Journal of Physics
+,
+76, 393
+,
+May 2008
+.
+Making Science Simulations and Websites Easily Translatable and Available Worldwide: Challenges
+                      and Solutions
+,
+W. K. Adams, H. Alhadlaq, C. V. Malley, K. K. Perkins, J. B. Olson, F. Alshaya, S. Alabdulkareem, and C. E. Wieman
+,
+Journal of Science Education and Technology
+,
+accepted
+,
+2010 online; 2012 in print
+.
+A Powerful Tool For Teaching Science
+,
+C. E. Wieman and K. K. Perkins
+,
+Nature Physics
+,
+p. 290-292
+,
+May 2006
+.
+PhET: Interactive Simulations for Teaching and Learning Physics
+,
+Katherine Perkins, Wendy Adams, Michael Dubson, Noah Finkelstein, Sam Reid, Carl Wieman, Ron LeMaster
+,
+The Physics Teacher
+,
+44(1), 18
+,
+2006
+.
+Transforming Physics Education
+,
+C. E. Wieman and K. K. Perkins
+,
+Physics Today
+,
+November 2005
+.
+(
+pdf
+)
+Free On-line Resource Connects Real-life Phenomena to Science
+,
+K. K. Perkins and C. E. Wieman
+,
+Physics Education
+,
+p. 93-95
+,
+January 2005
+.
+The Physics Education Technology Project: A New Suite of Physics Simulations
+,
+K. K. Perkins, W. K. Adams, N. Finkelstein, R. LeMaster, S. Reid, M. Dubson, N. Podolefsky, K. Beck and C. Wieman
+,
+Poster Presented at AAPT Summer Meeting
+,
+2004
+.
+Incorporating Simulations in the classroom-A survey of Research Results from the Physics Education Technology Project
+,
+Perkins, K. K., Adams, W. K., Finkelstein, N. D., Dubson, M., Reid, S., LeMaster, R., & Wieman, C. E.
+,
+Talk presented at the American Association of Physics Teachers Summer Meeting
+,
+2004
+.
+Students Perceptions About Learning
+A deeper look at student learning of quantum mechanics: the case of tunneling
+,
+S. B. McKagan, K. K. Perkins, and C. E. Wieman
+,
+Physical Review Special Topics: PER
+,
+4, 020103
+,
+October 2008
+.
+Why we should teach the Bohr model and how to teach it effectively
+,
+S. B. McKagan, K. K. Perkins, and C. E. Wieman
+,
+Physical Review Special Topics: PER
+,
+4, 010103
+,
+March 2008
+.
+Students know what physicists believe, but they don't agree: A study using the CLASS survey
+,
+Kara E. Gray, Wendy K. Adams, Carl E. Wieman, and Katherine K. Perkins
+,
+Physical Review Special Topics
+,
+November 2008
+.
+Reforming a large lecture modern physics course for engineering majors using a PER-based design
+,
+S. B. McKagan, K. K. Perkins, and C. E. Wieman
+,
+Proceedings of the 2006 Physics Education Research Conference, Vol. 883, pp. 34-37
+,
+2006
+.
+A new instrument for measuring student beliefs about physics and learning physics: the Colorado
+                      Learning
+                      Attitudes about Science Survey
+,
+W. K. Adams, K. K. Perkins, N. Podolefsky, M. Dubson, N. D. Finkelstein and C. E. Wieman
+,
+Phys. Rev. ST Phys. Educ. Res. 2, 010101
+,
+2006
+.
+Towards characterizing the relationship between students' interest in and their beliefs about
+                      physics
+,
+K.K. Perkins, M.M. Gratny, W.K. Adams, N.D. Finkelstein and C.E. Wieman
+,
+AIP Conference Proceedings, Vol. 818, p. 137
+,
+2005
+.
+The Design and Validation of the Colorado Learning Attitudes about Science Survey
+,
+W. K. Adams, K. K. Perkins, M. Dubson, N. D. Finkelstein and C. E. Wieman
+,
+2004 Physics Education Research Conference, Vol. 790, pp.45-48
+,
+2004
+.
+Correlating Student Beliefs With Student Learning Using The Colorado Learning Attitudes about
+                      Science
+                      Survey
+,
+K. K. Perkins, W. K. Adams, N. D. Finkelstein, S. J. Pollock, and C. E. Wieman
+,
+AIP Conference Proceedings (Vol. 790, p. 61). IOP INSTITUTE OF PHYSICS PUBLISHING LTD
+,
+2004
+.
+Other Work by PhET Researchers
+Grand Challenge Problem 3: Empowering Science Teachers Using Technology-Enhanced Scaffolding to Improve Inquiry Learning
+,
+Pedaste, M., Lazonder, A., Raes, A., Wajeman, C., Moore, E. B., & Girault, I. In J. Eberle, K. Lund, P. Tchounikine, & F. Fischer (Eds.),
+SpringerBriefs in Education
+(pp. 17–20).
+Springer International Publishing.
+2016
+.
+Opportunity: Inclusive Design for Interactive Simulations
+,
+Moore, E. B., & Lewis, C.
+.
+In Proceedings of the 17th International ACM SIGACCESS Conference on Computers & Accessibility
+(pp. 395-396)
+,
+ACM
+,
+2015
+.
+The Cutting Edge: Educational Innovation, Disability Law, and Civil Rights
+,
+Grossman, P. Adapted by Moore, E. B.
+Submitted to the 2015 ConfChem Online Conference: Interactive Visualizations for Chemistry Teaching and Learning.
+2015
+.
+From demonstrations and clicker questions
+                  to guided-inquiry activities: Resources for integrating PhET simulations into your introductory chemistry course
+,
+E. B. Moore, Y. Carpenter, R. Parson, & K. K. Perkins
+.
+American Chemical Society Division of Chemical Education, Committee on Computers in Chemistry Education 2014 Fall Newsletter
+.
+Fall 2014
+.
+Use of a PhET Interactive Simulation in
+                  General Chemistry Laboratory: Models of the Hydrogen Atom
+,
+T. M. Clark, & J. M. Chamberlain
+.
+Journal of Chemical Education, 91(8)
+,
+1198–1202
+,
+2014
+.
+Context dependence of teacher practices in middle school science (pp. 299-302)
+,
+Podolefsky, N. S., & Perkins, K. K.
+,
+Proceedings of the 2011 Physics Education Research Conference. AIP Conference Proceedings, 1413(1), 299-302
+,
+2012
+.
+Exploring Student Understanding of Energy through the Quantum Mechanics Conceptual Survey
+,
+S. B. McKagan and C. E. Wieman
+,
+PERC Proceedings 2005
+,
+2006
+.
+The surprising impact of seat location on student performance
+,
+K. K. Perkins and C. E. Wieman
+,
+The Physics Teacher
+,
+43, p. 30-33
+,
+2005
+.
+Minimize Your Mistakes by Learning from
+                Those of
+                Others
+,
+C. E. Wieman
+,
+The Physics Teacher
+,
+43, 30
+,
+2005
+.
+Should a Fortran-savvy educator learn Java, Flash, both, or neither?
+,
+M. Dubson
+,
+Talk presented at AAPT Summer Meeting
+,
+2004
+.
+Publications on PhET Simulations by Other Researchers
+Constructionism and microworlds as part of a 21st century learning activity to impact student engagement and confidence in physics
+,
+Wickham, C. M., Girvan, C., & Tangney, B.
+,
+(2016, Feb)
+.
+Sipitakiat, A., & Tutiyaphuengprasert, N. (Eds.)
+Proceedings of Constructionism 2016
+. Paper presented at Constructionism 2016, Bangkok Thailand (34-41)
+.
+Effectiveness of an inquiry-based learning using interactive simulations for enhancing students’ conceptual understanding in physics
+,
+Fan, Xinxin
+,
+(2015)
+.
+PhD Thesis, School of Education, The University of Queensland
+.
+Use of physics simulations in whole class and small group settings:
+                  Comparative case studies
+,
+A.L. Stephens & J.J. Clement
+,
+Computers & Education 86, 137-156
+,
+2015
+.
+Balancing Act: Do Preservice Teachers in an Integrated Mathematics/Science Course Categorize a Levers Problem as Mathematics or Science?
+,
+P. Cormas
+,
+Annual meeting of the Association for Science Teacher Education (ASTE), San Antonio
+,
+January, 2014
+.
+Investigating the Relationship Between the Substance Metaphor for Energy and Its Proposed Affordances and Limitations
+,
+L. M. Goodhew and A. D. Robertson
+,
+in preparation for 2014 Physics Education Research Conference Proceedings, edited by P. V. Englehardt, A. D. Churukian, and D. L. Jones (AIP, Minneapolis, MN)
+,
+2014
+.
+Not a magic bullet: the effect of scaffolding on knowledge and attitudes in online simulations
+,
+Roll, I., Briseno, A., Yee, N., & Welsh, A.
+,
+In J. Polman, E. Kyza, I. Tabak, & K. O’Neill, proceedings of the International Conference of the Learning Sciences. (30%)
+,
+2014
+.
+Students’ adaptation and transfer of strategies across levels of scaffolding in an exploratory environment
+,
+Roll, I., Yee, N., Briseno, A
+,
+In proceedings of the International Conference on Intelligent Tutoring Systems. Honolulu, HI
+,
+2014
+.
+The impact of computer simulations as interactive demonstration tools on the performance of Grade 11 learners in electromagnetis
+,
+Kotoka J and Kriek J.
+,
+African Journal of Research in Mathematics, Science and Technology Education 18(1)
+,
+2014
+.
+Animation or Simulation: Investigating the Importance of Interactivity for Learning Solubility Equilibria
+,
+Akaygun, S. & Jones, L. L.
+,
+In J. P. Suits & M. J. Sanger, (Eds.) Pedagogic Roles of Animations and Simulations in Chemistry Courses, (pp. 127-159), Washington, DC: Oxford University Press
+,
+2014
+.
+How Does Level of Guidance Affect Understanding When Students Use a Dynamic Simulation of Liquid-Vapor Equilibrium?
+,
+Akaygun, S. & Jones, L. L.
+,
+In I. Devetak, & S. A. Glazar, (Eds), Learning with understanding in the chemistry classroom, (pp. 243-263), Dordrecht, The Netherlands: Springer
+,
+2014
+.
+Multimodal study of visual problem solving in chemistry with multiple representations
+,
+S. Hansen
+,
+Dissertation, Teachers College, Columbia University
+,
+2014
+.
+Designing online scaffolds for interactive computer simulation
+,
+Chen, C.-H., Wu, I.-C., & Jen, F.-L
+,
+Interactive Learning Environments, 21(3), 229–243
+,
+2013
+.
+Computer simulations and clear observations do not guarantee conceptual understanding
+,
+Renken, M. D., & Nunez, N.
+,
+Learning and Instruction, 23, 10–23
+,
+2013
+.
+Applying cognitive developmental psychology to middle school physics learning: The rule assessment method
+,
+Hallinen, N. R., Chi, M., Chin, D. B., Prempeh, J., Blair, K. P., & Schwartz, D. L.
+,
+1513, 158–161
+,
+2013
+.
+“Re-Simulating”: Physics Simulations for Blind Students
+,
+Bulbul, M. S., Demirtas, D., Garip, B., & Oktay, O.
+,
+Presented at the New Perspectives in Science Education.
+,
+2013
+.
+Electromagnetic Induction
+,
+Yochum, H., et.al.
+,
+Science & Children. 51(2):63-67
+,
+2013
+.
+Teacher candidates' knowledge construction with technology
+,
+Zhou, G., & Xu, Z.
+,
+Knowledge construction and multimodal curriculum development (pp.112-127). IGI Global
+,
+2013
+.
+Enhancing Students’ Scientific Literacy In Science Education Using Interactive Simulations: A Critical Literature Review
+,
+Fan, X. & Geelan, D.R.
+,
+Journal of Computers in Mathematics and Science Teaching, 32(2), 125-171
+,
+2013
+.
+Radiation and Atomic Literacy for Nonscientists
+,
+Johnson, A
+,
+Science 342(6157): 436-437
+,
+2013
+.
+Students’ Conceptual Change in Electricity and Magnetism using Simulations: a Comparison of Cognitive Perturbation and Cognitive Conflict
+,
+Dega, BG, Kriek J & Mogese, TF
+,
+Journal of Research in Science Teaching 50(6)pp.677-698
+,
+2013
+.
+Teacher education using computer simulations—pre and in-service primary school teacher training to teach science
+,
+Pinto, A., Barbot, A., Viegas, C., Silva, A. A., Santos, C. A., & Lopes, J. B.
+,
+Learning Science in the Society of Computers, 28–36.
+,
+2012
+.
+Designing a Web-Based Science Learning Environment for Model-Based Collaborative Inquiry
+,
+Sun, D., & Looi, C.-K.
+,
+Journal of Science Education and Technology
+,
+2012
+.
+The learning effects of computer simulations in science education
+,
+Rutten, N., van Joolingen, W. R., & van der Veen, J. T.
+,
+Computers & Education, 58(1), 136–153
+,
+2012
+.
+Adding value to physics education technology simulations.
+,
+Kruhlak, R. J., Vanholsbeeck, F., & Coghill, C.
+,
+2012
+.
+Inquiry-based Lessons and PhET Simulations - A Great Match for Middle School Classrooms
+,
+Zimmer, E.
+,
+Presented at the Society for Information Technology & Teacher Education International Conference 2012: AACE, Chesapeake, VA.
+,
+2012
+.
+Effectiveness of Computer Simulations in Physics Teaching/Learning
+,
+Aklilu, T.
+,
+LAMBERT Academic Publishing GmbH &Co. KG and licensors
+,
+2012
+.
+Effects of Computer Simulations on Undergraduate Science Students Physics Achievement
+,
+Aklilu, T., Bereket, G., Melak, M., & Tefaye, G.
+,
+A stand-alone paper virtually presented at the 2012 Annual international Conference of NARST held on March 25-28/2012 at Indianapolis, Indian, USA
+,
+2012
+.
+Integrating Information Technology and Science Education for the Future: A Theoretical Review on the Educational Use of Interactive Simulations
+,
+Xinxin Fan & David Geelan
+,
+in Proceedings of the 2012 Australian Computers in Education Conference: It's time, Australian Council for Computers in Education, Australia
+,
+2012
+.
+Effectiveness of Scientific Visualizations in Year 11 Chemistry and Physics Education
+,
+David Geelan
+,
+in Proceedings of the 2012 Australian Computers in Education Conference: It's time, Australian Council for Computers in Education, Australia
+,
+2012
+.
+The usefulness of log based clustering in a complex simulation environment
+,
+Kardan, S., Roll, I., & Conati, C. (to appear)
+,
+In S. Trausen-Matu & K. Boyer, proceedings of the International Conference on Intelligent Tutoring Systems
+,
+2012
+.
+Identifying & Resolving Problematic Student Thinking About Ionizing Radiation
+,
+Maidl, R., et al.
+,
+National Conference on Undergraduate Research, Weber State College, Ogden, UT, UNC Asheville
+,
+2012
+.
+Inservice science teachers' views of a professional development workshop and their learning of force and motion concepts
+,
+Ramlo, S.
+,
+Teaching and Teacher Education, 28(7), pp 928-935
+,
+2012
+.
+Learning Science Through Computer Games and Simulations.
+,
+Committee on Science Learning Computer Games, S. A. E., Education, B. O. S., Education,
+            D. O. B. A. S. S. A., National Research Council
+,
+National Academies Press
+,
+2011
+.
+Science modelling in pre-calculus: how to make mathematics problems contextually meaningful.
+,
+Sokolowski, A., Yalvac, B., & Loving, C.
+,
+International Journal of Mathematical Education in Science and Technology, 42(3), 283–297
+,
+2011
+.
+Discussion-based strategies for use of simulations and animations in middle and high school science classrooms
+,
+Leibovitch, A., Stephens, L., Price, N., & Clement, J.
+,
+Proceedings  of  the  NARST  2011  Annual  Meeting
+,
+2011
+.
+Effectiveness of Computer Simulations in the Teaching/ Learning of Physics
+,
+Aklilu, T., Tilahun T., and Mesfin T.
+,
+A stand-alone paper presented at the 2011 Annual international Conference of NARST held on April 3-6/2011 Orlando, Florida, USA
+,
+2011
+.
+The use of Interactive Computer Simulations with regard to access to Education – a social justice issue
+,
+Kaheru, SJM, Mpeta M and Kriek J
+,
+Journal of Educational Studies 10(2) pp 89 - 106
+,
+2011
+.
+The activity of simulations to the practical work of foundation physics students at the University of Limpopo
+,
+Mhlongo, R, Kriek, J and Basson I
+,
+Multicultural education and technology journal.  5(4)  p 288-302
+,
+2011
+.
+Explaining across contrasting cases for deep understanding in science: An example using interactive simulations
+,
+Chase, C. C., Shemwell, J. T., & Schwartz, D. L.
+,
+2010
+.
+In-service science teachers’ views about learning physics after a one week workshop
+,
+Ramlo, S. & Nicholas, J.
+,
+Human Subjectivity, 1, pp 109-120
+,
+2010
+.
+Teachers’ beliefs and their intention to use interactive simulations in their classrooms
+,
+Kriek, J. and Stols, G.
+,
+South African Journal of Education 30 pp. 439 - 456
+,
+2010
+.
+Spatial Learning and Computer Simulations in Science
+,
+Lindgren, R., & Schwartz, D. L.
+,
+International Journal of Science Education, 31(3), 419–438
+,
+2009
+.
+Student perspectives on learning physics and their relationship with learning force and motion concepts: A study using Q methodology
+,
+Ramlo, S.
+,
+Human Subjectivity, 2, pp 73-90
+,
+2008
+.
+Pengembangan Lembar Kerja Siswa Berbasis Inkuiri Melalui Media Virtual PhET Untuk Melatihkan Keterampilan
+            Berpikir Kritis Siswa Pada Materi Pemanasan Global
+,
+K. Rohmah, Rachmadiarti F. & Setiawan B.
+,
+Universitas Negeri Surabaya (Indonesian)
+.
+Kerja laboratorium Melalui Phet untuk meremediasi miskonsepsi siswa kelas VIII SMP Negeri 1 Sungai Raya pada materi Hukum Archimedes
+,
+Diar Dwi Winarto
+,
+Tanjungpura University (Indonesian)
+.
+Scientific Inquiry in Mathematics: A Case of Implementing Scientific Simulations for Analyzing Problems on Motion.
+,
+Sokolowski, A.
+.
+Teachers using interactive simulations to scaffold inquiry instruction in physical science education
+,
+Geelan, D.R. & Fan, X.
+,
+In J. Gilbert and B. Eilam (Eds.) Science Teachers' Use of Visual Representations. Dordrecht: Springer.
+.
+Action Research Paper for Master's in Interdisciplinary Studies at University of Northern Colorado: The Effect of Computer Simulations on Learning High School Physics
+,
+K. Bibbey
+.
+Impact of Electronic Simulations on students’ learning in Lebanese 10th Grade Electricity Courses. (Ph.d research)
+,
+F. Yehya
+.
+Comparison between two active methodologies for learning basic electric circuit’s concepts: demonstrative experiments and interactive
+            simulations
+,
+D. Lopez
+.
+Evaluating a Novel Instructional Sequence for Conceptual Development in Physics Using Interactive Simulations
+,
+Fan, X., Geelan, D. & Gillies, R.
+,
+Submitted to the International Journal of Science Education
+,
+Under Review
+.
+About PhET
+Our Team
+Our Supporters
+Partnerships
+Accessibility
+Offline Access
+Help Center
+Privacy Policy
+Source Code
+Licensing
+For Translators
+Contact
+English
+العربية
+Azərbaycanca
+Euskara
+Беларуская
+Bosanski
+简体中文
+正體中文
+Hrvatski
+Česky
+Dansk
+Nederlands
+Eesti
+Suomi
+Français
+Galego
+ქართული
+Deutsch
+Ελληνικά
+અંગ્રેજી
+Magyar
+Bahasa Indonesia
+Italiano
+日本語
+한국어
+كوردي
+Kurdî
+Lietuvių
+Македонски
+मराठी
+Монгол
+Norsk bokmål
+Norsk nynorsk
+فارسی
+polski
+Português
+Português do Brasil
+Română
+Српски
+සිංහල
+Slovensky
+Español
+Español Latinoamérica
+ไทย
+Türkçe
+Українська
+Oʻzbekcha
+Tiếng Việt
+English
+العربية
+Azərbaycanca
+Euskara
+Беларуская
+Bosanski
+简体中文
+正體中文
+Hrvatski
+Česky
+Dansk
+Nederlands
+Eesti
+Suomi
+Français
+Galego
+ქართული
+Deutsch
+Ελληνικά
+અંગ્રેજી
+Magyar
+Bahasa Indonesia
+Italiano
+日本語
+한국어
+كوردي
+Kurdî
+Lietuvių
+Македонски
+मराठी
+Монгол
+Norsk bokmål
+Norsk nynorsk
+فارسی
+polski
+Português
+Português do Brasil
+Română
+Српски
+සිංහල
+Slovensky
+Español
+Español Latinoamérica
+ไทย
+Türkçe
+Українська
+Oʻzbekcha
+Tiếng Việt
+Get Apps for Schools
+©
+2026 University of Colorado.
+Some rights reserved.
+The PhET website does not support your browser. We recommend using the latest version of Chrome, Firefox, Safari, or Edge.
