@@ -48,6 +48,26 @@ fn general_tier(id: &str, primary_members: Option<usize>, is_area: bool) -> Opti
     }
 }
 
+/// Entity types that never enter the general layer, whatever memberships they have:
+/// documents and their fragments, people, infrastructure (round 3 plan, «capa general»).
+const NOT_GENERAL: [EntityType; 4] =
+    [EntityType::SourceFragment, EntityType::Publication, EntityType::Person, EntityType::Resource];
+
+/// A label that is only a number («10», «1105», «1,728»): a Wikidata number item, not a
+/// concept to study.  ponytail: dates, years and other non-mathematical items need the
+/// item's class (P31/P279), which the snapshot does not carry; the concept projection
+/// keeps them out of the assignment (plan point 1), and with no primary members they
+/// are already outside the general set.
+fn is_bare_number(label: &str) -> bool {
+    label.bytes().any(|b| b.is_ascii_digit())
+        && label.bytes().all(|b| b.is_ascii_digit() || b" .,+-".contains(&b))
+}
+
+/// Whether a node of this type and these labels may be in the general layer.
+fn general_kind(t: EntityType, labels: [&str; 2]) -> bool {
+    !NOT_GENERAL.contains(&t) && !labels.iter().any(|l| is_bare_number(l))
+}
+
 /// `true` for the nodes of the general layer (see module doc).
 pub(crate) fn general_set(
     snap: &Snapshot,
@@ -61,8 +81,12 @@ pub(crate) fn general_set(
         return out;
     }
     let tier = |v: u32| {
+        let t = snap.node_type(v);
+        if !general_kind(t, [snap.label(v, "es"), snap.label(v, "en")]) {
+            return None;
+        }
         let members = snap.concept_index(v).map(|_| snap.concept_members(v).len());
-        general_tier(snap.node_id(v), members, snap.node_type(v) == EntityType::Area)
+        general_tier(snap.node_id(v), members, t == EntityType::Area)
     };
     let mut cand: Vec<(u8, u32)> = (0..n as u32)
         .filter(|&v| active[v as usize])
@@ -152,6 +176,20 @@ mod tests {
         assert_eq!(general_tier("mathlib-dir:Mathlib/Order", None, true), None);
         assert_eq!(general_tier("mathlib-layer:infrastructure", None, true), None);
         assert_eq!(general_tier("wd:Q5", None, false), None);
+    }
+
+    #[test]
+    fn sources_people_infrastructure_and_bare_numbers_stay_out_of_the_general_layer() {
+        for t in NOT_GENERAL {
+            assert!(!general_kind(t, ["x", "x"]), "{t:?}");
+        }
+        assert!(general_kind(EntityType::Concept, ["número primo", "prime number"]));
+        assert!(general_kind(EntityType::Statement, ["teorema 90 de Hilbert", "Hilbert's Theorem 90"]));
+        assert!(general_kind(EntityType::Concept, ["", ""]), "a missing label is not a number");
+        for n in ["10", "1105", "1,728", "-1", "1.5"] {
+            assert!(!general_kind(EntityType::Concept, [n, "ten"]), "{n}");
+            assert!(!general_kind(EntityType::Concept, ["diez", n]), "{n}");
+        }
     }
 
     #[test]

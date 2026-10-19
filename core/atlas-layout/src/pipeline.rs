@@ -575,6 +575,20 @@ fn edge_lengths(g: &Graph, m: &[u32], pos: &[[f32; 2]]) -> (f64, f64) {
     )
 }
 
+/// Decimal places of a coordinate served at zoom `z`: enough for the stored step
+/// (1/65536 of the tile side), no more.
+fn coord_decimals(z: u32) -> i32 {
+    (65536.0 * (1u64 << z) as f64).log10().ceil() as i32
+}
+
+/// A unit-square coordinate rounded to `coord_decimals(z)` places.  The stored tiles
+/// already quantize to that step; the f32 noise printed ~9 digits per coordinate in
+/// JSON (round 3: compact tiles).
+pub(crate) fn compact_coord(v: f32, z: u32) -> f32 {
+    let scale = 10f64.powi(coord_decimals(z));
+    ((v as f64 * scale).round() / scale) as f32
+}
+
 pub(crate) fn tile(
     snap: &Snapshot,
     layout: &Layout,
@@ -637,8 +651,8 @@ pub(crate) fn tile(
             TileNodeKind::Entity
         },
         label: snap.label(v, lang).to_string(),
-        x: px,
-        y: py,
+        x: compact_coord(px, z),
+        y: compact_coord(py, z),
         size: if snap.concept_index(v).is_some() {
             snap.concept_members(v).len() as u32
         } else {
@@ -663,8 +677,8 @@ pub(crate) fn tile(
             community: id.clone(),
             id,
             kind: TileNodeKind::Cluster,
-            x: px,
-            y: py,
+            x: compact_coord(px, z),
+            y: compact_coord(py, z),
             size: hidden,
             entity_type: None,
             priority: None,

@@ -33,7 +33,7 @@ import json
 import math
 import re
 from collections import Counter, defaultdict
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Iterable, Iterator, Mapping
 
@@ -56,9 +56,16 @@ from .model import (
 from .store import Store
 
 EXTRACTOR = "concept-projection"
-VERSION = "5"  # 2: homonym guard by domain, Wikidata areas as candidates; 3: Lean `Is` predicates;
+VERSION = "8"  # 2: homonym guard by domain, Wikidata areas as candidates; 3: Lean `Is` predicates;
 # 4: retracted/superseded formalized_as links are not curated (v3 took the guard's own retractions as gold);
-# 5: RESOLVE_FACTOR 0.8 -> 0.7 (dev half, v4 gold: top-1 150 -> 153 of 209, recall@3 0.806 -> 0.810)
+# 5: RESOLVE_FACTOR 0.8 -> 0.7 (dev half, v4 gold: top-1 150 -> 153 of 209, recall@3 0.806 -> 0.810);
+# 6 (round 3, docs/plans/2026-10-18-ronda-3-correcciones.md): only mathematical items are candidates
+# (resolve.non_math_reason); 1-2 character labels and name tokens give no signal; a one-token alias or core key
+# read from the declaration name gives no signal; secondary concepts need a signal independent of the primary;
+# 7: W_SOURCE name_rev 0.9 -> 0.8, first 0.7 -> 0.8 (dev half: top-1 154 -> 158 of 209, recall@3 167 -> 172 of 211;
+# 14 configurations tried, neighbours 156-158); the zone fallback is labelled as such in the claim's explanation
+# 8: resolve.py no longer matches 1-2 character labels ("M" -> mega, nautical mile, a.m.) and typographic
+# characters are not concepts (the prime symbol took `IsLocalization.AtPrime`)
 ACTOR = "atlas.concepts"
 SOURCE_ID = "src:concept-projection"
 DERIVED_PREFIX = "concept:"
@@ -66,11 +73,16 @@ TOP_K = 3
 MAX_GRAM = 5
 NAME_SOURCES = frozenset({"name_last", "name_rev", "name"})
 # Tuned on the dev half of the curated links only (2026-10-17, trail in docs/STATUS.md); test is reported once.
-W_SOURCE = {"name_last": 1.0, "name_rev": 0.9, "name": 0.6, "bold": 1.0, "first": 0.7, "doc": 0.4}
+W_SOURCE = {"name_last": 1.0, "name_rev": 0.8, "name": 0.6, "bold": 1.0, "first": 0.8, "doc": 0.4}
 CORE_FACTOR = 0.85  # label matched without its generic words ("theorem", "set", ...)
 ALIAS_FACTOR = 0.9  # the matched text is only an alias of the item, not one of its labels
 SUBSUMED_FACTOR = 0.6  # a label found only as part of a longer label found in the same declaration
-MIN_KEY_CHARS = 3  # labels/aliases shorter than this (letters of all tokens) are not matched ("N", "o")
+MIN_KEY_CHARS = 3  # labels/aliases (and their core keys) shorter than this are not matched ("N", "M set" -> "m")
+MIN_NAME_TOKEN = 3  # name tokens shorter than this give no signal ("M", "X", "f"), unless rv.ABBREV expands them
+NAME_ONE_TOKEN_ALIAS = False  # a one-token alias read from the name ("app", "desc", "prime") is a signal
+NAME_ONE_TOKEN_CORE = False  # a one-token core key read from the name ("convex" of "convex function") is a signal
+SECONDARY_INDEPENDENT = True  # rank 1-2 need a signal class the primary does not have
+SECONDARY_PROPAGATED = False  # a namespace head's or signature premise's concept counts as an independent signal
 UNTYPED_FACTOR = 0.75  # concept-like item on a statement, or theorem-like item on a definition
 SPEC_POW = 0.5  # specificity (idf over declarations) exponent
 RESOLVE_FACTOR = 0.7  # resolve.py item -> declaration score, same scale
@@ -176,6 +188,7 @@ class Inputs:
     curated: frozenset[tuple[str, str]]  # (item, decl), decl resolved through merges
     resolve_cands: Mapping[str, Mapping[str, float]]  # decl -> item -> resolve score
     domains: Mapping[str, frozenset[str]] | None = None  # item -> Mathlib top-level dirs it may take (homonym guard)
+    excluded: Mapping[str, str] = field(default_factory=dict)  # Wikidata item -> why it is not a candidate concept
 
 
 def top_dir(module: str) -> str:
@@ -218,10 +231,15 @@ def load(store: Store, *, with_resolve: bool = True) -> Inputs:
             module = loc.split(".lean", 1)[0] if ".lean" in loc else ""
             doc = next((d.text for d in e.descriptions if d.lang == "en"), "")
             decls.append(Decl(e.id, name, etype, doc, module, etype is EntityType.RESOURCE))
-    items = {}
+    curated_items = {item for item, _ in rv.curated_pairs(store)}
+    items, excluded = {}, {}
     for etype in ITEM_TYPES:
         for e in store.iter_entities(etype):
             if e.id.startswith("wd:"):
+                why = rv.entity_non_math_reason(e)
+                if why is not None and e.id not in curated_items:  # a curated Mathlib link makes it mathematical
+                    excluded[e.id] = why
+                    continue
                 labels = tuple(dict.fromkeys(l.text for l in e.labels))
                 texts = labels + tuple(t for t in dict.fromkeys(a.text for a in e.aliases) if t not in labels)
                 items[e.id] = Item(e.id, e.type, texts, e.label("en"), len(labels))
@@ -241,9 +259,10 @@ def load(store: Store, *, with_resolve: bool = True) -> Inputs:
         for item_id, etype, phrases_ in rv.wikidata_items(store):
             for c in rv.item_candidates(idx, item_id, etype, phrases_, top_k=RESOLVE_TOP_K):
                 d = store.resolve(c.right)
-                cands[d][item_id] = max(c.score, cands[d].get(item_id, 0.0))
+                if item_id in items:
+                    cands[d][item_id] = max(c.score, cands[d].get(item_id, 0.0))
     return Inputs(tuple(decls), items, {k: tuple(dict.fromkeys(v)) for k, v in premises.items()}, curated,
-                  dict(cands), item_domains(up, items))
+                  dict(cands), item_domains(up, items), excluded)
 
 
 # ---------------------------------------------------------------------- names and docstrings
@@ -263,20 +282,23 @@ class LabelIndex:
         exact: dict[tuple[str, ...], set[str]] = defaultdict(set)
         core: dict[tuple[str, ...], set[str]] = defaultdict(set)
         labelled: set[tuple[tuple[str, ...], str]] = set()
+        whole: set[tuple[tuple[str, ...], str]] = set()
         for it in items:
             for n, text in enumerate(it.texts):
                 key = rv.content_tokens(text)
-                if not key or len(key) > MAX_GRAM or len("".join(key)) < MIN_KEY_CHARS:
-                    continue
+                if not key or len(key) > MAX_GRAM or len(rv.normalize(text).replace(" ", "")) < MIN_KEY_CHARS:
+                    continue  # length of the label as written: "NE" is not "unequal" after rv.ABBREV
                 exact[key].add(it.id)
-                keys = _core_keys(key)
+                keys = {k for k in _core_keys(key) if len("".join(k)) >= MIN_KEY_CHARS}
                 for c in keys:
                     core[c].add(it.id)
                 if n < it.n_labels:
                     labelled.update((k, it.id) for k in keys | {key})
+                    whole.add((key, it.id))
         self.exact = {k: tuple(sorted(v, key=_q)) for k, v in exact.items()}
         self.core = {k: tuple(sorted(v, key=_q)) for k, v in core.items() if k not in exact}
         self.labelled = frozenset(labelled)
+        self.whole_labels = frozenset(whole)  # (key, item) of whole labels, without the core keys
 
     def lookup(self, gram: tuple[str, ...]) -> Iterator[tuple[str, tuple[str, ...]]]:
         if gram in self.exact:
@@ -296,7 +318,8 @@ def _core_keys(key: tuple[str, ...]) -> set[tuple[str, ...]]:
 
 
 def _name_toks(text: str) -> tuple[str, ...]:
-    return tuple(rv._stem(t) for t in name_tokens(text) if t not in rv.STOP and t not in rv.NAME_STOP)
+    return tuple(rv._stem(t) for t in name_tokens(text)
+                 if t not in rv.STOP and t not in rv.NAME_STOP and (len(t) >= MIN_NAME_TOKEN or t in rv.ABBREV))
 
 
 def phrases(d: Decl) -> Iterator[tuple[str, tuple[str, ...]]]:
@@ -351,10 +374,13 @@ def _hit_weight(kind: str, srcs: Mapping[str, float]) -> tuple[float, str]:
 
 
 Scores = dict[str, tuple[float, str, str]]  # item -> (score, signal, evidence)
+Support = dict[str, set[tuple]]  # item -> evidence units: ("phrase", tokens) or (signal,) for the other signals
 Chosen = list[tuple[str, tuple[float, str, str]]]
 
 
-def _offer(sc: Scores, item: str, score: float, signal: str, evidence: str) -> None:
+def _offer(sc: Scores, item: str, score: float, signal: str, evidence: str, sup: Support | None = None) -> None:
+    if sup is not None:
+        sup.setdefault(item, set()).add((signal, item) if signal == "resolve" else (signal,))
     if score > sc.get(item, (0.0,))[0]:
         sc[item] = (score, signal, evidence)
 
@@ -376,6 +402,23 @@ def namespace_heads(decls: Iterable[Decl]) -> dict[str, str]:
     return heads
 
 
+def independent(sec: set[tuple], prim: set[tuple]) -> bool:
+    """Is a secondary concept backed by evidence the primary does not share?  A matched phrase is independent
+    unless it is one of the primary's phrases or part of one ("abel" behind both Abel's identity and Abel's
+    theorem is one piece of evidence; "ideal" inside "prime ideal" too); a longer phrase is new evidence ("unit
+    circle" next to "circle").  A curated link or a resolve.py candidate of the item itself is independent; the
+    namespace head's and the signature's concepts are inherited, not evidence about this declaration (unless
+    SECONDARY_PROPAGATED)."""
+    prim_grams = {g for u in prim if u[0] == "phrase" for g in _grams(u[1])}
+    for u in sec - prim:
+        if u[0] == "phrase":
+            if u[1] not in prim_grams:
+                return True
+        elif u[0] in ("curated", "resolve") or (SECONDARY_PROPAGATED and u[0] in ("namespace", "signature")):
+            return True
+    return False
+
+
 class Scorer:
     """Signals 1-3 per declaration, memoised.  `hits` (the expensive label matching) can be passed in, so
     re-scoring (dev tuning, the masked evaluation run) does not re-match."""
@@ -395,16 +438,32 @@ class Scorer:
                 self.curated[decl].add(item)
         self.label_key = {i: rv.normalize(it.label_en) for i, it in inp.items.items()}
         self.one_word = frozenset(i for k, its in self.idx.exact.items() if len(k) == 1 for i in its)
-        self._direct: dict[str, Scores] = {}
+        self._direct: dict[str, tuple[Scores, Support]] = {}
+        self.dropped: set[tuple[str, str]] = set()
 
     def spec(self, df: int) -> float:
         return math.log(len(self.content) / max(1, df)) / self.log_n
 
+    def _name_ok(self, kind: str, g: tuple[str, ...], item: str, adjectives: frozenset[str]) -> bool:
+        """A one-token match read from the declaration name counts only through a label of the item: a one-token
+        alias ("app" of mobile app, "prime" of prime number) is a homonym more often than not, and so is a
+        one-token core key ("convex" of convex function, "prime" of prime number in `AtPrime`) unless the name
+        uses it as a predicate (`IsOpen` -> open set)."""
+        if len(g) > 1:
+            return True
+        if kind == "core":
+            return NAME_ONE_TOKEN_CORE or g[0] in adjectives
+        return NAME_ONE_TOKEN_ALIAS or (g, item) in self.idx.whole_labels
+
     def direct(self, did: str) -> Scores:
-        """Signals 1 and 2."""
+        return self.direct_sup(did)[0]
+
+    def direct_sup(self, did: str) -> tuple[Scores, Support]:
+        """Signals 1 and 2, with the signal classes behind every item."""
         if did in self._direct:
             return self._direct[did]
         sc: Scores = {}
+        sup: Support = {}
         d = self.content.get(did)
         if d is not None:
             definitional = d.type is EntityType.DEFINITION
@@ -419,43 +478,60 @@ class Scorer:
                     srcs = {s: v for s, v in srcs.items() if s not in NAME_SOURCES}
                     if not srcs:
                         continue
-                w, src = _hit_weight(kind, srcs)
                 spec = max(0.0, self.spec(self.df[(kind, g)])) ** SPEC_POW
-                if g in inside:
-                    w *= SUBSUMED_FACTOR
                 for item in (self.idx.exact if kind == "exact" else self.idx.core)[g]:
                     if len(g) == 1 and not domain_ok(self.inp.domains, item, d.module):
                         continue  # one word out of the item's domain: a homonym ("integral" in RingTheory)
+                    use = {s: v for s, v in srcs.items() if s not in NAME_SOURCES or self._name_ok(kind, g, item, adjectives)}
+                    if not use:
+                        continue
+                    w, src = _hit_weight(kind, use)
+                    if g in inside:
+                        w *= SUBSUMED_FACTOR
                     typed = definitional == (self.inp.items[item].type in DEFINITIONAL)
                     via = 1.0 if (g, item) in self.idx.labelled else ALIAS_FACTOR
+                    sup.setdefault(item, set()).add(("phrase", g))
                     _offer(sc, item, w * spec * via * (1.0 if typed else UNTYPED_FACTOR), "name_doc",
                            f"{src}:{kind}{'' if via == 1.0 else ':alias'} '{' '.join(g)}'")
             for item, s in self.inp.resolve_cands.get(did, {}).items():
                 if item in self.one_word and not domain_ok(self.inp.domains, item, d.module):
                     continue
-                _offer(sc, item, RESOLVE_FACTOR * s, "resolve", f"{rv.RESOLVER_VERSION} item_candidates")
+                _offer(sc, item, RESOLVE_FACTOR * s, "resolve", f"{rv.RESOLVER_VERSION} item_candidates", sup)
             for item in self.curated.get(did, ()):
                 sc[item] = (1.0, "curated", "formalized_as (curated link)")
-        self._direct[did] = sc
-        return sc
+                sup.setdefault(item, set()).add(("curated", item))
+        self._direct[did] = (sc, sup)
+        return sc, sup
 
     def scores(self, did: str) -> Scores:
+        return self.scores_sup(did)[0]
+
+    def scores_sup(self, did: str) -> tuple[Scores, Support]:
         """Signal 3 on top: the namespace head's and the signature premises' concepts, scaled down."""
-        sc = dict(self.direct(did))
+        direct, dsup = self.direct_sup(did)
+        sc = dict(direct)
+        sup = {k: set(v) for k, v in dsup.items()}
         head = self.heads.get(did)
         if head is not None:
             for item, (s, _, _) in ranked(self.direct(head))[:TOP_K]:
-                _offer(sc, item, NS_FACTOR * s, "namespace", f"namespace head {head}")
+                _offer(sc, item, NS_FACTOR * s, "namespace", f"namespace head {head}", sup)
         for p in self.inp.premises.get(did, ()):
             top = ranked(self.direct(p))[:1]
             if top:
                 item, (s, _, _) = top[0]
-                _offer(sc, item, DEP_FACTOR * s * self.spec(self.indeg[p]), "signature", f"signature mentions {p}")
-        return sc
+                _offer(sc, item, DEP_FACTOR * s * self.spec(self.indeg[p]), "signature", f"signature mentions {p}",
+                       sup)
+        return sc, sup
 
-    def select(self, sc: Scores) -> Chosen:
-        """Up to TOP_K concepts above the absolute and relative floors."""
+    def select(self, sc: Scores, sup: Support | None = None) -> Chosen:
+        return self.select_dropped(sc, sup)[0]
+
+    def select_dropped(self, sc: Scores, sup: Support | None = None) -> tuple[Chosen, list[str]]:
+        """Up to TOP_K concepts above the absolute and relative floors, plus the secondaries left out.  With `sup`
+        a secondary concept (rank 1-2) stays only if a signal class supports it that does not support the
+        primary (plan ronda 3: a secondary needs a signal independent of the primary)."""
         out: Chosen = []
+        dropped: list[str] = []
         labels: set[str] = set()
         for item, v in ranked(sc):
             if v[0] < ASSIGN_FLOOR or (out and v[0] < RELATIVE_FLOOR * out[0][1][0]) or len(out) == TOP_K:
@@ -463,9 +539,19 @@ class Scorer:
             key = self.label_key.get(item, item)
             if DEDUP_LABELS and key in labels:
                 continue
+            if out and sup is not None and SECONDARY_INDEPENDENT and not independent(sup.get(item, set()), sup[out[0][0]]):
+                dropped.append(item)
+                continue
             labels.add(key)
             out.append((item, v))
-        return out
+        return out, dropped
+
+    def choose(self, did: str) -> Chosen:
+        """Signals 1-3 and the selection rule for one declaration; the secondaries left out for lack of an
+        independent signal are recorded in `self.dropped` as (declaration, concept)."""
+        chosen, dropped = self.select_dropped(*self.scores_sup(did))
+        self.dropped.update((did, item) for item in dropped)
+        return chosen
 
 
 def zone_of(module: str) -> str:
@@ -495,7 +581,7 @@ def assign(inp: Inputs, *, use_curated: bool = True, scorer: Scorer | None = Non
     out: list[Assignment] = []
     if only is not None:
         for did in only:
-            for rank, (item, s, signal, ev) in enumerate(_ordered(sc.select(sc.scores(did)))):
+            for rank, (item, s, signal, ev) in enumerate(_ordered(sc.choose(did))):
                 out.append(Assignment(did, item, s, rank, signal, ev, _state(signal)))
         return out, {}
     zone_votes: dict[str, Counter] = defaultdict(Counter)
@@ -503,7 +589,7 @@ def assign(inp: Inputs, *, use_curated: bool = True, scorer: Scorer | None = Non
     for d in inp.decls:
         if d.infra:
             continue
-        chosen = _ordered(sc.select(sc.scores(d.id)))
+        chosen = _ordered(sc.choose(d.id))
         zone = zone_of(d.module) if d.module else "Mathlib"
         if not chosen:
             fallback[zone].append(d)
@@ -640,7 +726,7 @@ def derived_entity(cid: str, zone: str, ts: str) -> Entity:
                   external_ids=(("mathlib_zone", zone),), provenance=prov)
 
 
-def assignment_claim(a: Assignment, ts: str):  # -> Claim
+def assignment_claim(a: Assignment, ts: str, note: str = ""):  # -> Claim
     quote = json.dumps({"signal": a.signal, "evidence": a.evidence, "rank": a.rank}, ensure_ascii=False)
     prov = (Provenance(SOURCE_ID, f"{a.decl} -> {a.concept}", EXTRACTOR, VERSION, "CC0-1.0", ts, quote=quote[:500]),)
     if a.signal == "zone_derived":
@@ -649,11 +735,24 @@ def assignment_claim(a: Assignment, ts: str):  # -> Claim
     else:
         conf = Confidence(a.score, ESTIMATES, CALIBRATION)
     return binary(claim_id(a.decl, a.concept), RelationType.MEMBER_OF_CONCEPT, a.decl, a.concept, prov,
-                  evidence_state=a.state, confidence=conf,
-                  explanation=(LangString(f"Concept projection ({a.signal}, rank {a.rank}); grouping only, "
-                                          "not a dependency.", "en"),
-                               LangString(f"Proyección conceptual ({a.signal}, rango {a.rank}); solo agrupa, "
-                                          "no es dependencia.", "es")))
+                  evidence_state=a.state, confidence=conf, explanation=explanation(a, note))
+
+
+ZONE_LABEL = {  # the zone fallback is not a signal of the declaration (plan ronda 3): said in so many words
+    "zone": ("Zone fallback, not a signal of its own: the concept most declarations of this Mathlib zone have first.",
+             "Respaldo por zona, sin señal propia: el concepto que tiene primero la mayoría de las declaraciones de "
+             "esta zona de Mathlib."),
+    "zone_derived": ("Zone fallback, not a signal of its own: the derived concept of this Mathlib zone.",
+                     "Respaldo por zona, sin señal propia: el concepto derivado de esta zona de Mathlib.")}
+
+
+def explanation(a: Assignment, note: str = "") -> tuple[LangString, LangString]:
+    zen, zes = ZONE_LABEL.get(a.signal, ("", ""))
+    return (LangString(f"Concept projection ({a.signal}, rank {a.rank}); grouping only, not a dependency."
+                       f"{'  ' + zen if zen else ''}{'  Retired: ' + note if note else ''}", "en"),
+            LangString(f"Proyección conceptual ({a.signal}, rango {a.rank}); solo agrupa, no es dependencia."
+                       f"{'  ' + zes if zes else ''}"
+                       f"{'  Retirada: secundaria sin señal independiente de la primaria.' if note else ''}", "es"))
 
 
 def _projection_claims(store: Store) -> Iterator:
@@ -665,14 +764,18 @@ def _projection_claims(store: Store) -> Iterator:
 def _unchanged(c, a: Assignment) -> bool:
     q = json.loads(c.provenance[0].quote or "{}") if c.provenance else {}
     return (c.confidence is not None and c.confidence.value == a.score and c.evidence_state is a.state
-            and (q.get("signal"), q.get("evidence"), q.get("rank")) == (a.signal, a.evidence, a.rank))
+            and (q.get("signal"), q.get("evidence"), q.get("rank")) == (a.signal, a.evidence, a.rank)
+            and tuple(c.explanation) == explanation(a))
 
 
-def write(store: Store, assignments: Iterable[Assignment], derived: Mapping[str, str]) -> dict:
+def write(store: Store, assignments: Iterable[Assignment], derived: Mapping[str, str],
+          retired: Iterable[tuple[str, str]] = ()) -> dict:
     """Add derived concepts and assignment claims.  A (declaration, concept) pair the projection already asserts
     is kept when this run reproduces it unchanged (its provenance keeps the version that first produced it),
     superseded by a claim of this version when its score, rank, signal or state changed, and retracted when this
-    run no longer produces it.  Nothing is deleted: every earlier version stays in the registry."""
+    run no longer produces it.  A pair in `retired` (a secondary concept without an independent signal) is not
+    simply retracted: it is superseded by a version of this run that says why, and that version is retracted, so
+    `Store.history` shows the retirement.  Nothing is deleted: every earlier version stays in the registry."""
     _register_source(store)
     ts = now_iso()
     added_entities = store.add_entities((derived_entity(cid, z, ts) for cid, z in sorted(derived.items())),
@@ -690,12 +793,15 @@ def write(store: Store, assignments: Iterable[Assignment], derived: Mapping[str,
             kept += 1
         else:
             changed.append((old.id, a))
+    retired = set(retired)
+    retire = [c for pair, c in current.items() if pair in retired]
     taken = store.existing_claim_ids([claim_id(a.decl, a.concept) for a in new] +
-                                     [claim_id(a.decl, a.concept) for _, a in changed])
+                                     [claim_id(a.decl, a.concept) for _, a in changed] +
+                                     [claim_id(c.subject, c.ids(Role.OBJECT)[0]) for c in retire])
 
 
-    def claim_for(a: Assignment):
-        c = assignment_claim(a, ts)
+    def claim_for(a: Assignment, note: str = ""):
+        c = assignment_claim(a, ts, note)
         n, used = 0, c.id in taken
         while used:  # this version already wrote the pair (then retracted or re-scored it): next free id
             n += 1
@@ -706,18 +812,34 @@ def write(store: Store, assignments: Iterable[Assignment], derived: Mapping[str,
     added = store.add_claims((claim_for(a) for a in new), actor=ACTOR)
     for old_id, a in changed:
         store.supersede(old_id, claim_for(a), actor=ACTOR, reason=f"re-scored by {EXTRACTOR}/{VERSION}")
-    retract_ids(store, [c.id for c in current.values()], reason=f"not produced by {EXTRACTOR}/{VERSION}")
+    why = f"secondary concept without a signal independent of the primary ({EXTRACTOR}/{VERSION})"
+    retirements = []
+    for c in retire:
+        q = json.loads(c.provenance[0].quote or "{}") if c.provenance else {}
+        a = Assignment(c.subject, c.ids(Role.OBJECT)[0], c.confidence.value if c.confidence else 0.0,
+                       int(q.get("rank", 1)), str(q.get("signal", "")), str(q.get("evidence", "")), c.evidence_state)
+        retirements.append(store.supersede(c.id, claim_for(a, why), actor=ACTOR, reason=why).id)
+    retract_ids(store, retirements, reason=why)
+    stale = [c.id for pair, c in current.items() if pair not in retired]
+    retract_ids(store, stale, reason=f"not produced by {EXTRACTOR}/{VERSION}")
     return {"derived_entities_added": added_entities, "claims_added": added, "claims_already_present": kept,
-            "claims_superseded": len(changed), "claims_retracted_stale": len(current)}
+            "claims_superseded": len(changed), "claims_retired_secondary": len(retirements),
+            "claims_retracted_stale": len(stale)}
 
 
 def homonym_formalizations(store: Store, inp: Inputs, one_word: frozenset[str]) -> list[str]:
-    """Current `model_proposed` formalized_as candidates (resolve.py) that the homonym guard rejects:
-    a one-word item whose domain excludes the declaration's directory (integral -> `IsIntegral`)."""
+    """Current `model_proposed` formalized_as candidates (resolve.py) that the homonym guard rejects: an item
+    that is not a mathematical concept (inp.excluded: a block cipher "Square" -> `Square`), or a one-word item
+    whose domain excludes the declaration's directory (integral -> `IsIntegral`)."""
     decls = {d.id: d for d in inp.decls}
     out = []
     for c in store.iter_claims(RelationType.FORMALIZED_AS):
-        if c.evidence_state is not EvidenceState.MODEL_PROPOSED or c.subject not in one_word:
+        if c.evidence_state is not EvidenceState.MODEL_PROPOSED:
+            continue
+        if c.subject in inp.excluded:
+            out.append(c.id)
+            continue
+        if c.subject not in one_word:
             continue
         d = decls.get(store.resolve(c.ids(Role.OBJECT)[0]))
         if d is not None and not domain_ok(inp.domains, c.subject, d.module):
@@ -754,7 +876,7 @@ def stratum(module: str) -> str:
     return "/".join(parts[:2]) if len(parts) > 1 else (module or "(no module)")
 
 
-def audit_sample(inp: Inputs, assignments: Iterable[Assignment], *, size: int = SAMPLE_SIZE,
+def audit_sample(inp: Inputs, assignments: Iterable[Assignment], *, size: int = SAMPLE_SIZE, seed: str = "",
                  registry_ids: Mapping[tuple[str, str], str] | None = None) -> list[dict]:
     """`size` assignments stratified by Mathlib top-level area (largest remainder, at least
     SAMPLE_MIN_PER_STRATUM each), chosen by a hash of the claim id: deterministic, no RNG state.
@@ -778,7 +900,8 @@ def audit_sample(inp: Inputs, assignments: Iterable[Assignment], *, size: int = 
             quota[s] += 1
     rows = []
     for s in sorted(by_stratum):
-        pick = sorted(by_stratum[s], key=lambda a: hashlib.sha1(claim_id(a.decl, a.concept).encode()).hexdigest())
+        pick = sorted(by_stratum[s],
+                      key=lambda a: hashlib.sha1((seed + claim_id(a.decl, a.concept)).encode()).hexdigest())
         for a in pick[:quota[s]]:
             d = decls[a.decl]
             it = inp.items.get(a.concept)
@@ -796,7 +919,7 @@ def audit_sample(inp: Inputs, assignments: Iterable[Assignment], *, size: int = 
 # ---------------------------------------------------------------------- run
 
 
-def run(store: Store, *, sample_path: Path | None = None, write_claims: bool = True) -> dict:
+def run(store: Store, *, sample_path: Path | None = None, write_claims: bool = True, seed: str = "") -> dict:
     """Load, evaluate (masked curated links, dev and test halves), assign, write, sample."""
     inp = load(store)
     masked = Scorer(inp, use_curated=False)
@@ -811,20 +934,25 @@ def run(store: Store, *, sample_path: Path | None = None, write_claims: bool = T
                              "ALIAS_FACTOR": ALIAS_FACTOR, "SUBSUMED_FACTOR": SUBSUMED_FACTOR,
                              "MIN_KEY_CHARS": MIN_KEY_CHARS, "RESOLVE_FACTOR": RESOLVE_FACTOR,
                              "DEDUP_LABELS": DEDUP_LABELS, "AREA_DIRS": len(AREA_DIRS),
-                             "W_SOURCE": W_SOURCE}}
+                             "W_SOURCE": W_SOURCE, "NAME_ONE_TOKEN_ALIAS": NAME_ONE_TOKEN_ALIAS,
+                             "NAME_ONE_TOKEN_CORE": NAME_ONE_TOKEN_CORE, "MIN_NAME_TOKEN": MIN_NAME_TOKEN,
+                             "SECONDARY_INDEPENDENT": SECONDARY_INDEPENDENT,
+                             "SECONDARY_PROPAGATED": SECONDARY_PROPAGATED}}
+    report["excluded_items"] = dict(sorted(Counter(inp.excluded.values()).items()))
+    report["secondaries_without_independent_signal"] = len(sc.dropped)
     homonyms = homonym_formalizations(store, inp, sc.one_word)
     report["homonym_formalizations"] = len(homonyms)
     if write_claims:
-        report["write"] = write(store, asg, derived)
+        report["write"] = write(store, asg, derived, retired=sc.dropped)
         report["write"]["homonym_formalizations_retracted"] = retract_ids(
             store, homonyms, reason=f"homonym guard of {EXTRACTOR}/{VERSION}: one-word label outside the item's domain")
     if sample_path is not None:
-        rows = audit_sample(inp, asg, registry_ids=current_claim_ids(store))
+        rows = audit_sample(inp, asg, registry_ids=current_claim_ids(store), seed=seed)
         sample_path.parent.mkdir(parents=True, exist_ok=True)
         with open(sample_path, "w", encoding="utf-8", newline="\n") as fh:
             for r in rows:
                 fh.write(json.dumps(r, ensure_ascii=False) + "\n")
-        report["audit_sample"] = {"path": str(sample_path), "rows": len(rows),
+        report["audit_sample"] = {"path": str(sample_path), "rows": len(rows), "seed": seed,
                                   "strata": len({r["stratum"] for r in rows})}
     return report
 
@@ -835,6 +963,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="python -m atlas.concepts", description="Concept projection: Mathlib declarations -> concepts")
     ap.add_argument("--db", default="data/atlas.db")
     ap.add_argument("--sample", default="bench/concepts/audit-sample-200.jsonl", help="stratified audit sample")
+    ap.add_argument("--seed", default="", help="prefix hashed with each claim id to pick the sample")
     ap.add_argument("--report", default=None, help="JSON report path (default data/cache/reports/concepts-<ts>.json)")
     ap.add_argument("--no-write", action="store_true", help="evaluate and sample only; registry untouched")
     ap.add_argument("--retract", metavar="REASON", help="undo: retract every claim of the projection")
@@ -843,7 +972,8 @@ def main(argv: list[str] | None = None) -> int:
         if a.retract:
             print(json.dumps({"retracted": retract_all(store, reason=a.retract)}))
             return 0
-        report = run(store, sample_path=Path(a.sample) if a.sample else None, write_claims=not a.no_write)
+        report = run(store, sample_path=Path(a.sample) if a.sample else None, write_claims=not a.no_write,
+                     seed=a.seed)
     out = Path(a.report or f"data/cache/reports/concepts-{now_iso()[:19].replace(':', '')}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")

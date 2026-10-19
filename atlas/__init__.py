@@ -31,3 +31,6 @@ from .model import (
 from .store import Store, load_bundle, validate_jsonld
 
 __version__ = "0.1.0"
+
+# Child processes (cargo, atlas.exe) open no console window on Windows.
+NO_WINDOW: dict = {"creationflags": __import__("subprocess").CREATE_NO_WINDOW} if __import__("sys").platform == "win32" else {}

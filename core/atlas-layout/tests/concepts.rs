@@ -340,3 +340,25 @@ fn edge_cap_applies_per_layer_so_one_layer_cannot_starve_another() {
         "with a cap of 1, some tile still draws an edge in two layers"
     );
 }
+
+/// Round 3: the general layer has a per-tile cap.  With room for one node per tile,
+/// z0 shows only the first general node by priority and the other appears deeper.
+#[test]
+fn general_tile_cap_keeps_the_overview_small() {
+    let s = snapshot("general-cap");
+    let mut p = params();
+    p.tiles.general_tile_nodes = 1;
+    let l = compute(&s, &p).unwrap();
+    assert_eq!(l.tiles.meta.general_nodes, 2);
+    let z0 = tile(&s, &l, Projection::Structure, 0, 0, 0, "es").unwrap();
+    assert_eq!(z0.nodes.len(), 1, "one general node fits the z0 tile: {:?}", z0.nodes);
+    let mut seen: BTreeMap<String, Option<u32>> = BTreeMap::new();
+    for (z, x, y) in l.tiles.keys() {
+        let t = tile(&s, &l, Projection::Structure, z, x, y, "es").unwrap();
+        let general = t.nodes.iter().filter(|nd| nd.kind == TileNodeKind::Concept).count();
+        assert!(z >= l.tiles.meta.zmax || general <= 1, "z{z} {x}/{y}: {general} concepts");
+        seen.extend(t.nodes.iter().filter(|nd| nd.kind == TileNodeKind::Concept).map(|nd| (nd.id.clone(), nd.priority)));
+    }
+    assert_eq!(seen.len(), 2, "every general node is drawn at some zoom: {seen:?}");
+    assert_eq!(z0.nodes[0].priority, seen.values().copied().min().unwrap(), "z0 keeps the most important one");
+}

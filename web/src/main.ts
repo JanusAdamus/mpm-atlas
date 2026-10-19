@@ -1,6 +1,6 @@
 // App shell: state in the URL (history/back work), map + side panel + text view.
 import "./style.css";
-import { api, type PathStep, type SearchHit } from "./api.ts";
+import { api, type RouteStop, type SearchHit } from "./api.ts";
 import { renderCompare } from "./compare.ts";
 import { renderConcept, type ConceptActions } from "./conceptpanel.ts";
 import { TILE_PX } from "./map/camera.ts";
@@ -266,7 +266,7 @@ async function locateAndSelect(id: string, fly: boolean): Promise<void> {
   }
 }
 
-async function showPath(steps: PathStep[], historical = false): Promise<void> {
+async function showPath(steps: RouteStop[], historical = false): Promise<void> {
   if (!steps.length) {
     map.setPath(null);
     return;
@@ -311,6 +311,7 @@ async function renderPanel(): Promise<void> {
   } else if (p.kind === "path") {
     side.replaceChildren(closeBtn, pathView(p.q, {
       open: (id) => navigate({ panel: { kind: "entity", id } }),
+      openConcept: (id) => navigate({ panel: { kind: "concept", id, offset: 0 } }),
       showPath: (steps, historical) => void showPath(steps, historical),
       changed: (q) => {
         state.panel = { kind: "path", q };

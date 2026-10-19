@@ -30,10 +30,12 @@ def decl(name: str, module: str, etype: EntityType = EntityType.STATEMENT, doc: 
                   provenance=prov)
 
 
-def item(qid: str, label: str, etype: EntityType = EntityType.CONCEPT, aliases: tuple[str, ...] = ()) -> Entity:
+def item(qid: str, label: str, etype: EntityType = EntityType.CONCEPT, aliases: tuple[str, ...] = (),
+         desc: str | None = None) -> Entity:
     prov = (Provenance("src:test", qid, "hand", "1", "CC0-1.0", TS),)
     return Entity("wd:" + qid, etype, (LangString(label, "en"), LangString(label + " (es)", "es")),
-                  aliases=tuple(LangString(a, "en") for a in aliases), provenance=prov)
+                  aliases=tuple(LangString(a, "en") for a in aliases),
+                  descriptions=(LangString(desc, "en"),) if desc else (), provenance=prov)
 
 
 PROV = (Provenance("src:test", "t", "hand", "1", "CC0-1.0", TS),)
@@ -194,4 +196,223 @@ def test_homonym_guard_integral_is_not_isintegral() -> None:
     assert not again.curated
     members = {(a.decl, a.concept) for a in C.assign(again)[0]}
     assert ("mathlib:IsIntegral", "wd:Q80091") not in members
+    s.close()
+
+
+# ---------------------------------------------------------------------- round 3 (plan 2026-10-18-ronda-3-correcciones)
+# Each test below fails with concept-projection/5 and resolve/2 (commit d290e32) and passes with /6 and /3.
+
+FILLERS = [decl(f"Filler.f{i}", "Mathlib/Order/Filler") for i in range(4)]  # so one-off labels are specific
+
+
+def members_of(entities: list[Entity], claims: tuple = ()) -> tuple[set[tuple[str, str]], C.Inputs]:
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities(entities + FILLERS)
+    s.add_claims(list(claims))
+    inp = C.load(s, with_resolve=False)
+    members = {(a.decl, a.concept) for a in C.assign(inp)[0]}
+    s.close()
+    return members, inp
+
+
+def test_homonym_ball_is_not_snooker_ball() -> None:
+    members, _ = members_of([
+        decl("ball_mul", "Mathlib/Analysis/Normed/Group/Pointwise"),
+        item("Q55398354", "snooker ball", aliases=("ball",), desc="usually numberless ball used in snooker"),
+        item("Q838611", "ball", desc="solid figure bounded by a sphere"),
+    ])
+    assert ("mathlib:ball_mul", "wd:Q838611") in members
+    assert ("mathlib:ball_mul", "wd:Q55398354") not in members
+
+
+def test_homonym_one_letter_name_is_not_mandelbrot_set() -> None:
+    members, _ = members_of([
+        decl("MvPFunctor.M.dest", "Mathlib/Data/PFunctor/Multivariate/M"),
+        item("Q257", "Mandelbrot set", aliases=("M set",), desc="fractal set in the complex plane"),
+    ])
+    assert ("mathlib:MvPFunctor.M.dest", "wd:Q257") not in members
+
+
+def test_homonym_at_prime_is_not_prime_number() -> None:
+    """The domain guard lets prime number into RingTheory (number theory's directories), so it is the one-token
+    alias rule that keeps `IsLocalization.AtPrime` (localization at a prime ideal) away from it."""
+    members, inp = members_of([
+        decl("IsLocalization.AtPrime", "Mathlib/RingTheory/Localization/AtPrime/Basic", EntityType.DEFINITION),
+        item("Q49008", "prime number", aliases=("prime",)),
+        item("Q12479", "number theory", EntityType.AREA),
+    ], (binary("c:pa", RelationType.PART_OF_AREA, "wd:Q49008", "wd:Q12479", PROV),))
+    assert "RingTheory" in inp.domains["wd:Q49008"]
+    assert ("mathlib:IsLocalization.AtPrime", "wd:Q49008") not in members
+
+
+def test_short_labels_do_not_match_through_abbreviations() -> None:
+    """The label "NE" has two letters; read through rv.ABBREV it used to become "unequal" and take `ne_zero`."""
+    members, _ = members_of([
+        decl("RootPairing.ne_zero", "Mathlib/LinearAlgebra/RootSystem/Defs"),
+        item("Q6953653", "NE", desc="class in computational complexity theory"),
+    ])
+    assert ("mathlib:RootPairing.ne_zero", "wd:Q6953653") not in members
+
+
+def test_only_mathematical_items_are_candidates() -> None:
+    members, inp = members_of([
+        decl("Nat.wiki_card", "Mathlib/Data/Nat/Card", doc="As explained on **Wikipedia**, a count."),
+        decl("Nat.ramanujan", "Mathlib/NumberTheory/Taxicab", doc="The number **1728** is a cube."),
+        decl("Calendar.leap", "Mathlib/Data/Calendar", doc="A **leap year starting on Wednesday** has 366 days."),
+        decl("Snooker.cue", "Mathlib/Geometry/Billiard", doc="A **snooker ball** rolls."),
+        decl("Square.cipher", "Mathlib/Combinatorics/Square", doc="The **Square** cipher on a square grid."),
+        item("Q52", "Wikipedia", desc="free multilingual online encyclopedia"),
+        item("Q2997789", "1728", desc="natural number"),
+        item("Q217015", "leap year starting on Wednesday", desc="type of year on a solar calendar"),
+        item("Q55398354", "snooker ball", desc="usually numberless ball used in snooker"),
+        item("Q2755328", "Square", desc="block cipher invented by Joan Daemen and Vincent Rijmen"),
+        item("Q11518", "Pythagorean theorem", EntityType.STATEMENT, desc="relation in Euclidean geometry"),
+    ])
+    assert inp.excluded == {"wd:Q52": "source", "wd:Q2997789": "number", "wd:Q217015": "date",
+                            "wd:Q55398354": "other_field", "wd:Q2755328": "other_field"}
+    assert "wd:Q11518" in inp.items
+    assert not {c for _, c in members} & set(inp.excluded)
+
+
+def test_a_curated_link_keeps_an_item_whatever_its_description() -> None:
+    _, inp = members_of([
+        decl("Polynomial.schwartz_zippel", "Mathlib/Algebra/Polynomial/SchwartzZippel"),
+        item("Q7433182", "Schwartz-Zippel lemma", desc="tool used in software testing"),
+    ], (binary("c:fa", RelationType.FORMALIZED_AS, "wd:Q7433182", "mathlib:Polynomial.schwartz_zippel", PROV),))
+    assert "wd:Q7433182" in inp.items and not inp.excluded
+
+
+def test_non_math_reason() -> None:
+    from atlas import resolve as rv
+    assert rv.non_math_reason(EntityType.CONCEPT, ["10"], ["natural number"]) == "number"
+    assert rv.non_math_reason(EntityType.CONCEPT, ["Sunday"], ["day of the week"]) == "date"
+    # a century in the description dates a mathematical problem; it does not make it a date (run 6 excluded it)
+    assert rv.non_math_reason(EntityType.CONCEPT, ["Archimedes' cattle problem"],
+                              ["a problem in number theory", "problema matemático propuesto por Arquímedes en el siglo I"]) is None
+    assert rv.non_math_reason(EntityType.CONCEPT, ["Ars Magna"], ["book", "libro de matemáticas del siglo XVI"]) == "source"
+    # the typographic prime ′ took `IsLocalization.AtPrime` in run 7; a character of a group is still mathematics
+    assert rv.non_math_reason(EntityType.CONCEPT, ["prime"], ["character, used to name a new variable"]) == "other_field"
+    assert rv.non_math_reason(EntityType.CONCEPT, ["beth number"], ["transfinite numbers, carácter Unicode"]) is None
+    assert rv.non_math_reason(EntityType.CONCEPT, ["digit"], ["numerical symbol used in numeral systems"]) is None
+    assert rv.non_math_reason(EntityType.CONCEPT, ["mobile app"], ["software application"]) == "other_field"
+    assert rv.non_math_reason(EntityType.CONCEPT, ["domain"], ["ring where no zero divisors coincide"]) is None
+    # the description also says it is mathematics: stays
+    assert rv.non_math_reason(EntityType.CONCEPT, ["idempotence"],
+                              ["property of operations in mathematics and computer science"]) is None
+    # a theorem is a theorem whatever field the description names
+    assert rv.non_math_reason(EntityType.STATEMENT, ["Nash theorem"], ["result in economics"]) is None
+
+
+def test_resolve_does_not_match_names_on_a_one_token_core() -> None:
+    """The label "open formula" minus its generic word is "open": not a candidate for `IsOpen`."""
+    from atlas import resolve as rv
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("IsOpen", "Mathlib/Topology/Defs/Basic", EntityType.DEFINITION), *FILLERS])
+    idx = rv.MathlibIndex.from_store(s)
+    assert rv.item_candidates(idx, "wd:Q830486", EntityType.CONCEPT, [("open formula", 1.0)]) == []
+    assert [c.right for c in rv.item_candidates(idx, "wd:Q213363", EntityType.CONCEPT, [("open", 1.0)])] == [
+        "mathlib:IsOpen"]
+    s.close()
+
+
+def secondary_store() -> Store:
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([
+        decl("PrimeIdeal", "Mathlib/RingTheory/Ideal/Prime", EntityType.DEFINITION,
+             "Every **ideal** that is prime has a **Krull dimension**."),
+        *FILLERS,
+        item("Q1", "prime ideal"), item("Q2", "ideal"), item("Q3", "Krull dimension"),
+    ])
+    return s
+
+
+def test_secondary_concepts_need_an_independent_signal() -> None:
+    s = secondary_store()
+    inp = C.load(s, with_resolve=False)
+    sc = C.Scorer(inp, use_curated=True)
+    got = [(a.concept, a.rank) for a in C.assign(inp, scorer=sc)[0] if a.decl == "mathlib:PrimeIdeal"]
+    # "ideal" is part of the phrase behind the primary, so it is no evidence of its own; "Krull dimension" is
+    assert got == [("wd:Q1", 0), ("wd:Q3", 1)]
+    assert sc.dropped == {("mathlib:PrimeIdeal", "wd:Q2")}
+    assert C.independent({("phrase", ("unit", "circle"))}, {("phrase", ("circle",))})
+    assert not C.independent({("phrase", ("abel",))}, {("phrase", ("abel",))})
+    assert not C.independent({("namespace",)}, {("phrase", ("x",))})
+    assert C.independent({("resolve", "wd:Q9")}, {("resolve", "wd:Q8")})
+    s.close()
+
+
+def test_retired_secondaries_are_superseded_with_history(monkeypatch) -> None:
+    s = secondary_store()
+    inp = C.load(s, with_resolve=False)
+    monkeypatch.setattr(C, "SECONDARY_INDEPENDENT", False)  # what an older run wrote
+    old, derived = C.assign(inp)
+    C.write(s, old, derived)
+    before = C.current_claim_ids(s)[("mathlib:PrimeIdeal", "wd:Q2")]
+    monkeypatch.setattr(C, "SECONDARY_INDEPENDENT", True)
+    sc = C.Scorer(inp, use_curated=True)
+    new, derived = C.assign(inp, scorer=sc)
+    rep = C.write(s, new, derived, retired=sc.dropped)
+    assert rep["claims_retired_secondary"] == 1 and rep["claims_retracted_stale"] == 0
+    assert ("mathlib:PrimeIdeal", "wd:Q2") not in C.current_claim_ids(s)
+    versions = s.history(before)
+    assert [v.evidence_state for v in versions] == [EvidenceState.SUPERSEDED, EvidenceState.RETRACTED]
+    assert "Retired: secondary concept without a signal independent" in versions[-1].explanation[0].text
+    s.close()
+
+
+def test_formalizations_of_non_mathematical_items_are_homonyms() -> None:
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("Square", "Mathlib/Algebra/Group/Even", EntityType.DEFINITION), *FILLERS,
+                    item("Q2755328", "Square", desc="block cipher invented by Joan Daemen and Vincent Rijmen")])
+    s.add_claims([binary("c:fa-cipher", RelationType.FORMALIZED_AS, "wd:Q2755328", "mathlib:Square", PROV,
+                         evidence_state=EvidenceState.MODEL_PROPOSED)])
+    inp = C.load(s, with_resolve=False)
+    assert C.homonym_formalizations(s, inp, C.Scorer(inp, use_curated=True).one_word) == ["c:fa-cipher"]
+    s.close()
+
+
+def test_zone_fallback_is_labelled_and_not_an_own_signal() -> None:
+    """A zone fallback says so in its claim (plan ronda 3), and coverage does not count it as a signal."""
+    a = C.Assignment("mathlib:x", "wd:Q1", 0.1, 0, "zone", "zone Mathlib/Order: 3/4", EvidenceState.MODEL_PROPOSED)
+    c = C.assignment_claim(a, TS)
+    assert "Respaldo por zona, sin señal propia" in c.explanation[1].text
+    assert "Zone fallback, not a signal of its own" in c.explanation[0].text
+    own = C.assignment_claim(C.Assignment("mathlib:x", "wd:Q1", 0.5, 0, "name_doc", "bold:exact 'x'",
+                                          EvidenceState.MODEL_PROPOSED), TS)
+    assert "Respaldo por zona" not in own.explanation[1].text
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("Order.x", "Mathlib/Order/Zone"), *FILLERS])
+    inp = C.load(s, with_resolve=False)
+    cov = C.coverage(inp, [C.Assignment("mathlib:Order.x", "wd:Q1", 0.1, 0, "zone", "z", EvidenceState.MODEL_PROPOSED)])
+    assert cov["assigned"] == 1 and cov["assigned_by_own_signals"] == 0
+    s.close()
+
+
+def test_resolve_ignores_one_and_two_character_labels() -> None:
+    """Run 6 sent `MvPFunctor.M` to «a.m.», «nautical mile» and «mega» through resolve.py's alias "M"."""
+    from atlas import resolve as rv
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("MvPFunctor.M", "Mathlib/Data/PFunctor/Multivariate/M", EntityType.DEFINITION), *FILLERS])
+    idx = rv.MathlibIndex.from_store(s)
+    assert rv.item_candidates(idx, "wd:Q1", EntityType.CONCEPT, [("M", 0.9)]) == []
+    assert rv.item_candidates(idx, "wd:Q2", EntityType.CONCEPT, [("a.m.", 0.9)]) == []
+    s.close()
+
+
+def test_resolve_keeps_pi_despite_the_short_label_rule() -> None:
+    """resolve/3 left `Real.pi` without «pi» (Q167): the label has two letters.  SHORT_LABEL_OK exempts it."""
+    from atlas import resolve as rv
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("Real.pi", "Mathlib/Analysis/SpecialFunctions/Trigonometric/Basic", EntityType.DEFINITION),
+                    *FILLERS])
+    idx = rv.MathlibIndex.from_store(s)
+    cands = rv.item_candidates(idx, "wd:Q167", EntityType.CONCEPT, [("pi", 0.9)])
+    assert any("mathlib:Real.pi" in (c.left, c.right) for c in cands)
     s.close()

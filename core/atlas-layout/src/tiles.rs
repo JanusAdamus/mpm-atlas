@@ -21,8 +21,11 @@
 //!
 //! Concept layer (when the snapshot has concepts; `concept.rs`):
 //! - Zooms `0..=general_zoom` are the general layer.  They show only the general
-//!   set (concepts, then areas; at most `general_nodes`), all of them from zoom 0
-//!   and outside the per-tile entity budget, and no clusters.
+//!   set (concepts, then areas; at most `general_nodes`) and no clusters.  A general
+//!   node takes its zoom by priority like an entity, under its own per-tile cap
+//!   `general_tile_nodes` (round 3: with every node at zoom 0 the z0 tile weighed
+//!   523 KB, and the z3 tiles under it held up to 1,300 nodes).  Until it fits it is
+//!   not represented and its edges are counted, as below; at `zmax` all are drawn.
 //! - A declaration is drawn only from `detail_zoom` on (infrastructure too); other
 //!   entities from `general_zoom + 1`.  Above that, the budget rule applies.
 //! - A hidden declaration is represented by its primary concept when the concept
@@ -83,10 +86,22 @@ pub struct TileBudget {
     /// rest are counted in `hidden_edges` like any edge over budget).
     #[serde(default = "default_general_edges")]
     pub general_edges: u32,
+    /// Max visible nodes of the general set per tile (at every zoom below `zmax`).
+    #[serde(default = "default_general_tile_nodes")]
+    pub general_tile_nodes: u32,
 }
 
+fn default_general_tile_nodes() -> u32 {
+    GENERAL_TILE_NODES
+}
+
+/// Default of `general_tile_nodes`.  Round 3 sweep on the real snapshot
+/// (`examples/tile_budget.rs`, AtlasBench mix): 600 nodes and 512 lines gave a z0 of
+/// 190 KB and a p95 tile of 231 KB of JSON; 400 and 384 give 131 KB and 203 KB.
+const GENERAL_TILE_NODES: u32 = 400;
+
 fn default_general_edges() -> u32 {
-    1024
+    384
 }
 
 fn default_general_zoom() -> u32 {
@@ -104,13 +119,16 @@ impl Default for TileBudget {
         TileBudget {
             entities: 256,
             clusters: 64,
-            edges: 2048,
+            // Round 3: 2,048 made the z3 tiles 550-720 KB of JSON (AtlasBench tile p95
+            // 8.78 ms); 384 lines per layer and tile is still more than a screen reads.
+            edges: 384,
             full: 1024,
             max_zoom: 16,
             general_zoom: default_general_zoom(),
             general_nodes: default_general_nodes(),
             detail_zoom: default_detail_zoom(),
             general_edges: default_general_edges(),
+            general_tile_nodes: default_general_tile_nodes(),
         }
     }
 }
@@ -280,7 +298,7 @@ pub(crate) fn build(inp: &Input, budget: &TileBudget) -> TileSet {
             f.min(zmax) as u8
         })
         .collect();
-    let minzoom = min_zooms(inp, &order, zmax, budget.entities, &floor);
+    let minzoom = min_zooms(inp, &order, zmax, budget, &floor);
     let general_zoom = concepts_on.then_some(budget.general_zoom);
     let display_level: Vec<Option<u32>> = (0..=zmax)
         .map(|z| {
@@ -373,31 +391,33 @@ fn choose_zmax(inp: &Input, order: &[u32], budget: &TileBudget) -> u32 {
 }
 
 /// Greedy minimum zoom per node, in priority order (see module doc), never below
-/// its `floor`.  General-layer nodes (floor 0 with a concept layer) skip the budget.
-fn min_zooms(inp: &Input, order: &[u32], zmax: u32, k: u32, floor: &[u8]) -> Vec<u8> {
+/// its `floor`.  An entity fits while its tile holds fewer than `entities` visible
+/// nodes of any kind; a general-set node while it holds fewer than
+/// `general_tile_nodes` general nodes (so entities never crowd the overview out).
+fn min_zooms(inp: &Input, order: &[u32], zmax: u32, budget: &TileBudget, floor: &[u8]) -> Vec<u8> {
     let mut minzoom = vec![u8::MAX; inp.pos.len()];
-    let mut counts: Vec<AHashMap<u64, u32>> = (0..zmax).map(|_| AHashMap::new()).collect();
+    // [all visible nodes, visible general nodes] per zoom and cell.
+    let mut counts: [Vec<AHashMap<u64, u32>>; 2] =
+        [0, 1].map(|_| (0..zmax).map(|_| AHashMap::new()).collect());
     let mut cells = vec![0u64; zmax as usize];
     for &v in order {
         let p = inp.pos[v as usize];
-        let mut first = 0u32;
         let general = inp.general[v as usize];
+        let (which, k) = if general { (1, budget.general_tile_nodes) } else { (0, budget.entities) };
+        let mut first = 0u32;
         for z in 0..zmax {
             let (x, y) = cell(p, z);
             cells[z as usize] = (x as u64) << 32 | y as u64;
-            if !general
-                && counts[z as usize]
-                    .get(&cells[z as usize])
-                    .copied()
-                    .unwrap_or(0)
-                    >= k
-            {
+            if counts[which][z as usize].get(&cells[z as usize]).copied().unwrap_or(0) >= k {
                 first = z + 1;
             }
         }
         first = first.max(floor[v as usize] as u32);
         for z in first..zmax {
-            *counts[z as usize].entry(cells[z as usize]).or_insert(0) += 1;
+            *counts[0][z as usize].entry(cells[z as usize]).or_insert(0) += 1;
+            if general {
+                *counts[1][z as usize].entry(cells[z as usize]).or_insert(0) += 1;
+            }
         }
         minzoom[v as usize] = first as u8;
     }

@@ -48,6 +48,22 @@ fn compile_stats_layout_and_error_envelope() {
         assert_eq!(i["error"]["code"], "not_implemented", "{i}");
     }
 
+    // `atlas path` (round 3): --concepts and --drill-down reach the engine as in /api/path.
+    let comp = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../shapes/composition.json");
+    let path = |extra: &[&str]| {
+        let mut a = vec!["path", "s:pythagoras", "s:sas-congruence", "--snapshot", snap];
+        a.extend(["--composition", comp.to_str().unwrap(), "--json"]);
+        a.extend(extra);
+        atlas(&a)
+    };
+    let (ok, p) = path(&["--concepts", "--drill-down"]);
+    assert!(ok, "{p}");
+    assert!(p["concepts"].is_object(), "concept level on: {p}");
+    let (ok, off) = path(&["--concepts=false"]);
+    assert!(ok, "{off}");
+    assert!(off["concepts"].is_null(), "concept level off: {off}");
+    assert_eq!(off["paths"], p["paths"], "the entity-level answer does not depend on it");
+
     let (ok, e) = atlas(&["stats", "--snapshot", "does/not/exist", "--json"]);
     assert!(!ok);
     assert_eq!(e["error"]["code"], "internal");

@@ -116,6 +116,8 @@ button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(
 button.link { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; text-align: left; white-space: normal; border-radius: 2px; }
 button.link:hover { text-decoration: underline; text-underline-offset: 2px; }
 button.mini { padding: 0 7px; font-size: var(--fs-xs); }
+.drill { margin-top: var(--s2); padding-left: var(--s2); border-left: 2px solid var(--line); }
+.drill .route { margin-top: var(--s2); }
 input[type="text"], input[type="number"], input[type="search"] {
   border: 1px solid var(--line-strong); background: var(--raised); border-radius: var(--radius-sm); padding: 6px 10px;
 }

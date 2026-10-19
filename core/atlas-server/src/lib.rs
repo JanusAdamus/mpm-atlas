@@ -23,6 +23,7 @@ mod coverage;
 mod entity;
 mod graph;
 mod http;
+mod linger;
 mod paths;
 mod registry;
 mod search;
@@ -38,7 +39,6 @@ use axum::Router;
 use axum::http::{HeaderValue, Method};
 use axum::middleware::{from_fn, from_fn_with_state};
 use axum::routing::get;
-use axum::serve::ListenerExt;
 use std::collections::BTreeMap;
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -258,22 +258,23 @@ pub fn router(state: AppState) -> Router {
 
 /// Serve `router(state)` on `addr` until Ctrl-C.
 pub async fn serve(addr: SocketAddr, state: AppState) -> Result<()> {
-    // TCP_NODELAY: without it Nagle + delayed ACK holds small responses ~10-40 ms
-    // on loopback (measured: /api/health p50 13.6 ms with 16 keep-alive connections).
-    let listener = tokio::net::TcpListener::bind(addr)
-        .await
-        .map_err(|e| Error::io(addr.to_string(), e))?
-        .tap_io(|tcp| {
-            let _ = tcp.set_nodelay(true);
-        });
+    let listener = tokio::net::TcpListener::bind(addr).await.map_err(|e| Error::io(addr.to_string(), e))?;
     eprintln!("atlas: serving http://{addr} (snapshot {})", state.engine.snap.content_hash_hex());
     for (k, v) in &state.engine.components {
         eprintln!("atlas:   {k}: {v}");
     }
-    axum::serve(listener, router(state))
-        .with_graceful_shutdown(async {
-            let _ = tokio::signal::ctrl_c().await;
-        })
-        .await
-        .map_err(|e| Error::io(addr.to_string(), e))
+    let ctrl_c = async {
+        let _ = tokio::signal::ctrl_c().await;
+    };
+    serve_on(listener, router(state), ctrl_c).await.map_err(|e| Error::io(addr.to_string(), e))
+}
+
+/// Serve `app` on an already bound listener until `shutdown` resolves.  Connections
+/// use TCP_NODELAY and a lingering close (`linger.rs`).
+pub async fn serve_on(
+    listener: tokio::net::TcpListener,
+    app: Router,
+    shutdown: impl std::future::Future<Output = ()> + Send + 'static,
+) -> std::io::Result<()> {
+    axum::serve(linger::LingerListener(listener), app).with_graceful_shutdown(shutdown).await
 }

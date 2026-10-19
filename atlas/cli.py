@@ -26,6 +26,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
+from . import NO_WINDOW
+
 ROOT = Path(__file__).resolve().parent.parent
 CORE = ROOT / "core"
 DATA = ROOT / "data"
@@ -76,7 +78,7 @@ def cargo_build() -> dict[str, Any]:
     t = time.perf_counter()
     env = {**os.environ, "CARGO_TARGET_DIR": str(target_dir())}
     proc = subprocess.run([exe, "build", "--release", "-p", "atlas-server"], cwd=CORE, env=env,
-                          capture_output=True, text=True, encoding="utf-8", errors="replace")
+                          capture_output=True, text=True, encoding="utf-8", errors="replace", **NO_WINDOW)
     if proc.returncode != 0:
         raise CliError("cargo build failed:\n" + proc.stderr[-4000:])
     return {"elapsed_s": round(time.perf_counter() - t, 2), "binary": str(target_dir() / "release" / EXE)}
@@ -85,7 +87,7 @@ def cargo_build() -> dict[str, Any]:
 def run_atlas(args: Sequence[str]) -> Any:
     """Run `atlas <args> --json` and return its JSON value; raise CliError on its error envelope."""
     proc = subprocess.run([str(find_binary()), *args, "--json"], cwd=ROOT, capture_output=True,
-                          text=True, encoding="utf-8", errors="replace")
+                          text=True, encoding="utf-8", errors="replace", **NO_WINDOW)
     out = proc.stdout.strip().splitlines()
     try:
         value = json.loads(out[-1]) if out else None

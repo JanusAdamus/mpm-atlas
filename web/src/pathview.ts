@@ -1,6 +1,6 @@
 // Path view: typed routes with per-step justification and what the whole route
 // authorizes (strength 0..5, weakest evidence, hypothesis, missing premises).
-import { api, type Conclusion, type FoundPath, type PathResponse, type PathStep } from "./api.ts";
+import { api, type Conclusion, type ConceptStep, type FoundPath, type PathResponse, type PathStep, type RouteStop } from "./api.ts";
 import { h } from "./dom.ts";
 import { badge } from "./evidence.ts";
 import { categoryLabel, getLang, OBJECTIVE_NAMES, objectiveLabel, relLabel, t } from "./i18n.ts";
@@ -22,8 +22,9 @@ export interface PathQueryState {
 
 export interface PathViewActions {
   open(id: string): void;
+  openConcept(id: string): void;
   /** Draw the route on the map; `historical` routes are drawn dashed, never as a dependency. */
-  showPath(steps: PathStep[], historical: boolean): void;
+  showPath(steps: RouteStop[], historical: boolean): void;
   changed(q: PathQueryState): void;
 }
 
@@ -33,6 +34,23 @@ const MAX_STRENGTH = 5;
  *  before `category` existed only had `kind`. */
 export function isHistorical(c: Conclusion): boolean {
   return c.category === "historical" || c.kind === "historical";
+}
+
+type ConceptRoute = NonNullable<NonNullable<PathResponse["concepts"]>["route"]>;
+
+/** The concept-level route of an answer, when there is one to show. */
+export function conceptRoute(r: PathResponse): ConceptRoute | null {
+  const c = r.concepts;
+  return c && !c.abstained && c.route?.steps.length ? c.route : null;
+}
+
+/** What the map draws for an answer: the declaration-level route when there is one, else
+ *  the concept route, else the exploration (dashed).  Never a stale route. */
+export function mapRoute(r: PathResponse): { steps: RouteStop[]; dashed: boolean } {
+  if (!r.abstained && r.paths[0]) return { steps: r.paths[0].steps, dashed: isHistorical(r.paths[0].conclusion) };
+  const c = conceptRoute(r);
+  if (c) return { steps: c.steps, dashed: isHistorical(c.conclusion) };
+  return { steps: r.exploration?.steps ?? [], dashed: true };
 }
 
 function categoryOf(c: Conclusion): string | null {
@@ -75,17 +93,76 @@ function hopItem(s: PathStep, i: number, link: (id: string, label: string) => HT
   );
 }
 
-/** The route as stops (numbered like the map markers) joined by justified hops. */
-function routeList(p: FoundPath, dashed: boolean, actions: PathViewActions): HTMLElement {
-  const link = (id: string, label: string) => h("button", { class: "link", type: "button", onclick: () => actions.open(id) }, label || id);
+type Link = (id: string, label: string) => HTMLElement;
+
+/** A route as stops (numbered like the map markers) joined by justified hops. */
+function stops<S extends RouteStop>(steps: S[], dashed: boolean, open: (id: string) => void, hop: (s: S, i: number, link: Link) => HTMLElement): HTMLElement {
+  const link: Link = (id, label) => h("button", { class: "link", type: "button", onclick: () => open(id) }, label || id);
   const stop = (n: number, id: string, label: string) => h("li", { class: "stop" }, h("span", { class: "n", "aria-hidden": "true" }, String(n)), link(id, label));
   const items: HTMLElement[] = [];
-  p.steps.forEach((s, i) => {
+  steps.forEach((s, i) => {
     if (i === 0) items.push(stop(1, s.from, s.from_label));
-    items.push(hopItem(s, i, link));
+    items.push(hop(s, i, link));
     items.push(stop(i + 2, s.to, s.to_label));
   });
   return h("ol", { class: dashed ? "route historical" : "route" }, items);
+}
+
+const routeList = (p: FoundPath, dashed: boolean, actions: PathViewActions): HTMLElement => stops(p.steps, dashed, actions.open, hopItem);
+
+let drillSeq = 0;
+
+/** A concept step: what it aggregates, its witness claim, and a button that unfolds the
+ *  witness as a declaration-level route (and draws that route on the map). */
+function conceptHop(s: ConceptStep, i: number, actions: PathViewActions): HTMLElement {
+  const sources = s.witness.sources.map((src) => `${src.source_id} · ${src.locator} (${src.license})`).join("; ");
+  const drill = s.drill_down;
+  const box = h("div", { class: "drill", id: `drill-${++drillSeq}`, hidden: true });
+  const toggle = drill
+    ? h("button", { type: "button", class: "mini drill-toggle", "aria-expanded": "false", "aria-controls": box.id }, t("drillDown"))
+    : null;
+  toggle?.addEventListener("click", () => {
+    const open = box.hidden;
+    box.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = t(open ? "drillUp" : "drillDown");
+    if (!open || !drill) return;
+    const dashed = isHistorical(drill.conclusion);
+    if (!box.childElementCount) {
+      box.append(
+        h("p", { class: "muted small" }, t("drillNote", { a: s.witness.from_label, b: s.witness.to_label })),
+        routeList(drill, dashed, actions),
+        h("button", { type: "button", class: "mini", onclick: () => actions.showPath(drill.steps, dashed) }, t("showOnMap")));
+    }
+    actions.showPath(drill.steps, dashed);
+  });
+  return h("li", { class: "hop" },
+    h("div", { class: "rel" },
+      h("span", { class: "sr-only" }, `${t("step")} ${i + 1}: `),
+      h("strong", {}, `${relLabel(s.relation)} →`),
+      s.direction === "inverse" ? h("span", { class: "tag", title: t("inverse") }, `↺ ${t("inverse")}`) : null,
+      badge(s.evidence_state)),
+    h("div", { class: "auth" }, h("b", {}, `${t("authorizes")}: `), s.authorizes),
+    h("div", { class: "muted" }, t("declarationClaims", { n: s.declaration_claims.toLocaleString() })),
+    h("div", { class: "prov", title: `${s.witness.claim_id} · ${sources}` }, `${t("witness")}: ${s.witness.claim_id} · ${sources}`),
+    toggle ? h("div", { class: "row" }, toggle) : h("div", { class: "muted small" }, t("noDrill")),
+    box,
+  );
+}
+
+function conceptBlock(route: ConceptRoute, actions: PathViewActions): HTMLElement {
+  const c = route.conclusion;
+  const dashed = isHistorical(c);
+  return h("section", { class: "path concept-route", "aria-label": t("conceptRoute") },
+    h("h3", {}, t("conceptRoute")),
+    h("div", { class: dashed ? "conclusion historical" : "conclusion" },
+      h("p", { class: "claimline" }, c.authorizes),
+      h("div", { class: "row" }, strengthMeter(c.strength), h("span", { class: "muted", "aria-hidden": "true" }, "·"),
+        h("span", { class: "muted" }, t("weakest")), badge(c.weakest_evidence)),
+      c.caveats.length ? h("ul", { class: "caveats small", "aria-label": t("caveats") }, c.caveats.map((x) => h("li", {}, x))) : null,
+      h("div", { class: "row" }, h("button", { type: "button", onclick: () => actions.showPath(route.steps, dashed) }, t("showOnMap")))),
+    stops(route.steps, dashed, actions.openConcept, (s, i) => conceptHop(s, i, actions)),
+  );
 }
 
 function pathBlock(p: FoundPath, title: string, actions: PathViewActions, exploration = false): HTMLElement {
@@ -128,11 +205,15 @@ function techDetails(r: PathResponse): HTMLElement {
 
 export function renderPathResult(r: PathResponse, actions: PathViewActions): HTMLElement {
   const root = h("div", { class: "path-result", "aria-live": "polite" });
+  const concept = conceptRoute(r);
   if (r.abstained) {
     root.append(h("div", { class: "notice", role: "note" }, h("strong", {}, `${t("abstained")}. `), r.reason ?? r.abstention ?? ""));
+    // Concept-first: with no declaration-level answer, the concept route is the answer.
+    if (concept) root.append(conceptBlock(concept, actions));
     if (r.exploration) root.append(pathBlock(r.exploration, t("exploration"), actions, true));
   } else {
     r.paths.forEach((p, i) => root.append(pathBlock(p, r.paths.length > 1 ? `${t("path")} ${i + 1}` : t("conclusion"), actions)));
+    if (concept) root.append(conceptBlock(concept, actions));
   }
   root.append(techDetails(r));
   return root;
@@ -161,12 +242,12 @@ export function pathView(state: PathQueryState, actions: PathViewActions): HTMLE
     ctrl = new AbortController();
     result.replaceChildren(h("p", { class: "muted" }, t("loading")));
     try {
-      const r = await api.path({ from: q.from.id, to: q.to.id, objective: q.objective, max_hops: q.maxHops, include_disputed: q.includeDisputed, lang: getLang(), weights: q.weights || undefined }, ctrl.signal);
+      const r = await api.path({ from: q.from.id, to: q.to.id, objective: q.objective, max_hops: q.maxHops, include_disputed: q.includeDisputed, lang: getLang(), weights: q.weights || undefined, concepts: true, drill_down: true }, ctrl.signal);
       result.replaceChildren(renderPathResult(r, actions));
       // The map always shows this answer (or nothing): never a stale route from an earlier query.
       // An exploration-only route is drawn dashed, like a historical one.
-      if (!r.abstained && r.paths[0]) actions.showPath(r.paths[0].steps, isHistorical(r.paths[0].conclusion));
-      else actions.showPath(r.exploration?.steps ?? [], true);
+      const m = mapRoute(r);
+      actions.showPath(m.steps, m.dashed);
     } catch (err) {
       if ((err as Error).name === "AbortError") return;
       result.replaceChildren(h("p", { class: "notice error", role: "alert" }, `${t("error")}: ${(err as Error).message}`));

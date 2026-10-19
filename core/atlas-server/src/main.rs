@@ -4,7 +4,8 @@
 //! atlas stats   [--snapshot data/snapshot] [--verify] [--json]
 //! atlas serve   [--snapshot …] [--db …] [--web web/dist] [--index …] [--layout …] [--composition …] [--addr 127.0.0.1:8765]
 //! atlas index  [--snapshot …] [--db …] [--out data/index]   (atlas-search indexes)
-//! atlas search | path | layout   (call their crates; search falls back to the registry FTS5 lane)
+//! atlas search | layout   (call their crates; search falls back to the registry FTS5 lane)
+//! atlas path FROM TO [--concepts[=false]] [--drill-down] [--lang es] [--objective …] [--max-hops N]
 //!
 //! With `--json`, stdout carries exactly one JSON value; errors are the SPEC §15
 //! envelope `{"error": {"code", "message"}}` and the exit code is 1.
@@ -109,6 +110,14 @@ enum Cmd {
         objective: String,
         #[arg(long, default_value_t = 6)]
         max_hops: u32,
+        /// Concept-first answer in `concepts` (on by default, as in /api/path); `--concepts=false` turns it off.
+        #[arg(long, default_value_t = true, num_args = 0..=1, default_missing_value = "true", action = clap::ArgAction::Set)]
+        concepts: bool,
+        /// Explain each concept step's witness claim as a full declaration-level route.
+        #[arg(long)]
+        drill_down: bool,
+        #[arg(long, default_value = "es")]
+        lang: String,
         #[arg(long, default_value = "data/snapshot")]
         snapshot: PathBuf,
         #[arg(long, default_value = "shapes/composition.json")]
@@ -198,7 +207,7 @@ fn run(cmd: Cmd) -> Result<Value> {
             };
             Ok(serde_json::to_value(resp).expect("response serializes"))
         }
-        Cmd::Path { from, to, objective, max_hops, snapshot, composition } => {
+        Cmd::Path { from, to, objective, max_hops, concepts, drill_down, lang, snapshot, composition } => {
             let snap = Snapshot::open(&snapshot)?;
             let objective = serde_json::from_value(json!(objective))
                 .map_err(|e| Error::BadRequest(format!("objective: {e}")))?;
@@ -210,10 +219,11 @@ fn run(cmd: Cmd) -> Result<Value> {
                 objective,
                 max_hops,
                 include_disputed: false,
-                lang: "es".into(),
+                lang,
                 weights: Default::default(),
             };
-            Ok(serde_json::to_value(engine.find(&q)?).expect("response serializes"))
+            let opts = atlas_paths::PathOptions { concepts, drill_down, ..Default::default() };
+            Ok(serde_json::to_value(engine.find_with(&q, &opts)?).expect("response serializes"))
         }
         Cmd::Layout { snapshot, out } => {
             let snap = Snapshot::open(&snapshot)?;

@@ -13,6 +13,14 @@
 //! - `cross_domain`  "relation between X and Y", "applications of X in Y": semantic
 //!   leads and results are spread over areas.
 //!
+//! The `concept` lane is the lexical query restricted to concept-layer nodes (the
+//! objects of `member_of_concept`), for everyday names only (`named_object` without a
+//! Lean identifier).  Only concepts whose label or alias in a natural language equals
+//! the query are kept, and then Lean short names stop earning the exact-name bonus:
+//! `integral` finds the concept even when hundreds of declarations `*.integral` fill
+//! the lexical lane's top k, and ranks it before them.  Measured on AtlasBench v3 dev
+//! (2026-10-18): the unfiltered lane cost en/text nDCG@10 0.755 -> 0.736.
+//!
 //! The weights are a starting point, not tuned on AtlasBench yet.
 
 use atlas_core::EntityType;
@@ -33,17 +41,18 @@ pub enum Lane {
     Lexical,
     Formula,
     Semantic,
+    Concept,
 }
 
 impl Lane {
-    pub const ALL: [Lane; 3] = [Lane::Lexical, Lane::Formula, Lane::Semantic];
+    pub const ALL: [Lane; 4] = [Lane::Lexical, Lane::Formula, Lane::Semantic, Lane::Concept];
 }
 
 #[derive(Clone, Copy, Debug, Serialize)]
 pub struct Route {
     pub kind: RouteKind,
     /// RRF weight per lane, indexed like `Lane::ALL`; 0 = lane not run.
-    pub weights: [f64; 3],
+    pub weights: [f64; 4],
     /// Spread hits over areas (cross-domain questions).
     pub diversify: bool,
 }
@@ -104,6 +113,7 @@ pub fn parse_query(q: &str) -> Parsed {
                 "lexical" | "lexica" => f.only_lane = Some("lexical"),
                 "formula" => f.only_lane = Some("formula"),
                 "semantic" | "semantica" => f.only_lane = Some("semantic"),
+                "concept" | "concepto" => f.only_lane = Some("concept"),
                 _ => ignored.push(w.to_string()),
             },
             _ => words.push(w),
@@ -111,6 +121,9 @@ pub fn parse_query(q: &str) -> Parsed {
     }
     Parsed { text: words.join(" "), filters: f, ignored }
 }
+
+/// Weight of the concept lane for everyday names.
+pub const CONCEPT_WEIGHT: f64 = 1.0;
 
 const MATH_CHARS: &str = "=+^_<>≤≥≠≈≡∑∏∫∮√∀∃∈∉⊂⊆⊃⊇∪∩→↦⇒⇔↔×·∘⊗⊕∂∇∞‖⟨⟩²³⁻¹ℕℤℚℝℂ";
 /// Relation symbols that, standing alone between two sides, make a Lean/Unicode
@@ -193,17 +206,18 @@ pub fn route(text: &str) -> Route {
         // a bare formula has no words: lexical and semantic hits on `x`, `2` are noise;
         // Lean identifiers in it (`μ.variation`) are worth a lexical match
         let w = match (content, ident) {
-            (0, false) => [0.0, 1.0, 0.0],
-            (_, true) => [0.8, 1.0, 0.3],
-            _ => [0.5, 1.0, 0.3],
+            (0, false) => [0.0, 1.0, 0.0, 0.0],
+            (_, true) => [0.8, 1.0, 0.3, 0.0],
+            _ => [0.5, 1.0, 0.3, 0.0],
         };
         (RouteKind::Formula, w, false)
     } else if connector && content >= 2 {
-        (RouteKind::CrossDomain, [0.6, 0.0, 1.0], true)
+        (RouteKind::CrossDomain, [0.6, 0.0, 1.0, 0.0], true)
     } else if question || content >= 4 {
-        (RouteKind::NaturalLanguage, [0.8, if math > 0 { 0.3 } else { 0.0 }, 1.0], false)
+        (RouteKind::NaturalLanguage, [0.8, if math > 0 { 0.3 } else { 0.0 }, 1.0, 0.0], false)
     } else {
-        (RouteKind::NamedObject, [1.0, if math > 0 { 0.5 } else { 0.0 }, 0.5], false)
+        let concept = if ident { 0.0 } else { CONCEPT_WEIGHT };
+        (RouteKind::NamedObject, [1.0, if math > 0 { 0.5 } else { 0.0 }, 0.5, concept], false)
     };
     Route { kind, weights, diversify }
 }
@@ -218,11 +232,11 @@ mod tests {
         assert_eq!(route("Nat.Prime.two_le").kind, RouteKind::NamedObject);
         assert_eq!(route("InnerProductSpace").kind, RouteKind::NamedObject);
         assert_eq!(route("a^2 + b^2 = c^2").kind, RouteKind::Formula);
-        assert_eq!(route("a^2 + b^2 = c^2").weights, [0.0, 1.0, 0.0]);
+        assert_eq!(route("a^2 + b^2 = c^2").weights, [0.0, 1.0, 0.0, 0.0]);
         assert!(route("teorema a^2 + b^2 = c^2").weight(Lane::Lexical) > 0.0);
         assert_eq!(route(r"\int_0^1 f(x)\,dx").kind, RouteKind::Formula);
         // LaTeX control words are not prose words
-        assert_eq!(route(r"\|v\|^2 = \sum_j |\langle v, u_j\rangle|^2").weights, [0.0, 1.0, 0.0]);
+        assert_eq!(route(r"\|v\|^2 = \sum_j |\langle v, u_j\rangle|^2").weights, [0.0, 1.0, 0.0, 0.0]);
         assert!(route(r"desigualdad de Cauchy \langle x, y\rangle").weight(Lane::Lexical) > 0.0);
         assert_eq!(route("x ≤ y").kind, RouteKind::Formula);
         // Lean statements with identifiers and a standalone relation
@@ -237,6 +251,11 @@ mod tests {
         let r = route("relación entre teoría de grupos y química");
         assert_eq!(r.kind, RouteKind::CrossDomain);
         assert!(r.diversify && r.weight(Lane::Formula) == 0.0);
+        // the concept lane runs for everyday names only, never for Lean names
+        assert!(route("integral").weight(Lane::Concept) > 0.0);
+        assert!(route("teorema de Bayes").weight(Lane::Concept) > 0.0);
+        assert_eq!(route("MeasureTheory.integral").weight(Lane::Concept), 0.0);
+        assert_eq!(route("every bounded monotone sequence of reals converges").weight(Lane::Concept), 0.0);
     }
 
     #[test]

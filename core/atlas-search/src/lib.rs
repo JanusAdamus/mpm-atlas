@@ -94,6 +94,8 @@ pub struct Lanes {
     pub lexical: Option<LaneScore>,
     pub formula: Option<LaneScore>,
     pub semantic: Option<LaneScore>,
+    /// The lexical query over concept-layer nodes only (everyday names, see `router.rs`).
+    pub concept: Option<LaneScore>,
 }
 
 #[derive(Clone, Copy, Debug, Serialize)]
@@ -128,12 +130,15 @@ const MAX_MATCHED_CHARS: usize = 280;
 const MAX_LIMIT: usize = 1000;
 /// Candidates per lane when post-filters (assumptions) may drop many of them.
 const FILTERED_CANDIDATES: usize = 2000;
-// Semantic search defaults to HNSW whenever the graph exists.  Measured 2026-10-17
-// (16 cores, bench-results/): the exact parallel scan is fast alone (p50 1.7 ms on
+// Semantic search defaults to the exact scan; `ATLAS_DENSE=hnsw` uses the HNSW graph.
+// Measured 2026-10-17 (16 cores, bench-results/): the scan is fast alone (p50 1.7 ms on
 // 287k x 384 real e5 vectors, 2.1 ms on 1M x 128 LSI) and HNSW ef 96 recalls only
-// 0.75 / 0.35 of its top 10, but as the default the scan fills the rayon pool that the
-// other lanes and concurrent queries share: on the 1M synthetic index fused p99 under
-// 16 clients went from 81 ms to 1.6 s.  `set_dense_method(Brute)` stays available.
+// 0.75 / 0.35 of its top 10.  HNSW was the default because the scan fills the rayon pool
+// that other lanes and concurrent queries share (1M synthetic index, 16 clients: fused
+// p99 81 ms -> 1.6 s).  Measured 2026-10-18 on the real 320k-node snapshot: with HNSW,
+// AtlasBench v3 en/text nDCG@10 moved with each rebuilt graph (test 0.787 -> 0.771 with
+// the same code); with the scan, dev en/text 0.754 -> 0.803.  Quality wins at this size;
+// switch back past a few million vectors or if search p95 under load matters more.
 
 // ---------------------------------------------------------------- build
 
@@ -277,9 +282,9 @@ fn sanitize(name: &str) -> String {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum DenseMethod {
-    /// Approximate (HNSW graph); used when the graph exists.
+    /// Approximate (HNSW graph); used when the graph exists and `ATLAS_DENSE=hnsw`.
     Hnsw,
-    /// Exact int8 scan over all vectors, parallel.
+    /// Exact int8 scan over all vectors, parallel (the default).
     Brute,
 }
 
@@ -296,6 +301,8 @@ pub struct SearchIndex {
     encoder_error: Option<String>,
     dense_method: DenseMethod,
     tokenizers: TokenizerManager,
+    /// Node bitset of the concept layer (`Snapshot::concepts`), for the concept lane.
+    concepts: Arc<Vec<u64>>,
 }
 
 /// Per-lane timing and candidate counts of one query.
@@ -323,7 +330,7 @@ pub struct Explain {
 
 struct Cand {
     score: f64,
-    lanes: [Option<(u32, f32)>; 3],
+    lanes: [Option<(u32, f32)>; 4],
 }
 
 impl SearchIndex {
@@ -436,8 +443,9 @@ impl SearchIndex {
     }
 
     /// Open indexes built for `snapshot`: `dir` itself or `dir/<hash16>/`.  Fails if
-    /// they belong to another snapshot.  A neural encoder that cannot load disables the
-    /// semantic lane (reported by `status`), it does not fail the open.
+    /// they belong to another snapshot.  The semantic lane scans exactly unless
+    /// `ATLAS_DENSE=hnsw` (see the note above `EncoderChoice`).  A neural encoder that
+    /// cannot load disables the semantic lane (reported by `status`), it does not fail the open.
     pub fn open(snapshot: &Snapshot, dir: &Path) -> Result<SearchIndex> {
         let hash = snapshot.content_hash_hex();
         let dir = if dir.join("meta.json").exists() { dir.to_path_buf() } else { dir.join(&hash[..16]) };
@@ -472,8 +480,14 @@ impl SearchIndex {
         };
         let tokenizers = TokenizerManager::default();
         text::register(&tokenizers);
-        let dense_method = if hnsw.is_some() { DenseMethod::Hnsw } else { DenseMethod::Brute };
-        Ok(SearchIndex { dir, meta, lexical, formula, texts, vectors, hnsw, encoder, encoder_error, dense_method, tokenizers })
+        let use_hnsw = hnsw.is_some() && std::env::var("ATLAS_DENSE").as_deref() == Ok("hnsw");
+        let dense_method = if use_hnsw { DenseMethod::Hnsw } else { DenseMethod::Brute };
+        let mut concepts = vec![0u64; (snapshot.num_nodes() as usize).div_ceil(64)];
+        for &c in snapshot.concepts() {
+            concepts[c as usize >> 6] |= 1 << (c & 63);
+        }
+        let concepts = Arc::new(concepts);
+        Ok(SearchIndex { dir, meta, lexical, formula, texts, vectors, hnsw, encoder, encoder_error, dense_method, tokenizers, concepts })
     }
 
     fn query_encoder(meta: &Meta, dir: &Path) -> Result<Encoder> {
@@ -578,8 +592,16 @@ impl SearchIndex {
         let assume = AssumeFilter::new(snap, &parsed.filters);
         let k = if assume.is_active() { FILTERED_CANDIDATES } else { (limit * 5).max(100) };
         let keep = |n: NodeIx| types.keep(snap, n);
-        let (lex, (form, sem)) = rayon::join(
-            || self.lane_lexical(snap, &text, &q.lang, k, &types, route.weight(Lane::Lexical)),
+        let ((lex, con), (form, sem)) = rayon::join(
+            || {
+                rayon::join(
+                    || self.lane_lexical(&text, &q.lang, k, types.bitset(snap), Lane::Lexical, route.weight(Lane::Lexical)),
+                    || {
+                        let allow = and_bits(&self.concepts, types.bitset(snap));
+                        self.lane_lexical(&text, &q.lang, k, Some(allow), Lane::Concept, route.weight(Lane::Concept))
+                    },
+                )
+            },
             || {
                 rayon::join(
                     || self.lane_formula(&text, k, &keep, route.weight(Lane::Formula)),
@@ -587,23 +609,36 @@ impl SearchIndex {
                 )
             },
         );
-        let runs = [lex?, form, sem?];
+        let mut runs = [lex?, form, sem?, con?];
+        let folded_q = self.fold_join(&text);
+        // a label or alias equal to the query; `natural` leaves out Lean names (language `und`)
+        let names_query = |n: NodeIx, natural: bool| {
+            self.texts.texts(n).iter().any(|t| {
+                matches!(t.field, Field::Label | Field::Alias)
+                    && !(natural && t.lang == "und")
+                    && self.fold_join(&t.text) == folded_q
+            })
+        };
+        // concept lane: only the concepts whose everyday name is the query count
+        let (con_hits, con_run) = &mut runs[Lane::Concept as usize];
+        con_hits.retain(|&(n, _)| names_query(n, true));
+        con_run.candidates = con_hits.len();
+        let concept_named = !con_hits.is_empty();
         // weighted RRF
         let mut cands: AHashMap<NodeIx, Cand> = AHashMap::new();
         for (li, (hits, run)) in runs.iter().enumerate() {
             for (rank, &(n, s)) in hits.iter().enumerate() {
-                let c = cands.entry(n).or_insert(Cand { score: 0.0, lanes: [None; 3] });
+                let c = cands.entry(n).or_insert(Cand { score: 0.0, lanes: [None; 4] });
                 c.score += run.weight / (RRF_K + rank as f64 + 1.0);
                 c.lanes[li] = Some((rank as u32 + 1, s));
             }
         }
-        let folded_q = self.fold_join(&text);
         let mut ranked: Vec<(NodeIx, Cand)> = cands.into_iter().filter(|(n, _)| assume.keep(snap, *n)).collect();
         if route.kind != RouteKind::Formula {
+            // when a concept bears the query as its everyday name, a Lean short name
+            // (`MeasureTheory.integral` has the alias `integral`) is not an exact match
             for (n, c) in ranked.iter_mut() {
-                if self.texts.texts(*n).iter().any(|t| {
-                    matches!(t.field, Field::Label | Field::Alias) && self.fold_join(&t.text) == folded_q
-                }) {
+                if names_query(*n, concept_named) {
                     c.score += EXACT_BONUS;
                 }
             }
@@ -619,7 +654,7 @@ impl SearchIndex {
             .take(limit)
             .map(|(n, c)| {
                 let lane = |i: usize| c.lanes[i].map(|(rank, score)| LaneScore { rank, score: score as f64 });
-                let lanes = Lanes { lexical: lane(0), formula: lane(1), semantic: lane(2) };
+                let lanes = Lanes { lexical: lane(0), formula: lane(1), semantic: lane(2), concept: lane(3) };
                 let formula_led = c.lanes[1].is_some_and(|(fr, _)| c.lanes[0].is_none_or(|(lr, _)| fr <= lr));
                 Hit {
                     id: snap.node_id(n).to_string(),
@@ -635,17 +670,18 @@ impl SearchIndex {
         Ok((resp, explain(lanes, route)))
     }
 
+    /// BM25 lane; `allow` (node bitset) restricts it (type filters; the concept layer for `Lane::Concept`).
     fn lane_lexical(
         &self,
-        snap: &Snapshot,
         text: &str,
         lang: &str,
         k: usize,
-        types: &TypeMask,
+        allow: Option<Arc<Vec<u64>>>,
+        lane: Lane,
         w: f64,
     ) -> Result<(Vec<(NodeIx, f32)>, LaneRun)> {
         let t = Instant::now();
-        let mut run = LaneRun { lane: Lane::Lexical, weight: w, candidates: 0, micros: 0, note: None };
+        let mut run = LaneRun { lane, weight: w, candidates: 0, micros: 0, note: None };
         if w == 0.0 {
             return Ok((Vec::new(), run));
         }
@@ -654,7 +690,7 @@ impl SearchIndex {
                 run.note = Some("no searchable term".into());
                 Vec::new()
             }
-            Some(lq) => self.lexical.search(&lq, k, types.bitset(snap))?,
+            Some(lq) => self.lexical.search(&lq, k, allow)?,
         };
         run.candidates = hits.len();
         run.micros = t.elapsed().as_micros() as u64;
@@ -754,6 +790,15 @@ fn lane_name(l: Lane) -> &'static str {
         Lane::Lexical => "lexical",
         Lane::Formula => "formula",
         Lane::Semantic => "semantic",
+        Lane::Concept => "concept",
+    }
+}
+
+/// `a` restricted to the nodes of `b` (when there is a `b`).
+fn and_bits(a: &Arc<Vec<u64>>, b: Option<Arc<Vec<u64>>>) -> Arc<Vec<u64>> {
+    match b {
+        None => Arc::clone(a),
+        Some(b) => Arc::new(a.iter().zip(b.iter()).map(|(x, y)| x & y).collect()),
     }
 }
 

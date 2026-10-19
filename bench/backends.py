@@ -24,6 +24,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Sequence
 
+from atlas import NO_WINDOW
 from atlas.model import CURRENT_STATES
 
 from . import compose
@@ -255,7 +256,7 @@ class CliBackend:
         def call() -> Any:
             try:
                 out = subprocess.run([str(self.binary), "--json", *args], capture_output=True, text=True,
-                                     encoding="utf-8", timeout=CLI_TIMEOUT_S, cwd=ROOT)
+                                     encoding="utf-8", timeout=CLI_TIMEOUT_S, cwd=ROOT, **NO_WINDOW)
             except (OSError, subprocess.TimeoutExpired) as exc:
                 raise ComponentMissing(f"{what}: {exc}") from exc
             try:

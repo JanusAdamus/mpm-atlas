@@ -109,9 +109,9 @@ fn single_lane_mode_and_semantic_lane_with_both_dense_methods() {
     let f = fixture();
     let qv = f.idx.encode_query("triángulo rectángulo hipotenusa").unwrap();
     let mut idx = SearchIndex::open(&f.snap, &f.index_root).unwrap();
-    let h = idx.dense_search(&qv, 5, None).unwrap();
-    idx.set_dense_method(DenseMethod::Brute).unwrap();
     let b = idx.dense_search(&qv, 5, None).unwrap();
+    idx.set_dense_method(DenseMethod::Hnsw).unwrap();
+    let h = idx.dense_search(&qv, 5, None).unwrap();
     assert_eq!(h.first().map(|x| x.0), b.first().map(|x| x.0));
 }
 
@@ -129,6 +129,15 @@ fn response_has_the_api_shape_and_empty_queries_are_empty() {
     assert!(h["matched"].get("field").is_some() && h["lanes"].get("lexical").is_some());
     let (r, _) = search("   type:person ");
     assert!(r.hits.is_empty());
+}
+
+#[test]
+fn semantic_lane_scans_exactly_by_default_even_with_a_graph() {
+    // regression (2026-10-18): HNSW (ef 96) was the default; its recall moved AtlasBench
+    // en/text nDCG@10 with every rebuilt graph (test 0.787 -> 0.771 with the same code)
+    let f = fixture();
+    assert!(f.idx.status()["dense_method"] == "brute", "{}", f.idx.status());
+    assert_eq!(f.idx.dense_method(), DenseMethod::Brute);
 }
 
 #[test]
@@ -160,4 +169,83 @@ fn queries_of_three_words_or_more_add_an_all_words_clause_on_descriptions_and_st
     let q = SearchQuery { q: "lane:lexical between the same parallels".into(), lang: "en".into(), types: vec![], limit: 5 };
     let (r, _) = f.idx.search_explained(&f.snap, &q).expect("search");
     assert_eq!(r.hits[0].id, "s:parallelogram-area", "{:?}", ids(&r));
+}
+
+/// Fixture registry plus the shape that buried `integral` (STATUS §13.6): one concept named
+/// `integral` / `integración` with many aliases, and more Mathlib-style declarations whose short
+/// name `integral` is an alias than the lexical lane keeps (k = 100), two of them members of it.
+fn integral_fixture() -> &'static Fixture {
+    static F: OnceLock<Fixture> = OnceLock::new();
+    F.get_or_init(|| {
+        let root = std::env::temp_dir().join(format!("atlas-search-integral-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        std::fs::create_dir_all(&root).unwrap();
+        let db = root.join("atlas.db");
+        std::fs::copy(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../atlas-core/tests/fixtures/mini_atlas.db"), &db)
+            .unwrap();
+        let c = rusqlite::Connection::open(&db).unwrap();
+        let entity = |id: &str, ty: &str, data: String| {
+            c.execute("INSERT INTO entities VALUES (?1, ?2, ?3, NULL, 't')", rusqlite::params![id, ty, data]).unwrap();
+        };
+        entity(
+            "wd:integral",
+            "concept",
+            r#"{"id":"wd:integral","type":"concept","labels":{"en":"integral","es":"integración"},
+               "aliases":[["en","integral of a function"],["en","integral of f(x) with respect to the variable x"],
+                          ["es","antiderivación"],["es","función integral"],["es","integral"]],
+               "descriptions":{"en":"operation in mathematical calculus","es":"operación en cálculo"}}"#
+                .into(),
+        );
+        for i in 0..150 {
+            let id = format!("mathlib:Area{i}.integral");
+            entity(
+                &id,
+                "definition",
+                format!(
+                    r#"{{"id":"{id}","type":"definition","labels":{{"und":"Area{i}.integral"}},"aliases":[["und","integral"]],
+                       "descriptions":{{"en":"The integral of a function in setting {i}."}}}}"#
+                ),
+            );
+        }
+        for (cid, decl) in [("c:mi1", "mathlib:Area0.integral"), ("c:mi2", "mathlib:Area1.integral")] {
+            let data = format!(
+                r#"{{"id":"{cid}","relation":"member_of_concept","participants":[{{"role":"subject","entity":"{decl}"}},{{"role":"object","entity":"wd:integral"}}],"evidence_state":"model_proposed","confidence":{{"value":0.9,"estimates":"e","calibration":"not calibrated"}}}}"#
+            );
+            c.execute("INSERT INTO claims VALUES (?1,'member_of_concept','model_proposed',NULL,NULL,NULL,NULL,?2,'t')",
+                      rusqlite::params![cid, data]).unwrap();
+            c.execute("INSERT INTO claim_participants VALUES (?1,'subject',?2,0)", rusqlite::params![cid, decl]).unwrap();
+            c.execute("INSERT INTO claim_participants VALUES (?1,'object','wd:integral',1)", rusqlite::params![cid]).unwrap();
+            c.execute("INSERT INTO provenance VALUES (?1,NULL,'src:fixture-hand','test','concept-projection','2','CC0-1.0','t',NULL)",
+                      rusqlite::params![cid]).unwrap();
+        }
+        drop(c);
+        let mut copts = CompileOptions::new(&db, root.join("snapshot"));
+        copts.threads = 2;
+        compile(&copts).expect("compile integral fixture");
+        let snap = Snapshot::open(root.join("snapshot")).expect("open snapshot");
+        assert_eq!(snap.concepts().len(), 1);
+        let opts = BuildOptions { encoder: EncoderChoice::Lsi, threads: 2, hnsw: false, sessions: 1, intra_threads: 1 };
+        SearchIndex::build_with(&snap, &db, &root.join("index"), &opts).expect("build index");
+        let idx = SearchIndex::open(&snap, &root.join("index")).expect("open index");
+        Fixture { snap, idx, index_root: root.join("index") }
+    })
+}
+
+#[test]
+fn everyday_name_ranks_its_concept_before_declarations_of_the_same_short_name() {
+    // regression (STATUS §13.6, B01): `integral` returned only `*.integral` declarations and no concept in the top 5
+    let f = integral_fixture();
+    for (q, lang) in [("integral", "es"), ("integral", "en"), ("integración", "es")] {
+        let sq = SearchQuery { q: q.into(), lang: lang.into(), types: vec![], limit: 10 };
+        let (r, e) = f.idx.search_explained(&f.snap, &sq).expect("search");
+        let pos = r.hits.iter().position(|h| h.id == "wd:integral");
+        assert!(pos.is_some_and(|p| p < 3), "{q} ({lang}): concept at {pos:?}, {:?}", ids(&r));
+        assert!(r.hits[pos.unwrap()].lanes.concept.is_some_and(|l| l.rank == 1), "{:?}", r.hits[pos.unwrap()].lanes);
+        assert!(e.lanes.iter().any(|l| l.lane == Lane::Concept && l.weight > 0.0 && l.candidates == 1));
+    }
+    // a Lean name is not an everyday query: the declaration keeps first place and the concept lane is off
+    let sq = SearchQuery { q: "Area7.integral".into(), lang: "en".into(), types: vec![], limit: 10 };
+    let (r, e) = f.idx.search_explained(&f.snap, &sq).expect("search");
+    assert_eq!(r.hits[0].id, "mathlib:Area7.integral", "{:?}", ids(&r));
+    assert!(e.lanes.iter().all(|l| l.lane != Lane::Concept || l.weight == 0.0));
 }

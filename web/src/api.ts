@@ -104,10 +104,29 @@ export interface Conclusion {
   missing_premises: string[]; caveats: string[];
 }
 export interface FoundPath { score: number; cost_terms: Record<string, number>; conclusion: Conclusion; steps: PathStep[] }
+/** The ends of a route stop, all the map needs to draw it. */
+export type RouteStop = Pick<PathStep, "from" | "to" | "from_label" | "to_label">;
+/** Concept-level route (atlas-paths `ConceptLevel`): each step aggregates declaration claims between the two concepts. */
+export interface ConceptEnd { requested: string; concept: string | null; label: string | null; via: string; derived: boolean }
+export interface ConceptStep extends RouteStop {
+  from_derived: boolean; to_derived: boolean; relation: string; direction: "forward" | "inverse";
+  evidence_state: string; authorizes: string; route_so_far: string; declaration_claims: number;
+  counts: { relation: string; evidence_state: string; count: number }[];
+  witness: { claim_id: string; from: string; to: string; from_label: string; to_label: string; evidence_state: string;
+    other_premises: number; sources: { source_id: string; locator: string; license: string }[] };
+  /** Declaration-level route of the witness (`drill_down=true`). */
+  drill_down: FoundPath | null;
+}
+export interface ConceptLevel {
+  from: ConceptEnd; to: ConceptEnd; abstained: boolean; abstention: string | null; reason: string | null;
+  route: { score: number; conclusion: Conclusion; steps: ConceptStep[] } | null;
+}
 export interface PathResponse {
   from: string; to: string; objective: string; weights: Record<string, number>;
   abstained: boolean; reason: string | null; abstention: string | null;
   paths: FoundPath[]; exploration: FoundPath | null; composition_version: number;
+  /** Absent on older servers and with `concepts=false`. */
+  concepts?: ConceptLevel | null;
   stats: { algorithm: string; expanded: number; micros: number; truncated: boolean };
 }
 
@@ -150,7 +169,7 @@ export const api = {
     getJson<EntityResponse>(`/api/entity/${encodeURIComponent(id)}`, { lang }, signal),
   neighborhood: (id: string, lang: string, depth = 1, limit = 200, signal?: AbortSignal) =>
     getJson<NeighborhoodResponse>("/api/neighborhood", { id, lang, depth, limit }, signal),
-  path: (p: { from: string; to: string; objective: string; max_hops: number; include_disputed: boolean; lang: string; weights?: string }, signal?: AbortSignal) =>
+  path: (p: { from: string; to: string; objective: string; max_hops: number; include_disputed: boolean; lang: string; weights?: string; concepts?: boolean; drill_down?: boolean }, signal?: AbortSignal) =>
     getJson<PathResponse>("/api/path", p, signal),
   locate: (id: string, v: string, signal?: AbortSignal) => getJson<Locate>("/api/map/locate", { id, v }, signal),
   concept: (id: string, lang: string, offset = 0, limit = 50, signal?: AbortSignal) =>

@@ -488,6 +488,19 @@ fn write_open_roundtrip_and_snapshot_check() {
         assert!(json.get(k).is_some(), "missing {k}");
     }
     assert_eq!(json["layer"], "structure");
+    // Compact coordinates (round 3): at most the stored precision, 5 decimals at z0
+    // (before: the f32 noise, ~9 digits per coordinate).
+    for (z, x, y) in l.tiles.keys().filter(|k| k.0 <= 1) {
+        let t = serde_json::to_string(&tile(&s, &o, Projection::Structure, z, x, y, "es").unwrap()).unwrap();
+        let max = if z == 0 { 5 } else { 6 };
+        for key in ["\"x\":", "\"y\":"] {
+            for part in t.split(key).skip(1) {
+                let num: String = part.chars().take_while(|c| c.is_ascii_digit() || *c == '.').collect();
+                let decimals = num.split('.').nth(1).map_or(0, str::len);
+                assert!(decimals <= max, "z{z}: coordinate {num} has {decimals} decimals");
+            }
+        }
+    }
     assert!(
         tile(
             &s,

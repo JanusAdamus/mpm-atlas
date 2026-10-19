@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterator
 
-from atlas import Store
+from atlas import NO_WINDOW, Store
 
 from . import evaluate, leakage, report, silver, splits
 from .backends import BackendError, ComponentMissing, CliBackend, HttpBackend, StoreBackend, find_binary
@@ -231,7 +231,8 @@ def _served(args: argparse.Namespace, db: Path, log: Path) -> Iterator[None]:
     with open(log, "w", encoding="utf-8") as fh:
         proc = subprocess.Popen([str(binary), "serve", "--snapshot", args.snapshot, "--db", str(db), "--addr",
                                  f"127.0.0.1:{port}", "--index", args.index, "--layout", args.layout,
-                                 "--composition", args.composition], stdout=fh, stderr=subprocess.STDOUT, cwd=ROOT)
+                                 "--composition", args.composition], stdout=fh, stderr=subprocess.STDOUT, cwd=ROOT,
+                                **NO_WINDOW)
         args.http = f"http://127.0.0.1:{port}"
         try:
             deadline = time.monotonic() + SERVE_START_S

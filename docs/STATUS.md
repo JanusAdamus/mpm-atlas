@@ -315,3 +315,106 @@ Resultado global: la capa conceptual se publica.  La asignación **no está apro
 6. Las 20 consultas de concepto y la muestra de 200 siguen sin juez humano.
 7. `data/index` conserva índices de versiones anteriores (derivados, se pueden borrar).
 8. No se hizo commit.
+
+## 14. Ronda 3 · correcciones de la capa conceptual (2026-10-19, integrador)
+
+Plan: `docs/plans/2026-10-18-ronda-3-correcciones.md`.  Las varas no se movieron.  Cifras del integrador con su comando; las de los trabajadores se marcan «(trabajador)».  No se hizo commit.
+
+### 14.1 Qué se hizo
+
+- Asignación (trabajador): proyector v8 y `resolve/3`; filtro de no matemáticos más fino; nombres de 1–2 caracteres sin señal; secundarias sin señal independiente retiradas como `superseded` con historial; respaldo por zona rotulado.  Reporte `data/cache/reports/concepts-run8.json`.
+- Búsqueda (trabajador): carril `concept` para nombres cotidianos y escaneo semántico exacto por defecto (`ATLAS_DENSE=hnsw` lo regresa).
+- Mapa, servidor y web (trabajador): presupuesto por tesela (400 nodos generales, 384 aristas), cierre de conexión que espera al cliente (`linger.rs`), ruta por conceptos con «Bajar a declaraciones», CLI `atlas path --concepts --drill-down`.
+- Integrador: recompiló, midió y juzgó.  No cambió código.
+
+### 14.2 Build y pruebas
+
+| Comando | Resultado |
+|---|---|
+| `cargo build --release -p atlas-server` (`.cargo-target/atlas`) | 3 min 20 s |
+| `python -m atlas build --skip-ingest --no-cargo --json` (`data/cache/reports/build-logs/build8.json`) | `compile_wall_s` 97.07 s (índice 64.56 s, layout 2.63 s).  Snapshot `4058b8ab7b3d946c…` (405,607,212 bytes; 5,715 conceptos, 75,051 aristas conceptuales, 237,640 declaraciones con concepto), 320,214 nodos |
+| `atlas compile --all --json` repetido (`build-logs/compile-r3-2.json`) | 86.5 s; mismo `content_hash` 4058b8ab7b3d946c3f62680640e5a02d5c03d0ad8da1b64e30b61dceb15f3082 |
+| `python -m pytest -q` | 166 passed en 38.63 s |
+| `cargo test --workspace --release` (`build-logs/cargo-test-r3.txt`) | 147 passed, 0 failed |
+| `cargo clippy --workspace --all-targets --release` | 0 advertencias |
+| `npm test` / `npx tsc --noEmit` / `npm run build` (en `web/`) | 17 de 17 / sin errores / verde en 792 ms, JS principal 101.09 kB (33.50 kB gzip) |
+
+Nota: el id del layout cambió entre las dos compilaciones (`3ca35abe…` y `88141d97…`) porque el layout arranca en caliente desde el anterior y su id depende de eso.  El snapshot, que es lo que fija la regla, es idéntico.  `data/layout/CURRENT` quedó en `88141d9755376d46`.
+
+### 14.3 AtlasBench v3 test (HTTP) y las 20 consultas
+
+`ATLAS_BIN=…/atlas/release/atlas.exe python -m bench run --split test --serve --skip-cli --out bench/runs/2026-10-19-r3-test-integrated` (179.45 s; log `build-logs/bench-r3.txt`).
+
+| Métrica (HTTP, test) | Ronda 2 (§13.3) | Ahora |
+|---|---|---|
+| acierto en respondibles | 260/261 | 260/261 = 0.996 [0.979, 0.999] |
+| abstención en respondibles | 1/261 | 1/261 = 0.004 [0.001, 0.021] |
+| adversariales sin conclusión prohibida | 188/188 | 188/188 [0.980, 1.000] |
+| estructura inválida | 0 | 0 de 264 respuestas |
+| retrieval en/text nDCG@10 | 0.771 [0.735, 0.807] | **0.816 [0.783, 0.847]** (n = 420) |
+| retrieval es/text nDCG@10 | 0.861 (trabajador, ronda 2) | 0.889 [0.832, 0.937] (n = 41) |
+| `http.tiles.load_c1` p95 | 8.78 ms [7.63, 15.19] | **22.61 ms [19.71, 27.45]** |
+| `http.search.load_c1` p95 / c8 | 11.75 / 62.24 ms | 28.04 / 92.82 ms |
+| `http.path` p95 | 3.24 ms | 9.93 ms |
+
+Veredictos del bench: retrieval PROVISIONAL-FAIL (regla del bench sin cambio; ver §13.3), routes.structure PASS, routes.adversarial PROVISIONAL-PASS, provenance PASS, las 5 latencias PASS contra sus propios límites.  `routes.null_model_adversarial` PROVISIONAL-FAIL: el control (BFS del registro) sobreafirma 5/188 (ronda 2: 2/188).  Todas las latencias subieron frente a la ronda 2.  Un `/api/health` da p50 2.52 ms y p95 3.55 ms (300 peticiones) en esta máquina; no se pudo medir la ronda 2 al mismo tiempo, así que la comparación de latencia no es limpia.
+
+20 consultas de concepto: `python -m bench.concept_routes --http http://127.0.0.1:8770 --out bench/runs/2026-10-19-concept-routes-20-r3`.  Respondibles 14/14 [0.785, 1.000]; abstención en respondibles 0/14; estructura 16/16; sobreafirmación frente al oráculo 0/16; adversariales sin conclusión prohibida **9/10 [0.596, 0.982]** (ronda 2: 10/10); abstención en no respondibles 4/6 (ronda 2: 5/6); p50 4.40 ms, p95 10.44 ms (n = 20).  **Regresión nueva:** `hw:concept-route:017:flt-jensen` (Último teorema de Fermat → desigualdad de Jensen) antes se abstenía y ahora devuelve una ruta de 4 pasos con conclusión «apoyo lógico» (`wd:Q132469 → wd:Q812880 (cubo) → wd:Q875399 → wd:Q320357 → wd:Q518131`, evidencia más débil `model_proposed`), marcada como violación prohibida.  La causa aparente es el cambio de asignación, no el motor de recorridos: las declaraciones de `FermatLastTheoremForThreeGen.*` quedan asignadas a «Fermat's Last Theorem» y a «cube».  No se investigó más ni se tocó código.  En las consultas 002 y 007 cambió el concepto intermedio (de `wd:Q122889481` a `wd:Q2672873`; de `wd:Q2000555` a `wd:Q2141130`) y siguen contestando.
+
+### 14.4 Auditoría independiente de la muestra r3 (juicio de agente, provisional)
+
+Archivo: `bench/concepts/audit-sample-200-r3.judged.jsonl` (el original queda intacto).  Lo juzgó el integrador, que no construyó la muestra ni el proyector.  Mismo criterio que §13.4 (correcta si la declaración trata de ese concepto; incorrecta si es otro; dudosa si es generalidad o relación laxa), con etiqueta, nombre Lean, módulo y docstring, sin consultar Wikidata.  Un solo juez, sin acuerdo entre jueces.  La semilla y la proyección son otras, así que no es comparación pareada con §13.4.
+
+| Medida | k / n | Valor [Wilson 95 %] |
+|---|---|---|
+| correctas (estricto: las dudosas no cuentan) | 70 / 200 | 0.350 [0.287, 0.418] |
+| correctas o dudosas (laxo) | 146 / 200 | 0.730 |
+| totales | 70 correctas, 54 incorrectas, 76 dudosas | |
+| solo primarias (rango 0), estricto | 48 / 126 | 0.381 [0.301, 0.468] (laxo 0.770) |
+| rango 1 / rango 2, estricto | 16 / 56 ; 6 / 18 | 0.286 ; 0.333 |
+| señal `name_doc` | 47 / 138 | 0.341 (42 incorrectas) |
+| `namespace` | 11 / 22 | 0.500 |
+| `signature` | 4 / 9 | 0.444 |
+| `zone` | 0 / 12 | 0.000 (8 dudosas, 4 incorrectas) |
+| `zone_derived` | 8 / 16 | 0.500 (0 incorrectas) |
+| `resolve` | 0 / 3 | 0.000 (3 dudosas) |
+
+Lo que sigue fallando: homónimos de palabra suelta de `name_doc` con la etiqueta de un concepto de Wikidata («nat» unidad de información, «unit», «FinSet» para `Set.*`, «A-Integrable», «tombstone» por «Halmos», «well equidistributed long-period linear» por «well», «∂∂̄ lemma» por «lemma», «inverse limit» por `inverse`).  Muchas dudosas son conceptos genéricos («set», «function», «integer») que son verdad y no enseñan nada.  Por eso el estricto es bajo aunque el laxo (0.730) no baja frente a la ronda 2 (0.675).
+
+### 14.5 Mapa, servidor y navegador
+
+- Teselas (servidor `serve --addr 127.0.0.1:8770`, cliente HTTP con keep-alive): z0 en JSON 131,026 bytes (ronda 2: 1,416,991) y en binario 37,880.  La más pesada de las teselas z0–z3 es la 3/3/3 con 270,952 bytes en JSON.  `python web/bench/tiles_mix.py --http http://127.0.0.1:8770 --runs 3`: p95 20.03 y 17.40 ms en las dos primeras corridas.  Una tesela z3 casi vacía (187 bytes) da p50 2.68 ms y p95 3.49 ms; z0 da p50 8.20 y p95 26.62 ms; z3/3/3 da p50 10.09 y p95 30.97 ms (200 peticiones cada una).  El trabajador midió p95 0.64 ms dentro del proceso para generar la tesela y su JSON.  El tiempo crece con los bytes, pero no se aisló cuánto es cliente de Python y cuánto servidor; no se comparó contra el layout de la ronda 2 porque ese layout no carga con el snapshot nuevo.
+- Capa general (z0–z2, capa `structure`, todas las teselas): 3,227 nodos únicos (≤ 6,000).  Por `type`: concept 2,639, area 340, statement 207, model 21, algorithm 15, conjecture 5.  0 etiquetas numéricas, 0 con año, «año», «siglo» o «century», 0 «Wikipedia», 0 fuentes, personas o infraestructura por `kind`.  Reserva: hay etiquetas de palabra suelta de dudoso valor educativo («red», «haz», «luz», «era», «fin», «más», «NaN», «cut», «ALL»); la regla no las cubre.  Los 4 nodos de fecha que el trabajador del mapa dejó pendientes ya no están.
+- Edge sin interfaz (`node web/bench/r3shots.mjs --base http://127.0.0.1:8770 --from "wd:Q505798|teorema de Lagrange" --to "wd:Q83478|grupo" --out ../docs/design/r3`, salida 0): 2 pasos de concepto, 1 paso al bajar a declaraciones, `aria-expanded` pasa a true y vuelve a false con teclado, 412 elementos en la vista de texto, 0 px de desbordamiento a 390×844, 0 errores de consola, 0 respuestas HTTP ≥ 400 y ningún `p=` en el texto visible (el guion sale con 1 si ocurre cualquiera).  Capturas en `docs/design/r3/` (01 a 05).  Para ese par la API dice «Sin ruta autorizada» a nivel de entidad y a la vez da la ruta por conceptos; la pantalla muestra los dos bloques.
+- Búsqueda (`/api/search`, `limit=5`): `integral` 1.º wd:Q80091 en ES y en EN; `derivada` 1.º wd:Q29175; `derivative` 1.º; `Bayes` 2.º «teorema de Bayes» wd:Q182505 en ES y en EN (el 1.º es la persona Thomas Bayes).
+- Homónimos en el registro real (`homonyms.py` del trabajador de asignación, solo lectura): `ball` → «snooker ball»: 0 de 110; `M` → «Mandelbrot set»: 0 de 69; `AtPrime` → «prime number»: 0 de 67; `IsIntegral*` → integración: 0 de 202.  `python -m pytest -q tests/test_concepts.py`: 19 passed (13 fallan con el código anterior, según el trabajador).
+- Al terminar: mi servidor del puerto 8770 cerrado por PID; no queda `atlas.exe`.
+
+### 14.6 Veredicto contra las reglas del plan
+
+| Regla | Veredicto | Cifra y comentario |
+|---|---|---|
+| Asignación vs 355 curados (test, segunda lectura) | **FAIL** | top-1 0.7041 [0.637, 0.764] y recall@3 0.7337 [0.668, 0.790], contra 0.75 en los dos (`concepts-run8.json`, trabajador).  Dev: 0.7512 y 0.8104.  La mitad test ya se había usado |
+| Auditoría nueva de 200 | **FAIL** | estricta 0.350 [0.287, 0.418] contra 0.60; primarias 0.381 contra 0.70 (§14.4).  Provisional, un juez |
+| Homónimos | PASS | pruebas de regresión que fallan con el código anterior y 0 casos en el registro (§14.5).  Costo conocido: `Real.pi` pierde «pi» por la regla de 1–2 caracteres |
+| Capa general | PASS | 3,227 ≤ 6,000; 0 fuentes, números, fechas, personas o infraestructura (§14.5).  Reserva: palabras sueltas |
+| Cobertura con señal propia | **FAIL** | 191,172 de 237,640 = 80.45 % contra 85 % (ronda 2: 90.15 %).  Se reporta y no se rellena con la zona (20,992 + 25,476 solo con respaldo por zona) |
+| Búsqueda | PASS | los tres conceptos en el top 3 (integral 1.º, derivada 1.º, Bayes 2.º); en/text 0.816 ≥ 0.787 |
+| Teselas | **FAIL** | z0 131,026 bytes ≤ 250 KB pasa; p95 en AtlasBench 22.61 ms contra ≤ 5.14 ms no pasa.  La máquina está más lenta que en la ronda 2 (§14.3), pero no pasa en cifras absolutas |
+| Servidor | PASS | `core/atlas-server/tests/close.rs` (respuesta de 600 KB con cierre) pasa dentro de `cargo test --workspace`; el trabajador midió que falla con el cierre anterior (ECONNRESET a los 18.9 s) y pasa en 0.63 s |
+| Recorridos | PASS con reserva | AtlasBench v3 test: abstención 1/261, sobreafirmación 0, adversariales 188/188; 20 consultas 14/14 respondibles.  Reserva: en las 20, adversariales 9/10 por la consulta 017 (§14.3) |
+| Web | PASS | ruta por conceptos dibujada y bajada a declaraciones, captura, 0 errores de consola, sin `p=`, 0 px de desbordamiento (§14.5) |
+| Reproducibilidad y rendimiento | PASS | mismo `content_hash` en dos compilaciones; `compile --all` 97.07 s y 86.5 s contra tope de 128.7 s (2 × 64.35 s) |
+
+Resultado global: 4 reglas en FAIL (asignación, auditoría, cobertura, teselas) y 7 en PASS (una con reserva).  La capa conceptual queda publicada en `data/` con la confianza baja visible; la asignación sigue **no aprobada**.
+
+### 14.7 Pendiente y riesgos observados
+
+1. Calidad de asignación: los homónimos de palabra suelta de `name_doc` siguen siendo el error dominante (§14.4).  Retirar secundarias y homónimos bajó la cobertura con señal propia a 80.45 %; la regla del plan es no rellenar.  Decisión del dueño: si «pi» merece una excepción a la regla de 1–2 caracteres.  **Decidido el 2026-10-19 (Adrián): sí.**  `resolve/4` agrega `SHORT_LABEL_OK = {"pi"}` con su prueba (`test_resolve_keeps_pi_despite_the_short_label_rule`, falla sin la excepción).  Está en el código y todavía no en el registro: las cifras de §14 son de `resolve/3` y cambian cuando se vuelvan a correr `resolve` y la proyección
+2. Teselas: la meta de 5.14 ms no se alcanza; falta separar cuánto es transferencia (z3 pesa hasta 271 KB) y cuánto servidor, y medir en una máquina sin otros procesos.
+3. Consulta 017 (Fermat → Jensen) como regresión de recorridos por la nueva asignación.  Las 20 consultas siguen escritas por un agente.
+4. Etiquetas de palabra suelta en la capa general («red», «luz», «era», «NaN»).
+5. `null_model_adversarial` del bench pasó de 2/188 a 5/188 (es el control, no una regla).
+6. `data/index`, `data/layout` y `data/snapshot` conservan versiones anteriores (derivados, se pueden borrar).
+7. Latencias del bench más altas que en la ronda 2 (§14.3); conviene repetir con la máquina libre.
+8. No se hizo commit.  Sin versionar: `bench/concepts/audit-sample-200-r3.judged.jsonl`, `bench/runs/2026-10-19-*`, `docs/design/r3/`.

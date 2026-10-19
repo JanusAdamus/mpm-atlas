@@ -46,7 +46,10 @@ from .model import (
 )
 from .store import Store
 
-RESOLVER_VERSION = "resolve/2"
+RESOLVER_VERSION = "resolve/4"  # 3: Wikidata items that are not mathematical concepts get no candidates;
+# labels and aliases of 1-2 characters are not matched.  4: SHORT_LABEL_OK exempts "pi" (Adrián, 2026-10-19)
+MIN_PHRASE_CHARS = 3  # same rule as concepts.MIN_KEY_CHARS: "M", "X", "a.m." give no candidates
+SHORT_LABEL_OK = frozenset({"pi"})  # short labels that name one concept, not a letter or unit: Real.pi -> «pi»
 ACTOR = "atlas.resolve"
 SOURCE_ID = "src:atlas-resolve"
 MERGE_THRESHOLD = 0.98  # identity merges (same type only)
@@ -76,7 +79,12 @@ ABBREV = {"seq": "sequence", "fn": "function", "deriv": "derivative", "poly": "p
           "det": "determinant", "tsum": "sum", "prod": "product", "lim": "limit", "gcd": "gcd", "lcm": "lcm",
           "eq": "equal", "ne": "unequal", "lt": "less", "le": "less", "gt": "greater", "ge": "greater",
           "pos": "positive", "neg": "negative", "zero": "zero", "card": "cardinality", "char": "characteristic",
-          "topological": "topological", "metric": "metric", "normed": "normed", "fintype": "finite"}
+          "topological": "topological", "metric": "metric", "normed": "normed", "fintype": "finite",
+          # resolve/3: Mathlib name abbreviations that used to reach their concept only through a one-token alias
+          "inf": "infimum", "sup": "supremum", "abs": "absolute", "ker": "kernel", "ceil": "ceiling",
+          "log": "logarithm", "mono": "monomorphism", "epi": "epimorphism", "max": "maximum", "min": "minimum",
+          "cos": "cosine", "sin": "sine", "exp": "exponential", "trunc": "truncation", "bijective": "bijection",
+          "injective": "injection", "surjective": "surjection", "continuous": "continuity"}
 WD_TYPES = (EntityType.CONCEPT, EntityType.STATEMENT, EntityType.CONJECTURE, EntityType.ALGORITHM,
             EntityType.MODEL, EntityType.DEFINITION, EntityType.PROBLEM, EntityType.THEORY)
 DEFINITIONAL = frozenset({EntityType.CONCEPT, EntityType.DEFINITION, EntityType.MODEL, EntityType.ALGORITHM,
@@ -263,13 +271,17 @@ def item_candidates(idx: MathlibIndex, item_id: str, item_type: EntityType,
     for text, weight in phrases:
         toks = content_tokens(text)
         core = tuple(t for t in toks if t not in GENERIC)
-        if not core:
-            continue
-        for i in idx.by_last.get(_key(core), ()):  # exact last-component match
+        flat = normalize(text).replace(" ", "")
+        if not core or (len(flat) < MIN_PHRASE_CHARS and flat not in SHORT_LABEL_OK):
+            continue  # "M" (mega, nautical mile) and "a.m." are not evidence for `MvPFunctor.M`
+        # one token left after dropping generic words ("open formula" -> open, "rule of product" -> product):
+        # the label is no longer in the name, so names are not matched (IsOpen is not an open formula)
+        by_name = len(core) > 1 or core == toks
+        for i in idx.by_last.get(_key(core), ()) if by_name else ():  # exact last-component match
             offer(i, weight * 1.0, {"exact_name": text}, core)
         rare = sorted((t for t in set(core) if 0 < len(idx.post.get(t, ())) <= MAX_DF),
                       key=lambda t: len(idx.post[t]))
-        if rare:  # intersect the postings of the informative tokens only
+        if rare and by_name:  # intersect the postings of the informative tokens only
             pool = idx.post_sets[rare[0]]
             for t in rare[1:]:
                 pool = pool & idx.post_sets[t]
@@ -300,10 +312,67 @@ def item_candidates(idx: MathlibIndex, item_id: str, item_type: EntityType,
             for i, (s, f) in ranked if s >= PROPOSAL_FLOOR]
 
 
+# Which Wikidata items are mathematical concepts (plan docs/plans/2026-10-18-ronda-3-correcciones.md §1).  The
+# registry keeps P31/P279 only between ingested items, so the test reads the item's own data: a bare number, a
+# date or year, a source (encyclopedia, book, journal, film...) is never a concept; an item whose description
+# puts it in another field (software, music, physics units, coins, sport...) is not one either, unless the
+# description also says it is mathematics or its type comes from a precise seed (theorem, conjecture, area).
+# Measured 2026-10-18 on the round-2 projection: 434 such items held 41,836 of 504,596 assignments.
+# ponytail: hand regexes over en/es descriptions; a classifier once reviewed item labels exist.
+NUMBER_LABEL = re.compile(r"^[\s\d.,+−\-–/×^·']+$")
+DATE_DESC = re.compile(r"day of the week|d[ií]a de la semana|calendar|calendario|leap year|a[ñn]o bisiesto|common year"
+                       r"|\byear\b|\ba[ñn]o\b|\bmonth\b|\bmes\b|century|siglo|decade|d[ée]cada|millennium|\bdate\b",
+                       re.I)
+SOURCE_DESC = re.compile(r"encyclop|enciclop|website|sitio web|\bwiki\b|journal|revista|magazine|newspaper|\bbook\b"
+                         r"|\blibro\b|\bbible\b|biblia|publication|publicaci[oó]n|television|televisi[oó]n|\bfilm\b"
+                         r"|pel[ií]cula|\bnovel\b|novela|\balbum\b|\bsong\b|canci[oó]n|\bcompany\b|\bempresa\b"
+                         r"|organi[sz]ation|organizaci[oó]n|government agency|universit|publisher", re.I)
+OTHER_FIELD_DESC = re.compile(
+    r"software|programming|\bprogram\b|computer|computadora|\bSQL\b|database|blockchain|cipher\b|cifrado"
+    r"|cryptocurrenc|internet|\bweb\b|file system|data type|music|m[uú]sic|linguistic|ling[uü][ií]stic|grammar\b"
+    r"|punctuation|puntuaci[oó]n|letter of the|alphabet|alfabeto|\bcoins?\b|\bmonedas?\b|medal|banknote|\bsports?\b"
+    r"|deporte|football|f[uú]tbol|cosmolog|aerodynamic|chemical|qu[ií]mic|biolog|medical|m[ée]dic|anatom|disease"
+    r"|enfermedad|econom|financ|diving|buceo|flammab|eclipse|astronom|mountain|monta[ñn]a|\bbridge\b|\bpuente\b"
+    r"|architect|arquitect|fiction|ficci[oó]n|neural network|red neuronal|machine learning|aprendizaje autom"
+    r"|image processing|computer vision|\baudio\b|compression|compiler|operating system|linux|semiotic|\bbrain\b"
+    r"|cerebr|body weight|ornament|textile|clothing|vehicle|veh[ií]culo|weapon|\bfood\b|alimento|\banimal|organism"
+    r"|physical object|objeto f[ií]sico|cue sports|snooker|billar|unit of (time|length|mass|measurement)"
+    r"|unidad de (tiempo|longitud|masa|medida)|\bSI unit|physical quantity|magnitud f[ií]sica|\bsound\b|sonido"
+    r"|typograph|tipogr[aá]f|glyph|glifo|\bcharacter\b|\bcar[aá]cter\b",  # the prime symbol ′ is not a prime
+    re.I)
+MATH_DESC = re.compile(
+    r"mathemat|matem[aá]tic|theorem|teorema|lemma|conjecture|algebra|álgebra|geometr|topolog|polynomi|polinomi"
+    r"|manifold|polyhedr|polygon\b|polytope|combinatori|graph theory|number theory|set theory|category theory"
+    r"|group theory|ring theory|axiom|calculus|probabilit|statistic|estad[ií]stic|\binteger|natural number"
+    r"|real number|complex number|vector space|homomorphism|morphism|functor|sheaf|subgroup|subset|bijection"
+    r"|injective|surjective|bilinear|\bring\b|\bgroup\b|binary relation|partial order|formal language"
+    r"|\bproofs?\b|\bequation|cardinalit|transfinite|quiver|numeral system", re.I)
+PRECISE_TYPES = frozenset({EntityType.STATEMENT, EntityType.CONJECTURE, EntityType.AREA})
+
+
+def non_math_reason(etype: EntityType, labels: Iterable[str], descriptions: Iterable[str]) -> str | None:
+    """Why a Wikidata item is not a mathematical concept ("number", "date", "source", "other_field"), or None."""
+    if any(NUMBER_LABEL.match(t) for t in labels):
+        return "number"
+    desc = " ".join(descriptions)
+    if DATE_DESC.search(desc) and not MATH_DESC.search(desc):  # "century" dates a problem, it is not a date
+        return "date"
+    if SOURCE_DESC.search(desc):
+        return "source"
+    if etype not in PRECISE_TYPES and OTHER_FIELD_DESC.search(desc) and not MATH_DESC.search(desc):
+        return "other_field"
+    return None
+
+
+def entity_non_math_reason(e) -> str | None:  # e: Entity
+    return non_math_reason(e.type, (l.text for l in e.labels), (d.text for d in e.descriptions))
+
+
 def wikidata_items(store: Store) -> Iterator[tuple[str, EntityType, list[tuple[str, float]]]]:
+    """Mathematical Wikidata items (see non_math_reason) with their English label and aliases."""
     for etype in WD_TYPES:
         for e in store.iter_entities(etype):
-            if not e.id.startswith("wd:"):
+            if not e.id.startswith("wd:") or entity_non_math_reason(e) is not None:
                 continue
             phrases = [(l.text, 1.0) for l in e.labels if l.lang == "en"]
             phrases += [(a.text, 0.9) for a in e.aliases if a.lang == "en"][:10]
