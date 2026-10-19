@@ -40,9 +40,9 @@ Cada parte va en el lenguaje que la hace más rápida.  El contrato entre lengua
 | Web | `web/` (TypeScript + WebGL2) | Mapa multiescala, ficha con insignias de evidencia, ruta por conceptos con bajada a declaraciones, vista de texto |
 | Evaluación | `bench/` | AtlasBench v3: particiones dev, test y sellada; reporte por clase con intervalos |
 
-## Escala (snapshot `4058b8ab…`, 2026-10-19)
+## Escala (snapshot `a2e90658…`, 2026-10-19)
 
-320,214 nodos, 5,715 conceptos y 237,640 declaraciones de Mathlib con concepto asignado.  El detalle y el comando de cada cifra están en `docs/STATUS.md` §14.
+320,214 nodos, 5,714 conceptos y 237,640 declaraciones de Mathlib con concepto asignado.  El detalle y el comando de cada cifra están en `docs/STATUS.md` §14.8.
 
 ## Arrancar
 

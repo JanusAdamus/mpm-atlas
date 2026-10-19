@@ -56,7 +56,7 @@ from .model import (
 from .store import Store
 
 EXTRACTOR = "concept-projection"
-VERSION = "8"  # 2: homonym guard by domain, Wikidata areas as candidates; 3: Lean `Is` predicates;
+VERSION = "9"  # 2: homonym guard by domain, Wikidata areas as candidates; 3: Lean `Is` predicates;
 # 4: retracted/superseded formalized_as links are not curated (v3 took the guard's own retractions as gold);
 # 5: RESOLVE_FACTOR 0.8 -> 0.7 (dev half, v4 gold: top-1 150 -> 153 of 209, recall@3 0.806 -> 0.810);
 # 6 (round 3, docs/plans/2026-10-18-ronda-3-correcciones.md): only mathematical items are candidates
@@ -65,7 +65,8 @@ VERSION = "8"  # 2: homonym guard by domain, Wikidata areas as candidates; 3: Le
 # 7: W_SOURCE name_rev 0.9 -> 0.8, first 0.7 -> 0.8 (dev half: top-1 154 -> 158 of 209, recall@3 167 -> 172 of 211;
 # 14 configurations tried, neighbours 156-158); the zone fallback is labelled as such in the claim's explanation
 # 8: resolve.py no longer matches 1-2 character labels ("M" -> mega, nautical mile, a.m.) and typographic
-# characters are not concepts (the prime symbol took `IsLocalization.AtPrime`)
+# characters are not concepts (the prime symbol took `IsLocalization.AtPrime`);
+# 9: resolve/4 exempts "pi" from the 1-2 character rule (Real.pi -> «pi»; Adrián, 2026-10-19)
 ACTOR = "atlas.concepts"
 SOURCE_ID = "src:concept-projection"
 DERIVED_PREFIX = "concept:"

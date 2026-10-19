@@ -410,7 +410,7 @@ Resultado global: 4 reglas en FAIL (asignación, auditoría, cobertura, teselas)
 
 ### 14.7 Pendiente y riesgos observados
 
-1. Calidad de asignación: los homónimos de palabra suelta de `name_doc` siguen siendo el error dominante (§14.4).  Retirar secundarias y homónimos bajó la cobertura con señal propia a 80.45 %; la regla del plan es no rellenar.  Decisión del dueño: si «pi» merece una excepción a la regla de 1–2 caracteres.  **Decidido el 2026-10-19 (Adrián): sí.**  `resolve/4` agrega `SHORT_LABEL_OK = {"pi"}` con su prueba (`test_resolve_keeps_pi_despite_the_short_label_rule`, falla sin la excepción).  Está en el código y todavía no en el registro: las cifras de §14 son de `resolve/3` y cambian cuando se vuelvan a correr `resolve` y la proyección
+1. Calidad de asignación: los homónimos de palabra suelta de `name_doc` siguen siendo el error dominante (§14.4).  Retirar secundarias y homónimos bajó la cobertura con señal propia a 80.45 %; la regla del plan es no rellenar.  Decisión del dueño: si «pi» merece una excepción a la regla de 1–2 caracteres.  **Decidido el 2026-10-19 (Adrián): sí.**  `resolve/4` agrega `SHORT_LABEL_OK = {"pi"}` con su prueba (`test_resolve_keeps_pi_despite_the_short_label_rule`, falla sin la excepción).  Aplicado al registro el mismo día como proyección v9 (§14.8)
 2. Teselas: la meta de 5.14 ms no se alcanza; falta separar cuánto es transferencia (z3 pesa hasta 271 KB) y cuánto servidor, y medir en una máquina sin otros procesos.
 3. Consulta 017 (Fermat → Jensen) como regresión de recorridos por la nueva asignación.  Las 20 consultas siguen escritas por un agente.
 4. Etiquetas de palabra suelta en la capa general («red», «luz», «era», «NaN»).
@@ -418,3 +418,21 @@ Resultado global: 4 reglas en FAIL (asignación, auditoría, cobertura, teselas)
 6. `data/index`, `data/layout` y `data/snapshot` conservan versiones anteriores (derivados, se pueden borrar).
 7. Latencias del bench más altas que en la ronda 2 (§14.3); conviene repetir con la máquina libre.
 8. No se hizo commit.  Sin versionar: `bench/concepts/audit-sample-200-r3.judged.jsonl`, `bench/runs/2026-10-19-*`, `docs/design/r3/`.
+
+### 14.8 Proyección v9: excepción de «pi» (2026-10-19, orquestador)
+
+`python -m atlas.concepts --sample <scratch>/sample-v9.jsonl --seed r3 --report data/cache/reports/concepts-run9.json`.  La muestra r3 juzgada (`bench/concepts/audit-sample-200-r3.judged.jsonl`) se conserva y no se regeneró.
+
+| Cifra | v8 (§14) | v9 |
+|---|---|---|
+| top-1 dev | 157/209 = 0.7512 | 158/209 = 0.7560 [0.694, 0.809] |
+| recall@3 dev | 171/211 = 0.8104 | 172/211 = 0.8152 [0.757, 0.862] |
+| top-1 test (segunda lectura) | 138/196 = 0.7041 | 138/196 = 0.7041 [0.637, 0.764] |
+| recall@3 test | 146/199 = 0.7337 | 146/199 = 0.7337 [0.668, 0.790] |
+| Pertenencias vigentes | 377,729 | 377,744 |
+| Con señal propia | 191,172 (80.45 %) | 191,177 (80.45 %) |
+| `mathlib:Real.pi` | sin «pi» | → wd:Q167 «pi» (34 declaraciones en ese concepto) |
+
+Escritura: 28 afirmaciones nuevas, 5,546 reemplazadas (`superseded`, con historial; la explicación de la señal `resolve` nombra `resolve/4`), 2 secundarias retiradas, 11 retractadas por obsoletas.  Los veredictos de §14.6 no cambian: asignación en test y cobertura siguen en FAIL.
+
+`python -m atlas build --skip-ingest --no-cargo --json` (`build-logs/build9.json`, 82.27 s): snapshot `a2e90658285b7ca5…` (406,008,820 bytes; 5,714 conceptos; 75,069 aristas conceptuales; 237,640 declaraciones con concepto), 320,214 nodos.  `python -m pytest -q`: 167 passed.  Una sola compilación: la reproducibilidad de este hash no se repitió, y AtlasBench no se volvió a correr.
