@@ -1,0 +1,1397 @@
+{
+  "data": [
+    {
+      "rep": 1,
+      "n": "texto-con-ruta",
+      "boxes": [
+        {
+          "class": "textpane",
+          "rect": {
+            "x": 0,
+            "y": 2240.453125,
+            "width": 390,
+            "height": 13975.640625,
+            "top": 2240.453125,
+            "right": 390,
+            "bottom": 16216.09375,
+            "left": 0
+          }
+        },
+        {
+          "class": "side",
+          "rect": {
+            "x": 0,
+            "y": 468.46875,
+            "width": 390,
+            "height": 1747.984375,
+            "top": 468.46875,
+            "right": 390,
+            "bottom": 2216.453125,
+            "left": 0
+          }
+        }
+      ],
+      "elementAtText": "<section class=\"pathview\" aria-label=\"Ruta\"><h2>Ruta</h2><form class=\"path-form\"><div class=\"ends\"><div class=\"ends-col\"><div class=\"row\"><span class=\"lbl\">Desde</span><div class=\"searchbox\"><label for=\"sb4\" class=\"sr-only\">Desde</label><input type=\"search\" id=\"sb4\" role=\"combobox\" aria-autocomplete=\"list\" aria-expanded=\"false\" aria-controls=\"sb4-list\" placeholder=\"Desde\" autocomplete=\"off\" spellcheck=\"false\"><ul id=\"sb4-list\" role=\"listbox\" class=\"results\" hidden=\"\" aria-label=\"Desde\"></ul><span class=\"sr-only\" role=\"status\" aria-live=\"polite\"></span></div></div><div class=\"row\"><span class=\"lbl\">Hasta</span><div class=\"searchbox\"><label for=\"sb5\" class=\"sr-only\">Hasta</label><input type=\"search\" id=\"sb5\" role=\"combobox\" aria-autocomplete=\"list\" aria-expanded=\"false\" aria-controls=\"sb5-list\" placeholder=\"Hasta\" autocomplete=\"off\" spellcheck=\"false\"><ul id=\"sb5-list\" role=\"listbox\" class=\"results\" hidden=\"\" aria-label=\"Hasta\"></ul><span class=\"sr-only\" role=\"status\" aria-live=\"polite\"></span></div></div></div><button type=\"button\" class=\"swap\" title=\"Intercambiar\" aria-label=\"Intercambiar\">⇅</button></div><div class=\"row\"><label class=\"lbl\" for=\"path-objective\">Objetivo</label><select id=\"path-objective\"><option value=\"best_supported\" selected=\"\">Mejor respaldada</option><option value=\"fewest_new\">Menos conceptos nuevos</option><option value=\"most_intuitive\">Más intuitiva</option><option value=\"most_formal\">Más formal</option><option value=\"most_diverse\">Más diversa</option><option value=\"shortest\">Más corta</option></select></div><details><summary>Opciones avanzadas</summary><div class=\"row wrap\"><label for=\"path-hops\">Saltos máx.</label><input id=\"path-hops\" type=\"number\" min=\"1\" max=\"10\" value=\"6\"><label><input id=\"path-disputed\" type=\"checkbox\"> Incluir disputadas</label></div><div class=\"row\"><label for=\"path-weights\">Pesos</label><input id=\"path-weights\" type=\"text\" value=\"\" placeholder=\"evidence:1,length:0.2\" spellcheck=\"false\"></div></details><div class=\"submit\"><button type=\"submit\" class=\"primary\">Buscar ruta</button></div></form><div><div class=\"path-result\" aria-live=\"polite\"><div class=\"notice\" role=\"note\"><strong>Sin ruta autorizada. </strong>Solo hay una conexion de tipo «alcance bibliografico; no implica dependencia ni acuerdo» (fuerza 0 &lt; 1): no autoriza una conclusion.</div><section class=\"path concept-route\" aria-label=\"Ruta por conceptos\"><h3>Ruta por conceptos</h3><div class=\"conclusion\"><p class=\"claimline\">a nivel de concepto (agregado): se usa para establecer</p><div class=\"row\"><span class=\"strength\"><span class=\"muted\">Fuerza</span><span class=\"pips\" role=\"img\" aria-label=\"Fuerza 5/5\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i></span><span aria-hidden=\"true\">5/5</span></span><span class=\"muted\" aria-hidden=\"true\">·</span><span class=\"muted\">evidencia más débil</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><ul class=\"caveats small\" aria-label=\"Advertencias\"><li>Ruta a nivel de concepto: cada paso agrega afirmaciones entre declaraciones de los dos conceptos; su testigo es una de ellas.</li><li>La pertenencia de alguna declaracion a su concepto es una asignacion heuristica (model_proposed), con puntuacion no calibrada.</li><li>Algun testigo usa ademas otras premisas: el concepto se usa para establecer el siguiente, pero no basta por si solo (R7).</li></ul><div class=\"row\"><button type=\"button\">Ver en el mapa</button></div></div><ol class=\"route\"><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">1</span><button class=\"link\" type=\"button\">derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 1: </span><strong>depende lógicamente de →</strong><span class=\"tag\" title=\"recorrida al revés\">↺ recorrida al revés</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"auth\"><b>Autoriza: </b>a nivel de concepto (29 afirmaciones entre sus declaraciones): la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)</div><div class=\"muted\">Agrega 29 afirmaciones entre declaraciones de los dos conceptos.</div><div class=\"prov\" title=\"c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\">Testigo: c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)</div><div class=\"row\"><button type=\"button\" class=\"mini drill-toggle\" aria-expanded=\"false\" aria-controls=\"drill-2\">Bajar a declaraciones</button></div><div class=\"drill\" id=\"drill-2\" hidden=\"\"></div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">2</span><button class=\"link\" type=\"button\">integración</button></li></ol></section><section class=\"path\" aria-label=\"Conexión más cercana (solo exploración, no autoriza conclusión)\"><h3>Conexión más cercana (solo exploración, no autoriza conclusión)</h3><div class=\"conclusion weak\"><div class=\"category\">Documental</div><p class=\"claimline\">alcance bibliografico; no implica dependencia ni acuerdo</p><div class=\"row\"><span class=\"strength\"><span class=\"muted\">Fuerza</span><span class=\"pips\" role=\"img\" aria-label=\"Fuerza 0/5\"><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i></span><span aria-hidden=\"true\">0/5</span></span><span class=\"muted\" aria-hidden=\"true\">·</span><span class=\"muted\">evidencia más débil</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"row\"><button type=\"button\">Ver en el mapa</button></div></div><ol class=\"route historical\"><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">1</span><button class=\"link\" type=\"button\">derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 1: </span><strong>aparece en →</strong><span class=\"badge state-extracted\" title=\"extraída\">○ extraída</span></div><div class=\"auth\"><b>Autoriza: </b>aparece en esta obra</div><div class=\"prov\" title=\"c:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257 (CC-BY-SA-4.0)\">c:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257 (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">2</span><button class=\"link\" type=\"button\">Wikipedia (es): Derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 2: </span><strong>cita →</strong><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"auth\"><b>Autoriza: </b>cita bibliografica; no implica dependencia ni acuerdo</div><div class=\"prov\" title=\"c:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257#links (CC-BY-SA-4.0)\">c:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257#links (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">3</span><button class=\"link\" type=\"button\">Wikipedia (es): Integración</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 3: </span><strong>aparece en →</strong><span class=\"tag\" title=\"recorrida al revés\">↺ recorrida al revés</span><span class=\"badge state-extracted\" title=\"extraída\">○ extraída</span></div><div class=\"auth\"><b>Autoriza: </b>contiene</div><div class=\"prov\" title=\"c:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&amp;oldid=175753603 (CC-BY-SA-4.0)\">c:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&amp;oldid=175753603 (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">4</span><button class=\"link\" type=\"button\">integración</button></li></ol></section><details class=\"tech\"><summary>Detalles técnicos</summary><p>bidirectional-alt · 57 exp · 2.0 ms</p><p>Pesos: conclusion 0.5, evidence 1, length 0.2, missing_premise 2</p><p>#1 bibliographic · score 7.100 · conclusion 5.00, diversity 1.50, evidence 4.00, formal 3.00, intuition 3.00, length 3.00, missing_premise 0.00, new 2.00</p></details></div></div></section>"
+    },
+    {
+      "rep": 1,
+      "n": "tiempo-ruta",
+      "ms": 44
+    },
+    {
+      "rep": 1,
+      "n": "ruta-solo-teclado",
+      "trail": [
+        {
+          "tag": "BODY",
+          "text": "Saltar al mapa / Skip to map\n    Atlas de las conexiones matemáticasBuscarCapaCapa: EstructuraCapa: ",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "A",
+          "text": "Saltar al mapa / Skip to map",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Buscar conceptos, teoremas, fórmulas…  ( / )",
+          "role": "combobox"
+        },
+        {
+          "tag": "SELECT",
+          "text": "Capa: EstructuraCapa: DemostraciónCapa: AprendizajeCapa: AplicaciónCapa: HistoriaCapa: Bibliografía",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Comparar regiones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Vista textual",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "EN",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "☾ Oscuro",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "← Atrás",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "CANVAS",
+          "text": "",
+          "ph": null,
+          "role": "application"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "−",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "⤢",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "✕",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Desde",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Desde",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Hasta",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Hasta",
+          "role": "combobox"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "⇅",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "SELECT",
+          "text": "Mejor respaldadaMenos conceptos nuevosMás intuitivaMás formalMás diversaMás corta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Opciones avanzadas",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Buscar ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Buscar ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ver en el mapa",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "derivada",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Bajar a declaraciones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BODY",
+          "text": "Saltar al mapa / Skip to map\n    Atlas de las conexiones matemáticasBuscarCapaCapa: EstructuraCapa: ",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "A",
+          "text": "Saltar al mapa / Skip to map",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Buscar conceptos, teoremas, fórmulas…  ( / )",
+          "role": "combobox"
+        },
+        {
+          "tag": "SELECT",
+          "text": "Capa: EstructuraCapa: DemostraciónCapa: AprendizajeCapa: AplicaciónCapa: HistoriaCapa: Bibliografía",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Comparar regiones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Vista textual",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "EN",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "☾ Oscuro",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "← Atrás",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "CANVAS",
+          "text": "",
+          "ph": null,
+          "role": "application"
+        }
+      ],
+      "url": "http://localhost:8765/#path=1&from=wd%3AQ29175%7Cderivada&to=wd%3AQ80091%7Cintegraci%C3%B3n&obj=best_supported&hops=6",
+      "text": "✕\nRuta\nDesde\nDesde\n12 resultados\nHasta\nHasta\n12 resultados\n⇅\nObjetivo\nMejor respaldada\nMenos conceptos nuevos\nMás intuitiva\nMás formal\nMás diversa\nMás corta\nOpciones avanzadas\nBuscar ruta\nSin ruta autorizada. Solo hay una conexion de tipo «alcance bibliografico; no implica dependencia ni acuerdo» (fuerza 0 < 1): no autoriza una conclusion.\nRUTA POR CONCEPTOS\n\na nivel de concepto (agregado): se usa para establecer\n\nFuerza\n5/5\n·\nevidencia más débil\n◌ propuesta por modelo\nRuta a nivel de concepto: cada paso agrega afirmaciones entre declaraciones de los dos conceptos; su testigo es una de ellas.\nLa pertenencia de alguna declaracion a su concepto es una asignacion heuristica (model_proposed), con puntuacion no calibrada.\nAlgun testigo usa ademas otras premisas: el concepto se usa para establecer el siguiente, pero no basta por si solo (R7).\nVer en el mapa\n1\nderivada\nPaso 1:\ndepende lógicamente de →\n↺ recorrida al revés\n◌ propuesta por modelo\nAutoriza: a nivel de concepto (29 afirmaciones entre sus declaraciones): la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)\nAgrega 29 afirmaciones entre declaraciones de los dos conceptos.\nTestigo: c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\nOcultar declaraciones\n\nLa afirmación testigo, como ruta entre declaraciones: HasFDerivAt → hasFDerivAt_integral_of_dominated_of_fderiv_le''.\n\n1\nHasFDerivAt\nPaso 1:\ndepende lógicamente de →\n↺ recorrida al revés\n○ extraída\nAutoriza: la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)\nSupuestos: statement-level reference resolved by name from source text, without elaboration\nPremisas: ✗ mathlib:NormedSpace ✗ mathlib:MeasureTheory.Measure ✗ mathlib:MeasureTheory.AEStronglyMeasurable ✗ mathlib:IntervalIntegrable ✓ mathlib:HasFDerivAt\nc:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\n2\nhasFDerivAt_integral_of_dominated_of_fderiv_le''\nVer en el mapa\n2\nintegración\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\nDOCUMENTAL\n\nalcance bibliografico; no implica dependencia ni acuerdo\n\nFuerza\n0/5\n·\nevidencia más débil\n◌ propuesta por modelo\nVer en el mapa\n1\nderivada\nPaso 1:\naparece en →\n○ extraída\nAutoriza: aparece en esta obra\nc:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257 (CC-BY-SA-4.0)\n2\nWikipedia (es): Derivada\nPaso 2:\ncita →\n◌ propuesta por modelo\nAutoriza: cita bibliografica; no implica dependencia ni acuerdo\nc:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257#links (CC-BY-SA-4.0)\n3\nWikipedia (es): Integración\nPaso 3:\naparece en →\n↺ recorrida al revés\n○ extraída\nAutoriza: contiene\nc:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&oldid=175753603 (CC-BY-SA-4.0)\n4\nintegración\nDetalles técnicos"
+    },
+    {
+      "rep": 1,
+      "n": "t-tab",
+      "focus": {
+        "tag": "BUTTON",
+        "text": "+",
+        "aria": "Acercar"
+      }
+    },
+    {
+      "rep": 2,
+      "n": "texto-con-ruta",
+      "boxes": [
+        {
+          "class": "textpane",
+          "rect": {
+            "x": 0,
+            "y": 2240.453125,
+            "width": 390,
+            "height": 13975.640625,
+            "top": 2240.453125,
+            "right": 390,
+            "bottom": 16216.09375,
+            "left": 0
+          }
+        },
+        {
+          "class": "side",
+          "rect": {
+            "x": 0,
+            "y": 468.46875,
+            "width": 390,
+            "height": 1747.984375,
+            "top": 468.46875,
+            "right": 390,
+            "bottom": 2216.453125,
+            "left": 0
+          }
+        }
+      ],
+      "elementAtText": "<section class=\"pathview\" aria-label=\"Ruta\"><h2>Ruta</h2><form class=\"path-form\"><div class=\"ends\"><div class=\"ends-col\"><div class=\"row\"><span class=\"lbl\">Desde</span><div class=\"searchbox\"><label for=\"sb4\" class=\"sr-only\">Desde</label><input type=\"search\" id=\"sb4\" role=\"combobox\" aria-autocomplete=\"list\" aria-expanded=\"false\" aria-controls=\"sb4-list\" placeholder=\"Desde\" autocomplete=\"off\" spellcheck=\"false\"><ul id=\"sb4-list\" role=\"listbox\" class=\"results\" hidden=\"\" aria-label=\"Desde\"></ul><span class=\"sr-only\" role=\"status\" aria-live=\"polite\"></span></div></div><div class=\"row\"><span class=\"lbl\">Hasta</span><div class=\"searchbox\"><label for=\"sb5\" class=\"sr-only\">Hasta</label><input type=\"search\" id=\"sb5\" role=\"combobox\" aria-autocomplete=\"list\" aria-expanded=\"false\" aria-controls=\"sb5-list\" placeholder=\"Hasta\" autocomplete=\"off\" spellcheck=\"false\"><ul id=\"sb5-list\" role=\"listbox\" class=\"results\" hidden=\"\" aria-label=\"Hasta\"></ul><span class=\"sr-only\" role=\"status\" aria-live=\"polite\"></span></div></div></div><button type=\"button\" class=\"swap\" title=\"Intercambiar\" aria-label=\"Intercambiar\">⇅</button></div><div class=\"row\"><label class=\"lbl\" for=\"path-objective\">Objetivo</label><select id=\"path-objective\"><option value=\"best_supported\" selected=\"\">Mejor respaldada</option><option value=\"fewest_new\">Menos conceptos nuevos</option><option value=\"most_intuitive\">Más intuitiva</option><option value=\"most_formal\">Más formal</option><option value=\"most_diverse\">Más diversa</option><option value=\"shortest\">Más corta</option></select></div><details><summary>Opciones avanzadas</summary><div class=\"row wrap\"><label for=\"path-hops\">Saltos máx.</label><input id=\"path-hops\" type=\"number\" min=\"1\" max=\"10\" value=\"6\"><label><input id=\"path-disputed\" type=\"checkbox\"> Incluir disputadas</label></div><div class=\"row\"><label for=\"path-weights\">Pesos</label><input id=\"path-weights\" type=\"text\" value=\"\" placeholder=\"evidence:1,length:0.2\" spellcheck=\"false\"></div></details><div class=\"submit\"><button type=\"submit\" class=\"primary\">Buscar ruta</button></div></form><div><div class=\"path-result\" aria-live=\"polite\"><div class=\"notice\" role=\"note\"><strong>Sin ruta autorizada. </strong>Solo hay una conexion de tipo «alcance bibliografico; no implica dependencia ni acuerdo» (fuerza 0 &lt; 1): no autoriza una conclusion.</div><section class=\"path concept-route\" aria-label=\"Ruta por conceptos\"><h3>Ruta por conceptos</h3><div class=\"conclusion\"><p class=\"claimline\">a nivel de concepto (agregado): se usa para establecer</p><div class=\"row\"><span class=\"strength\"><span class=\"muted\">Fuerza</span><span class=\"pips\" role=\"img\" aria-label=\"Fuerza 5/5\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i></span><span aria-hidden=\"true\">5/5</span></span><span class=\"muted\" aria-hidden=\"true\">·</span><span class=\"muted\">evidencia más débil</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><ul class=\"caveats small\" aria-label=\"Advertencias\"><li>Ruta a nivel de concepto: cada paso agrega afirmaciones entre declaraciones de los dos conceptos; su testigo es una de ellas.</li><li>La pertenencia de alguna declaracion a su concepto es una asignacion heuristica (model_proposed), con puntuacion no calibrada.</li><li>Algun testigo usa ademas otras premisas: el concepto se usa para establecer el siguiente, pero no basta por si solo (R7).</li></ul><div class=\"row\"><button type=\"button\">Ver en el mapa</button></div></div><ol class=\"route\"><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">1</span><button class=\"link\" type=\"button\">derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 1: </span><strong>depende lógicamente de →</strong><span class=\"tag\" title=\"recorrida al revés\">↺ recorrida al revés</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"auth\"><b>Autoriza: </b>a nivel de concepto (29 afirmaciones entre sus declaraciones): la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)</div><div class=\"muted\">Agrega 29 afirmaciones entre declaraciones de los dos conceptos.</div><div class=\"prov\" title=\"c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\">Testigo: c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)</div><div class=\"row\"><button type=\"button\" class=\"mini drill-toggle\" aria-expanded=\"false\" aria-controls=\"drill-2\">Bajar a declaraciones</button></div><div class=\"drill\" id=\"drill-2\" hidden=\"\"></div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">2</span><button class=\"link\" type=\"button\">integración</button></li></ol></section><section class=\"path\" aria-label=\"Conexión más cercana (solo exploración, no autoriza conclusión)\"><h3>Conexión más cercana (solo exploración, no autoriza conclusión)</h3><div class=\"conclusion weak\"><div class=\"category\">Documental</div><p class=\"claimline\">alcance bibliografico; no implica dependencia ni acuerdo</p><div class=\"row\"><span class=\"strength\"><span class=\"muted\">Fuerza</span><span class=\"pips\" role=\"img\" aria-label=\"Fuerza 0/5\"><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i><i class=\"\"></i></span><span aria-hidden=\"true\">0/5</span></span><span class=\"muted\" aria-hidden=\"true\">·</span><span class=\"muted\">evidencia más débil</span><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"row\"><button type=\"button\">Ver en el mapa</button></div></div><ol class=\"route historical\"><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">1</span><button class=\"link\" type=\"button\">derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 1: </span><strong>aparece en →</strong><span class=\"badge state-extracted\" title=\"extraída\">○ extraída</span></div><div class=\"auth\"><b>Autoriza: </b>aparece en esta obra</div><div class=\"prov\" title=\"c:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257 (CC-BY-SA-4.0)\">c:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257 (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">2</span><button class=\"link\" type=\"button\">Wikipedia (es): Derivada</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 2: </span><strong>cita →</strong><span class=\"badge state-model_proposed\" title=\"propuesta por modelo\">◌ propuesta por modelo</span></div><div class=\"auth\"><b>Autoriza: </b>cita bibliografica; no implica dependencia ni acuerdo</div><div class=\"prov\" title=\"c:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257#links (CC-BY-SA-4.0)\">c:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&amp;oldid=175700257#links (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">3</span><button class=\"link\" type=\"button\">Wikipedia (es): Integración</button></li><li class=\"hop\"><div class=\"rel\"><span class=\"sr-only\">Paso 3: </span><strong>aparece en →</strong><span class=\"tag\" title=\"recorrida al revés\">↺ recorrida al revés</span><span class=\"badge state-extracted\" title=\"extraída\">○ extraída</span></div><div class=\"auth\"><b>Autoriza: </b>contiene</div><div class=\"prov\" title=\"c:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&amp;oldid=175753603 (CC-BY-SA-4.0)\">c:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&amp;oldid=175753603 (CC-BY-SA-4.0)</div></li><li class=\"stop\"><span class=\"n\" aria-hidden=\"true\">4</span><button class=\"link\" type=\"button\">integración</button></li></ol></section><details class=\"tech\"><summary>Detalles técnicos</summary><p>bidirectional-alt · 57 exp · 1.7 ms</p><p>Pesos: conclusion 0.5, evidence 1, length 0.2, missing_premise 2</p><p>#1 bibliographic · score 7.100 · conclusion 5.00, diversity 1.50, evidence 4.00, formal 3.00, intuition 3.00, length 3.00, missing_premise 0.00, new 2.00</p></details></div></div></section>"
+    },
+    {
+      "rep": 2,
+      "n": "tiempo-ruta",
+      "ms": 46
+    },
+    {
+      "rep": 2,
+      "n": "ruta-solo-teclado",
+      "trail": [
+        {
+          "tag": "BODY",
+          "text": "Saltar al mapa / Skip to map\n    Atlas de las conexiones matemáticasBuscarCapaCapa: EstructuraCapa: ",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "A",
+          "text": "Saltar al mapa / Skip to map",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Buscar conceptos, teoremas, fórmulas…  ( / )",
+          "role": "combobox"
+        },
+        {
+          "tag": "SELECT",
+          "text": "Capa: EstructuraCapa: DemostraciónCapa: AprendizajeCapa: AplicaciónCapa: HistoriaCapa: Bibliografía",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Comparar regiones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Vista textual",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "EN",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "☾ Oscuro",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "← Atrás",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "CANVAS",
+          "text": "",
+          "ph": null,
+          "role": "application"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "+",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "−",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "⤢",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "✕",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Desde",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Desde",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Hasta",
+          "role": "combobox"
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Hasta",
+          "role": "combobox"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "⇅",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "SELECT",
+          "text": "Mejor respaldadaMenos conceptos nuevosMás intuitivaMás formalMás diversaMás corta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "SUMMARY",
+          "text": "Opciones avanzadas",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Buscar ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Buscar ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ver en el mapa",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "derivada",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Bajar a declaraciones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BODY",
+          "text": "Saltar al mapa / Skip to map\n    Atlas de las conexiones matemáticasBuscarCapaCapa: EstructuraCapa: ",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "A",
+          "text": "Saltar al mapa / Skip to map",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "INPUT",
+          "text": "",
+          "ph": "Buscar conceptos, teoremas, fórmulas…  ( / )",
+          "role": "combobox"
+        },
+        {
+          "tag": "SELECT",
+          "text": "Capa: EstructuraCapa: DemostraciónCapa: AprendizajeCapa: AplicaciónCapa: HistoriaCapa: Bibliografía",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Ruta",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Comparar regiones",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Vista textual",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "EN",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "☾ Oscuro",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "BUTTON",
+          "text": "← Atrás",
+          "ph": null,
+          "role": null
+        },
+        {
+          "tag": "CANVAS",
+          "text": "",
+          "ph": null,
+          "role": "application"
+        }
+      ],
+      "url": "http://localhost:8765/#path=1&from=wd%3AQ29175%7Cderivada&to=wd%3AQ80091%7Cintegraci%C3%B3n&obj=best_supported&hops=6",
+      "text": "✕\nRuta\nDesde\nDesde\n12 resultados\nHasta\nHasta\n12 resultados\n⇅\nObjetivo\nMejor respaldada\nMenos conceptos nuevos\nMás intuitiva\nMás formal\nMás diversa\nMás corta\nOpciones avanzadas\nBuscar ruta\nSin ruta autorizada. Solo hay una conexion de tipo «alcance bibliografico; no implica dependencia ni acuerdo» (fuerza 0 < 1): no autoriza una conclusion.\nRUTA POR CONCEPTOS\n\na nivel de concepto (agregado): se usa para establecer\n\nFuerza\n5/5\n·\nevidencia más débil\n◌ propuesta por modelo\nRuta a nivel de concepto: cada paso agrega afirmaciones entre declaraciones de los dos conceptos; su testigo es una de ellas.\nLa pertenencia de alguna declaracion a su concepto es una asignacion heuristica (model_proposed), con puntuacion no calibrada.\nAlgun testigo usa ademas otras premisas: el concepto se usa para establecer el siguiente, pero no basta por si solo (R7).\nVer en el mapa\n1\nderivada\nPaso 1:\ndepende lógicamente de →\n↺ recorrida al revés\n◌ propuesta por modelo\nAutoriza: a nivel de concepto (29 afirmaciones entre sus declaraciones): la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)\nAgrega 29 afirmaciones entre declaraciones de los dos conceptos.\nTestigo: c:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\nOcultar declaraciones\n\nLa afirmación testigo, como ruta entre declaraciones: HasFDerivAt → hasFDerivAt_integral_of_dominated_of_fderiv_le''.\n\n1\nHasFDerivAt\nPaso 1:\ndepende lógicamente de →\n↺ recorrida al revés\n○ extraída\nAutoriza: la premisa se usa para establecer el sujeto; solo cuenta si todas las premisas estan satisfechas (R7)\nSupuestos: statement-level reference resolved by name from source text, without elaboration\nPremisas: ✗ mathlib:NormedSpace ✗ mathlib:MeasureTheory.Measure ✗ mathlib:MeasureTheory.AEStronglyMeasurable ✗ mathlib:IntervalIntegrable ✓ mathlib:HasFDerivAt\nc:02d5513de6792dcc · src:mathlib4 · Mathlib/Analysis/Calculus/ParametricIntegral.lean:233 (signature) (Apache-2.0)\n2\nhasFDerivAt_integral_of_dominated_of_fderiv_le''\nVer en el mapa\n2\nintegración\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\nDOCUMENTAL\n\nalcance bibliografico; no implica dependencia ni acuerdo\n\nFuerza\n0/5\n·\nevidencia más débil\n◌ propuesta por modelo\nVer en el mapa\n1\nderivada\nPaso 1:\naparece en →\n○ extraída\nAutoriza: aparece en esta obra\nc:03c97fcfa2f40bd3 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257 (CC-BY-SA-4.0)\n2\nWikipedia (es): Derivada\nPaso 2:\ncita →\n◌ propuesta por modelo\nAutoriza: cita bibliografica; no implica dependencia ni acuerdo\nc:b4cbf2b5bf4a4a0b · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257#links (CC-BY-SA-4.0)\n3\nWikipedia (es): Integración\nPaso 3:\naparece en →\n↺ recorrida al revés\n○ extraída\nAutoriza: contiene\nc:1066c63c7619ce71 · src:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Integraci%C3%B3n&oldid=175753603 (CC-BY-SA-4.0)\n4\nintegración\nDetalles técnicos"
+    },
+    {
+      "rep": 2,
+      "n": "t-tab",
+      "focus": {
+        "tag": "BUTTON",
+        "text": "+",
+        "aria": "Acercar"
+      }
+    }
+  ],
+  "network": [
+    {
+      "url": "http://localhost:8765/",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/health",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/search?q=derivada&lang=es&limit=12",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/path?from=wd%3AQ29175&to=wd%3AQ80091&objective=best_supported&max_hops=6&include_disputed=false&lang=es&concepts=true&drill_down=true",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ29175&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=mathlib%3Ac7d85a137489d23b&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=mathlib%3AHasFDerivAt&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/2/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/2/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/14?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/14?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/17/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/17/14?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/20/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/17/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/20/14?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/11?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/20/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/11?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/15?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/15?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/health",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/search?q=derivada&lang=es&limit=12",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/path?from=wd%3AQ29175&to=wd%3AQ80091&objective=best_supported&max_hops=6&include_disputed=false&lang=es&concepts=true&drill_down=true",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ29175&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=mathlib%3AHasFDerivAt&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/locate?id=mathlib%3Ac7d85a137489d23b&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/2/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/3/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/1/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/2/0/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/4/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/3/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/2/4?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/5/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/3/2/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/8?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/8?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/7/6?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/8?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/10/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/8/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/9/5?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/4/7/7?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/13?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/18/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/5/19/12?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/25?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/26?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/39/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/38/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/37/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/27?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/40/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/24?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/36/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/23?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8765/api/map/tiles/6/41/28?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

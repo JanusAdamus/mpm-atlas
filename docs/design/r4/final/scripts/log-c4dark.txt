@@ -1,0 +1,94 @@
+{
+ "doors": {
+  "door_calculus": {
+   "strokes": [
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#8a8374",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 1 paso.",
+   "doorText": "Derivada e integral\n→"
+  },
+  "door_primes": {
+   "strokes": [
+    {
+     "dash": [],
+     "style": "#c6bea9",
+     "w": 2
+    },
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#8a8374",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 3 pasos.",
+   "doorText": "Primos y criptografía\n→"
+  },
+  "door_pythagoras": {
+   "strokes": [
+    {
+     "dash": [],
+     "style": "#c6bea9",
+     "w": 2
+    },
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#8a8374",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 3 pasos.",
+   "doorText": "De Pitágoras a la trigonometría\n→"
+  }
+ },
+ "phone": {
+  "tools": {
+   "x": 12,
+   "y": 79,
+   "w": 366,
+   "h": 94,
+   "right": 378
+  },
+  "canvas": {
+   "x": 0,
+   "y": 701,
+   "w": 390,
+   "h": 354,
+   "right": 390
+  },
+  "legendOpen": false,
+  "legend": {
+   "x": 8,
+   "y": 997,
+   "w": 59,
+   "h": 50,
+   "right": 67
+  },
+  "smallTargets": [
+   {
+    "t": "EN",
+    "h": 44,
+    "w": 38
+   }
+  ],
+  "innerW": 390,
+  "innerH": 844,
+  "overflow": {
+   "page": 0,
+   "sr-only": 176
+  }
+ },
+ "legend": "Leyenda\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n◷\nHistórica\n▨\nDesconocida\n\nLos puntos son de un solo color; la forma dice qué es: ◎ concepto, ◯ región, ● otra idea."
+}

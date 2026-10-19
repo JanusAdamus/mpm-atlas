@@ -1,0 +1,154 @@
+[
+  {
+    "rep": 1,
+    "n": "texto-movil",
+    "boxes": [
+      {
+        "class": "with-text",
+        "rect": {
+          "x": 0,
+          "y": 114,
+          "width": 390,
+          "height": 730,
+          "top": 114,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        },
+        "display": "grid",
+        "overflow": "auto",
+        "position": "static"
+      },
+      {
+        "class": "textpane",
+        "rect": {
+          "x": 0,
+          "y": 492.46875,
+          "width": 390,
+          "height": 15580.140625,
+          "top": 492.46875,
+          "right": 390,
+          "bottom": 16072.609375,
+          "left": 0
+        },
+        "display": "block",
+        "overflow": "visible",
+        "position": "relative"
+      },
+      {
+        "class": "map-wrap",
+        "rect": {
+          "x": 0,
+          "y": 114,
+          "width": 390,
+          "height": 354.46875,
+          "top": 114,
+          "right": 390,
+          "bottom": 468.46875,
+          "left": 0
+        },
+        "display": "block",
+        "overflow": "visible",
+        "position": "relative"
+      },
+      {
+        "class": "side",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "display": "none",
+        "overflow": "visible",
+        "position": "relative"
+      }
+    ],
+    "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nCapa\nCapa: Estructura\nCapa: Demostración\nCapa: Aprendizaje\nCapa: Aplicación\nCapa: Historia\nCapa: Bibliografía\nRuta\nMapa\nEN\n☾ Oscuro\nVista textual\nREGIONES VISIBLES (0)\nCONCEPTOS VISIBLES (339)\nnúmero entero positivo · Miembros: 27 Desplegar sus declaraciones en el mapa\nnúmero compuesto · Miembros: 8 Desplegar sus declaraciones en el mapa\nfórmula · Miembros: 150 Desplegar sus declaraciones en el mapa\nnúmero impar · Miembros: 1 Desplegar sus declaraciones en el mapa\nnúmero par · Miembros: 8 Desplegar sus declaraciones en el mapa\nteoría de grafos · Miembros: 6 Desplegar sus declaraciones en el mapa\nnúmero primo · Miembros: 13 Desplegar sus declaraciones en el mapa\nteoría de categorías · Miembros: 66 Desplegar sus declaraciones en el mapa\nhipótesis · Miembros: 10 Desplegar sus declaraciones en el mapa\nmoneda · Miembros: 1 Desplegar sus declaraciones en el mapa\nfunción · Miembros: 220 Desplegar sus declaraciones en el m"
+  },
+  {
+    "rep": 1,
+    "n": "ingles-ficha",
+    "text": "Saltar al mapa / Skip to map\nAtlas of mathematical connections\nBuscar\n12 resultados\nLayer\nLayer: Structure\nLayer: Proof\nLayer: Learning\nLayer: Application\nLayer: History\nLayer: Bibliography\nPath\nCompare regions\nText view\nES\n☾ Dark\n← Back\n+\n−\n⤢\n320,214 nodes\n✕\n\nAREA\n\nderivative\n\nwd:Q29175\n\nShow on map\nFocus region\nPath from here\nPath to here\n\nGroups 1,752 declarations as their primary concept. View concept\n\nINTUITION\n\ninstantaneous rate of change (mathematics)\n\nFORMULATION\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nAlso known as: dee y over dee x (en), derivative (function) (en), derivative of y with respect to x (en), differentiation (en), dy/dx (en), gradient of the tangent to the curve (en), instantaneous rate of change (en), the derivative of y with respect to x (en), función derivada (es)\n\nExternal identifiers (7)\nESTABLISHED CONNECTIONS\nis part of area 19 · 19 extracted\nappears in 2 · 2 extracted\n→\nWikipedia (es): Derivada\n○ extracted\nsrc:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257\n→\nWikipedia (en): Derivative\n○ extracted\nsrc:wikipedia-en · https://en.wikipedia.org/w/index.php?title=Derivative&oldid=1379862247\ninfluenced 1 · 1 extracted\n→\narithmetic derivative\n○ extracted\nsrc:wikidata · https://www.wikidata.org/wiki/Q3013123#P737\nCANDIDATES (MODEL PROPOSED, NOT REVIEWED)\n\nA candidate is not a proven or reviewed relation: it is never used as a conclusion.\n\nis part of area 1 · 1 model proposed\n←\nMathlib/Analysis/Calculus/Deriv\n◌ model proposed\nHeuristic score, not calibrated: 1.00\nCandidate proposed by name/docstring matching; needs review.\nsrc:atlas-resolve · candidate mathlib-dir:Mathlib/Analysis/Calculus/Deriv -> wd:Q29175\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0 · vresolve/2\nDerived proposals; scores are heuristic and uncalibrated\nWikidata license: CC0-1.0 · vWDQS live, wd-map/2\nStructured data under CC0 1.0; property mapping in atlas/ingest/wikidata.py\nWikipedia (en) license: CC-BY-SA-4.0 · vlive API, revision per page in provenance\nText by Wikipedia contributors under CC BY-SA 4.0. Reuse requires attribution (article title, revision URL, contributors via page history) and share-alike.\nWikipedia (es) license: CC-BY-SA-4.0 · vlive API, revision per page in provenance\nText by Wikipedia contributors under CC BY-SA 4.0. Reuse requires attribution (article title, revision URL, contributors via page history) and share-alike."
+  },
+  {
+    "rep": 2,
+    "n": "texto-movil",
+    "boxes": [
+      {
+        "class": "with-text",
+        "rect": {
+          "x": 0,
+          "y": 114,
+          "width": 390,
+          "height": 730,
+          "top": 114,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        },
+        "display": "grid",
+        "overflow": "auto",
+        "position": "static"
+      },
+      {
+        "class": "textpane",
+        "rect": {
+          "x": 0,
+          "y": 492.46875,
+          "width": 390,
+          "height": 15580.140625,
+          "top": 492.46875,
+          "right": 390,
+          "bottom": 16072.609375,
+          "left": 0
+        },
+        "display": "block",
+        "overflow": "visible",
+        "position": "relative"
+      },
+      {
+        "class": "map-wrap",
+        "rect": {
+          "x": 0,
+          "y": 114,
+          "width": 390,
+          "height": 354.46875,
+          "top": 114,
+          "right": 390,
+          "bottom": 468.46875,
+          "left": 0
+        },
+        "display": "block",
+        "overflow": "visible",
+        "position": "relative"
+      },
+      {
+        "class": "side",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "display": "none",
+        "overflow": "visible",
+        "position": "relative"
+      }
+    ],
+    "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nCapa\nCapa: Estructura\nCapa: Demostración\nCapa: Aprendizaje\nCapa: Aplicación\nCapa: Historia\nCapa: Bibliografía\nRuta\nMapa\nEN\n☾ Oscuro\nVista textual\nREGIONES VISIBLES (0)\nCONCEPTOS VISIBLES (339)\nnúmero entero positivo · Miembros: 27 Desplegar sus declaraciones en el mapa\nnúmero compuesto · Miembros: 8 Desplegar sus declaraciones en el mapa\nfórmula · Miembros: 150 Desplegar sus declaraciones en el mapa\nnúmero impar · Miembros: 1 Desplegar sus declaraciones en el mapa\nnúmero par · Miembros: 8 Desplegar sus declaraciones en el mapa\nteoría de grafos · Miembros: 6 Desplegar sus declaraciones en el mapa\nnúmero primo · Miembros: 13 Desplegar sus declaraciones en el mapa\nteoría de categorías · Miembros: 66 Desplegar sus declaraciones en el mapa\nhipótesis · Miembros: 10 Desplegar sus declaraciones en el mapa\nmoneda · Miembros: 1 Desplegar sus declaraciones en el mapa\nfunción · Miembros: 220 Desplegar sus declaraciones en el m"
+  },
+  {
+    "rep": 2,
+    "n": "ingles-ficha",
+    "text": "Saltar al mapa / Skip to map\nAtlas of mathematical connections\nBuscar\n12 resultados\nLayer\nLayer: Structure\nLayer: Proof\nLayer: Learning\nLayer: Application\nLayer: History\nLayer: Bibliography\nPath\nCompare regions\nText view\nES\n☾ Dark\n← Back\n+\n−\n⤢\n320,214 nodes\n✕\n\nAREA\n\nderivative\n\nwd:Q29175\n\nShow on map\nFocus region\nPath from here\nPath to here\n\nGroups 1,752 declarations as their primary concept. View concept\n\nINTUITION\n\ninstantaneous rate of change (mathematics)\n\nFORMULATION\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nAlso known as: dee y over dee x (en), derivative (function) (en), derivative of y with respect to x (en), differentiation (en), dy/dx (en), gradient of the tangent to the curve (en), instantaneous rate of change (en), the derivative of y with respect to x (en), función derivada (es)\n\nExternal identifiers (7)\nESTABLISHED CONNECTIONS\nis part of area 19 · 19 extracted\nappears in 2 · 2 extracted\n→\nWikipedia (es): Derivada\n○ extracted\nsrc:wikipedia-es · https://es.wikipedia.org/w/index.php?title=Derivada&oldid=175700257\n→\nWikipedia (en): Derivative\n○ extracted\nsrc:wikipedia-en · https://en.wikipedia.org/w/index.php?title=Derivative&oldid=1379862247\ninfluenced 1 · 1 extracted\n→\narithmetic derivative\n○ extracted\nsrc:wikidata · https://www.wikidata.org/wiki/Q3013123#P737\nCANDIDATES (MODEL PROPOSED, NOT REVIEWED)\n\nA candidate is not a proven or reviewed relation: it is never used as a conclusion.\n\nis part of area 1 · 1 model proposed\n←\nMathlib/Analysis/Calculus/Deriv\n◌ model proposed\nHeuristic score, not calibrated: 1.00\nCandidate proposed by name/docstring matching; needs review.\nsrc:atlas-resolve · candidate mathlib-dir:Mathlib/Analysis/Calculus/Deriv -> wd:Q29175\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0 · vresolve/2\nDerived proposals; scores are heuristic and uncalibrated\nWikidata license: CC0-1.0 · vWDQS live, wd-map/2\nStructured data under CC0 1.0; property mapping in atlas/ingest/wikidata.py\nWikipedia (en) license: CC-BY-SA-4.0 · vlive API, revision per page in provenance\nText by Wikipedia contributors under CC BY-SA 4.0. Reuse requires attribution (article title, revision URL, contributors via page history) and share-alike.\nWikipedia (es) license: CC-BY-SA-4.0 · vlive API, revision per page in provenance\nText by Wikipedia contributors under CC BY-SA 4.0. Reuse requires attribution (article title, revision URL, contributors via page history) and share-alike."
+  }
+]

@@ -1,0 +1,154 @@
+{
+ "light-1440": {
+  "loadMs": 4332,
+  "labels": 30,
+  "overlaps": [],
+  "labelTexts": [
+   "derivada",
+   "cono",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "polinomio",
+   "altura",
+   "álgebra",
+   "retículo",
+   "orden total",
+   "topología",
+   "álgebra de Boole",
+   "número entero positivo",
+   "fórmula",
+   "número impar",
+   "número par",
+   "hipótesis",
+   "ecuación",
+   "invariante",
+   "curva",
+   "graph property",
+   "distribución de probabilidad",
+   "grupo",
+   "espacio topológico",
+   "medida",
+   "polígono",
+   "forma",
+   "elemento",
+   "sucesión entera",
+   "número real"
+  ],
+  "fonts": [
+   "600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|all-small-caps",
+   "14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|normal"
+  ],
+  "jargon": [],
+  "overflow": {
+   "page": 0,
+   "sr-only": 176
+  },
+  "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nExplorar\nTécnico\nCapa\nRuta\nComparar regiones\nVer índice de conceptos\nEN\n☾ Oscuro\n← Atrás\n+\n−\n⤢\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n⧗\nHistórica\n▨\nDesconocida\n¿Qué idea quieres entender?\n\nBusca una idea o empieza con un ejemplo.\n\n¿Qué idea quieres entender?\nEmpieza con un ejemplo\n\nAbre una ruta paso a paso y lleva el mapa a esa región.\n\nDerivada e integral\n→\nPrimos y criptografía\n→\nDe Pitágoras a la trigonometría\n→",
+  "errors": []
+ },
+ "light-390": {
+  "loadMs": 4100,
+  "labels": 10,
+  "overlaps": [],
+  "labelTexts": [
+   "derivada",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "álgebra",
+   "retículo",
+   "álgebra de Boole",
+   "teoría de categorías",
+   "forma cuadrática",
+   "grupo topológico"
+  ],
+  "fonts": [
+   "600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|all-small-caps"
+  ],
+  "jargon": [],
+  "overflow": {
+   "page": 0,
+   "sr-only": 176,
+   "tools": 77
+  },
+  "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nExplorar\nTécnico\nCapa\nRuta\nVer índice de conceptos\nEN\n☾ Oscuro\n+\n−\n⤢\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n⧗\nHistórica\n▨\nDesconocida\n¿Qué idea quieres entender?\n\nBusca una idea o empieza con un ejemplo.\n\n¿Qué idea quieres entender?\nEmpieza con un ejemplo\n\nAbre una ruta paso a paso y lleva el mapa a esa región.\n\nDerivada e integral\n→\nPrimos y criptografía\n→\nDe Pitágoras a la trigonometría\n→",
+  "errors": []
+ },
+ "dark-1440": {
+  "loadMs": 4317,
+  "labels": 30,
+  "overlaps": [],
+  "labelTexts": [
+   "derivada",
+   "cono",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "polinomio",
+   "altura",
+   "álgebra",
+   "retículo",
+   "orden total",
+   "topología",
+   "álgebra de Boole",
+   "número entero positivo",
+   "fórmula",
+   "número impar",
+   "número par",
+   "hipótesis",
+   "ecuación",
+   "invariante",
+   "curva",
+   "graph property",
+   "distribución de probabilidad",
+   "grupo",
+   "espacio topológico",
+   "medida",
+   "polígono",
+   "forma",
+   "elemento",
+   "sucesión entera",
+   "número real"
+  ],
+  "fonts": [
+   "600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|all-small-caps",
+   "14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|normal"
+  ],
+  "jargon": [],
+  "overflow": {
+   "page": 0,
+   "sr-only": 176
+  },
+  "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nExplorar\nTécnico\nCapa\nRuta\nComparar regiones\nVer índice de conceptos\nEN\n☀ Claro\n← Atrás\n+\n−\n⤢\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n⧗\nHistórica\n▨\nDesconocida\n¿Qué idea quieres entender?\n\nBusca una idea o empieza con un ejemplo.\n\n¿Qué idea quieres entender?\nEmpieza con un ejemplo\n\nAbre una ruta paso a paso y lleva el mapa a esa región.\n\nDerivada e integral\n→\nPrimos y criptografía\n→\nDe Pitágoras a la trigonometría\n→",
+  "errors": []
+ },
+ "dark-390": {
+  "loadMs": 4099,
+  "labels": 10,
+  "overlaps": [],
+  "labelTexts": [
+   "derivada",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "álgebra",
+   "retículo",
+   "álgebra de Boole",
+   "teoría de categorías",
+   "forma cuadrática",
+   "grupo topológico"
+  ],
+  "fonts": [
+   "600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif|all-small-caps"
+  ],
+  "jargon": [],
+  "overflow": {
+   "page": 0,
+   "sr-only": 176,
+   "tools": 70
+  },
+  "text": "Saltar al mapa / Skip to map\nAtlas de las conexiones matemáticas\nBuscar\nExplorar\nTécnico\nCapa\nRuta\nVer índice de conceptos\nEN\n☀ Claro\n+\n−\n⤢\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n⧗\nHistórica\n▨\nDesconocida\n¿Qué idea quieres entender?\n\nBusca una idea o empieza con un ejemplo.\n\n¿Qué idea quieres entender?\nEmpieza con un ejemplo\n\nAbre una ruta paso a paso y lleva el mapa a esa región.\n\nDerivada e integral\n→\nPrimos y criptografía\n→\nDe Pitágoras a la trigonometría\n→",
+  "errors": []
+ }
+}

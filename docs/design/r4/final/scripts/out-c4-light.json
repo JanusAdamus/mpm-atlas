@@ -1,0 +1,327 @@
+{
+ "theme": "light",
+ "doors": {
+  "door_calculus": {
+   "doorText": "Derivada e integral\n→",
+   "strokes": [
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#857e70",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 1 paso.",
+   "seals": [
+    "Candidata"
+   ],
+   "mapLabels": [
+    "__unknown__",
+    "derivada",
+    "integración",
+    "conjunto convexo",
+    "serie hipergeométrica",
+    "ecuación funcional",
+    "álgebra elemental",
+    "análisis complejo",
+    "factorización de enteros",
+    "teoría de los sistemas dinámicos",
+    "ecuación diofántica",
+    "número",
+    "revista científica",
+    "razón",
+    "fractal",
+    "función trigonométrica",
+    "parámetro",
+    "sistema dinámico",
+    "función meromorfa",
+    "sistema de numeración",
+    "gráfica de una función",
+    "función elemental",
+    "palíndromo",
+    "constante",
+    "función analítica",
+    "rompecabezas",
+    "función holomorfa",
+    "función completa",
+    "función trascendente",
+    "forma modular",
+    "espacio euclídeo",
+    "inducción matemática",
+    "regla mnemotécnica",
+    "raíz de una función",
+    "número p-ádico",
+    "función hiperbólica inversa",
+    "función constante",
+    "rompecabezas matemático",
+    "función L de Dirichlet",
+    "Teorema de imposibilidad",
+    "distancia a vuelo de pájaro",
+    "polinomio de Legendre",
+    "interior",
+    "función par",
+    "multiplicación de vectores",
+    "Hipótesis de Riemann",
+    "teorema de Kolmogórov-Arnold-Moser",
+    "analogía",
+    "serie convergente",
+    "conjetura de Collatz",
+    "teorema de Rouché–Frobenius",
+    "chaotic system",
+    "función de densidad de probabilid…",
+    "Divergencia de Kullback-Leibler",
+    "polinomi de Hermite",
+    "símbolo de Legendre",
+    "serie divergente",
+    "suma de Minkowski",
+    "curva",
+    "ecuación de Fisher"
+   ],
+   "errors": []
+  },
+  "door_primes": {
+   "doorText": "Primos y criptografía\n→",
+   "strokes": [
+    {
+     "dash": [],
+     "style": "#48443b",
+     "w": 2
+    },
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#857e70",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 3 pasos.",
+   "seals": [
+    "Documentada"
+   ],
+   "mapLabels": [
+    "número primo",
+    "Artículo de Wikipedia: Número pri…",
+    "Artículo de Wikipedia: Criptograf…",
+    "criptografía",
+    "derivada",
+    "cono",
+    "función continua",
+    "sucesión",
+    "matriz",
+    "polinomio",
+    "altura",
+    "álgebra",
+    "retículo",
+    "orden total",
+    "topología",
+    "álgebra de Boole",
+    "número entero positivo",
+    "fórmula",
+    "hipótesis",
+    "moneda",
+    "función",
+    "conjunto",
+    "ecuación",
+    "invariante",
+    "curva",
+    "distribución de probabilidad",
+    "grupo",
+    "espacio topológico",
+    "medida",
+    "polígono",
+    "forma",
+    "cuadrado perfecto",
+    "elemento",
+    "sucesión entera"
+   ],
+   "errors": []
+  },
+  "door_pythagoras": {
+   "doorText": "De Pitágoras a la trigonometría\n→",
+   "strokes": [
+    {
+     "dash": [],
+     "style": "#48443b",
+     "w": 2
+    },
+    {
+     "dash": [
+      1.2,
+      1.8
+     ],
+     "style": "#857e70",
+     "w": 2
+    }
+   ],
+   "routeReady": "Ruta lista: 3 pasos.",
+   "seals": [
+    "Documentada"
+   ],
+   "mapLabels": [
+    "teorema de Pitágoras",
+    "Artículo de Wikipedia (en inglés)…",
+    "trigonometría",
+    "derivada",
+    "cono",
+    "función continua",
+    "sucesión",
+    "matriz",
+    "polinomio",
+    "altura",
+    "álgebra",
+    "retículo",
+    "orden total",
+    "topología",
+    "álgebra de Boole",
+    "número entero positivo",
+    "fórmula",
+    "número impar",
+    "hipótesis",
+    "función",
+    "conjunto",
+    "desigualdad matemática",
+    "invariante",
+    "curva",
+    "graph property",
+    "distribución de probabilidad",
+    "grupo",
+    "espacio topológico",
+    "medida",
+    "polígono",
+    "forma",
+    "cuadrado perfecto",
+    "elemento"
+   ],
+   "errors": []
+  }
+ },
+ "fichas": {
+  "pitagoras": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nprincipio matemático\n\nFÓRMULA (WIKIDATA)\n\n𝑐\n2\n=\n𝑎\n2\n+\n𝑏\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn las matemáticas, el teorema de Pitágoras es una relación en geometría euclidiana entre los tres lados de un triángulo rectángulo. Afirma que el área del cuadrado cuyo lado es la hipotenusa (el lado opuesto al ángulo recto) es igual a la suma de las áreas de los cuadrados cuyos lados son los catetos (los otros dos lados que no son la hipotenusa).\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nRelaciones en conflicto\n\nLa fuente registra esta relación en los dos sentidos; está pendiente de revisión.\n\nSegún Wikidata, teorema de Pitágoras generaliza quinto postulado de Euclides.\n—\nDocumentada\n! En conflicto\nSegún Wikidata, teorema de Pitágoras es un caso particular de quin",
+   "dupRows": [],
+   "nLinkRows": 8,
+   "quinto": [
+    "quinto postulado de Euclides.",
+    "quinto postulado de Euclides."
+   ],
+   "ludolph": [],
+   "established": false,
+   "errors": []
+  },
+  "pi": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconstante matemática\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEl número π (pi) es la relación entre la longitud de una circunferencia y su diámetro en geometría euclidiana. Es un número irracional y una de las constantes matemáticas más importantes. Se emplea frecuentemente en matemáticas, física e ingeniería.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nEs un caso particular de 3\nSegún Wikidata, pi es un caso particular de constante matemática.\n—\nDocumentada\nSegún Wikidata, pi es un caso particular de número trascendente.\n—\nDocumentada\nS",
+   "dupRows": [],
+   "nLinkRows": 6,
+   "quinto": [],
+   "ludolph": [
+    "Según Wikidata, pi lleva el nombre de Ludolph van Ceulen."
+   ],
+   "established": false,
+   "errors": []
+  },
+  "primo": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nnúmero natural mayor que 1 y que solo tiene dos divisores enteros\n\nFÓRMULA (WIKIDATA)\n\n𝑝\n:\n𝜏\n(\n𝑝\n)\n=\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemáticas, un número primo es un número natural mayor a 1 que tiene únicamente dos divisores positivos distintos: él mismo y el 1. Por el contrario, los números compuestos son los números naturales que tienen algún divisor natural aparte de sí mismos y del 1, y, por lo tanto, pueden factorizarse. El número 1, por convenio, no se considera ni primo ni compuesto.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 197\n\nEstas son las primeras 200 conexiones.\n\nCargar más conexiones",
+   "dupRows": [
+    [
+     "",
+     197
+    ]
+   ],
+   "nLinkRows": 197,
+   "quinto": [],
+   "ludolph": [],
+   "established": false,
+   "errors": []
+  },
+  "derivada": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo infinitesimal\n\nFÓRMULA (WIKIDATA)\n\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn cálculo diferencial y análisis matemático, la derivada de una función es la razón de cambio instantánea con la que varía el valor de dicha función matemática, según se modifique el valor de su variable independiente.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 16\nSe trata en 2\nSegún Wikipedia (es), derivada se trata en Artículo de Wikipedia: Derivada.\n—\nDocumentada\nSegún Wikipedia (en), derivada se trata en Artículo de Wikipedia (en ing",
+   "dupRows": [
+    [
+     "",
+     16
+    ]
+   ],
+   "nLinkRows": 20,
+   "quinto": [],
+   "ludolph": [],
+   "established": false,
+   "errors": []
+  },
+  "matriz": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconjunto bidimensional de números ordenados en filas y columnas\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemática, una matriz es un conjunto bidimensional de números. Dado que puede definirse tanto la suma como el producto de matrices, en mayor generalidad se dice que son elementos de un anillo. Una matriz se representa por medio de una letra mayúscula y sus elementos con la misma letra en minúscula con un doble subíndice donde el primero indica la fila y el segundo la columna a la que pertenece.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 58\nForma parte de 2\nSegún Wikidata, matriz forma parte de teoría de Matrices.\n—\nDocumentada\n2 registros en las fuentes\nSegún Wikidata, matriz forma parte de álgebra lineal.\n—\nDocu",
+   "dupRows": [
+    [
+     "",
+     58
+    ]
+   ],
+   "nLinkRows": 62,
+   "quinto": [],
+   "ludolph": [],
+   "established": false,
+   "errors": []
+  },
+  "integral": {
+   "what": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nLa integración es un concepto fundamental del cálculo y del análisis matemático. Básicamente, una integral es una generalización de la suma de infinitos sumandos, infinitesimalmente pequeños: una suma continua. La integral es la operación inversa al diferencial de una función. El cálculo integral, encuadrado en el cálculo infinitesimal, es una rama de las matemáticas en el proceso de integración o antiderivación.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0",
+   "linksHead": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nGeneraliza 29\nSe trata en 2\nSegún Wikipedia (es), integración se trata en Artículo de Wikipedia: Integración.\n—\nDocumentada\nSegún Wikipedia (en), integración se trata en Artículo de Wikip",
+   "dupRows": [
+    [
+     "",
+     29
+    ]
+   ],
+   "nLinkRows": 34,
+   "quinto": [],
+   "ludolph": [],
+   "established": false,
+   "errors": []
+  }
+ },
+ "phone": {
+  "tools": {
+   "x": 12,
+   "y": 79,
+   "w": 366,
+   "h": 94,
+   "right": 378
+  },
+  "canvas": {
+   "x": 0,
+   "y": 701,
+   "w": 390,
+   "h": 354,
+   "right": 390
+  },
+  "legendOpen": false,
+  "legend": {
+   "x": 8,
+   "y": 997,
+   "w": 59,
+   "h": 50,
+   "right": 67
+  },
+  "smallTargets": [
+   {
+    "t": "EN",
+    "h": 44,
+    "w": 38
+   }
+  ],
+  "innerW": 390,
+  "innerH": 844,
+  "overflow": {
+   "page": 0,
+   "sr-only": 176
+  }
+ },
+ "legend": "Leyenda\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n◷\nHistórica\n▨\nDesconocida\n\nLos puntos son de un solo color; la forma dice qué es: ◎ concepto, ◯ región, ● otra idea."
+}

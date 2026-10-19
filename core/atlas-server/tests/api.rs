@@ -168,6 +168,21 @@ async fn entity_detail_resolves_merges_and_labels_participants() {
     let (_, v) = json(&app, "/api/entity/s:pythagoras?limit=1").await;
     assert_eq!(v["claims"].as_array().unwrap().len(), 1);
     assert_eq!(v["truncated"], true);
+    // Paging: the pages of `limit=1` are the claims of one full answer, in order, without repeats.
+    let (_, all) = json(&app, "/api/entity/s:pythagoras").await;
+    let all: Vec<Value> = all["claims"].as_array().unwrap().iter().map(|c| c["id"].clone()).collect();
+    assert!(all.len() >= 2, "{all:?}");
+    let mut paged = Vec::new();
+    for offset in 0..all.len() {
+        let (s, v) = json(&app, &format!("/api/entity/s:pythagoras?limit=1&offset={offset}")).await;
+        assert_eq!(s, StatusCode::OK, "{v}");
+        assert_eq!(v["offset"], offset);
+        assert_eq!(v["truncated"], offset + 1 < all.len(), "{v}");
+        paged.extend(v["claims"].as_array().unwrap().iter().map(|c| c["id"].clone()));
+    }
+    assert_eq!(paged, all);
+    let (s, _) = json(&app, "/api/entity/s:pythagoras?offset=99999999").await;
+    assert_eq!(s, StatusCode::BAD_REQUEST);
 }
 
 #[tokio::test]

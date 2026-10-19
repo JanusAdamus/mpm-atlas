@@ -436,3 +436,121 @@ Resultado global: 4 reglas en FAIL (asignación, auditoría, cobertura, teselas)
 Escritura: 28 afirmaciones nuevas, 5,546 reemplazadas (`superseded`, con historial; la explicación de la señal `resolve` nombra `resolve/4`), 2 secundarias retiradas, 11 retractadas por obsoletas.  Los veredictos de §14.6 no cambian: asignación en test y cobertura siguen en FAIL.
 
 `python -m atlas build --skip-ingest --no-cargo --json` (`build-logs/build9.json`, 82.27 s): snapshot `a2e90658285b7ca5…` (406,008,820 bytes; 5,714 conceptos; 75,069 aristas conceptuales; 237,640 declaraciones con concepto), 320,214 nodos.  `python -m pytest -q`: 167 passed.  Una sola compilación: la reproducibilidad de este hash no se repitió, y AtlasBench no se volvió a correr.
+
+## 15. Ronda 4 · diseño para una persona común (2026-10-19, integrador)
+
+Plan: `docs/plans/2026-10-19-ronda-4-diseno.md`.  Las reglas se juzgan tal como quedaron fijadas; no se movió ninguna vara.  Cifras del integrador con su comando o archivo; las de los trabajadores van marcadas «(trabajador)».  El integrador no construyó nada de esta ronda.  No se hizo commit.
+
+### 15.1 Qué se hizo
+
+- **Guía de diseño.**  `docs/design/r4/guia-skills-diseno.md`: lectura de 38 skills de diseño de siete repositorios de terceros (Emil Kowalski, Jakub Krehel, ConardLi, elayadesign, codeswithroh, Owl-Listener, MengTo), destilada en un sistema para el «atlas impreso».  Se leyeron como referencia: no se ejecutó ningún script, no se instaló nada y no se siguió ninguna instrucción de esas skills.  Alertas de seguridad (guía §4): tastemaker pide escribir memoria en `~/.tastemaker/`, fuera del repo, trae 23 scripts Python que salen a la red (openverse, iconify, pixabay con clave), manda instalar CLIs que configuran el agente y servidores MCP con token (`npx @21st-dev/cli init`, `--github-api-key`) y copiar la skill a `~/.claude/skills/`; garden-skills manda descargar video con `yt-dlp`, cargar scripts de CDN sin integridad e instalar skills con `npx` o `curl`, se activa sola en Codex y dice derivar del prompt de sistema de otro producto; MengTo trae un `CLAUDE.md` ajeno que pide commit y `cd` a otra máquina, y una skill que borra temporales y hace commit con un índice alterno; otras piden agregar servidores MCP de navegador, buscar en la web o meter controles de demostración en el producto.  No se encontró texto dirigido a cambiar las instrucciones del agente.
+- **Sistema de diseño** (trabajador): `web/src/tokens.ts` (paleta de papel y tinta en claro y oscuro, pares de contraste comprobados en `tokens.test.ts`, estados de evidencia con trazo, glifo y nombre), `web/src/style.css`, `web/src/panels.css`, `web/src/theme.ts`.  Capturas en `docs/design/r4/sistema/`.
+- **Mapa** (trabajador): `web/src/map/` (presupuesto de etiquetas por zoom y rejilla de colisión, foco con velo por tinta, tramado de «desconocida», leyenda siempre visible, trazos por estado de evidencia).  Capturas en `docs/design/r4/mapa/`.
+- **Recorridos y paneles** (trabajador): inicio con la pregunta, el buscador y tres puertas; modos Explorar y Técnico; ficha de cinco preguntas en orden fijo con estado vacío honesto; ruta paso a paso con teclado; vista de texto.  Capturas en `docs/design/r4/paneles/`.
+- **Servidor** (trabajador): `core/atlas-server/src/concept.rs` y `entity.rs` (datos que piden las fichas y las puertas) y `tests/cli.rs`, que ahora lanza `atlas.exe` con `CREATE_NO_WINDOW` para no abrir una ventana por corrida en Windows.
+- **Dos vueltas de arreglos.**  Crítica externa `docs/design/r4/critica/2026-10-19-critica-r4.md` (hallazgos C4-01 a C4-19; 6 de 10 reglas en PASS); segunda vuelta de mapa y paneles con capturas antes y después en `docs/design/r4/fix2/` (trabajador).
+- **Integrador:** pruebas, AtlasBench, teselas y segunda pasada de los scripts del crítico, copiados a `docs/design/r4/final/scripts/` con la salida apuntando a `final/`.  Añadió `c4.mjs`, que mide los hallazgos que los scripts del crítico no miden, y `veil.mjs`, que mide la tinta de las etiquetas bajo el velo.  No hizo falta ningún arreglo de integración.
+
+### 15.2 Build y pruebas
+
+Logs en `data/cache/reports/build-logs/`.
+
+| Comando | Resultado |
+|---|---|
+| `python -m pytest -q` (`pytest-r4.txt`) | 167 passed en 24.67 s |
+| `cargo test --workspace --release` en `core/` con `CARGO_TARGET_DIR=C:/Users/AdrianGonzalez/.cargo-target/atlas` (`cargo-test-r4.txt`) | 147 passed, 0 failed, 41.2 s.  Solo se recompiló la prueba `cli`: `compile_stats_layout_and_error_envelope` (`tests/cli.rs`, con `CREATE_NO_WINDOW`) compila y pasa en 6.22 s.  Cargo no tuvo que reemplazar `atlas.exe`, así que el servidor del usuario no se detuvo |
+| `cargo clippy --workspace --all-targets --release` (`clippy-r4.txt`) | 0 advertencias |
+| `npm test` en `web/` (`npm-test-r4.txt`) | 86 de 86 |
+| `npx tsc --noEmit` (`tsc-r4.txt`) | sin errores |
+| `npm run build` (`vite-build-r4.txt`) | verde en 636 ms; JS principal 151.34 kB (50.19 kB gzip), CSS 33.38 kB; KaTeX aparte (`math-*.js`, 259.05 kB) |
+
+### 15.3 AtlasBench y teselas
+
+AtlasBench v3 test (HTTP), salida completa en `bench/runs/2026-10-19-r4-test-integrated/` (`report.md`, `report.json`, `route_outputs.jsonl`; reporte de las 17:51:04).  No se volvió a correr.  Snapshot `a2e90658285b7ca5…`, el mismo de §14.8.
+
+| Métrica (HTTP, test) | Ronda 3 (§14.3) | Ronda 4 |
+|---|---|---|
+| acierto en respondibles | 260/261 | 260/261 = 0.996 [0.979, 0.999] |
+| abstención en respondibles | 1/261 | 1/261 |
+| adversariales sin conclusión prohibida | 188/188 | 188/188 [0.980, 1.000] |
+| estructura inválida | 0 de 264 | 0 de 264 |
+| retrieval en/text nDCG@10 | 0.816 | 0.815 [0.783, 0.847] (n = 420) |
+| retrieval es/text nDCG@10 | 0.889 | 0.889 [0.832, 0.937] (n = 41) |
+| `http.tiles.load_c1` p95 | 22.61 ms [19.71, 27.45] | **9.44 ms [9.12, 9.86]** |
+| `http.search.load_c1` p95 / c8 | 28.04 / 92.82 ms | 19.24 / 90.38 ms |
+| `http.path` p95 | 9.93 ms | 9.42 ms |
+
+Veredictos del bench sin cambio: retrieval PROVISIONAL-FAIL, routes.structure PASS, routes.adversarial PROVISIONAL-PASS, provenance PASS y las 5 latencias PASS; el control `routes.null_model_adversarial` sigue en 5/188.  La ronda no tocó búsqueda ni recorridos, así que era lo esperado.  La bajada de las latencias frente a la ronda 3 no se atribuye a nada: la máquina estaba menos cargada y no se midieron las dos a la vez.
+
+Teselas: `python web/bench/tiles_mix.py --http http://127.0.0.1:8765 --runs 3` (`tiles-mix-r4.txt`; 85 teselas, 500 peticiones por corrida, 0 errores): p95 12.28 [10.52, 15.61], 11.17 [10.10, 15.70] y 17.54 [14.98, 22.72] ms; p50 6.50, 6.33 y 6.31 ms.  z0 pesa 131,032 bytes en JSON y 37,880 en binario; la más pesada es 3/3/3 con 269,943 bytes.  Tope de la regla: 1.1 × 22.61 = 24.87 ms.  El crítico, con la instancia compartida, midió 14.17, 25.62, 10.57, 11.26, 12.93 y 17.40 ms (`docs/design/r4/critica/tiles_mix*.json`); la corrida de 25.62 ms fue la única por encima del tope.
+
+### 15.4 Segunda vuelta de las reglas del plan
+
+Edge sin interfaz con puppeteer-core contra `http://127.0.0.1:8765` (`web/dist` construido con el mismo código que se probó), 1440×900 y 390×844, claro y oscuro, Explorar y Técnico, con y sin `prefers-reduced-motion`.  Scripts y salidas en `docs/design/r4/final/scripts/` (`run.sh`, `run2.sh` y las corridas sueltas de `contrast`, `kb`, `mobile`, `mobiledoor`, `expand`, `unknown`, `unknown-deep`, `c4` y `veil`).  Capturas en `docs/design/r4/final/`: `p1-*` y `p2-*` repiten las del crítico y `c4-*` son del integrador.
+
+| Regla | Veredicto | Evidencia |
+|---|---|---|
+| Jerga en modo Explorar | **PASS** | 0 apariciones de la lista del plan en el inicio (4 configuraciones × 2 pasadas, `out-home-1/2.json`), en la búsqueda y la ficha de los 7 conceptos (ES 1440 claro ×2, ES 390, ES oscuro, EN; `out-concepts-*.json`), en las fichas con todos los grupos desplegados (`log-expand.txt`, 0 en 7 de 7), en las tres puertas paso a paso (6 corridas, `out-doors-*.json`) y en la vista de texto (`out-kb-*.json`).  En Técnico aparecen 3 en la ficha de integración, como corresponde |
+| Etiquetas | **PASS** | Vista inicial: 30 etiquetas a 1440 y 10 a 390, claro y oscuro, dos pasadas (`out-home-*.json`).  0 solapamientos de cajas en 10 pasos de zoom, con teselas z3 a z7 pedidas, en claro, oscuro, Técnico, movimiento reducido y 390 (`out-map-*.json`).  Reserva: las etiquetas todavía caen sobre puntos (C4-14) |
+| Contraste | **PASS** | HTML: 0 nodos de texto bajo 4.5:1 en 48 vistas; mínimos 6.06 (claro) y 5.77 (oscuro) en Explorar, 5.08 y 4.95 en Técnico (`log-contrast.txt`, `out-contrast-1.json`).  Mapa: las etiquetas bajo el velo se pintan ahora con `text-muted`, medido en las llamadas a `fillText`: #655f53 sobre #f4f1e8 = 5.61:1 y #9c9483 sobre #14130f = 6.18:1, en las fichas de Pitágoras e integración y en la ruta derivada → integración (`out-veil.json`).  Puntos velados (`text-veiled`): 3.78:1 y 3.95:1 (≥ 3:1), calculado sobre los tokens como pide la regla y comprobado en `web/src/tokens.test.ts`; no se volvió a medir en píxeles |
+| Color | **PASS** | Cada salto se dibuja con su estado, medido en las llamadas a `stroke()` del lienzo (`out-c4-light.json`; en oscuro, el mismo patrón con #8a8374 y #c6bea9 en `out-c4-dark.json`): la puerta de cálculo sale con el punteado gris de «Candidata» (`[1.2, 1.8]`, #857e70) y las de primos y Pitágoras con el continuo de «Documentada» (#48443b) y el punteado de candidata.  Ya no aparece el discontinuo de «Histórica».  La leyenda explica los puntos («Los puntos son de un solo color; la forma dice qué es: ◎ concepto, ◯ región, ● otra idea»).  El dorado solo marca «Validada».  Reserva: «Candidata» y «Retirada» comparten punteado y se distinguen por el glifo (? y ×) |
+| Ficha | **PASS** | Las cinco secciones `section.q5` (what, why, before, links, check), en ese orden, en los 7 conceptos, ES y EN, 1440 y 390, claro y oscuro, dos pasadas (`log-c*.txt`).  Las vacías dicen «Todavía no hay una explicación revisada», «…prerrequisitos registrados…» o «…ejercicios revisados…» |
+| Puertas guiadas | **PASS** | Solo con teclado (Tab hasta la puerta, Enter, → por los pasos): las tres abren la tarjeta en 172–222 ms, el foco cae en el stepper, paradas 1–2 y 1–4 en el mapa, 1 de 1 y 3 de 3 pasos con →, a 1440 y 390, claro y oscuro, con y sin movimiento reducido (`log-d*.txt`).  En móvil la ruta queda dibujada en el lienzo (`log-md-*.txt`).  Reserva: mientras se lee la tarjeta en móvil, el mapa queda fuera de la pantalla, arriba (y = −376 a −532) |
+| Desconocido | **PASS** | Relleno y tramado a 45° con «Desconocida» en la leyenda; 24 regiones a medio paso de zoom en el borde izquierdo, en oscuro (`log-u2.txt`).  Ninguna se rotula «aislada».  Reserva: 0 en la vista inicial (`out-unknown-light.json`, C4-15) |
+| Movimiento | **PASS** | Ninguna transición CSS pasa de 300 ms en las 48 vistas (`log-contrast.txt`, `durs>300 0`).  Vuelos: un solo episodio de 300–483 ms al abrir puertas y rutas por formulario o URL (`log-d*.txt`, `log-m*.txt`), bajo 900 ms.  Con movimiento reducido, primos y Pitágoras cambian en 1 cuadro; derivada → integración, en 3–7 cuadros durante 73–177 ms, que coincide con la llegada de teselas y no con un vuelo |
+| Prueba de usuario común | **FAIL** | Las 5 tareas se completan, pero las cinco preguntas se responden en **0 de 7** conceptos, y el plan pide ≥ 5 (§15.5).  Juicio de agente, provisional |
+| Sin regresión | **PASS** | pytest 167, cargo test 147/0, clippy 0, npm test 86/86, tsc y build en verde (§15.2).  0 errores de consola, `pageerror` ni HTTP ≥ 400 en todas las corridas.  0 px de desbordamiento de página a 390×844, y la barra `.tools` cabe (366 de 366 px, en dos filas; `out-kb-1-light.json`).  Ningún `p=` en el texto guardado.  p95 de teselas en AtlasBench 9.44 ms, con tope de 24.87 |
+
+Resultado: 9 reglas en PASS (cuatro con reserva) y 1 en FAIL (usuario común).  Frente a la crítica pasan ahora contraste, color y sin regresión.
+
+### 15.5 Prueba de usuario común (segunda vuelta)
+
+El integrador no construyó nada de la ronda, pero ya había leído la crítica, así que no es «un agente nuevo» en sentido estricto.  La repetición usa los mismos scripts y pasos que el crítico.
+
+1. **Entender el sitio.**  Sí: pregunta, buscador y tres puertas, y la leyenda ya explica los puntos.  Siguen los dos buscadores.
+2. **Buscar los 7 términos.**  El primer resultado es el esperado en 6 de 7, en ES y EN, entre 120 y 194 ms.  «Bayes» sigue dando primero «Thomas Bayes | PERSONA» y en tercer lugar «Bayes estimator», en inglés (C4-19).
+3. **Cinco preguntas.**  «Qué es» se responde en los 7; número primo ya trae el extracto de Wikipedia («únicamente dos divisores positivos distintos: él mismo y el 1»).  «Por qué importa», «Qué saber antes» y «Cómo compruebo que lo entendí» siguen vacíos en los 7, con el aviso honesto.  Bayes muestra «Usos registrados en las fuentes: … se usa en estadística bayesiana», que no explica para qué.  «Con qué se conecta» agrupa ahora por destino («3 registros en las fuentes») y marca el conflicto de Pitágoras.  Con las cinco respondidas: 0 de 7.
+4. **Rutas y puertas.**  Cálculo: un paso «Candidata» con trazo punteado.  Primos y Pitágoras: tres pasos por artículos, con las paradas rotuladas «Artículo de Wikipedia: …» en el mapa y en la tarjeta, y el aviso «solo exploración, no autoriza conclusión».  La puerta «Primos y criptografía» sigue sin decir por qué los primos importan en criptografía.
+5. **Teclado, vista de texto e idioma.**  12 Tab hasta el lienzo.  `T` lleva el foco a «Índice de conceptos», el siguiente Tab llega a «derivada», y al volver el foco regresa al lienzo.  Pasar de EN a ES ya no deja «5 results».  Para llegar a la primera puerta hacen falta 18 Tab en escritorio y 16 en móvil (antes 16 y 14).
+
+### 15.6 Hallazgos de la crítica
+
+| id | Estado | Evidencia |
+|---|---|---|
+| C4-01 ruta candidata con trazo continuo | **Arreglado** | punteado `[1.2, 1.8]` #857e70 (`out-c4-light.json`, `c4-door_calculus-1440-light.png`) |
+| C4-02 rutas documentales con trazo «Histórica» | **Arreglado** | continuo de «Documentada» y punteado de candidata, sin discontinuo largo (`c4-door_primes-1440-light.png`) |
+| C4-03 Pitágoras generaliza el quinto postulado y es caso particular de él | **Arreglado** | bloque «Relaciones en conflicto: la fuente registra esta relación en los dos sentidos», con sello «! En conflicto» (`c4-ficha-pitagoras-1440-light.png`).  La causa en el registro (P7719 en los dos ítems) sigue ahí |
+| C4-04 definición de número primo | **En parte** | ya hay extracto de Wikipedia correcto; la descripción de Wikidata («solo tiene dos divisores enteros») y la fórmula `τ(p) = 2` siguen a la vista en Explorar |
+| C4-05 puertas documentales | **En parte** | paradas rotuladas «Artículo de Wikipedia: …»; la puerta no lleva subtítulo y el recorrido no dice qué tienen que ver primos y criptografía |
+| C4-06 «pi lleva el nombre de Ludolph van Ceulen» | **Sigue** | ahora dice «Según Wikidata, pi lleva el nombre de Ludolph van Ceulen»: queda atribuido a la fuente, pero sigue insinuando que π se llama así por él |
+| C4-07 «Conexiones establecidas» | **Arreglado** | «Conexiones registradas.  Todas vienen de las fuentes citadas y nadie las ha revisado todavía» |
+| C4-08 etiquetas veladas a 3.78:1 | **Arreglado** | 5.61:1 y 6.18:1 (`out-veil.json`) |
+| C4-09 «5 results» al volver a ES | **Arreglado** | `englishLeftAfterBack: []`; la región viva dice «4 resultados» (`out-kb-1-light.json`) |
+| C4-10 «1 pasos» | **Arreglado** | «Ruta lista: 1 paso.» |
+| C4-11 la barra de herramientas desborda a 390 | **Arreglado** | `.tools` mide 366 de 366 px, en dos filas, con el tema a la vista (`c4-movil-inicio-light.png`).  El marcador del buscador de la cabecera sigue cortado en «( /» |
+| C4-12 mapa móvil fuera de la vista inicial | **Sigue** | el lienzo empieza en y = 701 y se ven 143 de sus 354 px, menos que antes (207) (`out-mobile-*.json`) |
+| C4-13 rótulos en inglés y no matemáticos | **Sigue** | «graph property» y «moneda» en la vista inicial; «revista científica», «objeto físico» y «meridiano» en la ruta (`out-map-*.json`, `out-c4-light.json`) |
+| C4-14 etiquetas sobre puntos y paradas encimadas | **Sigue** | etiquetas sobre puntos en la ficha de Pitágoras; en móvil las paradas 1 y 4 de la ruta de Pitágoras siguen a 5 px (306,220 y 301,217; `log-md-door_pythagoras.txt`) |
+| C4-15 «desconocida» invisible en el panorama | **Sigue** | 0 regiones en la vista inicial; aparecen a medio paso de zoom (`log-u2.txt`).  Necesita el servidor (§15.7) |
+| C4-16 glifo ⧗ ilegible | **Arreglado** | «◷ Histórica» en la leyenda |
+| C4-17 conexiones repetidas | **Arreglado** | agrupadas por destino, con «3 registros en las fuentes» (matriz, derivada) |
+| C4-18 Tab hasta la primera puerta; objetivos táctiles | **En parte** | en móvil los botones miden 44 px de alto (EN, 38 px de ancho); hasta la primera puerta hacen falta 18 Tab en escritorio y 16 en móvil, dos más que antes |
+| C4-19 «Bayes» da la persona primero | **Sigue** | «Thomas Bayes \| PERSONA», «teorema de Bayes», «Bayes estimator» (`log-c*.txt`).  Necesita el ranking del servidor |
+
+Arreglados 10 (C4-01, 02, 03, 07, 08, 09, 10, 11, 16 y 17), en parte 3 (C4-04, 05 y 18) y siguen 6 (C4-06, 12, 13, 14, 15 y 19).  De los siete de prioridad A (lo que puede enseñar algo falso), C4-06 sigue abierto y C4-04 y C4-05 lo están en parte.
+
+### 15.7 Pendiente para el servidor
+
+1. Filtro `relation` en `/api/entity`, para que la ficha pida las relaciones de cada pregunta en vez de recibir 200 conexiones y repartirlas.
+2. Teselas: idioma por etiqueta, para no rotular en inglés en Explorar (C4-13), y «sin relaciones extraídas» por elemento, calculado desde el registro y no desde lo que cupo en la tesela (C4-15).
+3. Búsqueda de «Bayes»: en Explorar, personas y fragmentos de fuente debajo de conceptos y enunciados (C4-19).
+
+### 15.8 Lo que pasa a la ronda 5
+
+La prueba de usuario común no pasa sin contenido revisado.  Tres de las cinco preguntas («Por qué importa», «Qué saber antes» y «Cómo compruebo que lo entendí») están vacías en los 7 conceptos, y eso no lo resuelve ningún diseño.  La ronda 5 (`docs/plans/2026-10-19-ronda-5-calidad-y-fuentes.md`) tiene que traer la capa editorial (`editorially_reviewed`, que según el plan de esta ronda es trabajo de Adrián), prerrequisitos registrados y ejercicios, y cerrar los hallazgos de contenido abiertos: la descripción de Wikidata de número primo (C4-04), por qué primos y criptografía (C4-05), el epónimo de π (C4-06) y la lista sin orden de «número primo incluye 197».
+
+### 15.9 Notas
+
+- Servidor del usuario: `atlas.exe` (PID 22172) siguió arriba toda la verificación, porque cargo no tuvo que reemplazar el binario.  `/api/health` = 200 al terminar.
+- En la raíz del repo hay seis archivos sueltos, `log-d2.txt`, `log-d390.txt`, `log-d390d.txt`, `log-ddark.txt`, `log-drm.txt` y `log-drm2.txt` (10:52): son corridas fallidas del crítico (`Cannot find module 'C:\MPM\doors.mjs'`, lanzadas desde la carpeta equivocada).  No sirven y se pueden borrar.
+- No se hizo commit.  Sin versionar: `docs/design/r4/`, `docs/design/codex/r4/`, `bench/runs/2026-10-19-r4-test-integrated/`, los planes de las rondas 4 y 5 y los archivos nuevos de `web/src/` y `web/bench/`.

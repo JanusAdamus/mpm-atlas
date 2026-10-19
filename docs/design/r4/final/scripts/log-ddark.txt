@@ -1,0 +1,3 @@
+door_calculus tabs 18 card true 204 ms motion [{"startMs":14,"durMs":439,"frames":21}] focus stepper candidate inView true steps 1 stops 1,2 jargon 0 ov {"page":0,"sr-only":106} err 0
+door_primes tabs 19 card true 180 ms motion [{"startMs":12,"durMs":363,"frames":19}] focus stepper inView true steps 3 stops 1,2,3,4 jargon 0 ov {"page":0,"sr-only":112} err 0
+door_pythagoras tabs 20 card true 187 ms motion [{"startMs":18,"durMs":332,"frames":20}] focus stepper inView true steps 3 stops 1,2,3,4 jargon 0 ov {"page":0,"sr-only":112} err 0

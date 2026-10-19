@@ -39,11 +39,12 @@ test("the map draws the declaration route first, then the concept route, then th
   const withPath = response({ abstained: false, paths: [{ ...path, steps: [stop("x", "y")] as never[] }], concepts: level(false) });
   assert.deepEqual(mapRoute(withPath).steps.map((s) => s.to), ["y"]);
   const conceptOnly = mapRoute(response({ concepts: level(false) }));
-  assert.deepEqual([conceptOnly.steps.map((s) => s.to), conceptOnly.dashed], [["wd:B"], false]);
+  assert.deepEqual([conceptOnly.steps.map((s) => s.to), conceptOnly.historical], [["wd:B"], false]);
   const historical = { ...level(false), route: { ...level(false).route!, conclusion: conclusion("historical") } };
-  assert.equal(mapRoute(response({ concepts: historical })).dashed, true, "a historical concept route is dashed");
+  assert.equal(mapRoute(response({ concepts: historical })).historical, true, "a historical concept route is historical");
   const explore = mapRoute(response({ concepts: level(true), exploration: { ...path, steps: [stop("p", "q")] as never[] } }));
-  assert.deepEqual([explore.steps.map((s) => s.to), explore.dashed], [["q"], true]);
+  // C4-02: an exploration is drawn hop by hop with its evidence, never with the historical stroke.
+  assert.deepEqual([explore.steps.map((s) => s.to), explore.historical], [["q"], false]);
   assert.deepEqual(mapRoute(response({})).steps, [], "nothing to draw: the map is cleared");
 });
 

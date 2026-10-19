@@ -1,0 +1,53 @@
+light-1440 labels 30 overlaps 0 jargon 0 overflow {"page":0,"sr-only":176} errors 0
+light-390 labels 10 overlaps 0 jargon 0 overflow {"page":0,"sr-only":176} errors 0
+dark-1440 labels 30 overlaps 0 jargon 0 overflow {"page":0,"sr-only":176} errors 0
+dark-390 labels 10 overlaps 0 jargon 0 overflow {"page":0,"sr-only":176} errors 0
+Saltar al mapa / Skip to map
+Saltar a las puertas
+Atlas de las conexiones matemáticas
+Buscar
+Explorar
+Técnico
+Capa
+Ruta
+Comparar regiones
+Ver índice de conceptos
+EN
+☾ Oscuro
+← Atrás
++
+−
+⤢
+Leyenda
+✓
+Validada
+—
+Documentada
+?
+Candidata
+!
+En disputa
+×
+Retirada
+◷
+Histórica
+▨
+Desconocida
+
+Los puntos son de un solo color; la forma dice qué es: ◎ concepto, ◯ región, ● otra idea.
+
+¿Qué idea quieres entender?
+
+Busca una idea o empieza con un ejemplo.
+
+¿Qué idea quieres entender?
+Empieza con un ejemplo
+
+Abre una ruta paso a paso y lleva el mapa a esa región.
+
+Derivada e integral
+→
+Primos y criptografía
+→
+De Pitágoras a la trigonometría
+→

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { displayLabel, placeLabels, type LabelCandidate } from "./labels.ts";
+import { displayLabel, hasMapLabel, placeLabels, type LabelCandidate } from "./labels.ts";
 import { coveringTiles } from "./camera.ts";
 
 const cand = (key: number, x: number, y: number, w = 60): LabelCandidate => ({ key, x, y, r: 3, w, h: 12 });
@@ -46,4 +46,12 @@ test("map labels drop source prefixes but keep the rest", () => {
   assert.equal(displayLabel("Mathlib/Algebra/Lie"), "Algebra/Lie");
   assert.equal(displayLabel("teorema de Pitágoras"), "teorema de Pitágoras");
   assert.equal(displayLabel("Wikipedia"), "Wikipedia");
+});
+
+test("documents are unnamed points on the map; concepts, regions and declarations keep their names (R4 point 8)", () => {
+  assert.equal(hasMapLabel("entity", "source_fragment"), false, "Wikipedia (en): Kilogram");
+  assert.equal(hasMapLabel("entity", "publication"), false);
+  for (const ty of ["concept", "definition", "statement", "area", "person"]) assert.equal(hasMapLabel("entity", ty), true, ty);
+  assert.equal(hasMapLabel("concept", "concept"), true);
+  assert.equal(hasMapLabel("cluster", ""), true);
 });

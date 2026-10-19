@@ -1,0 +1,166 @@
+{
+ "pass": "2",
+ "w": 1440,
+ "theme": "light",
+ "reduce": true,
+ "doors": {
+  "door_calculus": {
+   "tabsToDoor": 16,
+   "found": true,
+   "cardShown": true,
+   "tCardMs": 206,
+   "motion": {
+    "frames": 34,
+    "episodes": [
+     {
+      "startMs": 16,
+      "durMs": 101,
+      "frames": 4
+     }
+    ]
+   },
+   "focus": {
+    "cls": "stepper candidate",
+    "tag": "SECTION",
+    "text": "CONEXIÓN CANDIDATA ENTRE ESTOS CONCEPTOS; PENDIENTE DE REVISIÓN\n1\nderivada\n2\nint"
+   },
+   "card": {
+    "top": 524,
+    "bottom": 722,
+    "inView": true
+   },
+   "hash": "#path=1&from=wd%3AQ29175%7Cderivada&to=wd%3AQ80091%7Cintegraci%C3%B3n&obj=best_supported&hops=6",
+   "stopNums": [
+    "1",
+    "2"
+   ],
+   "steps": [
+    {
+     "pos": "PASO 1 DE 1",
+     "sentence": "Algunos resultados sobre «integración» usan resultados sobre «derivada».",
+     "seal": "?\nCandidata",
+     "may": "Qué permite concluir: Un resultado usa el otro. Por sí solo no basta para demostrarlo: puede necesitar otras premisas.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "all": "PASO 1 DE 1\n\n1\nderivada\n→\n2\nintegración\n\nAlgunos resultados sobre «integración» usan resultados sobre «derivada».\n\n?\nCandidata\n\nQué permite concluir: Un resultado usa el otro. Por sí solo no basta para demostrarlo: puede necesitar otras premisas.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "focusBeforeArrow": "stepper candidate"
+    }
+   ],
+   "jargon": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 112
+   },
+   "result": "← Volver al panorama\nRuta\nDesde\nDesde\nHasta\nHasta\n⇅\nObjetivo\nMejor respaldada\nMenos conceptos nuevos\nMás intuitiva\nMás formal\nMás diversa\nMás corta\nBuscar ruta\n\nRuta lista: 1 pasos.\n\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN CANDIDATA ENTRE ESTOS CONCEPTOS; PENDIENTE DE REVISIÓN\n1\nderivada\n2\nintegración\n\nPASO 1 DE 1\n\n1\nderivada\n→\n2\nintegración\n\nAlgunos resultados sobre «integración» usan resultados sobre «derivada».\n\n?\nCandidata\n\nQué permite concluir: Un resultado usa el otro. Por sí solo no basta para demostrarlo: puede necesitar otras premisas.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.\n\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN CANDIDATA ENTRE ESTOS CONCEPTOS; PENDIENTE DE REVISIÓN\n1\nderivada\n2\nintegración\n\nPASO 1 DE 1\n\n1\nderivada\n→\n2\nintegración\n\nAlgunos resultados sobre «integración» usan resultados sobre «derivada».\n\n?\nCandidata\n\nQué permite concluir: Un resultado usa el otro. Por sí solo no basta para demostrarlo: puede necesitar otras premisas.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.\n\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.",
+   "errors": []
+  },
+  "door_primes": {
+   "tabsToDoor": 17,
+   "found": true,
+   "cardShown": true,
+   "tCardMs": 187,
+   "motion": {
+    "frames": 1,
+    "episodes": []
+   },
+   "focus": {
+    "cls": "stepper",
+    "tag": "SECTION",
+    "text": "CONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nnúmero primo\n2"
+   },
+   "card": {
+    "top": 556,
+    "bottom": 735,
+    "inView": true
+   },
+   "hash": "#path=1&from=wd%3AQ49008%7Cn%C3%BAmero+primo&to=wd%3AQ8789%7Ccriptograf%C3%ADa&obj=best_supported&hops=6",
+   "stopNums": [],
+   "steps": [
+    {
+     "pos": "PASO 1 DE 3",
+     "sentence": "«número primo» se trata en «Wikipedia (es): Número primo».",
+     "seal": "—\nDocumentada",
+     "may": "Qué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "all": "PASO 1 DE 3\n\n1\nnúmero primo\n→\n2\nWikipedia (es): Número primo\n\n«número primo» se trata en «Wikipedia (es): Número primo».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "focusBeforeArrow": "stepper"
+    },
+    {
+     "pos": "PASO 2 DE 3",
+     "sentence": "«Wikipedia (es): Número primo» cita a «Wikipedia (es): Criptografía».",
+     "seal": "?\nCandidata",
+     "may": "Qué permite concluir: Solo que un texto cita al otro. No implica dependencia ni acuerdo.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "all": "PASO 2 DE 3\n\n2\nWikipedia (es): Número primo\n→\n3\nWikipedia (es): Criptografía\n\n«Wikipedia (es): Número primo» cita a «Wikipedia (es): Criptografía».\n\n?\nCandidata\n\nQué permite concluir: Solo que un texto cita al otro. No implica dependencia ni acuerdo.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "focusBeforeArrow": "stepper"
+    },
+    {
+     "pos": "PASO 3 DE 3",
+     "sentence": "«Wikipedia (es): Criptografía» trata de «criptografía».",
+     "seal": "—\nDocumentada",
+     "may": "Qué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "all": "PASO 3 DE 3\n\n3\nWikipedia (es): Criptografía\n→\n4\ncriptografía\n\n«Wikipedia (es): Criptografía» trata de «criptografía».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "focusBeforeArrow": "stepper"
+    }
+   ],
+   "jargon": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 112
+   },
+   "result": "← Volver al panorama\nRuta\nDesde\nDesde\nHasta\nHasta\n⇅\nObjetivo\nMejor respaldada\nMenos conceptos nuevos\nMás intuitiva\nMás formal\nMás diversa\nMás corta\nBuscar ruta\n\nRuta lista: 3 pasos.\n\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nnúmero primo\n2\nWikipedia (es): Número primo\n3\nWikipedia (es): Criptografía\n4\ncriptografía\n\nPASO 1 DE 3\n\n1\nnúmero primo\n→\n2\nWikipedia (es): Número primo\n\n«número primo» se trata en «Wikipedia (es): Número primo».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nnúmero primo\n2\nWikipedia (es): Número primo\n3\nWikipedia (es): Criptografía\n4\ncriptografía\n\nPASO 1 DE 3\n\n1\nnúmero primo\n→\n2\nWikipedia (es): Número primo\n\n«número primo» se trata en «Wikipedia (es): Número primo».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.",
+   "errors": []
+  },
+  "door_pythagoras": {
+   "tabsToDoor": 18,
+   "found": true,
+   "cardShown": true,
+   "tCardMs": 192,
+   "motion": {
+    "frames": 1,
+    "episodes": []
+   },
+   "focus": {
+    "cls": "stepper",
+    "tag": "SECTION",
+    "text": "CONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nteorema de Pit"
+   },
+   "card": {
+    "top": 588,
+    "bottom": 791,
+    "inView": true
+   },
+   "hash": "#path=1&from=wd%3AQ11518%7Cteorema+de+Pit%C3%A1goras&to=wd%3AQ8084%7Ctrigonometr%C3%ADa&obj=best_supported&hops=6",
+   "stopNums": [],
+   "steps": [
+    {
+     "pos": "PASO 1 DE 3",
+     "sentence": "«teorema de Pitágoras» se trata en «Wikipedia (en): Pythagorean theorem».",
+     "seal": "—\nDocumentada",
+     "may": "Qué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "all": "PASO 1 DE 3\n\n1\nteorema de Pitágoras\n→\n2\nWikipedia (en): Pythagorean theorem\n\n«teorema de Pitágoras» se trata en «Wikipedia (en): Pythagorean theorem».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "focusBeforeArrow": "stepper"
+    },
+    {
+     "pos": "PASO 2 DE 3",
+     "sentence": "«Wikipedia (en): Pythagorean theorem» es citado por «Wikipedia (en): Trigonometry».",
+     "seal": "?\nCandidata",
+     "may": "Qué permite concluir: Solo que un texto cita al otro. No implica dependencia ni acuerdo.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "all": "PASO 2 DE 3\n\n2\nWikipedia (en): Pythagorean theorem\n→\n3\nWikipedia (en): Trigonometry\n\n«Wikipedia (en): Pythagorean theorem» es citado por «Wikipedia (en): Trigonometry».\n\n?\nCandidata\n\nQué permite concluir: Solo que un texto cita al otro. No implica dependencia ni acuerdo.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.",
+     "focusBeforeArrow": "stepper"
+    },
+    {
+     "pos": "PASO 3 DE 3",
+     "sentence": "«Wikipedia (en): Trigonometry» trata de «trigonometría».",
+     "seal": "—\nDocumentada",
+     "may": "Qué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "all": "PASO 3 DE 3\n\n3\nWikipedia (en): Trigonometry\n→\n4\ntrigonometría\n\n«Wikipedia (en): Trigonometry» trata de «trigonometría».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.",
+     "focusBeforeArrow": "stepper"
+    }
+   ],
+   "jargon": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 112
+   },
+   "result": "← Volver al panorama\nRuta\nDesde\nDesde\nHasta\nHasta\n⇅\nObjetivo\nMejor respaldada\nMenos conceptos nuevos\nMás intuitiva\nMás formal\nMás diversa\nMás corta\nBuscar ruta\n\nRuta lista: 3 pasos.\n\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nteorema de Pitágoras\n2\nWikipedia (en): Pythagorean theorem\n3\nWikipedia (en): Trigonometry\n4\ntrigonometría\n\nPASO 1 DE 3\n\n1\nteorema de Pitágoras\n→\n2\nWikipedia (en): Pythagorean theorem\n\n«teorema de Pitágoras» se trata en «Wikipedia (en): Pythagorean theorem».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.\nTodavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN MÁS CERCANA (SOLO EXPLORACIÓN, NO AUTORIZA CONCLUSIÓN)\n1\nteorema de Pitágoras\n2\nWikipedia (en): Pythagorean theorem\n3\nWikipedia (en): Trigonometry\n4\ntrigonometría\n\nPASO 1 DE 3\n\n1\nteorema de Pitágoras\n→\n2\nWikipedia (en): Pythagorean theorem\n\n«teorema de Pitágoras» se trata en «Wikipedia (en): Pythagorean theorem».\n\n—\nDocumentada\n\nQué permite concluir: Dónde se trata la idea. No certifica que sea correcta.\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.",
+   "errors": []
+  }
+ }
+}

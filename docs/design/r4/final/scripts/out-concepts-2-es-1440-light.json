@@ -1,0 +1,306 @@
+{
+ "pass": "2",
+ "lang": "es",
+ "w": 1440,
+ "theme": "light",
+ "terms": {
+  "integral": {
+   "tFirstResultMs": 194,
+   "results": [
+    "integración | CONCEPTO",
+    "Integral multiplicativa | CONCEPTO",
+    "integral de volumen | CONCEPTO",
+    "integral de línea | CONCEPTO",
+    "Los resultados de código matemático se ven en modo Técnico."
+   ],
+   "picked": "integración | CONCEPTO",
+   "hash": "#e=wd%3AQ80091",
+   "title": "integración",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nLa integración es un concepto fundamental del cálculo y del análisis matemático. Básicamente, una integral es una generalización de la suma de infinitos sumandos, infinitesimalmente pequeños: una suma continua. La integral es la operación inversa al diferencial de una función. El cálculo integral, encuadrado en el cálculo infinitesimal, es una rama de las matemáticas en el proceso de integración o antiderivación.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nGeneraliza 29\nSe trata en 2\nSegún Wikipedia (es), integración se trata en Artículo de Wikipedia: Integración.\n—\nDocumentada\nSegún Wikipedia (en), integración se trata en Artículo de Wikipedia (en inglés): Integral.\n—\nDocumentada\nEs un caso particular de 2\nSegún Wikidata, integración es un caso particular de aplicación lineal.\n—\nDocumentada\nSegún Wikidata, integración es un caso particular de operación unaria.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, integración forma parte de cálculo integral.\n—\nDocumentada\n2 registros en las fuentes"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nCONCEPTO\n\nintegración\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nLa integración es un concepto fundamental del cálculo y del análisis matemático. Básicamente, una integral es una generalización de la suma de infinitos sumandos, infinitesimalmente pequeños: una suma continua. La integral es la operación inversa al diferencial de una función. El cálculo integral, encuadrado en el cálculo infinitesimal, es una rama de las matemáticas en el proceso de integración o antiderivación.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nGeneraliza 29\nSe trata en 2\nSegún Wikipedia (es), integración se trata en Artículo de Wikipedia: Integración.\n—\nDocumentada\nSegún Wikipedia (en), integración se trata en Artículo de Wikipedia (en inglés): Integral.\n—\nDocumentada\nEs un caso particular de 2\nSegún Wikidata, integración es un caso particular de aplicación lineal.\n—\nDocumentada\nSegún Wikidata, integración es un caso particular de operación unaria.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, integración forma parte de cálculo integral.\n—\nDocumentada\n2 registros en las fuentes\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: integral of a function (en), integral of f(x) with respect to the variable x (en), integral of x (en), antiderivacion (es), antiderivación (es), función integral (es), integracion (es), integrada (es), integral (es)\n\nFUENTES\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  },
+  "derivada": {
+   "tFirstResultMs": 162,
+   "results": [
+    "derivada | ÁREA",
+    "unidad derivada | CONCEPTO",
+    "segunda derivada | CONCEPTO",
+    "Derivada de una función en forma paramétrica | CONCEPTO",
+    "derivada formal | CONCEPTO",
+    "derivada parcial | CONCEPTO"
+   ],
+   "picked": "derivada | ÁREA",
+   "hash": "#e=wd%3AQ29175",
+   "title": "derivada",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo infinitesimal\n\nFÓRMULA (WIKIDATA)\n\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn cálculo diferencial y análisis matemático, la derivada de una función es la razón de cambio instantánea con la que varía el valor de dicha función matemática, según se modifique el valor de su variable independiente.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 16\nSe trata en 2\nSegún Wikipedia (es), derivada se trata en Artículo de Wikipedia: Derivada.\n—\nDocumentada\nSegún Wikipedia (en), derivada se trata en Artículo de Wikipedia (en inglés): Derivative.\n—\nDocumentada\nInfluyó en 1\nSegún Wikidata, derivada influyó en Derivada aritmética.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, derivada forma parte de cálculo diferencial.\n—\nDocumentada\n3 registros en las fuentes"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nÁREA\n\nderivada\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\noperación en cálculo infinitesimal\n\nFÓRMULA (WIKIDATA)\n\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn cálculo diferencial y análisis matemático, la derivada de una función es la razón de cambio instantánea con la que varía el valor de dicha función matemática, según se modifique el valor de su variable independiente.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 16\nSe trata en 2\nSegún Wikipedia (es), derivada se trata en Artículo de Wikipedia: Derivada.\n—\nDocumentada\nSegún Wikipedia (en), derivada se trata en Artículo de Wikipedia (en inglés): Derivative.\n—\nDocumentada\nInfluyó en 1\nSegún Wikidata, derivada influyó en Derivada aritmética.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, derivada forma parte de cálculo diferencial.\n—\nDocumentada\n3 registros en las fuentes\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: dee y over dee x (en), derivative (function) (en), derivative of y with respect to x (en), differentiation (en), dy/dx (en), gradient of the tangent to the curve (en), instantaneous rate of change (en), the derivative of y with respect to x (en), función derivada (es)\n\nFUENTES\nMPM atlas entity resolver (heuristic candidates) licencia: CC0-1.0\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  },
+  "teorema de Pitágoras": {
+   "tFirstResultMs": 178,
+   "results": [
+    "teorema de Pitágoras | ENUNCIADO",
+    "Wikipedia (es): Teorema de Pitágoras | FRAGMENTO DE FUENTE",
+    "Wikipedia (es): Teorema de Pitágoras inverso | FRAGMENTO DE FUENTE",
+    "Teorema de Pitágoras inverso | ENUNCIADO",
+    "Árbol de Pitágoras | CONCEPTO",
+    "Teorema de Carathéodory | ENUNCIADO"
+   ],
+   "picked": "teorema de Pitágoras | ENUNCIADO",
+   "hash": "#e=wd%3AQ11518",
+   "title": "teorema de Pitágoras",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nprincipio matemático\n\nFÓRMULA (WIKIDATA)\n\n𝑐\n2\n=\n𝑎\n2\n+\n𝑏\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn las matemáticas, el teorema de Pitágoras es una relación en geometría euclidiana entre los tres lados de un triángulo rectángulo. Afirma que el área del cuadrado cuyo lado es la hipotenusa (el lado opuesto al ángulo recto) es igual a la suma de las áreas de los cuadrados cuyos lados son los catetos (los otros dos lados que no son la hipotenusa).\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nRelaciones en conflicto\n\nLa fuente registra esta relación en los dos sentidos; está pendiente de revisión.\n\nSegún Wikidata, teorema de Pitágoras generaliza quinto postulado de Euclides.\n—\nDocumentada\n! En conflicto\nSegún Wikidata, teorema de Pitágoras es un caso particular de quinto postulado de Euclides.\n—\nDocumentada\n! En conflicto\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nSe trata en 2\nSegún Wikipedia (en), teorema de Pitágoras se trata en Artículo de Wikipedia (en inglés): Pythagorean theorem.\n—\nDocumentada\nSegún Wikipedia (es), teorema de Pitágoras se trata en Artículo de Wikipedia: Teorema de Pitágoras.\n—\nDocumentada\nGeneraliza 1\nSegún Wikidata, teorema de Pitágoras generaliza identidad trigonométrica pitagórica.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, teorema de Pitágoras forma parte de geometría euclíde"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nENUNCIADO\n\nteorema de Pitágoras\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nprincipio matemático\n\nFÓRMULA (WIKIDATA)\n\n𝑐\n2\n=\n𝑎\n2\n+\n𝑏\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn las matemáticas, el teorema de Pitágoras es una relación en geometría euclidiana entre los tres lados de un triángulo rectángulo. Afirma que el área del cuadrado cuyo lado es la hipotenusa (el lado opuesto al ángulo recto) es igual a la suma de las áreas de los cuadrados cuyos lados son los catetos (los otros dos lados que no son la hipotenusa).\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nRelaciones en conflicto\n\nLa fuente registra esta relación en los dos sentidos; está pendiente de revisión.\n\nSegún Wikidata, teorema de Pitágoras generaliza quinto postulado de Euclides.\n—\nDocumentada\n! En conflicto\nSegún Wikidata, teorema de Pitágoras es un caso particular de quinto postulado de Euclides.\n—\nDocumentada\n! En conflicto\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nSe trata en 2\nSegún Wikipedia (en), teorema de Pitágoras se trata en Artículo de Wikipedia (en inglés): Pythagorean theorem.\n—\nDocumentada\nSegún Wikipedia (es), teorema de Pitágoras se trata en Artículo de Wikipedia: Teorema de Pitágoras.\n—\nDocumentada\nGeneraliza 1\nSegún Wikidata, teorema de Pitágoras generaliza identidad trigonométrica pitagórica.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, teorema de Pitágoras forma parte de geometría euclídea.\n—\nDocumentada\nEs un caso particular de 1\nSegún Wikidata, teorema de Pitágoras es un caso particular de teorema del coseno.\n—\nDocumentada\nLleva el nombre de 1\nSegún Wikidata, teorema de Pitágoras lleva el nombre de Pitágoras.\n—\nDocumentada\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: Pythagoras' theorem (en), Pythagorean proposition (en), a² + b² = c² (en), a²+b²=c² (en), teorema de Pitagoras (es)\n\nFUENTES\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  },
+  "Bayes": {
+   "tFirstResultMs": 124,
+   "results": [
+    "Thomas Bayes | PERSONA",
+    "teorema de Bayes | ENUNCIADO",
+    "Bayes estimator | CONCEPTO",
+    "regla de Bayes | ENUNCIADO",
+    "Wikipedia (en): Bayes' theorem | FRAGMENTO DE FUENTE",
+    "Wikipedia (es): Teorema de Bayes | FRAGMENTO DE FUENTE"
+   ],
+   "picked": "teorema de Bayes | ENUNCIADO",
+   "hash": "#e=wd%3AQ182505",
+   "title": "teorema de Bayes",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nteorema que describe la probabilidad de un evento basado en el conocimiento previo de las condiciones que podrían estar relacionadas con el evento\n\nFÓRMULA (WIKIDATA)\n\n𝑃\n(\n𝐴\n∣\n𝐵\n)\n=\n𝑃\n(\n𝐵\n∣\n𝐴\n)\n𝑃\n(\n𝐴\n)\n𝑃\n(\n𝐵\n)\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEl teorema de Bayes, en la teoría de la probabilidad, es una proposición planteada por el matemático inglés Thomas Bayes (1702-1761) y publicada póstumamente en 1763, que expresa la probabilidad condicional de un evento aleatorio A dado B en términos de la distribución de probabilidad condicional del evento B dado A y la distribución de probabilidad marginal de solo A.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nUsos registrados en las fuentes:\n\nSegún Wikidata, teorema de Bayes se usa en estadística bayesiana.\n—\nDocumentada\nSegún Wikidata, teorema de Bayes se usa en probabilidad bayesiana.\n—\nDocumentada"
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nSe trata en 2\nSegún Wikipedia (es), teorema de Bayes se trata en Artículo de Wikipedia: Teorema de Bayes.\n—\nDocumentada\nSegún Wikipedia (en), teorema de Bayes se trata en Artículo de Wikipedia (en inglés): Bayes' theorem.\n—\nDocumentada\nSe usa en 2\nSegún Wikidata, teorema de Bayes se usa en estadística bayesiana.\n—\nDocumentada\nSegún Wikidata, teorema de Bayes se usa en probabilidad bayesiana.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, teorema de Bayes forma parte de teoría de la probabilidad.\n—\nDocumentada\nEs obra de 1\nSegún Wikidata, teorema de Bayes es obra de Thomas Bayes.\n—\nDocumentada\nLleva el nombre de 1\nSegún Wikidata, teorema de Bayes lleva el nombre de Thomas Bayes.\n—\nDocumentada"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nENUNCIADO\n\nteorema de Bayes\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nteorema que describe la probabilidad de un evento basado en el conocimiento previo de las condiciones que podrían estar relacionadas con el evento\n\nFÓRMULA (WIKIDATA)\n\n𝑃\n(\n𝐴\n∣\n𝐵\n)\n=\n𝑃\n(\n𝐵\n∣\n𝐴\n)\n𝑃\n(\n𝐴\n)\n𝑃\n(\n𝐵\n)\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEl teorema de Bayes, en la teoría de la probabilidad, es una proposición planteada por el matemático inglés Thomas Bayes (1702-1761) y publicada póstumamente en 1763, que expresa la probabilidad condicional de un evento aleatorio A dado B en términos de la distribución de probabilidad condicional del evento B dado A y la distribución de probabilidad marginal de solo A.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nUsos registrados en las fuentes:\n\nSegún Wikidata, teorema de Bayes se usa en estadística bayesiana.\n—\nDocumentada\nSegún Wikidata, teorema de Bayes se usa en probabilidad bayesiana.\n—\nDocumentada\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nSe trata en 2\nSegún Wikipedia (es), teorema de Bayes se trata en Artículo de Wikipedia: Teorema de Bayes.\n—\nDocumentada\nSegún Wikipedia (en), teorema de Bayes se trata en Artículo de Wikipedia (en inglés): Bayes' theorem.\n—\nDocumentada\nSe usa en 2\nSegún Wikidata, teorema de Bayes se usa en estadística bayesiana.\n—\nDocumentada\nSegún Wikidata, teorema de Bayes se usa en probabilidad bayesiana.\n—\nDocumentada\nForma parte de 1\nSegún Wikidata, teorema de Bayes forma parte de teoría de la probabilidad.\n—\nDocumentada\nEs obra de 1\nSegún Wikidata, teorema de Bayes es obra de Thomas Bayes.\n—\nDocumentada\nLleva el nombre de 1\nSegún Wikidata, teorema de Bayes lleva el nombre de Thomas Bayes.\n—\nDocumentada\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: Bayes theorem (en), Bayes' law (en), Bayes' rule (en), Bayesian law (en), Bayes–Price theorem (en), ley bayesiana (es), ley de Bayes (es), regla de Bayes (es), teorema de Bayes-Price (es)\n\nFUENTES\nMPM atlas entity resolver (heuristic candidates) licencia: CC0-1.0\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  },
+  "número primo": {
+   "tFirstResultMs": 151,
+   "results": [
+    "número primo | ÁREA",
+    "Número primo de Wagstaff | CONCEPTO",
+    "número primo cúbico | CONCEPTO",
+    "Número primo fuerte | CONCEPTO",
+    "Número primo equilibrado | CONCEPTO",
+    "número primo mínimo | CONCEPTO"
+   ],
+   "picked": "número primo | ÁREA",
+   "hash": "#e=wd%3AQ49008",
+   "title": "número primo",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nnúmero natural mayor que 1 y que solo tiene dos divisores enteros\n\nFÓRMULA (WIKIDATA)\n\n𝑝\n:\n𝜏\n(\n𝑝\n)\n=\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemáticas, un número primo es un número natural mayor a 1 que tiene únicamente dos divisores positivos distintos: él mismo y el 1. Por el contrario, los números compuestos son los números naturales que tienen algún divisor natural aparte de sí mismos y del 1, y, por lo tanto, pueden factorizarse. El número 1, por convenio, no se considera ni primo ni compuesto.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 197\n\nEstas son las primeras 200 conexiones.\n\nCargar más conexiones"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nÁREA\n\nnúmero primo\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nnúmero natural mayor que 1 y que solo tiene dos divisores enteros\n\nFÓRMULA (WIKIDATA)\n\n𝑝\n:\n𝜏\n(\n𝑝\n)\n=\n2\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemáticas, un número primo es un número natural mayor a 1 que tiene únicamente dos divisores positivos distintos: él mismo y el 1. Por el contrario, los números compuestos son los números naturales que tienen algún divisor natural aparte de sí mismos y del 1, y, por lo tanto, pueden factorizarse. El número 1, por convenio, no se considera ni primo ni compuesto.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 197\n\nEstas son las primeras 200 conexiones.\n\nCargar más conexiones\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: 1-almost prime (en), prime (en), numero primo (es), numeros primos (es), números primos (es), primo (es), primos (es)\n\nFUENTES\nMPM atlas entity resolver (heuristic candidates) licencia: CC0-1.0\nWikidata licencia: CC0-1.0"
+  },
+  "pi": {
+   "tFirstResultMs": 138,
+   "results": [
+    "pi | CONCEPTO",
+    "Π | CONCEPTO",
+    "Los resultados de código matemático se ven en modo Técnico."
+   ],
+   "picked": "pi | CONCEPTO",
+   "hash": "#e=wd%3AQ167",
+   "title": "pi",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconstante matemática\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEl número π (pi) es la relación entre la longitud de una circunferencia y su diámetro en geometría euclidiana. Es un número irracional y una de las constantes matemáticas más importantes. Se emplea frecuentemente en matemáticas, física e ingeniería.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nEs un caso particular de 3\nSegún Wikidata, pi es un caso particular de constante matemática.\n—\nDocumentada\nSegún Wikidata, pi es un caso particular de número trascendente.\n—\nDocumentada\nSegún Wikidata, pi es un caso particular de número real.\n—\nDocumentada\nSe trata en 2\nSegún Wikipedia (es), pi se trata en Artículo de Wikipedia: Número π.\n—\nDocumentada\nSegún Wikipedia (en), pi se trata en Artículo de Wikipedia (en inglés): Pi.\n—\nDocumentada\nLleva el nombre de 1\nSegún Wikidata, pi lleva el nombre de Ludolph van Ceulen.\n—\nDocumentada"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nCONCEPTO\n\npi\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconstante matemática\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEl número π (pi) es la relación entre la longitud de una circunferencia y su diámetro en geometría euclidiana. Es un número irracional y una de las constantes matemáticas más importantes. Se emplea frecuentemente en matemáticas, física e ingeniería.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nEs un caso particular de 3\nSegún Wikidata, pi es un caso particular de constante matemática.\n—\nDocumentada\nSegún Wikidata, pi es un caso particular de número trascendente.\n—\nDocumentada\nSegún Wikidata, pi es un caso particular de número real.\n—\nDocumentada\nSe trata en 2\nSegún Wikipedia (es), pi se trata en Artículo de Wikipedia: Número π.\n—\nDocumentada\nSegún Wikipedia (en), pi se trata en Artículo de Wikipedia (en inglés): Pi.\n—\nDocumentada\nLleva el nombre de 1\nSegún Wikidata, pi lleva el nombre de Ludolph van Ceulen.\n—\nDocumentada\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: (1/2)tau (en), 0.5tau (en), 3.14... (en), Archimedes' constant (en), pi number (en), ratio of circumference to diameter (en), tau over two (en), tau/2 (en), π (en), 3,14159265358979 (es), 3,1416 (es), 3.14159265358979 (es), 3.1416 (es), número Pi (es), razón entre circunferencia y diámetro (es), π (es)\n\nFUENTES\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  },
+  "matriz": {
+   "tFirstResultMs": 130,
+   "results": [
+    "matriz | ÁREA",
+    "matriz de rotación | CONCEPTO",
+    "matriz de confusión | CONCEPTO",
+    "matriz traspuesta | CONCEPTO",
+    "matriz identidad | CONCEPTO",
+    "matriz de autocorrelación | CONCEPTO"
+   ],
+   "picked": "matriz | ÁREA",
+   "hash": "#e=wd%3AQ44337",
+   "title": "matriz",
+   "q5": [
+    {
+     "key": "what",
+     "text": "QUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconjunto bidimensional de números ordenados en filas y columnas\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemática, una matriz es un conjunto bidimensional de números. Dado que puede definirse tanto la suma como el producto de matrices, en mayor generalidad se dice que son elementos de un anillo. Una matriz se representa por medio de una letra mayúscula y sus elementos con la misma letra en minúscula con un doble subíndice donde el primero indica la fila y el segundo la columna a la que pertenece.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "POR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada."
+    },
+    {
+     "key": "before",
+     "text": "QUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de»."
+    },
+    {
+     "key": "links",
+     "text": "CON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 58\nForma parte de 2\nSegún Wikidata, matriz forma parte de teoría de Matrices.\n—\nDocumentada\n2 registros en las fuentes\nSegún Wikidata, matriz forma parte de álgebra lineal.\n—\nDocumentada\n3 registros en las fuentes\nSe trata en 2\nSegún Wikipedia (en), matriz se trata en Artículo de Wikipedia (en inglés): Matrix (mathematics).\n—\nDocumentada\nSegún Wikipedia (es), matriz se trata en Artículo de Wikipedia: Matriz (matemática).\n—\nDocumentada"
+    },
+    {
+     "key": "check",
+     "text": "CÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 30
+   },
+   "side": "← Volver al panorama\n\nÁREA\n\nmatriz\nVer en el mapa\nEnfocar región\nRuta desde aquí\nRuta hasta aquí\nQUÉ ES\n\nTodavía no hay una explicación revisada.\n\nDESCRIPCIÓN BREVE (WIKIDATA)\n\nconjunto bidimensional de números ordenados en filas y columnas\n\nEXTRACTO DE WIKIPEDIA (ES)\n\nEn matemática, una matriz es un conjunto bidimensional de números. Dado que puede definirse tanto la suma como el producto de matrices, en mayor generalidad se dice que son elementos de un anillo. Una matriz se representa por medio de una letra mayúscula y sus elementos con la misma letra en minúscula con un doble subíndice donde el primero indica la fila y el segundo la columna a la que pertenece.\n\nLeer el artículo completo en Wikipedia · CC BY-SA 4.0\n\nPOR QUÉ IMPORTA\n\nTodavía no hay una explicación revisada.\n\nQUÉ SABER ANTES\n\nTodavía no hay prerrequisitos registrados para esta idea.\n\nAquí solo cuentan las relaciones «es prerrequisito de» y «depende lógicamente de».\n\nCON QUÉ SE CONECTA\nConexiones registradas\n\nTodas vienen de las fuentes citadas y nadie las ha revisado todavía.\n\nIncluye 58\nForma parte de 2\nSegún Wikidata, matriz forma parte de teoría de Matrices.\n—\nDocumentada\n2 registros en las fuentes\nSegún Wikidata, matriz forma parte de álgebra lineal.\n—\nDocumentada\n3 registros en las fuentes\nSe trata en 2\nSegún Wikipedia (en), matriz se trata en Artículo de Wikipedia (en inglés): Matrix (mathematics).\n—\nDocumentada\nSegún Wikipedia (es), matriz se trata en Artículo de Wikipedia: Matriz (matemática).\n—\nDocumentada\nCÓMO COMPRUEBO QUE LO ENTENDÍ\n\nTodavía no hay una explicación revisada.\n\nTodavía no hay ejercicios revisados para esta idea.\n\nHay resultados de código matemático asociados a esta idea. Ver respaldo técnico (código matemático)\n\nTambién llamado: array (en), mathematical matrix (en)\n\nFUENTES\nMPM atlas entity resolver (heuristic candidates) licencia: CC0-1.0\nWikidata licencia: CC0-1.0\nWikipedia (en) licencia: CC-BY-SA-4.0\nWikipedia (es) licencia: CC-BY-SA-4.0"
+  }
+ },
+ "errors": []
+}

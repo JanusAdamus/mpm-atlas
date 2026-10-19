@@ -1,0 +1,119 @@
+/* Round 4 panels: entry with doors, reading-mode switch, five-question record,
+   step-by-step route, seal legend and panel motion.  Only tokens from style.css. */
+
+/* ---- motion: the panel enters in 200 ms and leaves in 150 ms (a fade under reduced motion) ---- */
+@keyframes panel-out { to { opacity: 0; transform: translateX(var(--panel-shift)); } }
+@keyframes stop-in { from { opacity: 0; transform: translateY(4px); } }
+aside.side.entering { animation: panel-in var(--dur-panel-in) var(--ease-out); }
+aside.side.leaving { animation: panel-out var(--dur-panel-out) var(--ease-out) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  @keyframes panel-out { to { opacity: 0; } }
+  @keyframes stop-in { from { opacity: 0; } }
+}
+
+/* ---- header: reading mode ---- */
+.mode-switch { flex: none; display: inline-flex; border: 1px solid var(--color-border-strong); border-radius: var(--radius-control); overflow: hidden; }
+.tools .mode-switch button { border: 0; border-radius: 0; color: var(--color-text-secondary); }
+.tools .mode-switch button + button { border-left: 1px solid var(--color-border-strong); }
+.tools .mode-switch button[aria-pressed="true"] { background: var(--color-text-primary); color: var(--color-on-ink); box-shadow: none; }
+
+/* ---- side top bar ---- */
+.side-top { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0 0 var(--s3); }
+.side-top button { font-size: var(--text-caption); min-height: var(--target-min); }
+
+/* ---- entry ---- */
+.home { display: grid; gap: var(--s3); padding-top: var(--s5); }
+.home .ask { font: 500 var(--text-display)/var(--lh-display) var(--font-serif); letter-spacing: var(--tracking-display); margin: 0; padding: 0; text-wrap: balance; }
+.home .ask-lead { font: var(--text-lead)/var(--lh-lead) var(--font-serif); color: var(--color-text-secondary); margin: 0 0 var(--s2); }
+.home .searchbox { max-width: none; order: 0; flex-basis: auto; }
+.home .searchbox input { width: 100%; font-size: var(--text-body); padding: 10px 12px; min-height: var(--target-touch); }
+.home h3 { margin-top: var(--s5); }
+.home > p.muted { margin: 0; }
+ul.doors { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s2); }
+button.door {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: var(--s3); text-align: left; white-space: normal;
+  padding: var(--s3) var(--s4); min-height: var(--target-touch); font: 500 var(--text-body)/1.3 var(--font-serif); background: var(--color-bg-raised);
+}
+.door-arrow { color: var(--color-text-muted); }
+
+/* ---- the five questions ---- */
+section.q5 { margin-top: var(--s5); }
+section.q5 h4 { font-size: var(--text-caption); color: var(--color-text-secondary); margin: var(--s3) 0 var(--s1); }
+.empty-state { margin: 0 0 var(--s2); color: var(--color-text-muted); font-size: var(--text-caption); font-style: italic; }
+.sourced { margin: var(--s2) 0 var(--s3); }
+.sourced p { margin: 0 0 var(--s1); }
+.source-label { font-size: var(--text-label); text-transform: uppercase; letter-spacing: var(--tracking-label); font-weight: 600; color: var(--color-text-muted); }
+.wiki-extract p:not([class]) { font: var(--text-body)/var(--lh-body) var(--font-serif); max-width: var(--measure); text-wrap: pretty; }
+.draft-tag { font-style: italic; color: var(--color-text-muted); }
+.claim-line .verb { color: var(--color-text-secondary); }
+.claim-line.sentence { display: block; }
+.unknown-note { background: var(--pattern-unknown); color: var(--color-text-primary); }
+.conflict-block { margin: var(--s3) 0; }
+li.claim.conflict { border-left: 2px dashed var(--color-evidence-disputed); }
+
+/* ---- step-by-step route ---- */
+.stepper { margin-top: var(--s4); border: 1px solid var(--color-border); border-left: 3px solid var(--color-text-primary); border-radius: var(--radius-float); padding: var(--s3) var(--s4); background: var(--color-bg-raised); }
+.stepper.candidate { border-left: 3px dotted var(--color-candidate); }
+.stepper:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+.stepper h3 { margin-top: 0; }
+ol.stops { list-style: none; padding: 0; margin: 0 0 var(--s3); display: flex; flex-wrap: wrap; gap: var(--s1) var(--s2); }
+ol.stops li { animation: stop-in var(--dur-panel-in) var(--ease-out) both; animation-delay: min(calc(var(--i) * var(--stagger)), var(--stagger-max)); }
+button.stop-btn { display: inline-flex; align-items: center; gap: 6px; white-space: normal; text-align: left; font-size: var(--text-caption); padding: 2px 8px 2px 2px; border-radius: 999px; max-width: 100%; overflow-wrap: anywhere; }
+button.stop-btn[aria-current="step"] { border-color: var(--color-text-primary); font-weight: 600; }
+.stepper .n {
+  display: inline-block; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--color-text-primary); color: var(--color-on-ink);
+  font: 700 var(--text-label)/22px var(--font-ui); font-variant-numeric: tabular-nums; text-align: center;
+}
+.stops.dashed .n { background: var(--color-bg-surface); color: var(--color-text-primary); border: 1.5px dashed var(--color-text-primary); line-height: 19px; }
+.step-card { display: grid; gap: var(--s2); }
+.step-card p { margin: 0; }
+.step-pos { font-size: var(--text-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.step-ends { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-weight: 600; }
+.step-ends .arrow { color: var(--color-text-muted); }
+.step-sentence { font: var(--text-lead)/var(--lh-lead) var(--font-serif); text-wrap: pretty; }
+.seal { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.may { font-size: var(--text-caption); color: var(--color-text-secondary); }
+.may b { color: var(--color-text-primary); }
+.step-nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin-top: var(--s3); }
+.step-nav button { min-height: var(--target-min); }
+
+/* ---- seals and legend ---- */
+.badge .glyph { min-width: 0.9em; }
+.badge.seal-historical { color: var(--color-evidence-historical); border-style: dashed; }
+.stroke-validated { stroke: var(--color-evidence-validated); }
+.stroke-documented { stroke: var(--color-evidence-extracted); }
+.stroke-candidate { stroke: var(--color-evidence-candidate); }
+.stroke-disputed { stroke: var(--color-evidence-disputed); }
+.stroke-retired { stroke: var(--color-evidence-retired); }
+.stroke-historical { stroke: var(--color-evidence-historical); }
+.swatch-unknown { display: inline-block; width: 28px; height: 10px; border: 1px solid var(--color-border-strong); flex: none; }
+ul.seal-legend { list-style: none; margin: 0; padding: 0; }
+ul.seal-legend li { display: flex; align-items: center; gap: var(--s1); font-size: var(--text-caption); padding: 2px 0; border: 0; }
+ul.seal-legend .glyph { width: 1.1em; text-align: center; color: var(--color-text-secondary); }
+.map-legend {
+  position: absolute; left: var(--s3); bottom: var(--s3); z-index: 2; max-width: calc(100% - 2 * var(--s3));
+  background: var(--color-halo); border: 1px solid var(--color-border); border-radius: var(--radius-control); padding: var(--s1) var(--s2);
+}
+.map-legend ul.seal-legend { display: flex; flex-wrap: wrap; gap: 0 var(--s3); }
+.map-legend summary { font-size: var(--text-label); font-weight: 600; color: var(--color-text-secondary); cursor: pointer; }
+.map-legend[open] summary { margin-bottom: 2px; }
+.map-legend ul.seal-legend li { font-size: var(--text-label); padding: 1px 0; }
+.map-legend .legend-dots { margin: 2px 0 0; font-size: var(--text-label); color: var(--color-text-secondary); }
+.map-legend ~ .status { bottom: auto; top: var(--s3); }
+main.with-side .map-wrap .help { display: none; }
+
+/* ---- entry on the phone: the question first, then the map ---- */
+@media (max-width: 760px) {
+  main.home.with-side { grid-template-rows: auto 42vh; }
+  main.home aside.side { grid-row: 1; border-top: 0; border-bottom: 1px solid var(--color-border); }
+  main.home .map-wrap { grid-row: 2; }
+  main.home.with-text { grid-template-rows: auto auto 42vh; }
+  main.home.with-text .textpane { grid-row: 1; }
+  main.home.with-text aside.side { grid-row: 2; }
+  main.home.with-text .map-wrap { grid-row: 3; }
+  .home { padding-top: var(--s2); }
+  .map-legend { left: var(--s2); bottom: var(--s2); padding: 2px 6px; }
+  .map-legend summary { min-height: var(--target-touch); display: flex; align-items: center; }
+  .map-legend ul.seal-legend { gap: 0 var(--s2); }
+  .side-top button, .step-nav button, button.stop-btn { min-height: var(--target-touch); }
+}

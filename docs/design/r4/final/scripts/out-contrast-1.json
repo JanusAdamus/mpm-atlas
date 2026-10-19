@@ -1,0 +1,1914 @@
+{
+ "light-1440-explore-inicio": {
+  "n": 30,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 12,
+   "#1c1b18": 18
+  }
+ },
+ "light-1440-explore-ficha-integral": {
+  "n": 170,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 30
+  }
+ },
+ "light-1440-explore-ruta-calculo": {
+  "n": 47,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#fbfaf5": 2,
+   "#1c1b18": 4,
+   "#655f53": 62
+  }
+ },
+ "light-1440-explore-ficha-primo": {
+  "n": 164,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#655f53": 58
+  }
+ },
+ "light-390-explore-inicio": {
+  "n": 28,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 10
+  }
+ },
+ "light-390-explore-ficha-integral": {
+  "n": 125,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 10
+  }
+ },
+ "light-390-explore-ruta-calculo": {
+  "n": 45,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#fbfaf5": 2,
+   "#1c1b18": 3,
+   "#655f53": 14
+  }
+ },
+ "light-390-explore-ficha-primo": {
+  "n": 120,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#655f53": 11
+  }
+ },
+ "light-1440-technical-inicio": {
+  "n": 31,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 12,
+   "#1c1b18": 18
+  }
+ },
+ "light-1440-technical-ficha-integral": {
+  "n": 192,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 30
+  }
+ },
+ "light-1440-technical-ruta-calculo": {
+  "n": 105,
+  "min": 5.08,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192",
+   "U+21ba"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#fbfaf5": 2,
+   "#1c1b18": 4,
+   "#655f53": 62
+  }
+ },
+ "light-1440-technical-ficha-primo": {
+  "n": 200,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#655f53": 58
+  }
+ },
+ "light-390-technical-inicio": {
+  "n": 29,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 10
+  }
+ },
+ "light-390-technical-ficha-integral": {
+  "n": 145,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2192",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 10
+  }
+ },
+ "light-390-technical-ruta-calculo": {
+  "n": 79,
+  "min": 5.08,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192",
+   "U+21ba",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#fbfaf5": 2,
+   "#1c1b18": 3,
+   "#655f53": 14
+  }
+ },
+ "light-390-technical-ficha-primo": {
+  "n": 142,
+  "min": 5.61,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#655f53": 11
+  }
+ },
+ "light-1440-explore-rm-inicio": {
+  "n": 30,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 12,
+   "#1c1b18": 18
+  }
+ },
+ "light-1440-explore-rm-ficha-integral": {
+  "n": 170,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 30
+  }
+ },
+ "light-1440-explore-rm-ruta-calculo": {
+  "n": 47,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#fbfaf5": 2,
+   "#1c1b18": 4,
+   "#655f53": 62
+  }
+ },
+ "light-1440-explore-rm-ficha-primo": {
+  "n": 164,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "undefined": 1,
+   "#655f53": 58
+  }
+ },
+ "light-390-explore-rm-inicio": {
+  "n": 28,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#48443b": 10
+  }
+ },
+ "light-390-explore-rm-ficha-integral": {
+  "n": 125,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#1c1b18": 3,
+   "#655f53": 10
+  }
+ },
+ "light-390-explore-rm-ruta-calculo": {
+  "n": 45,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#fbfaf5": 2,
+   "#1c1b18": 3,
+   "#655f53": 14
+  }
+ },
+ "light-390-explore-rm-ficha-primo": {
+  "n": 120,
+  "min": 6.06,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#f4f1e8",
+   "--color-bg-surface": "#fbfaf5",
+   "--color-text-primary": "#1c1b18",
+   "--color-text-secondary": "#48443b",
+   "--color-text-muted": "#655f53",
+   "--color-accent-solid": "#a87a12",
+   "--color-accent-text": "#7a5600",
+   "--color-candidate": "#857e70",
+   "--color-danger": "#a3361f",
+   "--color-unknown": "#e6e0d2",
+   "--color-border-strong": "#8f8775",
+   "--color-border": "#d6cfbf"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+263e",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(244, 241, 232)",
+  "mapLabels": {
+   "#655f53": 11
+  }
+ },
+ "dark-1440-explore-inicio": {
+  "n": 30,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 12,
+   "#ece6d6": 18
+  }
+ },
+ "dark-1440-explore-ficha-integral": {
+  "n": 170,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 30
+  }
+ },
+ "dark-1440-explore-ruta-calculo": {
+  "n": 47,
+  "min": 5.28,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#14130f": 2,
+   "#ece6d6": 4,
+   "#9c9483": 62
+  }
+ },
+ "dark-1440-explore-ficha-primo": {
+  "n": 164,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#9c9483": 58
+  }
+ },
+ "dark-390-explore-inicio": {
+  "n": 28,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 10
+  }
+ },
+ "dark-390-explore-ficha-integral": {
+  "n": 125,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 10
+  }
+ },
+ "dark-390-explore-ruta-calculo": {
+  "n": 45,
+  "min": 5.28,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#14130f": 2,
+   "#ece6d6": 3,
+   "#9c9483": 14
+  }
+ },
+ "dark-390-explore-ficha-primo": {
+  "n": 120,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#9c9483": 11
+  }
+ },
+ "dark-1440-technical-inicio": {
+  "n": 31,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 12,
+   "#ece6d6": 18
+  }
+ },
+ "dark-1440-technical-ficha-integral": {
+  "n": 192,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 30
+  }
+ },
+ "dark-1440-technical-ruta-calculo": {
+  "n": 105,
+  "min": 4.95,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192",
+   "U+21ba"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#14130f": 2,
+   "#ece6d6": 4,
+   "#9c9483": 62
+  }
+ },
+ "dark-1440-technical-ficha-primo": {
+  "n": 200,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#9c9483": 58
+  }
+ },
+ "dark-390-technical-inicio": {
+  "n": 29,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 10
+  }
+ },
+ "dark-390-technical-ficha-integral": {
+  "n": 145,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2192",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 10
+  }
+ },
+ "dark-390-technical-ruta-calculo": {
+  "n": 79,
+  "min": 4.95,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192",
+   "U+21ba",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#14130f": 2,
+   "#ece6d6": 3,
+   "#9c9483": 14
+  }
+ },
+ "dark-390-technical-ficha-primo": {
+  "n": 142,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#9c9483": 11
+  }
+ },
+ "dark-1440-explore-rm-inicio": {
+  "n": 30,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 12,
+   "#ece6d6": 18
+  }
+ },
+ "dark-1440-explore-rm-ficha-integral": {
+  "n": 170,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 30
+  }
+ },
+ "dark-1440-explore-rm-ruta-calculo": {
+  "n": 47,
+  "min": 5.28,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#14130f": 2,
+   "#ece6d6": 4,
+   "#9c9483": 62
+  }
+ },
+ "dark-1440-explore-rm-ficha-primo": {
+  "n": 164,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2190",
+   "U+2212",
+   "U+2922",
+   "U+2713",
+   "U+2014",
+   "U+25f7",
+   "U+25a8",
+   "U+25ce",
+   "U+25ef",
+   "U+25cf",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "undefined": 1,
+   "#9c9483": 58
+  }
+ },
+ "dark-390-explore-rm-inicio": {
+  "n": 28,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#c6bea9": 10
+  }
+ },
+ "dark-390-explore-rm-ficha-integral": {
+  "n": 125,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+2014"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#ece6d6": 3,
+   "#9c9483": 10
+  }
+ },
+ "dark-390-explore-rm-ruta-calculo": {
+  "n": 45,
+  "min": 5.28,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21c5",
+   "U+2192"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#14130f": 2,
+   "#ece6d6": 3,
+   "#9c9483": 14
+  }
+ },
+ "dark-390-explore-rm-ficha-primo": {
+  "n": 120,
+  "min": 5.77,
+  "fails": [],
+  "nFails": 0,
+  "small": [],
+  "nSmall": 0,
+  "durs": [],
+  "tok": {
+   "--color-bg-page": "#14130f",
+   "--color-bg-surface": "#1c1a16",
+   "--color-text-primary": "#ece6d6",
+   "--color-text-secondary": "#c6bea9",
+   "--color-text-muted": "#9c9483",
+   "--color-accent-solid": "#c99a2e",
+   "--color-accent-text": "#e3b74e",
+   "--color-candidate": "#8a8374",
+   "--color-danger": "#f08a6c",
+   "--color-unknown": "#24211b",
+   "--color-border-strong": "#6e6757",
+   "--color-border": "#38342b"
+  },
+  "legend": [],
+  "glyphs": [
+   "U+2600",
+   "U+2212",
+   "U+2922",
+   "U+2190",
+   "U+21a9"
+  ],
+  "bodyBg": "rgb(20, 19, 15)",
+  "mapLabels": {
+   "#9c9483": 11
+  }
+ }
+}

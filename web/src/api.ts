@@ -50,7 +50,7 @@ export interface EntityConceptInfo {
 }
 export interface EntityResponse {
   entity: EntityJson; canonical_id: string; merged_from: string[]; coverage: "known" | "unknown";
-  label: string; counts_by_relation: Record<string, number>; limit: number; truncated: boolean;
+  label: string; counts_by_relation: Record<string, number>; offset?: number; limit: number; truncated: boolean;
   claims: ClaimJson[]; sources: Record<string, SourceJson>;
   /** Absent on servers without the concept layer. */
   concept?: EntityConceptInfo;
@@ -165,8 +165,9 @@ export const api = {
   health: (signal?: AbortSignal) => getJson<Health>("/api/health", {}, signal),
   search: (q: string, lang: string, limit = 12, signal?: AbortSignal) =>
     getJson<SearchResponse>("/api/search", { q, lang, limit }, signal),
-  entity: (id: string, lang: string, signal?: AbortSignal) =>
-    getJson<EntityResponse>(`/api/entity/${encodeURIComponent(id)}`, { lang }, signal),
+  /** `offset` pages the claims (servers before round 4 reject it: only sent when > 0). */
+  entity: (id: string, lang: string, signal?: AbortSignal, page: { limit?: number; offset?: number } = {}) =>
+    getJson<EntityResponse>(`/api/entity/${encodeURIComponent(id)}`, { lang, limit: page.limit, offset: page.offset || undefined }, signal),
   neighborhood: (id: string, lang: string, depth = 1, limit = 200, signal?: AbortSignal) =>
     getJson<NeighborhoodResponse>("/api/neighborhood", { id, lang, depth, limit }, signal),
   path: (p: { from: string; to: string; objective: string; max_hops: number; include_disputed: boolean; lang: string; weights?: string; concepts?: boolean; drill_down?: boolean }, signal?: AbortSignal) =>

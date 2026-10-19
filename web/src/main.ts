@@ -1,17 +1,24 @@
 // App shell: state in the URL (history/back work), map + side panel + text view.
+// Round 4: the side panel opens on the entry (a question, the search box and three guided
+// doors), the reading mode (Explorar by default, Técnico) is a visible switch remembered in
+// localStorage, and the panel enters in 200 ms and leaves in 150 ms (a fade under reduced motion).
 import "./style.css";
+import "./panels.css";
 import { api, type RouteStop, type SearchHit } from "./api.ts";
 import { renderCompare } from "./compare.ts";
 import { renderConcept, type ConceptActions } from "./conceptpanel.ts";
-import { TILE_PX } from "./map/camera.ts";
-import { clear, h } from "./dom.ts";
-import { projectionLabel, setLang, t } from "./i18n.ts";
+import { contentBounds, TILE_PX } from "./map/camera.ts";
+import { h } from "./dom.ts";
+import { legendList } from "./evidence.ts";
+import { isExplore, projectionLabel, setLang, setMode, t, type Mode } from "./i18n.ts";
 import { MapView, type MapItem, type PathMark, type RegionInfo } from "./map/map.ts";
-import { renderEntity, type PanelActions } from "./panel.ts";
-import { pathView, type PathQueryState } from "./pathview.ts";
+import { mergeEntityPage, renderEntity, type PanelActions } from "./panel.ts";
+import { pathView, readerLabel, type PathQueryState } from "./pathview.ts";
 import { searchBox } from "./search.ts";
+import { focusReturn } from "./textfocus.ts";
 import { legend, renderTextView } from "./textview.ts";
 import { applyTheme, gpuTheme, initialTheme, type ThemeName } from "./theme.ts";
+import { MOTION, REDUCED_MOTION, prefersReducedMotion } from "./tokens.ts";
 import { PROJECTIONS, type Lang } from "./vocab.ts";
 
 type Panel =
@@ -27,11 +34,37 @@ interface State {
   layer: string;
   text: boolean;
   panel: Panel;
+  mode: Mode;
 }
 
-const DEFAULT_PATH: PathQueryState = { from: null, to: null, objective: "best_supported", maxHops: 6, includeDisputed: false, weights: "" };
+/** Guided doors: routes between concepts that exist in the snapshot (ids found with
+ *  /api/search on 2026-10-19: derivada wd:Q29175, integración wd:Q80091, número primo
+ *  wd:Q49008, criptografía wd:Q8789, teorema de Pitágoras wd:Q11518, trigonometría wd:Q8084). */
+export const DOORS = [
+  { key: "door_calculus", from: "wd:Q29175", to: "wd:Q80091" },
+  { key: "door_primes", from: "wd:Q49008", to: "wd:Q8789" },
+  { key: "door_pythagoras", from: "wd:Q11518", to: "wd:Q8084" },
+] as const;
 
-const state: State = { lang: "es", layer: "structure", text: false, panel: null };
+const DEFAULT_PATH: PathQueryState = { from: null, to: null, objective: "best_supported", maxHops: 6, includeDisputed: false, weights: "" };
+const MODE_KEY = "atlas.mode";
+
+function storedMode(): Mode {
+  try {
+    return localStorage.getItem(MODE_KEY) === "technical" ? "technical" : "explore";
+  } catch {
+    return "explore"; // storage blocked: the default
+  }
+}
+function storeMode(m: Mode): void {
+  try {
+    localStorage.setItem(MODE_KEY, m);
+  } catch {
+    // Not persisted; the choice still applies to this page.
+  }
+}
+
+const state: State = { lang: "es", layer: "structure", text: false, panel: null, mode: storedMode() };
 let theme: ThemeName = initialTheme();
 let layoutVersion: string | null = null;
 let maxZoom = 0;
@@ -41,6 +74,10 @@ let detailZoom: number | null = null;
 let compareSet: MapItem[] = [];
 let regionFocus: string | null = null;
 let nodeCount: number | null = null;
+/** The last route the reader opened, for «Volver a mi ruta». */
+let myRoute: PathQueryState | null = null;
+/** A guided door was just opened: the step-by-step card takes focus when it arrives. */
+let doorFocus = false;
 const app = document.getElementById("app")!;
 
 // ---- URL <-> state ------------------------------------------------------------------
@@ -48,6 +85,7 @@ const app = document.getElementById("app")!;
 function encode(s: State): string {
   const p = new URLSearchParams();
   if (s.lang !== "es") p.set("lang", s.lang);
+  if (s.mode === "technical") p.set("m", "tecnico");
   if (s.layer !== "structure") p.set("layer", s.layer);
   if (s.text) p.set("text", "1");
   const panel = s.panel;
@@ -66,6 +104,7 @@ function encode(s: State): string {
     p.set("hops", String(panel.q.maxHops));
     if (panel.q.includeDisputed) p.set("disputed", "1");
     if (panel.q.weights) p.set("w", panel.q.weights);
+    if (panel.q.step) p.set("st", String(panel.q.step));
   }
   return `#${p.toString()}`;
 }
@@ -88,12 +127,14 @@ function decode(hash: string): State {
       q: {
         from: end(p.get("from")), to: end(p.get("to")), objective: p.get("obj") ?? "best_supported",
         maxHops: Number(p.get("hops") ?? 6) || 6, includeDisputed: p.get("disputed") === "1", weights: p.get("w") ?? "",
+        step: Math.max(0, Math.floor(Number(p.get("st") ?? 0)) || 0),
       },
     };
   }
   const lang = p.get("lang") === "en" ? "en" : "es";
   const layer = PROJECTIONS.includes(p.get("layer") ?? "") ? p.get("layer")! : "structure";
-  return { lang, layer, text: p.get("text") === "1", panel };
+  const mode: Mode = p.get("m") === "tecnico" ? "technical" : p.get("m") === "explorar" ? "explore" : storedMode();
+  return { lang, layer, text: p.get("text") === "1", panel, mode };
 }
 
 function navigate(next: Partial<State>, replace = false): void {
@@ -124,20 +165,26 @@ function brandMark(): SVGSVGElement {
   return svg;
 }
 
-const search = searchBox({ label: t("search"), placeholder: t("searchPlaceholder"), onPick: (hit: SearchHit) => navigate({ panel: { kind: "entity", id: hit.id } }) });
+const openHit = (hit: SearchHit): void => openIdea(hit.id, hit.type === "concept" ? "concept" : "entity");
+const search = searchBox({ label: t("search"), placeholder: t("searchPlaceholder"), onPick: openHit });
+const homeSearch = searchBox({ label: t("ask"), placeholder: t("searchPlaceholder"), onPick: openHit });
 const layerSelect = h("select", { id: "layer", onchange: () => navigate({ layer: layerSelect.value }, true) });
 const langBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ lang: state.lang === "es" ? "en" : "es" }, true) });
 const themeBtn = h("button", { type: "button", class: "chip", onclick: () => setTheme(theme === "dark" ? "light" : "dark") });
-const textBtn = h("button", { type: "button", class: "chip", "aria-pressed": "false", onclick: () => navigate({ text: !state.text }) });
+const textBtn = h("button", { type: "button", class: "chip", "aria-pressed": "false", onclick: () => toggleText() });
 const pathBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ panel: { kind: "path", q: { ...DEFAULT_PATH } } }) });
 const compareBtn = h("button", { type: "button", class: "chip", onclick: () => navigate({ panel: { kind: "compare" } }) });
 const backBtn = h("button", { type: "button", class: "chip", onclick: () => history.back() });
+const modeExplore = h("button", { type: "button", class: "chip", onclick: () => setReadingMode("explore") });
+const modeTech = h("button", { type: "button", class: "chip", onclick: () => setReadingMode("technical") });
+const modeSwitch = h("div", { class: "mode-switch", role: "group" }, modeExplore, modeTech);
 const titleEl = h("span", { class: "title" });
 const layerLabel = h("label", { for: "layer", class: "sr-only" });
 compareBtn.classList.add("wide");
 backBtn.classList.add("wide");
 const sep = (): HTMLElement => h("span", { class: "sep", "aria-hidden": "true" });
-const tools = h("div", { class: "tools" }, layerLabel, layerSelect, sep(), pathBtn, compareBtn, textBtn, sep(), langBtn, themeBtn, backBtn);
+const layerSep = sep();
+const tools = h("div", { class: "tools" }, modeSwitch, sep(), layerLabel, layerSelect, layerSep, pathBtn, compareBtn, textBtn, sep(), langBtn, themeBtn, backBtn);
 const header = h("header", { class: "top" }, h("h1", {}, brandMark(), titleEl), search.root, tools);
 const mapHost = h("div", { class: "map-host", id: "map" });
 const focusChip = h("button", { type: "button", class: "chip focus-chip", hidden: true, onclick: () => setRegionFocus(null, null) });
@@ -146,16 +193,35 @@ const zoomOut = h("button", { type: "button", class: "zbtn", onclick: () => zoom
 const zoomReset = h("button", { type: "button", class: "zbtn", onclick: () => map.resetView() }, "⤢");
 const status = h("div", { class: "status", role: "status", "aria-live": "polite" });
 const help = h("p", { class: "help small" });
-const side = h("aside", { class: "side", "aria-live": "polite", tabindex: -1 });
-const textPane = h("section", { class: "textpane", "aria-label": "" });
-const mainEl = h("main", {}, textPane, h("div", { class: "map-wrap" }, mapHost, h("div", { class: "zoom" }, zoomIn, zoomOut, zoomReset), focusChip, status, help), side);
-app.append(header, mainEl);
+/** The legend on the map: every seal once, «desconocida» included.  Its title is always in
+ *  view; on a phone it starts folded so it does not cover a third of the map (C4-12). */
+const PHONE = "(max-width: 760px)";
+const mapLegend = h("details", { class: "map-legend", open: !matchMedia(PHONE).matches });
+const legendSummary = h("summary", {});
+const legendBody = h("div", { role: "group" });
+mapLegend.append(legendSummary, legendBody);
+const side = h("aside", { class: "side", tabindex: -1 });
+const textPane = h("section", { class: "textpane", "aria-labelledby": "textpane-title" });
+const textTitle = h("h2", { id: "textpane-title", tabindex: -1 });
+const textBody = h("div", {});
+textPane.append(textTitle, textBody);
+const textFocus = focusReturn(() => document.activeElement as HTMLElement | null);
+const mainEl = h("main", {}, textPane, h("div", { class: "map-wrap" }, mapHost, h("div", { class: "zoom" }, zoomIn, zoomOut, zoomReset), focusChip, mapLegend, status, help), side);
+/** «Saltar a las puertas» (or to the open panel): the first example is two Tabs and Enter away
+ *  instead of sixteen Tabs through the header and the map controls (C4-18). */
+const skipLink = h("a", { class: "skip", href: "#", onclick: (e: Event) => {
+  e.preventDefault();
+  const target = side.querySelector<HTMLElement>(".door") ?? side.querySelector<HTMLElement>("h2") ?? side;
+  if (!target.hasAttribute("tabindex") && !/^(BUTTON|A|INPUT)$/.test(target.tagName)) target.setAttribute("tabindex", "-1");
+  target.focus();
+} });
+app.append(skipLink, header, mainEl);
 
 const map = new MapView(mapHost, {
   onSelect: (it, shift) => {
     if (shift) addCompare(it);
     else if (it.kind === "entity") navigate({ panel: { kind: "entity", id: it.id } });
-    else if (it.kind === "concept") navigate({ panel: { kind: "concept", id: it.id, offset: 0 } });
+    else if (it.kind === "concept") openIdea(it.id, "concept");
     else {
       map.flyTo(it.x, it.y, map.camera.scale * 3);
       selectedRegion = map.region(it);
@@ -166,9 +232,26 @@ const map = new MapView(mapHost, {
 });
 let selectedRegion: RegionInfo | null = null;
 
+/** The map's round-4 API (map/map.ts): reading mode, one protagonist with its neighbors
+ *  and framed flights.  setSelected is kept for points with no focus. */
+const mapAdapter = {
+  setMode: (m: Mode): void => map.setMode(m),
+  focus: (id: string | null, pos?: { x: number; y: number; label?: string }, neighbors?: string[]): void => {
+    map.focus(id, id ? { ...pos, neighbors } : {});
+    map.setSelected(id ? null : pos ?? null);
+  },
+  frame: (pts: { x: number; y: number }[]): void => {
+    if (!pts.length) return;
+    const xs = pts.map((p) => p.x), ys = pts.map((p) => p.y);
+    const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+    const pad = Math.max(x1 - x0, y1 - y0, 2e-3) * 0.25;
+    map.flyToBounds(x0 - pad, y0 - pad, x1 + pad, y1 + pad);
+  },
+};
+
 function zoomBy(f: number): void {
   const c = map.camera;
-  c.flyTo({ ...c.view(), scale: c.scale * f }, 220);
+  c.flyTo({ ...c.view(), scale: c.scale * f }, MOTION.camera);
   map.invalidate();
 }
 
@@ -177,6 +260,18 @@ function setTheme(name: ThemeName): void {
   applyTheme(name);
   map.setTheme(gpuTheme(name), name === "dark");
   renderChrome();
+}
+
+function setReadingMode(m: Mode): void {
+  storeMode(m);
+  navigate({ mode: m }, true);
+}
+
+/** Open an idea: in the explore mode a concept opens its five-question record (a Wikidata
+ *  item); the grouped code list is the technical view. */
+function openIdea(id: string, kind: "entity" | "concept"): void {
+  if (kind === "concept" && (!isExplore() || !id.startsWith("wd:"))) navigate({ panel: { kind: "concept", id, offset: 0 } });
+  else navigate({ panel: { kind: "entity", id } });
 }
 
 function addCompare(it: MapItem): void {
@@ -210,9 +305,13 @@ const entityActions: PanelActions = {
   open: (id) => navigate({ panel: { kind: "entity", id } }),
   showOnMap: (id) => void locateAndSelect(id, true),
   focusRegion: (id) => void setRegionFocus(id, side.querySelector("#entity-title")?.textContent ?? id),
-  pathFrom: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), from: { id, label } } } }),
-  pathTo: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), to: { id, label } } } }),
-  openConcept: (id) => navigate({ panel: { kind: "concept", id, offset: 0 } }),
+  pathFrom: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), from: { id, label }, step: 0 } } }),
+  pathTo: (id, label) => navigate({ panel: { kind: "path", q: { ...pathState(), to: { id, label }, step: 0 } } }),
+  // The grouped code is technical: the explore button says so, and switches mode.
+  openConcept: (id) => {
+    if (isExplore()) storeMode("technical");
+    navigate({ mode: "technical", panel: { kind: "concept", id, offset: 0 } });
+  },
 };
 
 /** Camera scale at which the map fetches tiles of zoom `z` (camera.tileZoom rounds log2(scale / TILE_PX)). */
@@ -249,101 +348,228 @@ const conceptActions = (offsetBase: number): ConceptActions => ({
     if (p?.kind === "concept" && offset !== offsetBase) navigate({ panel: { ...p, offset } }, true);
   },
   drill: (from, to, offset) => api.conceptEdges(from, to, state.lang, offset, 20),
+  technical: () => setReadingMode("technical"),
 });
 
 function pathState(): PathQueryState {
   return state.panel?.kind === "path" ? state.panel.q : { ...DEFAULT_PATH };
 }
 
-async function locateAndSelect(id: string, fly: boolean): Promise<void> {
+/** Neighbors for the map's focus, best first, from the API (the tiles alone miss most of
+ *  them): established before candidates, ideas before code records. */
+export function neighborIds(claims: { relation: string; evidence_state: string; participants: { entity: string }[] }[], self: string): string[] {
+  const rank = (c: (typeof claims)[number]): number => (c.evidence_state === "model_proposed" || c.evidence_state === "disputed" ? 1 : 0);
+  const ids = [...claims].sort((a, b) => rank(a) - rank(b)).flatMap((c) => c.participants.map((p) => p.entity))
+    .filter((e) => e !== self && !e.startsWith("mathlib:") && !e.startsWith("wp:"));
+  return [...new Set(ids)];
+}
+
+async function locateAndSelect(id: string, fly: boolean, label?: string, neighbors?: string[]): Promise<void> {
   if (!layoutVersion) return;
   try {
     const loc = await api.locate(id, layoutVersion);
-    map.setSelected({ x: loc.x, y: loc.y });
+    mapAdapter.focus(id, { x: loc.x, y: loc.y, label }, neighbors);
     if (fly) map.flyTo(loc.x, loc.y);
   } catch {
-    map.setSelected(null);
+    mapAdapter.focus(null);
   }
+}
+
+/** The route on the map: its stops (located once) and the step the reader is on. */
+let routeView: { key: string; locs: { id: string; label: string; x: number; y: number }[] | null; step: number } = { key: "", locs: null, step: 0 };
+
+function frameStep(i: number): void {
+  const l = routeView.locs;
+  if (!l || !l[i] || !l[i + 1]) return;
+  mapAdapter.focus(l[i + 1].id, l[i + 1]);
+  mapAdapter.frame([l[i], l[i + 1]]);
 }
 
 async function showPath(steps: RouteStop[], historical = false): Promise<void> {
   if (!steps.length) {
     map.setPath(null);
+    routeView = { key: "", locs: null, step: 0 };
     return;
   }
   if (!layoutVersion) return;
   const ids = [steps[0].from, ...steps.map((s) => s.to)];
   const labels = [steps[0].from_label, ...steps.map((s) => s.to_label)];
+  const key = ids.join(">");
+  if (routeView.key !== key) routeView = { key, locs: null, step: routeView.key === "" ? routeView.step : 0 };
   try {
     const locs = await Promise.all(ids.map((id) => api.locate(id, layoutVersion!)));
-    const marks: PathMark[] = locs.map((l, i) => ({ id: l.id, label: labels[i], x: l.x, y: l.y }));
+    if (routeView.key !== key) return; // a newer route arrived meanwhile
+    const marks: PathMark[] = locs.map((l, i) => ({ id: l.id, label: readerLabel(labels[i]), x: l.x, y: l.y, state: i > 0 ? (steps[i - 1] as { evidence_state?: string }).evidence_state : undefined }));
+    routeView.locs = marks;
     map.setPath(marks, historical);
+    // The camera flies to the whole route's region; a later step frames its own hop.
+    if (routeView.step > 0) frameStep(routeView.step);
+    else mapAdapter.frame(marks);
   } catch (err) {
     status.textContent = `${t("error")}: ${(err as Error).message}`;
   }
 }
 
+function onRouteStep(i: number, steps: RouteStop[]): void {
+  const key = [steps[0]?.from, ...steps.map((s) => s.to)].join(">");
+  if (routeView.key !== key) {
+    routeView = { key, locs: null, step: i };
+    return;
+  }
+  if (i === routeView.step) return;
+  routeView.step = i;
+  frameStep(i);
+}
+
+function goHome(): void {
+  navigate({ panel: null });
+  mapAdapter.focus(null);
+  map.resetView();
+}
+
+const backRouteBtn = (): HTMLElement =>
+  h("button", { type: "button", class: "back-route", onclick: () => myRoute && navigate({ panel: { kind: "path", q: { ...myRoute } } }) }, `↩ ${t("backRoute")}`);
+
+/** «Volver al panorama» always in view with a record or a route open; «Volver a mi ruta» once the reader left one. */
+function sideTop(p: Panel): HTMLElement {
+  return h("div", { class: "side-top" },
+    p ? h("button", { type: "button", class: "back-home", onclick: goHome }, `← ${t("backHome")}`) : null,
+    myRoute && p?.kind !== "path" ? backRouteBtn() : null);
+}
+
+/** Entry: one question, the search box and three guided doors.  No node counter. */
+function homeView(): HTMLElement {
+  return h("article", { class: "home", "aria-labelledby": "home-title" },
+    h("h2", { id: "home-title", class: "ask", tabindex: -1 }, t("ask")),
+    h("p", { class: "ask-lead" }, t("askLead")),
+    homeSearch.root,
+    h("h3", {}, t("doorsTitle")),
+    h("p", { class: "muted small" }, t("doorHint")),
+    h("ul", { class: "doors" }, DOORS.map((d) => h("li", {},
+      h("button", { type: "button", class: "door", "data-door": d.key, onclick: () => openDoor(d) }, h("span", { class: "door-title" }, t(d.key)), h("span", { class: "door-arrow", "aria-hidden": "true" }, "→"))))));
+}
+
+function openDoor(d: (typeof DOORS)[number]): void {
+  doorFocus = true;
+  navigate({ panel: { kind: "path", q: { ...DEFAULT_PATH, from: { id: d.from, label: d.from }, to: { id: d.to, label: d.to }, step: 0 } } });
+}
+
+let sideKey = "";
+const wait = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
+
+/** Replace the panel: a different panel first leaves (150 ms), then the new one enters (200 ms). */
+async function setSide(key: string, signal: AbortSignal, ...nodes: (Node | null)[]): Promise<boolean> {
+  if (key !== sideKey && sideKey && side.childElementCount) {
+    side.classList.remove("entering");
+    side.classList.add("leaving");
+    await wait((prefersReducedMotion() ? REDUCED_MOTION : MOTION).panelOut);
+    side.classList.remove("leaving");
+    if (signal.aborted) return false;
+  }
+  const entering = key !== sideKey;
+  sideKey = key;
+  side.replaceChildren(...nodes.filter((n): n is Node => !!n));
+  if (entering) {
+    side.classList.remove("entering");
+    void side.offsetWidth; // restart the entry animation
+    side.classList.add("entering");
+  }
+  return true;
+}
+
+const errorNote = (err: unknown): HTMLElement => h("p", { class: "notice error", role: "alert" }, `${t("error")}: ${(err as Error).message}`);
+
 async function renderPanel(): Promise<void> {
   panelCtrl?.abort();
   panelCtrl = new AbortController();
+  const signal = panelCtrl.signal;
   const p = state.panel;
-  side.hidden = !p;
-  mainEl.classList.toggle("with-side", !!p);
+  side.hidden = false;
+  mainEl.classList.add("with-side");
+  mainEl.classList.toggle("home", !p);
   if (p?.kind !== "path") map.setPath(null);
+  const top = sideTop(p);
   if (!p) {
-    clear(side);
-    map.setSelected(null);
+    await setSide("home", signal, top.childElementCount ? top : null, homeView());
+    document.title = t("title");
     return;
   }
-  const closeBtn = h("button", { type: "button", class: "close", "aria-label": t("close"), onclick: () => navigate({ panel: null }) }, "✕");
+  const key = `${p.kind}:${"id" in p ? p.id : ""}`;
   if (p.kind === "entity") {
-    side.replaceChildren(closeBtn, h("p", { class: "muted" }, t("loading")));
+    if (!(await setSide(key, signal, top, h("p", { class: "muted" }, t("loading"))))) return;
     try {
-      const r = await api.entity(p.id, state.lang, panelCtrl.signal);
-      side.replaceChildren(closeBtn, renderEntity(r, entityActions));
+      let r = await api.entity(p.id, state.lang, signal);
+      const extract = (id: string) => api.entity(id, state.lang, signal, { limit: 1 });
+      const claimsFrom = (offset: number) => api.entity(p.id, state.lang, signal, { offset, limit: 1000 });
+      const show = (): void => side.replaceChildren(top, renderEntity(r, { ...entityActions, loadMore, extract, claimsFrom }));
+      // Next page of claims, appended in place; focus stays on the button (or the panel) and the scroll is kept.
+      const loadMore = async (): Promise<void> => {
+        const btn = side.querySelector<HTMLButtonElement>(".load-more-btn");
+        if (btn) btn.disabled = true;
+        try {
+          const next = await api.entity(p.id, state.lang, signal, { offset: r.claims.length });
+          const scroll = side.scrollTop, mainTop = mainEl.scrollTop;
+          r = mergeEntityPage(r, next);
+          show();
+          side.scrollTop = scroll;
+          mainEl.scrollTop = mainTop;
+          (side.querySelector<HTMLElement>(".load-more-btn") ?? side).focus({ preventScroll: true });
+        } catch (err) {
+          if ((err as Error).name === "AbortError") return;
+          if (btn) btn.disabled = false;
+          side.querySelector(".load-more")?.append(errorNote(err));
+        }
+      };
+      show();
       (side.querySelector("#entity-title") as HTMLElement | null)?.focus();
       document.title = `${r.label} · Atlas`;
-      void locateAndSelect(r.canonical_id, false);
+      void locateAndSelect(r.canonical_id, false, r.label, neighborIds(r.claims, r.canonical_id));
     } catch (err) {
       if ((err as Error).name === "AbortError") return;
-      side.replaceChildren(closeBtn, h("p", { class: "notice error", role: "alert" }, `${t("error")}: ${(err as Error).message}`));
+      side.replaceChildren(top, errorNote(err));
     }
   } else if (p.kind === "path") {
-    side.replaceChildren(closeBtn, pathView(p.q, {
+    const focusResult = doorFocus;
+    doorFocus = false;
+    if (p.q.from && p.q.to) myRoute = { ...p.q };
+    await setSide(key, signal, top, pathView(p.q, {
       open: (id) => navigate({ panel: { kind: "entity", id } }),
-      openConcept: (id) => navigate({ panel: { kind: "concept", id, offset: 0 } }),
+      openConcept: (id) => openIdea(id, "concept"),
       showPath: (steps, historical) => void showPath(steps, historical),
       changed: (q) => {
         state.panel = { kind: "path", q };
+        if (q.from && q.to) myRoute = { ...q };
         history.replaceState(null, "", encode(state));
       },
+      step: onRouteStep,
+      focusResult,
     }));
   } else if (p.kind === "compare") {
     const [a, b] = compareSet.map((it) => map.region(it));
     const between = a && b ? map.edgesBetween(a.item, b.item) : new Map<string, number>();
-    side.replaceChildren(closeBtn, renderCompare(a ?? null, b ?? null, between, entityActions.open, (r) => void setRegionFocus(r.central[0] ?? null, r.item.label)));
+    await setSide(key, signal, top, renderCompare(a ?? null, b ?? null, between, entityActions.open, (r) => void setRegionFocus(r.central[0] ?? null, r.item.label)));
   } else if (p.kind === "concept") {
-    side.replaceChildren(closeBtn, h("p", { class: "muted" }, t("loading")));
+    if (!(await setSide(key, signal, top, h("p", { class: "muted" }, t("loading"))))) return;
     try {
-      const r = await api.concept(p.id, state.lang, p.offset, 50, panelCtrl.signal);
-      side.replaceChildren(closeBtn, renderConcept(r, conceptActions(p.offset)));
+      const r = await api.concept(p.id, state.lang, p.offset, 50, signal);
+      side.replaceChildren(top, renderConcept(r, conceptActions(p.offset)));
       (side.querySelector("#entity-title") as HTMLElement | null)?.focus();
       document.title = `${r.concept.label} · Atlas`;
-      void locateAndSelect(r.concept.id, false);
+      void locateAndSelect(r.concept.id, false, r.concept.label, [...r.edges_out, ...r.edges_in].sort((a, b) => b.total - a.total).map((e) => e.concept.id));
     } catch (err) {
       if ((err as Error).name === "AbortError") return;
-      side.replaceChildren(closeBtn, h("p", { class: "notice error", role: "alert" }, `${t("error")}: ${(err as Error).message}`));
+      side.replaceChildren(top, errorNote(err));
     }
   } else if (p.kind === "region") {
     const r = selectedRegion?.item.id === p.id ? selectedRegion : (() => {
       const it = map.findItem(p.id);
       return it ? map.region(it) : null;
     })();
-    side.replaceChildren(closeBtn, r
+    await setSide(key, signal, top, r
       ? h("div", {},
         renderCompare(r, null, new Map(), entityActions.open, (x) => void setRegionFocus(x.central[0] ?? null, x.item.label)),
         h("button", { type: "button", onclick: () => addCompare(r.item) }, t("compareWith")))
-      : h("p", { class: "muted" }, p.id));
+      : h("p", { class: "muted" }, isExplore() ? t("region") : p.id));
   }
 }
 
@@ -356,18 +582,32 @@ function scheduleText(): void {
   textTimer = window.setTimeout(renderText, 250);
 }
 
+/** Show or hide the concept index (button and T): focus goes to its heading, and back on close. */
+function toggleText(): void {
+  const on = !state.text;
+  navigate({ text: on });
+  if (on) {
+    mainEl.scrollTop = 0;
+    textFocus.open(textTitle);
+  } else textFocus.close(map.canvas);
+}
+
 function renderText(): void {
   textPane.hidden = !state.text;
   mainEl.classList.toggle("with-text", state.text);
   if (!state.text) return;
+  textTitle.textContent = t("textIndex");
   const items = map.visibleItems();
-  textPane.replaceChildren(h("h2", {}, t("textView")), renderTextView(items, map.hiddenEdges(), {
+  // The list is rebuilt as the view changes: a reader tabbing through it keeps their place.
+  const buttons = (): HTMLElement[] => [...textBody.querySelectorAll<HTMLElement>("button")];
+  const at = buttons().indexOf(document.activeElement as HTMLElement);
+  textBody.replaceChildren(renderTextView(items.filter((it) => !isExplore() || map.isLettered(it)), map.hiddenEdges(), {
     open: (it) => navigate({ panel: { kind: "entity", id: it.id } }),
-    openConcept: (it) => navigate({ panel: { kind: "concept", id: it.id, offset: 0 } }),
+    openConcept: (it) => openIdea(it.id, "concept"),
     zoomInto: (it) => {
       if (it.kind === "concept") {
-        void flyToConcept(it.id, true, it.size);
-        navigate({ panel: { kind: "concept", id: it.id, offset: 0 } });
+        void flyToConcept(it.id, !isExplore(), it.size);
+        openIdea(it.id, "concept");
         return;
       }
       map.flyTo(it.x, it.y, map.camera.scale * 3);
@@ -375,17 +615,31 @@ function renderText(): void {
       navigate({ panel: { kind: "region", id: it.id } });
     },
     compare: (it) => addCompare(it),
-  }, map.drawnEdges()));
+  }, map.drawnEdges(), (it) => map.regionName(it)));
+  if (at >= 0) (buttons()[at] ?? textTitle).focus({ preventScroll: true });
 }
 
 // ---- chrome ---------------------------------------------------------------------
 
 function renderChrome(): void {
   setLang(state.lang);
+  setMode(state.mode);
+  mapAdapter.setMode(state.mode);
+  const explore = state.mode === "explore";
   titleEl.textContent = t("title");
-  search.input.placeholder = t("searchPlaceholder");
+  skipLink.textContent = state.panel ? t("skipPanel") : t("skipDoors");
+  search.relabel(t("search"), t("searchPlaceholder"));
+  homeSearch.relabel(t("ask"), t("searchPlaceholder"));
   layerLabel.textContent = t("layer");
   layerSelect.replaceChildren(...PROJECTIONS.map((p) => h("option", { value: p, selected: p === state.layer }, `${t("layer")}: ${projectionLabel(p)}`)));
+  // The layer is a technical choice; the explore mode reads the structure layer.
+  layerSelect.hidden = explore;
+  layerSep.hidden = explore;
+  modeSwitch.setAttribute("aria-label", t("modeLabel"));
+  modeExplore.textContent = t("modeExplore");
+  modeTech.textContent = t("modeTechnical");
+  modeExplore.setAttribute("aria-pressed", String(explore));
+  modeTech.setAttribute("aria-pressed", String(!explore));
   langBtn.textContent = state.lang === "es" ? "EN" : "ES";
   langBtn.setAttribute("aria-label", `${t("language")}: ${state.lang === "es" ? "English" : "Español"}`);
   themeBtn.textContent = theme === "dark" ? `☀ ${t("themeLight")}` : `☾ ${t("themeDark")}`;
@@ -401,9 +655,13 @@ function renderChrome(): void {
     const i = part.indexOf(":");
     return i > 0 ? h("span", {}, h("kbd", {}, part.slice(0, i).trim()), ` ${part.slice(i + 1).trim()}`) : h("span", {}, part);
   }));
-  if (nodeCount !== null) status.textContent = t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
+  legendSummary.textContent = t("legendShort");
+  legendBody.setAttribute("aria-label", t("legendTitle"));
+  legendBody.replaceChildren(legendList(false), h("p", { class: "legend-dots" }, t("legendDotsPlain")));
+  // No node counter in the explore mode.
+  if (nodeCount !== null) status.textContent = explore ? "" : t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
   map.canvas.setAttribute("aria-label", `${t("title")} — ${t("help")}`);
-  textPane.setAttribute("aria-label", t("textView"));
+  textTitle.textContent = t("textIndex");
 }
 
 function render(): void {
@@ -427,11 +685,10 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
     search.input.focus();
   } else if (e.key === "t" || e.key === "T") {
-    navigate({ text: !state.text });
+    toggleText();
   } else if (e.key === "Escape") {
     if (regionFocus) void setRegionFocus(null, null);
-    else if (state.panel) navigate({ panel: null });
-    map.setPath(null);
+    else if (state.panel) goHome();
   }
 });
 
@@ -447,7 +704,6 @@ async function boot(): Promise<void> {
   applyTheme(theme);
   map.setTheme(gpuTheme(theme), theme === "dark");
   renderChrome();
-  side.hidden = true;
   textPane.hidden = true;
   const bench = new URLSearchParams(location.search).get("bench");
   if (bench) {
@@ -464,14 +720,14 @@ async function boot(): Promise<void> {
     generalZoom = health.map?.general_zoom ?? null;
     detailZoom = health.map?.detail_zoom ?? null;
     nodeCount = health.snapshot.nodes;
-    status.textContent = t("nodesCount", { n: nodeCount.toLocaleString(state.lang) });
     status.title = map.rendererName;
     if (layoutVersion) {
       const root = await api.tile(state.layer, 0, 0, 0, state.lang, layoutVersion);
       maxZoom = root.maxZoom;
+      map.setHome(contentBounds(root.px, root.py, root.nNodes));
     } else {
       mapHost.append(h("p", { class: "notice map-notice" }, t("noLayout")));
-      textPane.append(legend());
+      textBody.append(legend());
     }
   } catch (err) {
     status.textContent = `${t("error")}: ${(err as Error).message}`;

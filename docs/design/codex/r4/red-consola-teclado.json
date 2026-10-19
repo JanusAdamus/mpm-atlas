@@ -1,0 +1,301 @@
+{
+  "logs": [],
+  "net": [
+    {
+      "status": 200,
+      "url": "http://localhost:8765/"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/health"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/search?q=derivada&lang=es&limit=12"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/entity/wd%3AQ29175?lang=es"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ29175&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/concept?id=wd%3AQ16317911&lang=es&offset=0&limit=50"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ16317911&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/health"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/concept?id=wd%3AQ80091&lang=es&offset=0&limit=50"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/health"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/search?q=derivada&lang=es&limit=12"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/entity/wd%3AQ29175?lang=es"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ29175&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/concept?id=wd%3AQ16317911&lang=es&offset=0&limit=50"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ16317911&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-NkvmO05w.js"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/assets/index-DSE0U-Hw.css"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/health"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/2/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/2/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/1/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/0/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/1/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/3/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/3/2?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/0/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/2/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/2/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/3/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/tiles/2/3/3?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/concept?id=wd%3AQ80091&lang=es&offset=0&limit=50"
+    },
+    {
+      "status": 200,
+      "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca"
+    }
+  ]
+}

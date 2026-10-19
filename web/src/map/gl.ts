@@ -3,7 +3,9 @@
 // tables indexed by code, so a theme switch touches uniforms, never buffers.
 
 export const POINT_FLOATS = 4; // x, y, radius px, code (+256 if cluster, +512 if dimmed, +1024 if concept)
-export const EDGE_FLOATS = 6; // x0, y0, x1, y1, state code (+16 if dimmed), weight
+export const EDGE_FLOATS = 6; // x0, y0, x1, y1, state code (+16 if dimmed, +32 if both ends are library nodes), weight
+export const EDGE_DIM = 16;
+export const EDGE_LIBRARY = 32;
 
 const POINT_VS = `#version 300 es
 precision highp float;
@@ -78,6 +80,7 @@ uniform float u_scale;
 uniform vec2 u_viewport;
 uniform vec3 u_stateColor[8];
 uniform vec3 u_stateDash[8]; // period px, duty, width px
+uniform int u_hideLibrary; // explore mode: no edge between two declarations
 out float v_along;
 out float v_across;
 out float v_halfw;
@@ -87,6 +90,10 @@ flat out int v_dim;
 void main() {
   int code = int(a_style.x + 0.5);
   v_dim = (code >> 4) & 1;
+  if (u_hideLibrary == 1 && ((code >> 5) & 1) == 1) {
+    gl_Position = vec4(2.0, 2.0, 2.0, 1.0); // outside the clip volume: culled
+    return;
+  }
   int st = code & 7;
   vec3 dash = u_stateDash[st];
   v_color = u_stateColor[st];
@@ -192,7 +199,7 @@ export class Renderer {
     this.pointProg = program(gl, POINT_VS, POINT_FS);
     this.edgeProg = program(gl, EDGE_VS, EDGE_FS);
     this.pu = uniforms(gl, this.pointProg, ["u_center", "u_scale", "u_viewport", "u_radiusScale", "u_palette", "u_alpha", "u_outline"]);
-    this.eu = uniforms(gl, this.edgeProg, ["u_center", "u_scale", "u_viewport", "u_stateColor", "u_stateDash", "u_alpha", "u_edgeAlpha"]);
+    this.eu = uniforms(gl, this.edgeProg, ["u_center", "u_scale", "u_viewport", "u_stateColor", "u_stateDash", "u_alpha", "u_edgeAlpha", "u_hideLibrary"]);
     this.quad = gl.createBuffer()!;
     gl.bindBuffer(gl.ARRAY_BUFFER, this.quad);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
@@ -281,13 +288,16 @@ export class Renderer {
     gl.uniform2f(u.u_viewport, f.width * f.dpr, f.height * f.dpr);
   }
 
-  drawEdges(layers: Iterable<[Layer, number]>, f: Frame, edgeAlpha: number): void {
+  /** `stateColor`: replaces the theme's per-state colors for this draw (explore: one neutral).
+   *  `hideLibrary`: skip edges flagged EDGE_LIBRARY. */
+  drawEdges(layers: Iterable<[Layer, number]>, f: Frame, edgeAlpha: number, opts: { stateColor?: Float32Array; hideLibrary?: boolean } = {}): void {
     const gl = this.gl;
     const th = this.theme;
     if (!th) return;
     gl.useProgram(this.edgeProg);
     this.setView(this.eu, f);
-    gl.uniform3fv(this.eu.u_stateColor, th.stateColor);
+    gl.uniform3fv(this.eu.u_stateColor, opts.stateColor ?? th.stateColor);
+    gl.uniform1i(this.eu.u_hideLibrary, opts.hideLibrary ? 1 : 0);
     const dash = th.stateDash.slice();
     for (let i = 0; i < 8; i++) {
       dash[i * 3] *= f.dpr;
@@ -304,14 +314,15 @@ export class Renderer {
     gl.bindVertexArray(null);
   }
 
-  drawPoints(layers: Iterable<[Layer, number]>, f: Frame): void {
+  /** `palette`: replaces the theme's point colors for this draw (the map's neutral ink). */
+  drawPoints(layers: Iterable<[Layer, number]>, f: Frame, palette?: Float32Array): void {
     const gl = this.gl;
     const th = this.theme;
     if (!th) return;
     gl.useProgram(this.pointProg);
     this.setView(this.pu, f);
     gl.uniform1f(this.pu.u_radiusScale, f.dpr);
-    gl.uniform3fv(this.pu.u_palette, th.palette);
+    gl.uniform3fv(this.pu.u_palette, palette ?? th.palette);
     gl.uniform3f(this.pu.u_outline, ...th.outline);
     for (const [l, alpha] of layers) {
       if (l.nPoints === 0 || alpha <= 0) continue;

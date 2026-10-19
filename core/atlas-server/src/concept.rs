@@ -46,7 +46,7 @@ pub struct EdgeParams {
     limit: Option<usize>,
 }
 
-fn check_offset(o: Option<usize>) -> Result<usize, ApiError> {
+pub(crate) fn check_offset(o: Option<usize>) -> Result<usize, ApiError> {
     match o.unwrap_or(0) {
         o if o <= MAX_OFFSET => Ok(o),
         o => Err(ApiError::bad_request(format!("offset must be <= {MAX_OFFSET}, got {o}"))),

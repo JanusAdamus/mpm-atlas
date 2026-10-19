@@ -1,0 +1,8 @@
+integral 157 ms | integral | CONCEPT | q5: what,why,before,links,check | jargon 0
+derivative 136 ms | derivative | AREA | q5: what,why,before,links,check | jargon 0
+Pythagorean theorem 166 ms | Pythagorean theorem | STATEMENT | q5: what,why,before,links,check | jargon 0
+Bayes 155 ms | Thomas Bayes | PERSON | q5: what,why,before,links,check | jargon 0
+prime number 161 ms | prime number | AREA | q5: what,why,before,links,check | jargon 0
+pi 128 ms | pi | CONCEPT | q5: what,why,before,links,check | jargon 0
+matrix 122 ms | matrix | AREA | q5: what,why,before,links,check | jargon 0
+errors []

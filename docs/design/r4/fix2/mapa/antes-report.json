@@ -1,0 +1,260 @@
+{
+ "home-1440-light": {
+  "geom": {
+   "canvas": {
+    "x": 12,
+    "y": 77,
+    "w": 926,
+    "h": 823
+   },
+   "legend": {
+    "x": 24,
+    "y": 859,
+    "w": 820,
+    "h": 29
+   }
+  },
+  "labels": [
+   "derivada",
+   "cono",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "polinomio",
+   "altura",
+   "álgebra",
+   "retículo",
+   "orden total",
+   "topología",
+   "álgebra de Boole",
+   "número entero positivo",
+   "fórmula",
+   "número impar",
+   "número par",
+   "hipótesis",
+   "ecuación",
+   "invariante",
+   "curva",
+   "graph property",
+   "distribución de probabilidad",
+   "grupo",
+   "espacio topológico",
+   "medida",
+   "polígono",
+   "forma",
+   "elemento",
+   "sucesión entera",
+   "número real"
+  ]
+ },
+ "door_calculus-1440-light": {
+  "strokes": [
+   {
+    "k": "s",
+    "dash": [
+     1.2,
+     1.8
+    ],
+    "style": "#857e70",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   }
+  ],
+  "fills": [
+   "#1c1b18 500 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 600 13px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 500 13px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif"
+  ]
+ },
+ "door_primes-1440-light": {
+  "strokes": [
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   }
+  ],
+  "fills": [
+   "#1c1b18 500 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif"
+  ]
+ },
+ "errors-1440-light": [],
+ "home-390-light": {
+  "geom": {
+   "canvas": {
+    "x": 0,
+    "y": 490,
+    "w": 390,
+    "h": 354
+   },
+   "legend": {
+    "x": 8,
+    "y": 772,
+    "w": 366,
+    "h": 64
+   }
+  },
+  "labels": [
+   "derivada",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "álgebra",
+   "retículo",
+   "álgebra de Boole",
+   "teoría de categorías",
+   "forma cuadrática",
+   "grupo topológico"
+  ]
+ },
+ "door_calculus-390-light": {
+  "strokes": [
+   {
+    "k": "s",
+    "dash": [
+     1.2,
+     1.8
+    ],
+    "style": "#857e70",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   }
+  ],
+  "fills": [
+   "#1c1b18 500 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 600 13px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 500 13px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif"
+  ]
+ },
+ "door_primes-390-light": {
+  "strokes": [
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [
+     9.8,
+     4.2
+    ],
+    "style": "#1c1b18",
+    "w": 2
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   },
+   {
+    "k": "s",
+    "dash": [],
+    "style": "rgba(244, 241, 232, 0.94)",
+    "w": 2.5
+   }
+  ],
+  "fills": [
+   "#1c1b18 500 14px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif",
+   "#807a6c 600 15px \"Iowan Old Style\", Charter, \"Bitstream Charter\", \"Sitka Text\", Cambria, Georgia, serif"
+  ]
+ },
+ "errors-390-light": []
+}

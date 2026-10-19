@@ -1,6 +1,7 @@
 //! `GET /api/entity/{id}`: the entity, its current claims (`Claim.to_json()` plus the
 //! labels of every participant) and the sources they cite.  Identity, merges,
 //! coverage and counts come from the snapshot; full text comes from the registry.
+//! Claims are paged in id order with `offset` and `limit`.
 
 use atlas_core::{Dir, Error, EvidenceState, NodeIx, RelationType, Snapshot};
 use axum::extract::{Path as UrlPath, State};
@@ -20,6 +21,7 @@ const MAX_CLAIMS: usize = 1000;
 pub struct Params {
     lang: Option<String>,
     limit: Option<usize>,
+    offset: Option<usize>,
 }
 
 pub async fn handler(
@@ -31,7 +33,8 @@ pub async fn handler(
     let lang = p.lang.unwrap_or_else(|| "es".into());
     check_lang(&lang)?;
     let limit = check_limit(p.limit, 200, MAX_CLAIMS)?;
-    let body = blocking(&st.engine, move |e| to_json_vec(&e.entity(&id, &lang, limit)?)).await?;
+    let offset = crate::concept::check_offset(p.offset)?;
+    let body = blocking(&st.engine, move |e| to_json_vec(&e.entity(&id, &lang, offset, limit)?)).await?;
     Ok(json_bytes(body))
 }
 
@@ -91,7 +94,7 @@ fn fill_provenance_quotes(v: &mut Value) {
 /// Current claims with any participant in `ids` (as `Store.claims_for(current_only=True)`),
 /// except the `member_of_concept` claims whose object is the entity: a concept can have
 /// thousands; `/api/concept` pages them and `counts_by_relation` counts them.
-fn claims(c: &Connection, ids: &[&str], limit: usize) -> atlas_core::Result<(Vec<Value>, bool)> {
+fn claims(c: &Connection, ids: &[&str], offset: usize, limit: usize) -> atlas_core::Result<(Vec<Value>, bool)> {
     let states: Vec<String> = EvidenceState::ALL
         .iter()
         .filter(|s| s.is_current())
@@ -102,9 +105,10 @@ fn claims(c: &Connection, ids: &[&str], limit: usize) -> atlas_core::Result<(Vec
         "SELECT data, evidence_state, superseded_by, formal FROM claims WHERE id IN \
          (SELECT DISTINCT cp.claim_id FROM claim_participants cp JOIN claims c2 ON c2.id = cp.claim_id \
           WHERE cp.entity_id IN ({marks}) AND NOT (cp.role = 'object' AND c2.relation = 'member_of_concept')) \
-         AND evidence_state IN ({}) ORDER BY id LIMIT {}",
+         AND evidence_state IN ({}) ORDER BY id LIMIT {} OFFSET {}",
         states.join(","),
-        limit + 1
+        limit + 1,
+        offset
     );
     let mut st = c.prepare_cached(&sql)?;
     let rows = st.query_map(rusqlite::params_from_iter(ids), |r| {
@@ -171,7 +175,7 @@ fn participant_labels(snap: &Snapshot, claim: &mut Value, lang: &str) {
 }
 
 impl Engine {
-    pub fn entity(&self, id: &str, lang: &str, limit: usize) -> atlas_core::Result<Value> {
+    pub fn entity(&self, id: &str, lang: &str, offset: usize, limit: usize) -> atlas_core::Result<Value> {
         let snap = self.snap;
         let n = snap.resolve(id).ok_or_else(|| Error::NotFound(format!("entity {id}")))?;
         let db = self.db.as_deref().ok_or(Error::NotImplemented("entity detail needs the registry (--db)"))?;
@@ -188,7 +192,7 @@ impl Engine {
             let mut entity = parse(&data)?;
             with_defaults(&mut entity, ENTITY_DEFAULTS);
             fill_provenance_quotes(&mut entity);
-            let (claims, truncated) = claims(c, &ids, limit)?;
+            let (claims, truncated) = claims(c, &ids, offset, limit)?;
             let cited: BTreeSet<String> = claims
                 .iter()
                 .chain(std::iter::once(&entity))
@@ -207,6 +211,7 @@ impl Engine {
             "coverage": if snap.evidence(n).is_unknown() { "unknown" } else { "known" },
             "label": snap.label(n, lang),
             "counts_by_relation": counts_by_relation(snap, n),
+            "offset": offset,
             "limit": limit,
             "truncated": truncated,
             "claims": claims,

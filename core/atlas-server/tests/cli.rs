@@ -7,11 +7,15 @@ use std::process::Command;
 fn atlas(args: &[&str]) -> (bool, Value) {
     // ATLAS_ENCODER=lsi: no ONNX model load (tests stay offline and fast; with the
     // neural default, `atlas index` on the 19-node fixture ran 12.4 h in a debug build).
-    let out = Command::new(env!("CARGO_BIN_EXE_atlas"))
-        .args(args)
-        .env("ATLAS_ENCODER", "lsi")
-        .output()
-        .expect("run atlas");
+    let mut cmd = Command::new(env!("CARGO_BIN_EXE_atlas"));
+    cmd.args(args).env("ATLAS_ENCODER", "lsi");
+    #[cfg(windows)]
+    {
+        // CREATE_NO_WINDOW: without a parent console each run opened an "atlas" window (as atlas.NO_WINDOW in Python)
+        use std::os::windows::process::CommandExt;
+        cmd.creation_flags(0x0800_0000);
+    }
+    let out = cmd.output().expect("run atlas");
     let v = serde_json::from_slice(&out.stdout).unwrap_or_else(|e| panic!("{e}: {}", String::from_utf8_lossy(&out.stdout)));
     (out.status.success(), v)
 }

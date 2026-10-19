@@ -1,0 +1,198 @@
+[
+  {
+    "width": 1440,
+    "rep": 1,
+    "searchMs": 194,
+    "requests": [
+      {
+        "url": "http://localhost:8765/",
+        "durationMs": 9.205
+      },
+      {
+        "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+        "durationMs": 12.473
+      },
+      {
+        "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+        "durationMs": 14.67
+      },
+      {
+        "url": "http://localhost:8765/api/health",
+        "durationMs": 6.405
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 8.195
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 11.967
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 9.869
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 11.009
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 12.256
+      },
+      {
+        "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+        "durationMs": 13.448
+      },
+      {
+        "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es",
+        "durationMs": 30.684
+      },
+      {
+        "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+        "durationMs": 7.503
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "rep": 2,
+    "searchMs": 212,
+    "requests": [
+      {
+        "url": "http://localhost:8765/",
+        "durationMs": 7.336
+      },
+      {
+        "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+        "durationMs": 10.414
+      },
+      {
+        "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+        "durationMs": 11.149
+      },
+      {
+        "url": "http://localhost:8765/api/health",
+        "durationMs": 6.347
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 7.848
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 9.577
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/0/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 10.418
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/1/1?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 10.564
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/1/1/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 10.699
+      },
+      {
+        "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+        "durationMs": 18.277
+      },
+      {
+        "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es",
+        "durationMs": 30.506
+      },
+      {
+        "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+        "durationMs": 7.026
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "rep": 1,
+    "searchMs": 206,
+    "requests": [
+      {
+        "url": "http://localhost:8765/",
+        "durationMs": 6.68
+      },
+      {
+        "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+        "durationMs": 9.951
+      },
+      {
+        "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+        "durationMs": 10.974
+      },
+      {
+        "url": "http://localhost:8765/api/health",
+        "durationMs": 5.35
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 7.653
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 3.664
+      },
+      {
+        "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+        "durationMs": 19.015
+      },
+      {
+        "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es",
+        "durationMs": 18.322
+      },
+      {
+        "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+        "durationMs": 5.554
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "rep": 2,
+    "searchMs": 204,
+    "requests": [
+      {
+        "url": "http://localhost:8765/",
+        "durationMs": 5.445
+      },
+      {
+        "url": "http://localhost:8765/assets/index-DSE0U-Hw.css",
+        "durationMs": 8.866
+      },
+      {
+        "url": "http://localhost:8765/assets/index-NkvmO05w.js",
+        "durationMs": 9.595
+      },
+      {
+        "url": "http://localhost:8765/api/health",
+        "durationMs": 5.651
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 6.933
+      },
+      {
+        "url": "http://localhost:8765/api/map/tiles/0/0/0?layer=structure&lang=es&format=bin&v=649b68d3fc5a6cca",
+        "durationMs": 2.866
+      },
+      {
+        "url": "http://localhost:8765/api/search?q=integral&lang=es&limit=12",
+        "durationMs": 17.745
+      },
+      {
+        "url": "http://localhost:8765/api/entity/wd%3AQ80091?lang=es",
+        "durationMs": 15.126
+      },
+      {
+        "url": "http://localhost:8765/api/map/locate?id=wd%3AQ80091&v=649b68d3fc5a6cca",
+        "durationMs": 5.462
+      }
+    ]
+  }
+]

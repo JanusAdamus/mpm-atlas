@@ -1,0 +1,37 @@
+{
+ "layout": {
+  "canvas": {
+   "y": 701,
+   "h": 354,
+   "visibleH": 143
+  },
+  "scrollers": [
+   {
+    "el": "with-side home",
+    "sh": 873,
+    "ch": 662
+   }
+  ],
+  "docScroll": 844
+ },
+ "after": {
+  "y": 490,
+  "h": 354
+ },
+ "labels": {
+  "n": 10,
+  "overlaps": 0,
+  "texts": [
+   "derivada",
+   "función continua",
+   "sucesión",
+   "matriz",
+   "álgebra",
+   "retículo",
+   "álgebra de Boole",
+   "teoría de categorías",
+   "forma cuadrática",
+   "grupo topológico"
+  ]
+ }
+}

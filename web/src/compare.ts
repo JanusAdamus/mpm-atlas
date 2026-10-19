@@ -2,7 +2,7 @@
 // aggregated edges between them that the loaded tiles carry.
 import { h } from "./dom.ts";
 import { badge } from "./evidence.ts";
-import { relLabel, t, typeLabel } from "./i18n.ts";
+import { isExplore, relLabel, t, typeLabel } from "./i18n.ts";
 import type { RegionInfo } from "./map/map.ts";
 import { relationName, stateName, typeName } from "./vocab.ts";
 
@@ -11,7 +11,10 @@ function column(r: RegionInfo, open: (id: string) => void, focus: (r: RegionInfo
   const isRegion = r.item.kind === "cluster";
   return h("div", { class: "compare-col" },
     h("h3", {}, r.item.label),
-    h("p", { class: "muted" }, isRegion ? `${t("region")} ${r.item.id}` : `${typeLabel(typeName(r.item.type))} · ${r.item.id}`),
+    // Ids are for checking: technical mode only.
+    h("p", { class: "muted" }, isExplore()
+      ? (isRegion ? t("region") : typeLabel(typeName(r.item.type)))
+      : isRegion ? `${t("region")} ${r.item.id}` : `${typeLabel(typeName(r.item.type))} · ${r.item.id}`),
     h("dl", {},
       h("dt", {}, t("members")), h("dd", {}, String(r.members)),
       h("dt", {}, t("hiddenMembers")), h("dd", {}, String(r.hidden))),
@@ -22,8 +25,8 @@ function column(r: RegionInfo, open: (id: string) => void, focus: (r: RegionInfo
           h("span", { class: "bar", style: `width:${Math.max(2, (100 * n) / max)}%`, "aria-hidden": "true" }),
           h("span", { class: "bar-n" }, String(n)))))
       : h("p", { class: "muted" }, t("none")),
-    r.central.length ? h("h4", {}, t("central")) : null,
-    r.central.length ? h("ul", {}, r.central.map((id) => h("li", {}, h("button", { class: "link", type: "button", onclick: () => open(id) }, id)))) : null,
+    r.central.length && !isExplore() ? h("h4", {}, t("central")) : null,
+    r.central.length && !isExplore() ? h("ul", {}, r.central.map((id) => h("li", {}, h("button", { class: "link", type: "button", onclick: () => open(id) }, id)))) : null,
     isRegion ? h("button", { type: "button", onclick: () => focus(r) }, t("focusRegion")) : null,
   );
 }

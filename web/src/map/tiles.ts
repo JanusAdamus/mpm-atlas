@@ -3,7 +3,9 @@
 // GPU buffers.  Turning a tile into GPU instances happens once, on arrival.
 import { api } from "../api.ts";
 import { KIND_CLUSTER, KIND_CONCEPT, NONE, type Tile } from "../tile.ts";
-import { EDGE_FLOATS, POINT_FLOATS, type Layer, type Renderer } from "./gl.ts";
+import { EDGE_DIM, EDGE_FLOATS, EDGE_LIBRARY, POINT_FLOATS, type Layer, type Renderer } from "./gl.ts";
+import { isLibraryId } from "./labels.ts";
+import { typeName } from "../vocab.ts";
 
 const MAX_TILES = 384;
 const MAX_INFLIGHT = 8;
@@ -27,6 +29,23 @@ export interface Entry {
   lastUsed: number;
   /** Item index -> dimmed by the current region focus. */
   dimmed?: Uint8Array;
+  /** Item index -> 1 for an area or region whose label is the English fallback (the tile in
+   *  the active language and the English one carry the same text).  Unset in English. */
+  untranslated?: Uint8Array;
+}
+
+/** Areas and regions of `t` whose label equals the one of the English tile `en`: the layout
+ *  falls back to English when the item has no label in the requested language (C4-13).
+ *  The tile does not say which language a label is in; the comparison does. */
+export function untranslatedItems(t: Tile, en: Tile): Uint8Array {
+  const enLabel = new Map<string, string>();
+  for (let i = 0; i < en.nNodes; i++) enLabel.set(en.strings[en.id[i]], en.strings[en.label[i]]);
+  const out = new Uint8Array(t.nItems);
+  for (let i = 0; i < t.nNodes; i++) {
+    if (t.kind[i] !== KIND_CLUSTER && typeName(t.type[i]) !== "area") continue;
+    if (enLabel.get(t.strings[t.id[i]]) === t.strings[t.label[i]]) out[i] = 1;
+  }
+  return out;
 }
 
 export const tileKey = (z: number, x: number, y: number): string => `${z}/${x}/${y}`;
@@ -65,6 +84,7 @@ export function tileInstances(t: Tile, dimmed?: Uint8Array): { points: Float32Ar
   // ponytail: an edge between two tiles is carried (and drawn) by both, so it is
   // slightly darker; dropping one copy loses the edge when the other tile is off-screen.
   const edges = new Float32Array(t.nEdges * EDGE_FLOATS);
+  const lib = t.nEdges ? libraryItems(t) : new Uint8Array(0);
   for (let e = 0; e < t.nEdges; e++) {
     const a = t.edgeSrc[e], b = t.edgeDst[e];
     const o = e * EDGE_FLOATS;
@@ -73,10 +93,17 @@ export function tileInstances(t: Tile, dimmed?: Uint8Array): { points: Float32Ar
     edges[o + 2] = t.px[b];
     edges[o + 3] = t.py[b];
     const dim = dimmed !== undefined && (a >= t.nNodes || dimmed[a]) && (b >= t.nNodes || dimmed[b]);
-    edges[o + 4] = t.edgeState[e] + (dim ? 16 : 0);
+    edges[o + 4] = t.edgeState[e] + (dim ? EDGE_DIM : 0) + (lib[a] && lib[b] ? EDGE_LIBRARY : 0);
     edges[o + 5] = 1 + Math.min(Math.log2(t.edgeCount[e]), 5) * 0.35;
   }
   return { points, edges };
+}
+
+/** Item index -> 1 if the item is a node of the formal library (declaration, module...). */
+export function libraryItems(t: Tile): Uint8Array {
+  const out = new Uint8Array(t.nItems);
+  for (let i = 0; i < t.nItems; i++) out[i] = isLibraryId(t.strings[t.id[i]]) ? 1 : 0;
+  return out;
 }
 
 export class TileStore {
@@ -143,11 +170,14 @@ export class TileStore {
     const e: Entry = { key, z, x, y, state: "loading", ctrl, readyAt: 0, lastUsed: now };
     this.entries.set(key, e);
     this.inflight++;
-    api
-      .tile(p.layer, z, x, y, p.lang, p.version, ctrl.signal)
-      .then((tile) => {
+    // ponytail: a second (English) tile per tile only to learn which labels are fallbacks;
+    // drop it once the server marks the label language in the tile.
+    const en = p.lang === "en" ? Promise.resolve(null) : api.tile(p.layer, z, x, y, "en", p.version, ctrl.signal).catch(() => null);
+    Promise.all([api.tile(p.layer, z, x, y, p.lang, p.version, ctrl.signal), en])
+      .then(([tile, enTile]) => {
         if (this.entries.get(key) !== e) return;
         e.tile = tile;
+        e.untranslated = enTile ? untranslatedItems(tile, enTile) : undefined;
         e.dimmed = this.dimmedFor(tile);
         const inst = tileInstances(tile, e.dimmed);
         e.gpu = this.renderer.createLayer(inst.points, inst.edges);

@@ -1,0 +1,7 @@
+primo jargon 0 [] | null
+derivada jargon 0 [] | null
+matriz jargon 0 [] | null
+integral jargon 0 [] | null
+pi jargon 0 [] | null
+pitagoras jargon 0 [] | null
+bayes jargon 0 [] | null

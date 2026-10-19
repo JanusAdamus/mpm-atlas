@@ -1,0 +1,121 @@
+[
+ {
+  "zs": 0,
+  "unknown": 0,
+  "n": 30
+ },
+ {
+  "zs": 0.5,
+  "unknown": 24,
+  "n": 54,
+  "sample": [
+   "retículo",
+   "orden total",
+   "quadratic algebra",
+   "minorante",
+   "K-homology",
+   "confluence",
+   "bimódulo",
+   "uniqueness"
+  ]
+ },
+ {
+  "zs": 1,
+  "unknown": 24,
+  "n": 32
+ },
+ {
+  "zs": 1.5,
+  "unknown": 14,
+  "n": 21,
+  "sample": [
+   "inner model theory",
+   "abelian von Neumann algebra",
+   "operator space",
+   "Antarctic circles of latitude",
+   "Ajtai–Komlós–Tusnády theorem",
+   "Meyers–Serrin theorem",
+   "Browder fixed point theorem",
+   "Pisier–Ringrose inequality"
+  ]
+ },
+ {
+  "zs": 2,
+  "unknown": 13,
+  "n": 7
+ },
+ {
+  "zs": 2.5,
+  "unknown": 13,
+  "n": 7,
+  "sample": [
+   "Ajtai–Komlós–Tusnády theorem",
+   "Meyers–Serrin theorem",
+   "Pisier–Ringrose inequality",
+   "Édith Mourier",
+   "algoritmo de Cristian",
+   "Meyers–Serrin theorem",
+   "Michael Nielsen"
+  ]
+ },
+ {
+  "zs": 3,
+  "unknown": 13,
+  "n": 7
+ },
+ {
+  "zs": 3.5,
+  "unknown": 13,
+  "n": 7,
+  "sample": [
+   "Ajtai–Komlós–Tusnády theorem",
+   "Meyers–Serrin theorem",
+   "Pisier–Ringrose inequality",
+   "Édith Mourier",
+   "algoritmo de Cristian",
+   "Meyers–Serrin theorem",
+   "Michael Nielsen"
+  ]
+ },
+ {
+  "zs": 4,
+  "unknown": 13,
+  "n": 7
+ },
+ {
+  "zs": 4.5,
+  "unknown": 13,
+  "n": 7,
+  "sample": [
+   "Ajtai–Komlós–Tusnády theorem",
+   "Meyers–Serrin theorem",
+   "Pisier–Ringrose inequality",
+   "Édith Mourier",
+   "algoritmo de Cristian",
+   "Meyers–Serrin theorem",
+   "Michael Nielsen"
+  ]
+ },
+ {
+  "zs": 5,
+  "unknown": 13,
+  "n": 7
+ },
+ {
+  "zs": 5.5,
+  "unknown": 13,
+  "n": 7,
+  "sample": [
+   "Ajtai–Komlós–Tusnády theorem",
+   "Meyers–Serrin theorem",
+   "Pisier–Ringrose inequality",
+   "Édith Mourier",
+   "algoritmo de Cristian",
+   "Meyers–Serrin theorem",
+   "Michael Nielsen"
+  ]
+ },
+ {
+  "legend": "✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n⧗\nHistórica\n▨\nDesconocida"
+ }
+]

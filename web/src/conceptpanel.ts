@@ -6,7 +6,7 @@
 import type { ConceptEdgeJson, ConceptEdgesResponse, ConceptMember, ConceptResponse } from "./api.ts";
 import { h } from "./dom.ts";
 import { badge } from "./evidence.ts";
-import { relLabel, stateLabel, t, typeLabel } from "./i18n.ts";
+import { isExplore, relLabel, stateLabel, t, typeLabel } from "./i18n.ts";
 import { typeColor } from "./theme.ts";
 
 export interface ConceptActions {
@@ -17,6 +17,8 @@ export interface ConceptActions {
   collapse(id: string): void;
   page(offset: number): void;
   drill(from: string, to: string, offset: number): Promise<ConceptEdgesResponse>;
+  /** Switch to the technical mode (this list is code). */
+  technical?(): void;
 }
 
 /** Signals whose assignment is a fallback (zone of the module), shown as low confidence. */
@@ -110,7 +112,19 @@ function edgeSection(r: ConceptResponse, out: boolean, actions: ConceptActions):
     total > list.length ? h("p", { class: "muted small" }, t("moreEdges", { n: list.length, m: total.toLocaleString() })) : null);
 }
 
+/** In the explore mode a concept's list is code: say so and offer the way in, nothing else. */
+function exploreConcept(r: ConceptResponse, actions: ConceptActions): HTMLElement {
+  const c = r.concept;
+  return h("article", { class: "entity concept", "aria-labelledby": "entity-title" },
+    h("header", {}, h("p", { class: "eyebrow" }, t("concept")), h("h2", { id: "entity-title", tabindex: -1 }, c.label)),
+    h("p", { class: "notice concept-note", role: "note" }, t("techModeNote")),
+    h("div", { class: "actions" },
+      actions.technical ? h("button", { type: "button", class: "primary", onclick: () => actions.technical?.() }, t("toTechnical")) : null,
+      c.derived ? null : h("button", { type: "button", onclick: () => actions.open(c.id) }, t("fullRecord", { name: c.label }))));
+}
+
 export function renderConcept(r: ConceptResponse, actions: ConceptActions): HTMLElement {
+  if (isExplore()) return exploreConcept(r, actions);
   const c = r.concept;
   const dark = document.documentElement.dataset.theme === "dark";
   const states = Object.entries(r.memberships_by_state).map(([s, n]) => h("span", {}, badge(s), ` ${n.toLocaleString()} `));
@@ -122,11 +136,12 @@ export function renderConcept(r: ConceptResponse, actions: ConceptActions): HTML
       h("h2", { id: "entity-title", tabindex: -1 }, c.label),
       h("p", { class: "id" }, c.id)),
     c.derived ? h("p", { class: "notice", role: "note" }, t("derivedNote")) : null,
+    h("p", { class: "notice concept-note", role: "note" }, t("conceptListNote")),
     r.description ? h("p", { class: "lede" }, r.description) : null,
     h("div", { class: "actions" },
       r.members_total > 0 ? h("button", { type: "button", onclick: () => actions.expand(c.id, r.members_total) }, t("expand")) : null,
       h("button", { type: "button", onclick: () => actions.collapse(c.id) }, t("collapse")),
-      h("button", { type: "button", onclick: () => actions.open(c.id) }, t("fullRecord"))),
+      h("button", { type: "button", onclick: () => actions.open(c.id) }, t("fullRecord", { name: c.label }))),
     h("section", {},
       h("h3", {}, t("conceptDecls")),
       h("p", {}, t("conceptMembers", { n: r.members_total.toLocaleString(), m: r.memberships_total.toLocaleString() })),

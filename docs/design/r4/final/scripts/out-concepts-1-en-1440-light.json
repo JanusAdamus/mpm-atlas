@@ -1,0 +1,304 @@
+{
+ "pass": "1",
+ "lang": "en",
+ "w": 1440,
+ "theme": "light",
+ "terms": {
+  "integral": {
+   "tFirstResultMs": 157,
+   "results": [
+    "integral | CONCEPT",
+    "product integral | CONCEPT",
+    "integral equation | AREA",
+    "volume integral | CONCEPT",
+    "line integral | CONCEPT",
+    "Mathematical code results show in Technical mode."
+   ],
+   "picked": "integral | CONCEPT",
+   "hash": "#lang=en&e=wd%3AQ80091",
+   "title": "integral",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\noperation in mathematical calculus\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, an integral is the continuous analog of a sum, and is used to calculate areas, volumes, and their generalizations. The process of computing an integral, called integration, is one of the two fundamental operations of calculus, along with differentiation.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nGeneralizes 29\nIs covered in 2\nAccording to Wikipedia (es), integral is covered in Wikipedia article (in Spanish): Integración.\n—\nDocumented\nAccording to Wikipedia (en), integral is covered in Wikipedia article: Integral.\n—\nDocumented\nIs a special case of 2\nAccording to Wikidata, integral is a special case of linear map.\n—\nDocumented\nAccording to Wikidata, integral is a special case of unary operation.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, integral is part of integral calculus.\n—\nDocumented\n2 records in the sources"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nCONCEPT\n\nintegral\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\noperation in mathematical calculus\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, an integral is the continuous analog of a sum, and is used to calculate areas, volumes, and their generalizations. The process of computing an integral, called integration, is one of the two fundamental operations of calculus, along with differentiation.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nGeneralizes 29\nIs covered in 2\nAccording to Wikipedia (es), integral is covered in Wikipedia article (in Spanish): Integración.\n—\nDocumented\nAccording to Wikipedia (en), integral is covered in Wikipedia article: Integral.\n—\nDocumented\nIs a special case of 2\nAccording to Wikidata, integral is a special case of linear map.\n—\nDocumented\nAccording to Wikidata, integral is a special case of unary operation.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, integral is part of integral calculus.\n—\nDocumented\n2 records in the sources\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: integral of a function (en), integral of f(x) with respect to the variable x (en), integral of x (en), antiderivacion (es), antiderivación (es), función integral (es), integracion (es), integrada (es), integral (es)\n\nSOURCES\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  },
+  "derivative": {
+   "tFirstResultMs": 136,
+   "results": [
+    "derivative | AREA",
+    "Fréchet derivative | CONCEPT",
+    "Mathematical code results show in Technical mode."
+   ],
+   "picked": "derivative | AREA",
+   "hash": "#lang=en&e=wd%3AQ29175",
+   "title": "derivative",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\ninstantaneous rate of change (mathematics)\n\nFORMULA (WIKIDATA)\n\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, the derivative is a fundamental tool that quantifies the sensitivity to change of a function's output with respect to its input. The derivative of a function of a single variable at a chosen input value, when it exists, is the slope of the tangent line to the graph of the function at that point. The tangent line is the best linear approximation of the function near that input value.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 16\nIs covered in 2\nAccording to Wikipedia (es), derivative is covered in Wikipedia article (in Spanish): Derivada.\n—\nDocumented\nAccording to Wikipedia (en), derivative is covered in Wikipedia article: Derivative.\n—\nDocumented\nInfluenced 1\nAccording to Wikidata, derivative influenced arithmetic derivative.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, derivative is part of differential calculus.\n—\nDocumented\n3 records in the sources"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nAREA\n\nderivative\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\ninstantaneous rate of change (mathematics)\n\nFORMULA (WIKIDATA)\n\n𝑓\n′\n(\n𝑥\n)\n=\nlim\nℎ\n→\n0\n𝑓\n(\n𝑥\n+\nℎ\n)\n−\n𝑓\n(\n𝑥\n)\nℎ\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, the derivative is a fundamental tool that quantifies the sensitivity to change of a function's output with respect to its input. The derivative of a function of a single variable at a chosen input value, when it exists, is the slope of the tangent line to the graph of the function at that point. The tangent line is the best linear approximation of the function near that input value.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 16\nIs covered in 2\nAccording to Wikipedia (es), derivative is covered in Wikipedia article (in Spanish): Derivada.\n—\nDocumented\nAccording to Wikipedia (en), derivative is covered in Wikipedia article: Derivative.\n—\nDocumented\nInfluenced 1\nAccording to Wikidata, derivative influenced arithmetic derivative.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, derivative is part of differential calculus.\n—\nDocumented\n3 records in the sources\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: dee y over dee x (en), derivative (function) (en), derivative of y with respect to x (en), differentiation (en), dy/dx (en), gradient of the tangent to the curve (en), instantaneous rate of change (en), the derivative of y with respect to x (en), función derivada (es)\n\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  },
+  "Pythagorean theorem": {
+   "tFirstResultMs": 166,
+   "results": [
+    "Pythagorean theorem | STATEMENT",
+    "Wikipedia (en): Pythagorean theorem | SOURCE FRAGMENT",
+    "Wikipedia (en): Inverse Pythagorean theorem | SOURCE FRAGMENT",
+    "Spherical Pythagorean theorem | STATEMENT",
+    "Pythagorean trigonometric identity | STATEMENT",
+    "Pythagorean triple | CONCEPT"
+   ],
+   "picked": "Pythagorean theorem | STATEMENT",
+   "hash": "#lang=en&e=wd%3AQ11518",
+   "title": "Pythagorean theorem",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nrelation in Euclidean geometry among the three sides of a right triangle\n\nFORMULA (WIKIDATA)\n\n𝑐\n2\n=\n𝑎\n2\n+\n𝑏\n2\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, the Pythagorean theorem or Pythagoras's theorem is a fundamental relation in Euclidean geometry between the three sides of a right triangle. It states that the area of the square whose side is the hypotenuse (the side opposite the right angle) is equal to the sum of the areas of the squares on the other two sides.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nConflicting relations\n\nThe source records this relation in both directions; it is pending review.\n\nAccording to Wikidata, Pythagorean theorem generalizes parallel postulate.\n—\nDocumented\n! In conflict\nAccording to Wikidata, Pythagorean theorem is a special case of parallel postulate.\n—\nDocumented\n! In conflict\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs covered in 2\nAccording to Wikipedia (en), Pythagorean theorem is covered in Wikipedia article: Pythagorean theorem.\n—\nDocumented\nAccording to Wikipedia (es), Pythagorean theorem is covered in Wikipedia article (in Spanish): Teorema de Pitágoras.\n—\nDocumented\nGeneralizes 1\nAccording to Wikidata, Pythagorean theorem generalizes Pythagorean trigonometric identity.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, Pythagorean theorem is part of Euclidean geometry.\n—\nDocum"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nSTATEMENT\n\nPythagorean theorem\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nrelation in Euclidean geometry among the three sides of a right triangle\n\nFORMULA (WIKIDATA)\n\n𝑐\n2\n=\n𝑎\n2\n+\n𝑏\n2\n\nWIKIPEDIA EXTRACT (EN)\n\nIn mathematics, the Pythagorean theorem or Pythagoras's theorem is a fundamental relation in Euclidean geometry between the three sides of a right triangle. It states that the area of the square whose side is the hypotenuse (the side opposite the right angle) is equal to the sum of the areas of the squares on the other two sides.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nConflicting relations\n\nThe source records this relation in both directions; it is pending review.\n\nAccording to Wikidata, Pythagorean theorem generalizes parallel postulate.\n—\nDocumented\n! In conflict\nAccording to Wikidata, Pythagorean theorem is a special case of parallel postulate.\n—\nDocumented\n! In conflict\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs covered in 2\nAccording to Wikipedia (en), Pythagorean theorem is covered in Wikipedia article: Pythagorean theorem.\n—\nDocumented\nAccording to Wikipedia (es), Pythagorean theorem is covered in Wikipedia article (in Spanish): Teorema de Pitágoras.\n—\nDocumented\nGeneralizes 1\nAccording to Wikidata, Pythagorean theorem generalizes Pythagorean trigonometric identity.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, Pythagorean theorem is part of Euclidean geometry.\n—\nDocumented\nIs a special case of 1\nAccording to Wikidata, Pythagorean theorem is a special case of law of cosines.\n—\nDocumented\nIs named after 1\nAccording to Wikidata, Pythagorean theorem is named after Pythagoras.\n—\nDocumented\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: Pythagoras' theorem (en), Pythagorean proposition (en), a² + b² = c² (en), a²+b²=c² (en), teorema de Pitagoras (es)\n\nSOURCES\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  },
+  "Bayes": {
+   "tFirstResultMs": 155,
+   "results": [
+    "Thomas Bayes | PERSON",
+    "Bayes' theorem | STATEMENT",
+    "Bayes estimator | CONCEPT",
+    "Bayes' rule | STATEMENT",
+    "Wikipedia (es): Teorema de Bayes | SOURCE FRAGMENT",
+    "Wikipedia (en): Bayes' theorem | SOURCE FRAGMENT"
+   ],
+   "picked": "Bayes' theorem | STATEMENT",
+   "hash": "#lang=en&e=wd%3AQ182505",
+   "title": "Bayes' theorem",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\ntheorem describing the probability of an event based on prior knowledge of conditions that might be related to the event\n\nFORMULA (WIKIDATA)\n\n𝑃\n(\n𝐴\n∣\n𝐵\n)\n=\n𝑃\n(\n𝐵\n∣\n𝐴\n)\n𝑃\n(\n𝐴\n)\n𝑃\n(\n𝐵\n)\n\nWIKIPEDIA EXTRACT (EN)\n\nIn probability theory, Bayes' theorem (alternatively Bayes' law or Bayes' rule), named after Thomas Bayes (), gives a mathematical rule for inverting conditional probabilities, allowing the probability of a cause to be found given its effect.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nUses recorded in the sources:\n\nAccording to Wikidata, Bayes' theorem is used in Bayesian statistics.\n—\nDocumented\nAccording to Wikidata, Bayes' theorem is used in Bayesian probability.\n—\nDocumented"
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs covered in 2\nAccording to Wikipedia (es), Bayes' theorem is covered in Wikipedia article (in Spanish): Teorema de Bayes.\n—\nDocumented\nAccording to Wikipedia (en), Bayes' theorem is covered in Wikipedia article: Bayes' theorem.\n—\nDocumented\nIs used in 2\nAccording to Wikidata, Bayes' theorem is used in Bayesian statistics.\n—\nDocumented\nAccording to Wikidata, Bayes' theorem is used in Bayesian probability.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, Bayes' theorem is part of probability theory.\n—\nDocumented\nIs the work of 1\nAccording to Wikidata, Bayes' theorem is the work of Thomas Bayes.\n—\nDocumented\nIs named after 1\nAccording to Wikidata, Bayes' theorem is named after Thomas Bayes.\n—\nDocumented"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nSTATEMENT\n\nBayes' theorem\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\ntheorem describing the probability of an event based on prior knowledge of conditions that might be related to the event\n\nFORMULA (WIKIDATA)\n\n𝑃\n(\n𝐴\n∣\n𝐵\n)\n=\n𝑃\n(\n𝐵\n∣\n𝐴\n)\n𝑃\n(\n𝐴\n)\n𝑃\n(\n𝐵\n)\n\nWIKIPEDIA EXTRACT (EN)\n\nIn probability theory, Bayes' theorem (alternatively Bayes' law or Bayes' rule), named after Thomas Bayes (), gives a mathematical rule for inverting conditional probabilities, allowing the probability of a cause to be found given its effect.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nUses recorded in the sources:\n\nAccording to Wikidata, Bayes' theorem is used in Bayesian statistics.\n—\nDocumented\nAccording to Wikidata, Bayes' theorem is used in Bayesian probability.\n—\nDocumented\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs covered in 2\nAccording to Wikipedia (es), Bayes' theorem is covered in Wikipedia article (in Spanish): Teorema de Bayes.\n—\nDocumented\nAccording to Wikipedia (en), Bayes' theorem is covered in Wikipedia article: Bayes' theorem.\n—\nDocumented\nIs used in 2\nAccording to Wikidata, Bayes' theorem is used in Bayesian statistics.\n—\nDocumented\nAccording to Wikidata, Bayes' theorem is used in Bayesian probability.\n—\nDocumented\nIs part of 1\nAccording to Wikidata, Bayes' theorem is part of probability theory.\n—\nDocumented\nIs the work of 1\nAccording to Wikidata, Bayes' theorem is the work of Thomas Bayes.\n—\nDocumented\nIs named after 1\nAccording to Wikidata, Bayes' theorem is named after Thomas Bayes.\n—\nDocumented\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: Bayes theorem (en), Bayes' law (en), Bayes' rule (en), Bayesian law (en), Bayes–Price theorem (en), ley bayesiana (es), ley de Bayes (es), regla de Bayes (es), teorema de Bayes-Price (es)\n\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  },
+  "prime number": {
+   "tFirstResultMs": 161,
+   "results": [
+    "prime number | AREA",
+    "largest known prime number | CONCEPT",
+    "set of prime numbers | CONCEPT",
+    "Wikipedia (en): Prime number | SOURCE FRAGMENT",
+    "prime number theorem | STATEMENT",
+    "number of distinct prime divisors | CONCEPT"
+   ],
+   "picked": "prime number | AREA",
+   "hash": "#lang=en&e=wd%3AQ49008",
+   "title": "prime number",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\npositive integer with exactly two divisors, 1 and itself\n\nFORMULA (WIKIDATA)\n\n𝑝\n:\n𝜏\n(\n𝑝\n)\n=\n2\n\nWIKIPEDIA EXTRACT (EN)\n\nA prime number (or a prime) is a natural number greater than 1 that is not a product of two smaller natural numbers. A natural number greater than 1 that is not prime is called a composite number. For example, 5 is prime because the only ways of writing it as a product, 1 × 5 or 5 × 1, involve 5 itself. However, 4 is composite because it is a product (2 × 2) in which both numbers are smaller than 4.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 197\n\nThese are the first 200 connections.\n\nLoad more connections"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nAREA\n\nprime number\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\npositive integer with exactly two divisors, 1 and itself\n\nFORMULA (WIKIDATA)\n\n𝑝\n:\n𝜏\n(\n𝑝\n)\n=\n2\n\nWIKIPEDIA EXTRACT (EN)\n\nA prime number (or a prime) is a natural number greater than 1 that is not a product of two smaller natural numbers. A natural number greater than 1 that is not prime is called a composite number. For example, 5 is prime because the only ways of writing it as a product, 1 × 5 or 5 × 1, involve 5 itself. However, 4 is composite because it is a product (2 × 2) in which both numbers are smaller than 4.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 197\n\nThese are the first 200 connections.\n\nLoad more connections\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: 1-almost prime (en), prime (en), numero primo (es), numeros primos (es), números primos (es), primo (es), primos (es)\n\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0\nWikidata license: CC0-1.0"
+  },
+  "pi": {
+   "tFirstResultMs": 128,
+   "results": [
+    "pi | CONCEPT",
+    "pi | CONCEPT",
+    "Mathematical code results show in Technical mode."
+   ],
+   "picked": "pi | CONCEPT",
+   "hash": "#lang=en&e=wd%3AQ167",
+   "title": "pi",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nconstant ratio of the circumference of a circle to its diameter\n\nWIKIPEDIA EXTRACT (EN)\n\n14159, that is the ratio of a circle's circumference to its diameter. It appears in many formulae across mathematics and physics, and some of these formulae are commonly used for defining π, to avoid relying on the definition of the length of a curve.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs a special case of 3\nAccording to Wikidata, pi is a special case of mathematical constant.\n—\nDocumented\nAccording to Wikidata, pi is a special case of transcendental number.\n—\nDocumented\nAccording to Wikidata, pi is a special case of real number.\n—\nDocumented\nIs covered in 2\nAccording to Wikipedia (es), pi is covered in Wikipedia article (in Spanish): Número π.\n—\nDocumented\nAccording to Wikipedia (en), pi is covered in Wikipedia article: Pi.\n—\nDocumented\nIs named after 1\nAccording to Wikidata, pi is named after Ludolph van Ceulen.\n—\nDocumented"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nCONCEPT\n\npi\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nconstant ratio of the circumference of a circle to its diameter\n\nWIKIPEDIA EXTRACT (EN)\n\n14159, that is the ratio of a circle's circumference to its diameter. It appears in many formulae across mathematics and physics, and some of these formulae are commonly used for defining π, to avoid relying on the definition of the length of a curve.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIs a special case of 3\nAccording to Wikidata, pi is a special case of mathematical constant.\n—\nDocumented\nAccording to Wikidata, pi is a special case of transcendental number.\n—\nDocumented\nAccording to Wikidata, pi is a special case of real number.\n—\nDocumented\nIs covered in 2\nAccording to Wikipedia (es), pi is covered in Wikipedia article (in Spanish): Número π.\n—\nDocumented\nAccording to Wikipedia (en), pi is covered in Wikipedia article: Pi.\n—\nDocumented\nIs named after 1\nAccording to Wikidata, pi is named after Ludolph van Ceulen.\n—\nDocumented\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: (1/2)tau (en), 0.5tau (en), 3.14... (en), Archimedes' constant (en), pi number (en), ratio of circumference to diameter (en), tau over two (en), tau/2 (en), π (en), 3,14159265358979 (es), 3,1416 (es), 3.14159265358979 (es), 3.1416 (es), número Pi (es), razón entre circunferencia y diámetro (es), π (es)\n\nSOURCES\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  },
+  "matrix": {
+   "tFirstResultMs": 122,
+   "results": [
+    "matrix | AREA",
+    "irreducible matrix | CONCEPT",
+    "degree matrix | CONCEPT",
+    "singular matrix | CONCEPT",
+    "design matrix | CONCEPT",
+    "Mathematical code results show in Technical mode."
+   ],
+   "picked": "matrix | AREA",
+   "hash": "#lang=en&e=wd%3AQ44337",
+   "title": "matrix",
+   "q5": [
+    {
+     "key": "what",
+     "text": "WHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nrectangular array of numbers, symbols, or expressions, arranged in rows and columns\n\nWIKIPEDIA EXTRACT (EN)\n\n: matrices) is a rectangular array of numbers or other mathematical objects with elements or entries arranged in rows and columns, usually satisfying certain properties of addition and multiplication. For example, [ 1 9 − 13 20 5 − 6 ] denotes a matrix with two rows and three columns. This is often referred to as a \"two-by-three matrix\", a 2 × 3 matrix, or a matrix of dimension 2 × 3.\n\nRead the full article on Wikipedia · CC BY-SA 4.0"
+    },
+    {
+     "key": "why",
+     "text": "WHY IT MATTERS\n\nThere is no reviewed explanation yet."
+    },
+    {
+     "key": "before",
+     "text": "WHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here."
+    },
+    {
+     "key": "links",
+     "text": "WHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 58\nIs part of 2\nAccording to Wikidata, matrix is part of matrix theory.\n—\nDocumented\n2 records in the sources\nAccording to Wikidata, matrix is part of linear algebra.\n—\nDocumented\n3 records in the sources\nIs covered in 2\nAccording to Wikipedia (en), matrix is covered in Wikipedia article: Matrix (mathematics).\n—\nDocumented\nAccording to Wikipedia (es), matrix is covered in Wikipedia article (in Spanish): Matriz (matemática).\n—\nDocumented"
+    },
+    {
+     "key": "check",
+     "text": "HOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet."
+    }
+   ],
+   "jargonSide": [],
+   "jargonResults": [],
+   "overflow": {
+    "page": 0,
+    "sr-only": 32
+   },
+   "side": "← Back to the overview\n\nAREA\n\nmatrix\nShow on map\nFocus region\nPath from here\nPath to here\nWHAT IT IS\n\nThere is no reviewed explanation yet.\n\nSHORT DESCRIPTION (WIKIDATA)\n\nrectangular array of numbers, symbols, or expressions, arranged in rows and columns\n\nWIKIPEDIA EXTRACT (EN)\n\n: matrices) is a rectangular array of numbers or other mathematical objects with elements or entries arranged in rows and columns, usually satisfying certain properties of addition and multiplication. For example, [ 1 9 − 13 20 5 − 6 ] denotes a matrix with two rows and three columns. This is often referred to as a \"two-by-three matrix\", a 2 × 3 matrix, or a matrix of dimension 2 × 3.\n\nRead the full article on Wikipedia · CC BY-SA 4.0\n\nWHY IT MATTERS\n\nThere is no reviewed explanation yet.\n\nWHAT TO KNOW FIRST\n\nNo prerequisites are recorded for this idea yet.\n\nOnly the relations “is a prerequisite for” and “depends logically on” count here.\n\nWHAT IT CONNECTS TO\nRecorded connections\n\nThey all come from the cited sources and nobody has reviewed them yet.\n\nIncludes 58\nIs part of 2\nAccording to Wikidata, matrix is part of matrix theory.\n—\nDocumented\n2 records in the sources\nAccording to Wikidata, matrix is part of linear algebra.\n—\nDocumented\n3 records in the sources\nIs covered in 2\nAccording to Wikipedia (en), matrix is covered in Wikipedia article: Matrix (mathematics).\n—\nDocumented\nAccording to Wikipedia (es), matrix is covered in Wikipedia article (in Spanish): Matriz (matemática).\n—\nDocumented\nHOW DO I CHECK I UNDERSTOOD IT\n\nThere is no reviewed explanation yet.\n\nThere are no reviewed exercises for this idea yet.\n\nThere are mathematical code results linked to this idea. Show technical backing (mathematical code)\n\nAlso known as: array (en), mathematical matrix (en)\n\nSOURCES\nMPM atlas entity resolver (heuristic candidates) license: CC0-1.0\nWikidata license: CC0-1.0\nWikipedia (en) license: CC-BY-SA-4.0\nWikipedia (es) license: CC-BY-SA-4.0"
+  }
+ },
+ "errors": []
+}

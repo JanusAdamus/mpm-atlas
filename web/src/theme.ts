@@ -1,57 +1,35 @@
 // Light/dark: CSS tokens for the DOM, the same choice mirrored into GPU tables.
-import { STATE_STYLE, hexRgb } from "./evidence.ts";
+// Colors come from tokens.ts (round 4): paper and ink, gold only for validated.
 import type { Theme } from "./map/gl.ts";
+import { EVIDENCE, PALETTE, rgb, type Palette, type ThemeName } from "./tokens.ts";
 import { ENTITY_TYPES, EVIDENCE_STATES } from "./vocab.ts";
 
-export type ThemeName = "light" | "dark";
+export type { ThemeName } from "./tokens.ts";
 
-/** Entity-type colors (secondary information; the type is also named in labels and panels). */
-const TYPE_COLORS: Record<string, [string, string]> = {
-  concept: ["#3B6FB6", "#7FA8E8"],
-  definition: ["#2F8FA3", "#6CC6D8"],
-  theory: ["#6A4FB0", "#A992F0"],
-  statement: ["#B5473A", "#F08A7C"],
-  proof: ["#8A5A2B", "#D2A06C"],
-  conjecture: ["#B0306A", "#EE7BB0"],
-  counterexample: ["#7A2E2E", "#D27A7A"],
-  algorithm: ["#2E7D4F", "#6FCB93"],
-  model: ["#4C7A2E", "#9AC970"],
-  problem: ["#A0602A", "#E7A465"],
-  phenomenon: ["#527A8C", "#93C1D6"],
-  application: ["#3E8E6E", "#7DD3AF"],
-  publication: ["#707070", "#B0B0B0"],
-  source_fragment: ["#808080", "#A8A8A8"],
-  person: ["#9C6B00", "#E6B23C"],
-  resource: ["#5E6A7A", "#A3AFBF"],
-  experiment: ["#5B8A3A", "#A2D07C"],
-  area: ["#384A80", "#8FA2DE"],
-};
-const REGION: [string, string] = ["#55607A", "#8C98B5"];
+/** Entity types are told apart by name and mark shape, not by hue (one color, one meaning).
+ *  Dots stay a step lighter than the ink of labels so names read on top (>= 3:1 on paper).
+ *  Concepts and areas in muted ink; everything else in veiled ink. */
+const TYPE_INK: Record<string, keyof Palette> = { concept: "text-muted", area: "text-muted" };
+const OTHER: keyof Palette = "text-veiled";
+const REGION: keyof Palette = "border-strong";
 
 export function typeColor(type: string, dark: boolean): string {
-  const c = TYPE_COLORS[type] ?? REGION;
-  return dark ? c[1] : c[0];
+  return PALETTE[dark ? "dark" : "light"][TYPE_INK[type] ?? OTHER];
 }
 
 export function gpuTheme(name: ThemeName): Theme {
-  const dark = name === "dark";
   const palette = new Float32Array(32 * 3);
-  ENTITY_TYPES.forEach((ty, i) => palette.set(hexRgb(typeColor(ty, dark)), i * 3));
-  palette.set(hexRgb(dark ? REGION[1] : REGION[0]), 31 * 3);
+  ENTITY_TYPES.forEach((ty, i) => palette.set(rgb(name, TYPE_INK[ty] ?? OTHER), i * 3));
+  palette.set(rgb(name, REGION), 31 * 3);
   const stateColor = new Float32Array(8 * 3);
   const stateDash = new Float32Array(8 * 3);
   EVIDENCE_STATES.forEach((st, i) => {
-    const s = STATE_STYLE[st];
-    stateColor.set(hexRgb(dark ? s.dark : s.light), i * 3);
-    stateDash.set([s.dash, s.duty, s.width], i * 3);
+    const m = EVIDENCE[st] ?? EVIDENCE.extracted;
+    stateColor.set(rgb(name, m.color), i * 3);
+    stateDash.set([m.dash, m.duty, m.width], i * 3);
   });
-  return {
-    palette,
-    stateColor,
-    stateDash,
-    outline: dark ? [0.059, 0.067, 0.078] : [1, 1, 1],
-    background: dark ? [0.059, 0.067, 0.078] : [0.965, 0.961, 0.945],
-  };
+  const paper = rgb(name, "bg-page");
+  return { palette, stateColor, stateDash, outline: paper, background: paper };
 }
 
 export function initialTheme(): ThemeName {
@@ -65,7 +43,11 @@ export function initialTheme(): ThemeName {
 }
 
 export function applyTheme(name: ThemeName): void {
-  document.documentElement.dataset.theme = name;
+  const root = document.documentElement;
+  // No half-finished color transitions while the whole page changes theme.
+  root.classList.add("theme-switching");
+  root.dataset.theme = name;
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("theme-switching")));
   try {
     localStorage.setItem("atlas.theme", name);
   } catch {
