@@ -94,7 +94,8 @@ function edgeRow(self: ConceptResponse, e: ConceptEdgeJson, out: boolean, action
   };
   return h("li", { class: "concept-edge" },
     h("div", { class: "claim-line" }, out ? h("span", { class: "dir" }, "→ ") : h("span", { class: "dir" }, "← "), other,
-      h("span", { class: "muted small" }, ` · ${e.total.toLocaleString()}`)),
+      h("span", { class: "muted small" }, ` · ${e.total.toLocaleString()}`),
+      e.candidate ? h("span", { class: "tag candidate", title: t("conceptCandidate") }, ` ${t("candidate")}`) : null),
     h("ul", { class: "edge-stats" }, e.stats.map((s) => h("li", {},
       t(out ? "edgeOut" : "edgeIn", { n: s.count.toLocaleString(), rel: relLabel(s.relation) }), " ", badge(s.evidence_state)))),
     h("details", { ontoggle: (ev: Event) => { if ((ev.target as HTMLDetailsElement).open && !host.childElementCount) load(); } },

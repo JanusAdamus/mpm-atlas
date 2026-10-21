@@ -19,7 +19,7 @@ use crate::format::{
     SUPPORTED_SCHEMA, Section, SectionEntry,
 };
 use crate::hashidx::{self, REGIONS};
-use crate::vocab::{EntityType, EvidenceState, RelationType, Role, vocab_hash};
+use crate::vocab::{EntityType, EvidenceState, PRESENTATION_SCOPES, RelationType, Role, scope_bit, vocab_hash};
 
 pub type NodeIx = u32;
 pub type ClaimIx = u32;
@@ -178,6 +178,12 @@ pub struct ConceptEdge<'a> {
 }
 
 impl<'a> ConceptEdge<'a> {
+    /// Every aggregated edge is a candidate (ADR-0005 §7a): it is inferred from memberships, so it
+    /// stays out of the beginner summary and of "strength", whatever its state.
+    pub const fn is_candidate(&self) -> bool {
+        true
+    }
+
     /// Declaration-level edges behind this aggregated edge, all relations and states.
     pub fn total(&self) -> u32 {
         self.count.iter().sum()
@@ -213,6 +219,26 @@ impl Snapshot {
         // in place (compile writes a temp file and renames it), so the mapping is stable.
         let map = unsafe { Mmap::map(&file) }.map_err(|e| Error::io(&file_path, e))?;
         Self::from_map(map, file_path)
+    }
+
+    /// Open a layer snapshot (the works layer, ADR-0005 §8.4) built over `core`: its header must name
+    /// the content hash of `core`, else the node indexes it holds would point at other nodes.
+    pub fn open_layer(path: impl AsRef<Path>, core: &Snapshot) -> Result<Snapshot> {
+        let layer = Self::open(path)?;
+        if layer.header.core_content_hash != core.header.content_hash {
+            return Err(Error::Format(format!(
+                "{}: layer built over core {}, but the open core is {}",
+                layer.path.display(),
+                blake3::Hash::from_bytes(layer.header.core_content_hash).to_hex(),
+                core.content_hash_hex()
+            )));
+        }
+        Ok(layer)
+    }
+
+    /// A layer snapshot names the core it was built over; a core snapshot has a zero `core_content_hash`.
+    pub fn is_layer(&self) -> bool {
+        self.header.core_content_hash != [0u8; 32]
     }
 
     fn from_map(map: Mmap, path: PathBuf) -> Result<Snapshot> {
@@ -275,6 +301,10 @@ impl Snapshot {
         self.sec(s)
     }
 
+    fn u64s(&self, s: Section) -> &[u64] {
+        self.sec(s)
+    }
+
     fn check_lengths(&self) -> std::result::Result<(), String> {
         use Section as S;
         let h = &self.header;
@@ -291,7 +321,7 @@ impl Snapshot {
         let expect: &[(&[Section], usize)] = &[
             (&[S::StrOffsets], st + 1),
             (&[S::NodeId, S::NodeType, S::NodeCanon, S::NodeLabelEs, S::NodeLabelEn, S::NodeArea], n),
-            (&[S::NodeClaimCount, S::NodeStateMask], n),
+            (&[S::NodeClaimCount, S::NodeStateMask, S::NodeFlags, S::NodeShowEs, S::NodeShowEn], n),
             (&[S::ClaimId, S::ClaimRel, S::ClaimState, S::ClaimSubject, S::ClaimGroup], c),
             (&[S::ClaimValidity], c),
             (&[S::ClaimTgtOff, S::ClaimCtxOff, S::ClaimAsmOff, S::ProvOff], c + 1),
@@ -314,8 +344,11 @@ impl Snapshot {
             }
         }
         // offsets arrays must start at 0 and end at the length of what they index
+        let so = self.u64s(S::StrOffsets);
+        if so.first() != Some(&0) || so.last().map(|&x| x as usize) != Some(len(S::StrBytes)) {
+            return Err("offsets StrOffsets do not span the string bytes".into());
+        }
         let ends: &[(Section, usize)] = &[
-            (S::StrOffsets, len(S::StrBytes)),
             (S::ClaimTgtOff, len(S::ClaimTgt)),
             (S::ClaimCtxOff, len(S::ClaimCtxNode)),
             (S::ClaimAsmOff, len(S::ClaimAsm)),
@@ -390,7 +423,7 @@ impl Snapshot {
         if id == NONE {
             return "";
         }
-        let o = self.u32s(Section::StrOffsets);
+        let o = self.u64s(Section::StrOffsets);
         let (s, e) = (o[id as usize] as usize, o[id as usize + 1] as usize);
         self.u8s(Section::StrBytes).get(s..e).and_then(|b| std::str::from_utf8(b).ok()).unwrap_or("\u{FFFD}")
     }
@@ -412,6 +445,27 @@ impl Snapshot {
             return self.str(es);
         }
         self.str(self.u32s(Section::NodeLabelEn)[n as usize])
+    }
+
+    /// Label to show: the active presentation label of `lang` (curation `presentation_label`), else
+    /// `label(n, lang)`.  The registry label is never replaced.
+    pub fn display_label(&self, n: NodeIx, lang: &str) -> &str {
+        let show = match lang {
+            "es" => self.u32s(Section::NodeShowEs)[n as usize],
+            "en" => self.u32s(Section::NodeShowEn)[n as usize],
+            _ => NONE,
+        };
+        if show != NONE { self.str(show) } else { self.label(n, lang) }
+    }
+
+    /// Bits of the presentation scopes `n` is excluded from (`vocab::PRESENTATION_SCOPES` order).
+    pub fn node_flags(&self, n: NodeIx) -> u8 {
+        self.u8s(Section::NodeFlags)[n as usize]
+    }
+
+    /// Is `n` excluded from `scope` ("map:general", "map:all", "search:default", "concept_layer")?
+    pub fn is_excluded(&self, n: NodeIx, scope: &str) -> bool {
+        scope_bit(scope).is_some_and(|b| self.node_flags(n) & b != 0)
     }
 
     pub fn canonical(&self, n: NodeIx) -> NodeIx {
@@ -677,8 +731,11 @@ impl Snapshot {
         use Section as S;
         let h = &self.header;
         let (n, c, g, src, st) = (h.num_nodes, h.num_claims, h.num_groups, h.num_sources, h.num_strings);
+        if !self.u64s(S::StrOffsets).par_windows(2).all(|w| w[0] <= w[1]) {
+            return Err("offsets StrOffsets not monotone".into());
+        }
         let monotone = [
-            S::StrOffsets, S::ClaimTgtOff, S::ClaimCtxOff, S::ClaimAsmOff, S::GroupOff, S::ProvOff, S::OutOff, S::InOff,
+            S::ClaimTgtOff, S::ClaimCtxOff, S::ClaimAsmOff, S::GroupOff, S::ProvOff, S::OutOff, S::InOff,
             S::ConceptMemberOff, S::ConceptEdgeOff, S::ConceptStatOff,
         ];
         for s in monotone {
@@ -689,7 +746,7 @@ impl Snapshot {
         let refs: &[(&[Section], u32, bool)] = &[
             (&[S::NodeId, S::NodeLabelEn, S::ClaimId, S::ClaimAsm, S::GroupId], st, false),
             (&[S::ProvLocator, S::ProvLicense, S::SourceId, S::SourceTitle, S::SourceLicense], st, false),
-            (&[S::NodeLabelEs, S::ClaimValidity], st, true),
+            (&[S::NodeLabelEs, S::ClaimValidity, S::NodeShowEs, S::NodeShowEn], st, true),
             (&[S::NodeCanon, S::MergedNodes, S::ClaimSubject, S::ClaimTgt, S::ClaimCtxNode], n, false),
             (&[S::NodeHash], n, true),
             (&[S::OutNbr, S::InNbr, S::ConceptNode, S::ConceptMember, S::ConceptEdgeDst], n, false),
@@ -722,7 +779,10 @@ impl Snapshot {
         if !self.u8s(S::NodeStateMask).par_iter().all(|&m| (m as u32) < (1 << EvidenceState::COUNT)) {
             return Err("NodeStateMask has unknown bits".into());
         }
-        let (o, b) = (self.u32s(S::StrOffsets), self.u8s(S::StrBytes));
+        if !self.u8s(S::NodeFlags).par_iter().all(|&f| (f as u32) < (1 << PRESENTATION_SCOPES.len())) {
+            return Err("NodeFlags has unknown bits".into());
+        }
+        let (o, b) = (self.u64s(S::StrOffsets), self.u8s(S::StrBytes));
         if !(0..st as usize).into_par_iter().all(|i| std::str::from_utf8(&b[o[i] as usize..o[i + 1] as usize]).is_ok()) {
             return Err("string table has invalid UTF-8".into());
         }

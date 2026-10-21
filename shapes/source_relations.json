@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "status": "v1 (2026-10-19, ADR-0005 §4 layer 2): read by atlas compile (core/atlas-core/src/compile.rs, compiled in with include_str!).",
+  "note": "Bibliographic sources may only state bibliographic and authorship relations.  A current claim with a provenance row from a source whose id starts with one of `prefixes` and a relation outside `allowed_relations` makes atlas compile fail: a citation authorizes nothing mathematical (principle 4).",
+  "bibliographic_sources": {
+    "prefixes": ["src:zbmath", "src:openalex", "src:opencitations", "src:crossref", "src:cdli"],
+    "allowed_relations": ["cites", "authored_by", "edited_by", "translated_by", "copied_by", "part_of_area", "appears_in"]
+  }
+}

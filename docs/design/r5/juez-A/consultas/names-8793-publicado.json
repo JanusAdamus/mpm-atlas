@@ -1,0 +1,61 @@
+{
+ "layout_version": [
+  "e4ccedf1b8b46087"
+ ],
+ "nodes_z0_z2": 3229,
+ "with_es_label": 1352,
+ "share_es": 0.4187,
+ "derived_in_z0_z2": 1157,
+ "out_of_domain_list_size": 49,
+ "out_of_domain_in_z0_z2": 49,
+ "ood_examples": [
+  [
+   "wd:Q1055911",
+   "táctica"
+  ],
+  [
+   "wd:Q11028",
+   "información"
+  ],
+  [
+   "wd:Q113289177",
+   "HiGHS optimization solver"
+  ],
+  [
+   "wd:Q1137224",
+   "tablas"
+  ],
+  [
+   "wd:Q11379",
+   "energía"
+  ],
+  [
+   "wd:Q11412",
+   "gravedad"
+  ],
+  [
+   "wd:Q11423",
+   "masa"
+  ],
+  [
+   "wd:Q12142910",
+   "corriente"
+  ],
+  [
+   "wd:Q1251376",
+   "Doble"
+  ],
+  [
+   "wd:Q13222844",
+   "momento"
+  ]
+ ],
+ "notes_in_z0_z2": 0,
+ "label_shown_examples_derived": [
+  "algebra (Mathlib, derivado)",
+  "add const map › equiv (Mathlib, derivado)",
+  "algebra › equiv (Mathlib, derivado)",
+  "algebra › hom (Mathlib, derivado)",
+  "algebra › non unital hom (Mathlib, derivado)"
+ ]
+}

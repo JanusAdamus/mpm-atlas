@@ -1,0 +1,6 @@
+{
+  "version": "works-layer/1",
+  "note": "ADR-0005 §8.4: which registry rows form the works layer snapshot (atlas-works-<hash>.snap) instead of the core snapshot.  An entity is in the works layer iff its id starts with one of `entity_id_prefixes`; a claim iff its id starts with `claim_id_prefix`.  Read by atlas/ingest/works (ids it writes) and by atlas-core (compile scope).  A core claim that refers to a works entity makes the core compile fail.",
+  "entity_id_prefixes": ["zb:", "oa:", "zba:", "oaa:", "cdli:", "wdw:"],
+  "claim_id_prefix": "cw:"
+}

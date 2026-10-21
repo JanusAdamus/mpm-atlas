@@ -647,3 +647,35 @@ fn seeded_hierarchy_keeps_previous_communities() {
         assert_connected(&g, pw, warm[l].partition.count);
     }
 }
+
+/// r5 fichas: a `note` (one ficha sentence) is text for the reader, never a place on the map.
+#[test]
+fn notes_are_not_placed_nor_tiled() {
+    let src = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../atlas-core/tests/fixtures/mini_atlas.db");
+    let dir = std::env::temp_dir().join(format!("atlas-layout-test-{}-note", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).unwrap();
+    let db = dir.join("atlas.db");
+    std::fs::copy(&src, &db).unwrap();
+    rusqlite::Connection::open(&db)
+        .unwrap()
+        .execute_batch(include_str!("../../atlas-core/tests/fixtures/note.sql"))
+        .unwrap();
+    compile(&CompileOptions::new(&db, dir.join("snapshot"))).expect("compile fixture with a note");
+    let s = Snapshot::open(dir.join("snapshot")).unwrap();
+    let note = s.resolve("note:que_es:fixture1").expect("the note stays in the snapshot");
+    let a = compute(&s, &small_params()).unwrap();
+    assert!(a.positions[note as usize][0].is_nan(), "a note has no map position");
+    for z in 0..=a.tiles.meta.zmax.min(4) {
+        for x in 0..1u32 << z {
+            for y in 0..1u32 << z {
+                for &layer in Projection::ALL.iter() {
+                    let t = tile(&s, &a, layer, z, x, y, "es").unwrap();
+                    let ids = t.nodes.iter().chain(&t.external).map(|n| n.id.as_str());
+                    let ends = t.edges.iter().flat_map(|e| [e.source.as_str(), e.target.as_str()]);
+                    assert!(ids.chain(ends).all(|id| !id.starts_with("note:")), "note in tile {z}/{x}/{y}");
+                }
+            }
+        }
+    }
+}

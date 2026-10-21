@@ -114,12 +114,29 @@ struct EntData {
     labels: Labels,
 }
 
-pub(crate) fn read_entities(db: &Path, (lo, hi): (i64, i64)) -> Result<EntChunk> {
+/// Entities of one rowid range; `filter` is an `AND …` fragment from `layer` (the compile scope).
+pub(crate) fn read_entities(db: &Path, (lo, hi): (i64, i64), filter: &str) -> Result<EntChunk> {
     let conn = open_ro(db)?;
-    let mut st =
-        conn.prepare("SELECT id, type, merged_into, data FROM entities WHERE rowid BETWEEN ?1 AND ?2 ORDER BY rowid")?;
-    let mut rows = st.query(params![lo, hi])?;
+    let mut st = conn.prepare(&format!(
+        "SELECT id, type, merged_into, data FROM entities WHERE rowid BETWEEN ?1 AND ?2{filter} ORDER BY rowid"
+    ))?;
     let mut out = EntChunk::default();
+    push_entities(&mut out, st.query(params![lo, hi])?)?;
+    Ok(out)
+}
+
+/// Entities by id, in the order given (the works layer's stubs from the core).
+pub(crate) fn read_entities_by_id(db: &Path, ids: &[String]) -> Result<EntChunk> {
+    let conn = open_ro(db)?;
+    let mut st = conn.prepare("SELECT id, type, merged_into, data FROM entities WHERE id = ?1")?;
+    let mut out = EntChunk::default();
+    for id in ids {
+        push_entities(&mut out, st.query(params![id])?)?;
+    }
+    Ok(out)
+}
+
+fn push_entities(out: &mut EntChunk, mut rows: rusqlite::Rows<'_>) -> Result<()> {
     while let Some(r) = rows.next()? {
         let id = r.get_ref(0)?.as_str()?;
         let ty: EntityType = r.get_ref(1)?.as_str()?.parse().map_err(|e| Error::Registry(format!("{id}: {e}")))?;
@@ -136,7 +153,7 @@ pub(crate) fn read_entities(db: &Path, (lo, hi): (i64, i64)) -> Result<EntChunk>
         let en = out.labels.push(&en);
         out.en.push(en);
     }
-    Ok(out)
+    Ok(())
 }
 
 // ------------------------------------------------------------------ claims
@@ -173,12 +190,12 @@ struct ConfData {
     value: f64,
 }
 
-pub(crate) fn read_claims(db: &Path, (lo, hi): (i64, i64)) -> Result<ClaimChunk> {
+pub(crate) fn read_claims(db: &Path, (lo, hi): (i64, i64), filter: &str) -> Result<ClaimChunk> {
     let conn = open_ro(db)?;
-    let mut st = conn.prepare(
+    let mut st = conn.prepare(&format!(
         "SELECT id, relation, evidence_state, alternative_group, data FROM claims \
-         WHERE rowid BETWEEN ?1 AND ?2 ORDER BY rowid",
-    )?;
+         WHERE rowid BETWEEN ?1 AND ?2{filter} ORDER BY rowid"
+    ))?;
     let mut rows = st.query(params![lo, hi])?;
     let mut out = ClaimChunk::default();
     out.asm_off.push(0);
@@ -248,15 +265,16 @@ pub(crate) fn key_ranges(ids: &[&str], n: usize) -> Vec<KeyRange> {
 }
 
 /// Sequential scan of the participant PK (no per-claim seeks).
-pub(crate) fn read_participants(db: &Path, range: &KeyRange, look: &Lookup<'_>) -> Result<PartChunk> {
+pub(crate) fn read_participants(db: &Path, range: &KeyRange, look: &Lookup<'_>, filter: &str) -> Result<PartChunk> {
     let conn = open_ro(db)?;
-    let mut sql = String::from("SELECT claim_id, role, entity_id FROM claim_participants");
+    let mut sql = String::from("SELECT claim_id, role, entity_id FROM claim_participants WHERE 1=1");
     match range {
         (None, None) => {}
-        (Some(_), None) => sql.push_str(" WHERE claim_id >= ?1"),
-        (None, Some(_)) => sql.push_str(" WHERE claim_id < ?1"),
-        (Some(_), Some(_)) => sql.push_str(" WHERE claim_id >= ?1 AND claim_id < ?2"),
+        (Some(_), None) => sql.push_str(" AND claim_id >= ?1"),
+        (None, Some(_)) => sql.push_str(" AND claim_id < ?1"),
+        (Some(_), Some(_)) => sql.push_str(" AND claim_id >= ?1 AND claim_id < ?2"),
     }
+    sql.push_str(filter);
     sql.push_str(" ORDER BY claim_id, position");
     let mut st = conn.prepare(&sql)?;
     let args: Vec<&str> = [&range.0, &range.1].into_iter().flatten().map(|s| s.as_str()).collect();
@@ -288,12 +306,17 @@ pub(crate) struct ProvChunk {
     pub texts: DedupStrVec,
 }
 
-pub(crate) fn read_provenance(db: &Path, (lo, hi): (i64, i64), look: &Lookup<'_>) -> Result<ProvChunk> {
+pub(crate) fn read_provenance(
+    db: &Path,
+    (lo, hi): (i64, i64),
+    look: &Lookup<'_>,
+    filter: &str,
+) -> Result<ProvChunk> {
     let conn = open_ro(db)?;
-    let mut st = conn.prepare(
+    let mut st = conn.prepare(&format!(
         "SELECT claim_id, source_id, locator, license FROM provenance \
-         WHERE rowid BETWEEN ?1 AND ?2 AND claim_id IS NOT NULL ORDER BY rowid",
-    )?;
+         WHERE rowid BETWEEN ?1 AND ?2 AND claim_id IS NOT NULL{filter} ORDER BY rowid"
+    ))?;
     let mut rows = st.query(params![lo, hi])?;
     let mut out = ProvChunk::default();
     while let Some(r) = rows.next()? {
@@ -306,4 +329,34 @@ pub(crate) fn read_provenance(db: &Path, (lo, hi): (i64, i64), look: &Lookup<'_>
         out.lic.push(out.texts.intern(r.get_ref(3)?.as_str()?));
     }
     Ok(out)
+}
+
+// ------------------------------------------------------------------ curation (schema v4)
+
+/// An active presentation curation (`exclude_presentation` or `presentation_label`), in id order.
+pub(crate) struct CurationRow {
+    pub id: i64,
+    pub kind: String,
+    pub target: String,
+    pub payload: serde_json::Value,
+}
+
+/// Active presentation curations; none before schema v4 (the table does not exist).
+pub(crate) fn read_curation(conn: &Connection, schema: u32) -> Result<Vec<CurationRow>> {
+    if schema < 4 {
+        return Ok(Vec::new());
+    }
+    let mut st = conn.prepare(
+        "SELECT id, kind, target_id, payload FROM curation WHERE undone_at IS NULL \
+         AND kind IN ('exclude_presentation', 'presentation_label') ORDER BY id",
+    )?;
+    let rows = st.query_map([], |r| {
+        Ok((r.get::<_, i64>(0)?, r.get::<_, String>(1)?, r.get::<_, String>(2)?, r.get::<_, String>(3)?))
+    })?;
+    rows.map(|row| {
+        let (id, kind, target, payload) = row?;
+        let payload = serde_json::from_str(&payload).map_err(|e| Error::Registry(format!("curation {id}: {e}")))?;
+        Ok(CurationRow { id, kind, target, payload })
+    })
+    .collect()
 }

@@ -797,6 +797,62 @@ mod tests {
         assert!(!t.dominates(1, true, pre, dep));
     }
 
+    fn word(t: &CompositionTable, w: &[&str]) -> String {
+        t.word_conclusion(w).map(|c| c.name.clone()).unwrap_or_else(|e| format!("error: {e}"))
+    }
+
+    #[test]
+    fn adr0005_said_equivalence_and_instance_compose_only_as_declared() {
+        let t = shipped();
+        // 7b: said_equivalent_to is one hop and composes with nothing (A~B, B~C does not give A~C)
+        assert_eq!(word(&t, &["said_equivalent_to"]), "said_equivalence");
+        assert!(!t.conclusion(t.step_kind(RelationType::SaidEquivalentTo, Way::Forward)).mathematical);
+        for w in [["said_equivalent_to", "said_equivalent_to"], ["said_equivalent_to", "equivalent_to"],
+                  ["equivalent_to", "said_equivalent_to"], ["said_equivalent_to^-1", "said_equivalent_to"]] {
+            assert_eq!(word(&t, &w), "none", "{w:?}");
+        }
+        // 7c: instance_of o special_case_of* -> instance_of; instance_of o instance_of does not compose
+        assert_eq!(word(&t, &["instance_of"]), "instance");
+        assert_eq!(word(&t, &["instance_of", "special_case_of"]), "instance");
+        assert_eq!(word(&t, &["instance_of", "special_case_of", "special_case_of", "special_case_of"]), "instance");
+        assert_eq!(word(&t, &["instance_of", "instance_of"]), "none");
+        assert_eq!(word(&t, &["instance_of", "special_case_of", "instance_of"]), "none");
+        assert_eq!(word(&t, &["special_case_of", "instance_of"]), "none");
+    }
+
+    #[test]
+    fn adr0005_no_route_through_citation_or_authorship_is_mathematical_or_pedagogical() {
+        use RelationType as R;
+        let t = shipped();
+        let tainted = [R::Cites, R::AppearsIn, R::IntroducedIn, R::AuthoredBy, R::CopiedBy, R::EditedBy, R::TranslatedBy,
+                       R::NamedAfter, R::Influenced];
+        let steps: Vec<(RelationType, Kind)> = RelationType::ALL
+            .iter()
+            .flat_map(|&r| [Way::Forward, Way::Converse].map(|w| (r, t.step_kind(r, w))))
+            .filter(|&(_, k)| k != NONE)
+            .collect();
+        let mut words = 0;
+        for &(r1, k1) in &steps {
+            for &(r2, k2) in &steps {
+                for &(r3, k3) in &steps {
+                    let two = tainted.contains(&r1) || tainted.contains(&r2);
+                    let three = two || tainted.contains(&r3);
+                    for (k, is_tainted) in [(t.compose(k1, k2), two), (t.compose(t.compose(k1, k2), k3), three)] {
+                        if k == NONE || !is_tainted {
+                            continue;
+                        }
+                        let c = t.conclusion(k);
+                        let cat = crate::explain::category(&c.family, c.mathematical);
+                        assert!(!c.mathematical && cat != "mathematical" && cat != "pedagogical",
+                                "{r1} {r2} {r3}: {} ({cat})", c.name);
+                        words += 1;
+                    }
+                }
+            }
+        }
+        assert!(words > 0);
+    }
+
     #[test]
     fn checker_rejects_a_non_associative_table() {
         // drop R2b: equivalence no longer transparent in learning routes

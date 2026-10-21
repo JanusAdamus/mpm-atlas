@@ -1,0 +1,8 @@
+integral | integración | CONCEPTO | q5: what:1110,why:92,before:158,links:985,check:159
+derivada | derivada | ÁREA | q5: what:1840,why:92,before:158,links:534,check:159
+teorema de Pitágoras | teorema de Pitágoras | ENUNCIADO | q5: what:1566,why:92,before:158,links:1258,check:159
+Bayes | teorema de Bayes | ENUNCIADO | q5: what:1696,why:288,before:158,links:813,check:159
+número primo | número primo | ÁREA | q5: what:1768,why:92,before:158,links:187,check:159
+pi | pi | CONCEPTO | q5: what:977,why:92,before:158,links:699,check:159
+matriz | matriz | ÁREA | q5: what:1193,why:92,before:158,links:559,check:159
+errors 0

@@ -95,22 +95,47 @@ fn fill_provenance_quotes(v: &mut Value) {
 /// except the `member_of_concept` claims whose object is the entity: a concept can have
 /// thousands; `/api/concept` pages them and `counts_by_relation` counts them.
 fn claims(c: &Connection, ids: &[&str], offset: usize, limit: usize) -> atlas_core::Result<(Vec<Value>, bool)> {
-    let states: Vec<String> = EvidenceState::ALL
-        .iter()
-        .filter(|s| s.is_current())
-        .map(|s| format!("'{}'", s.as_str()))
-        .collect();
+    let states = current_states();
     let marks = vec!["?"; ids.len()].join(",");
     let sql = format!(
         "SELECT data, evidence_state, superseded_by, formal FROM claims WHERE id IN \
          (SELECT DISTINCT cp.claim_id FROM claim_participants cp JOIN claims c2 ON c2.id = cp.claim_id \
           WHERE cp.entity_id IN ({marks}) AND NOT (cp.role = 'object' AND c2.relation = 'member_of_concept')) \
          AND evidence_state IN ({}) ORDER BY id LIMIT {} OFFSET {}",
-        states.join(","),
+        states,
         limit + 1,
         offset
     );
-    let mut st = c.prepare_cached(&sql)?;
+    let (mut out, truncated) = claim_rows(c, &sql, ids, limit)?;
+    if offset == 0 {
+        // The ficha's sentences (`explains` into the entity) ride on the first page whatever the
+        // claim cap: a concept with hundreds of claims would otherwise lose its ficha (r5, fichas).
+        let sql = format!(
+            "SELECT data, evidence_state, superseded_by, formal FROM claims WHERE id IN \
+             (SELECT cp.claim_id FROM claim_participants cp JOIN claims c2 ON c2.id = cp.claim_id \
+              WHERE cp.entity_id IN ({marks}) AND cp.role = 'object' AND c2.relation = 'explains') \
+             AND evidence_state IN ({states}) ORDER BY id LIMIT {}",
+            MAX_CLAIMS + 1
+        );
+        let seen: HashSet<String> = out.iter().filter_map(|v| v["id"].as_str().map(String::from)).collect();
+        let (extra, _) = claim_rows(c, &sql, ids, MAX_CLAIMS)?;
+        out.extend(extra.into_iter().filter(|v| v["id"].as_str().is_some_and(|id| !seen.contains(id))));
+    }
+    Ok((out, truncated))
+}
+
+fn current_states() -> String {
+    EvidenceState::ALL
+        .iter()
+        .filter(|s| s.is_current())
+        .map(|s| format!("'{}'", s.as_str()))
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
+/// Rows of a claims query (its `?` bound to `ids`) in `to_json()` shape; `true` if over `limit`.
+fn claim_rows(c: &Connection, sql: &str, ids: &[&str], limit: usize) -> atlas_core::Result<(Vec<Value>, bool)> {
+    let mut st = c.prepare_cached(sql)?;
     let rows = st.query_map(rusqlite::params_from_iter(ids), |r| {
         Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?, r.get::<_, Option<String>>(2)?, r.get::<_, Option<String>>(3)?))
     })?;
@@ -125,6 +150,8 @@ fn claims(c: &Connection, ids: &[&str], offset: usize, limit: usize) -> atlas_co
         }
         with_defaults(&mut v, &[("formal", null)]);
         with_defaults(&mut v, CLAIM_DEFAULTS);
+        // ADR-0005 §7f: a formalized_as proposed by name match only stays out of the explore mode
+        v["explore_hidden"] = json!(v["relation"] == "formalized_as" && state == "model_proposed");
         fill_provenance_quotes(&mut v);
         out.push(v);
     }
@@ -169,7 +196,7 @@ fn participant_labels(snap: &Snapshot, claim: &mut Value, lang: &str) {
         .into_iter()
         .flatten()
         .filter_map(|p| p["entity"].as_str())
-        .filter_map(|id| snap.resolve(id).map(|n| (id.to_string(), json!(snap.label(n, lang)))))
+        .filter_map(|id| snap.resolve(id).map(|n| (id.to_string(), json!(snap.display_label(n, lang)))))
         .collect();
     claim["labels"] = Value::Object(labels);
 }
@@ -209,7 +236,7 @@ impl Engine {
             "canonical_id": canonical,
             "merged_from": merged,
             "coverage": if snap.evidence(n).is_unknown() { "unknown" } else { "known" },
-            "label": snap.label(n, lang),
+            "label": snap.display_label(n, lang),
             "counts_by_relation": counts_by_relation(snap, n),
             "offset": offset,
             "limit": limit,

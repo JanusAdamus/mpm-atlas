@@ -39,6 +39,8 @@ export interface ClaimJson {
   confidence: { value: number; estimates: string; calibration: string } | null;
   historical_date: string | null; explanation: Record<string, string>; disagreements: string[];
   labels: Record<string, string>;
+  /** ADR-0005 §7f: a name-matched `formalized_as` proposal, left out of the explore mode. */
+  explore_hidden?: boolean;
 }
 export interface SourceJson { id: string; title: string; license: string; uri?: string | null; version?: string | null; terms?: string | null }
 export interface NodeRef { id: string; label: string; type: string; derived: boolean }
@@ -66,7 +68,11 @@ export interface ConceptMember {
   provenance: { source_id: string; locator: string; license: string; extractor?: string; extractor_version?: string }[];
 }
 export interface ConceptEdgeStat { relation: string; evidence_state: string; count: number; example_claim: string }
-export interface ConceptEdgeJson { concept: NodeRef; total: number; stats: ConceptEdgeStat[] }
+export interface ConceptEdgeJson {
+  concept: NodeRef; total: number; stats: ConceptEdgeStat[];
+  /** ADR-0005 §7a: an aggregated edge is as strong as its weakest link and always a candidate. */
+  candidate?: boolean;
+}
 export interface ConceptResponse {
   concept: NodeRef; description: string | null; members_total: number; memberships_total: number;
   memberships_by_state: Record<string, number>; offset: number; limit: number; truncated: boolean;

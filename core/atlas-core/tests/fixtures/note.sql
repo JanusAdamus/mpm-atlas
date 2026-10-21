@@ -1,0 +1,8 @@
+-- One ficha sentence over the mini_atlas fixture (r5, fichas): a `note` entity and its `explains`
+-- claim into s:pythagoras.  Applied to a temp copy by the search, layout and server tests to prove
+-- notes stay out of the index and the map while /api/entity still carries the sentence.
+INSERT INTO entities VALUES ('note:que_es:fixture1', 'note', '{"id":"note:que_es:fixture1","type":"note","labels":{"es":"Zanahoria: frase de ficha que explica el teorema."},"statements":{"es":"Zanahoria: frase de ficha que explica el teorema."},"provenance":[{"source_id":"src:fixture-hand","locator":"fixture","extractor":"hand-written-fixture","extractor_version":"1","license":"CC0-1.0","retrieved_at":"2026-10-16T00:00:00+00:00","quote":null}],"note":{"section":"que_es","ordinal":1}}', NULL, '2026-10-20T00:00:00+00:00');
+INSERT INTO claims VALUES ('c:zz-explains-pyth', 'explains', 'model_proposed', NULL, NULL, NULL, NULL, '{"id":"c:zz-explains-pyth","relation":"explains","participants":[{"role":"subject","entity":"note:que_es:fixture1"},{"role":"object","entity":"s:pythagoras"}],"provenance":[{"source_id":"src:fixture-hand","locator":"fixture","extractor":"hand-written-fixture","extractor_version":"1","license":"CC0-1.0","retrieved_at":"2026-10-16T00:00:00+00:00","quote":null}],"evidence_state":"model_proposed"}', '2026-10-20T00:00:00+00:00');
+INSERT INTO claim_participants VALUES ('c:zz-explains-pyth', 'subject', 'note:que_es:fixture1', 0);
+INSERT INTO claim_participants VALUES ('c:zz-explains-pyth', 'object', 's:pythagoras', 1);
+INSERT INTO provenance VALUES ('c:zz-explains-pyth', NULL, 'src:fixture-hand', 'fixture', 'hand-written-fixture', '1', 'CC0-1.0', '2026-10-16T00:00:00+00:00', NULL);

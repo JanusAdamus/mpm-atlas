@@ -48,6 +48,14 @@
     "retrievedAt": {"@id": "atlas:retrievedAt", "@type": "xsd:dateTime"},
     "quote": "atlas:quote",
     "title": "dct:title",
-    "uri": {"@id": "schema:url", "@type": "@id"}
+    "uri": {"@id": "schema:url", "@type": "@id"},
+    "sourceKind": "atlas:sourceKind",
+    "date": {"@id": "atlas:date", "@container": "@set"},
+    "dateKind": {"@id": "atlas:dateKind", "@type": "@vocab"},
+    "edtf": {"@id": "atlas:edtf", "@type": "http://id.loc.gov/datatypes/edtf/EDTF"},
+    "calendar": "atlas:calendar",
+    "raw": "atlas:raw",
+    "noteSection": {"@id": "atlas:noteSection", "@type": "@vocab"},
+    "noteOrdinal": {"@id": "atlas:noteOrdinal", "@type": "xsd:integer"}
   }
 }

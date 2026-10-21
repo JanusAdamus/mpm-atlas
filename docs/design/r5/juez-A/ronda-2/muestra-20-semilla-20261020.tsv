@@ -1,0 +1,21 @@
+item_id	correct	useful	note
+D1 c:a152af344ac3608a wd:Q24743362>wd:Q7631151	1	1	subgrafo inducido es caso particular de subgrafo.
+D2 c:e4e9996db0602c5f wd:Q142140>wd:Q181296	1	1	grupo abeliano finitamente generado ⊂ grupo abeliano.
+D3 c:6df597b84bb95556 wd:Q52241637>wd:Q2366896	1	1	sp(2n) es simple, luego semisimple (característica 0).
+D4 c:4e2da5f0bee389c4 wd:Q934367>wd:Q472971	1	1	espacio funcional ⊂ espacio (estructura); laxo pero cierto; útil medio.
+D5 c:aa0411eb9550a2d9 wd:Q168817>wd:Q11567	1	1	número algebraico ⊂ número complejo.
+D6 c:14761b5afaff6bdb wd:Q4953691>wd:Q161172	1	0	cierto, pero el extremo no tiene etiqueta ES ni descripción: el lector no aprende nada.
+D7 c:e3cd99f57bd9118b wd:Q844980>wd:Q18848	1	1	un álgebra de Leibniz es un módulo con corchete; útil medio.
+D8 c:ae46ea83dc55db12 wd:Q4723980>wd:Q77978698	1	1	representación de álgebra ⊂ representación lineal; sin ES; útil medio.
+D9 c:1a2a4b391bd38f72 wd:Q980329>wd:Q11348	0	1	dudosa: Q980329 es la proyección del dibujo técnico, y una clase de funciones no es «una instancia de» función.  P31 de nivel equivocado.
+D10 c:3492ae048f2ecaf1 wd:Q1956793>wd:Q318737	1	1	Ab es una categoría abeliana concreta: instancia correcta.
+A1 wd:Q80091>wd:Q36161	1	0	trivial: BoxIntegral usa Set.EqOn.
+A2 wd:Q3360627>wd:Q179899	1	1	TopPair.of usa espacios topológicos (TopCat, IsEmbedding).
+A3 wd:Q864377>wd:Q192439	0	0	homónimo: IsDomain (dominio de integridad) proyectado a «dominio de definición».
+A4 wd:Q1052692>wd:Q215111	1	0	cierto en declaraciones (pure como OneHom), sin valor para aprender.
+A5 wd:Q326908>wd:Q36161	0	0	asignación errónea: un lema de espacios cuasiseparados (esquemas) proyectado a «espacio de Hausdorff».
+A6 wd:Q379825>wd:Q66707394	0	0	asignación dudosa: Unique.encodable proyectado a «elemento».
+A7 wd:Q2421905>wd:Q179899	1	1	el cuadrado de Mayer-Vietoris usa abiertos de un espacio topológico.
+A8 wd:Q189112>wd:Q36161	1	0	trivial: usa Finset.
+A9 wd:Q595298>wd:Q1948412	1	0	cierto (MorphismProperty) pero trivial.
+A10 wd:Q37105>wd:Q4049983	1	1	HasLines.card_le (|P| ≤ |L| en configuraciones) usa Fintype.card; útil medio.

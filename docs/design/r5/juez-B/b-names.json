@@ -1,0 +1,287 @@
+{
+ "layout_version": "e4ccedf1b8b46087",
+ "general_nodes": 3229,
+ "label_shown_equals_registry_es": 2495,
+ "share_es": 0.7727,
+ "derived_concept_nodes": 1157,
+ "labels_with_mathlib_derivado": 1157,
+ "ood_diagnosis_list_in_layer": [
+  [
+   "wd:Q1055911",
+   "táctica"
+  ],
+  [
+   "wd:Q1137224",
+   "tablas"
+  ],
+  [
+   "wd:Q137",
+   "torre"
+  ],
+  [
+   "wd:Q20819848",
+   "jaque mate"
+  ],
+  [
+   "wd:Q215599",
+   "promoción"
+  ],
+  [
+   "wd:Q2590761",
+   "intercambio"
+  ],
+  [
+   "wd:Q842046",
+   "jaque"
+  ],
+  [
+   "wd:Q970141",
+   "combinación"
+  ],
+  [
+   "wd:Q332225",
+   "final"
+  ],
+  [
+   "wd:Q3984344",
+   "captura"
+  ],
+  [
+   "wd:Q828074",
+   "clavado"
+  ],
+  [
+   "wd:Q810",
+   "Jordania"
+  ],
+  [
+   "wd:Q35",
+   "Dinamarca"
+  ],
+  [
+   "wd:Q30",
+   "Estados Unidos"
+  ],
+  [
+   "wd:Q145",
+   "Reino Unido"
+  ],
+  [
+   "wd:Q258",
+   "Sudáfrica"
+  ],
+  [
+   "wd:Q11379",
+   "energía"
+  ],
+  [
+   "wd:Q42213",
+   "trabajo"
+  ],
+  [
+   "wd:Q589",
+   "agujero negro"
+  ],
+  [
+   "wd:Q209082",
+   "cinética química"
+  ],
+  [
+   "wd:Q83371",
+   "sismología"
+  ],
+  [
+   "wd:Q9128",
+   "luz"
+  ],
+  [
+   "wd:Q4173969",
+   "unidad de presión"
+  ],
+  [
+   "wd:Q304479",
+   "vuelta"
+  ],
+  [
+   "wd:Q12142910",
+   "corriente"
+  ],
+  [
+   "wd:Q186152",
+   "vector"
+  ],
+  [
+   "wd:Q387015",
+   "Trie"
+  ],
+  [
+   "wd:Q858684",
+   "NaN"
+  ]
+ ],
+ "curated_out_of_domain_still_in_layer": 49,
+ "curated_out_of_domain_total": 49,
+ "curated_derived_still_in_layer": 1157,
+ "examples_no_es": [
+  [
+   "wd:Q722659",
+   "graph property"
+  ],
+  [
+   "wd:Q18533485",
+   "lattice theory"
+  ],
+  [
+   "wd:Q357300",
+   "Lie theory"
+  ],
+  [
+   "wd:Q692823",
+   "strongly regular graph"
+  ],
+  [
+   "wd:Q19856468",
+   "integer-valued function"
+  ],
+  [
+   "wd:Q114722746",
+   "module theory"
+  ],
+  [
+   "wd:Q5289813",
+   "domain decomposition methods"
+  ],
+  [
+   "wd:Q5758318",
+   "higher category theory"
+  ],
+  [
+   "wd:Q10340026",
+   "object of a category"
+  ],
+  [
+   "wd:Q660799",
+   "Darboux's theorem"
+  ],
+  [
+   "wd:Q15838309",
+   "simple graph"
+  ],
+  [
+   "wd:Q78338964",
+   "smooth manifold"
+  ],
+  [
+   "wd:Q3502010",
+   "variety (universal algebra)"
+  ],
+  [
+   "wd:Q114715748",
+   "theory of schemes"
+  ],
+  [
+   "wd:Q374268",
+   "infinite group"
+  ],
+  [
+   "wd:Q747027",
+   "characteristic subgroup"
+  ],
+  [
+   "wd:Q18695611",
+   "sheaf of modules"
+  ],
+  [
+   "wd:Q30587585",
+   "Stone space"
+  ],
+  [
+   "wd:Q77613467",
+   "topological subspace"
+  ],
+  [
+   "wd:Q77978698",
+   "linear representation"
+  ],
+  [
+   "wd:Q1855669",
+   "invariant theory"
+  ],
+  [
+   "wd:Q124246880",
+   "vertex coloring"
+  ],
+  [
+   "wd:Q2033899",
+   "Stone–Čech compactification"
+  ],
+  [
+   "wd:Q929536",
+   "subring"
+  ],
+  [
+   "wd:Q1544261",
+   "totally disconnected space"
+  ],
+  [
+   "wd:Q10326443",
+   "bounded lattice"
+  ],
+  [
+   "wd:Q78082099",
+   "transposition"
+  ],
+  [
+   "wd:Q57510",
+   "Fundamental lemma of Langlands and Shelstad"
+  ],
+  [
+   "wd:Q764287",
+   "Van der Waerden's theorem"
+  ],
+  [
+   "wd:Q17098001",
+   "Riesz–Markov–Kakutani representation theorem"
+  ],
+  [
+   "wd:Q7595767",
+   "stable homotopy theory"
+  ],
+  [
+   "wd:Q546145",
+   "compactification"
+  ],
+  [
+   "wd:Q1340572",
+   "finitely generated module"
+  ],
+  [
+   "wd:Q1952404",
+   "multilinear map"
+  ],
+  [
+   "wd:Q2835968",
+   "finitely generated algebra"
+  ],
+  [
+   "wd:Q5135347",
+   "closed monoidal category"
+  ],
+  [
+   "wd:Q5156470",
+   "complete Heyting algebra"
+  ],
+  [
+   "wd:Q5611270",
+   "group scheme"
+  ],
+  [
+   "wd:Q11077412",
+   "strict order"
+  ],
+  [
+   "wd:Q15534632",
+   "graded ring"
+  ]
+ ]
+}

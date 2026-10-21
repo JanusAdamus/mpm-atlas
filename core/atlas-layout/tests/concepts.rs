@@ -22,6 +22,11 @@ const MEMBERS: [(&str, &str, &str, f64); 4] = [
 ];
 
 fn snapshot(name: &str) -> Snapshot {
+    snapshot_with(name, &[])
+}
+
+/// The fixture with active curation rows (kind, target, payload) of ADR-0005 §5 (schema v4).
+fn snapshot_with(name: &str, curation: &[(&str, &str, &str)]) -> Snapshot {
     let dir = std::env::temp_dir().join(format!(
         "atlas-layout-concepts-{}-{name}",
         std::process::id()
@@ -61,7 +66,25 @@ fn snapshot(name: &str) -> Snapshot {
         )
         .unwrap();
     }
-    c.execute_batch("PRAGMA user_version = 2").unwrap();
+    if curation.is_empty() {
+        c.execute_batch("PRAGMA user_version = 2").unwrap();
+    } else {
+        c.execute_batch(
+            "CREATE TABLE curation(id INTEGER PRIMARY KEY, kind TEXT NOT NULL, target_id TEXT NOT NULL,
+               rule TEXT NOT NULL, rule_version TEXT NOT NULL, payload TEXT NOT NULL, actor TEXT NOT NULL,
+               reason TEXT NOT NULL, created_at TEXT NOT NULL, undone_at TEXT, undone_by TEXT, undo_reason TEXT);
+             PRAGMA user_version = 4;",
+        )
+        .unwrap();
+        for (kind, target, payload) in curation {
+            c.execute(
+                "INSERT INTO curation(kind, target_id, rule, rule_version, payload, actor, reason, created_at)
+                 VALUES (?1, ?2, 'test', '1', ?3, 'curation:test/1', 'test', 't')",
+                params![kind, target, payload],
+            )
+            .unwrap();
+        }
+    }
     drop(c);
     compile(&CompileOptions::new(db, dir.join("snapshot"))).expect("compile");
     Snapshot::open(dir.join("snapshot")).unwrap()
@@ -361,4 +384,47 @@ fn general_tile_cap_keeps_the_overview_small() {
     }
     assert_eq!(seen.len(), 2, "every general node is drawn at some zoom: {seen:?}");
     assert_eq!(z0.nodes[0].priority, seen.values().copied().min().unwrap(), "z0 keeps the most important one");
+}
+
+/// ADR-0005 §5: the map reads the curation.  `map:general` keeps a concept out of the general
+/// zooms (z0..=general_zoom) only; `map:all` keeps a node off the map; a presentation label is
+/// what the tiles show, while the registry label stays.
+#[test]
+fn curation_flags_and_presentation_labels_reach_the_tiles() {
+    let s = snapshot_with(
+        "curation",
+        &[
+            ("exclude_presentation", "c:lonely", r#"{"scopes":["map:general"]}"#),
+            ("exclude_presentation", "s:law-of-cosines", r#"{"scopes":["map:all"]}"#),
+            ("presentation_label", "c:right-triangle", r#"{"lang":"es","text":"Triángulo rectángulo (curado)","provenance":{}}"#),
+        ],
+    );
+    let p = params();
+    let l = compute(&s, &p).unwrap();
+    let general_zoom = l.tiles.meta.general_zoom.unwrap();
+    let gone = s.resolve("s:law-of-cosines").unwrap();
+    assert!(l.positions[gone as usize][0].is_nan(), "map:all has no position");
+    let mut lonely_deep = false;
+    let mut curated_label = false;
+    for (z, x, y) in l.tiles.keys() {
+        for &layer in Projection::ALL.iter() {
+            let t = tile(&s, &l, layer, z, x, y, "es").unwrap();
+            let ids: Vec<&str> = t.nodes.iter().chain(&t.external).map(|n| n.id.as_str()).collect();
+            let ends = t.edges.iter().flat_map(|e| [e.source.as_str(), e.target.as_str()]);
+            assert!(!ids.iter().copied().chain(ends).any(|id| id == "s:law-of-cosines"), "map:all node in {z}/{x}/{y}");
+            if z <= general_zoom {
+                assert!(!ids.contains(&"c:lonely"), "map:general node in general tile {z}/{x}/{y}");
+            } else {
+                lonely_deep |= ids.contains(&"c:lonely");
+            }
+            for n in t.nodes.iter().filter(|n| n.id == "c:right-triangle") {
+                assert_eq!(n.label, "Triángulo rectángulo (curado)");
+                curated_label = true;
+            }
+        }
+    }
+    assert!(curated_label, "the curated concept is drawn somewhere");
+    assert!(lonely_deep, "map:general only hides the general zooms");
+    let rt = s.resolve("c:right-triangle").unwrap();
+    assert_ne!(s.label(rt, "es"), "Triángulo rectángulo (curado)", "the registry label is untouched");
 }

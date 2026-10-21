@@ -7,7 +7,7 @@
 
 # Constraints on the JSON-LD exported by atlas.store.Store.export_jsonld.
 # The pure-Python twin is atlas.store.validate_jsonld; keep both in sync
-# (docs/SPEC.md section 9).  Schema version 1.
+# (docs/SPEC.md section 9).  Schema version 4 (ADR-0005: dates, notes, new relations).
 
 atlas:ClaimShape
     a sh:NodeShape ;
@@ -18,7 +18,9 @@ atlas:ClaimShape
                 atlas:special_case_of atlas:equivalent_to atlas:analogous_to atlas:applied_in atlas:models
                 atlas:cites atlas:influenced atlas:part_of_area atlas:formalized_as atlas:named_after
                 atlas:counterexample_to atlas:appears_in atlas:authored_by
-                atlas:member_of_concept )
+                atlas:member_of_concept
+                atlas:said_equivalent_to atlas:instance_of atlas:introduced_in atlas:copied_by atlas:edited_by
+                atlas:translated_by atlas:explains )
     ] ;
     sh:property [
         sh:path atlas:evidenceState ; sh:minCount 1 ; sh:maxCount 1 ;
@@ -55,6 +57,19 @@ atlas:ClaimShape
         [ sh:not [ sh:property [ sh:path atlas:evidenceState ; sh:hasValue atlas:formally_linked ] ] ]
         [ sh:property [ sh:path atlas:formalArtifact ; sh:minCount 1 ; sh:node atlas:FormalArtifactShape ] ]
     ) ;
+    # v4: formally_linked only on relations with formal_allowed (model.RELATIONS): never on biblio/history
+    # relations, part_of_area, member_of_concept or explains
+    sh:or (
+        [ sh:not [ sh:property [ sh:path atlas:evidenceState ; sh:hasValue atlas:formally_linked ] ] ]
+        [ sh:property [ sh:path atlas:relation ;
+              sh:not [ sh:in ( atlas:cites atlas:influenced atlas:part_of_area atlas:named_after atlas:appears_in
+                               atlas:authored_by atlas:member_of_concept atlas:introduced_in atlas:copied_by
+                               atlas:edited_by atlas:translated_by atlas:explains ) ] ] ]
+    ) ;
+    # v4: introduced_in needs a provenance whose source has kind historiography.  SHACL Core cannot follow
+    # provenance -> source -> kind here; the store enforces it on insert (Store._check_batch).
+    sh:property [ sh:path atlas:historicalDate ; sh:maxCount 1 ; sh:datatype xsd:string ;
+                  sh:pattern "^(\\.\\.|-?([0-9]{4}|[0-9]{3}X|[0-9]{2}XX)(-[0-9]{2}(-[0-9]{2})?)?[?~%]?)(/(\\.\\.|-?[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?[?~%]?))?$" ] ;
     # superseded => supersededBy present
     sh:or (
         [ sh:not [ sh:property [ sh:path atlas:evidenceState ; sh:hasValue atlas:superseded ] ] ]
@@ -92,3 +107,30 @@ atlas:ConfidenceShape
                   sh:minInclusive 0 ; sh:maxInclusive 1 ] ;
     sh:property [ sh:path atlas:estimates ; sh:minCount 1 ; sh:minLength 1 ] ;
     sh:property [ sh:path atlas:calibration ; sh:minCount 1 ; sh:minLength 1 ] .
+
+# v4 (ADR-0005 §1): every date has a kind, an EDTF value (subset, astronomical years) and its own provenance.
+atlas:HistoricalDateShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf atlas:date ;
+    sh:property [ sh:path atlas:dateKind ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:in ( atlas:composed atlas:copied atlas:published atlas:edition atlas:born atlas:died
+                          atlas:floruit ) ] ;
+    sh:property [ sh:path atlas:edtf ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path atlas:calendar ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "gregorian" "julian" "unknown" ) ] ;
+    sh:property [ sh:path atlas:provenance ; sh:node atlas:ProvenanceShape ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# v4 (ADR-0005 §6): a note is one sentence of a ficha, with its section and position.
+atlas:NoteShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:Note ;
+    sh:property [ sh:path atlas:noteSection ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:in ( atlas:que_es atlas:por_que_importa atlas:compruebo ) ] ;
+    sh:property [ sh:path atlas:noteOrdinal ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ;
+                  sh:minInclusive 0 ] ;
+    sh:property [ sh:path atlas:statementText ; sh:minCount 1 ] .
+
+atlas:SourceShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:Source ;
+    sh:property [ sh:path atlas:sourceKind ; sh:maxCount 1 ;
+                  sh:in ( "dataset" "library" "encyclopedia" "historiography" "editorial" ) ] .

@@ -1,0 +1,334 @@
+   Compiling atlas-server v0.1.0 (C:\MPM\core\atlas-server)
+    Finished `release` profile [optimized + debuginfo] target(s) in 3m 41s
+     Running unittests src\lib.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas_core-27763522f3dbaf64.exe)
+
+running 7 tests
+test concepts::tests::q_numbers_match_python ... ok
+test vocab::tests::weakest_link_follows_the_rank ... ok
+test vocab::tests::codes_round_trip ... ok
+test strings::tests::append_shifts_offsets_and_intern_dedups ... ok
+test concepts::tests::aggregated_edge_takes_the_weakest_link ... ok
+test concepts::tests::primary_concepts_members_and_aggregated_edges ... ok
+test hashidx::tests::finds_every_key_and_rejects_others ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\concepts.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\concepts-b1766484e8a421d8.exe)
+
+running 2 tests
+test members_primary_concepts_and_aggregated_edges ... ok
+test concept_layer_is_deterministic ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests\format_v3.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\format_v3-9d871b568cebaa5e.exe)
+
+running 5 tests
+test format_v3_has_u64_string_offsets_and_reads_back ... ok
+test layer_snapshot_rejects_another_core ... ok
+test curation_on_a_works_id_compiles_in_both_scopes ... ok
+test node_flags_apply_active_curation_and_ignore_undone ... ok
+test bibliographic_source_audit_fails_compile ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests\snapshot.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\snapshot-be16c75c90c91ccd.exe)
+
+running 9 tests
+test missing_registry_is_not_found ... ok
+test conjunctions_alternatives_and_provenance ... ok
+test counts_and_integrity ... ok
+test csr_equals_store_edge_semantics ... ok
+test superseded_claims_leave_the_graph_but_keep_their_record ... ok
+test labels_follow_entity_label_fallback ... ok
+test merges_resolve_like_the_store ... ok
+test tampering_is_detected ... ok
+test compile_is_deterministic ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.28s
+
+     Running tests\vocab.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\vocab-0248d3878a1e3181.exe)
+
+running 4 tests
+test relation_specs_match_model_py ... ok
+test enums_match_model_py ... ok
+test composition_json_names_only_known_things ... ok
+test vocab_json_matches_rust ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\weakest_link_real.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\weakest_link_real-c8b89af4f905e037.exe)
+
+running 1 test
+test aggregated_edges_are_never_stronger_than_their_weakest_link ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas_layout-9ceac2cb6b0bd10d.exe)
+
+running 16 tests
+test concept::tests::general_layer_keeps_concepts_with_members_and_real_areas_only ... ok
+test concept::tests::sources_people_infrastructure_and_bare_numbers_stay_out_of_the_general_layer ... ok
+test works::tests::time_axis_is_monotone_and_compresses_antiquity ... ok
+test multilevel::tests::unknown_disk_sits_right_of_the_map_and_grows_outwards ... ok
+test util::tests::renumber_first_appearance ... ok
+test works::tests::unknown_area_has_its_own_band ... ok
+test concept::tests::members_fill_their_concept_disc_whatever_their_previous_place ... ok
+test util::tests::det_sum_is_order_stable ... ok
+test graph::tests::aggregate_preserves_weight_and_mass ... ok
+test force::tests::quadtree_mass_is_conserved ... ok
+test leiden::tests::cpm_recovers_ring_of_cliques ... ok
+test leiden::tests::dense_and_sorted_community_weights_agree ... ok
+test leiden::tests::deterministic_for_a_seed ... ok
+test force::tests::two_cliques_separate_and_run_is_deterministic ... ok
+test works::tests::tiles_partition_points_respect_budget_and_order_by_indegree ... ok
+test leiden::tests::batched_moving_recovers_cliques_for_any_thread_count ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests\concepts.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\concepts-a272cba67ff6a988.exe)
+
+running 5 tests
+test general_tile_cap_keeps_the_overview_small ... ok
+test general_layer_shows_only_concepts_and_counts_every_edge ... ok
+test edge_cap_applies_per_layer_so_one_layer_cannot_starve_another ... ok
+test curation_flags_and_presentation_labels_reach_the_tiles ... ok
+test warm_rebuild_keeps_the_concept_map_in_place ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+     Running tests\layout.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\layout-4748bed7aa402ab6.exe)
+
+running 11 tests
+test karate_modularity_near_optimum ... ok
+test aggregated_edges_are_exactly_the_real_edges ... ok
+test planted_partition_recovered_and_hierarchy_nested ... ok
+test bad_params_are_rejected ... ok
+test write_open_roundtrip_and_snapshot_check ... ok
+test entity_budget_respected_below_zmax ... ok
+test max_share_splits_a_collapsed_coarse_level ... ok
+test warm_start_keeps_existing_nodes_in_place ... ok
+test fixture_layout_is_deterministic_and_honest ... ok
+test notes_are_not_placed_nor_tiled ... ok
+test seeded_hierarchy_keeps_previous_communities ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.52s
+
+     Running unittests src\lib.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas_paths-5fa6b896e3dfaf39.exe)
+
+running 7 tests
+test algebra::tests::checker_rejects_a_non_associative_table ... ok
+test algebra::tests::checker_rejects_citations_with_meaning ... ok
+test algebra::tests::checker_rejects_strengthening_and_lost_taint ... ok
+test algebra::tests::subsumption_is_reflexive_and_never_trades_a_hypothesis_for_a_claim ... ok
+test algebra::tests::adr0005_said_equivalence_and_instance_compose_only_as_declared ... ok
+test algebra::tests::shipped_table_is_a_monoid ... ok
+test algebra::tests::adr0005_no_route_through_citation_or_authorship_is_mathematical_or_pedagogical ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\engine.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\engine-6b75d32f35695cf9.exe)
+
+running 39 tests
+test disconnected_components_abstain_instantly ... ok
+test concept_route_aggregates_dependencies_but_is_not_a_declaration_chain ... ok
+test citation_followed_by_logic_is_unauthorized ... ok
+test bibliographic_reach_still_abstains ... ok
+test bad_inputs_are_errors_not_routes ... ok
+test analogy_degrades_a_logical_chain_to_hypothesis ... ok
+test complete_alternative_proof_beats_incomplete_one ... ok
+test concept_route_never_mixes_dependency_and_support_through_a_shared_concept ... ok
+test analogy_then_application_is_only_a_transfer_hypothesis ... ok
+test citation_chain_authorizes_nothing_semantic ... ok
+test derived_premise_completes_the_conjunction ... ok
+test backward_chaining_decides_premises_when_the_forward_closure_is_cut ... ok
+test every_step_is_justified ... ok
+test forward_dependency_through_an_alternative_proof_is_not_necessary ... ok
+test concept_route_walked_backwards_is_support_and_flags_conjunctive_witnesses ... ok
+test all_objectives_and_search_modes_agree_on_the_fixture ... ok
+test alternative_budget_caps_alternatives_never_the_first_route ... ok
+test disputed_claims_need_an_explicit_request ... ok
+test drill_down_explains_each_witness_as_a_declaration_route_with_sources ... ok
+test k_routes_are_distinct_and_ranked ... ok
+test generalization_transfers_application_but_special_case_does_not ... ok
+test historical_chain_never_upgrades_to_logic ... ok
+test historical_chain_is_an_answer_labelled_historical ... ok
+test hop_limit_is_respected ... ok
+test mathematical_route_outranks_an_equally_long_historical_one ... ok
+test merged_ids_resolve_to_the_survivor ... ok
+test concept_endpoints_map_declarations_to_their_primary_concept ... ok
+test prerequisite_is_not_walked_backwards ... ok
+test missing_conjunct_makes_the_route_incomplete ... ok
+test known_premise_completes_the_conjunction ... ok
+test membership_alone_never_authorizes_an_entity_level_conclusion ... ok
+test objectives_choose_different_routes_and_weights_are_visible ... ok
+test instance_then_special_cases_is_an_instance_but_two_instances_are_not ... ok
+test prerequisite_then_dependency_in_reading_order_is_rejected ... ok
+test prerequisite_then_use_is_a_study_route_never_logic ... ok
+test strict_mode_rejects_a_missing_conjunct_and_explains ... ok
+test two_analogies_conclude_nothing ... ok
+test unknown_coverage_abstains_without_calling_it_isolated ... ok
+test said_equivalence_is_one_hop_and_never_composes ... ok
+
+test result: ok. 39 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests\optimality.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\optimality-fa7a43e7f14bf355.exe)
+
+running 1 test
+test search_matches_exhaustive_enumeration ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.40s
+
+     Running unittests src\lib.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas_search-55f9f25139ed06fb.exe)
+
+running 36 tests
+test encoder::tests::humanize_splits_identifiers_only ... ok
+test encoder::tests::jacobi_recovers_eigenvalues ... ok
+test formula::features::tests::fnv_is_stable ... ok
+test formula::features::tests::renamed_variables_share_all_unified_features_and_no_exact_leaf_features ... ok
+test formula::features::tests::different_structure_shares_few_features ... ok
+test formula::tests::prose_is_not_formal ... ok
+test formula::mathml::tests::wikipedia_mathml_becomes_the_same_tree_as_latex ... ok
+test formula::mathml::tests::big_operators_entities_and_tex_annotations ... ok
+test formula::parse::tests::lean_declarations_use_binders_as_variables_and_application ... ok
+test formula::parse::tests::garbage_never_panics ... ok
+test formula::parse::tests::latex_commands_fractions_functions_and_big_operators ... ok
+test formula::parse::tests::latex_and_plain_pythagoras_give_the_same_tree ... ok
+test router::tests::inline_filters_are_extracted_and_lean_colons_are_not ... ok
+test router::tests::routes_follow_the_shape_of_the_query ... ok
+test dense::tests::embedding_cache_roundtrips_and_rejects_other_dims ... ok
+test formula::tests::norm_and_inner_product_structure_beats_a_sum_of_squares ... ok
+test formula::tests::index_ranks_same_structure_first_and_survives_reopen ... ok
+test formula::tests::truncated_file_is_rejected ... ok
+test text::tests::lean_identifiers_split_on_dots_underscores_and_camel_case ... ok
+test text::tests::spanish_and_english_fold_accents_and_stem ... ok
+test textstore::tests::roundtrip_with_gaps ... ok
+test encoder::tests::lsi_maps_cooccurring_words_together_and_roundtrips ... ok
+test tests::notes_are_not_indexed ... ok
+test dense::tests::brute_and_hnsw_find_the_query_vector_itself ... ok
+test tests::semantic_lane_scans_exactly_by_default_even_with_a_graph ... ok
+test tests::formula_query_finds_the_same_structure_under_renamed_variables ... ok
+test tests::index_of_another_snapshot_is_refused ... ok
+test tests::merged_entities_are_found_through_their_survivor ... ok
+test tests::response_has_the_api_shape_and_empty_queries_are_empty ... ok
+test tests::queries_of_three_words_or_more_add_an_all_words_clause_on_descriptions_and_statements ... ok
+test tests::named_object_ranks_the_exact_name_first_with_lane_diagnostics ... ok
+test tests::type_filters_from_the_query_and_from_types ... ok
+test tests::assumption_filters_use_claim_assumptions ... ok
+test tests::single_lane_mode_and_semantic_lane_with_both_dense_methods ... ok
+test tests::a_surname_query_finds_the_eponymous_mathematics_before_the_person ... ok
+test tests::everyday_name_ranks_its_concept_before_declarations_of_the_same_short_name ... ok
+
+test result: ok. 36 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.03s
+
+     Running unittests src\lib.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas_server-10bf56faab0fd7bd.exe)
+
+running 2 tests
+test coverage::tests::now_utc_is_iso8601 ... ok
+test search::tests::fts_query_quotes_tokens_and_prefixes_the_last ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\atlas-0b0dbe5c77b5e34a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\api.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\api-7a0db62fa8181e5e.exe)
+
+running 13 tests
+test health_reports_components ... ok
+test only_get_and_head ... ok
+test neighborhood_keeps_conjunctions_and_counts_what_it_hides ... ok
+test coverage_matches_store_semantics ... ok
+test path_explains_each_step_and_validates_options ... ok
+test responses_compress_on_request ... ok
+test etag_short_circuits_with_304 ... ok
+test bad_parameters_get_the_json_envelope ... ok
+test tiles_come_in_json_and_binary_with_the_same_content ... ok
+test search_is_accent_insensitive_prefix_and_resolves_merges ... ok
+test cors_is_off_by_default_and_exact_when_configured ... ok
+test static_files_are_served_without_traversal ... ok
+test entity_detail_resolves_merges_and_labels_participants ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests\cli.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\cli-adeddc7a902c33e9.exe)
+
+running 1 test
+test compile_stats_layout_and_error_envelope ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.36s
+
+     Running tests\close.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\close-4eb7238669fc32bc.exe)
+
+running 1 test
+test large_response_with_connection_close_arrives_whole ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.93s
+
+     Running tests\concept_api.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\concept_api-42ae8fdc83fa3922.exe)
+
+running 4 tests
+test concept_input_is_validated ... ok
+test concept_pages_members_with_their_evidence ... ok
+test drill_down_recounts_each_aggregated_edge ... ok
+test entity_links_the_concept_layer_without_listing_every_membership ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests\curation.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\curation-34255d57be1faada.exe)
+
+running 1 test
+test server_reads_presentation_labels_and_node_flags ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests\fichas.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\fichas-56563da89a957781.exe)
+
+running 1 test
+test explains_ride_past_the_claim_cap_with_the_note_label ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests\tile_format.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\tile_format-05a88fea13168ee7.exe)
+
+running 1 test
+test binary_tile_matches_golden_and_header ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests atlas_core
+
+running 1 test
+test atlas-core\src\lib.rs - (line 5) - compile ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 4.76s; merged doctests compilation took 4.03s
+   Doc-tests atlas_layout
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests atlas_paths
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests atlas_search
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests atlas_server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+exit 0

@@ -1,0 +1,247 @@
+{
+ "seed": 20261020,
+ "direct_pool": 1468,
+ "aggregate_pool": 25707,
+ "items": [
+  {
+   "n": "D1",
+   "claim": "c:a1a2f6cdf314ebe5",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q1432554",
+    "wd:Q18848"
+   ]
+  },
+  {
+   "n": "D2",
+   "claim": "c:e6564ff068ea00a4",
+   "relation": "instance_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q303100",
+    "wd:Q722659"
+   ]
+  },
+  {
+   "n": "D3",
+   "claim": "c:6e1471fdb7a11290",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q577835",
+    "wd:Q125977"
+   ]
+  },
+  {
+   "n": "D4",
+   "claim": "c:4de7679d13afa06c",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q212130",
+    "wd:Q161519"
+   ]
+  },
+  {
+   "n": "D5",
+   "claim": "c:aa824823b1044fc2",
+   "relation": "instance_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q215071",
+    "wd:Q11348"
+   ]
+  },
+  {
+   "n": "D6",
+   "claim": "c:14761b5afaff6bdb",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q4953691",
+    "wd:Q161172"
+   ]
+  },
+  {
+   "n": "D7",
+   "claim": "c:e5da8c8803807166",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q9197353",
+    "wd:Q273037"
+   ]
+  },
+  {
+   "n": "D8",
+   "claim": "c:af407f7b10e1f693",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q1363919",
+    "wd:Q680081"
+   ]
+  },
+  {
+   "n": "D9",
+   "claim": "c:1a2a4b391bd38f72",
+   "relation": "instance_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q980329",
+    "wd:Q11348"
+   ]
+  },
+  {
+   "n": "D10",
+   "claim": "c:3492ae048f2ecaf1",
+   "relation": "instance_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q1956793",
+    "wd:Q318737"
+   ]
+  },
+  {
+   "n": "A1",
+   "from": "wd:Q36161",
+   "to": "wd:Q192276",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:3f120ae643e42200"
+    ]
+   ]
+  },
+  {
+   "n": "A2",
+   "from": "wd:Q189569",
+   "to": "wd:Q948010",
+   "total": 5,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     5,
+     "c:1c3aca82656ab48e"
+    ]
+   ]
+  },
+  {
+   "n": "A3",
+   "from": "wd:Q4440864",
+   "to": "wd:Q18848",
+   "total": 9,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     9,
+     "c:35d9a7ebe8b375ad"
+    ]
+   ]
+  },
+  {
+   "n": "A4",
+   "from": "concept:Mathlib/Algebra/Homology/HomologicalComplex",
+   "to": "wd:Q6086107",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:3e68ac5b6511bb0b"
+    ]
+   ]
+  },
+  {
+   "n": "A5",
+   "from": "wd:Q189112",
+   "to": "wd:Q213363",
+   "total": 4,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     4,
+     "c:50b7c2c88f6de91f"
+    ]
+   ]
+  },
+  {
+   "n": "A6",
+   "from": "wd:Q19934355",
+   "to": "wd:Q2943034",
+   "total": 2,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     2,
+     "c:dd5b7245724df664"
+    ]
+   ]
+  },
+  {
+   "n": "A7",
+   "from": "wd:Q164",
+   "to": "concept:Mathlib/Analysis/Calculus/FDeriv",
+   "total": 10,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     10,
+     "c:9814e06f91e673d3"
+    ]
+   ]
+  },
+  {
+   "n": "A8",
+   "from": "wd:Q582271",
+   "to": "wd:Q1144319",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:69a57a885a56af9c"
+    ]
+   ]
+  },
+  {
+   "n": "A9",
+   "from": "wd:Q60727552",
+   "to": "wd:Q36161",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:3c1968a2193b8a0d"
+    ]
+   ]
+  },
+  {
+   "n": "A10",
+   "from": "wd:Q122350815",
+   "to": "wd:Q6086107",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:2ca6bd545b65c472"
+    ]
+   ]
+  }
+ ]
+}

@@ -74,6 +74,21 @@ enum Cmd {
         /// Concurrent heavy requests before shedding with 503 (0 = 2 x cores).
         #[arg(long, default_value_t = 0)]
         heavy_permits: usize,
+        /// Works layer directory (`atlas works-compile --out`); omitted = no works layer.
+        #[arg(long)]
+        works: Option<PathBuf>,
+    },
+    /// Compile the works layer (ADR-0005 §8.4) over a core snapshot: layer snapshot, works search
+    /// fragment and works tile file, all in --out.
+    WorksCompile {
+        #[arg(long, default_value = "data/atlas.db")]
+        db: PathBuf,
+        #[arg(long, default_value = "data/snapshot")]
+        core: PathBuf,
+        #[arg(long, default_value = "data/works")]
+        out: PathBuf,
+        #[arg(long, default_value_t = 0)]
+        threads: usize,
     },
     /// Build the atlas-search indexes for a snapshot (text read from the registry).
     Index {
@@ -172,7 +187,7 @@ fn run(cmd: Cmd) -> Result<Value> {
             v["verify_ms"] = json!(verify_ms);
             Ok(v)
         }
-        Cmd::Serve { snapshot, db, web, addr, index, layout, composition, cors_origin, heavy_permits } => {
+        Cmd::Serve { snapshot, db, web, addr, index, layout, composition, cors_origin, heavy_permits, works } => {
             let cfg = atlas_server::ServerConfig {
                 snapshot,
                 db: Some(db),
@@ -182,12 +197,14 @@ fn run(cmd: Cmd) -> Result<Value> {
                 composition: Some(composition),
                 cors_origin,
                 heavy_permits,
+                works_dir: works,
             };
             let state = atlas_server::AppState::load(&cfg)?;
             let rt = cfg.runtime()?;
             rt.block_on(atlas_server::serve(addr, state))?;
             Ok(json!({"served": addr.to_string()}))
         }
+        Cmd::WorksCompile { db, core, out, threads } => atlas_server::works::compile(&db, &core, &out, threads),
         Cmd::Index { snapshot, db, out } => {
             let snap = Snapshot::open(&snapshot)?;
             let report = atlas_search::SearchIndex::build(&snap, &db, &out)?;

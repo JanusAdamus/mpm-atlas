@@ -1,6 +1,6 @@
 # Especificación ejecutable del atlas · v1
 
-Fecha: 2026-10-16 (actualizada 2026-10-17).  Esquema: `SCHEMA_VERSION = 3` (`atlas/model.py`); snapshot `FORMAT_VERSION = 2`.  Este documento es el contrato que usan ingesta, búsqueda, recorridos, mapa, evaluación e integración.  Lo que aquí se describe está implementado en `atlas/model.py` y `atlas/store.py` y probado en `tests/test_model.py` y `tests/test_store.py`.  Si el código y este texto discrepan, manda el código y se corrige el texto.
+Fecha: 2026-10-16 (actualizada 2026-10-19, ADR-0005).  Esquema: `SCHEMA_VERSION = 4` (`atlas/model.py`); snapshot `FORMAT_VERSION = 3`.  Este documento es el contrato que usan ingesta, búsqueda, recorridos, mapa, evaluación e integración.  Lo que aquí se describe está implementado en `atlas/model.py` y `atlas/store.py` y probado en `tests/test_model.py` y `tests/test_store.py`.  Si el código y este texto discrepan, manda el código y se corrige el texto.
 
 Fuentes de diseño: `research/2026-10-16/atlas-investigacion-y-plan.md` (secciones "Arquitectura del atlas" y "Búsqueda y motor de recorridos"), WP01 de `plan-ejecucion.md`, y R01, R02, R50, R51, R52 de `bibliografia-y-evidencia.md` (MMT, Math-in-the-Middle, nanopublicaciones, PROV-O, SHACL).
 
@@ -18,10 +18,11 @@ Cada pregunta tiene una operación que la contesta.  Si la operación no existe 
 | ¿Dónde se aplica X y con qué evidencia empírica? | `applied_in`, `models` + procedencia |
 | ¿Cómo llego de X a Y y qué autoriza cada salto? | `/api/path` (dueño: recorridos) |
 | ¿Está X formalizado? ¿En qué biblioteca, versión y axiomas? | `formalized_as` + `Claim.formal` |
-| ¿Quién lo propuso, dónde aparece, a quién influyó? | `named_after`, `appears_in`, `authored_by`, `influenced` |
+| ¿Quién lo propuso, dónde aparece, a quién influyó? | `named_after`, `appears_in`, `authored_by`, `influenced`; `introduced_in` (solo con fuente historiográfica) |
+| ¿Cuándo se compuso, copió o publicó esta obra, y según quién? | `Entity.dates` (`HistoricalDate`), tabla `entity_dates`, `Store.dated_entities` |
 | ¿Qué fuente sostiene esta conexión, en qué página, quién la extrajo? | `Claim.provenance` |
 | ¿Qué cambió y por qué? | `Store.events`, `Store.history` |
-| ¿Qué tan cubierta está esta región? | `Store.coverage`, `/api/coverage` |
+| ¿Qué tan cubierta está esta región? | `Store.coverage`, `/api/coverage`; por periodo y área, `Store.coverage_cells` |
 
 ## 2. Tipos de objeto (`EntityType`)
 
@@ -45,12 +46,20 @@ Cada pregunta tiene una operación que la contesta.  Si la operación no existe 
 | `resource` | recurso | Material didáctico, declaración de biblioteca formal, software. |
 | `experiment` | experimento | Laboratorio, simulación o estudio empírico. |
 | `area` | área | Región de la matemática (por ejemplo, una clase MSC).  Destino de `part_of_area`.  Se agregó a la lista del informe porque `part_of_area` necesita un tipo destino propio. |
+| `witness` | testimonio | v4.  Objeto físico que transmite una obra: tablilla, papiro, manuscrito (Plimpton 322, papiro Rhind).  Se identifica por `external_ids` (`cdli`, `museum`, `wikidata`) y lleva fechas `copied`.  Cuenta como «doc». |
+| `note` | nota | v4.  Una frase de una ficha, con su texto en `statements` (ES y/o EN) y `Entity.note = NoteInfo(section, ordinal)`.  Solo participa en `explains`; no entra en la búsqueda; es inmutable (cambiar el texto = nota nueva + `supersede` de su afirmación). |
+
+`publication` es la **obra** (texto abstracto con autor atribuido).  Una edición o traducción concreta es su propio registro `publication` con fecha `edition`, fusionado con la obra (`merge` con `evidence = {"kind": "edition_of", "key": …}`); en v4 no hay relaciones `edition_of` ni `witness_of` (ADR-0005 §2).
 
 Una traducción de un mismo objeto es otra etiqueta del mismo `Entity`.  Dos tradiciones con diferencias conceptuales reales son entidades distintas unidas por una afirmación (`equivalent_to`, `analogous_to`, etc.), nunca una fusión.
 
 ### Campos de `Entity`
 
-`id` (estable; patrón `^[A-Za-z0-9][A-Za-z0-9_.:\-/#]{0,255}$`), `type`, `labels` (una etiqueta preferida por idioma, al menos una), `aliases`, `descriptions`, `statements` (texto del enunciado por idioma), `formula` (LaTeX tal como viene en la fuente), `external_ids` (pares `(esquema, valor)`, por ejemplo `("wikidata", "Q…")`, `("mathlib", "Nat.Prime")`, `("msc", "11A41")`), `provenance` (opcional para entidades, obligatoria para afirmaciones).
+`id` (estable; patrón `^[A-Za-z0-9][A-Za-z0-9_.:\-/#]{0,255}$`), `type`, `labels` (una etiqueta preferida por idioma, al menos una), `aliases`, `descriptions`, `statements` (texto del enunciado por idioma), `formula` (LaTeX tal como viene en la fuente), `external_ids` (pares `(esquema, valor)`, por ejemplo `("wikidata", "Q…")`, `("mathlib", "Nat.Prime")`, `("msc", "11A41")`), `provenance` (opcional para entidades, obligatoria para afirmaciones), `dates` (v4: tupla de `HistoricalDate`) y `note` (v4: `NoteInfo`, obligatorio si y solo si `type == note`).
+
+**Fechas históricas (v4, ADR-0005 §1).**  `HistoricalDate(kind, edtf, provenance, calendar="gregorian", raw=None)`: `kind` ∈ `composed`, `copied`, `published`, `edition`, `born`, `died`, `floruit` (`DateKind`); `provenance` obligatoria (cada fecha tiene su fuente); `calendar` ∈ `gregorian`, `julian`, `unknown` y nunca se convierte; `raw` guarda el valor exacto de la fuente.  `edtf` es un subconjunto EDTF nivel 0/1 en numeración **astronómica** (`0000` = 1 a. C., `-0299` = 300 a. C.): fecha `[-]YYYY(-MM(-DD)?)?` con año de 4 dígitos; calificador final `?`, `~` o `%`; dígitos `X` solo en años ≥ 0 (`19XX`, `180X`); intervalo `A/B` con extremos abiertos `../B` y `A/..`.  `parse_edtf(text, calendar)` valida sin `datetime` (mes 1–12; día ≤ días del mes; bisiesto gregoriano proléptico, con el año 0 bisiesto, o juliano; `unknown` usa la regla juliana, la más permisiva; en un intervalo, `A ≤ B`) y devuelve `(lo, hi)`: años astronómicos inclusivos, `None` si el extremo es abierto.  Varias fechas que no coinciden se guardan todas, cada una con su fuente.
+
+Wikidata se convierte en un solo lugar, `atlas.ingest.wikidata.edtf_from_wikidata(time, precision, calendar_qid, qualifiers, channel)`: año histórico negativo `y` → `y + 1` (−300 → `-0299`, −1 → `0000`); precisión 9–11 tal cual; década, siglo y milenio → intervalo explícito (siglo III a. C. = `-0299/-0200`); P1480 circa (Q5727902) → `~`, presumiblemente (Q18122778) → `?`; P1319/P1326 → extremos del intervalo; Q1985786 → `julian`.  Que el canal `wdqs` ya venga en numeración astronómica no está verificado (NV): el piloto lo comprueba con *Elementos* (Q172891).
 
 Convención de prefijos de id (recomendada, no forzada): `c:` concepto, `d:` definición, `s:` enunciado, `p:` demostración, `a:` área, `per:` persona, `pub:` publicación, `app:` aplicación, `src:` fuente, `g:` grupo de alternativas.  Para ingesta idempotente: `stable_id(prefijo, *partes)`.
 
@@ -78,8 +87,19 @@ Toda afirmación se lee **SUJETO —relación→ OBJETO**.  Las propiedades vive
 | `appears_in` | biblio | no | no | — | no | cualquiera salvo persona → doc | Localización en la literatura. |
 | `authored_by` | history | no | no | — | no | doc/matemático → person | Atribución de autoría. |
 | `member_of_concept` | structure | no | no | — | no | matemático/resource → matemático/area | Proyección conceptual (§12.1): la declaración trata de ese concepto.  Solo agrupa; no autoriza ninguna conclusión ni equivale a dependencia, equivalencia o formalización. |
+| `said_equivalent_to` | structure | sí | **no** | — | no | matemático → matemático | v4 (Wikidata P460).  Una fuente dice que pueden ser lo mismo; no compone ni sustituye. |
+| `instance_of` | structure | no | no | — | no | matemático → matemático | v4 (Wikidata P31; P279 sigue siendo `special_case_of`).  x es un ejemplo de B.  Única composición: `instance_of ∘ special_case_of*` → `instance_of`. |
+| `introduced_in` | history | no | no | — | no | matemático → publication/witness | v4.  Una fuente historiográfica dice que aquí se introdujo; no encadena ni implica demostración ni prerrequisito.  El store exige una procedencia de una fuente con `kind = historiography`. |
+| `copied_by` | history | no | no | — | no | witness → person | v4.  Copió este testimonio; no implica autoría ni prioridad. |
+| `edited_by` | history | no | no | — | no | publication → person | v4.  Editó esta edición; no implica autoría. |
+| `translated_by` | history | no | no | — | no | publication → person | v4.  Tradujo esta edición; no implica autoría. |
+| `explains` | learning | no | no | — | no | note → matemático/area | v4.  Texto para el lector (una frase de ficha); no encadena ni afirma nada matemático más allá de sí mismo. |
 
-"Matemático" = concept, definition, theory, statement, proof, conjecture, counterexample, algorithm, model, problem.  "Doc" = publication, source_fragment, resource.  "Mundo" = phenomenon, application, experiment, problem, model.  El store rechaza afirmaciones cuyos extremos no cumplan estos tipos (tabla `relation_endpoints`, derivada de `RELATIONS`).
+"Matemático" = concept, definition, theory, statement, proof, conjecture, counterexample, algorithm, model, problem.  "Doc" = publication, source_fragment, resource y, desde v4, witness.  "Cualquiera salvo persona" excluye también `note` (v4): una nota solo es sujeto de `explains`.  "Mundo" = phenomenon, application, experiment, problem, model.  El store rechaza afirmaciones cuyos extremos no cumplan estos tipos (tabla `relation_endpoints`, derivada de `RELATIONS`).
+
+**`RelationSpec.formal_allowed` (v4).**  `formally_linked` no se admite en las relaciones biblio/history (`cites`, `appears_in`, `influenced`, `named_after`, `authored_by`, `introduced_in`, `copied_by`, `edited_by`, `translated_by`), en `part_of_area`, en `member_of_concept` ni en `explains`.  Lo comprueba `check_state_allowed` al insertar y en `set_evidence_state`, no al leer: las 244,933 `part_of_area` que v3 dejó en `formally_linked` se siguen leyendo hasta que la operación de datos de ADR-0005 §7e las pase a `extracted`.  El adaptador de Mathlib ya las emite como `extracted` (conservan el `FormalArtifact`).
+
+**`EVIDENCE_RANK` (v4).**  `formally_linked` 4 > `editorially_reviewed` 3 > `extracted` 2 > `model_proposed` 1 > `disputed` 0; cubre `CURRENT_STATES` y se espeja en `vocab.rs` (`EvidenceState::rank` y `weakest`).  Una conexión agregada nunca es más fuerte que su eslabón más débil.
 
 ### Reglas mínimas de composición para el motor de recorridos
 
@@ -88,7 +108,8 @@ Estas reglas son el piso; `atlas/paths/` puede ser más estricto, nunca más lax
 1. Una cadena solo de una relación transitiva autoriza esa misma relación.  Una no transitiva no encadena.
 2. `equivalent_to` puede intercalarse en una cadena de la familia `structure` o `proof` sin cambiar lo que autoriza; los supuestos se acumulan.
 3. Cualquier `analogous_to` en la cadena degrada la conclusión a **hipótesis**.
-4. `cites`, `appears_in`, `influenced`, `named_after`, `authored_by` nunca producen una conclusión matemática.
+4. `cites`, `appears_in`, `influenced`, `named_after`, `authored_by` y, desde v4, `introduced_in`, `copied_by`, `edited_by` y `translated_by` nunca producen una conclusión matemática.  Además, `atlas compile` falla si una afirmación vigente con procedencia de una fuente bibliográfica (prefijos `src:zbmath`, `src:openalex`, `src:opencitations`, `src:crossref`, `src:cdli`; lista en `shapes/source_relations.json`) usa una relación fuera de `cites`, `authored_by`, `edited_by`, `translated_by`, `copied_by`, `part_of_area`, `appears_in`.
+4b. (v4) `said_equivalent_to` no compone (A~B y B~C no dan A~C).  `instance_of ∘ instance_of` no compone; `instance_of ∘ special_case_of` → `instance_of`.  `explains` no se recorre.  Mientras recorridos no defina su álgebra, `shapes/composition.json` deja `said_equivalent_to` e `instance_of` como no recorribles.
 5. `prerequisite_for` mezclado con relaciones lógicas produce, como mucho, una ruta de estudio.  Una cadena de `depends_on_logically` tampoco determina el mejor orden de estudio.
 6. `B applied_in X` y `A generalizes B` autorizan "A se aplica en X a través de su caso particular B".  `A special_case_of B` y `B applied_in X` no autorizan nada sobre A.
 7. Una afirmación conjuntiva (varios `premise`) solo cuenta como salto completo si todas sus premisas están satisfechas.  `Edge.conjunct_count > 1` lo marca; las aristas de una conjunción no son independientes.
@@ -109,7 +130,7 @@ La unidad de verdad del atlas.  Cada afirmación es un nodo con participantes et
 | `context` | Teoría o área en la que se enuncia la afirmación. |
 | `via` | La demostración, argumento o método que realiza la relación. |
 
-Campos además de los participantes: `relation`, `provenance` (≥1), `evidence_state`, `assumptions` (texto libre de hipótesis que aún no son entidades), `validity_domain`, `alternative_group`, `supersedes`, `superseded_by` (estado, lo llena el store), `formal` (estado), `confidence` (valor + qué evento estima + cómo se calibró), `historical_date`, `explanation` (texto para el lector, por idioma), `disagreements`.
+Campos además de los participantes: `relation`, `provenance` (≥1), `evidence_state`, `assumptions` (texto libre de hipótesis que aún no son entidades), `validity_domain`, `alternative_group`, `supersedes`, `superseded_by` (estado, lo llena el store), `formal` (estado), `confidence` (valor + qué evento estima + cómo se calibró), `historical_date` (desde v4 se valida con `parse_edtf`; el JSON viejo sin el campo se lee igual), `explanation` (texto para el lector, por idioma), `disagreements`.
 
 Reglas de forma (implementadas en `claim_shape_errors`, en el validador JSON-LD y en `shapes/atlas.shacl.ttl`):
 
@@ -121,7 +142,7 @@ Reglas de forma (implementadas en `claim_shape_errors`, en el validador JSON-LD 
 - `formally_linked` exige `formal`; `superseded` exige `superseded_by`;
 - `confidence`, si existe, dice qué estima y cómo se calibró.
 
-Reglas que comprueba el store al insertar: las entidades existen; las fuentes de la procedencia están registradas; los tipos de los extremos son válidos para la relación; todas las afirmaciones de un `alternative_group` comparten sujeto y relación; no se inserta directamente en `superseded`/`retracted` ni con `supersedes` (para eso está `supersede`).  Un lote que falla se revierte completo.
+Reglas que comprueba el store al insertar: las entidades existen; las fuentes de la procedencia están registradas; los tipos de los extremos son válidos para la relación; todas las afirmaciones de un `alternative_group` comparten sujeto y relación; no se inserta directamente en `superseded`/`retracted` ni con `supersedes` (para eso está `supersede`); (v4) `formally_linked` solo en relaciones con `formal_allowed`; (v4) `introduced_in` necesita una procedencia de una fuente `historiography` (`json_extract(sources.data,'$.kind')`).  Un lote que falla se revierte completo.
 
 ### Conjunción y alternativas: ejemplo del fixture
 
@@ -165,7 +186,7 @@ Simplificación conocida: hoy cada afirmación tiene un estado vigente y su hist
 
 `Provenance`: `source_id` (fuente registrada), `locator` (página, sección, proposición, línea, xpath o nombre de declaración), `extractor` y `extractor_version`, `license`, `retrieved_at` (ISO-8601) y `quote` opcional (fragmento justificativo, solo si la licencia lo permite).  Toda afirmación lleva al menos una.  Las entidades pueden llevarla y se recomienda.
 
-`Source` (registro WP02): `id`, `title`, `license` (SPDX o URL; `"unknown"` se rechaza), `uri`, `version`, `retrieved_at`, `terms`.  Los adaptadores registran la fuente con `add_source` antes de insertar datos que la citan.
+`Source` (registro WP02): `id`, `title`, `license` (SPDX o URL; `"unknown"` se rechaza), `uri`, `version`, `retrieved_at`, `terms` y, desde v4, `kind` ∈ `dataset`, `library`, `encyclopedia`, `historiography`, `editorial` (o `None`).  Una referencia de Wikidata a un libro de historia se registra con el libro como fuente, el adaptador de Wikidata como extractor y el localizador apuntando a la referencia.  Los adaptadores registran la fuente con `add_source` antes de insertar datos que la citan.
 
 ## 7. Versiones
 
@@ -180,18 +201,24 @@ Tabla `events` de solo anexar: dos triggers abortan cualquier `UPDATE` o `DELETE
 | `migration` | `schema:<n>` | `{from, to}` |
 | `source_added` | fuente | `{license}` |
 | `entity_added` | entidad | `{type}` |
-| `entity_replaced` | entidad | `{}` |
+| `entity_replaced` | entidad | `{previous}` (v4: los datos anteriores completos; un reemplazo idéntico no hace nada y no deja evento) |
 | `claim_added` | afirmación | `{}` (el contenido está en `claims`) |
 | `evidence_changed` | afirmación | `{from, to, reason, formal}` |
 | `claim_superseded` | afirmación vieja | `{by, reason, from}` |
 | `merge` | entidad fusionada | `{merge_id, into, reason, evidence}` |
 | `merge_undone` | entidad fusionada | `{merge_id, from, reason}` |
+| `curation_decided` | entidad | v4: `{curation_id, kind, rule, rule_version, payload}` |
+| `curation_undone` | entidad | v4: `{curation_id, kind, reason, restored}` (`restored`: ids de las copias restauradas de `retire_claims`) |
+| `batch_ingested` | `batch:<id>` | v4: `{batch_id, source_id, run, batch_key, stats, entity_rowids, claim_rowids}`; sustituye los `entity_added` y `claim_added` de las filas del lote |
+| `coverage_measured` | `coverage` | v4: `{cells, sources}` |
+
+Invariante (v4): toda afirmación tiene su `claim_added` o pertenece a un lote (`claims.ingest_batch`) con su `batch_ingested`.
 
 La fuente de verdad es `claims` + `claim_participants` + `provenance` + `events`.  FTS5, layouts, embeddings y resúmenes son derivados: `rebuild_fts()` reconstruye el índice léxico desde las entidades.
 
 ## 9. Fusiones reversibles
 
-`merge(survivor_id, merged_id, actor, reason, evidence)` exige actor identificado, razón, mismo tipo y que ninguna de las dos esté ya fusionada.  No reescribe afirmaciones: marca `entities.merged_into` y las lecturas resuelven (`resolve`, `merged_ids`, `get_entity`, `claims_for`, `iter_edges`, `search`, `export_jsonld`).  `undo_merge(merge_id, actor, reason)` borra la redirección y deja `undone_at`; ambas dejan evento.  Los embeddings proponen candidatos; fusionar es siempre una decisión registrada.  Un lector en otra conexión ve la fusión en cuanto se confirma (se usa `PRAGMA data_version`).
+`merge(survivor_id, merged_id, actor, reason, evidence)` exige actor identificado, razón, mismo tipo y que ninguna de las dos esté ya fusionada.  No reescribe afirmaciones: marca `entities.merged_into` y las lecturas resuelven (`resolve`, `merged_ids`, `get_entity`, `claims_for`, `iter_edges`, `search`, `export_jsonld`).  `undo_merge(merge_id, actor, reason)` borra la redirección y deja `undone_at`; ambas dejan evento.  Los embeddings proponen candidatos; fusionar es siempre una decisión registrada.  Un lector en otra conexión ve la fusión en cuanto se confirma.  Desde v4, `resolve` y `merged_ids` son consultas SQL (llave primaria, y consulta recursiva sobre `entities_merged`) que no cargan la tabla: con 1,000,000 de fusiones sintéticas, `resolve` p50/p95 = 0.017/0.021 ms y `merged_ids` 0.045/0.054 ms (`tests/test_store.py::test_resolve_scales_with_sql_not_a_full_load`, 2026-10-19, máquina de desarrollo).  Solo `iter_edges` arma el diccionario completo (con `PRAGMA data_version`).  `merge_many([(survivor, merged, evidence), …], actor, reason)` aplica un lote de fusiones de forma atómica (todas o ninguna), con una fila y un evento `merge` por fusión; cada una se deshace con `undo_merge`.
 
 ## 10. Idiomas y búsqueda léxica
 
@@ -203,9 +230,28 @@ Español e inglés son de primera clase: etiquetas, alias, descripciones, enunci
 
 `coverage()` devuelve conteos por tipo, relación, estado y fuente, fusiones activas y `unknown_by_type`: entidades sin ninguna afirmación.  Se llaman **desconocidas**, no aisladas.  La UI y la API usan esa palabra.
 
+**Celdas de cobertura (v4, ADR-0005 §9).**  Tabla `coverage_cells`, de solo anexar (dos triggers): por fuente, versión de la fuente, periodo (intervalo EDTF), área (id o `*`) y `measured_at`, guarda `indexed` (lo que dice la fuente, con `indexed_method`; `NULL` = desconocido), `ingested` y `cutoff` (`all`, `top25-cited`…).  Medir otra vez es otra fila (`add_coverage_cells`, evento `coverage_measured`).  Una celda sin fila o con `indexed` nulo se muestra «desconocido»; una persona sin obras ingeridas, «obras: no ingeridas»; el solapamiento entre fuentes se deriva de las fusiones y nunca se suma.
+
 ## 12. Almacenamiento
 
-SQLite en modo WAL, `synchronous=NORMAL`, llaves foráneas activas, caché de 256 MiB por conexión.  Tablas: `sources`, `entities`, `external_ids`, `claims`, `claim_participants` (WITHOUT ROWID, llave `(claim_id, position)`, índice por entidad y rol), `provenance`, `events`, `merges`, `relation_endpoints`, `fts`, `meta`.  Versión en `PRAGMA user_version`; `MIGRATIONS[n]` es el DDL que lleva de n-1 a n, se aplica al abrir y registra un evento.  Las migraciones se agregan, nunca se editan una vez publicadas.  Una conexión por hilo; para lectores concurrentes, `Store(path, read_only=True)`.  Historial: v1 esquema inicial; v2 (2026-10-17) relación `member_of_concept`; v3 (2026-10-17) `member_of_concept` admite áreas como objeto.
+SQLite en modo WAL, `synchronous=NORMAL`, llaves foráneas activas, caché de 256 MiB por conexión.  Tablas: `sources`, `entities`, `external_ids` (v4: índice `external_ids_entity`), `claims`, `claim_participants` (WITHOUT ROWID, llave `(claim_id, position)`, índice por entidad y rol), `provenance`, `events`, `merges`, `relation_endpoints`, `fts`, `meta` y, desde v4, `ingest_batches`, `curation`, `entity_dates` (derivada) y `coverage_cells`; `entities` y `claims` ganan la columna `ingest_batch`.  Versión en `PRAGMA user_version`; `MIGRATIONS[n]` es el DDL que lleva de n-1 a n, se aplica al abrir y registra un evento.  Las migraciones se agregan, nunca se editan una vez publicadas.  Una conexión por hilo; para lectores concurrentes, `Store(path, read_only=True)`.  Historial: v1 esquema inicial; v2 (2026-10-17) relación `member_of_concept`; v3 (2026-10-17) `member_of_concept` admite áreas como objeto; **v4 (2026-10-19) ADR-0005**: tipos `witness` y `note`, siete relaciones nuevas, fechas EDTF, curaduría, lotes y celdas de cobertura.  La migración v4 es solo aditiva: ninguna fila existente se reescribe ni se borra, y `relation_endpoints` se completa con `INSERT OR IGNORE`.  Se probó sobre un registro v3 escrito por el Store v3 (`tests/fixtures/registry_v3.db`): conteos y hash de `claims`, `claim_participants`, `provenance`, `merges` y `events` idénticos, más un evento `migration`.  Antes de abrir el registro real con código v4 hay que copiarlo: los lectores v3 (y Rust con `SUPPORTED_SCHEMA = 3`) no abren v4.
+
+### 12.2 Curaduría, lotes, fechas y snapshot v3 (ADR-0005)
+
+**Curaduría reversible** (tabla `curation`, mismo patrón que `merges`).  `add_curation(kind, target_id, *, rule, rule_version, payload, actor, reason)` exige actor identificado (no `""` ni `"system"`; un programa firma como `curation:<regla>/<versión>`).  Un índice único parcial sobre `(kind, target_id, rule, rule_version)` mientras no se deshaga hace idempotente volver a correr una regla: con el mismo payload devuelve la fila activa; con otro, hay que deshacerla antes.  `undo_curation(id, *, actor, reason)` llena `undone_at`, `undone_by` y `undo_reason`; nada se borra.
+
+| `kind` | `payload` | Qué hace | Deshacer |
+|---|---|---|---|
+| `exclude_presentation` | `{scopes}` ⊆ `map:general`, `map:all`, `search:default`, `concept_layer` (`PRESENTATION_SCOPES`) | `atlas compile` pone los bits en la sección `NodeFlags` del snapshot; el registro no cambia | la siguiente compilación vuelve a mostrar el nodo |
+| `presentation_label` | `{lang, text, provenance}` | rótulo de presentación (secciones `NodeShowEs` y `NodeShowEn`; `Snapshot::display_label`); la etiqueta de la fuente no se toca | cambiar = deshacer y crear otro |
+| `retire_claims` | `{claims}` | cada afirmación vigente pasa a `retracted` con la razón `curation:<id>` | `retracted` sigue siendo terminal: se inserta una copia `stable_id("restored", claim, curation)` con el estado anterior y la procedencia original más una de `src:atlas-curation`; `curation_undone` lista las copias |
+| `propose_merge` | `{survivor, merged, evidence}` | nada | aceptar = `accept_merge_proposal` → `merge(..., evidence="curation:<id>")`; rechazar = `undo_curation` |
+
+**Lotes de ingesta** (tabla `ingest_batches`).  `ingest_batch(*, source_id, run, batch_key, input_sha256, actor, entities, claims, stats)`: un lote es una transacción con sus entidades (se conservan los ids que ya existen), sus afirmaciones (se saltan los ids que ya existen), la fila del lote y **un** evento `batch_ingested`; las filas llevan `ingest_batch`.  Si `(source_id, run, batch_key)` ya existe, devuelve `None` sin escribir nada; una excepción a mitad no deja nada.
+
+**Fechas** (tabla derivada `entity_dates`, una fila por fecha con `lo` y `hi` astronómicos y `source_id`).  Se mantiene al insertar o reemplazar entidades y se reconstruye con `rebuild_entity_dates()`.  `dated_entities(lo, hi, kinds=None)` devuelve las entidades con alguna fecha que se cruza con `[lo, hi]` (`None` = sin límite).  Rust no analiza EDTF: lee `lo` y `hi` de esta tabla.
+
+**Snapshot formato v3** (`core/atlas-core/src/format.rs`): desplazamientos `u64` en `StrOffsets` (la tabla de cadenas de la capa de obras se estima en 3.3–4.4 GB; los ids de cadena siguen en `u32`); secciones `NodeFlags` (bits de `PRESENTATION_SCOPES`), `NodeShowEs` y `NodeShowEn`; cabecera con `core_content_hash` (cero en el snapshot central; en un snapshot de capa, el hash del central sobre el que se construyó, y `Snapshot::open_layer` rechaza cualquier otro); `ConceptStatState` = eslabón más débil.  `SUPPORTED_SCHEMA = 4`.  Los códigos nuevos van al final de `vocab.rs`, así que `vocab_hash` cambia y todo se recompila.
 
 ### 12.1 Proyección conceptual (`atlas/concepts.py`, `core/atlas-core/src/concepts.rs`)
 
@@ -218,7 +264,7 @@ Plan: `docs/plans/2026-10-17-capa-conceptual.md`.  `python -m atlas.concepts` as
 - reversible: una corrida conserva los pares que reproduce sin cambios, reemplaza (`supersede`) los que cambian de puntuación, rango o señal y retracta los que ya no produce; `--retract RAZÓN` deshace todo.  No se borra ni sobrescribe nada fuente;
 - guarda de homónimos: una etiqueta de una palabra no se asigna fuera del dominio del ítem (directorios de Mathlib que corresponden a sus áreas `part_of_area`) ni se lee como sustantivo tras `Is` en un nombre Lean (`IsIntegral` no es «integral»).  Las propuestas `formalized_as` en `model_proposed` que la guarda rechaza se retractan con razón registrada.
 
-`atlas compile` deriva del registro, en cada compilación, la capa conceptual del snapshot (formato v2, secciones 100–110): el **concepto primario** de cada declaración (su pertenencia de mayor confianza; empate al Q-número menor, luego id), los **miembros** de cada concepto y las **aristas agregadas** concepto A → concepto B, que existen solo si hay aristas vigentes (cualquier relación salvo `member_of_concept`) de un miembro primario de A a uno de B, con conteo por (relación, estado de evidencia) y la afirmación de índice menor como ejemplo trazable.  Una conjunción con k premisas en B cuenta k.  Las aristas entre conceptos que ya existen en el registro (p. ej. `special_case_of` de Wikidata) no se agregan aquí: son aristas ordinarias.
+`atlas compile` deriva del registro, en cada compilación, la capa conceptual del snapshot (secciones 100–110, desde el formato v2): el **concepto primario** de cada declaración (su pertenencia de mayor confianza; empate al Q-número menor, luego id), los **miembros** de cada concepto y las **aristas agregadas** concepto A → concepto B, que existen solo si hay aristas vigentes (cualquier relación salvo `member_of_concept`) de un miembro primario de A a uno de B, con conteo por (relación, estado de evidencia) y la afirmación de índice menor como ejemplo trazable.  Desde el formato v3 (ADR-0005 §7a), el estado de cada conteo es el **eslabón más débil**: el mínimo según `EVIDENCE_RANK` entre la arista de declaraciones, la pertenencia primaria del miembro de origen y la del miembro de destino (dependencia `extracted` + pertenencia `model_proposed` → `model_proposed`).  Toda arista agregada es **candidata** (`ConceptEdge::is_candidate`): sale del resumen de principiante y de la «Fuerza».  Una conjunción con k premisas en B cuenta k.  Las aristas entre conceptos que ya existen en el registro (p. ej. `special_case_of` de Wikidata) no se agregan aquí: son aristas ordinarias.
 
 ### Rendimiento medido
 
@@ -235,7 +281,7 @@ La velocidad por afirmación baja con el tamaño (25k/s a 15k/s) por el mantenim
 
 `export_jsonld(entity_ids, depth, current_only)` hace una búsqueda en anchura por afirmaciones hasta `depth` saltos e incluye toda entidad referida, las afirmaciones y sus fuentes.  El contexto (`shapes/context.jsonld`) va embebido.  Vocabulario: `https://w3id.org/mpm-atlas/vocab#` (prefijo `atlas:`); ids: `aid:` + id codificado (`aid:c%3Apyth-euclid`).  El dominio w3id **no está registrado**; es un marcador hasta publicar.  Se usan `skos:prefLabel`/`altLabel` con contenedor de idioma, `prov:hadPrimarySource`, `dct:license`.
 
-`shapes/atlas.shacl.ttl` define `ClaimShape`, `ParticipantShape`, `ProvenanceShape`, `FormalArtifactShape` y `ConfidenceShape` con las reglas de la sección 4.  `validate_jsonld(doc)` es su gemelo en Python puro (sin rdflib ni pyshacl) y devuelve la lista de violaciones.  No se corrió un validador SHACL externo sobre el `.ttl`: no hay rdflib en el entorno y no se agregó la dependencia.
+`shapes/atlas.shacl.ttl` define `ClaimShape`, `ParticipantShape`, `ProvenanceShape`, `FormalArtifactShape` y `ConfidenceShape` con las reglas de la sección 4 y, desde v4, `HistoricalDateShape` (`date` con `dateKind`, `edtf`, `calendar` y una procedencia), `NoteShape` (`noteSection`, `noteOrdinal`), `SourceShape` (`sourceKind`) y la regla de `formal_allowed`.  Que `introduced_in` tenga una fuente historiográfica lo comprueba el store: SHACL Core no sigue procedencia → fuente → tipo.  `validate_jsonld(doc)` es su gemelo en Python puro (sin rdflib ni pyshacl) y devuelve la lista de violaciones.  No se corrió un validador SHACL externo sobre el `.ttl`: no hay rdflib en el entorno y no se agregó la dependencia.
 
 ## 14. API de Python estable
 
@@ -247,12 +293,13 @@ EntityType, RelationType, EvidenceState, Role, Projection, EventKind      # StrE
 RELATIONS: Mapping[RelationType, RelationSpec]                             # semántica de relaciones
 CURRENT_STATES: frozenset[EvidenceState]; TRANSITIONS; SCHEMA_VERSION
 LangString(text: str, lang: str)
-Source(id, title, license, uri=None, version=None, retrieved_at=None, terms=None)
+Source(id, title, license, uri=None, version=None, retrieved_at=None, terms=None, kind=None)   # kind ∈ SOURCE_KINDS
 Provenance(source_id, locator, extractor, extractor_version, license, retrieved_at, quote=None)
 Confidence(value: float, estimates: str, calibration: str)
 FormalArtifact(library, version, declaration, axioms: tuple[str, ...] = ())
 Participant(role: Role, entity_id: str)
-Entity(id, type, labels, aliases=(), descriptions=(), statements=(), formula=None, external_ids=(), provenance=())
+Entity(id, type, labels, aliases=(), descriptions=(), statements=(), formula=None, external_ids=(), provenance=(),
+       dates=(), note=None)                                                       # v4
     .label(lang="es") -> str; .to_json() -> dict; Entity.from_json(d) -> Entity
 Claim(id, relation, participants, provenance, evidence_state=EXTRACTED, assumptions=(), validity_domain=None,
       alternative_group=None, supersedes=None, superseded_by=None, formal=None, confidence=None,
@@ -262,6 +309,16 @@ Claim(id, relation, participants, provenance, evidence_state=EXTRACTED, assumpti
 binary(claim_id, relation, subject, obj, provenance, **kw) -> Claim
 conjunction(claim_id, relation, subject, premises, provenance, **kw) -> Claim   # kw "extra": más participantes
 claim_shape_errors(claim) -> list[str]
+check_state_allowed(relation, state)           # v4: formal_allowed; el store lo usa al escribir
+EVIDENCE_RANK: Mapping[EvidenceState, int]    # v4
+DateKind; HistoricalDate(kind, edtf, provenance, calendar="gregorian", raw=None).span -> (lo, hi)
+parse_edtf(text, calendar="gregorian") -> tuple[int | None, int | None]
+FichaSection; NoteInfo(section, ordinal)
+CurationKind; PRESENTATION_SCOPES
+Curation(id, kind, target_id, rule, rule_version, payload, actor, reason, created_at, undone_at, undone_by, undo_reason)
+CoverageCell(source_id, source_version, period, area, indexed, indexed_method, ingested, cutoff, measured_at)
+# atlas.ingest.wikidata
+edtf_from_wikidata(time, precision, calendar_qid=None, qualifiers=None, channel="json") -> WikidataDate(edtf, calendar, raw)
 stable_id(prefix: str, *parts: str) -> str
 Edge(claim_id, relation, source, target, evidence_state, conjunct_count, alternative_group)
 SearchHit(entity_id, field, lang, text, score)          # score: mayor es mejor
@@ -286,6 +343,7 @@ Store(path: str | Path = ":memory:", *, read_only: bool = False)   # context man
   .supersede(old_id, new_claim, *, actor, reason) -> Claim
   .history(claim_id) -> list[Claim]
   .merge(survivor_id, merged_id, *, actor, reason, evidence=None) -> Merge
+  .merge_many([(survivor, merged, evidence), ...], *, actor, reason) -> list[Merge]   # v4, atómica
   .undo_merge(merge_id, *, actor, reason) -> Merge
   .get_merge(id) -> Merge | None; .merges(*, active_only=False) -> list[Merge]
   .resolve(entity_id) -> str; .merged_ids(entity_id) -> list[str]
@@ -293,6 +351,14 @@ Store(path: str | Path = ":memory:", *, read_only: bool = False)   # context man
   .rebuild_fts() -> int
   .events(target_id=None, *, kinds=None, since_seq=0) -> Iterator[Event]
   .coverage() -> dict
+  # v4 (ADR-0005)
+  .add_curation(kind, target_id, *, rule, rule_version, payload, actor, reason) -> Curation
+  .undo_curation(curation_id, *, actor, reason) -> Curation
+  .accept_merge_proposal(curation_id, *, actor, reason) -> Merge
+  .get_curation(id) -> Curation | None; .curations(*, target_id=None, kind=None, active_only=True) -> list[Curation]
+  .ingest_batch(*, source_id, run, batch_key, input_sha256, actor, entities=(), claims=(), stats=None) -> int | None
+  .rebuild_entity_dates() -> int; .dated_entities(lo, hi, *, kinds=None) -> list[str]
+  .add_coverage_cells(cells, *, actor) -> int; .coverage_cells(source_id=None) -> list[CoverageCell]
   .export_jsonld(entity_ids, *, depth=1, current_only=True) -> dict
 load_bundle(store, {"sources": [...], "entities": [...], "claims": [...]}, *, actor="system") -> dict[str, int]
 validate_jsonld(doc) -> list[str]

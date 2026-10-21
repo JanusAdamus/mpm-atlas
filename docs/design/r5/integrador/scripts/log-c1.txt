@@ -1,0 +1,8 @@
+integral 307 ms | integración | CONCEPTO | q5: what,why,before,links,check | jargon 0
+derivada 176 ms | derivada | ÁREA | q5: what,why,before,links,check | jargon 0
+teorema de Pitágoras 181 ms | teorema de Pitágoras | ENUNCIADO | q5: what,why,before,links,check | jargon 0
+Bayes 145 ms | teorema de Bayes | ENUNCIADO | q5: what,why,before,links,check | jargon 0
+número primo 179 ms | número primo | ÁREA | q5: what,why,before,links,check | jargon 0
+pi 176 ms | pi | CONCEPTO | q5: what,why,before,links,check | jargon 0
+matriz 140 ms | matriz | ÁREA | q5: what,why,before,links,check | jargon 0
+errors []

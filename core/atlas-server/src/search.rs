@@ -101,6 +101,9 @@ pub fn registry_search(snap: &Snapshot, db: &Path, q: &SearchQuery) -> atlas_cor
     let mut best: HashMap<u32, (f64, Row)> = HashMap::new();
     for row in fts_rows(db, &m, &q.lang, q.limit * OVERFETCH)? {
         let Some(n) = snap.resolve(&row.target) else { continue };
+        if snap.is_excluded(n, "search:default") {
+            continue;
+        }
         if !q.types.is_empty() && !q.types.contains(&snap.node_type(n)) {
             continue;
         }
@@ -119,7 +122,7 @@ pub fn registry_search(snap: &Snapshot, db: &Path, q: &SearchQuery) -> atlas_cor
         .map(|(i, (n, score, r))| Hit {
             id: snap.node_id(n).to_string(),
             entity_type: snap.node_type(n),
-            label: snap.label(n, &q.lang).to_string(),
+            label: snap.display_label(n, &q.lang).to_string(),
             matched: Matched { field: r.field, lang: r.lang, text: r.text },
             score,
             lanes: Lanes { lexical: Some(LaneScore { rank: i as u32 + 1, score }), ..Lanes::default() },

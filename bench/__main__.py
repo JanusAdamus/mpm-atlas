@@ -272,7 +272,7 @@ def _run(args: argparse.Namespace, out: Path) -> int:
     er = evaluate.er_pairs(tasks.get("er_pair", []), reg, evaluate.load_queue(Path(args.er_queue) if args.er_queue
                                                                               else None))
     rel = evaluate.relations(tasks.get("relation", []), reg)
-    src = evaluate.sourced(tasks.get("sourced_answer", []), bks)
+    src = evaluate.sourced(tasks.get("sourced_answer", []), bks, reg)
     system = "http" if args.http else "cli"
     if system not in {b.name for b in bks}:  # never constructed (no binary / bad snapshot): MISSING, not unlabeled
         for res in (ret, rts, src):

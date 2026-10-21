@@ -1,0 +1,278 @@
+{
+ "pass": "1",
+ "w": 390,
+ "theme": "light",
+ "mode": "explore",
+ "reduce": "0",
+ "zoom": [
+  {
+   "step": 0,
+   "tileZ": [],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "derivada",
+    "función continua",
+    "sucesión",
+    "matriz",
+    "álgebra",
+    "retículo",
+    "orden total",
+    "teoría de la probabilidad",
+    "teoría de categorías",
+    "forma cuadrática"
+   ]
+  },
+  {
+   "step": 1,
+   "tileZ": [],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "derivada",
+    "función continua",
+    "sucesión",
+    "matriz",
+    "polinomio",
+    "álgebra",
+    "retículo",
+    "teoría de categorías",
+    "forma cuadrática",
+    "grupo topológico"
+   ]
+  },
+  {
+   "step": 2,
+   "tileZ": [
+    2
+   ],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "derivada",
+    "función continua",
+    "matriz",
+    "álgebra",
+    "homeomorfismo",
+    "forma cuadrática",
+    "álgebra tensorial",
+    "coálgebra",
+    "cohomología de haces",
+    "topología general"
+   ]
+  },
+  {
+   "step": 3,
+   "tileZ": [
+    3
+   ],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [
+    {
+     "startMs": 35,
+     "durMs": 24,
+     "frames": 1
+    }
+   ],
+   "sample": [
+    "álgebra",
+    "homeomorfismo",
+    "medida de Haar",
+    "forma cuadrática",
+    "álgebra de incidencia",
+    "valor propio",
+    "anillo de polinomios",
+    "coálgebra",
+    "álgebra asociativa",
+    "álgebra lineal"
+   ]
+  },
+  {
+   "step": 4,
+   "tileZ": [],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "álgebra",
+    "valor propio",
+    "anillo de polinomios",
+    "coálgebra",
+    "álgebra asociativa",
+    "álgebra universal",
+    "teoría de operadores",
+    "lógica categórica",
+    "código de Gauss",
+    "kernel de calor"
+   ]
+  },
+  {
+   "step": 5,
+   "tileZ": [
+    4
+   ],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "anillo de polinomios",
+    "lógica categórica",
+    "código de Gauss",
+    "kernel de calor",
+    "Lamé function",
+    "espacio topológico",
+    "espacio topológico",
+    "espacio de Hausdorff",
+    "clase de equivalencia",
+    "grupo nilpotente"
+   ]
+  },
+  {
+   "step": 6,
+   "tileZ": [],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "anillo de polinomios",
+    "código de Gauss",
+    "Lamé function",
+    "clase de equivalencia",
+    "grupo nilpotente",
+    "grupo trivial",
+    "doubly stochastic matrix",
+    "linear representation",
+    "grupo abeliano libre",
+    "imagen"
+   ]
+  },
+  {
+   "step": 7,
+   "tileZ": [
+    5
+   ],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "anillo de polinomios",
+    "Lamé function",
+    "grupo nilpotente",
+    "doubly stochastic matrix",
+    "linear representation",
+    "grupo abeliano libre",
+    "grupo parcialmente ordenado",
+    "espacio nuclear",
+    "rank of a group",
+    "continuum"
+   ]
+  },
+  {
+   "step": 8,
+   "tileZ": [
+    6
+   ],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "grupo abeliano libre",
+    "rank of a group",
+    "lema de escisión",
+    "diagrama de Hasse",
+    "Lawvere space",
+    "Motivic zeta function",
+    "rng homomorphism",
+    "Carleman matrix",
+    "empty matrix",
+    "seven-dimensional cross product"
+   ]
+  },
+  {
+   "step": 9,
+   "tileZ": [],
+   "labels": 10,
+   "unknown": 0,
+   "overlaps": [],
+   "motion": [],
+   "sample": [
+    "rank of a group",
+    "Lawvere space",
+    "Motivic zeta function",
+    "Gelfand–Kirillov dimension",
+    "Carleman matrix",
+    "Weyl's inequality",
+    "empty matrix",
+    "Berger's inequality for Einstein …",
+    "seven-dimensional cross product",
+    "hypoelliptic operator"
+   ]
+  }
+ ],
+ "framing": {
+  "canvas": {
+   "x": 0,
+   "y": 701,
+   "w": 390,
+   "h": 354.46875
+  },
+  "labelsSpan": {
+   "x0": 35.23845718779664,
+   "x1": 234.04726800825813,
+   "y0": 73.76195111394881,
+   "y1": 318.3864566729147
+  },
+  "scrollH": 844
+ },
+ "arrow": {
+  "frames": 0,
+  "episodes": []
+ },
+ "nKey": {
+  "frames": 0,
+  "episodes": []
+ },
+ "searchFlight": {
+  "frames": 1,
+  "episodes": []
+ },
+ "formEnds": [
+  "derivada",
+  "integración"
+ ],
+ "routeFormFlight": {
+  "frames": 42,
+  "episodes": [
+   {
+    "startMs": 47,
+    "durMs": 297,
+    "frames": 18
+   }
+  ]
+ },
+ "routeFormText": "Todavía no hay una conexión validada entre estas ideas. Esto no significa que no estén relacionadas.\n\nCONEXIÓN CANDIDATA ENTRE ESTOS CONCEPTOS; PENDIENTE DE REVISIÓN\n1\nderivada\n2\nintegración\n\nPASO 1 DE 1\n\n1\nderivada\n→\n2\nintegración\n\nAlgunos resultados sobre «integración» usan resultados sobre «derivada».\n\n?\nCandidata\n\nQué permite concluir: Un resultado usa el otro. Por sí solo no basta para demostrarlo: puede necesitar otras premisas.\n\nEste paso es una candidata sin revisar: no sirve como conclusión.\n\n← Paso anterior\nPaso siguiente →\nUsa ← y → para avanzar.",
+ "routeUrlFlight": {
+  "frames": 42,
+  "episodes": [
+   {
+    "startMs": 6,
+    "durMs": 318,
+    "frames": 19
+   }
+  ]
+ },
+ "errors": []
+}

@@ -1,0 +1,21 @@
+item_id	correct	useful	note
+D1 c:bfb14f083a4f987f wd:Q208237>wd:Q2785361	1	1	monoide es caso particular de objeto monoidal: un monoide es un objeto monoidal en (Set, ×).  P279.
+D2 c:84e4633e6858163f wd:Q284164>wd:Q1148456	1	1	toda función μ-recursiva es computable.  La etiqueta ES «función recursiva» pierde la μ; útil medio.
+D3 c:ca9450c513c79d39 wd:Q242767>wd:Q190558	0	1	dudosa: el complemento no es «una instancia de» la negación lógica; es su análogo en conjuntos (o la negación en un álgebra de Boole).  P31 mal nivel.
+D4 c:04442def81a9e10c wd:Q1485102>wd:Q18848	1	1	módulo semisimple es caso particular de módulo.
+D5 c:83e76da35144e5f1 wd:Q3064613>wd:Q20641813	1	1	todo haz inyectivo es flácido (teorema estándar).  Extremo sin etiqueta ES ni descripción ES; útil medio.
+D6 c:8a5d580c6cf9abee wd:Q1147242>wd:Q1964995	1	1	la diferencia simétrica es una operación de conjuntos.
+D7 c:6e1471fdb7a11290 wd:Q577835>wd:Q125977	0	1	dudosa: una extensión de cuerpos es un par de cuerpos; L es un K-espacio vectorial, pero la extensión no es «caso particular de» espacio vectorial.  Mismo fallo que en la ronda 1.
+D8 c:df35e65996c06f19 wd:Q80091>wd:Q207643	1	1	la integral (definida) es una aplicación lineal.  Útil medio; destino sin descripción ES.
+D9 c:e1268dc3ea1acce5 wd:Q357858>wd:Q864475	1	1	un funtor adjunto es un funtor.
+D10 c:5467a5701c713b94 wd:Q3033506>wd:Q15838309	1	1	el grafo nulo (sin aristas) es un grafo simple.  Destino sin etiqueta ES; útil medio.
+A1 wd:Q289093>wd:Q36161	1	0	«declaraciones de localización de un anillo dependen lógicamente de declaraciones de conjunto»: cierto (IsLocalization… usa Set), pero trivial: todo depende de conjunto.
+A2 wd:Q864377>wd:Q629933	0	0	asignación dudosa: Subalgebra.multiset_prod_mem es un resultado sobre subálgebras, proyectado a «multiconjunto».
+A3 wd:Q2140900>wd:Q332791	0	0	dudosa: Matrix.SpecialLinearGroup.diag2n (un elemento de SL) proyectado a «matriz diagonal».
+A4 wd:Q168698>wd:Q583095	0	0	homónimo: mathlib:Differentiable proyectado a «media-f generalizada».
+A5 wd:Q115623452>wd:Q18848	0	0	homónimo: IsNoetherian (módulos noetherianos) proyectado a «grupo noetheriano».
+A6 wd:Q191780>wd:Q1144319	0	0	homónimo: la clase Nontrivial proyectada a «predicado» de la lógica.
+A7 wd:Q188804>wd:Q1292333	0	0	homónimo: «exists_factorization» (factorizar una aplicación por un módulo libre, criterio de planitud) proyectado a «factorización» como descomposición en producto.
+A8 wd:Q189112>wd:Q91435997	0	0	dudosa: arrow_mk_iso_iff trata de propiedades de morfismos de esquemas, no del concepto isomorfismo.  No útil.
+A9 wd:Q10340026>wd:Q189112	0	0	homónimo: mathlib:CoalgCat (categoría de coálgebras) proyectada a «isomorfismo».
+A10 wd:Q80091>wd:Q305936	1	1	ContinuousLinearMap.integral_compLp usa MeasureTheory.Lp; las dos asignaciones son correctas.  Útil medio.

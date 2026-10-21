@@ -14,9 +14,10 @@ use crate::concepts;
 use crate::error::{Error, Result};
 use crate::format::{NONE, SUPPORTED_SCHEMA};
 use crate::hashidx;
+use crate::layer::{self, Scope};
 use crate::read::{self, ClaimChunk, EntChunk, Lookup, PartChunk, ProvChunk};
 use crate::strings::StrTable;
-use crate::vocab::{EvidenceState, RelationType, Role};
+use crate::vocab::{EvidenceState, RelationType, Role, scope_bit};
 use crate::write::{self, Columns};
 
 const RETRIES: usize = 3;
@@ -31,13 +32,19 @@ pub struct CompileOptions {
     pub threads: usize,
     /// Rowid ranges per thread for each table scan.
     pub chunks_per_thread: usize,
+    /// `Some(core hash)` writes a layer snapshot (works, ADR-0005 §8.4) bound to that core snapshot;
+    /// `Snapshot::open_layer` rejects it next to any other core.  None = core snapshot.
+    pub core_content_hash: Option<[u8; 32]>,
 }
 
 impl CompileOptions {
     pub fn new(db: impl Into<PathBuf>, out_dir: impl Into<PathBuf>) -> Self {
-        CompileOptions { db: db.into(), out_dir: out_dir.into(), threads: 0, chunks_per_thread: 4 }
+        CompileOptions { db: db.into(), out_dir: out_dir.into(), threads: 0, chunks_per_thread: 4, core_content_hash: None }
     }
 }
+
+/// Relations a bibliographic source may state (ADR-0005 §4, layer 2); shared with Python.
+const SOURCE_POLICY: &str = include_str!("../../../shapes/source_relations.json");
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Phase {
@@ -118,10 +125,20 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
     let db = opts.db.as_path();
 
     let sources = read::read_sources(&conn)?;
-    let ents: Vec<EntChunk> = read::rowid_ranges(&conn, "entities", chunks)?
+    let scope = if opts.core_content_hash.is_some() { Scope::Works } else { Scope::Core };
+    let (ent_filter, claim_filter, part_filter, prov_filter) = (
+        layer::entity_filter(scope)?,
+        layer::claim_filter(scope, "id")?,
+        layer::claim_filter(scope, "claim_id")?,
+        layer::claim_filter(scope, "claim_id")?,
+    );
+    let mut ents: Vec<EntChunk> = read::rowid_ranges(&conn, "entities", chunks)?
         .par_iter()
-        .map(|&r| read::read_entities(db, r))
+        .map(|&r| read::read_entities(db, r, &ent_filter))
         .collect::<Result<_>>()?;
+    if scope == Scope::Works {
+        ents.push(read::read_entities_by_id(db, &layer::stub_ids(&conn)?)?);
+    }
     tm.lap("read_entities");
 
     let mut cols = Columns::default();
@@ -141,11 +158,31 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
         resolve_merges(n_nodes, &merged, &node_of)?
     };
     cols.merged_nodes = (0..n_nodes as u32).filter(|&i| cols.node_canon[i as usize] != i).collect();
+    cols.core_content_hash = opts.core_content_hash.unwrap_or([0; 32]);
+    {
+        let mut curation = read::read_curation(&conn, schema)?;
+        let (hash, ids, canon) = (&cols.node_hash, &cols.node_id, &cols.node_canon);
+        let node_of = |id: &str| hashidx::lookup(hash, id, |i| st.get(ids[i as usize])).map(|n| canon[n as usize]);
+        if scope == Scope::Works {
+            curation.retain(|r| node_of(&r.target).is_some()); // the core applies the rest
+        } else {
+            // a works id is curated by the layer compile, never a missing core target
+            let mut keep = Vec::with_capacity(curation.len());
+            for r in curation {
+                if !layer::is_works_id(&r.target)? {
+                    keep.push(r);
+                }
+            }
+            curation = keep;
+        }
+        let found: Vec<Option<u32>> = curation.iter().map(|r| node_of(&r.target)).collect();
+        (cols.node_flags, cols.node_show_es, cols.node_show_en) = apply_curation(n_nodes, &curation, &found, &mut st)?;
+    }
     tm.lap("index_entities");
 
     let claims: Vec<ClaimChunk> = read::rowid_ranges(&conn, "claims", chunks)?
         .par_iter()
-        .map(|&r| read::read_claims(db, r))
+        .map(|&r| read::read_claims(db, r, &claim_filter))
         .collect::<Result<_>>()?;
     tm.lap("read_claims");
     let n_groups = append_claims(&mut cols, &mut st, &claims)?;
@@ -168,12 +205,12 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
         let sample: Vec<&str> = cols.claim_id.iter().step_by(step).map(|&s| st.get(s)).collect();
         let parts: Vec<PartChunk> = read::key_ranges(&sample, chunks)
             .par_iter()
-            .map(|r| read::read_participants(db, r, &look))
+            .map(|r| read::read_participants(db, r, &look, &part_filter))
             .collect::<Result<_>>()?;
         tm.lap("read_participants");
         let provs: Vec<ProvChunk> = read::rowid_ranges(&conn, "provenance", chunks)?
             .par_iter()
-            .map(|&r| read::read_provenance(db, r, &look))
+            .map(|&r| read::read_provenance(db, r, &look, &prov_filter))
             .collect::<Result<_>>()?;
         (parts, provs)
     };
@@ -186,6 +223,7 @@ fn compile_once(opts: &CompileOptions) -> Result<CompileReport> {
     drop(parts);
     scatter_provenance(&mut cols, &mut st, &provs)?;
     drop(provs);
+    audit_sources(&cols, &st)?;
     build_groups(&mut cols, n_groups);
     tm.lap("assemble_claims");
     node_stats(&mut cols);
@@ -379,6 +417,73 @@ fn scatter_provenance(cols: &mut Columns, st: &mut StrTable, provs: &[ProvChunk]
     }
     (cols.prov_off, cols.prov_src, cols.prov_locator, cols.prov_license) = (off, src, loc, lic);
     Ok(())
+}
+
+type Presentation = (Vec<u8>, Vec<u32>, Vec<u32>);
+
+/// NodeFlags and presentation labels from the active curation rows (`found[i]`: canonical node of
+/// row i).  Later rows win for a label; undone rows were filtered out by the reader.
+fn apply_curation(n: usize, rows: &[read::CurationRow], found: &[Option<u32>], st: &mut StrTable) -> Result<Presentation> {
+    let (mut flags, mut es, mut en) = (vec![0u8; n], vec![NONE; n], vec![NONE; n]);
+    for (r, node) in rows.iter().zip(found) {
+        let bad = |m: &str| Error::Registry(format!("curation {} on {}: {m}", r.id, r.target));
+        let node = node.ok_or_else(|| bad("unknown target entity"))? as usize;
+        if r.kind == "exclude_presentation" {
+            let scopes = r.payload["scopes"].as_array().ok_or_else(|| bad("payload without scopes"))?;
+            for s in scopes {
+                flags[node] |= s.as_str().and_then(scope_bit).ok_or_else(|| bad("unknown presentation scope"))?;
+            }
+            continue;
+        }
+        let text = r.payload["text"].as_str().ok_or_else(|| bad("presentation_label without text"))?;
+        match r.payload["lang"].as_str() {
+            Some("es") => es[node] = st.intern(text)?,
+            Some("en") => en[node] = st.intern(text)?,
+            _ => {} // the snapshot only carries es/en labels
+        }
+    }
+    Ok((flags, es, en))
+}
+
+#[derive(serde::Deserialize)]
+struct SourcePolicy {
+    bibliographic_sources: BiblioPolicy,
+}
+
+#[derive(serde::Deserialize)]
+struct BiblioPolicy {
+    prefixes: Vec<String>,
+    allowed_relations: Vec<RelationType>,
+}
+
+/// Compile-time audit (ADR-0005 §4): a current claim sourced from a bibliographic source must use an
+/// allowed relation.  Fails the compile with the first offending claim.
+fn audit_sources(cols: &Columns, st: &StrTable) -> Result<()> {
+    let policy: SourcePolicy = serde_json::from_str(SOURCE_POLICY)
+        .map_err(|e| Error::Registry(format!("shapes/source_relations.json: {e}")))?;
+    let p = policy.bibliographic_sources;
+    let allowed: u32 = p.allowed_relations.iter().map(|r| r.bit()).sum();
+    let restricted: Vec<bool> =
+        cols.source_id.iter().map(|&s| p.prefixes.iter().any(|pre| st.get(s).starts_with(pre.as_str()))).collect();
+    if !restricted.contains(&true) {
+        return Ok(());
+    }
+    let bad = (0..cols.claim_rel.len()).into_par_iter().find_first(|&c| {
+        let rel = RelationType::from_code(cols.claim_rel[c]).expect("relation code");
+        let current = EvidenceState::from_code(cols.claim_state[c]).is_some_and(|s| s.is_current());
+        let rows = cols.prov_off[c] as usize..cols.prov_off[c + 1] as usize;
+        current && rel.bit() & allowed == 0 && cols.prov_src[rows].iter().any(|&s| restricted[s as usize])
+    });
+    match bad {
+        None => Ok(()),
+        Some(c) => Err(Error::Registry(format!(
+            "source audit: claim {} ({}) is sourced from a bibliographic source, which may only state {:?} \
+             (shapes/source_relations.json)",
+            st.get(cols.claim_id[c]),
+            RelationType::from_code(cols.claim_rel[c]).expect("relation code"),
+            p.allowed_relations.iter().map(|r| r.as_str()).collect::<Vec<_>>()
+        ))),
+    }
 }
 
 fn build_groups(cols: &mut Columns, n_groups: usize) {

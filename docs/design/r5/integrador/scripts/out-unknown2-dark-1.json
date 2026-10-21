@@ -1,0 +1,89 @@
+[
+ {
+  "zs": 0,
+  "unknown": 0,
+  "n": 30
+ },
+ {
+  "zs": 0.5,
+  "unknown": 38,
+  "n": 54,
+  "sample": [
+   "retículo",
+   "orden total",
+   "minorante",
+   "bimódulo",
+   "teoría de modelos",
+   "conjunto parcialmente ordenado",
+   "álgebra topológica",
+   "cuerpo topológico"
+  ]
+ },
+ {
+  "zs": 1,
+  "unknown": 38,
+  "n": 30
+ },
+ {
+  "zs": 1.5,
+  "unknown": 16,
+  "n": 19,
+  "sample": [
+   "análisis variacional",
+   "inner model theory",
+   "operator space",
+   "Ley de los pequeños números",
+   "Meyers–Serrin theorem",
+   "Browder fixed point theorem",
+   "polinomio HOMFLY",
+   "inner model"
+  ]
+ },
+ {
+  "zs": 2,
+  "unknown": 2,
+  "n": 0
+ },
+ {
+  "zs": 2.5,
+  "unknown": 2,
+  "n": 0,
+  "sample": []
+ },
+ {
+  "zs": 3,
+  "unknown": 2,
+  "n": 0
+ },
+ {
+  "zs": 3.5,
+  "unknown": 2,
+  "n": 0,
+  "sample": []
+ },
+ {
+  "zs": 4,
+  "unknown": 2,
+  "n": 0
+ },
+ {
+  "zs": 4.5,
+  "unknown": 2,
+  "n": 0,
+  "sample": []
+ },
+ {
+  "zs": 5,
+  "unknown": 2,
+  "n": 0
+ },
+ {
+  "zs": 5.5,
+  "unknown": 2,
+  "n": 0,
+  "sample": []
+ },
+ {
+  "legend": "Leyenda\n✓\nValidada\n—\nDocumentada\n?\nCandidata\n!\nEn disputa\n×\nRetirada\n◷\nHistórica\n▨\nDesconocida\n\nLos puntos son de un solo color; la forma dice qué es: ◎ concepto, ◯ región, ● otra idea."
+ }
+]

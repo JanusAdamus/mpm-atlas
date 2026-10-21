@@ -33,6 +33,7 @@ mod multilevel;
 mod pipeline;
 pub mod tiles;
 mod util;
+pub mod works;
 
 use ahash::AHashMap;
 use atlas_core::{
@@ -359,7 +360,7 @@ impl Layout {
             .to_string();
         }
         match info.central.get(c as usize).map(|m| m[0]) {
-            Some(n) if n != NONE => snapshot.label(n, lang).to_string(),
+            Some(n) if n != NONE => snapshot.display_label(n, lang).to_string(),
             _ => self.community_id(level, c),
         }
     }

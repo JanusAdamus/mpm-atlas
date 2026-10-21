@@ -1,0 +1,11 @@
+{
+ "pairs_two_hops": 65,
+ "checked": 130,
+ "paths_with_2_said_eq": 0,
+ "status": {
+  "200": 130
+ },
+ "examples": [],
+ "answered": 14,
+ "expl_with_2": 16
+}

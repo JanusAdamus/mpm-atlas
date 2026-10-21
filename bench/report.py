@@ -161,13 +161,17 @@ def routes_verdicts(res: dict, system: str) -> dict:
     structure = _verdict("FAIL" if bad else "PASS", True, "0 structurally invalid steps in returned paths",
                          invalid_paths=bad, answered=len(answered))
     adv = [x for x in rows if x["rec"]["adversarial"]]
+    # an adversarial item the backend errored on is not a pass: it stays in the denominator, counted as failed
+    errors = sum(1 for r in res["records"] if r["adversarial"] and "error" in r["by_backend"].get(system, {}))
     k = sum(not x.get("forbidden_violation") for x in adv)
-    prop = proportion(k, len(adv))
+    violations = len(adv) - k
+    n = len(adv) + errors
+    prop = proportion(k, n)
     # PROTOCOL §6.1 (g): any forbidden conclusion is a defect; no violations but LB < 0.95 (n < 73) is INSUFFICIENT
-    lvl = ("INSUFFICIENT" if len(adv) < ROUTE_ADVERSARIAL_MIN_N else "FAIL" if k < len(adv) else
+    lvl = ("INSUFFICIENT" if n < ROUTE_ADVERSARIAL_MIN_N else "FAIL" if violations else "INSUFFICIENT" if errors else
            "PASS" if prop["ci95"][0] >= ROUTE_ADVERSARIAL_LB else "INSUFFICIENT")
     adversarial = _verdict(lvl, gold, "no forbidden conclusion on adversarial items, Wilson LB >= 0.95, n >= 40",
-                           no_forbidden=prop)
+                           no_forbidden=prop, backend_errors=errors)
     end_to_end = _verdict("NOT_EVALUABLE", False, "Wilson LB > 0.90 of expert-valid top-1 routes (n >= 100)",
                           reason="no expert judgments of returned routes yet; route_outputs.jsonl is the queue")
     return {"structure": structure, "adversarial": adversarial, "end_to_end": end_to_end}
@@ -247,6 +251,9 @@ def sourced_summary(res: dict) -> dict:
         out["by_backend"][b] = {"complete_and_matching": proportion(len(rows) - fails, len(rows)),
                                 "failure_rate": proportion(fails, len(rows)),
                                 "not_served_truncated": len(every) - len(rows),
+                                "via_successor": {"ok": sum(bool(x.get("via")) and x["ok"] is True for x in every),
+                                                  "failed": sum(bool(x.get("via")) and x["ok"] is False
+                                                                for x in every)},
                                 "problems": {k: len(v) for k, v in probs.items()}}
     return out
 

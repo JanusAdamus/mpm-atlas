@@ -1,0 +1,27 @@
+{
+ "layout_version": [
+  "e6ed5eab030b3aec"
+ ],
+ "nodes_z0_z2": 2041,
+ "with_es": 1329,
+ "with_es_pct": 65.1,
+ "derived_in_z0_z2": 0,
+ "out_of_domain_in_z0_z2": [],
+ "without_es_sample": [
+  "wd:Q10326443",
+  "wd:Q10340026",
+  "wd:Q10359539",
+  "wd:Q10380344",
+  "wd:Q1047307",
+  "wd:Q104822849",
+  "wd:Q104841236",
+  "wd:Q104866035",
+  "wd:Q1052674",
+  "wd:Q1055879",
+  "wd:Q10564851",
+  "wd:Q106671513",
+  "wd:Q107303302",
+  "wd:Q1088998",
+  "wd:Q1095056"
+ ]
+}

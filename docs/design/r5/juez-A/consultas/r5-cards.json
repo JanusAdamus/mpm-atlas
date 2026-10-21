@@ -1,0 +1,1631 @@
+[
+ {
+  "n": "D1",
+  "from": {
+   "id": "wd:Q1432554",
+   "labels": {
+    "en": "quotient module"
+   },
+   "descriptions": {
+    "en": "algebraic construction"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q18848",
+   "labels": {
+    "en": "module",
+    "es": "módulo"
+   },
+   "descriptions": {
+    "en": "generalization of vector space, with scalars in a ring instead of a field",
+    "es": "estructura algebraica; una generalización de la noción de espacio vectorial, donde los escalares son un anillo arbitrario y donde está definida una multiplicación (a la izquierda o la derecha) entre el anillo y el módulo"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:a1a2f6cdf314ebe5",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q1432554"
+    ],
+    [
+     "object",
+     "wd:Q18848"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q1432554#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D2",
+  "from": {
+   "id": "wd:Q303100",
+   "labels": {
+    "en": "graph isomorphism",
+    "es": "isomorfismo de grafos"
+   },
+   "descriptions": {
+    "en": "bijection between the vertex set of two graphs"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q722659",
+   "labels": {
+    "en": "graph property"
+   },
+   "descriptions": {
+    "en": "isomorphism-invariant property of graphs"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:e6564ff068ea00a4",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q303100"
+    ],
+    [
+     "object",
+     "wd:Q722659"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q303100#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D3",
+  "from": {
+   "id": "wd:Q577835",
+   "labels": {
+    "en": "field extension",
+    "es": "extensión de cuerpos"
+   },
+   "descriptions": {
+    "en": "pair of a mathematical field and its subfield"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q125977",
+   "labels": {
+    "en": "vector space",
+    "es": "espacio vectorial"
+   },
+   "descriptions": {
+    "en": "the basic algebraic structure of linear algebra; a module over a field, such that its elements can be added together or scaled by elements of the field",
+    "es": "estructura algebraica creada a partir de un conjunto no vacío, una operación interna y una operación externa"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:6e1471fdb7a11290",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q577835"
+    ],
+    [
+     "object",
+     "wd:Q125977"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q577835#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D4",
+  "from": {
+   "id": "wd:Q212130",
+   "labels": {
+    "en": "cyclic permutation",
+    "es": "permutación circular"
+   },
+   "descriptions": {
+    "en": "type of (mathematical) permutation with no fixed element",
+    "es": "tipo de permutación"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q161519",
+   "labels": {
+    "en": "permutation",
+    "es": "permutación"
+   },
+   "descriptions": {
+    "en": "change of ordering in a (mathematical) set",
+    "es": "noción matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:4de7679d13afa06c",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q212130"
+    ],
+    [
+     "object",
+     "wd:Q161519"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q212130#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D5",
+  "from": {
+   "id": "wd:Q215071",
+   "labels": {
+    "en": "supremum",
+    "es": "supremo"
+   },
+   "descriptions": {
+    "en": "when it exists, the least element of a partially ordered set which is greater than or equal to all elements of a given subset",
+    "es": "concepto matemático"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q11348",
+   "labels": {
+    "en": "function",
+    "es": "función"
+   },
+   "descriptions": {
+    "en": "association of a single output to each input",
+    "es": "concepto en matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:aa824823b1044fc2",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q215071"
+    ],
+    [
+     "object",
+     "wd:Q11348"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q215071#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D6",
+  "from": {
+   "id": "wd:Q4953691",
+   "labels": {
+    "en": "bracket ring"
+   },
+   "descriptions": {},
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q161172",
+   "labels": {
+    "en": "ring",
+    "es": "anillo"
+   },
+   "descriptions": {
+    "en": "algebraic structure that has compatible structures of an abelian group and a monoid, in particular having multiplicative identity",
+    "es": "estructura algebraica"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:14761b5afaff6bdb",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q4953691"
+    ],
+    [
+     "object",
+     "wd:Q161172"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q4953691#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D7",
+  "from": {
+   "id": "wd:Q9197353",
+   "labels": {
+    "en": "Hamiltonian cycle",
+    "es": "ciclo hamiltoniano"
+   },
+   "descriptions": {
+    "en": "Hamiltonian path that is a cycle",
+    "es": "camino hamiltoniano en el que coinciden el primer y último vértice"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q273037",
+   "labels": {
+    "en": "Hamiltonian path",
+    "es": "camino hamiltoniano"
+   },
+   "descriptions": {
+    "en": "path in a graph that visits each vertex exactly once"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:e5da8c8803807166",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q9197353"
+    ],
+    [
+     "object",
+     "wd:Q273037"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q9197353#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D8",
+  "from": {
+   "id": "wd:Q1363919",
+   "labels": {
+    "en": "second-countable space",
+    "es": "espacio segundo numerable"
+   },
+   "descriptions": {
+    "en": "topological space whose topology admits a countable base",
+    "es": "espacio topológico cuya topología admite una base contable"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q680081",
+   "labels": {
+    "en": "separable space",
+    "es": "espacio separable"
+   },
+   "descriptions": {
+    "en": "topological space with a dense countable subset",
+    "es": "espacio topológico con un subconjunto contable denso"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:af407f7b10e1f693",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q1363919"
+    ],
+    [
+     "object",
+     "wd:Q680081"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q1363919#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D9",
+  "from": {
+   "id": "wd:Q980329",
+   "labels": {
+    "en": "orthogonal projection",
+    "es": "proyección ortogonal"
+   },
+   "descriptions": {
+    "en": "form of parallel projection in which all the projection lines are orthogonal to the projection plane"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q11348",
+   "labels": {
+    "en": "function",
+    "es": "función"
+   },
+   "descriptions": {
+    "en": "association of a single output to each input",
+    "es": "concepto en matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:1a2a4b391bd38f72",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q980329"
+    ],
+    [
+     "object",
+     "wd:Q11348"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q980329#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D10",
+  "from": {
+   "id": "wd:Q1956793",
+   "labels": {
+    "en": "category of abelian groups",
+    "es": "categoría de grupos abelianos"
+   },
+   "descriptions": {
+    "en": "category in mathematics"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q318737",
+   "labels": {
+    "en": "abelian category",
+    "es": "categoría abeliana"
+   },
+   "descriptions": {
+    "en": "preadditive category with a zero object and all binary biproducts, kernels and cokernels in which all monomorphisms and epimorphisms are normal",
+    "es": "una categoría en la cual los morfismos tienen estructura de grupo abeliano, existen tanto núcleos y conúcleos y tienen propiedades deseables"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:3492ae048f2ecaf1",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q1956793"
+    ],
+    [
+     "object",
+     "wd:Q318737"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q1956793#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A1",
+  "from": {
+   "id": "wd:Q36161",
+   "labels": {
+    "en": "set",
+    "es": "conjunto"
+   },
+   "descriptions": {
+    "en": "well-defined mathematical collection of distinct objects",
+    "es": "agrupación de objetos considerada como un objeto en sí"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q192276",
+   "labels": {
+    "en": "measure",
+    "es": "medida"
+   },
+   "descriptions": {
+    "en": "function assigning numbers to some subsets of a set, which could be seen as a generalization of length, area, volume and integral",
+    "es": "función que asigna números a algunos subconjuntos de un conjunto, lo que podría verse como una generalización de longitud, área, volumen e integral."
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:3f120ae643e42200",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Set.exists_isOpen_le_add"
+    ],
+    [
+     "premise",
+     "mathlib:Set"
+    ],
+    [
+     "premise",
+     "mathlib:MeasureTheory.Measure"
+    ],
+    [
+     "premise",
+     "mathlib:MeasureTheory.Measure.OuterRegular"
+    ],
+    [
+     "premise",
+     "mathlib:IsOpen"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/MeasureTheory/Measure/Regular.lean:378 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Set.exists_isOpen_le_add",
+    "labels": {
+     "und": "Set.exists_isOpen_le_add"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:MeasureTheory.Measure",
+    "labels": {
+     "und": "MeasureTheory.Measure"
+    },
+    "descriptions": {
+     "en": "A measure is defined to be an outer measure that is countably additive on measurable sets, with the additional assumption that the outer measure is the canonical extension of the restricted measure. The measure of a set `s`, denoted `μ s`, is an extended nonnegative real. The real-valued version is written `μ.real s`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:7423abf8e305e448",
+     "model_proposed",
+     "mathlib:Set.exists_isOpen_le_add -> wd:Q36161",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:155e7cb8992ab2d4",
+     "model_proposed",
+     "mathlib:MeasureTheory.Measure -> wd:Q192276",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A2",
+  "from": {
+   "id": "wd:Q189569",
+   "labels": {
+    "en": "basis",
+    "es": "base"
+   },
+   "descriptions": {
+    "en": "subset of a vector space that allows defining coordinates"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q948010",
+   "labels": {
+    "en": "primitive root modulo n",
+    "es": "raíz primitiva módulo n"
+   },
+   "descriptions": {
+    "en": "generator of the multiplicative group of integers modulo n"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 5,
+  "witness": {
+   "id": "c:1c3aca82656ab48e",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:IsPrimitiveRoot.subOneIntegralPowerBasisOfPrimePow"
+    ],
+    [
+     "premise",
+     "mathlib:IsCyclotomicExtension"
+    ],
+    [
+     "premise",
+     "mathlib:IsPrimitiveRoot"
+    ],
+    [
+     "premise",
+     "mathlib:PowerBasis"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/NumberTheory/NumberField/Cyclotomic/Basic.lean:240 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:IsPrimitiveRoot.subOneIntegralPowerBasisOfPrimePow",
+    "labels": {
+     "und": "IsPrimitiveRoot.subOneIntegralPowerBasisOfPrimePow"
+    },
+    "descriptions": {
+     "en": "The integral `PowerBasis` of `𝓞 K` given by `ζ - 1`, where `K` is a `p ^ k` cyclotomic extension of `ℚ`."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:IsPrimitiveRoot",
+    "labels": {
+     "und": "IsPrimitiveRoot"
+    },
+    "descriptions": {
+     "en": "An element `ζ` is a primitive `k`-th root of unity if `ζ ^ k = 1`, and if `l` satisfies `ζ ^ l = 1` then `k ∣ l`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:ae8cf9bcc336a92e",
+     "model_proposed",
+     "mathlib:IsPrimitiveRoot.subOneIntegralPowerBasisOfPrimePow -> wd:Q189569",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:18754fa1ff60b723",
+     "model_proposed",
+     "mathlib:IsPrimitiveRoot -> wd:Q948010",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A3",
+  "from": {
+   "id": "wd:Q4440864",
+   "labels": {
+    "en": "dimension",
+    "es": "dimensión"
+   },
+   "descriptions": {
+    "en": "maximum number of independent directions within a mathematical space",
+    "es": "número máximo de direcciones independientes en un espacio matemático"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q18848",
+   "labels": {
+    "en": "module",
+    "es": "módulo"
+   },
+   "descriptions": {
+    "en": "generalization of vector space, with scalars in a ring instead of a field",
+    "es": "estructura algebraica; una generalización de la noción de espacio vectorial, donde los escalares son un anillo arbitrario y donde está definida una multiplicación (a la izquierda o la derecha) entre el anillo y el módulo"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 9,
+  "witness": {
+   "id": "c:35d9a7ebe8b375ad",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:ModuleCat.hasInjectiveDimensionLE_iff_of_linearEquiv"
+    ],
+    [
+     "premise",
+     "mathlib:Small"
+    ],
+    [
+     "premise",
+     "mathlib:ModuleCat"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.HasInjectiveDimensionLE"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Algebra/Category/ModuleCat/InjectiveDimension.lean:76 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:ModuleCat.hasInjectiveDimensionLE_iff_of_linearEquiv",
+    "labels": {
+     "und": "ModuleCat.hasInjectiveDimensionLE_iff_of_linearEquiv"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:ModuleCat",
+    "labels": {
+     "und": "ModuleCat"
+    },
+    "descriptions": {
+     "en": "The category of R-modules and their morphisms. Note that in the case of `R = ℤ`, we cannot impose here that the `ℤ`-multiplication field from the module structure is defeq to the one coming from the `isAddCommGroup` structure (contrary to what we do for all module structures in mathlib), which creates some difficulties down the road."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:deff904ab6f04870",
+     "model_proposed",
+     "mathlib:ModuleCat.hasInjectiveDimensionLE_iff_of_linearEquiv -> wd:Q4440864",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:0ee5dc47c8d6f7f1",
+     "model_proposed",
+     "mathlib:ModuleCat -> wd:Q18848",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A4",
+  "from": {
+   "id": "concept:Mathlib/Algebra/Homology/HomologicalComplex",
+   "labels": {
+    "en": "homology › homological complex (Mathlib, derived)",
+    "es": "homology › homological complex (Mathlib, derivado)"
+   },
+   "descriptions": {
+    "en": "Derived concept: the Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex, which has no Wikidata concept of its own.",
+    "es": "Concepto derivado: la zona Mathlib/Algebra/Homology/HomologicalComplex de Mathlib, sin concepto propio en Wikidata."
+   },
+   "type": "concept",
+   "derived": true
+  },
+  "to": {
+   "id": "wd:Q6086107",
+   "labels": {
+    "en": "isomorphism of categories",
+    "es": "Isomorfismo de categorías"
+   },
+   "descriptions": {
+    "en": "relation of categories in category theory"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:3e68ac5b6511bb0b",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:HomologicalComplex.Hom.isIso_of_components"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.IsIso"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Algebra/Homology/HomologicalComplex.lean:525 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:HomologicalComplex.Hom.isIso_of_components",
+    "labels": {
+     "und": "HomologicalComplex.Hom.isIso_of_components"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:CategoryTheory.IsIso",
+    "labels": {
+     "und": "CategoryTheory.IsIso"
+    },
+    "descriptions": {
+     "en": "The `IsIso` typeclass expresses that a morphism is invertible. Given a morphism `f` with `IsIso f`, one can view `f` as an isomorphism via `asIso f` and get the inverse using `inv f`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:ca5125098046a4f5",
+     "extracted",
+     "mathlib:HomologicalComplex.Hom.isIso_of_components -> concept:Mathlib/Algebra/Homology/HomologicalComplex",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:d41be1b416052c77",
+     "model_proposed",
+     "mathlib:CategoryTheory.IsIso -> wd:Q6086107",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A5",
+  "from": {
+   "id": "wd:Q189112",
+   "labels": {
+    "en": "isomorphism",
+    "es": "isomorfismo"
+   },
+   "descriptions": {
+    "en": "in mathematics, invertible morphism",
+    "es": "homomorfismo (o más generalmente un morfismo) que admite un inverso"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q213363",
+   "labels": {
+    "en": "open set",
+    "es": "conjunto abierto"
+   },
+   "descriptions": {
+    "en": "set that does not contain any of its boundary points",
+    "es": "conjunto que no contiene ninguno de los puntos que lo limita"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 4,
+  "witness": {
+   "id": "c:50b7c2c88f6de91f",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:AlgebraicGeometry.Proj.basicOpenIsoSpec"
+    ],
+    [
+     "premise",
+     "mathlib:AlgebraicGeometry.Proj.basicOpen"
+    ],
+    [
+     "premise",
+     "mathlib:AlgebraicGeometry.Spec"
+    ],
+    [
+     "premise",
+     "mathlib:HomogeneousLocalization.Away"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/AlgebraicGeometry/ProjectiveSpectrum/Basic.lean:161 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:AlgebraicGeometry.Proj.basicOpenIsoSpec",
+    "labels": {
+     "und": "AlgebraicGeometry.Proj.basicOpenIsoSpec"
+    },
+    "descriptions": {
+     "en": "The canonical isomorphism `Proj A |_ D₊(f) ≅ Spec (A_f)₀` when `f` is homogeneous of positive degree."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:AlgebraicGeometry.Proj.basicOpen",
+    "labels": {
+     "und": "AlgebraicGeometry.Proj.basicOpen"
+    },
+    "descriptions": {
+     "en": "The basic open set `D₊(f)` associated to `f : A`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:413ebb63412eecb3",
+     "model_proposed",
+     "mathlib:AlgebraicGeometry.Proj.basicOpenIsoSpec -> wd:Q189112",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:7dd0d0fdd5a7f2d1",
+     "model_proposed",
+     "mathlib:AlgebraicGeometry.Proj.basicOpen -> wd:Q213363",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A6",
+  "from": {
+   "id": "wd:Q19934355",
+   "labels": {
+    "en": "commutative monoid",
+    "es": "monoide conmutativo"
+   },
+   "descriptions": {
+    "en": "algrebraic structure",
+    "es": "estructura algebraica"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q2943034",
+   "labels": {
+    "en": "braided monoidal category"
+   },
+   "descriptions": {
+    "en": "monoidal category with a commutativity constraint that need not be symmetric"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 2,
+  "witness": {
+   "id": "c:dd5b7245724df664",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.commMonoidOfSkeletalBraided"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.BraidedCategory"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Skeletal"
+    ],
+    [
+     "premise",
+     "mathlib:CommMonoid"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/CategoryTheory/Monoidal/Skeleton.lean:46 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.commMonoidOfSkeletalBraided",
+    "labels": {
+     "und": "CategoryTheory.commMonoidOfSkeletalBraided"
+    },
+    "descriptions": {
+     "en": "If `C` is braided and skeletal, it is a commutative monoid."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:CategoryTheory.BraidedCategory",
+    "labels": {
+     "und": "CategoryTheory.BraidedCategory"
+    },
+    "descriptions": {
+     "en": "A braided monoidal category is a monoidal category equipped with a braiding isomorphism `β_ X Y : X ⊗ Y ≅ Y ⊗ X` which is natural in both arguments, and also satisfies the two hexagon identities."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:759b695b438e9c09",
+     "model_proposed",
+     "mathlib:CategoryTheory.commMonoidOfSkeletalBraided -> wd:Q19934355",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:c9335feacfc9f75e",
+     "model_proposed",
+     "mathlib:CategoryTheory.BraidedCategory -> wd:Q2943034",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A7",
+  "from": {
+   "id": "wd:Q164",
+   "labels": {
+    "en": "square",
+    "es": "cuadrado"
+   },
+   "descriptions": {
+    "en": "regular quadrilateral",
+    "es": "paralelogramo con 4 lados y 4 ángulos rectos iguales"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "concept:Mathlib/Analysis/Calculus/FDeriv",
+   "labels": {
+    "en": "calculus › f deriv (Mathlib, derived)",
+    "es": "calculus › f deriv (Mathlib, derivado)"
+   },
+   "descriptions": {
+    "en": "Derived concept: the Mathlib zone Mathlib/Analysis/Calculus/FDeriv, which has no Wikidata concept of its own.",
+    "es": "Concepto derivado: la zona Mathlib/Analysis/Calculus/FDeriv de Mathlib, sin concepto propio en Wikidata."
+   },
+   "type": "concept",
+   "derived": true
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 10,
+  "witness": {
+   "id": "c:9814e06f91e673d3",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:DifferentiableWithinAt.inner"
+    ],
+    [
+     "premise",
+     "mathlib:DifferentiableWithinAt"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Analysis/InnerProductSpace/Calculus.lean:115 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:DifferentiableWithinAt.inner",
+    "labels": {
+     "und": "DifferentiableWithinAt.inner"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:DifferentiableWithinAt",
+    "labels": {
+     "und": "DifferentiableWithinAt"
+    },
+    "descriptions": {
+     "en": "A function `f` is differentiable at a point `x` within a set `s` if it admits a derivative there (possibly non-unique)."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:fbe7a2eba0994678",
+     "model_proposed",
+     "mathlib:DifferentiableWithinAt.inner -> wd:Q164",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:6434db118e16eb6b",
+     "extracted",
+     "mathlib:DifferentiableWithinAt -> concept:Mathlib/Analysis/Calculus/FDeriv",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A8",
+  "from": {
+   "id": "wd:Q582271",
+   "labels": {
+    "en": "noetherian ring",
+    "es": "anillo noetheriano"
+   },
+   "descriptions": {
+    "en": "ring whose ideals satisfy the ascending chain condition"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q1144319",
+   "labels": {
+    "en": "predicate",
+    "es": "predicado"
+   },
+   "descriptions": {
+    "en": "concept of mathematical logic",
+    "es": "concepto en lógica matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:69a57a885a56af9c",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:ModuleCat.exists_isRegular_tfae"
+    ],
+    [
+     "premise",
+     "mathlib:Small"
+    ],
+    [
+     "premise",
+     "mathlib:IsNoetherianRing"
+    ],
+    [
+     "premise",
+     "mathlib:Ideal"
+    ],
+    [
+     "premise",
+     "mathlib:ModuleCat"
+    ],
+    [
+     "premise",
+     "mathlib:Module.Finite"
+    ],
+    [
+     "premise",
+     "mathlib:Submodule"
+    ],
+    [
+     "premise",
+     "mathlib:Nontrivial"
+    ],
+    [
+     "premise",
+     "mathlib:Module.support"
+    ],
+    [
+     "premise",
+     "mathlib:PrimeSpectrum.zeroLocus"
+    ],
+    [
+     "premise",
+     "mathlib:Ext"
+    ],
+    [
+     "premise",
+     "mathlib:Shrink"
+    ],
+    [
+     "premise",
+     "mathlib:RingTheory.Sequence.IsRegular"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/RingTheory/Depth/Rees.lean:160 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:ModuleCat.exists_isRegular_tfae",
+    "labels": {
+     "und": "ModuleCat.exists_isRegular_tfae"
+    },
+    "descriptions": {
+     "en": "**The Rees theorem** For any `n : ℕ`, Noetherian ring `R`, `I : Ideal R`, and finitely generated and nontrivial `R`-module `M` satisfying `IM < M`, the following are equivalent: * for any `N : ModuleCat R` finitely generated and nontrivial with support contained in the zero locus of `I`, `∀ i < n, Ext N M i = 0` * `∀ i < n, Ext (R ⧸ I) M i = 0` * there exists an `N : ModuleCat R` finitely generated and nontrivial with support equal to the zero locus of `I`, `∀ i < n, Ext N M i = 0` * there exists an `M`-regular sequence of length `n` with every element in `I`"
+    },
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Nontrivial",
+    "labels": {
+     "und": "Nontrivial"
+    },
+    "descriptions": {
+     "en": "Predicate typeclass for expressing that a type is not reduced to a single element. In rings, this is equivalent to `0 ≠ 1`. In vector spaces, this is equivalent to positive dimension."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:4bc1cdac427cbd4c",
+     "model_proposed",
+     "mathlib:ModuleCat.exists_isRegular_tfae -> wd:Q582271",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:553e66d552e7834b",
+     "model_proposed",
+     "mathlib:Nontrivial -> wd:Q1144319",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A9",
+  "from": {
+   "id": "wd:Q60727552",
+   "labels": {
+    "en": "section and retraction",
+    "es": "Sección (teoría de categorías)"
+   },
+   "descriptions": {
+    "en": "two kinds of possible inverses of a morphism in a category"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q36161",
+   "labels": {
+    "en": "set",
+    "es": "conjunto"
+   },
+   "descriptions": {
+    "en": "well-defined mathematical collection of distinct objects",
+    "es": "agrupación de objetos considerada como un objeto en sí"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:3c1968a2193b8a0d",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Set.RightInvOn.congr_left"
+    ],
+    [
+     "premise",
+     "mathlib:Set.RightInvOn"
+    ],
+    [
+     "premise",
+     "mathlib:Set.EqOn"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Data/Set/Function.lean:864 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Set.RightInvOn.congr_left",
+    "labels": {
+     "und": "Set.RightInvOn.congr_left"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Set.EqOn",
+    "labels": {
+     "und": "Set.EqOn"
+    },
+    "descriptions": {
+     "en": "Two functions `f₁ f₂ : α → β` are equal on `s` if `f₁ x = f₂ x` for all `x ∈ s`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:b414d70d750145a2",
+     "model_proposed",
+     "mathlib:Set.RightInvOn.congr_left -> wd:Q60727552",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:0542b147af092a79",
+     "model_proposed",
+     "mathlib:Set.EqOn -> wd:Q36161",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A10",
+  "from": {
+   "id": "wd:Q122350815",
+   "labels": {
+    "en": "inverse morphism"
+   },
+   "descriptions": {
+    "en": "morphism that is both a left inverse and a right inverse of a given morphism"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q6086107",
+   "labels": {
+    "en": "isomorphism of categories",
+    "es": "Isomorfismo de categorías"
+   },
+   "descriptions": {
+    "en": "relation of categories in category theory"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:2ca6bd545b65c472",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.inv"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.IsIso"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/CategoryTheory/Iso.lean:247 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.inv",
+    "labels": {
+     "und": "CategoryTheory.inv"
+    },
+    "descriptions": {
+     "en": "The inverse of a morphism `f` when we have `[IsIso f]`."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:CategoryTheory.IsIso",
+    "labels": {
+     "und": "CategoryTheory.IsIso"
+    },
+    "descriptions": {
+     "en": "The `IsIso` typeclass expresses that a morphism is invertible. Given a morphism `f` with `IsIso f`, one can view `f` as an isomorphism via `asIso f` and get the inverse using `inv f`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:be251d4dd11d78b0",
+     "model_proposed",
+     "mathlib:CategoryTheory.inv -> wd:Q122350815",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:d41be1b416052c77",
+     "model_proposed",
+     "mathlib:CategoryTheory.IsIso -> wd:Q6086107",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ }
+]

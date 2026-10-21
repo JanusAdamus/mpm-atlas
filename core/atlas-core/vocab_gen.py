@@ -19,9 +19,14 @@ sys.path.insert(0, str(ROOT))
 
 from atlas.model import (  # noqa: E402
     CURRENT_STATES,
+    EVIDENCE_RANK,
+    PRESENTATION_SCOPES,
     RELATIONS,
     SCHEMA_VERSION,
+    SOURCE_KINDS,
     TRANSITIONS,
+    CurationKind,
+    DateKind,
     EntityType,
     EvidenceState,
     Projection,
@@ -56,9 +61,15 @@ def build() -> dict:
                 "subject_types": _types(RELATIONS[r].subject_types),
                 "object_types": _types(RELATIONS[r].object_types),
                 "chain_authorizes": RELATIONS[r].chain_authorizes,
+                "formal_allowed": RELATIONS[r].formal_allowed,
             }
             for r in RelationType
         },
+        "evidence_rank": {s.value: EVIDENCE_RANK[s] for s in EvidenceState if s in EVIDENCE_RANK},
+        "presentation_scopes": list(PRESENTATION_SCOPES),
+        "curation_kinds": [k.value for k in CurationKind],
+        "date_kinds": [k.value for k in DateKind],
+        "source_kinds": sorted(SOURCE_KINDS),
         "transitions": {s.value: [t.value for t in EvidenceState if t in TRANSITIONS[s]] for s in EvidenceState},
     }
 

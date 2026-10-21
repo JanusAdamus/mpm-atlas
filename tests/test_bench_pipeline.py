@@ -288,3 +288,85 @@ def test_null_graph_loader_matches_store_iter_edges(reg: Registry) -> None:
     fast = {(s, t, cid, rel) for s, nb in g.adj.items() for t, cid, rel, d in nb if d == "forward"}
     ref = {(e.source, e.target, e.claim_id, e.relation.value) for e in reg.store.iter_edges()}
     assert fast == ref and ref
+
+
+def test_provenance_of_a_superseded_claim_is_checked_on_its_live_successor(tmp_path: Path) -> None:
+    from dataclasses import asdict, replace
+
+    from atlas import Store, load_bundle
+
+    db = tmp_path / "chain.db"
+    with Store(db) as store:
+        load_bundle(store, json.loads(FIXTURE.read_text(encoding="utf-8")), actor="test")
+        old = store.get_claim("c:pyth-euclid")
+        store.supersede(old.id, replace(old, id="c:pyth-euclid-v2", supersedes=None), actor="test", reason="t")
+        store.supersede("c:pyth-euclid-v2", replace(old, id="c:pyth-euclid-v3", supersedes=None), actor="test",
+                        reason="t: two hops")
+        moved = store.get_claim("c:pyth-euclid-v3")
+    reg = Registry(Store(db, read_only=True), db)
+    try:
+        prov = [asdict(x) for x in moved.provenance]
+        p = {"claim_id": "c:pyth-euclid",
+             "expected": [{"source_id": x["source_id"], "locator": x["locator"]} for x in prov]}
+        served = {"claims": [{"id": "c:pyth-euclid-v3", "evidence_state": "extracted", "provenance": prov}],
+                  "truncated": False}
+        assert reg.live_successor("c:pyth-euclid") == "c:pyth-euclid-v3"
+        got = evaluate._check_provenance(served, p, reg)
+        assert got == {"ok": True, "problem": None, "via": "c:pyth-euclid-v3"}
+        assert evaluate._check_provenance(served, p)["problem"] == "claim_missing"  # without the chain: old code
+        other = {"claims": [{**served["claims"][0],
+                             "provenance": [{**prov[0], "locator": "Elements I.48"}]}], "truncated": False}
+        assert evaluate._check_provenance(other, p, reg)["problem"] == "successor_mismatch"
+        assert evaluate._check_provenance({"claims": [], "truncated": False}, p, reg)["problem"] == \
+            "successor_missing"
+        assert reg.live_successor("c:does-not-exist") is None
+    finally:
+        reg.close()
+
+
+def test_relabel_follows_supersede_and_r8_and_leaves_the_rest_alone(tmp_path: Path) -> None:
+    import sqlite3
+    from dataclasses import replace
+
+    from atlas import Store, load_bundle
+    from atlas.model import EvidenceState, RelationType
+    from bench.relabel import relabel_item
+
+    db = tmp_path / "m2.db"
+    with Store(db) as store:
+        load_bundle(store, json.loads(FIXTURE.read_text(encoding="utf-8")), actor="test")
+        cos, par, rt = (store.get_claim(c) for c in ("c:cosines-gen", "c:parseval-gen", "c:rt-prereq"))
+        items = {name: silver._route(f"t:{name}", c.subject, c.targets[0], [(c, c.subject, c.targets[0], "forward")],
+                                     "t", c) for name, c in (("cos", cos), ("par", par), ("rt", rt))}
+        store.supersede(cos.id, replace(cos, id="c:cosines-said", relation=RelationType.SAID_EQUIVALENT_TO,
+                                        supersedes=None), actor="test", reason="M2-like")
+        store.set_evidence_state(par.id, EvidenceState.DISPUTED, actor="test", reason="two-way")
+        moved = replace(rt, id="c:rt-moved", provenance=(replace(rt.provenance[0], locator="elsewhere"),),
+                        supersedes=None)
+        store.supersede(rt.id, moved, actor="test", reason="different locator")
+    reg, con = Registry(Store(db, read_only=True), db), sqlite3.connect(db)
+    try:
+        assert items["cos"].payload["allowed"] == ["generalization"]
+        new, entry, probs = relabel_item(items["cos"], reg, con)
+        assert not probs and new.payload["allowed"] == ["said_equivalence"]
+        assert new.payload["steps"][0]["claim_id"] == "c:cosines-said"
+        assert entry["steps_changed"][0]["successor"] == "c:cosines-said" and not entry["became_abstention"]
+        new, entry, _ = relabel_item(items["par"], reg, con)  # disputed: excluded by R8 -> abstention item
+        assert new.payload["answerable"] is False and new.payload["allowed"] == [] and entry["became_abstention"]
+        assert "generalization" in new.payload["forbidden"] and new.payload["attack"] == "t"
+        same, entry, probs = relabel_item(items["rt"], reg, con)  # successor with another locator: not followed
+        assert same is items["rt"] and entry is None and probs and "locator" in probs[0]
+        hw = read_jsonl(ROUTES)[0]
+        assert relabel_item(hw, reg, con) == (hw, None, [])
+    finally:
+        con.close()
+        reg.close()
+
+
+def test_adversarial_backend_errors_block_a_pass() -> None:
+    """Errored adversarial items stay in the denominator and keep the verdict off PASS (review MEDIUM)."""
+    ok = {"abstained": False, "answerable": False, "structural_problems": [], "forbidden_violation": False}
+    recs = [{"label_status": "expert_adjudicated", "adversarial": True, "answerable": False, "attack": "x",
+             "by_backend": {"cli": ok if i < 80 else {"error": "HTTP 500"}}} for i in range(100)]
+    v = report.routes_verdicts({"records": recs, "missing": {}, "unresolved": []}, "cli")["adversarial"]
+    assert v["verdict"] == "INSUFFICIENT" and v["backend_errors"] == 20 and v["no_forbidden"]["n"] == 100

@@ -1,0 +1,14 @@
+{
+ "layout_version": [
+  "e6ed5eab030b3aec"
+ ],
+ "nodes_z0_z2": 2041,
+ "with_es_label": 1329,
+ "share_es": 0.6512,
+ "derived_in_z0_z2": 0,
+ "out_of_domain_list_size": 49,
+ "out_of_domain_in_z0_z2": 0,
+ "ood_examples": [],
+ "notes_in_z0_z2": 0,
+ "label_shown_examples_derived": []
+}

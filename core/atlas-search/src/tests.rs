@@ -249,3 +249,83 @@ fn everyday_name_ranks_its_concept_before_declarations_of_the_same_short_name() 
     assert_eq!(r.hits[0].id, "mathlib:Area7.integral", "{:?}", ids(&r));
     assert!(e.lanes.iter().all(|l| l.lane != Lane::Concept || l.weight == 0.0));
 }
+
+/// Fixture registry plus an eponym (round 5, plan point 6): the person Thomas Bayes (alias «Bayes»)
+/// and two entities `named_after` him, Bayes' theorem and the Bayes estimator.
+fn bayes_fixture() -> &'static Fixture {
+    static F: OnceLock<Fixture> = OnceLock::new();
+    F.get_or_init(|| {
+        let root = std::env::temp_dir().join(format!("atlas-search-bayes-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        std::fs::create_dir_all(&root).unwrap();
+        let db = root.join("atlas.db");
+        std::fs::copy(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../atlas-core/tests/fixtures/mini_atlas.db"), &db)
+            .unwrap();
+        let c = rusqlite::Connection::open(&db).unwrap();
+        for (id, ty, data) in [
+            ("wd:bayes", "person", r#"{"id":"wd:bayes","type":"person","labels":{"en":"Thomas Bayes","es":"Thomas Bayes"},"aliases":[["es","Bayes"],["en","Bayes"]],"descriptions":{"en":"English statistician and minister"}}"#),
+            ("wd:bayes-thm", "statement", r#"{"id":"wd:bayes-thm","type":"statement","labels":{"en":"Bayes' theorem","es":"teorema de Bayes"},"descriptions":{"en":"probability of an event given prior knowledge"}}"#),
+            ("wd:bayes-est", "concept", r#"{"id":"wd:bayes-est","type":"concept","labels":{"en":"Bayes estimator"},"descriptions":{"en":"estimator minimizing the posterior expected loss"}}"#),
+        ] {
+            c.execute("INSERT INTO entities VALUES (?1, ?2, ?3, NULL, 't')", rusqlite::params![id, ty, data]).unwrap();
+        }
+        for (cid, s) in [("c:bayes-n1", "wd:bayes-thm"), ("c:bayes-n2", "wd:bayes-est")] {
+            let data = format!(
+                r#"{{"id":"{cid}","relation":"named_after","participants":[{{"role":"subject","entity":"{s}"}},{{"role":"object","entity":"wd:bayes"}}],"evidence_state":"extracted"}}"#
+            );
+            c.execute("INSERT INTO claims VALUES (?1,'named_after','extracted',NULL,NULL,NULL,NULL,?2,'t')",
+                      rusqlite::params![cid, data]).unwrap();
+            c.execute("INSERT INTO claim_participants VALUES (?1,'subject',?2,0)", rusqlite::params![cid, s]).unwrap();
+            c.execute("INSERT INTO claim_participants VALUES (?1,'object','wd:bayes',1)", rusqlite::params![cid]).unwrap();
+            c.execute("INSERT INTO provenance VALUES (?1,NULL,'src:fixture-hand','test','wikidata','1','CC0-1.0','t',NULL)",
+                      rusqlite::params![cid]).unwrap();
+        }
+        drop(c);
+        let mut copts = CompileOptions::new(&db, root.join("snapshot"));
+        copts.threads = 2;
+        compile(&copts).expect("compile bayes fixture");
+        let snap = Snapshot::open(root.join("snapshot")).expect("open snapshot");
+        let opts = BuildOptions { encoder: EncoderChoice::Lsi, threads: 2, hnsw: false, sessions: 1, intra_threads: 1 };
+        SearchIndex::build_with(&snap, &db, &root.join("index"), &opts).expect("build index");
+        let idx = SearchIndex::open(&snap, &root.join("index")).expect("open index");
+        Fixture { snap, idx, index_root: root.join("index") }
+    })
+}
+
+#[test]
+fn a_surname_query_finds_the_eponymous_mathematics_before_the_person() {
+    let f = bayes_fixture();
+    for lang in ["es", "en"] {
+        let sq = SearchQuery { q: "Bayes".into(), lang: lang.into(), types: vec![], limit: 10 };
+        let (r, _) = f.idx.search_explained(&f.snap, &sq).expect("search");
+        assert_eq!(r.hits[0].id, "wd:bayes-thm", "{lang}: {:?}", ids(&r));
+        assert!(r.hits.iter().any(|h| h.id == "wd:bayes"), "the person is still found: {:?}", ids(&r));
+    }
+    // the full name asks for the person
+    let sq = SearchQuery { q: "Thomas Bayes".into(), lang: "es".into(), types: vec![], limit: 10 };
+    let (r, _) = f.idx.search_explained(&f.snap, &sq).expect("search");
+    assert_eq!(r.hits[0].id, "wd:bayes", "{:?}", ids(&r));
+}
+
+/// r5 fichas: a note's sentence is never a search document (it would surface as a hit).
+#[test]
+fn notes_are_not_indexed() {
+    let src = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../atlas-core/tests/fixtures/mini_atlas.db");
+    let root = std::env::temp_dir().join(format!("atlas-search-note-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    std::fs::create_dir_all(&root).unwrap();
+    let db = root.join("atlas.db");
+    std::fs::copy(&src, &db).unwrap();
+    rusqlite::Connection::open(&db)
+        .unwrap()
+        .execute_batch(include_str!("../../atlas-core/tests/fixtures/note.sql"))
+        .unwrap();
+    let mut copts = CompileOptions::new(&db, root.join("snapshot"));
+    copts.threads = 2;
+    compile(&copts).expect("compile fixture with a note");
+    let snap = Snapshot::open(root.join("snapshot")).unwrap();
+    let note = snap.resolve("note:que_es:fixture1").expect("note in the snapshot");
+    let docs = corpus::load(&snap, &db).unwrap();
+    assert!(docs.iter().all(|d| d.node != note), "a note became a search document");
+    assert!(docs.iter().any(|d| snap.node_id(d.node) == "s:pythagoras"));
+}

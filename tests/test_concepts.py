@@ -416,3 +416,33 @@ def test_resolve_keeps_pi_despite_the_short_label_rule() -> None:
     cands = rv.item_candidates(idx, "wd:Q167", EntityType.CONCEPT, [("pi", 0.9)])
     assert any("mathlib:Real.pi" in (c.left, c.right) for c in cands)
     s.close()
+
+
+# ---------------------------------------------------------------------- round 5 (ADR-0005 §5)
+
+
+def test_items_curated_out_of_the_concept_layer_get_no_members_until_undone() -> None:
+    """An editor's exclude_presentation (scope concept_layer) keeps a homonym item (South Africa, alias «r s»)
+    out of the projection, so a re-run does not recreate the memberships the curation retired; undoing the
+    curation brings it back.  Exclusions in other scopes do not touch the layer."""
+    s = Store()
+    s.add_source(SRC)
+    s.add_entities([decl("Matrix.rs_mul", "Mathlib/LinearAlgebra/Matrix/RS"),
+                    item("Q258", "South Africa", aliases=("r s",), desc="country in southern Africa"),
+                    item("Q9999", "r s", desc="rank of a matrix")] + FILLERS)
+
+    def members() -> set[tuple[str, str]]:
+        return {(a.decl, a.concept) for a in C.assign(C.load(s, with_resolve=False))[0]}
+
+    cur = s.add_curation("exclude_presentation", "wd:Q258", rule="curation:out-of-domain", rule_version="1",
+                         payload={"scopes": ["map:general", "concept_layer"]}, actor="curation:out-of-domain/1",
+                         reason="test: country, not mathematics")
+    s.add_curation("exclude_presentation", "wd:Q9999", rule="curation:map-only", rule_version="1",
+                   payload={"scopes": ["map:general"]}, actor="curation:map-only/1", reason="test: map scope only")
+    inp = C.load(s, with_resolve=False)
+    assert inp.curated_out == {"wd:Q258": "curation:out-of-domain/1"} and "wd:Q258" not in inp.items
+    assert "wd:Q9999" in inp.items  # another scope does not take it out of the layer
+    assert not any(concept == "wd:Q258" for _, concept in members())
+    s.undo_curation(cur.id, actor="editor:test", reason="test: undo")
+    assert "wd:Q258" in C.load(s, with_resolve=False).items
+    s.close()

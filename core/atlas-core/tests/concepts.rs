@@ -64,14 +64,20 @@ fn members_primary_concepts_and_aggregated_edges() {
     assert_eq!(s.concept_memberships(lonely).len(), 3, "secondary membership of s:pythagoras is kept");
     assert!(!s.is_derived_concept(rt));
 
-    // aggregated edges recounted independently from the CSR: primary member -> primary member, other concept
+    // aggregated edges recounted independently from the CSR: primary member -> primary member, other concept,
+    // with the weakest of the edge and the two primary memberships (ADR-0005 §7a)
+    let membership = |m: u32| {
+        let c = s.primary_concept(m).unwrap();
+        s.csr(Dir::Out).edges_rel(m, RelationType::MemberOfConcept).iter().find(|e| e.nbr == c).unwrap().state
+    };
     let mut want: BTreeMap<(u32, u32, RelationType, EvidenceState), u32> = BTreeMap::new();
     for &c in s.concepts() {
         for &m in s.concept_members(c) {
             for e in s.csr(Dir::Out).edges(m).iter() {
                 if e.relation == RelationType::MemberOfConcept { continue; }
                 if let Some(t) = s.primary_concept(e.nbr).filter(|&t| t != c) {
-                    *want.entry((c, t, e.relation, e.state)).or_default() += 1;
+                    let state = e.state.weakest(membership(m)).weakest(membership(e.nbr));
+                    *want.entry((c, t, e.relation, state)).or_default() += 1;
                 }
             }
         }
@@ -88,8 +94,10 @@ fn members_primary_concepts_and_aggregated_edges() {
         }
     }
     assert_eq!(got, want);
-    assert_eq!(got.get(&(rt, lonely, RelationType::DependsOnLogically, EvidenceState::Extracted)), Some(&2),
-               "Euclid's proof: two premises in c:lonely");
+    assert_eq!(got.get(&(rt, lonely, RelationType::DependsOnLogically, EvidenceState::ModelProposed)), Some(&2),
+               "Euclid's proof: two extracted premises in c:lonely, through model_proposed memberships");
+    assert!(got.keys().all(|k| k.3 == EvidenceState::ModelProposed), "never stronger than the memberships");
+    assert!(s.concept_edges(rt).all(|e| e.is_candidate()));
     assert_eq!(s.num_concept_edges(), 1);
 }
 

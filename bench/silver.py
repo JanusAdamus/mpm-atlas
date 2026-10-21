@@ -328,14 +328,18 @@ def _route_items(store: Store, pools: _Pools) -> list[Item]:
     return out
 
 
-def _route(iid: str, src: str, dst: str, hops: list[tuple[Claim, str, str, str]], attack: str, c1: Claim) -> Item:
-    chain = [compose.Hop(c.relation.value, d) for c, _, _, d in hops]
-    got = compose.conclude(chain)
+def route_labels(got: str) -> tuple[list[str], list[str]]:
+    """(allowed, forbidden) of a reference path whose oracle conclusion is `got`."""
     allowed = [] if got == "none" else [got]
     ceiling = compose.strength(got) if allowed else -1
     forbidden = sorted(k for k in compose.table()["conclusions"]
                        if k not in allowed and k != "none" and (compose.is_mathematical(k) or
                                                                  compose.strength(k) > ceiling))
+    return allowed, forbidden
+
+
+def _route(iid: str, src: str, dst: str, hops: list[tuple[Claim, str, str, str]], attack: str, c1: Claim) -> Item:
+    allowed, forbidden = route_labels(compose.conclude([compose.Hop(c.relation.value, d) for c, _, _, d in hops]))
     steps = [{"from": {"id": f}, "relation": c.relation.value, "to": {"id": t}, "direction": d,
               "label": "valid" if compose.step(compose.Hop(c.relation.value, d))[0] != "none" else "invalid",
               "why": f"claim {c.id} ({c.evidence_state.value})", "claim_id": c.id} for c, f, t, d in hops]

@@ -7,7 +7,7 @@
 //! (merges are redirects), and entities newer than the snapshot are skipped: the
 //! snapshot defines what is served.
 
-use atlas_core::{Error, NodeIx, Result, Snapshot};
+use atlas_core::{EntityType, Error, NodeIx, Result, Snapshot};
 use rayon::prelude::*;
 use rusqlite::{Connection, OpenFlags, params};
 use serde::Deserialize;
@@ -140,6 +140,9 @@ fn read_range(db: &Path, snap: &Snapshot, (lo, hi): (i64, i64)) -> Result<Vec<(N
     while let Some(r) = rows.next()? {
         let id: String = r.get(0)?;
         let Some(node) = snap.resolve(&id) else { continue };
+        if snap.node_type(node) == EntityType::Note {
+            continue; // a ficha sentence is panel text, never a hit (ADR-0005 §6)
+        }
         let data = r.get_ref(1)?.as_str()?;
         let e: EntityJson = serde_json::from_str(data).map_err(|e| Error::Registry(format!("entity {id}: {e}")))?;
         out.push((node, e.texts()));

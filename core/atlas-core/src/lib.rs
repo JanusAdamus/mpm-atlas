@@ -18,6 +18,7 @@ mod concepts;
 mod error;
 pub mod format;
 pub mod hashidx;
+mod layer;
 mod read;
 mod snapshot;
 mod stats;

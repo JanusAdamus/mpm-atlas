@@ -27,6 +27,11 @@ pub(crate) struct Columns {
     pub node_state_mask: Vec<u8>,
     pub node_hash: Vec<u32>,
     pub merged_nodes: Vec<u32>,
+    pub node_flags: Vec<u8>,
+    pub node_show_es: Vec<u32>,
+    pub node_show_en: Vec<u32>,
+    /// Zero for a core snapshot; the core's content hash for a layer snapshot.
+    pub core_content_hash: [u8; 32],
     pub claim_id: Vec<u32>,
     pub claim_rel: Vec<u8>,
     pub claim_state: Vec<u8>,
@@ -75,7 +80,7 @@ impl Columns {
 
     fn sections(&self) -> Vec<(Section, &[u8])> {
         use Section as S;
-        fn b(v: &[u32]) -> &[u8] {
+        fn b<T: bytemuck::Pod>(v: &[T]) -> &[u8] {
             bytemuck::cast_slice(v)
         }
         vec![
@@ -91,6 +96,9 @@ impl Columns {
             (S::NodeStateMask, &self.node_state_mask),
             (S::NodeHash, b(&self.node_hash)),
             (S::MergedNodes, b(&self.merged_nodes)),
+            (S::NodeFlags, &self.node_flags),
+            (S::NodeShowEs, b(&self.node_show_es)),
+            (S::NodeShowEn, b(&self.node_show_en)),
             (S::ClaimId, b(&self.claim_id)),
             (S::ClaimRel, &self.claim_rel),
             (S::ClaimState, &self.claim_state),
@@ -154,6 +162,7 @@ impl Columns {
         h.num_sources = self.source_id.len() as u32;
         h.num_strings = self.strings.len() as u32;
         h.num_prov = self.prov_src.len() as u32;
+        h.core_content_hash = self.core_content_hash;
         h
     }
 }

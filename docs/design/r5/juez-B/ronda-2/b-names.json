@@ -1,0 +1,179 @@
+{
+ "layout_version": "e6ed5eab030b3aec",
+ "general_nodes": 2041,
+ "label_shown_equals_registry_es": 1212,
+ "share_es": 0.5938,
+ "derived_concept_nodes": 0,
+ "labels_with_mathlib_derivado": 0,
+ "ood_diagnosis_list_in_layer": [
+  [
+   "wd:Q387015",
+   "trie"
+  ]
+ ],
+ "curated_out_of_domain_still_in_layer": 0,
+ "curated_out_of_domain_total": 49,
+ "curated_derived_still_in_layer": 0,
+ "examples_no_es": [
+  [
+   "wd:Q722659",
+   "graph property"
+  ],
+  [
+   "wd:Q7840044",
+   "grafos sin triangulos"
+  ],
+  [
+   "wd:Q42989",
+   "topología (rama de las matemáticas)"
+  ],
+  [
+   "wd:Q36253",
+   "longitud (medida)"
+  ],
+  [
+   "wd:Q861555",
+   "cubo (tercera potencia)"
+  ],
+  [
+   "wd:Q18533485",
+   "lattice theory"
+  ],
+  [
+   "wd:Q44649",
+   "ideal (de un anillo)"
+  ],
+  [
+   "wd:Q357300",
+   "Lie theory"
+  ],
+  [
+   "wd:Q692823",
+   "strongly regular graph"
+  ],
+  [
+   "wd:Q484298",
+   "superficie (variedad de dimensión dos)"
+  ],
+  [
+   "wd:Q19856468",
+   "integer-valued function"
+  ],
+  [
+   "wd:Q44528",
+   "vector euclídeo"
+  ],
+  [
+   "wd:Q114722746",
+   "module theory"
+  ],
+  [
+   "wd:Q3115606",
+   "grafo singleton"
+  ],
+  [
+   "wd:Q18786106",
+   "topología (estructura de abiertos)"
+  ],
+  [
+   "wd:Q1304193",
+   "vértice (de un grafo)"
+  ],
+  [
+   "wd:Q3505239",
+   "superficie (de un cuerpo)"
+  ],
+  [
+   "wd:Q387015",
+   "trie"
+  ],
+  [
+   "wd:Q204",
+   "cero"
+  ],
+  [
+   "wd:Q595298",
+   "haz (sheaf)"
+  ],
+  [
+   "wd:Q812880",
+   "cubo (sólido)"
+  ],
+  [
+   "wd:Q930499",
+   "polinomio simétrico"
+  ],
+  [
+   "wd:Q1096885",
+   "red (subgrupo de un espacio vectorial real)"
+  ],
+  [
+   "wd:Q5289813",
+   "domain decomposition methods"
+  ],
+  [
+   "wd:Q5758318",
+   "higher category theory"
+  ],
+  [
+   "wd:Q12510",
+   "toro (superficie de revolución)"
+  ],
+  [
+   "wd:Q10340026",
+   "object of a category"
+  ],
+  [
+   "wd:Q660799",
+   "Darboux's theorem"
+  ],
+  [
+   "wd:Q917421",
+   "grafo camino"
+  ],
+  [
+   "wd:Q2589168",
+   "grafo estrella"
+  ],
+  [
+   "wd:Q15838309",
+   "simple graph"
+  ],
+  [
+   "wd:Q78338964",
+   "smooth manifold"
+  ],
+  [
+   "wd:Q2742711",
+   "distancia en un grafo"
+  ],
+  [
+   "wd:Q3502010",
+   "variety (universal algebra)"
+  ],
+  [
+   "wd:Q747027",
+   "characteristic subgroup"
+  ],
+  [
+   "wd:Q194292",
+   "investigación de operaciones"
+  ],
+  [
+   "wd:Q114715748",
+   "theory of schemes"
+  ],
+  [
+   "wd:Q374268",
+   "infinite group"
+  ],
+  [
+   "wd:Q2594083",
+   "palabra (lenguajes formales)"
+  ],
+  [
+   "wd:Q3297804",
+   "arista (de un grafo)"
+  ]
+ ]
+}

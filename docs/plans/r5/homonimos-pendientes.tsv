@@ -1,0 +1,1094 @@
+qid	label_en	descripcion_en	pertenencias_una_palabra	pertenencias_vigentes	token	directorios	estado
+Q36161	set	well-defined mathematical collection of distinct objects	0	7861			revisado, no aplicado: prefijo `Set.` por namespace: el lema no trata de «conjunto» (juez A, A1/A9); no es homónimo, es propagación
+Q1053064	map	higher-order function in a programming language, which applies a given function element-wise to a collection (most gener	2079	2203	map:2079	CategoryTheory:636 Algebra:371 RingTheory:205 Data:127	revisado, no aplicado: `map` de Mathlib: `List.map` sí es la función de orden superior; el resto no
+Q868169	group homomorphism	function between groups that preserves multiplication structure	0	799			revisado, no aplicado: `MonoidHom` por namespace a «homomorfismo de grupos»: generaliza mal, no es homónimo (juez B, A8)
+Q2672873	filter	higher-order function that selects elements from a data structure based on a predicate function	260	305	filter:260	Analysis:96 Topology:77 MeasureTheory:70 Combinatorics:7	revisado, no aplicado: `Filter` de topología frente a `List.filter`: mezcla
+Q8805	bit	basic unit of information in computing and digital communications	152	227	bit:152	Data:146 Combinatorics:3 Algebra:2 GroupTheory:1	revisado, no aplicado: `bit`/`testBit`: dígitos binarios; dudoso
+Q42344	cone	geometric shape	200	215	cone:200	Topology:94 Geometry:42 Analysis:25 Algebra:19	revisado, no aplicado: quedan 215: conos convexos y puntuados (otro ítem, pero no un homónimo puro)
+Q19821	triangle	basic three-sided shape of geometry	117	174	triangle:117	Combinatorics:46 Topology:24 Analysis:12 Geometry:12	revisado, no aplicado: quedan 174: Geometry (correctas), SimpleGraph (triángulo de un grafo) y desigualdad triangular
+Q951651	fold	family of higher-order functions that analyze a recursive data structure and build up a return value	96	115	fold:78 reduce:10	Data:59 LinearAlgebra:15 Control:12 Algebra:4	revisado, no aplicado: `fold`: `List.foldl` sí, otros no
+Q1144319	predicate	concept of mathematical logic	0	85			revisado, no aplicado: `Nontrivial` y otros predicados: es verdad que son predicados, pero la pertenencia no informa (juez A, A8)
+Q104493	risk	potential for uncontrolled loss due to underlying vulnerability or uncertainties	77	77	risk:77	Probability:77	revisado, no aplicado: `risk` en estadística bayesiana de Mathlib: puede ser correcto
+Q4440864	dimension	maximum number of independent directions within a mathematical space	59	61	dimension:59	AlgebraicTopology:27 RingTheory:11 LinearAlgebra:11 Analysis:4	revisado, no aplicado: quedan 61: dimensión de un conjunto simplicial y otras; ambiguas
+Q498186	exclusive or	true when either but not both inputs are true	0	42			revisado, no aplicado: quedan 42: `xor`, `LawfulXor`, diferencia simétrica
+Q40276	multiplication	mathematical operation	3403	4058	multiplication:3367 time:21	Algebra:1445 Topology:338 Analysis:330 RingTheory:273	sin revisar
+Q7017933	inverse	mathematical operation or function which undoes the effect of another entity of the same type	3362	3628	inverse:3362	Algebra:1030 CategoryTheory:654 Analysis:339 Topology:246	sin revisar
+Q1226939	division	arithmetic operation; one of the four basic operations of arithmetic (others being addition, subtraction, multiplication	2674	3183	division:2674	Algebra:1161 Analysis:427 Data:224 Topology:163	sin revisar
+Q956437	norm	length in a vector space	2551	3016	norm:2540 length:11	Analysis:1465 MeasureTheory:396 NumberTheory:265 RingTheory:152	sin revisar
+Q182003	injection	mathematical function that preserves distinctness	2504	2848	injection:2504	Algebra:683 RingTheory:306 Data:250 LinearAlgebra:193	sin revisar
+Q2498094	submodule	additive subgroup of a module closed under scalar multiplication	843	2769	submodule:843	Algebra:340 LinearAlgebra:179 RingTheory:160 Topology:64	sin revisar
+Q185359	union	operation denoted by symbol “∪” applied on two sets; the set of all distinct elements in the collection	1930	2745	union:1930	Topology:349 Data:319 MeasureTheory:299 Order:269	sin revisar
+Q5449308	FinSet	category in mathematics	185	2745	set:185	Topology:24 Combinatorics:22 MeasureTheory:20 AlgebraicTopology:18	sin revisar
+Q1199948	infimum	when it exists, the greatest element of a partially ordered set which is lower than or equal to all elements of a given 	2568	2644	infimum:2568	Order:630 Topology:421 Algebra:391 RingTheory:184	sin revisar
+Q218005	sum	addition of a sequence of numbers	2305	2473	sum:2258 total:39	Algebra:486 Analysis:372 Topology:234 Data:185	sin revisar
+Q901718	product	result of multiplying	1977	2177	product:1977	Algebra:424 Topology:284 CategoryTheory:233 Analysis:185	sin revisar
+Q204	zero	integer number zero; neutral element for the addition	2061	2168	zero:2043 nil:8	Algebra:609 Analysis:234 Data:202 RingTheory:169	sin revisar
+Q5637899	preimage	given a binary relation, the set of all elements of the domain that map to the members of a given subset of the codomain	1786	2087	preimage:1786	Topology:383 Data:330 Order:233 Algebra:186	sin revisar
+Q1165112	singleton	set with exactly one element	1959	2052	singleton:1884 single:65	Data:439 Topology:231 Algebra:204 RingTheory:200	sin revisar
+Q118084	unit	in mathematics, an invertible element or a unit in a ring R	1282	1776	unit:1266 invertible:16	Algebra:330 CategoryTheory:327 RingTheory:157 Topology:85	sin revisar
+Q864377	multiset	set (in mathematics) with repetitions allowed	465	1737	multiset:465	Data:222 Algebra:138 RingTheory:32 Analysis:26	sin revisar
+Q1136376	support	part of the domain of a mathematical function	1411	1588	support:1411	Algebra:392 Combinatorics:182 RingTheory:168 Data:154	sin revisar
+Q980509	embedding	injective map that is structure-preserving in both directions	1068	1149	embedding:1068	Topology:270 NumberTheory:127 Algebra:101 Order:83	sin revisar
+Q41118	quotient	result of a division	1055	1136	quotient:1055	RingTheory:209 Topology:181 Algebra:130 LinearAlgebra:123	sin revisar
+Q11197	logarithm	inverse of the exponential function, which maps products to sums	911	1131	logarithm:910 logarithmic:1	Analysis:560 NumberTheory:138 Data:73 SetTheory:36	sin revisar
+Q5416789	eventually	mathematical concept	944	1126	eventually:944	Order:278 Analysis:267 Topology:201 Geometry:63	sin revisar
+Q898572	matroid	abstract structure that models and generalizes linear independency	132	1090	matroid:132	Combinatorics:121 RingTheory:11	sin revisar
+Q589491	order	Wikimedia article covering multiple topics	916	1085	order:916	Order:287 RingTheory:158 Algebra:123 GroupTheory:119	sin revisar
+Q163875	cardinal number	finite or infinite number that measures cardinality (size) of sets	8	1066	cardinal:8	SetTheory:3 CategoryTheory:2 LinearAlgebra:1 Combinatorics:1	sin revisar
+Q191780	ordinal number	mathematical concept generalizing ordinal numerals to extend enumeration to infinite sets	23	1061	ordinal:23	SetTheory:20 Topology:3	sin revisar
+Q122889481	A-Integrable	mathematical concept	921	1041	integrable:921	MeasureTheory:614 Analysis:171 Probability:123 InformationTheory:9	sin revisar
+Q217357	sigma-algebra	algebraic structure closed under numerable union, intersection, and complement	324	961	algebra:321 field:3	RingTheory:89 Algebra:84 Analysis:51 CategoryTheory:25	sin revisar
+Q656784	rank	measure of the "nondegenerateness" of the system of linear equations and linear transformation encoded by a matrix	771	932	rank:771	LinearAlgebra:287 RingTheory:88 Combinatorics:85 Algebra:74	sin revisar
+Q180907	bijection	mathematical function which is a one-to-one mapping of sets	817	875	bijection:817	RingTheory:153 Algebra:126 CategoryTheory:117 Topology:74	sin revisar
+Q3518150	tensor	mathematical approach to the notion of tensor as an element of a tensor product	780	840	tensor:780	CategoryTheory:338 RingTheory:282 RepresentationTheory:73 Algebra:64	sin revisar
+Q10585806	minimum	lowest or smallest value or item in a partially ordered set	534	829	minimum:495 smallest:26	Algebra:128 Data:124 Order:105 Analysis:32	sin revisar
+Q133250	sequence	ordered list of the same type of elements (finite or infinite)	699	829	sequence:695 ordered:4	Data:155 Topology:96 Algebra:88 Analysis:77	sin revisar
+Q740207	isometry	geometric transform (or more generally, function on a metric space or between two metric spaces), which preserves the di	568	829	isometry:560 congruence:8	Analysis:364 Topology:107 LinearAlgebra:73 NumberTheory:9	sin revisar
+Q836088	characteristic	in a field or a ring, the smallest positive integer, if any, such that the sum of n ones equals 0; zero otherwise	647	809	characteristic:647	Algebra:217 NumberTheory:101 MeasureTheory:69 AlgebraicGeometry:52	sin revisar
+Q10578722	maximum	greatest or largest value or element	748	794	maximum:686 greatest:49	Data:168 Algebra:145 Order:117 Analysis:67	sin revisar
+Q7241077	presheaf	contravariant functor to the category of sets and functions	601	738	presheaf:601	CategoryTheory:299 Algebra:120 Topology:84 AlgebraicGeometry:41	sin revisar
+Q852757	valuation	function in algebra which generalises the concept of multiplicity for commutative rings	359	736	valuation:359	RingTheory:231 NumberTheory:73 Topology:33 FieldTheory:18	sin revisar
+Q124168363	type	concept in type theory	720	725	type:720	CategoryTheory:276 Algebra:154 Topology:79 RingTheory:70	sin revisar
+Q36253	length	measured dimension of an object in a physical space	610	717	length:610	Data:228 Combinatorics:144 Algebra:69 GroupTheory:42	sin revisar
+Q78323458	cycle	mathematical concept: chain that is closed	540	701	cycle:540	Algebra:241 GroupTheory:232 RepresentationTheory:54 LinearAlgebra:6	sin revisar
+Q16989976	inclusion	partial order	583	674	inclusion:583	CategoryTheory:179 Algebra:143 Topology:62 AlgebraicTopology:60	sin revisar
+Q331350	simplex	generalization of the notion of a triangle or tetrahedron to arbitrary dimensions	356	658	simplex:314 simplice:42	AlgebraicTopology:206 Geometry:83 LinearAlgebra:34 Analysis:33	sin revisar
+Q379825	element	any one of the distinct objects that make up a set in set theory	532	635	element:506 member:23	Algebra:131 Data:83 CategoryTheory:71 Order:58	sin revisar
+Q2303886	index	the numbering of various objects within the mathematical notation	593	624	index:593	GroupTheory:170 CategoryTheory:78 Algebra:69 LinearAlgebra:58	sin revisar
+Q11348	function	association of a single output to each input	539	591	function:488 application:34	MeasureTheory:87 Data:68 Analysis:63 Topology:54	sin revisar
+Q519967	projection	linear transformation that, when applied multiple times to any value, gives the same result as if it were applied once	570	588	projection:570	Algebra:112 Topology:100 Analysis:96 CategoryTheory:96	sin revisar
+Q130862553	affine map	map between two affine spaces, composed of linear map and translation	34	584	affine:34	AlgebraicGeometry:32 Geometry:1 Analysis:1	sin revisar
+Q104752	coprime	two numbers whose only common factor is 1	232	580	coprime:232	Data:121 RingTheory:45 NumberTheory:33 GroupTheory:25	sin revisar
+Q929536	subring	subset of a ring that forms a ring itself	301	577	subring:301	RingTheory:178 Algebra:88 Analysis:15 Topology:11	sin revisar
+Q3685258	completion	in algebra, any of several related functors on rings and modules that result in complete topological rings and modules	491	559	completion:491	Topology:179 RingTheory:166 NumberTheory:49 Analysis:48	sin revisar
+Q226183	empty set	set (in mathematics) containing no elements	192	547	empty:192	Basic:40 Order:16 Topology:16 MeasureTheory:15	sin revisar
+Q44946	point	fundamental object of geometry: locus within which we can distinguish no other locus than itself	471	546	point:471	AlgebraicGeometry:89 Topology:89 CategoryTheory:87 LinearAlgebra:45	sin revisar
+Q1080547	truncation	in mathematics, limiting the number of digits right of the decimal point	489	534	truncation:489	CategoryTheory:169 Algebra:119 RingTheory:110 Data:33	sin revisar
+Q23595	center	middle point, in some sense, of an object in geometry	486	533	center:446 core:22	Algebra:124 GroupTheory:91 Geometry:70 CategoryTheory:70	sin revisar
+Q1416088	seminorm	nonnegative-real-valued function on a real or complex vector space that satisfies the triangle inequality and is absolut	297	517	seminorm:297	Analysis:287 Algebra:9 MeasureTheory:1	sin revisar
+Q1439037	extension	function defined on a larger domain	456	512	extension:438 continuation:18	CategoryTheory:133 NumberTheory:54 Topology:48 Analysis:46	sin revisar
+Q220433	logical equivalence	concept in logic	488	498	equivalent:271 equivalence:217	Logic:104 CategoryTheory:91 Algebra:72 LinearAlgebra:39	sin revisar
+Q11703678	section	right inverse of a fiber bundle map	420	497	section:420	Geometry:126 CategoryTheory:92 Algebra:57 AlgebraicGeometry:53	sin revisar
+Q254474	identity	relation each thing bears to itself alone	489	491	identity:338 itself:146	CategoryTheory:152 Algebra:73 Topology:38 RingTheory:30	sin revisar
+Q7979858	weight	concept in Lie-algebra representation theory	384	482	weight:384	Algebra:113 LinearAlgebra:105 Geometry:76 NumberTheory:33	sin revisar
+Q810193	basis	basis of a module in algebra	394	475	basi:394	Topology:284 Analysis:91 MeasureTheory:6 Geometry:5	sin revisar
+Q11352	angle	something that is formed when two rays meet at a single or same point	237	472	angle:237	Geometry:143 Analysis:91 NumberTheory:3	sin revisar
+Q1256164	cosine	trigonometric function; ratio between the lengths of the adjacent side and the hypotenuse in a right triangle	440	457	cosine:440	Analysis:351 Geometry:43 NumberTheory:41 MeasureTheory:4	sin revisar
+Q37105	line	one-dimensional infinite non-curved geometric object	415	446	line:415	Analysis:240 LinearAlgebra:115 Combinatorics:23 Geometry:16	sin revisar
+Q152415	sine	type of trigonometric function; ratio between the lengths of the opposite side and the hypotenuse in a right triangle	431	442	sine:431	Analysis:358 Geometry:41 NumberTheory:27 MeasureTheory:4	sin revisar
+Q1640811	fiber	inverse image of a singleton in the field of mathematics	385	428	fiber:385	CategoryTheory:131 Topology:71 Combinatorics:37 AlgebraicGeometry:36	sin revisar
+Q244761	function composition	operation which takes two mathematical functions and makes one function of these	402	428	composition:367 compose:35	CategoryTheory:166 Algebra:60 Topology:50 AlgebraicTopology:18	sin revisar
+Q331481	cover	family of subsets of a set whose union equals the whole set	393	422	cover:393	AlgebraicGeometry:100 Dynamics:96 CategoryTheory:80 Topology:62	sin revisar
+Q185148	interval	subset an ordered set that consists of all elements between two given endpoints	301	415	interval:301	MeasureTheory:150 Order:51 Analysis:49 Algebra:19	sin revisar
+Q472971	space	mathematical structure of geometric nature	384	407	space:384	Topology:203 Geometry:83 Analysis:48 Algebra:16	sin revisar
+Q170198	series	infinite sum	309	405	sery:309	Analysis:150 NumberTheory:82 Order:28 Algebra:27	sin revisar
+Q2528262	upper set	subset of a preordered set that includes all successors of its elements	20	397	upper:20	Topology:11 Order:5 LinearAlgebra:3 Analysis:1	sin revisar
+Q188248	constant	mathematical concept; value which cannot be changed or does not change during a process	375	395	constant:375	RingTheory:110 ModelTheory:67 CategoryTheory:48 Algebra:34	sin revisar
+Q203066	relation	property that assigns truth values to k-tuples of individuals	369	386	relation:369	Algebra:74 Order:70 RingTheory:59 Logic:32	sin revisar
+Q1193832	sign	number property of being positive or negative	312	380	sign:312	Geometry:73 GroupTheory:60 Basic:54 Analysis:49	sin revisar
+Q122391649	pointwise	property of concepts being defined point by point	363	377	pointwise:363	Algebra:154 CategoryTheory:99 RingTheory:32 Analysis:15	sin revisar
+Q188804	factorization	(mathematical) decomposition into a product	332	376	factorization:270 factorisation:53	Data:137 CategoryTheory:92 RingTheory:49 Algebra:22	sin revisar
+Q208826	height	distance between the lowest end and highest end of an object	372	373	height:372	NumberTheory:148 RingTheory:125 Order:69 LinearAlgebra:12	sin revisar
+Q7829620	tower	concept in mathematics	370	371	tower:370	Algebra:147 RingTheory:80 FieldTheory:37 LinearAlgebra:27	sin revisar
+Q2905654	representation	in mathematics, an object whose endomorphisms are isomorphic to another structure	244	370	representation:244	RepresentationTheory:189 Data:26 LinearAlgebra:7 Algebra:7	sin revisar
+Q7078836	of the form	mathematical phrase	348	370	form:348	LinearAlgebra:83 GroupTheory:61 Algebra:51 CategoryTheory:31	sin revisar
+Q12507	sphere	round, rotationally symmetric shape of the 2D surface of a ball in 3D space	201	366	sphere:201	Analysis:89 Geometry:46 Topology:44 MeasureTheory:14	sin revisar
+Q2989575	irreducible element	non-zero non-unit element in an integral domain that is not a product of two non-units	44	366	irreducible:44	Topology:17 LinearAlgebra:12 Algebra:7 RingTheory:6	sin revisar
+Q1365748	spectrum	term used in functional analysis	174	353	spectrum:174	Analysis:91 Algebra:29 RingTheory:20 LinearAlgebra:8	sin revisar
+Q289093	localization of a ring	construction of a ring of fractions, in commutative algebra	51	344	localization:51	CategoryTheory:15 GroupTheory:14 RingTheory:13 Algebra:7	sin revisar
+Q11681459	pairing	bilinear map of modules over a ring	299	340	pairing:299	LinearAlgebra:207 AlgebraicTopology:54 CategoryTheory:18 Analysis:7	sin revisar
+Q211548	locus	set of points whose location satisfies or is determined by one or more specified conditions	321	336	locu:321	RingTheory:132 AlgebraicGeometry:89 Data:48 Algebra:29	sin revisar
+Q168698	exponential function	mathematical function with a constant base and a variable exponent, denoted exp_a(x) or a^x	30	334	exponential:30	Analysis:17 Algebra:3 CategoryTheory:2 Probability:2	sin revisar
+Q2532728	complete	notion of the "hardest" or "most general" problem in a complexity class	277	325	complete:275 hard:2	Topology:75 Order:49 RingTheory:31 Analysis:30	sin revisar
+Q1209467	density	section of the trivial line bundle associated to the determinant representation of the frame bundle	312	320	density:312	MeasureTheory:195 Probability:100 NumberTheory:10 Combinatorics:5	sin revisar
+Q272404	finite set	set that has a finite number of elements	39	319	finite:39	Algebra:9 CategoryTheory:8 Probability:8 NumberTheory:3	sin revisar
+Q188211	invariant	property of mathematical objects that remains unchanged under certain transformations applied to the objects	270	313	invariant:270	RepresentationTheory:44 MeasureTheory:41 NumberTheory:38 Analysis:35	sin revisar
+Q321102	trace	sum of the elements of the main diagonal of a square matrix	287	313	trace:287	LinearAlgebra:100 RingTheory:88 Algebra:57 FieldTheory:21	sin revisar
+Q7511782	sieve	concept used in defining a Grothendieck topology; generalization of the collection of open subsets of an open set	189	311	sieve:189	CategoryTheory:166 NumberTheory:19 Topology:4	sin revisar
+Q673444	dense set	subset whose closure is the whole space	61	303	dense:61	CategoryTheory:27 Topology:26 MeasureTheory:2 ModelTheory:2	sin revisar
+Q3183033	join	topology term	177	300	join:177	CategoryTheory:48 Data:45 Analysis:30 MeasureTheory:19	sin revisar
+Q4504468	chain	homogeneous element of a chain complex; a formal linear combination of simplexes (or other generators of the chain compl	232	297	chain:232	Order:70 Algebra:51 LinearAlgebra:44 RepresentationTheory:25	sin revisar
+Q4927124	block	term in mathematics and group theory	269	292	block:269	Data:93 LinearAlgebra:79 Combinatorics:32 GroupTheory:30	sin revisar
+Q1473607	degree of a polynomial	highest power of the variables occurring in a monomial in a given polynomial	6	283	degree:6	NumberTheory:4 Data:1 Dynamics:1	sin revisar
+Q19978167	model	structure that satisfies the given theory	269	282	model:269	Geometry:140 ModelTheory:79 AlgebraicGeometry:15 RingTheory:10	sin revisar
+Q726212	bounded set	set is called bounded, if it is, in a certain sense, of finite size	100	279	bounded:100	Topology:43 Analysis:34 Order:14 MeasureTheory:3	sin revisar
+Q574523	immersion	differentiable function whose derivative is everywhere injective	256	277	immersion:256	Geometry:135 AlgebraicGeometry:104 RingTheory:17	sin revisar
+Q120812	absolute value	nonnegative number with the same magnitude as a given real number	27	275	absolute:23 modulu:4	CategoryTheory:12 Data:8 FieldTheory:2 RingTheory:2	sin revisar
+Q976981	formula	equation using mathematical or scientific notation	200	273	formula:200	ModelTheory:143 Analysis:17 NumberTheory:14 CategoryTheory:9	sin revisar
+Q945127	triviality	description to what extent a mathematical statement or complication can be disregarded due to simplicity	239	263	trivial:234 triviality:5	Algebra:62 CategoryTheory:53 AlgebraicTopology:24 RingTheory:23	sin revisar
+Q50708	divisor	integer that wholly divides another integer	234	259	divisor:213 divisibility:8	NumberTheory:108 Analysis:47 Algebra:21 RingTheory:18	sin revisar
+Q11668618	less than or equal to	having a smaller value or the same value as another item	31	258	most:31	Algebra:5 CategoryTheory:4 Combinatorics:4 Geometry:3	sin revisar
+Q426221	reflection	mapping from a Euclidean space to itself that is an isometry with a hyperplane as a set of fixed points	191	258	reflection:184 reflexion:7	LinearAlgebra:100 CategoryTheory:36 Geometry:25 Analysis:24	sin revisar
+Q161973	curve	mathematical idealization of the trace left by a moving point	214	250	curve:214	AlgebraicGeometry:150 MeasureTheory:64	sin revisar
+Q124416742	canonicity	quality of being unique and not depending on arbitrary choices	239	245	canonical:239	CategoryTheory:73 Algebra:72 RingTheory:37 Analysis:13	sin revisar
+Q745116	associated elements	equivalence relation on elements of a ring, where two elements are associated to each other if one is the product of the	140	241	associated:115 associate:25	CategoryTheory:40 Algebra:27 AlgebraicGeometry:13 RingTheory:9	sin revisar
+Q2594083	word	finite formal sequence of symbols in theorical mathematics of formal languages, applied to information science, computer	204	233	word:187 string:17	GroupTheory:158 Geometry:14 Computability:11 Combinatorics:8	sin revisar
+Q856215	indexed family	collection of objects, each associated with an index from some index set	120	228	family:113 indexed:7	CategoryTheory:34 Topology:21 RingTheory:13 LinearAlgebra:9	sin revisar
+Q3754530	closed map	function between two topological spaces which maps closed sets to closed sets	105	226	closed:105	Topology:54 CategoryTheory:22 Analysis:6 Order:5	sin revisar
+Q173817	radius	segment in a circle or sphere from its center to its perimeter or surface and its length	220	222	radiu:220	Analysis:110 Geometry:75 Topology:17 MeasureTheory:12	sin revisar
+Q20088882	triple	tuple of arity 3	179	220	triple:175 triplet:4	Basic:85 Algebra:32 CategoryTheory:20 Logic:8	sin revisar
+Q1425985	preorder	reflexive and transitive binary relation	166	218	preorder:166	Order:70 CategoryTheory:44 Topology:22 Algebra:13	sin revisar
+Q275447	slope	describes the steepness and directon of a line	173	218	slope:173	Analysis:108 LinearAlgebra:44 AlgebraicGeometry:16 MeasureTheory:4	sin revisar
+Q471771	key	piece of information in cryptography	117	218	key:117	Data:103 RingTheory:4 CategoryTheory:4 Analysis:2	sin revisar
+Q7456758	setoid	a set equipped with an equivalence relation in constructive mathematics	198	218	setoid:197 extensional:1	Order:110 Algebra:20 Topology:13 GroupTheory:12	sin revisar
+Q77989741	differentiable map	map between differentiable manifolds	2	218	differentiable:2	Geometry:2	sin revisar
+Q2917249	state	in functional analysis, a positive linear functional of norm 1	202	214	state:202	Algebra:57 Computability:55 Order:20 Topology:16	sin revisar
+Q3658674	variation		132	214	variation:132	MeasureTheory:66 Topology:30 Algebra:13 Data:13	sin revisar
+Q1264373	cotangent	ratio of the adjacent side of an angle in a right triangle to the angle's opposite side	188	213	cotangent:188	RingTheory:187 Analysis:1	sin revisar
+Q12525525	computation	any type of calculation or use of computing technology in information processing	149	210	computation:144 computing:5	Data:133 Algebra:6 Control:4 MeasureTheory:3	sin revisar
+Q242767	complement	unary operation on sets: the set of non-elements of the argument set	187	207	complement:187	Geometry:80 Topology:22 Analysis:20 Order:15	sin revisar
+Q66055	fraction	mathematical representation of a portion of a whole	185	206	fraction:185	CategoryTheory:98 RingTheory:46 FieldTheory:26 AlgebraicGeometry:5	sin revisar
+Q2295354	empty function	function whose domain is the empty set	69	203	empty:69	Data:9 MeasureTheory:9 AlgebraicGeometry:6 Probability:6	sin revisar
+Q2456981	underlying set	set in which settles a given mathematical structure	185	203	underlying:185	CategoryTheory:59 Algebra:41 RingTheory:13 Topology:10	sin revisar
+Q5155306	compact element	those elements of a partially ordered set that cannot be subsumed by a supremum of any directed set that does not alread	158	203	compact:158	Topology:115 Analysis:17 MeasureTheory:13 AlgebraicGeometry:8	sin revisar
+Q7261786	pushforward	map induced in homology by a continuous map between topological spaces	179	203	pushforward:179	CategoryTheory:109 Algebra:64 Probability:3 RingTheory:3	sin revisar
+Q11536248	radical	mathematical symbol used to denote the operation to extract some positive exponential root, based on an inverse exponent	173	202	radical:173	RingTheory:116 Algebra:28 LinearAlgebra:14 AlgebraicGeometry:6	sin revisar
+Q1821156	regular function		156	200	regular:156	Algebra:57 CategoryTheory:31 RingTheory:29 AlgebraicTopology:9	sin revisar
+Q1086961	bilinear map	from two vector spaces to a third one	5	199	bilinear:5	LinearAlgebra:2 Analysis:1 Geometry:1 CategoryTheory:1	sin revisar
+Q2733626	cell	three-dimensional element that is part of a higher-dimensional object	161	199	cell:161	Topology:84 AlgebraicTopology:56 Combinatorics:10 CategoryTheory:10	sin revisar
+Q843684	radix	in a positional numeral system, the number of unique digits, including the digit 0, used to represent numbers	159	199	base:159	Analysis:36 Combinatorics:27 Geometry:21 LinearAlgebra:19	sin revisar
+Q2233915	exponent	operand of exponentiation	180	198	exponent:177 power:3	GroupTheory:82 Analysis:26 FieldTheory:18 MeasureTheory:18	sin revisar
+Q190629	centralizer	subgroup of a group 𝐺 that each leaves invariant each element of a given subset of 𝐺 under conjugation	153	197	centralizer:153	Algebra:75 GroupTheory:60 RingTheory:13 Topology:4	sin revisar
+Q184743	periodic function	function that repeats its values in regular intervals or periods	4	195	periodic:4	Dynamics:4	sin revisar
+Q16919007	pseudofunctor	weak functors between bicategories	118	187	pseudofunctor:118	CategoryTheory:111 AlgebraicGeometry:4 Algebra:3	sin revisar
+Q332648	covering space	type of continuous map in topology	13	187	cover:13	AlgebraicGeometry:4 Topology:3 CategoryTheory:2 Analysis:2	sin revisar
+Q1051925	resolution	in logic, rule of inference	185	185	resolution:185	CategoryTheory:151 AlgebraicTopology:15 Algebra:10 RepresentationTheory:9	sin revisar
+Q8083988	λ-ring	commutative ring equipped with a sequence of unary operations λⁱ	176	185	ring:176	Analysis:88 Topology:57 ModelTheory:17 MeasureTheory:6	sin revisar
+Q1048447	multiplicative function	arithmetic function that is multiplicative for every pair of coprime integers	146	182	multiplicative:146	Algebra:83 CategoryTheory:16 NumberTheory:10 Topology:8	sin revisar
+Q3055344	direction	information contained in the relative position of one point of space with respect to another, disregarding distance and 	164	182	direction:164	LinearAlgebra:60 CategoryTheory:54 Geometry:17 Analysis:9	sin revisar
+Q211459	translation	in Euclidean geometry, a function that moves every point a constant distance in a specified direction	129	180	translation:129	Analysis:54 Dynamics:53 Computability:6 Topology:4	sin revisar
+Q5161150	conjugate	for square roots	171	180	conjugate:171	CategoryTheory:64 Algebra:46 NumberTheory:22 Analysis:8	sin revisar
+Q91779227	knot sum	operation on mathematical knots	170	177	composition:170	CategoryTheory:79 Algebra:24 Topology:22 AlgebraicTopology:10	sin revisar
+Q17007663	differential	infinitesimal quantity in calculus	152	174	differential:152	RingTheory:82 Algebra:53 RepresentationTheory:12 CategoryTheory:2	sin revisar
+Q511093	centroid	mean ("average") position of all the points in the shape; mean position of all the points in all of the coordinate direc	172	174	centroid:172	Algebra:80 LinearAlgebra:71 Geometry:18 Analysis:3	sin revisar
+Q34132	cylinder	surface formed by the points at a fixed distance from a given straight line called the axis of the cylinder; one of the 	144	171	cylinder:144	MeasureTheory:71 Algebra:22 Topology:18 AlgebraicTopology:16	sin revisar
+Q192439	domain of a function	set of "input" or argument values for which a function is defined	129	170	domain:129	Algebra:21 LinearAlgebra:13 RingTheory:12 Analysis:12	sin revisar
+Q5432619	false	truth value	130	170	false:129 falso:1	Data:58 Order:16 Basic:11 Algebra:9	sin revisar
+Q842346	equality	mathematical relationship asserting that two quantities have the same value	160	170	equality:151 equal:5	Algebra:35 CategoryTheory:25 Order:19 Data:18	sin revisar
+Q18385909	η set	type of totally ordered set that generalizes the order type η of the rational numbers	48	166	set:48	Topology:14 Combinatorics:13 AlgebraicTopology:7 Condensed:6	sin revisar
+Q261484	atom	an element of a partially ordered set that is not the minimum, and such that there is no element between it and the mini	90	165	atom:90	NumberTheory:39 Order:27 MeasureTheory:18 LinearAlgebra:2	sin revisar
+Q11563	number	mathematical object used to count, label, and measure	163	163	number:163	Combinatorics:59 Dynamics:47 NumberTheory:26 Data:9	sin revisar
+Q211364	principle	guiding rule or inevitable consequence of something, such as the laws observed in nature	163	163	principle:151 rule:12	Data:44 Algebra:21 Analysis:14 Topology:12	sin revisar
+Q7595769	stable map	topological concept	156	163	stable:156	CategoryTheory:95 AlgebraicGeometry:29 RingTheory:12 Algebra:7	sin revisar
+Q12101747	summand	in a sum, quantity to which another is added or to be added to another	120	161	summand:120	NumberTheory:27 Algebra:24 CategoryTheory:18 AlgebraicTopology:13	sin revisar
+Q199006	codomain	target set of a mathematical function, superset of image	148	161	codomain:148	Algebra:33 CategoryTheory:28 Logic:18 Topology:14	sin revisar
+Q229102	surjective function	function such that every element of the codomain has a preimage	81	161	surjection:75 onto:6	Algebra:25 RingTheory:10 LinearAlgebra:8 AlgebraicGeometry:8	sin revisar
+Q126695	universal quantification	logical quantification stating that a statement holds for all objects	121	158	every:63 any:57	CategoryTheory:46 Topology:17 Algebra:13 RingTheory:8	sin revisar
+Q2372244	symbol	basic element of strings in a formal language	112	156	symbol:55 character:40	ModelTheory:30 NumberTheory:21 Algebra:17 GroupTheory:15	sin revisar
+Q10533491	non-empty set	set with at least one element	3	152	nonempty:3	Combinatorics:3	sin revisar
+Q4903716	bicone	shape formed by joining two congruent, right, circular cones at their bases	132	152	bicone:132	CategoryTheory:130 RepresentationTheory:2	sin revisar
+Q2989763	commutator	two similar notions: in group theory and in ring theory	143	150	commutator:143	GroupTheory:111 Algebra:11 LinearAlgebra:6 Analysis:4	sin revisar
+Q82990	digit	numerical symbol used in combinations to represent numbers in various positional or additive numeral systems	136	150	digit:136	Data:121 Analysis:11 Topology:3 NumberTheory:1	sin revisar
+Q1663694	inclusion map	or inclusion function, or canonical injection	49	148	insertion:49	Order:16 Algebra:13 Topology:4 CategoryTheory:3	sin revisar
+Q2796622	mean	numeric quantity representing the center of a collection of numbers	112	148	mean:111 average:1	Analysis:21 Data:17 Order:16 Topology:14	sin revisar
+Q10340026	object of a category	constituent element of the mathematical notion of category	25	147	object:25	CategoryTheory:20 AlgebraicTopology:5	sin revisar
+Q320369	clopen set	subset that is both open and closed	38	146	clopen:38	Topology:35 RingTheory:2 ModelTheory:1	sin revisar
+Q2281389	uniform property	object of study in the category of uniform topological spaces	144	144	uniform:144	Topology:107 Analysis:12 Combinatorics:10 Data:7	sin revisar
+Q3737844	binary function	function that takes two inputs	85	143	binary:85	CategoryTheory:52 Data:11 Algebra:6 Computability:4	sin revisar
+Q1139344	grade	tangent of the angle of a surface to the horizontal	128	141	grade:91 rise:36	Order:43 Algebra:40 CategoryTheory:12 Combinatorics:11	sin revisar
+Q1147832	ray	line with one endpoint	124	140	ray:124	LinearAlgebra:73 Analysis:37 Geometry:13 MeasureTheory:1	sin revisar
+Q1513048	upward directed set	preordered set whose every finite subset has an upper bound	72	138	filtered:56 directed:16	CategoryTheory:53 Order:9 Algebra:5 Data:2	sin revisar
+Q201984	covariance	measure of the joint variability of two random variables	128	136	covariance:128	Probability:119 Algebra:9	sin revisar
+Q846862	involution	function that is its own inverse	30	135	involution:16 involutive:13	Algebra:10 RingTheory:5 Analysis:5 AlgebraicTopology:4	sin revisar
+Q1082910	integer partition	decomposition of an integer as a sum of positive integers	49	134	partition:49	Combinatorics:17 Order:17 Analysis:9 RingTheory:3	sin revisar
+Q1225416	dilation		113	134	dilation:113	Topology:106 Analysis:6 Algebra:1	sin revisar
+Q28113351	inequality	mathematical relation comparing two different values	132	133	inequality:132	Analysis:34 NumberTheory:26 Combinatorics:23 Topology:12	sin revisar
+Q3176558	positive real number	real number strictly greater than zero	3	133	above:3	MeasureTheory:3	sin revisar
+Q2269145	semilinear map	homomorphism between modules, paired with the associated homomorphism between the respective base rings	45	132	semilinear:45	ModelTheory:36 Algebra:4 Analysis:3 LinearAlgebra:1	sin revisar
+Q26161438	approximate equality	closeness in value, meaning or effect; relation in which difference can be neglected for practical purposes	107	132	equivalence:94 similar:10	Algebra:26 CategoryTheory:20 Topology:16 Analysis:10	sin revisar
+Q5199068	Cyclotomic identity	Expresses 1/(1-aZ) as an infinite product using Moreau's necklace-counting function	131	131	cyclotomic:131	NumberTheory:97 RingTheory:34	sin revisar
+Q16751793	true	truth value	129	130	true:129	Data:61 Order:18 Basic:10 Topology:9	sin revisar
+Q773483	existential quantification	logical quantification stating that a statement holds for at least one object	47	130	some:42 existential:4	CategoryTheory:13 Analysis:8 Algebra:8 Topology:4	sin revisar
+Q139677780	decomposition	concept in mathematics	78	129	decomposition:78	Analysis:29 Algebra:14 RingTheory:11 MeasureTheory:5	sin revisar
+Q125546078	entourage	binary relation on a uniform space describing "nearness" between two points	119	126	entourage:119	Dynamics:71 Topology:47 Basic:1	sin revisar
+Q7447725	selection	in relational algebra, unary operation that denotes a subset of a relation	110	126	restriction:110	Algebra:29 Analysis:18 Geometry:12 Topology:7	sin revisar
+Q370502	mapping	function, sometimes assumed structure-preserving in a proper sense	114	125	mapping:113 mapa:1	Algebra:42 CategoryTheory:14 Analysis:8 RingTheory:8	sin revisar
+Q191290	ordered pair	pair of mathematical objects; tuple of specific length (tuple length n=2)	106	124	pair:84 double:22	CategoryTheory:35 Algebra:12 Data:11 Combinatorics:8	sin revisar
+Q217616	meromorphic function	function that is holomorphic everywhere except for a set of isolated points where the function may have poles	9	124	meromorphic:6 meromorphy:3	Analysis:7 NumberTheory:2	sin revisar
+Q257272	separated sets	type of relation for subsets of a topological space	56	124	separated:56	Topology:20 CategoryTheory:18 AlgebraicGeometry:13 Basic:4	sin revisar
+Q7994926	ordered set	mathematical terminology	102	124	ordered:102	Algebra:68 Data:12 Analysis:7 Topology:4	sin revisar
+Q136232463	face	graph theory term; region bounded by edges of a plane graph	104	121	face:104	AlgebraicTopology:102 Algebra:1 RepresentationTheory:1	sin revisar
+Q103927515	full subcategory	subcategory whose homsets contain all morphisms from the ambient category	17	119	full:17	CategoryTheory:7 AlgebraicGeometry:3 Dynamics:2 GroupTheory:1	sin revisar
+Q4953686	bracket	mathematical notation	95	119	bracket:95	Geometry:47 Algebra:46 RingTheory:1 Combinatorics:1	sin revisar
+Q7249479	projectivization	mathematics procedure	72	119	projectivization:72	LinearAlgebra:63 Topology:5 NumberTheory:4	sin revisar
+Q1780131	argument	angle of complex number about real axis	115	118	argument:115	CategoryTheory:48 Analysis:14 Algebra:10 Combinatorics:8	sin revisar
+Q13050646	Abelian	family	110	117	abelian:110	CategoryTheory:69 Algebra:39 AlgebraicTopology:1 GroupTheory:1	sin revisar
+Q564835	distribution	subbundle of the tangent bundle	84	116	distribution:84	Analysis:64 MeasureTheory:17 Probability:3	sin revisar
+Q7682878	tangential and normal components	Mathematical vector components	106	116	component:106	CategoryTheory:38 Algebra:22 Topology:11 AlgebraicGeometry:6	sin revisar
+Q1761121	normalizer	subgroup of a group 𝐺 that fixes a given subset of 𝐺 under conjugation	96	114	normalizer:96	Algebra:67 GroupTheory:29	sin revisar
+Q3250736	coordinate	number which characterizes position	111	113	coordinate:111	AlgebraicGeometry:51 Topology:17 Analysis:13 LinearAlgebra:11	sin revisar
+Q750432	differential of a function	notion in calculus	97	113	differential:97	Algebra:68 RepresentationTheory:17 Geometry:6 AlgebraicTopology:4	sin revisar
+Q22963169	additive map	Z-module homomorphism	53	112	additive:53	Algebra:23 Analysis:7 MeasureTheory:5 Topology:5	sin revisar
+Q1756942	partial function	function whose actual domain of definition may be smaller than its apparent domain	41	111	partial:41	Logic:10 Topology:10 AlgebraicGeometry:6 Algebra:3	sin revisar
+Q3735768	excenter	center of an excircle of a triangle	110	110	excenter:110	Geometry:110	sin revisar
+Q981351	symmetric function	function that is invariant under all permutations of its variables	87	110	symmetric:87	Analysis:37 RingTheory:18 LinearAlgebra:8 CategoryTheory:6	sin revisar
+Q39373172	half	one of two usually roughly equal parts into which anything may be divided, or considered as divided	74	109	half:74	Analysis:25 Algebra:12 Data:7 Basic:6	sin revisar
+Q830486	open formula	formula that contains at least one free variable	109	109	open:109	Topology:54 Geometry:22 AlgebraicGeometry:20 Analysis:4	sin revisar
+Q1738991	index number	type of number	98	108	index:89 indice:9	CategoryTheory:27 LinearAlgebra:14 Data:10 Topology:9	sin revisar
+Q7631142	subfunctor		43	108	subfunctor:43	CategoryTheory:41 Algebra:2	sin revisar
+Q2141963	retract	continuous mapping from a topological space into a subspace that preserves the position of all points in that subspace	98	105	retract:94 retraction:4	CategoryTheory:82 Algebra:7 AlgebraicTopology:6 RingTheory:1	sin revisar
+Q715358	opposite number	number that, when added to the original number, yields zero	85	105	opposite:63 negation:22	Algebra:33 CategoryTheory:26 LinearAlgebra:5 AlgebraicTopology:3	sin revisar
+Q1060343	independent set	set of vertices in a graph, no two of which are adjacent	47	104	stable:47	CategoryTheory:25 AlgebraicGeometry:14 RingTheory:8	sin revisar
+Q52927961	convexity	geometric property	103	103	convexity:103	Geometry:76 Analysis:25 Topology:2	sin revisar
+Q78323465	boundary	in homological algebra, a chain that is in the image of the differential	72	103	boundary:72	Algebra:44 Combinatorics:18 RepresentationTheory:10	sin revisar
+Q1132952	homogeneous function	function with multiplicative scaling behaviour	83	102	homogeneou:83	RingTheory:63 Algebra:9 AlgebraicGeometry:7 LinearAlgebra:2	sin revisar
+Q1645406	midpoint	middle point of a line segment	97	102	midpoint:97	LinearAlgebra:50 Analysis:25 Geometry:17 CategoryTheory:3	sin revisar
+Q205	infinity	mathematical concept of something without any limit	81	102	infinity:44 infinite:37	NumberTheory:23 Topology:14 Analysis:8 Data:8	sin revisar
+Q4138793	Zariski's conjecture	conjecture about polynomial rings	54	102	zariski:54	AlgebraicGeometry:52 RingTheory:2	sin revisar
+Q6523215	lens	2D shape	71	102	len:71	Data:27 Combinatorics:26 AlgebraicTopology:14 Algebra:1	sin revisar
+Q107617	rotation	circular movement of an object around a center or axis of rotation	84	99	rotation:79 rotating:5	Geometry:57 CategoryTheory:10 Analysis:8 RingTheory:4	sin revisar
+Q215084	analytic function	function that is locally given by a convergent power series	2	99	analytic:2	Analysis:2	sin revisar
+Q245463	cyclic number	integer whose multiples are digit permutations	78	99	cyclic:78	GroupTheory:48 RingTheory:17 FieldTheory:4 Topology:4	sin revisar
+Q7543576	small set	an element of a specified universe of sets	41	99	small:41	Algebra:17 CategoryTheory:15 AlgebraicGeometry:5 Logic:2	sin revisar
+Q136039715	cycle complement graph	graph complement of a cycle	40	98	cocycle:40	Algebra:32 RepresentationTheory:8	sin revisar
+Q1055293	multiple	product of any number and an integer	90	95	multiple:90	Algebra:25 RingTheory:20 MeasureTheory:10 LinearAlgebra:8	sin revisar
+Q1303223	eigenspace		84	95	eigenspace:84	LinearAlgebra:75 Analysis:7 Algebra:2	sin revisar
+Q512397	inversion	mathematical operation on Euclidian spaces which reverses distances with respect to a given point	95	95	inversion:95	Geometry:53 GroupTheory:16 Topology:10 Algebra:10	sin revisar
+Q751969	coset	the set arising from multiplying every element in a subgroup by an element in the ambient group	81	94	coset:81	GroupTheory:56 Algebra:9 NumberTheory:8 Topology:4	sin revisar
+Q179976	recursion	process of repeating items in a self-similar way	84	93	recursion:71 recursive:8	Data:36 RingTheory:15 Computability:7 NumberTheory:5	sin revisar
+Q212130	cyclic permutation	type of (mathematical) permutation with no fixed element	5	93	cycle:5	Algebra:2 Data:2 GroupTheory:1	sin revisar
+Q6795639	maximal function	type of mathematical function	93	93	maximal:93	RingTheory:61 Order:11 ModelTheory:5 Topology:4	sin revisar
+Q1303310	atlas	collection of charts on a mathematical manifold	84	92	atla:84	Geometry:74 Topology:10	sin revisar
+Q5420776	expansion	operation on a polytope where facets are separated and moved radially apart, and new facets are formed at separated elem	79	92	expansion:79	NumberTheory:53 ModelTheory:7 Algebra:6 Analysis:4	sin revisar
+Q124131888	sheafification	functor from the category of presheaves to the category of sheaves	76	88	sheafification:76	CategoryTheory:57 Algebra:13 Topology:5 Condensed:1	sin revisar
+Q1378301	universal set	in set theory, a set which contains all objects, including itself	68	88	universal:68	CategoryTheory:36 ModelTheory:12 Combinatorics:9 RingTheory:3	sin revisar
+Q190558	logical negation	operation that takes a proposition p to another proposition "not p", written ¬p, which is interpreted intuitively as bei	79	88	negation:58 complement:13	Algebra:13 LinearAlgebra:9 Order:9 Topology:8	sin revisar
+Q55935291	greater than or equal to	having a greater value or the same value as another item	24	88	least:24	Data:6 Algebra:5 Order:3 MeasureTheory:3	sin revisar
+Q6047933	internal set	in model theory, a set that is a member of a model	66	88	internal:66	CategoryTheory:26 Algebra:19 Data:11 Analysis:7	sin revisar
+Q1202673	uniform norm	p-norm for p equal to ∞	7	87	norm:7	Analysis:3 NumberTheory:2 Basic:1 Data:1	sin revisar
+Q122897647	A graph	graph with 6 vertices and 6 edges	38	87	graph:38	Data:12 Combinatorics:12 LinearAlgebra:5 Basic:3	sin revisar
+Q30674136	hypercovering	simplicial object that generalizes the Čech nerve of a cover	80	87	hypercover:80	CategoryTheory:76 AlgebraicGeometry:4	sin revisar
+Q7632041	Subspace theorem	points of small height in projective space lie in a finite number of hyperplanes	87	87	subspace:87	LinearAlgebra:36 Analysis:24 Topology:12 Geometry:8	sin revisar
+Q17097882	étale algebra		15	84	etale:15	RingTheory:11 AlgebraicGeometry:3 Topology:1	sin revisar
+Q78320522	cochain	dual concept to chain	82	84	cochain:82	RepresentationTheory:45 Algebra:24 CategoryTheory:13	sin revisar
+Q15882515	superset	set that contains a given set as a subset	83	83	superset:83	MeasureTheory:19 Combinatorics:18 Data:14 Order:10	sin revisar
+Q3481047	ratio	quotient of two numbers or quantities of the same kind	73	83	ratio:73	Topology:26 Analysis:17 MeasureTheory:13 Geometry:9	sin revisar
+Q1174982	set of real numbers	set whose elements are the real numbers	4	81	real:4	Analysis:4	sin revisar
+Q2093886	primitive element theorem	Field theory theorem	73	80	primitive:73	RingTheory:36 NumberTheory:32 GroupTheory:2 Analysis:1	sin revisar
+Q6889796	modulus	continuous parameter of a physical theory, often set as the vacuum expectation value of a scalar field (either elementar	57	80	modulu:57	Data:46 Topology:4 Analysis:4 NumberTheory:3	sin revisar
+Q731894	Hölder's inequality	inequality between integrals in Lp spaces	16	80	holder:16	Topology:14 MeasureTheory:2	sin revisar
+Q194404	monotonic function	function between ordered sets that preserves or reverses the given order	3	79	monotonic:2 monotone:1	Data:2 Analysis:1	sin revisar
+Q58215060	matrix element	scalar entry of a matrix	66	78	entry:53 element:13	LinearAlgebra:14 RingTheory:11 Data:10 Analysis:9	sin revisar
+Q131030	operator	mapping from one vector space or module to another in mathematics	70	77	operator:70	Algebra:27 Analysis:19 Order:6 SetTheory:6	sin revisar
+Q67474638	invertible element	element admitting an inverse	48	77	invertible:48	LinearAlgebra:17 RingTheory:15 Algebra:7 Analysis:5	sin revisar
+Q1287023	convergence	mathematical concept	64	76	convergence:64	Topology:36 Analysis:14 MeasureTheory:7 Probability:5	sin revisar
+Q2919140	tilt	camera movement	21	76	tilt:21	RingTheory:21	sin revisar
+Q2937829	characterization	term in mathematics	76	76	characterization:76	Topology:26 Geometry:11 CategoryTheory:9 Analysis:6	sin revisar
+Q775963	smoothing	dataset modification using an approximating function to capture important patterns in the data while leaving out noise	65	76	smoothing:65	Computability:44 Analysis:21	sin revisar
+Q209875	binomial coefficient	family of positive integers that occur as coefficients in the binomial theorem	16	75	choose:16	Algebra:3 Topology:3 Data:2 AlgebraicGeometry:2	sin revisar
+Q2509500	sentence	in mathematical logic, a well-formed formula with no free variables	71	74	sentence:50 closed:20	ModelTheory:51 CategoryTheory:14 Combinatorics:2 LinearAlgebra:2	sin revisar
+Q3066137	spanning set	set of vectors that span a vector space	7	74	spanning:7	Combinatorics:2 LinearAlgebra:2 Algebra:1 AlgebraicTopology:1	sin revisar
+Q431937	antichain	subset of incomparable elements in a partially ordered set	31	74	antichain:31	Order:29 Combinatorics:2	sin revisar
+Q986694	discrete valuation ring	principal ideal domain that is a local ring and not a field	1	74	dvr:1	NumberTheory:1	sin revisar
+Q12598191	separable differentiable equation		67	73	separable:67	FieldTheory:33 Topology:14 RingTheory:13 MeasureTheory:7	sin revisar
+Q18786106	topology	(structure) collection of open subsets of a topological space	65	73	topology:65	CategoryTheory:26 AlgebraicGeometry:19 Algebra:7 FieldTheory:6	sin revisar
+Q2267362	bounded function	function or sequence whose possible values form a bounded set	56	73	bounded:56	Topology:33 Analysis:12 Order:5 NumberTheory:3	sin revisar
+Q175199	variance	expectation of the squared deviation of a random variable from its mean	56	72	variance:56	Probability:54 Analysis:1 RingTheory:1	sin revisar
+Q25303647	linear arboricity	graph property	62	72	g:62	CategoryTheory:23 Algebra:10 MeasureTheory:5 GroupTheory:4	sin revisar
+Q7314250	representative function	functions of interest in representation theory	68	72	representative:68	AlgebraicGeometry:32 RingTheory:8 CategoryTheory:7 Data:4	sin revisar
+Q865746	metric function	mathematical function that defines a distance between elements of a set	11	72	metric:11	Topology:6 Analysis:4 Geometry:1	sin revisar
+Q3236862	Hermitian function	complex function with the property that its complex conjugate is equal to the original function with the variable change	71	71	hermitian:71	LinearAlgebra:54 Analysis:13 Combinatorics:4	sin revisar
+Q173582	gradient	multi-variable generalization of the derivative	59	70	gradient:59	Analysis:59	sin revisar
+Q192487	discriminant	function of the coefficients of a polynomial that gives information on its roots	68	70	discriminant:68	NumberTheory:27 Algebra:18 RingTheory:11 AlgebraicGeometry:8	sin revisar
+Q4454972	Lindelöf's theorem	theorem about convex polytopes	68	70	lindelof:68	Topology:67 MeasureTheory:1	sin revisar
+Q72221057	discreteness	quality of consisting of distinct, discontinuous elements without overlap	49	70	discrete:47 discreteness:2	CategoryTheory:30 Topology:9 Condensed:6 NumberTheory:2	sin revisar
+Q119751219	refinement	finer cover in topology	64	69	refinement:64	CategoryTheory:32 Topology:14 AlgebraicGeometry:9 Algebra:9	sin revisar
+Q166154	line segment	part of a line that is bounded by two distinct end points; line with two endpoints	39	69	segment:37 line:2	Order:23 Analysis:7 Combinatorics:3 SetTheory:2	sin revisar
+Q5275263	diffeology	smooth parameterizations on a set	23	69	diffeology:23	Geometry:23	sin revisar
+Q128030	dynamics	branch of mechanics studying forces and their effect on motion	67	68	dynamic:67	Dynamics:67	sin revisar
+Q17099189	multiplicative character	group homomorphism to the multiplicative group of a field	17	68	character:17	Algebra:4 Topology:4 NumberTheory:3 Data:3	sin revisar
+Q2513496	choice function	mathematical function f that is defined on some collection X of nonempty sets and assigns some element of each set S in 	60	68	choice:60	CategoryTheory:25 Algebra:11 Data:5 RingTheory:4	sin revisar
+Q362765	vertex	point of extreme curvature on a curve	68	68	vertex:54 vertice:14	AlgebraicTopology:27 Algebra:21 CategoryTheory:19 GroupTheory:1	sin revisar
+Q655275	cusp	point on a curve where a moving point on the curve must start to move backward	47	68	cusp:47	NumberTheory:33 Analysis:14	sin revisar
+Q141504792	bivariate		42	67	bivariate:42	Algebra:25 Analysis:6 AlgebraicGeometry:5 FieldTheory:4	sin revisar
+Q1691962	self-mapping	function that maps a set into itself	39	67	endomorphism:38 self:1	Algebra:15 LinearAlgebra:12 FieldTheory:4 RingTheory:2	sin revisar
+Q3962249	pi-system	family of sets closed under intersection	8	67	system:8	Algebra:4 Data:1 GroupTheory:1 NumberTheory:1	sin revisar
+Q601053	nth root	function	4	67	radical:4	Algebra:2 FieldTheory:1 LinearAlgebra:1	sin revisar
+Q138036390	integrand		66	66	integrand:66	Analysis:58 MeasureTheory:8	sin revisar
+Q29896155	difference	result of a subtraction; sometimes the absolute value of this result	61	66	difference:54 delta:7	CategoryTheory:8 Topology:8 Analysis:7 Combinatorics:5	sin revisar
+Q5179257	covering number	number of balls of a given size needed to cover a given space	17	65	covering:17	CategoryTheory:10 AlgebraicGeometry:4 Combinatorics:1 Order:1	sin revisar
+Q629085	multivalued function	binary relation, which is left-total, but may not be right-unique ; isomorph to another function from the same source se	36	65	carrier:36	Algebra:20 CategoryTheory:4 Order:3 RingTheory:3	sin revisar
+Q1283623	cofinality	smallest cardinality of a cofinal subset in mathematics	5	64	cofinality:5	SetTheory:4 Order:1	sin revisar
+Q131251	tangent	term in mathematics; straight line touching a point in a curve	50	64	tangent:50	Geometry:50	sin revisar
+Q2243424	idempotent element	element x of a ring such that x² = x	37	63	idempotent:37	Algebra:9 CategoryTheory:7 RingTheory:4 Combinatorics:3	sin revisar
+Q28777634	set of non-negative integers	the set of positive integers and zero	9	63	whole:9	Topology:4 Analysis:2 Algebra:1 Basic:1	sin revisar
+Q6101219	reflective subcategory	full subcategory whose inclusion functor has a left adjoint	12	63	reflective:10 coreflective:2	CategoryTheory:8 Topology:3 LinearAlgebra:1	sin revisar
+Q1375963	converse	reverse of a categorical or hypothetical proposition	62	62	converse:44 conversion:18	Analysis:34 Geometry:9 CategoryTheory:8 AlgebraicGeometry:2	sin revisar
+Q3884033	mathematical operation	mathematical procedure which produces a result from one or more input values	62	62	operation:62	Algebra:11 Combinatorics:10 Data:10 SetTheory:7	sin revisar
+Q6575377	radix character	symbol used to separate the integer part of a number from its fractional part	54	62	comma:35 dot:15	CategoryTheory:38 LinearAlgebra:5 Condensed:4 Topology:2	sin revisar
+Q177251	associativity	property of binary operations allowing sequences of operations to be regrouped without changing their value	60	61	associativity:50 associative:10	CategoryTheory:28 Algebra:10 AlgebraicTopology:9 Data:3	sin revisar
+Q600590	𝑛-tuple	finite ordered list of elements	30	61	tuple:30	Data:18 CategoryTheory:3 Algebra:2 RingTheory:2	sin revisar
+Q256355	equivariant map	Maps whose domain and codomain are acted on by the same group, and the function commutes	21	60	equivariant:21	GroupTheory:18 Algebra:2 CategoryTheory:1	sin revisar
+Q77980581	conjugation	mathematical operation: aba⁻¹	60	60	conjugation:60	NumberTheory:14 CategoryTheory:11 GroupTheory:10 Analysis:8	sin revisar
+Q3044574	denominator	bottom of a fraction	53	59	denominator:53	RingTheory:16 Algebra:13 FieldTheory:7 NumberTheory:4	sin revisar
+Q3797607	circumcenter	center of a circumscribed circle or sphere	59	59	circumcenter:59	Geometry:59	sin revisar
+Q5166604	convolution	"zip" higher-order function that converts a tuple of sequences to a sequence of tuples	50	59	convolution:49 zip:1	NumberTheory:18 RingTheory:14 Combinatorics:13 CategoryTheory:2	sin revisar
+Q12138960	even function	function which is symmetric with respect to the vertical axis	4	58	even:4	NumberTheory:2 Algebra:1 LinearAlgebra:1	sin revisar
+Q1826416	regular number	numbers that evenly divide powers of 60	58	58	regular:58	CategoryTheory:17 RingTheory:16 Algebra:11 Computability:4	sin revisar
+Q193139	trajectory	path of a moving object	44	58	path:21 trajectory:11	Topology:10 AlgebraicTopology:8 Probability:7 Analysis:4	sin revisar
+Q2279584	numerator	top of a fraction	46	57	numerator:46	RingTheory:13 GroupTheory:10 Algebra:8 FieldTheory:6	sin revisar
+Q3836720	loop	algebraic structure, quasigroup with an identity element	51	57	loop:51	Topology:39 Algebra:7 GroupTheory:2 AlgebraicTopology:1	sin revisar
+Q1168321	resultant	polynomial expression of the coefficients of two polynomials, which is equal to zero if and only if the polynomials have	50	56	resultant:50	RingTheory:50	sin revisar
+Q1319773	consistency	in logic, property of a theory that does not contain a contradiction	51	56	compatibility:51	CategoryTheory:27 Algebra:14 AlgebraicTopology:4 Order:4	sin revisar
+Q1892644	torsion of a curve	mathematical measure of how much a curve twists	56	56	torsion:56	Algebra:12 NumberTheory:10 Geometry:10 GroupTheory:9	sin revisar
+Q91602659	group of units	group of invertible elements of a ring or a monoid	6	56	unit:6	CategoryTheory:3 Topology:1 NumberTheory:1 Algebra:1	sin revisar
+Q123916004	inverse reinforcement learning		9	55	ioc:9	Algebra:3 Probability:3 Analysis:2 MeasureTheory:1	sin revisar
+Q12510	torus	doughnut-shaped surface of revolution, based on a revolved figure of a circle	54	55	toru:54	Analysis:31 MeasureTheory:22 Topology:1	sin revisar
+Q217690	incidence	measure of the probability of occurrence of a given medical condition in a population within a specified period of time	55	55	incidence:55	Combinatorics:55	sin revisar
+Q4503723	objective function	in mathematical optimization, a function (to be optimized) representing the desirability (or undesirability) of each out	52	55	target:52	CategoryTheory:16 Topology:9 AlgebraicGeometry:8 Analysis:4	sin revisar
+Q869887	probability mass function	function describing a discrete probability distribution by stating the probability of each value	8	55	pmf:8	Probability:8	sin revisar
+Q126955	level set	subset of a function's domain on which its value is equal	48	54	level:48	CategoryTheory:27 NumberTheory:8 Computability:3 LinearAlgebra:2	sin revisar
+Q140092320	head		44	54	head:44	GroupTheory:20 Algebra:15 Topology:5 AlgebraicTopology:2	sin revisar
+Q16966154	symmetric set	property of group subsets (mathematics)	40	54	symmetric:40	Analysis:15 RingTheory:13 LinearAlgebra:3 CategoryTheory:3	sin revisar
+Q1866689	configuration	set of geometric points and lines such that each point is incident to the same number of lines and each line is incident	47	54	configuration:47	Computability:17 Combinatorics:12 Dynamics:11 MeasureTheory:6	sin revisar
+Q6265342	plus sign	mathematical symbol used to represent the notions of positive as well as the operation of addition	30	54	positive:16 plu:14	Algebra:13 MeasureTheory:4 CategoryTheory:4 Analysis:3	sin revisar
+Q7595945	stack	generalization (and categorification) of a sheaf; a fibered category that admits effective descent	39	54	stack:39	Computability:23 CategoryTheory:14 LinearAlgebra:1 Control:1	sin revisar
+Q106671513	Ultrafilter	maximal proper filter	50	53	ultrafilter:50	Topology:46 Combinatorics:3 Analysis:1	sin revisar
+Q140092311	tail		38	53	tail:38	Algebra:11 GroupTheory:8 Topology:8 LinearAlgebra:4	sin revisar
+Q1434290	flow	mathematical formalization of the motion of particles in a fluid	21	53	flow:21	Dynamics:21	sin revisar
+Q2478475	neighborhood	set in a topological space that contains an open superset of a given point or subset	53	53	neighborhood:46 neighbourhood:7	Topology:34 Analysis:13 MeasureTheory:2 Order:2	sin revisar
+Q68019776	multiplicative identity	identity element with respect to multiplication	50	53	multiplicative:48 unity:2	Algebra:29 NumberTheory:6 CategoryTheory:5 Topology:4	sin revisar
+Q7248328	profunctor	generalization in mathematics	30	53	profunctor:30	CategoryTheory:30	sin revisar
+Q868473	smooth function	function having derivatives of any order	13	53	smooth:13	Geometry:7 RingTheory:5 Analysis:1	sin revisar
+Q177493	gauss	cgs unit of magnetic flux density (0.1 millitesla)	52	52	gauss:52	RingTheory:41 Analysis:9 Algebra:2	sin revisar
+Q83043	hexagon	polygon with six sides	52	52	hexagon:52	CategoryTheory:50 Algebra:2	sin revisar
+Q17099363	nerve of a category	concept within mathematics	12	51	nerve:12	AlgebraicTopology:12	sin revisar
+Q29431432	dyad	concrete group of 2 specific members	36	51	pair:36	CategoryTheory:15 Data:5 Algebra:3 Topology:3	sin revisar
+Q60790315	automorphism group	mathematical group formed from the automorphisms of an object	10	51	aut:10	CategoryTheory:8 RepresentationTheory:1 RingTheory:1	sin revisar
+Q1202245	potential	currently unrealized ability	44	50	potential:44	Analysis:43 Algebra:1	sin revisar
+Q130417051	content	greatest common divisor of polynomial coefficients	19	50	content:19	RingTheory:19	sin revisar
+Q917661	degeneracy	limiting case in which an element of a class of objects is qualitatively different from the rest of the class	46	50	degeneracy:46	AlgebraicTopology:42 RepresentationTheory:3 CategoryTheory:1	sin revisar
+Q188276	pigeonhole principle	mathematical lemma that, if 𝑛 items are put into 𝑚 containers, with 𝑛>𝑚, then at least one container must contain more t	9	49	dirichlet:8 pigeonhole:1	NumberTheory:8 Data:1	sin revisar
+Q25340379	monotonicity	in mechanism design	49	49	monotonicity:49	Algebra:39 Order:4 Analysis:2 LinearAlgebra:2	sin revisar
+Q5159395	conductor	modulus describing the ramification in an abelian extension of local or global fields	31	49	conductor:31	NumberTheory:23 RingTheory:8	sin revisar
+Q6795644	Maximal set		43	49	maximal:43	RingTheory:29 Order:4 Topology:2 AlgebraicGeometry:1	sin revisar
+Q122446519	class of all ordinals	class in set theory	11	48	ordinal:9 ord:2	SetTheory:9 Topology:2	sin revisar
+Q1799072	method	planned path to reaching an objective	48	48	method:48	MeasureTheory:32 CategoryTheory:16	sin revisar
+Q214604	zero of a function	element of the domain where function's value is zero	20	48	root:20	LinearAlgebra:8 Algebra:4 RingTheory:3 Analysis:2	sin revisar
+Q2481270	total relation	binary endorelation such that for every pair of elements either first is related with second or second is related with f	15	48	connected:15	CategoryTheory:13 Order:1 Topology:1	sin revisar
+Q840023	nilpotent element	element in a ring whose sufficiently large power is zero	20	48	nilpotent:15 nilpotency:5	GroupTheory:8 Algebra:4 LinearAlgebra:3 Topology:3	sin revisar
+Q106530468	multivariate		46	47	multivariate:46	RingTheory:25 Probability:14 Control:3 Data:2	sin revisar
+Q1188344	unknot	loop seen as a trivial knot	37	47	not:37	Topology:9 Analysis:7 MeasureTheory:7 Geometry:5	sin revisar
+Q214796	equals sign	mathematical symbol used to indicate equality	8	47	equal:8	CategoryTheory:4 Topology:2 Combinatorics:1 Order:1	sin revisar
+Q249092	equicontinuity	property of a collection of functions	18	47	equicontinuity:14 equicontinuou:4	Topology:18	sin revisar
+Q374182	logical consequence	fundamental concept in logic	47	47	imply:47	Order:12 CategoryTheory:8 Algebra:8 LinearAlgebra:6	sin revisar
+Q5870972	Schwartz function	smooth function whose absolute value rapidly decreases	1	47	schwartz:1	Analysis:1	sin revisar
+Q7578745	splitting principle	mathematical technique for vector bundles	47	47	splitting:47	Algebra:21 AlgebraicTopology:13 Data:8 GroupTheory:3	sin revisar
+Q1048949	cofibration	continuous mapping between topological spaces	35	46	cofibration:35	AlgebraicTopology:34 Algebra:1	sin revisar
+Q165474	commutative property	property of binary operations, for which changing the order of the operands does not change the result	41	46	commutativity:23 commutative:18	Algebra:12 CategoryTheory:11 Logic:3 Analysis:3	sin revisar
+Q200125	expectation	long-run average value of a random variable	11	46	expectation:11	Probability:7 Algebra:2 MeasureTheory:2	sin revisar
+Q37221	diameter	straight line segment that passes through the center of a circle; its length	44	46	diameter:44	Topology:35 Analysis:5 Geometry:2 Combinatorics:1	sin revisar
+Q4378669	primitive element	generator of the multiplicative group of a finite field	11	46	primitive:11	NumberTheory:6 RingTheory:2 Computability:2 LinearAlgebra:1	sin revisar
+Q47005650	set of rational numbers	set of numbers that can be expressed as the quotient of two integers	13	46	rational:13	AlgebraicGeometry:5 Data:5 NumberTheory:2 RingTheory:1	sin revisar
+Q5459651	flip and flop	in algebraic geometry	31	46	flip:31	CategoryTheory:19 Analysis:5 Algebra:3 Control:2	sin revisar
+Q9388290	coimage	concept in category theory (in mathematics)	43	46	coimage:43	CategoryTheory:38 Algebra:5	sin revisar
+Q109497082	divides	relation between two integers m and n; m divides n; notation: m | n	45	45	divide:45	Algebra:12 NumberTheory:11 RingTheory:10 Data:7	sin revisar
+Q110765082	ground atom	atomic formula without variables	42	45	fact:42	CategoryTheory:15 Algebra:6 RingTheory:4 Data:4	sin revisar
+Q127840	pentagon	polygon with five sides	45	45	pentagon:45	CategoryTheory:44 Algebra:1	sin revisar
+Q19033	arithmetic mean	sum of a collection of numbers divided by the number of numbers in the collection	35	45	mean:29 average:6	Algebra:9 Topology:8 Data:5 Order:4	sin revisar
+Q30689475	graph	topological space	44	45	graph:44	LinearAlgebra:28 Topology:6 Algebra:4 CategoryTheory:3	sin revisar
+Q840247	hypergraph	generalized undirected graph in which generalized edges connect one, two, or more nodes	13	45	hypergraph:13	Combinatorics:13	sin revisar
+Q899731	pole	isolated singularity of a holomorphic function 𝑓 such that 1/𝑓 has a zero and is holomorphic at the singularity	38	45	pole:37 simple:1	Analysis:19 Geometry:14 NumberTheory:3 MeasureTheory:1	sin revisar
+Q37113960	estimate	value reached by estimating; rough calculation or informed guess	44	44	estimate:40 estimation:4	Analysis:23 Topology:7 Probability:6 MeasureTheory:3	sin revisar
+Q3755543	principal homogeneous space	homogeneous space for a group in which the stabilizer subgroup of every point is trivial; an affine analogue of a group;	40	44	torsor:40	Analysis:15 Algebra:9 Topology:8 Geometry:7	sin revisar
+Q65929180	value function	maximized objective function of an optimization problem	21	44	value:21	Data:8 Condensed:4 Algebra:3 Control:3	sin revisar
+Q190200	altitude	height in relation to a certain reference point as a general concept	36	43	altitude:35 height:1	Geometry:35 Order:1	sin revisar
+Q430001	decidability	property of theories that have computable membership	43	43	decidable:40 decidability:3	Data:25 Logic:8 Basic:4 Order:3	sin revisar
+Q515874	abscissa	first coordinate in a measured space with dimension 1 or higher	28	43	abscissa:28	NumberTheory:28	sin revisar
+Q1096921	significand	part of a number in scientific notation: e.g. the “1.2345” in “1.2345×10²”	42	42	coefficient:42	RingTheory:11 Algebra:8 Analysis:7 AlgebraicGeometry:6	sin revisar
+Q131752	greatest common divisor	largest divisor of two integers or polynomials	22	42	gcd:22	Algebra:10 RingTheory:4 Data:4 GroupTheory:2	sin revisar
+Q5179256	Covering lemma		40	42	covering:40	CategoryTheory:10 Topology:10 Combinatorics:7 RingTheory:5	sin revisar
+Q7269442	quasi-category	a generalization of the notion of a mathematical category	20	42	quasicategory:20	AlgebraicTopology:20	sin revisar
+Q753375	residue	coefficient of the term of order −1 in the Laurent expansion of a function holomorphic outside a point, whose value can 	37	42	residue:37	NumberTheory:17 RingTheory:8 AlgebraicGeometry:7 Analysis:2	sin revisar
+Q778785	balanced set	construct in functional analysis	16	42	balanced:16	Algebra:9 Analysis:5 LinearAlgebra:1 Data:1	sin revisar
+Q1088998	position fix	in navigation, knowledge of position derived from measurements relative to external reference points	15	41	fix:15	Data:10 FieldTheory:2 Algebra:1 MeasureTheory:1	sin revisar
+Q1529876	smooth number	a number all of whose prime factors are small	6	41	smooth:6	Geometry:4 RingTheory:1 Analysis:1	sin revisar
+Q178377	mathematical induction	form of mathematical proof	27	41	induction:27	Data:15 SetTheory:3 Algebra:3 GroupTheory:2	sin revisar
+Q3984069	Fredholm's theorem		41	41	fredholm:41	Analysis:41	sin revisar
+Q5323278	ELEMENTARY	complexity class, algebra	39	41	elementary:39	ModelTheory:28 Geometry:4 LinearAlgebra:3 RingTheory:3	sin revisar
+Q6935014	multiplier	an operator that multiplies the Fourier coefficients of a function by a specified function	37	41	multiplier:27 symbol:10	Analysis:23 ModelTheory:8 Algebra:3 LinearAlgebra:2	sin revisar
+Q17548110	uniqueness	philosophical category, opposite of multiplicity; state or condition wherein something is unlike anything else in compar	39	40	uniqueness:39	MeasureTheory:11 Analysis:6 CategoryTheory:5 RingTheory:4	sin revisar
+Q186509	mathematical constant	special, usually real number, that is interesting or significant in some way	30	40	constant:30	Topology:7 CategoryTheory:5 Algebra:4 Data:3	sin revisar
+Q217219	continuity equation	equation constraining a quantity to flow only via adjacent locations; can express a locality principle	40	40	transport:40	CategoryTheory:23 Algebra:5 RingTheory:5 Order:3	sin revisar
+Q2945388	center of percussion	perpendicular impacts at the CoP will produce no reactive shock at the pivot of a rigid beam	40	40	cop:40	CategoryTheory:33 Algebra:7	sin revisar
+Q625303	independent events	term in probability theory	39	40	independent:24 independence:15	LinearAlgebra:25 Probability:4 RingTheory:4 Combinatorics:3	sin revisar
+Q78321178	coboundary	cochain that is in the image of the differential	18	40	coboundary:18	RepresentationTheory:15 Algebra:3	sin revisar
+Q182167	vertical orientation	orientation that is perpendicular to the horizontal plane; orientation connecting the two directions "up" and "down"	39	39	vertical:39	CategoryTheory:34 Algebra:3 Analysis:2	sin revisar
+Q371983	indicator function	function that returns 1 if an element is present in a specified subset and 0 if absent; naturally isomorphic with a set'	3	39	indicator:3	Topology:2 MeasureTheory:1	sin revisar
+Q5508767	function application	mathematical operation of applying a function to an argument or arguments to obtain a value from its range	29	39	applying:22 call:7	CategoryTheory:10 Algebra:5 Data:5 LinearAlgebra:3	sin revisar
+Q671944	transitive set	in set theory, a set whose elements are all subsets	29	39	transitive:29	SetTheory:7 Algebra:5 CategoryTheory:4 Order:3	sin revisar
+Q1751685	solution set	set of values that satisfy a given set of equations or inequalities	30	38	solution:30	NumberTheory:14 Algebra:9 Combinatorics:3 GroupTheory:2	sin revisar
+Q181593	sorting algorithm	algorithm that puts elements of a list in a certain order	27	38	desc:14 sort:13	CategoryTheory:7 Logic:7 Algebra:4 AlgebraicTopology:4	sin revisar
+Q21651992	digraph	combination of two characters used as a synonym for certain ASCII characters in Pascal, C or C++	12	38	digraph:12	Combinatorics:12	sin revisar
+Q216906	multiplicative inverse	of a number x, 1 divided by x	16	38	inverse:13 reciprocal:3	Topology:4 Data:2 Order:2 NumberTheory:2	sin revisar
+Q322340	derived set	set of all limit points of a set	7	38	derived:7	CategoryTheory:3 Algebra:2 Combinatorics:1 Order:1	sin revisar
+Q78082099	transposition	action in which the positions of pairs of items are switched with one another	38	38	swapping:22 switching:8	CategoryTheory:12 Topology:6 Combinatorics:5 Algebra:4	sin revisar
+Q930412	depth	vertical distance below the reference surface	32	38	depth:32	RingTheory:29 Data:3	sin revisar
+Q1321926	constructible number	real number that can be geometrically constructed with compass and straightedge from a unit segment in a finite number o	37	37	constructible:37	Topology:30 RingTheory:6 AlgebraicGeometry:1	sin revisar
+Q2712821	compression	application of inward ("pushing") forces to a material or structure	27	37	compression:27	Combinatorics:27	sin revisar
+Q53875	parallelism	relation used in geometry	30	37	parallel:30	CategoryTheory:27 Analysis:1 Combinatorics:1 Data:1	sin revisar
+Q59715267	function value		1	37	value:1	Algebra:1	sin revisar
+Q938102	elliptic function	class of mathematical functions	36	37	elliptic:36	NumberTheory:24 LinearAlgebra:8 AlgebraicGeometry:3 Analysis:1	sin revisar
+Q1420023	submersion	differentiable map whose differential is everywhere surjective	26	36	submersion:26	Geometry:26	sin revisar
+Q1560157	admissible rule	logic reasoning rule that is correctly usable is some logic	26	36	admissible:26	AlgebraicTopology:16 NumberTheory:5 Order:3 Algebra:2	sin revisar
+Q846677	remainder	amount left over after dividing one integer by another	31	36	remainder:31	RingTheory:12 NumberTheory:11 Algebra:4 Analysis:2	sin revisar
+Q99632598	succession	act or process of following in order or sequence	35	36	following:35	CategoryTheory:8 RingTheory:5 Order:4 Data:4	sin revisar
+Q209812	linear span	smallest vector subspace containing a given subspace	16	35	span:16	LinearAlgebra:12 CategoryTheory:2 Algebra:1 RingTheory:1	sin revisar
+Q261527	linear functional	linear mapping from a vector space into its field of scalars	1	35	covector:1	LinearAlgebra:1	sin revisar
+Q3555174	eigenvector		32	35	eigenvector:32	Analysis:17 LinearAlgebra:14 Algebra:1	sin revisar
+Q102441924	scaling	geometric transformation	34	34	scaling:34	MeasureTheory:11 Analysis:11 LinearAlgebra:3 Algebra:3	sin revisar
+Q10614739	incenter	center of the inscribed circle of a triangle	34	34	incenter:34	Geometry:34	sin revisar
+Q11167	tilde	diacritical mark or symbol, in the shape of an inverted and horizontal Latin letter "S", used in many languages	31	34	tilde:31	AlgebraicGeometry:31	sin revisar
+Q318598	abelianization	quotient by commutator subgroup	23	34	abelianization:23	GroupTheory:17 Topology:2 Algebra:2 SetTheory:1	sin revisar
+Q41719	hypothesis	proposed explanation for an observation, phenomenon, or scientific problem	34	34	hypothesi:30 hypothese:4	Analysis:7 Topology:5 MeasureTheory:4 Combinatorics:3	sin revisar
+Q573980	topological map	type of simplified diagram in cartography and geology	32	34	topological:32	Topology:24 Analysis:6 RingTheory:2	sin revisar
+Q1413083	parameter	auxiliary variable or arbitrary constant that characterizes a system or specifies a mathematical function among a family	33	33	parameter:33	Probability:6 Topology:5 Analysis:5 MeasureTheory:4	sin revisar
+Q182598	graph of a function	representation of a function as the set of pairs (x, f(x))	3	33	graph:3	Algebra:1 Combinatorics:1 LinearAlgebra:1	sin revisar
+Q192388	position vector	vector representing the position of a point with respect to a given origin and axes	26	33	position:26	Algebra:11 Data:7 LinearAlgebra:4 Computability:2	sin revisar
+Q23809	atomic number	number of protons found in the nucleus of an atom	25	33	atomic:25	ModelTheory:12 Order:11 Data:1 CategoryTheory:1	sin revisar
+Q2695280	technique	sum of skills, methods, and processes used to accomplish objectives, such as scientific investigation or the production 	33	33	method:32 technique:1	MeasureTheory:32 Data:1	sin revisar
+Q386228	distribution function	function that defines a probability distribution by specifying the probability of being ≤ each value	7	33	cdf:7	Probability:7	sin revisar
+Q4235192	alternating function		32	33	alternating:32	Topology:7 LinearAlgebra:6 Combinatorics:5 Algebra:5	sin revisar
+Q5156040	comparison theorem		33	33	comparison:33	CategoryTheory:29 Analysis:1 AlgebraicGeometry:1 LinearAlgebra:1	sin revisar
+Q54933015	transitivity	mathematical property for binary relations	32	33	transitivity:32	RingTheory:15 Algebra:7 SetTheory:2 Computability:2	sin revisar
+Q7315720	resolvent set	complement of the spectrum; for an operator T, values λ such that T − λ is invertible	2	33	resolvent:2	Algebra:1 MeasureTheory:1	sin revisar
+Q837528	deterministic finite automata	finite-state machine that accepts and rejects strings of symbols and only produces a unique computation (or run) of the 	4	33	dfa:4	Computability:4	sin revisar
+Q1056283	May's theorem	Social Choice theory on voting	32	32	may:32	CategoryTheory:6 LinearAlgebra:6 MeasureTheory:4 Analysis:3	sin revisar
+Q203484	Laplace operator	divergence of the gradient	29	32	laplacian:29	Analysis:29	sin revisar
+Q207522	probability density function	function whose integral over a region describes the probability of an event occurring in that region	21	32	pdf:21	Probability:21	sin revisar
+Q2247110	law of total expectation	iterated expectation	22	32	lie:22	Geometry:9 LinearAlgebra:5 NumberTheory:5 Topology:2	sin revisar
+Q41299	quadratic equation	polynomial equation in a single variable where the highest exponent of the variable is 2	22	32	quadratic:22	NumberTheory:11 LinearAlgebra:10 Algebra:1	sin revisar
+Q842436	Markov's inequality	inequality applying to non-negative random variables	3	32	markov:3	Probability:3	sin revisar
+Q10764194	minus sign	mathematical symbol used to represent the notion of negative as well as the operations of subtraction	9	31	negative:8 minu:1	Algebra:5 MeasureTheory:3 Logic:1	sin revisar
+Q1347094	transversal	line that passes through two lines in the same plane at two distinct points	28	31	transversal:28	GroupTheory:28	sin revisar
+Q1806121	range of a function	ambiguous term, referring either to the codomain or the image of a function	14	31	range:14	Algebra:4 Order:4 LinearAlgebra:2 Analysis:1	sin revisar
+Q187931	phrase	sequence of at least two words	25	31	expression:25	Algebra:12 Analysis:7 ModelTheory:2 CategoryTheory:1	sin revisar
+Q1967302	Membership function	a generalization of the indicator function in classical sets	29	31	membership:29	Algebra:10 RingTheory:4 Data:4 LinearAlgebra:3	sin revisar
+Q215067	orthogonality	two vectors are said to be orthogonal if their scalar product is zero	21	31	orthogonal:13 orthogonality:8	LinearAlgebra:8 Analysis:5 CategoryTheory:4 RingTheory:2	sin revisar
+Q4047453	divisor sum function	arithmetic function mapping a positive integer to the sum of all its positive divisors (including itself)	27	31	sigma:27	Topology:13 Order:5 MeasureTheory:3 CategoryTheory:3	sin revisar
+Q56297031	Weierstrass’ inequalities		31	31	weierstrass:31	RingTheory:31	sin revisar
+Q680712	involute	mathematical curve constructed from another curve	30	31	involute:30	LinearAlgebra:30	sin revisar
+Q694114	Bernoulli number	rational number sequence 𝐵ₖ such that (𝑚+1)∑𝑛ᵐ=(ᵐ⁺¹₀)𝐵₀𝑛ᵐ⁺¹−(ᵐ⁺¹₁)𝐵₁𝑛ᵐ+(ᵐ⁺¹₂)𝐵₂𝑛ᵐ¯¹−(ᵐ⁺¹₃)𝐵₃𝑛ᵐ¯²+⋯	2	31	bernoulli:2	Analysis:1 NumberTheory:1	sin revisar
+Q8028383	witness	in logic, value which shows that an existential statement is true	31	31	witness:31	CategoryTheory:8 Combinatorics:6 Algebra:5 Order:4	sin revisar
+Q165309	inequation	mathematic statement that an inequality holds between two values	20	30	bound:20	Analysis:6 Combinatorics:4 RingTheory:4 Control:1	sin revisar
+Q17285	plane	flat, infinite two-dimensional surface	30	30	plane:30	Analysis:21 Geometry:8 LinearAlgebra:1	sin revisar
+Q2151613	relative direction	information contained in the relative position of one point of space with respect to another, disregarding distance	24	30	direction:24	CategoryTheory:9 Analysis:5 Geometry:3 RingTheory:2	sin revisar
+Q2859736	tree	partially ordered set such that, for any element, the subset of elements less than it is well-ordered	25	30	tree:25	SetTheory:23 Topology:2	sin revisar
+Q5254619	function iteration	mathematical operation of composing a function with itself repeatedly	21	30	iteration:21	CategoryTheory:14 Dynamics:2 AlgebraicTopology:2 Order:2	sin revisar
+Q812880	cube	three-dimensional solid object bounded by the same six square sides	30	30	cube:30	NumberTheory:15 CategoryTheory:6 Topology:6 Analysis:2	sin revisar
+Q865665	Birkhoff's theorem	theorem that any spherically symmetric solution of the vacuum field equations must be static and asymptotically flat	12	30	birkhoff:12	Dynamics:12	sin revisar
+Q109852010	integer part	part to the left of the decimal separator of a number	11	29	truncation:11	Topology:7 AlgebraicTopology:2 Algebra:1 Data:1	sin revisar
+Q1361088	matrix decomposition	representation of a matrix as a product	16	29	decomposition:8 factorization:8	Algebra:3 Analysis:3 NumberTheory:2 CategoryTheory:2	sin revisar
+Q188597	linear function	function whose graph is a straight line; polynomial function of degree at most one	15	29	linear:11 affine:4	Topology:8 AlgebraicGeometry:4 Combinatorics:2 RingTheory:1	sin revisar
+Q96392748	metrizable topological vector space		3	29	pseudometrizable:3	Topology:3	sin revisar
+Q1333956	carry	digit that is transferred from one column of digits to another column of more significant digits during a calculation al	28	28	carry:28	CategoryTheory:7 Data:5 Topology:3 Algebra:3	sin revisar
+Q1425077	spectral theorem	theorem	23	28	spectral:23	Analysis:10 Topology:7 FieldTheory:3 AlgebraicGeometry:2	sin revisar
+Q277680	A* search algorithm	algorithm used for pathfinding and graph traversal	18	28	search:8 star:6	Data:7 Analysis:5 LinearAlgebra:3 Algebra:2	sin revisar
+Q35059	width	horizontal dimension of an entity	28	28	width:28	NumberTheory:20 LinearAlgebra:4 Analysis:4	sin revisar
+Q728662	Bernoulli's inequality	inequality that (1+x)ⁿ ≥ 1+nx for x ≥ −1 and n∈ℕ	5	28	bernoulli:5	NumberTheory:5	sin revisar
+Q7546461	smoothness	in probability theory, measure of a density function	28	28	smoothness:28	Geometry:19 Analysis:8 RingTheory:1	sin revisar
+Q117713552	meet	operation in a poset	27	27	meet:27	Topology:15 ModelTheory:5 Order:4 Combinatorics:1	sin revisar
+Q13366129	odd number	integer not divisible by two	23	27	non:16 odd:7	RingTheory:6 Algebra:4 Data:4 CategoryTheory:2	sin revisar
+Q170043	perfect number	positive integer which equals the sum of all its divisors	26	27	perfect:26	GroupTheory:11 FieldTheory:8 LinearAlgebra:5 Analysis:1	sin revisar
+Q17536981	The Cross	listed obelisk in Richmond	25	27	cross:25	LinearAlgebra:18 Data:4 Order:2 Combinatorics:1	sin revisar
+Q2024397	Euclidean subspace	affine subspace of an Euclidean space	17	27	flat:17	Algebra:8 RingTheory:7 Combinatorics:1 LinearAlgebra:1	sin revisar
+Q3924032	mathematical property	mathematical concept	27	27	property:27	CategoryTheory:9 Probability:3 Algebra:3 RingTheory:3	sin revisar
+Q3926560	quadrant	region of the plane limited by the axes of a two-dimensional Cartesian system	27	27	quadrant:27	Algebra:10 Geometry:9 Analysis:7 Combinatorics:1	sin revisar
+Q5165685	contraction	bounded linear operator between normed spaces, whose operator norm is not greater than 1	23	27	contraction:23	RingTheory:9 Analysis:5 LinearAlgebra:3 Topology:2	sin revisar
+Q55648664	subrepresentation		12	27	subrepresentation:12	RepresentationTheory:12	sin revisar
+Q138045	eternity	endless time, an infinite duration	26	26	alway:25 forever:1	CategoryTheory:6 LinearAlgebra:3 Data:3 Analysis:2	sin revisar
+Q1668499	rewriting	replacing subterm in a mathematical formula with another term	26	26	rewriting:25 rewrite:1	CategoryTheory:6 Computability:5 Order:3 Data:2	sin revisar
+Q1816967	Urysohn's lemma	lemma that a topological space is normal iff any 2 disjoint closed subsets can be separated by a continuous function	1	26	urysohn:1	Topology:1	sin revisar
+Q2004972	nominal number	numeric or alphanumeric code (without independent meaning) used for labelling or identification	26	26	categorical:26	Algebra:12 CategoryTheory:11 AlgebraicTopology:1 GroupTheory:1	sin revisar
+Q310647	club set	closed cofinal subset of an ordinal	21	26	club:21	SetTheory:21	sin revisar
+Q3884029	nullary operation	operation with no operands	24	26	fixed:24	Topology:8 Dynamics:4 Logic:3 CategoryTheory:2	sin revisar
+Q617295	nondeterministic finite automaton	finite-state machine in which the transitions are not necessarily uniquely determined by the state and input	2	26	nfa:2	Computability:2	sin revisar
+Q7168101	perfect set	subset of a topological space that is closed and has no isolated points	16	26	perfect:16	GroupTheory:9 FieldTheory:4 LinearAlgebra:2 Topology:1	sin revisar
+Q837551	Frobenius theorem	theorem that a distribution is integrable iff it arises from a regular foliation	26	26	frobeniu:26	RingTheory:21 NumberTheory:2 CategoryTheory:2 FieldTheory:1	sin revisar
+Q104841236	unitary element	mathematical concept	9	25	unitary:9	Analysis:4 Algebra:3 CategoryTheory:2	sin revisar
+Q1172540	data stream	sequence of digitally encoded coherent signals (packets of data or data packets) used to transmit or receive information	25	25	stream:25	Data:25	sin revisar
+Q29017603	control	supervision or complete authority over something; change or regulation in magnitude	24	25	control:24	Analysis:16 CategoryTheory:3 RingTheory:2 MeasureTheory:1	sin revisar
+Q50707	composite number	positive integer that has at least one positive divisor other than 1 or itself	23	25	composite:23	CategoryTheory:15 AlgebraicTopology:3 NumberTheory:2 Topology:1	sin revisar
+Q57510	Fundamental lemma of Langlands and Shelstad	theorem relating orbital integrals on a reductive group over a local field to stable orbital integrals on its endoscopic	25	25	fundamental:25	SetTheory:10 NumberTheory:8 Analysis:7	sin revisar
+Q102761	least common multiple	smallest positive integer divisible by two or more integers	6	24	lcm:6	Algebra:5 LinearAlgebra:1	sin revisar
+Q1071077	primorial	integer representing the product of the first n prime numbers	22	24	primorial:22	NumberTheory:22	sin revisar
+Q110812	cathetus	side of a right triangle which is adjacent to the right angle	24	24	leg:24	CategoryTheory:24	sin revisar
+Q124633554	compact metric space		4	24	compactum:4	Topology:4	sin revisar
+Q1396667	postulate	statement that is taken to be true	22	24	axiom:22	CategoryTheory:7 Combinatorics:4 Algebra:4 RingTheory:2	sin revisar
+Q18088516	odd function	function which has rotational symmetry with respect to the origin	3	24	odd:3	NumberTheory:2 Combinatorics:1	sin revisar
+Q187420	absorbing element	special type of element of a set with respect to a binary composition operation on that set which, when composed with an	6	24	absorbing:4 annihilating:2	Algebra:4 LinearAlgebra:2	sin revisar
+Q33456	exponentiation	binary mathematical operation	19	24	power:12 exponentiation:7	Algebra:10 RingTheory:5 Analysis:1 NumberTheory:1	sin revisar
+Q37147	atomic nucleus	core of the atom; composed of bound nucleons (protons and neutrons)	5	24	nucleu:5	Order:5	sin revisar
+Q6146925	Tiling	Texture synthesis algorithm	4	24	tiling:4	Combinatorics:4	sin revisar
+Q634579	Archimedean property	the absence of infinitesimals in a mathematical system	23	24	archimedean:23	Algebra:11 GroupTheory:6 Order:4 Analysis:1	sin revisar
+Q845126	set difference	the resulting set when removing the elements in one set from another set	8	24	difference:5 setminu:3	CategoryTheory:2 Topology:2 Combinatorics:1 Data:1	sin revisar
+Q11500	area	measure of the extent of a two-dimensional region on a curved surface or flat plane	23	23	area:23	Analysis:23	sin revisar
+Q1341061	minor	subclass of determinant	15	23	minor:15	Combinatorics:7 LinearAlgebra:7 NumberTheory:1	sin revisar
+Q1747439	Kolmogorov's inequality	probabilistic inequality of partial sums of independent random variables	13	23	kolmogorov:13	Probability:13	sin revisar
+Q1747745	meagre set	in topology, a countable union of nowhere dense subsets	1	23	meagre:1	Topology:1	sin revisar
+Q1759397	well equidistributed long-period linear	family of pseudorandom number generators	23	23	well:23	CategoryTheory:13 Data:4 Topology:2 GroupTheory:1	sin revisar
+Q20749305	horizontal orientation	orientation that is parallel to the horizon and perpendicular to the vertical	22	23	horizontal:22	CategoryTheory:17 Algebra:5	sin revisar
+Q219448	projective set	in descriptive set theory, a subset of a Polish space constructible by taking complements and projections of an analytic	20	23	projective:20	CategoryTheory:9 Probability:5 Topology:4 MeasureTheory:1	sin revisar
+Q576728	winding number	number of times a curve wraps around a point in the plane	19	23	indice:19	Data:6 Algebra:6 Combinatorics:2 AlgebraicGeometry:1	sin revisar
+Q1207920	derangement	permutation of a set which leaves no member in its original place	14	22	derangement:14	Combinatorics:14	sin revisar
+Q1467935	secant	ratio of the hypotenuse of a triangle to the adjacent side of an angle	9	22	secant:9	Analysis:9	sin revisar
+Q2713824	metric map	function between metric spaces that does not increase any distance	17	22	short:17	AlgebraicGeometry:14 LinearAlgebra:3	sin revisar
+Q3007384	Post's theorem	Theorem in computability theory	22	22	post:22	Topology:10 Geometry:6 CategoryTheory:2 Algebra:2	sin revisar
+Q3040709	node	intersection of three or more electrical conductors; connection point between two or more branches	15	22	node:15	LinearAlgebra:8 Analysis:6 SetTheory:1	sin revisar
+Q3678113	circumradius	radius of the circumcircle of a triangle	22	22	circumradiu:22	Geometry:22	sin revisar
+Q554403	duality	term in the mathematical area of order theory	22	22	duality:22	RepresentationTheory:8 Data:4 Algebra:4 Geometry:3	sin revisar
+Q6760420	marginal likelihood	in Bayesian probability theory, a likelihood function that has been integrated over the parameter space	22	22	evidence:22	CategoryTheory:15 Algebra:4 RingTheory:2 Topology:1	sin revisar
+Q837518	alphabet	non-empty set of symbols or letters that make up strings in a formal language	22	22	alphabet:22	Computability:19 Dynamics:2 GroupTheory:1	sin revisar
+Q845581	generating function	function arising in Hamiltonian mechanics	12	22	generating:12	GroupTheory:3 CategoryTheory:2 Geometry:2 Logic:1	sin revisar
+Q1047000	validity	logical correctness of an argument's steps, regardless of the truth of the premises	5	21	valid:5	Data:3 Combinatorics:1 NumberTheory:1	sin revisar
+Q1292101	hyperbolic sine	hyperbolic function	11	21	sinh:11	Analysis:11	sin revisar
+Q1343870	corollary	statement which can be readily deduced from a previous, more notable statement, but whose importance tends to be seconda	21	21	corollary:21	Analysis:6 RingTheory:4 MeasureTheory:3 GroupTheory:2	sin revisar
+Q17138781	twist	differential geometry term	20	21	twist:20	CategoryTheory:15 NumberTheory:4 Algebra:1	sin revisar
+Q357852	adjoining an identity element	operation that transforms a non-unital ring into unital ring	21	21	adjoining:21	RingTheory:13 FieldTheory:2 Algebra:2 NumberTheory:1	sin revisar
+Q37555	polygon	plane figure bounded by line segments	16	21	polygon:16	Geometry:12 Topology:4	sin revisar
+Q3801534	hyperrectangle	generalization of a rectangle for higher dimensions	17	21	box:17	Analysis:17	sin revisar
+Q4386982	equidistant	point that is at the same distance to every object in a given set	21	21	equidistant:21	Geometry:21	sin revisar
+Q677161	GAP	computer algebra system for computational discrete algebra	21	21	gap:21	Order:14 Algebra:3 Data:3 RingTheory:1	sin revisar
+Q912188	absolute infinite	mathematical concept – an extension of the idea of infinity	10	21	absolute:10	CategoryTheory:5 FieldTheory:2 NumberTheory:1 Algebra:1	sin revisar
+Q1253682	hyperbolic cosine	hyperbolic function	9	20	cosh:9	Analysis:9	sin revisar
+Q17104225	torsor	algebraic geometry analog of a principal bundle in algebraic topology	20	20	torsor:20	Topology:6 Algebra:5 Analysis:5 Geometry:4	sin revisar
+Q2755127	wedge	polyhedron defined by two triangles and three trapezoid faces	15	20	wedge:15	CategoryTheory:6 LinearAlgebra:5 Analysis:4	sin revisar
+Q287353	arg max and min	points of the domain of some function at which the function values are maximized or minimized	2	20	argmin:2	Probability:2	sin revisar
+Q3027705	differentiation	calculation of derivative	15	20	differentiation:15	Analysis:13 MeasureTheory:2	sin revisar
+Q56860783	floor function	function that maps a real number x to the greatest integer less than or equal to x	5	20	floor:5	Algebra:4 Data:1	sin revisar
+Q676835	recursively enumerable set	a set that can be output (enumerated) by an algorithm (mathematical logic, computability theory)	17	20	provable:16 listable:1	Order:15 Basic:1 Logic:1	sin revisar
+Q7882311	unary function	function that takes one argument. In computer science, a unary operator is a subset of unary function	8	20	unary:8	Computability:3 Algebra:2 Combinatorics:1 Data:1	sin revisar
+Q91048185	orthonormal set	subset of an inner product space (for example an euclidian or hermitian space) whose member vectors (possibly ordered in	2	20	orthonormal:2	Analysis:2	sin revisar
+Q95745348	additive function	arithmetic function such that the image of the product of two coprimes is the sum of their images	11	20	additive:11	MeasureTheory:3 Topology:3 Analysis:2 Geometry:2	sin revisar
+Q104962	hypotenuse	longest side of a right-angled triangle, the side opposite of the right angle	19	19	hypotenuse:19	Geometry:19	sin revisar
+Q1060372	envelope	family of curves in geometry	15	19	envelope:15	CategoryTheory:15	sin revisar
+Q10621500	orthocenter	point of intersection of the altitudes of a triangle	18	19	orthocenter:18	Geometry:18	sin revisar
+Q1144560	rate	quantity of process intensivity (mathematics)	19	19	speed:11 rate:8	Probability:6 Algebra:5 Analysis:2 CategoryTheory:2	sin revisar
+Q12895196	because	conjunction	19	19	because:19	Algebra:5 Analysis:3 Data:2 CategoryTheory:2	sin revisar
+Q1528401	stationary set	in set theory, a subset of a cardinal that intersects every club set	11	19	stationary:11	SetTheory:11	sin revisar
+Q17057096	simplicial map	map between simplicial complexes with the property that the images of the vertices of a simplex always span a simplex	19	19	simplicial:19	AlgebraicTopology:18 Geometry:1	sin revisar
+Q209675	Dirac delta function	pseudo-function δ such that an integral of δ(x-c)f(x) always takes the value of f(c)	1	19	dirac:1	NumberTheory:1	sin revisar
+Q2735874	ergodic theorem	mathematical theorem by George David Birkhoff	15	19	ergodic:15	Dynamics:15	sin revisar
+Q2993021	congruence	in general relativity, a set of integral curves of a (nowhere vanishing) vector fields	17	19	congruence:17	Algebra:6 CategoryTheory:5 RingTheory:3 GroupTheory:2	sin revisar
+Q3075231	decreasing function	concept in mathematics	13	19	decreasing:8 nonincreasing:5	Data:5 Analysis:2 Probability:2 Order:2	sin revisar
+Q56296629	modular discriminant	modular form of weight 12	12	19	discriminant:12	Algebra:5 RingTheory:2 LinearAlgebra:2 NumberTheory:2	sin revisar
+Q599027	harmonic function	function with vanishing Laplacian	4	19	harmonic:4	Analysis:2 NumberTheory:2	sin revisar
+Q847600	entire function	complex-valued function that is holomorphic at all finite points over the whole complex plane	4	19	entire:4	Analysis:3 LinearAlgebra:1	sin revisar
+Q97623888	comeagre set	subset of a topological space whose complement is meagre	2	19	residual:2	Topology:2	sin revisar
+Q1069891	transfinite number	number larger than all finite numbers	18	18	transfinite:18	CategoryTheory:16 Order:1 SetTheory:1	sin revisar
+Q13366104	even number	integer divisible by two	2	18	even:2	NumberTheory:2	sin revisar
+Q18205357	augmentation	k-algebra homomorphism of an associative algebra A over a commutative ring k	16	18	augmentation:16	AlgebraicTopology:14 Combinatorics:2	sin revisar
+Q381040	complex conjugate	operation on complex numbers in which the sign of the real part is kept but the sign of the imaginary part is reversed	8	18	conjugate:8	Basic:3 FieldTheory:3 Algebra:1 NumberTheory:1	sin revisar
+Q4025884	concrete number	number associated with the things being counted	18	18	concrete:18	Algebra:8 CategoryTheory:5 RepresentationTheory:3 Basic:1	sin revisar
+Q4739384	amalgamation property	property of a class of models in universal algebra and model theory	15	18	amalgamation:15	CategoryTheory:15	sin revisar
+Q614112	number of entities	discrete quantity; number of entities of a given kind in a system	9	18	count:7 quantity:2	Combinatorics:3 Data:3 Geometry:2 Algebra:1	sin revisar
+Q11722674	Takens' theorem	Delay embedding theorem of attractor reconstruction	17	17	taken:17	Geometry:5 Analysis:4 Algebra:3 Combinatorics:1	sin revisar
+Q1189968	Riesz's lemma	lemma	14	17	riesz:14	Analysis:8 MeasureTheory:3 Topology:2 Geometry:1	sin revisar
+Q14944328	example	thing which acts as a typical representative of a set of things	17	17	example:17	Data:9 Algebra:2 Order:1 Dynamics:1	sin revisar
+Q1582003	bounding lemma	lemma stating that, in a vector space generated by n vectors, any set of n+1 vectors is linearly dependent	17	17	bounding:17	Analysis:7 MeasureTheory:4 Topology:4 LinearAlgebra:1	sin revisar
+Q2101025	polar set	mathematical concept	7	17	polar:7	Order:4 LinearAlgebra:3	sin revisar
+Q25099801	Stacks Project	open-source textbook on algebraic geometry	8	17	stack:8	Computability:7 Control:1	sin revisar
+Q25210879	pop	sixth derivative of the position vector with respect to time; rate of change of the crackle (fifth derivative) with resp	1	17	pop:1	Computability:1	sin revisar
+Q2858200	apex	vertex which is in some sense the highest of the figure to which it belongs	14	17	apex:14	CategoryTheory:10 Geometry:4	sin revisar
+Q3075182	increasing function	concept in mathematics	7	17	increasing:7	Analysis:2 Order:2 Combinatorics:1 Algebra:1	sin revisar
+Q500576	ordinate	second coordinate in a measured space with dimension 2 or higher	11	17	coordinate:9 ordinate:2	AlgebraicGeometry:5 LinearAlgebra:3 Data:1 Algebra:1	sin revisar
+Q54935824	chess move	series of two plies, or turns, taken by each player	15	17	move:15	Computability:5 Combinatorics:3 LinearAlgebra:3 CategoryTheory:2	sin revisar
+Q7003746	Nevanlinna function	in complex analysis, a holomorphic function on the upper half plane with a nonnegative imaginary part	17	17	pick:15 herglotz:2	Algebra:4 CategoryTheory:3 Order:3 Analysis:2	sin revisar
+Q91642573	uniformizing parameter		6	17	uniformizer:6	RingTheory:5 FieldTheory:1	sin revisar
+Q10981216	inverse hyperbolic sine	inverse of the hyperbolic sine function	6	16	arsinh:6	Analysis:6	sin revisar
+Q1143969	principal ideal domain	Algebraic structure	5	16	pid:5	LinearAlgebra:4 Algebra:1	sin revisar
+Q1332977	subsequence	binary relation between sequences (strings)	12	16	subsequence:12	Topology:5 Order:3 MeasureTheory:2 Analysis:1	sin revisar
+Q16	Canada	country in North America	16	16	can:16	CategoryTheory:3 Data:3 RingTheory:3 LinearAlgebra:1	sin revisar
+Q17047365	Floyd–Rivest algorithm	selection algorithm	5	16	select:5	Data:2 LinearAlgebra:2 MeasureTheory:1	sin revisar
+Q1992074	bit array	array data structure that compactly stores bits	1	16	bitstring:1	Combinatorics:1	sin revisar
+Q20665666	conclusion	the proposition arrived at by logical reasoning	16	16	conclusion:16	Analysis:9 Geometry:3 Algebra:2 Topology:2	sin revisar
+Q3527218	lifting theorem		12	16	lifting:12	Topology:4 CategoryTheory:3 Algebra:2 Analysis:1	sin revisar
+Q380528	color charge	property of quarks and gluons that is related to the particles’ strong interactions in the theory of quantum chromodynam	15	16	color:15	Combinatorics:15	sin revisar
+Q40735	coordinate origin	point in a Euclidean space used as a reference for geometric measurements of surrounding space	16	16	origin:16	Analysis:13 LinearAlgebra:2 Topology:1	sin revisar
+Q48968959	cancelling out	mathematical process used for removing subexpressions from a mathematical expression	16	16	cancellation:16	Algebra:11 CategoryTheory:4 GroupTheory:1	sin revisar
+Q570779	Vieta's formulas	relations between the coefficients and the roots of a polynomial	2	16	vieta:2	RingTheory:2	sin revisar
+Q576478	Liouville's theorem	theorem in complex analysis that nonconstant entire functions are unbounded	5	16	liouville:5	NumberTheory:3 FieldTheory:2	sin revisar
+Q6033616	inhabited set	in constructive mathematics, a set in which an element exists	13	16	inhabited:13	Basic:3 CategoryTheory:3 Data:2 Topology:2	sin revisar
+Q657586	hyperplane	geometric object	16	16	hyperplane:16	Analysis:9 Geometry:3 Topology:1 MeasureTheory:1	sin revisar
+Q10290214	event	in statistics and probability theory, set of outcomes to which a probability is assigned	15	15	event:15	MeasureTheory:13 Probability:2	sin revisar
+Q1036595	blowing up	in algebraic geometry, a transformation on an algebraic variety or scheme, wherein a closed subvariety is replaced with 	12	15	process:6 hopf:3	Probability:5 CategoryTheory:2 FieldTheory:2 RingTheory:1	sin revisar
+Q107061	kite	quadrilateral whose four sides can be grouped into two pairs of equal-length sides that are adjacent to each other	8	15	dart:8	Combinatorics:8	sin revisar
+Q1071239	stochastic	property in mathematics	15	15	stochastic:15	Analysis:11 LinearAlgebra:4	sin revisar
+Q11626671	cut	style or shape of a garment, and the way its structure hangs on the body	15	15	cut:15	Algebra:11 MeasureTheory:3 Probability:1	sin revisar
+Q12718884	ceiling function	function that maps a real number x to the smallest integer greater than or equal to x	2	15	ceiling:2	Data:2	sin revisar
+Q1344007	permanent	polynomial of the elements of a matrix	10	15	permanent:10	LinearAlgebra:10	sin revisar
+Q2037833	piecewise function	function which is defined by multiple sub-functions each over its own interval	7	15	piecewise:7	NumberTheory:2 Data:1 Algebra:1 Logic:1	sin revisar
+Q4683809	admissible set	in mathematical logic, a transitive set satisfying the axioms of Kripke-Platek set theory	9	15	admissible:9	AlgebraicTopology:6 Algebra:2 NumberTheory:1	sin revisar
+Q50695	quadratic function	function defined by a polynomial of degree two	9	15	quadratic:9	NumberTheory:4 LinearAlgebra:4 Algebra:1	sin revisar
+Q579600	functional	mapping from a mathematical space to the real or complex numbers	14	15	functional:14	Analysis:8 LinearAlgebra:2 Topology:2 Logic:1	sin revisar
+Q60644809	boundedness	property of a mathematical interval for which there is some real number greater than (or less than) all elements of the 	15	15	boundedness:15	Analysis:6 Order:6 Topology:2 Data:1	sin revisar
+Q615541	eager evaluation	evaluation strategy that fully evaluates arguments before calling a function	10	15	strict:10	Analysis:3 CategoryTheory:3 Order:3 Topology:1	sin revisar
+Q6795906	maximum operating depth	depth below which the partial pressure of oxygen (pO2) of the gas mix exceeds an acceptable limit	5	15	mod:5	Analysis:2 SetTheory:2 MeasureTheory:1	sin revisar
+Q110765095	ground formula	logic formula without variables	14	14	ground:14	Combinatorics:8 LinearAlgebra:4 Algebra:1 RingTheory:1	sin revisar
+Q13134154	trichotomy	division into three categories	13	14	trichotomy:13	Basic:3 Algebra:2 Data:2 Topology:2	sin revisar
+Q1321906	open problem	known problem or question which is thought to have an objective and verifiable solution or explanation, but which has no	14	14	open:14	AlgebraicGeometry:10 RingTheory:2 NumberTheory:1 ModelTheory:1	sin revisar
+Q16831536	main skew diagonal		5	14	antidiagonal:5	Data:5	sin revisar
+Q188884	octahedron	polyhedron with 8 faces	14	14	octahedron:14	CategoryTheory:14	sin revisar
+Q2328174	atomic formula	mathematical logic concept	8	14	atomic:8	Order:5 ModelTheory:3	sin revisar
+Q2914302	concave function	negative of a convex function	1	14	concave:1	Analysis:1	sin revisar
+Q306375	Gelfond's constant	e to the power of π	4	14	exponential:4	SetTheory:2 NumberTheory:1 Analysis:1	sin revisar
+Q3527079	Freiman's theorem	On the approximate structure of sets whose sumset is small	14	14	freiman:14	Combinatorics:14	sin revisar
+Q474715	partially ordered set	set ordered by a transitive, antisymmetric, and reflexive binary relation	3	14	poset:3	Order:2 CategoryTheory:1	sin revisar
+Q505356	antipodal point	point on the surface of a circle or n-sphere which is diametrically opposed to a given point	9	14	antipode:9	RingTheory:5 CategoryTheory:4	sin revisar
+Q51379	proportionality	in mathematics, two variables are proportional if a change in one is always accompanied by a change in the other, and if	13	14	proportional:8 linearity:5	Topology:7 LinearAlgebra:2 Data:1 MeasureTheory:1	sin revisar
+Q5402374	eta invariant	Differential operator	4	14	invariant:4	Algebra:2 GroupTheory:1 RepresentationTheory:1	sin revisar
+Q7268888	quantale	complete lattice with an associative binary operation that distributes over joins	7	14	quantale:7	Algebra:7	sin revisar
+Q7308961	region	construct in mathematical analysis	14	14	region:14	MeasureTheory:14	sin revisar
+Q751319	Minimax	decision rule used for minimizing the possible loss for a worst case scenario	12	14	minimax:12	Probability:10 Order:2	sin revisar
+Q755092	Minkowski inequality	triangle inequality of Lp space	4	14	minkowski:4	Analysis:2 MeasureTheory:1 NumberTheory:1	sin revisar
+Q1140902	confluence	property of abstract rewriting systems	1	13	confluence:1	Logic:1	sin revisar
+Q128822	knot	unit of speed	4	13	node:4	Data:1 Order:1 LinearAlgebra:1 SetTheory:1	sin revisar
+Q1347059	epigraph	the set of points lying on or above the graph of a function	12	13	epigraph:11 supergraph:1	Analysis:8 Topology:3 Combinatorics:1	sin revisar
+Q1373849	Eulerian number	number of permutations of the numbers from 1 to n in which m elements are greater than the previous element	13	13	eulerian:13	Combinatorics:13	sin revisar
+Q1530412	simultaneity	relation between two events assumed to be happening at the same time in a frame of reference	2	13	simultaneou:2	Analysis:1 Algebra:1	sin revisar
+Q189000	divergence	vector differential operator measuring the source or sink at a given point	3	13	divergence:2 division:1	Analysis:1 Topology:1 RingTheory:1	sin revisar
+Q2387837	Goursat's lemma	lemma about subgroups of the direct product of two groups	6	13	goursat:6	Analysis:6	sin revisar
+Q2989713	commutant		4	13	commutant:4	Analysis:4	sin revisar
+Q3913	binary numeral system	system that represents numeric values using two symbols; 0 or 1	5	13	binary:5	CategoryTheory:4 Topology:1	sin revisar
+Q45926	annulus	geometric surface defined by two concentric circles	4	13	annulu:2 ring:2	Analysis:2 NumberTheory:1 RingTheory:1	sin revisar
+Q5349954	Eisenstein's theorem	on coefficients of power series which are algebraic functions with rational coefficients	11	13	eisenstein:11	RingTheory:11	sin revisar
+Q7623901	std::string	class in the C++ standard library that represents a string of characters	11	13	string:11	Computability:5 Data:3 CategoryTheory:1 Algebra:1	sin revisar
+Q78257788	exradius	radius of an excircle	11	13	exradiu:11	Geometry:11	sin revisar
+Q834025	Cauchy's integral theorem	theorem	6	13	cauchy:6	Analysis:6	sin revisar
+Q8771775	difference equation	relationship between one or more independent variables, one or more dependent variables, and differences of those variab	4	13	recurrence:4	NumberTheory:3 Computability:1	sin revisar
+Q96410322	topological homomorphism	continuous linear map between topological vector spaces such that the induced map from the domain to the image is an ope	3	13	homomorphism:3	Algebra:2 RingTheory:1	sin revisar
+Q1047519	datum reference	feature of reference (point, line, plane, hole, set of holes, or pair of surfaces) against which some others are calcula	11	12	datum:11	AlgebraicTopology:3 AlgebraicGeometry:3 NumberTheory:2 CategoryTheory:2	sin revisar
+Q1056486	ternary numeral system	numeral system with three as its base	9	12	ternary:9	Topology:4 Data:4 CategoryTheory:1	sin revisar
+Q110817837	Transport theorem	concept in mathematics	12	12	transport:12	CategoryTheory:10 LinearAlgebra:2	sin revisar
+Q111031095	determinism	quality of a system evolving solely based on its initial conditions, without randomness	8	12	deterministic:8	CategoryTheory:4 Probability:3 Algebra:1	sin revisar
+Q1191147	net	topological generalization of the notion of a sequence	8	12	red:8	GroupTheory:7 Geometry:1	sin revisar
+Q141504884	conditional statement		12	12	conditional:12	Probability:11 Topology:1	sin revisar
+Q180832	logos	term in Western philosophy, psychology, rhetoric, and religion	7	12	word:7	Computability:2 GroupTheory:2 Data:1 InformationTheory:1	sin revisar
+Q1896657	urelement	object (concrete or abstract) that is not a set, but that may be an element of a set	6	12	individual:6	Analysis:2 MeasureTheory:2 Algebra:1 AlgebraicGeometry:1	sin revisar
+Q193885	infinitesimal	nonzero positive ‘number’ smaller than any positive real number, formalizable in a number of ways (surreals, hyperreals 	12	12	infinitesimal:12	RingTheory:7 Algebra:3 AlgebraicGeometry:1 Analysis:1	sin revisar
+Q2008549	Hilbert's theorem		9	12	hilbert:9	Analysis:9	sin revisar
+Q2333151	tau	ratio of the circumference of a circle to its radius	12	12	tau:12	MeasureTheory:11 Algebra:1	sin revisar
+Q245097	wingspan	distance from the tip of one limb such as an arm or wing to the tip of the paired limb, or analogically the same measure	2	12	span:2	LinearAlgebra:2	sin revisar
+Q2553861	base	part of a geometric figure regarded as the bottom	11	12	base:11	Combinatorics:5 Algebra:2 CategoryTheory:2 GroupTheory:1	sin revisar
+Q3889376	Carmichael's theorem	On prime divisors Fibonacci numbers and Lucas sequences, more generally	12	12	carmichael:12	NumberTheory:12	sin revisar
+Q4317424	Frobenius inequality	inequality between ranks of matrices	12	12	frobeniu:12	RingTheory:7 NumberTheory:2 CategoryTheory:2 FieldTheory:1	sin revisar
+Q466720	product rule	formula for the derivative of a product	2	12	leibniz:2	CategoryTheory:1 LinearAlgebra:1	sin revisar
+Q47501813	subadditive function	a function f such that f(a+b) ≤ f(a) + f(b)	8	12	subadditive:8	Analysis:4 Algebra:2 Probability:1 MeasureTheory:1	sin revisar
+Q588247	zero	of a holomorphic function in complex analysis	5	12	root:5	Algebra:2 LinearAlgebra:1 Order:1 RingTheory:1	sin revisar
+Q720341	arccosine	inverse of the cosine function	6	12	arcco:6	Geometry:5 Analysis:1	sin revisar
+Q7280269	Radial function	mathematical concept	6	12	radial:6	Analysis:6	sin revisar
+Q943246	Wedderburn's little theorem	theorem that every finite division ring is a field	10	12	wedderburn:10	RingTheory:10	sin revisar
+Q141573489	cyclotomic equation		11	11	cyclotomic:11	NumberTheory:11	sin revisar
+Q1425280	pivot element	non-zero element of a matrix selected by an algorithm	11	11	pivot:11	Data:5 LinearAlgebra:4 Order:2	sin revisar
+Q146591	circle of latitude	all locations on the surface of the Earth that are equidistant from the Equator or either pole	10	11	parallel:10	CategoryTheory:10	sin revisar
+Q1522579	substitution	concept in logic; syntactic transformation on formal expressions	11	11	substitution:11	MeasureTheory:7 RingTheory:4	sin revisar
+Q1569997	hyperoperation	generalization of addition, multiplication, exponentiation, tetration, etc.	10	11	hyperoperation:10	Data:10	sin revisar
+Q16251580	Diophantine set	solution of some Diophantine equation	8	11	diophantine:8	NumberTheory:8	sin revisar
+Q238231	disk	plane figure, bounded by circle	11	11	disk:11	Analysis:7 Topology:4	sin revisar
+Q242028	lambda calculus	formal system in mathematical logic	9	11	calculu:9	CategoryTheory:9	sin revisar
+Q2502253	uniqueness quantification	logical quantification stating that a statement holds for exactly one object	9	11	uniqueness:9	MeasureTheory:7 FieldTheory:2	sin revisar
+Q3042450	circular shift	shift whose last entry moved to first place (or vice versa)	4	11	rotate:4	Algebra:2 Logic:2	sin revisar
+Q30588174	prestack	fibered category satisfying full and faithful (but not necessarily effective) descent	5	11	prestack:5	CategoryTheory:5	sin revisar
+Q3527034	Cauchy's theorem	theorem in geometry	11	11	cauchy:11	Analysis:10 RingTheory:1	sin revisar
+Q429331	Lambert W function	multivalued function that is the inverse of the map z ↦ z exp(z)	1	11	omega:1	Order:1	sin revisar
+Q5570834	global element	concept in category concept	11	11	global:11	Topology:3 Algebra:2 Control:2 Geometry:2	sin revisar
+Q5610731	Grothendieck inequality	Theorem in functional analysis	11	11	grothendieck:11	CategoryTheory:10 Algebra:1	sin revisar
+Q7512415	sigma model	field theory of a point particle confined to move on a fixed manifold	7	11	model:7	Geometry:4 Computability:3	sin revisar
+Q78079020	iterated function	function created by composing a function with itself repeatedly	11	11	iterated:11	Analysis:4 CategoryTheory:2 Algebra:1 FieldTheory:1	sin revisar
+Q818895	computable number	real number that can be computed to within any desired precision by a finite, terminating algorithm	11	11	computable:11	Computability:5 Algebra:2 Order:2 CategoryTheory:1	sin revisar
+Q826704	dyadic transformation	the transformation of the unit interval that maps x to 2x mod 1	7	11	doubling:5 dyadic:2	MeasureTheory:3 Data:2 Analysis:1 Combinatorics:1	sin revisar
+Q900194	càdlàg function	function, everywhere right-continuous, such that left limits exist everywhere	1	11	cadlag:1	Topology:1	sin revisar
+Q1054475	Gaussian function	mathematical function	3	10	gaussian:3	Probability:3	sin revisar
+Q129638	Grassmannian	space of linear subspaces of a fixed vector space	7	10	grassmannian:7	RingTheory:7	sin revisar
+Q1318445	velocity factor	ratio of the speed at which a wavefront passes through the medium to the speed of light in a vacuum	10	10	vop:10	Algebra:7 Combinatorics:3	sin revisar
+Q1365087	Hadamard's inequality	theorem	10	10	hadamard:10	LinearAlgebra:10	sin revisar
+Q1414689	circumscribed sphere	sphere that contains a polyhedron and touches each of the vertices thereof	9	10	circumsphere:9	Geometry:9	sin revisar
+Q1641420	delimiter	sequence of one or more characters used to specify the boundary between separate, independent regions in plain text or o	1	10	separator:1	CategoryTheory:1	sin revisar
+Q1823781	random number	numbers that cannot be reasonably predicted	9	10	random:9	FieldTheory:5 Control:2 NumberTheory:1 RingTheory:1	sin revisar
+Q188520	classical elements	group of constituent basic elements of matter (water, earth, fire, air and sometimes aether), used to explain nature pat	10	10	classical:10	CategoryTheory:4 Basic:4 Algebra:1 Data:1	sin revisar
+Q2222575	Shell theorem	Simplified gravity models for objects inside or outside a spherically symmetrical body	10	10	shell:10	Analysis:10	sin revisar
+Q255996	equipartition theorem	theorem	4	10	equipartition:4	Order:3 Combinatorics:1	sin revisar
+Q261155	consequent	second component of a hypothetical proposition	8	10	consequence:8	CategoryTheory:6 Analysis:1 Topology:1	sin revisar
+Q2703478	mirror image	(in a plane mirror) reflected duplication of an object that appears almost identical, but is reversed in the direction p	2	10	reflection:2	GroupTheory:1 LinearAlgebra:1	sin revisar
+Q3229345	Schreier's lemma	lemma about the generating set of a subgroup	6	10	schreier:6	Combinatorics:6	sin revisar
+Q3750339	exchange matrix		10	10	backward:10	CategoryTheory:4 Topology:2 Algebra:1 Computability:1	sin revisar
+Q4176683	abcoulomb	basic physical unit of electric charge in the cgs-emu system of units	10	10	abc:10	Geometry:10	sin revisar
+Q4184950	regularity	abstract concept describing something that appears more than once with a certain space or time between the occurrences	10	10	regularity:10	Combinatorics:6 Algebra:2 SetTheory:1 Topology:1	sin revisar
+Q6058710	intrinsic equation	equation which defines a curve independently of a coordinate system	10	10	intrinsic:10	Algebra:4 Topology:3 Analysis:3	sin revisar
+Q7051819	normal floating-point number	floating-point representation of a nonzero number without leading zeroes in the significand	1	10	nor:1	Order:1	sin revisar
+Q7106411	oscillation	amount of variation between extrema of a function or sequence	5	10	oscillation:5	Analysis:5	sin revisar
+Q8066794	Zariski's lemma	In algebra	10	10	zariski:10	AlgebraicGeometry:9 RingTheory:1	sin revisar
+Q809690	barycenter	center of mass of two or more bodies that are orbiting each other, or the point around which they both or all orbit	6	10	barycenter:6	Geometry:5 Analysis:1	sin revisar
+Q9289849	conjunction elimination	inference in propositional logic	10	10	simplification:10	Analysis:3 Algebra:2 LinearAlgebra:1 Logic:1	sin revisar
+Q98142278	limit from above	one of two directions from which a limit (Q177239) can be calculated, and which may or may not be the same as limit from	1	10	limsup:1	NumberTheory:1	sin revisar
+Q1129196	tangent	ratio of lengths of opposite side and the adjacent side of a right angled triangle; a trigonometric function	3	9	tan:3	Analysis:3	sin revisar
+Q121572	literal	notation for representing a fixed value in source code	7	9	literal:7	Data:3 LinearAlgebra:1 Algebra:1 Basic:1	sin revisar
+Q1597436	coercive function	mathematical function that "grows rapidly" at the extremes of the space on which it is defined	1	9	coercive:1	Analysis:1	sin revisar
+Q176632	Conical function	mathematical function	9	9	conical:9	CategoryTheory:9	sin revisar
+Q193168	present	period of time occurring now	9	9	present:9	Combinatorics:6 Topology:2 Data:1	sin revisar
+Q2020720	grid	regular division of a surface for spatial indexing purposes	9	9	grid:9	Analysis:6 CategoryTheory:1 Combinatorics:1 Data:1	sin revisar
+Q206310	curl	differential operator describing the rotation at a point in a 3D vector field	2	9	rotation:2	CategoryTheory:2	sin revisar
+Q2138760	differentiability class	classification of functions according to the properties of their derivatives	3	9	smoothness:3	Geometry:2 RingTheory:1	sin revisar
+Q235001	median	median of a triangle	9	9	median:9	LinearAlgebra:9	sin revisar
+Q270513	Catalan number	recursive integer sequence	1	9	catalan:1	RingTheory:1	sin revisar
+Q504608	inductive set		9	9	inductive:9	Algebra:4 CategoryTheory:2 MeasureTheory:1 AlgebraicTopology:1	sin revisar
+Q6268984	join	σ-algebra generated from the union of σ-algebras	9	9	refinement:9	CategoryTheory:9	sin revisar
+Q646523	Pick's theorem	formula that the area of a planar polygon whose vertices all have integer coordinates equals the number of interior inte	9	9	pick:9	Analysis:6 Algebra:2 Data:1	sin revisar
+Q660488	Hamiltonian operator	quantum operator for the energy	6	9	hamiltonian:6	Combinatorics:6	sin revisar
+Q7391081	SMASH	cryptographic hash function	7	9	smash:7	Order:7	sin revisar
+Q10338613	mixed number	number written as sum of integer and proper fraction	8	8	mixed:8	NumberTheory:8	sin revisar
+Q1068763	rule of inference	systematic logical process capable of deriving a conclusion from hypotheses	7	8	inference:7	Topology:3 MeasureTheory:2 Analysis:1 GroupTheory:1	sin revisar
+Q112943558	Read's conjecture	mathematical theorem first conjectured by Ronald Read	8	8	read:8	Topology:6 Computability:1 Basic:1	sin revisar
+Q1186808	Lucas' theorem	Number theory theorem	6	8	luca:6	Analysis:4 NumberTheory:2	sin revisar
+Q128657469	Artin map	map in class field theory	8	8	artin:8	RingTheory:8	sin revisar
+Q1474543	Jacobian determinant	determinant of a Jacobian matrix	4	8	jacobian:4	RingTheory:3 AlgebraicGeometry:1	sin revisar
+Q1632301	Sturm's theorem	Count of the roots of a polynomial in an interval, without computing them	8	8	sturm:8	Algebra:6 NumberTheory:2	sin revisar
+Q188191	chord	geometric line segment whose endpoints both lie on the curve	7	8	chord:7	Analysis:4 Geometry:2 Combinatorics:1	sin revisar
+Q209849	flange focal distance	property of a lens mount system	8	8	register:8	Geometry:2 LinearAlgebra:2 Analysis:2 MeasureTheory:1	sin revisar
+Q2271572	Separation principle	in control theory	8	8	separation:8	Topology:5 Analysis:2 SetTheory:1	sin revisar
+Q250279	hypograph	Mathematical analysis term	8	8	hypograph:8	Analysis:6 Topology:2	sin revisar
+Q2556676	invariable plane	plane passing through the barycenter of a planetary system, perpendicular to its angular momentum vector	6	8	laplacian:6	Analysis:6	sin revisar
+Q257387	Vitali set	subset of [0,1] whose intersection with any translation of the set of rationals is a singleton; elementary example of a 	5	8	vitali:5	MeasureTheory:5	sin revisar
+Q334508	nabla operator	vector's differential operator	8	8	operator:8	SetTheory:3 Order:2 Analysis:2 Data:1	sin revisar
+Q3527011	Beck's theorem		8	8	beck:8	CategoryTheory:8	sin revisar
+Q3527182	Wielandt theorem	Characterization of the gamma function	8	8	wielandt:8	GroupTheory:8	sin revisar
+Q3799068	inradius	radius of the inscribed circle of a triangle	6	8	inradiu:6	Geometry:6	sin revisar
+Q4669982	abstraction	process of extracting the underlying essence of a mathematical concept	8	8	abstraction:8	Data:5 AlgebraicGeometry:1 Analysis:1 CategoryTheory:1	sin revisar
+Q470877	Stirling's approximation	approximation for factorials	2	8	stirling:2	Analysis:2	sin revisar
+Q5177154	counting problem	notion in computational complexity theory	8	8	counting:8	Combinatorics:7 Analysis:1	sin revisar
+Q5609384	Grinberg's theorem	on Hamiltonian cycles in planar graphs	8	8	grinberg:8	LinearAlgebra:8	sin revisar
+Q592911	quantifier	logical operator specifying how many entities in the domain of discourse that satisfy an open formula	8	8	quantifier:8	ModelTheory:6 LinearAlgebra:1 Computability:1	sin revisar
+Q6015420	increment theorem		8	8	increment:8	Combinatorics:5 Probability:2 Topology:1	sin revisar
+Q78076954	composite function	function created by executing two functions one after the other	8	8	composite:8	CategoryTheory:4 NumberTheory:2 AlgebraicTopology:2	sin revisar
+Q7835331	transposition	rule in propositional logic allowing an antecedent and consequent to be transposed if they are also both negated	6	8	transposition:6	GroupTheory:6	sin revisar
+Q847339	Cauchy's equation	empirical relationship between the refractive index and wavelength	8	8	cauchy:8	Topology:4 Algebra:3 Analysis:1	sin revisar
+Q85808992	Theorem of transition	theorem about commutative rings and subrings	8	8	transition:8	AlgebraicGeometry:5 Geometry:1 Computability:1 Topology:1	sin revisar
+Q12321	palindrome	word, phrase, number, or other sequence of units that may be read the same way in either direction	2	7	palindrome:2	Data:2	sin revisar
+Q1274703	hyperbolic tangent	hyperbolic function	5	7	tanh:5	Analysis:5	sin revisar
+Q147572	arc	closed segment of a differentiable curve	7	7	arc:7	Analysis:7	sin revisar
+Q1562080	inverse hyperbolic cosine	inverse of the hyperbolic cosine function	6	7	arcosh:6	Analysis:6	sin revisar
+Q17027577	Horn function		6	7	horn:6	AlgebraicTopology:6	sin revisar
+Q1995468	Hölder's theorem	result on gamma function	5	7	holder:5	Topology:5	sin revisar
+Q2004680	concave set		2	7	concave:2	Analysis:2	sin revisar
+Q22808481	hypersphere	multidimensional generalization of a sphere in Euclidean space; an n-dimensional object embedded in an (n + 1)-dimension	2	7	sphere:2	Geometry:2	sin revisar
+Q23008367	reference point	point or level relative to which a physical measurement is taken	1	7	measured:1	Geometry:1	sin revisar
+Q2555508	topness	flavor quantum number; the difference between the number of top quarks and number of top antiquarks present in a particl	4	7	truth:4	CategoryTheory:4	sin revisar
+Q3052356	Bicomplex number	commutative, associative algebra of two complex dimensions	7	7	bicomplex:7	Algebra:7	sin revisar
+Q3290922	parametrization	choice of the parameters of a scientific model or a geometric object	1	7	parametrization:1	Data:1	sin revisar
+Q3491998	cofinite subset	being a subset whose complement is a finite set	2	7	cofinite:2	Analysis:1 Order:1	sin revisar
+Q3527118	Mahler's theorem	theorem in p-adic analysis	2	7	mahler:2	NumberTheory:2	sin revisar
+Q523607	interpretation	assignment of meaning to the symbols of a formal language	7	7	interpretation:7	ModelTheory:7	sin revisar
+Q52927916	concavity	geometric property	7	7	concavity:7	Analysis:6 Topology:1	sin revisar
+Q583960	homothetic transformation	a special geometric transformation that enlarges (increases) or shrinks (diminishes) objects by a scale factor that is t	4	7	homothety:4	LinearAlgebra:3 Geometry:1	sin revisar
+Q620614	assignment problem	combinatorial optimization problem	7	7	assignment:7	MeasureTheory:3 RingTheory:3 GroupTheory:1	sin revisar
+Q674517	arcsine	inverse of the sine function	1	7	arcsin:1	Analysis:1	sin revisar
+Q7496252	shift theorem	mathematical theorem	7	7	shift:7	Dynamics:3 Algebra:1 CategoryTheory:1 LinearAlgebra:1	sin revisar
+Q7596765	stage	term in hydrology for the water level in a river or stream with respect to a chosen reference height	7	7	stage:7	CategoryTheory:5 Topology:2	sin revisar
+Q8028529	Witt's theorem	basic result in the algebraic theory of quadratic forms, on extending isometries	6	7	witt:6	RingTheory:6	sin revisar
+Q849530	Carmichael number	composite number in number theory	2	7	carmichael:2	NumberTheory:2	sin revisar
+Q864333	transcendental function	analytic function that does not satisfy a polynomial equation	3	7	transcendental:3	FieldTheory:3	sin revisar
+Q865371	Mahler's inequality	inequality relating geometric mean of two finite sequences of positive numbers to the sum of each separate geometric mea	7	7	mahler:7	NumberTheory:7	sin revisar
+Q10361123	dichotomy	splitting of a whole into exactly two non-overlapping parts	6	6	dichotomy:6	Basic:2 Combinatorics:1 Data:1 FieldTheory:1	sin revisar
+Q1136176	pseudoprime	positive integer which is a false positive on a heuristic or probabilistic primality test	1	6	pseudoprime:1	NumberTheory:1	sin revisar
+Q115517529	oper	principal connection with a reduction of the structure group to a Borel subgroup	5	6	oper:5	Algebra:5	sin revisar
+Q118175843	Kleitman's lemma		6	6	kleitman:6	Combinatorics:6	sin revisar
+Q118347482	productive set		1	6	productive:1	Data:1	sin revisar
+Q12105293	Mayer problem		6	6	mayer:6	CategoryTheory:5 Topology:1	sin revisar
+Q1340162	cross-multiplication	mathematical operation	5	6	three:5	CategoryTheory:3 GroupTheory:2	sin revisar
+Q140164295	telescoping	property of an iterated binary operation in which successive operations undergo telescoping reduction	6	6	telescoping:6	Algebra:5 Combinatorics:1	sin revisar
+Q1453551	parent pointer tree	tree data structure in which each node has a pointer to its parent node	1	6	tree:1	Combinatorics:1	sin revisar
+Q167312	dualism	philosophical or religious belief in two fundamental substances or principles, which often oppose each other	6	6	duality:6	Algebra:4 CategoryTheory:1 RepresentationTheory:1	sin revisar
+Q173091	transcendental number	number that cannot be found as a result of an algebraic equation with integer coefficients	6	6	transcendental:6	FieldTheory:4 RingTheory:2	sin revisar
+Q188966	contract bridge	card game	5	6	bridge:5	Combinatorics:4 NumberTheory:1	sin revisar
+Q230967	parity	property of being an odd or even number	6	6	parity:6	GroupTheory:5 NumberTheory:1	sin revisar
+Q253897	couple	system of forces with a resultant moment but no resultant force	1	6	couple:1	RingTheory:1	sin revisar
+Q29539	mass density	mass of a sample, material or body divided by its volume	2	6	density:2	NumberTheory:1 MeasureTheory:1	sin revisar
+Q320809	braid	complex structure or pattern	4	6	braid:4	CategoryTheory:3 GroupTheory:1	sin revisar
+Q3527069	Engel's theorem	theorem in Lie representation theory	2	6	engel:2	Algebra:2	sin revisar
+Q4231648	continuant	multivariate polynomial representing the determinant of a tridiagonal matrix	6	6	continuant:6	Algebra:6	sin revisar
+Q5047039	Cartan's lemma	Mathematical Lemma	6	6	cartan:6	Algebra:3 Analysis:3	sin revisar
+Q5176824	countable chain condition	condition in order theory and topology	6	6	ccc:6	CategoryTheory:6	sin revisar
+Q525	Sun	star at the centre of the Solar System	6	6	sol:6	Algebra:6	sin revisar
+Q5741903	Hermite's identity	Gives the value of a summation involving the floor function	4	6	hermite:4	RingTheory:3 NumberTheory:1	sin revisar
+Q5988037	Idealizer		5	6	idealizer:5	Algebra:5	sin revisar
+Q6030066	infinity symbol	mathematical symbol ∞ (U+221E), lemniscate	6	6	infinity:6	FieldTheory:3 Algebra:1 Analysis:1 Topology:1	sin revisar
+Q609057	unification	algorithmic process of solving equations between symbolic expressions	6	6	unification:6	Algebra:4 Analysis:1 CategoryTheory:1	sin revisar
+Q62531	frequency spectrum	representation of a quantity as a function of frequency or wavelength	1	6	spectrum:1	Analysis:1	sin revisar
+Q630650	Ramanujan–Petersson conjecture	conjecture	6	6	ramanujan:6	NumberTheory:6	sin revisar
+Q6443980	Kummer's theorem	Gives the p-adic valuation of a binomial coefficient	2	6	kummer:2	NumberTheory:2	sin revisar
+Q6664277	local asymptotic normality		4	6	lan:4	CategoryTheory:4	sin revisar
+Q6786867	mathematical principles of reinforcement	constitute of a set of mathematical equations set forth by Peter Killeen and his colleagues attempting to describe and p	4	6	mpr:4	CategoryTheory:4	sin revisar
+Q680796	cofactor		1	6	cofactor:1	Algebra:1	sin revisar
+Q7081688	Oka's lemma	Theorem in mathematics about plurisubharmonic functions	6	6	oka:6	RingTheory:6	sin revisar
+Q7249519	Prokhorov's theorem	relates tightness of measures to relative compactness in the space of probability measures	2	6	prokhorov:2	MeasureTheory:2	sin revisar
+Q8216221	uncorrelatedness	in probability theory	6	6	uncorrelated:6	Probability:6	sin revisar
+Q826930	heart	symbol representing the heart	6	6	heart:6	CategoryTheory:5 FieldTheory:1	sin revisar
+Q846537	generalized function	generalizations of mathematical functions, elements of a space that extends a function space	5	6	generalized:5	Analysis:1 CategoryTheory:1 Order:1 Probability:1	sin revisar
+Q98668944	Teichmüller's Theorem		6	6	teichmuller:6	RingTheory:6	sin revisar
+Q1070094	subnormal number	floating-point values with a special representation that denote numbers very close to 0	2	5	subnormal:2	GroupTheory:2	sin revisar
+Q1122491	computational mathematics	area of mathematics	5	5	computation:5	Data:4 Control:1	sin revisar
+Q11325816	page number	number itself, which may appear in various places on the page	5	5	page:5	Algebra:5	sin revisar
+Q1188392	Zeckendorf's theorem	theorem that every positive integer can be represented uniquely as the sum of one or more distinct Fibonacci numbers in 	3	5	zeckendorf:3	Data:3	sin revisar
+Q130493784	lower matching number	minimum size of a maximal matching	5	5	saturation:5	Algebra:3 CategoryTheory:2	sin revisar
+Q136707471	Pasting theorem		5	5	pasting:5	CategoryTheory:4 SetTheory:1	sin revisar
+Q15895745	Borel function		1	5	borel:1	MeasureTheory:1	sin revisar
+Q16636852	van der Waerden Permanent Conjecture		1	5	permanent:1	LinearAlgebra:1	sin revisar
+Q1668861	Picard theorem	theorem	5	5	picard:5	Analysis:5	sin revisar
+Q16937282	nines	informal, logarithmic notation for proportions just below unity	3	5	nine:3	Data:2 Combinatorics:1	sin revisar
+Q18335820	circular arc	segment of a circle	1	5	arc:1	Analysis:1	sin revisar
+Q185836	age of a person	time elapsed since a person was born	4	5	age:4	ModelTheory:4	sin revisar
+Q1886131	random seed	value used to initialize a pseudo-random number generator	4	5	seed:4	Algebra:3 Control:1	sin revisar
+Q190291	displacement	vector that is the shortest distance from the initial to the final position of a point P	2	5	displacement:2	LinearAlgebra:2	sin revisar
+Q204034	hyperbolic function	mathematical function related with trigonometric functions	5	5	hyperbolic:5	LinearAlgebra:5	sin revisar
+Q205692	Poisson distribution	discrete probability distribution	1	5	small:1	AlgebraicGeometry:1	sin revisar
+Q214850	gauge theory	physical theory having a gauge symmetry	5	5	gauge:5	Analysis:5	sin revisar
+Q2232211	abvolt	unit for voltage measurement; 10 nanovolts	4	5	abv:4	Algebra:4	sin revisar
+Q2397775	Krull's theorem	theorem stating that a nonzero ring has a maximal left (or right) ideal	3	5	krull:3	FieldTheory:3	sin revisar
+Q254465	similarity	idea in geometry	4	5	similarity:4	Topology:3 LinearAlgebra:1	sin revisar
+Q26262125	y-axis	coordinate axis in measure spaces	5	5	axi:5	Analysis:2 MeasureTheory:2 Basic:1	sin revisar
+Q3138724	hierarchy	preorder defined on a set	5	5	hierarchy:5	SetTheory:4 Topology:1	sin revisar
+Q3150667	indeterminate	variable that is not known or solvable	5	5	indeterminate:5	Algebra:2 RingTheory:1 Computability:1 FieldTheory:1	sin revisar
+Q31924	connection	geometrical idea of transporting data along a curve or family of curves in a parallel and consistent manner	5	5	connection:5	Geometry:3 Data:2	sin revisar
+Q3268495	facet	flat cut surface of a gem, crystal, etc.	5	5	facet:5	Analysis:5	sin revisar
+Q332775	absorbing set	set that can be "inflated" to reach any point	4	5	absorbing:4	Algebra:4	sin revisar
+Q3539534	semantic triple	atomic data entity in the Resource Description Framework (RDF) data model; set of three entities that codifies a stateme	3	5	triple:3	Algebra:2 Geometry:1	sin revisar
+Q3754024	critical value	mathematical values with different meanings by domain	4	5	threshold:4	Analysis:2 Topology:1 Probability:1	sin revisar
+Q385019	Liouville function	arithmetic function	3	5	liouville:3	FieldTheory:3	sin revisar
+Q4548693	structural rule	inference rule that does not refer to any logical connective, but instead operates on the judgment or sequents directly	5	5	structural:5	CategoryTheory:4 LinearAlgebra:1	sin revisar
+Q45867	parallelogram	quadrilateral with two pairs of parallel sides	4	5	parallelogram:4	Geometry:4	sin revisar
+Q484637	linear equation	equation that does not involve powers or products of variables	1	5	linear:1	Combinatorics:1	sin revisar
+Q50706	square-free integer	integer that cannot be divided by a square number	2	5	squarefree:2	Data:1 RingTheory:1	sin revisar
+Q5164368	constraint algorithm	method for satisfying the Newtonian motion of a rigid body which consists of mass points	5	5	constraint:5	LinearAlgebra:2 CategoryTheory:2 NumberTheory:1	sin revisar
+Q5494135	Fraïssé's theorem		5	5	fraisse:5	ModelTheory:5	sin revisar
+Q577211	practical number	a number such that it and all smaller numbers may be represented as sums of its divisors	4	5	practical:3 summable:1	Control:2 Topology:1 Algebra:1	sin revisar
+Q649469	modularity theorem	theorem in mathematics	5	5	epsilon:4 modularity:1	Topology:4 NumberTheory:1	sin revisar
+Q6552215	Lindelöf's lemma	lemma that every open subset of the reals is a countable union of open intervals	5	5	lindelof:5	Topology:5	sin revisar
+Q663208	rounding	replacing numerical value by another approximately equal	2	5	rounding:2	Algebra:2	sin revisar
+Q721237	alcohol by volume	measure of how much alcohol is in a beverage	4	5	abv:4	Algebra:4	sin revisar
+Q7249998	contrapositive	proposition of the form ¬Q→¬P; equivalent to P→Q under classical logic	4	5	contrapositive:4	Data:2 Algebra:1 Topology:1	sin revisar
+Q746007	cumulant	set of quantities that provide an alternative to the moments of the distribution in probability theorie	5	5	cumulant:5	Probability:5	sin revisar
+Q7917710	Veblen's theorem	theorem in graph theory	5	5	veblen:5	SetTheory:5	sin revisar
+Q794042	Bessel's inequality	theorem	1	5	bessel:1	Analysis:1	sin revisar
+Q82435	Euler's number	mathematical constant; limit of (1 + 1/n)^n as n approaches infinity; transcendental number approximately equal 2.718281	1	5	euler:1	Algebra:1	sin revisar
+Q827688	Poisson's equation	partial differential equation of elliptic type with broad utility in mechanical engineering and theoretical physics	5	5	poisson:5	Analysis:5	sin revisar
+Q842189	wave function collapse	process by which a quantum system takes on a definitive state	1	5	collapse:1	Data:1	sin revisar
+Q848810	Kronecker's theorem	theorem	4	5	kronecker:4	LinearAlgebra:4	sin revisar
+Q905326	digamma function	logarithmic derivative of the gamma function	2	5	digamma:2	Analysis:2	sin revisar
+Q965330	project management estimation	in project management, rough calculation or informed guess	5	5	estimated:3 estimate:2	Topology:3 Algebra:1 Analysis:1	sin revisar
+Q1143357	oracle machine	abstract machine used to study decision problems	2	4	oracle:2	Computability:2	sin revisar
+Q1156020	regularization	procedure to render finite infinite integrals arising in perturbation theory	1	4	regularization:1	Order:1	sin revisar
+Q116273946	circulant determinant	mathematical concept	3	4	circulant:3	LinearAlgebra:3	sin revisar
+Q118110536	the hat	aperiodic monotile	4	4	hat:4	Topology:4	sin revisar
+Q1207412	transclusion	technical method of including some or all of one stored document in another document, without having to copy the data it	4	4	substitution:4	RingTheory:3 MeasureTheory:1	sin revisar
+Q13526900	floating-point significand	part of a floating-point number representation containing its significant digits	4	4	coefficient:4	Analysis:4	sin revisar
+Q1373197	child vertex	direct descendent in a rooted tree	4	4	child:4	Data:2 Order:1 Combinatorics:1	sin revisar
+Q1755722	large eddy simulation	mathematical model for turbulence	3	4	les:3	RingTheory:3	sin revisar
+Q1799665	modulo operation	computational operation	3	4	modulo:3	CategoryTheory:2 MeasureTheory:1	sin revisar
+Q205034	perpendicularity	property of being at a right angle (90 degrees)	4	4	perpendicular:4	LinearAlgebra:3 Geometry:1	sin revisar
+Q2377256	syzygy	relation between the generators of a module	2	4	syzygy:2	CategoryTheory:2	sin revisar
+Q2494915	unipotent element	one plus nilpotent element	3	4	unipotent:3	CategoryTheory:2 LinearAlgebra:1	sin revisar
+Q25378060	McShane's lemma		4	4	mcshane:4	Analysis:4	sin revisar
+Q278090	prior probability	probability distribution that would express one's uncertainty before some evidence is taken into account	3	4	prior:3	Probability:2 FieldTheory:1	sin revisar
+Q2981012	Monge's theorem	theorem that the intersections of the 3 pairs of external tangent lines to 3 circles are collinear	4	4	monge:4	Geometry:4	sin revisar
+Q321703	premise	statement that an argument claims will induce or justify a conclusion	2	4	hypothesi:2	CategoryTheory:1 Topology:1	sin revisar
+Q3235671	Newton's first law	physical law that the natural behavior of a body is to move in a straight line at constant speed, such that there are no	4	4	inertia:4	NumberTheory:4	sin revisar
+Q3241753	road number	number or alphanumeric characters assigned to a stretch of public roadway often dependent on the type of road	4	4	route:4	MeasureTheory:2 NumberTheory:1 Topology:1	sin revisar
+Q3527022	Borel's lemma	mathematical theorem	4	4	borel:4	MeasureTheory:4	sin revisar
+Q371685	Kraft's inequality	necessary and sufficient condition for the existence of a prefix code for a given set of codeword lengths	1	4	kraft:1	InformationTheory:1	sin revisar
+Q3927329	4-tuple	tuple of specific length (tuple length n=4)	3	4	quadruple:3	CategoryTheory:3	sin revisar
+Q4769942	scaling dimension	in quantum field theory, the eigenvalue of a local operator under spacetime dilatations	4	4	dimension:4	Analysis:3 AlgebraicTopology:1	sin revisar
+Q4849964	balance equation		4	4	balance:4	Data:3 Probability:1	sin revisar
+Q4936241	Bochner identity	an identity concerning harmonic maps between Riemannian manifolds	4	4	bochner:4	MeasureTheory:4	sin revisar
+Q4986445	Tits building	mathematical structure	4	4	building:4	Algebra:3 Geometry:1	sin revisar
+Q5532678	generic property	formal definition of a property shared by almost all objects of a specific type	4	4	generic:4	Order:2 CategoryTheory:1 Control:1	sin revisar
+Q55607862	Cohn's theorem		4	4	cohn:4	FieldTheory:4	sin revisar
+Q5593569	Gram's theorem	in algebraic geometry	4	4	gram:4	Analysis:4	sin revisar
+Q7272004	Quillen–Suslin theorem	theorem in commutative algebra that every finitely generated projective module over a polynomial ring is free	4	4	serre:4	NumberTheory:3 CategoryTheory:1	sin revisar
+Q78054942	preordered set	set equipped with a preorder	4	4	preordered:4	CategoryTheory:2 AlgebraicTopology:1 Order:1	sin revisar
+Q831092	beth number	ordered sequence of transfinite numbers used to represent the cardinality (or size) of continuous sets	4	4	number:3 beth:1	Data:2 MeasureTheory:1 SetTheory:1	sin revisar
+Q845533	pre-exponential factor	pre-exponential constant in the Arrhenius equation in Chemical Kinetics	1	4	factor:1	Dynamics:1	sin revisar
+Q863349	mathematical singularity	in general a point at which a given mathematical object is not defined, or a point of an exceptional set where it fails 	2	4	singularity:2	Probability:2	sin revisar
+Q864818	abampere	unit of electric current in the emu-cgs system	4	4	aba:4	Geometry:2 LinearAlgebra:2	sin revisar
+Q91305654	discontinuous function	function which exhibits at least one discontinuity	2	4	discontinuou:2	Topology:2	sin revisar
+Q948386	Dirichlet function	indicator function of rational numbers	4	4	dirichlet:4	NumberTheory:4	sin revisar
+Q105525625	punctured set	set with one point removed	3	3	deleted:2 punctured:1	Combinatorics:2 Analysis:1	sin revisar
+Q106577791	Besicovitch inequality		3	3	besicovitch:3	MeasureTheory:3	sin revisar
+Q1068976	Hilbert's Nullstellensatz	Theorem: polynomials without common complex zeros generate the unit ideal	2	3	nullstellensatz:2	Combinatorics:2	sin revisar
+Q1097021	Minkowski's theorem	symmetric convex set	1	3	minkowski:1	NumberTheory:1	sin revisar
+Q1192782	L	complexity class (logarithmic space)	1	3	logspace:1	NumberTheory:1	sin revisar
+Q1206853	Lagrange's identity	mathematical identity in algebra	3	3	lagrange:3	LinearAlgebra:2 Analysis:1	sin revisar
+Q121335944	Skolem function	concept in model theory	1	3	skolem:1	Logic:1	sin revisar
+Q122889656	Abundancy	mathematical concept	3	3	abundancy:3	NumberTheory:3	sin revisar
+Q125132780	Dirac's theorem	theore that any graph with chromatic number at least 4 contains a subdivision of K₄	3	3	dirac:3	MeasureTheory:2 Probability:1	sin revisar
+Q1267137	overlap	length of railway track left clear beyond a stop signal as a safety measure	2	3	overlap:2	Data:1 GroupTheory:1	sin revisar
+Q1322786	exterior	term in topology	1	3	exterior:1	LinearAlgebra:1	sin revisar
+Q1330377	Burnside's lemma	lemma stating that, given a finite group G acting on a set, the number of orbits times |G| equals the sum (over every el	1	3	burnside:1	GroupTheory:1	sin revisar
+Q1361393	Lusin's theorem	theorem	3	3	lusin:3	MeasureTheory:3	sin revisar
+Q1412436	Cauchy problem	mathematical problem	3	3	cauchy:3	Topology:2 Analysis:1	sin revisar
+Q15846555	completeness	fundamental concept in metalogic, and the term may be used without qualification with differing meanings depending on th	3	3	completeness:3	Analysis:1 RingTheory:1 Topology:1	sin revisar
+Q1681619	univariate	involving a single variable	3	3	univariate:3	Algebra:1 RingTheory:1 Data:1	sin revisar
+Q16963779	instant	infinitesimal moment in time, moment whose passage is instantaneous	2	3	moment:2	MeasureTheory:1 Probability:1	sin revisar
+Q1778247	codimension	difference between the dimensions of mathematical object and a sub-object	3	3	codimension:3	Topology:2 AlgebraicTopology:1	sin revisar
+Q18212341	Sylvester inequality	inequality on ranks	3	3	sylvester:3	Geometry:2 RingTheory:1	sin revisar
+Q185816	analogy	inference or argument from one particular to another particular	3	3	analogy:3	Combinatorics:1 NumberTheory:1 Topology:1	sin revisar
+Q187631	mathematical interpolation	method for constructing new data points between known data points	3	3	interpolation:3	Analysis:2 LinearAlgebra:1	sin revisar
+Q1972636	dihedral	angle between each wing or tail surface within a pair	1	3	dihedral:1	Algebra:1	sin revisar
+Q204570	information entropy	expected value of the amount of information delivered by a message	1	3	entropy:1	Analysis:1	sin revisar
+Q2114712	readability test	formulae for evaluating the readability of text	3	3	readability:3	RepresentationTheory:3	sin revisar
+Q2514597	transposition	swapping of positions of the conductors of a transmission line, in order to reduce crosstalk and otherwise improve trans	1	3	transposition:1	GroupTheory:1	sin revisar
+Q3001145	current	contnuous linear functional on the space of compactly supported differential forms	3	3	current:3	Computability:3	sin revisar
+Q306786	beta decay	emmision of beta particles by a decaying radioactive atom	2	3	decay:2	NumberTheory:1 Analysis:1	sin revisar
+Q3234988	ampersand curve	plane quartic curve having 28 real bitangents	3	3	curve:3	AlgebraicGeometry:3	sin revisar
+Q3748375	Jacobi's formula	formula for the derivative of the determinant of a matrix	3	3	jacobi:3	RingTheory:2 NumberTheory:1	sin revisar
+Q3828633	Conics	geometrical text by Apollonius of Perga	3	3	conic:3	Geometry:2 Analysis:1	sin revisar
+Q467511	deficient number	natural integer number for which the sum of its proper strict divisors (other than itself) is less than the number itsel	2	3	deficient:2	NumberTheory:2	sin revisar
+Q4801057	artificial bee colony algorithm	optimization algorithm based on the intelligent foraging behaviour of honey bee swarm	3	3	abc:3	Geometry:3	sin revisar
+Q5011347	CHSH inequality	testable implication of local hidden variable theories	2	3	chsh:2	Algebra:2	sin revisar
+Q5155090	Commutation theorem	identifies the commutant of a specific von Neumann algebra acting on a Hilbert space	3	3	commutation:3	CategoryTheory:3	sin revisar
+Q5282247	Disintegration theorem	theorem in measure theory	3	3	disintegration:3	Probability:3	sin revisar
+Q5507285	Fuglede's theorem	Theorem	3	3	fuglede:3	Analysis:3	sin revisar
+Q55362336	Pareto frontier	set of parameterizations which optimizes a system	3	3	pareto:3	Probability:3	sin revisar
+Q5567394	Gleason's theorem	theorem giving a justification of the Born rule in quantum mechanics	3	3	gleason:3	Topology:3	sin revisar
+Q56297168	Wallis’ inequality		3	3	walli:3	Analysis:3	sin revisar
+Q578555	Noether's theorem	physical law that differentiable symmetries correspond to conservation laws	1	3	noether:1	LinearAlgebra:1	sin revisar
+Q6501221	control theory	branch of engineering and mathematics that deals with the behavior of dynamical systems with inputs, and how their behav	3	3	control:3	Analysis:2 RingTheory:1	sin revisar
+Q7280274	radial set	Topological set	3	3	radial:3	Analysis:3	sin revisar
+Q753651	selection	list of items on which user operations will take place	3	3	selection:3	LinearAlgebra:2 Algebra:1	sin revisar
+Q7847845	truncated 120-cell	uniform 4-polytope	3	3	thi:3	CategoryTheory:2 Topology:1	sin revisar
+Q7883028	undefined	mathematical concept which does not have meaning and so which is not assigned an interpretation	3	3	undefined:3	Analysis:2 CategoryTheory:1	sin revisar
+Q897769	König's theorem	theorem showing that maximum matching and minimum vertex cover are equivalent for bipartite graphs	2	3	konig:2	Order:2	sin revisar
+Q911141	Kronecker's lemma	lemma	3	3	kronecker:3	LinearAlgebra:3	sin revisar
+Q9363269	Leibniz' theorem		3	3	leibniz:3	Analysis:1 CategoryTheory:1 LinearAlgebra:1	sin revisar
+Q1043778	Carmichael function	arithmetic function	1	2	carmichael:1	NumberTheory:1	sin revisar
+Q107303302	symplectic map	a broader concept than an area-preserving map	2	2	symplectic:2	Analysis:2	sin revisar
+Q1126412	quasiconvex function	function for which every set of inputs whose value is below a given threshold is convex	2	2	quasiconvex:2	Analysis:2	sin revisar
+Q1129629	Lemoine's conjecture	conjecture that any odd integer >5 equals an odd prime plus an even semiprime	2	2	levy:2	Probability:1 MeasureTheory:1	sin revisar
+Q11387554	proof assistant	software tool to assist with the development of formal proofs by human-machine collaboration	1	2	prover:1	Data:1	sin revisar
+Q11413	go	board game for two players that originated in China more than 2,500 years ago	2	2	goe:2	Order:1 Analysis:1	sin revisar
+Q11651	electric current	flow of electric charge	2	2	current:2	Computability:2	sin revisar
+Q118220479	Catalan's identity	mathematical identity, generalizing Cassini's: F_n^2 - F_{n - r}F_{n + r} = (-1)^{n - r}F_r^2	1	2	catalan:1	Combinatorics:1	sin revisar
+Q118372164	Tutte conjecture	disproved conjecture by W. T. Tutte that there are no 3-connected nonhamiltonian bicubic graphs	2	2	tutte:2	Combinatorics:2	sin revisar
+Q122981	anagram	word or phrase formed by rearranging the letters of a different word or phrase	1	2	transposition:1	GroupTheory:1	sin revisar
+Q129064812	de Rham theorem	theorem	2	2	rham:2	RingTheory:2	sin revisar
+Q134574613	Joyal's theorem		2	2	joyal:2	AlgebraicTopology:2	sin revisar
+Q1386491	Pell number	denominator of close rational approximation to the square root of 2	2	2	pell:2	NumberTheory:2	sin revisar
+Q1398443	Faulhaber's formula	expression for sums of powers	2	2	faulhaber:2	NumberTheory:2	sin revisar
+Q140136520	automated theorem prover	software tool to automatically generate formal proofs	1	2	prover:1	Data:1	sin revisar
+Q140645	scalar function of scalar variable	function that takes number and gives another number	2	2	numeric:2	Data:2	sin revisar
+Q1418132	Smith number	type of composite integer	2	2	smith:2	LinearAlgebra:2	sin revisar
+Q16000128	Jacobson's conjecture	mathematical problem in ring theory	2	2	jacobson:2	AlgebraicGeometry:1 FieldTheory:1	sin revisar
+Q17007827	discretization	process of transferring continuous functions into discrete counterparts	2	2	discretization:2	Topology:2	sin revisar
+Q17103352	maximum power transfer theorem	theorem results in maximum power transfer, and not maximum efficiency	2	2	jacobi:2	NumberTheory:2	sin revisar
+Q1796708	NTRUSign	NTRU public-key cryptography digital signature algorithm	2	2	pass:2	Geometry:1 RingTheory:1	sin revisar
+Q1827325	Liouville's formula	expresses the determinant of a solution of a 1st-order system of homogeneous linear differential equations	2	2	liouville:2	FieldTheory:1 NumberTheory:1	sin revisar
+Q183273	geographical pole	point of intersection of a celestial body’s surface and its rotational axis	1	2	pole:1	NumberTheory:1	sin revisar
+Q19360789	Alexander's theorem		2	2	alexander:2	Topology:2	sin revisar
+Q2115578	Hasse principle	principle that an integer equation can be solved by piecing together modular solutions	2	2	hasse:2	Algebra:1 RingTheory:1	sin revisar
+Q2313686	automorphic number	a natural number whose square "ends" in the same digits as the number itself	2	2	automorphic:1 circular:1	Algebra:1 Order:1	sin revisar
+Q2503280	Lucas number	number in the Lucas sequence where each number is the sum of the two preceding it (2, 1, 3, 4, 7, 11, ...)	2	2	luca:2	RingTheory:1 NumberTheory:1	sin revisar
+Q272621	Dirac equation	relativistic quantum mechanical wave equation	2	2	dirac:2	MeasureTheory:1 NumberTheory:1	sin revisar
+Q3042004	hyperbolic set		2	2	hyperbolic:2	LinearAlgebra:2	sin revisar
+Q3067837	Features from Accelerated Segment Test	corner detection method	2	2	fast:2	SetTheory:2	sin revisar
+Q318714	Abel's identity	equation that expresses the Wronskian of two solutions of a homogeneous second-order linear ordinary differential equati	2	2	abel:2	Analysis:2	sin revisar
+Q3298493	MathOverflow	Stack Exchange site for professional mathematicians	2	2	mathoverflow:2	LinearAlgebra:2	sin revisar
+Q332985	lineage	sequence of species that form a line of descent	2	2	descent:2	GroupTheory:2	sin revisar
+Q3435924	computational problem	problem of finding an effective algorithm which solves a given problem	2	2	computational:2	Algebra:1 Data:1	sin revisar
+Q3730881	Kolmogorov equations	equations characterizing continuous-time Markov processes	2	2	kolmogorov:2	Probability:2	sin revisar
+Q4672384	Acceptance set		2	2	acceptance:2	Computability:2	sin revisar
+Q4812186	asymptotic formula	approximation for a function in a certain limit (generally as some parameter approaches infinity)	2	2	asymptotic:2	NumberTheory:2	sin revisar
+Q5037753	Carathéodory conjecture	conjecture in differential geometry	2	2	caratheodory:2	MeasureTheory:2	sin revisar
+Q522344	score	in games, abstract quantity associated with a player or team, which tracks the results of game play and determines the w	2	2	score:2	Order:2	sin revisar
+Q5427183	FTCS scheme	method for numerically solving parabolic partial differential equations	2	2	ftc:2	MeasureTheory:2	sin revisar
+Q5515505	Gabriel's theorem	classifies quivers of finite type in terms of Dynkin diagrams	2	2	gabriel:2	RingTheory:2	sin revisar
+Q623818	binary search tree	data structure in tree form with 0, 1, or 2 children per node, sorted for fast lookup	2	2	bst:2	Data:2	sin revisar
+Q6518929	Lehmer's conjecture	mathematical conjecture	2	2	lehmer:2	NumberTheory:2	sin revisar
+Q733169	Graham's number	enormously large number; upper bound solution to a Ramsey theory problem	2	2	graham:2	NumberTheory:2	sin revisar
+Q738328	Hausdorff maximal principle	mathematical statement	1	2	kuratowski:1	SetTheory:1	sin revisar
+Q77985916	covariant vector	covariant tensor of rank 1	1	2	covector:1	LinearAlgebra:1	sin revisar
+Q7856594	Turán's inequalities	inequality for Legendre polynomials	2	2	turan:2	Combinatorics:2	sin revisar
+Q8078	logic	study of correct reasoning	2	2	logic:2	Algebra:2	sin revisar
+Q81365	decimal	numeral system with ten as its base	1	2	decimal:1	Basic:1	sin revisar
+Q865811	distribution	a continuous functional on a space of test functions (Schwartz space), which generalizes the concept of locally integrab	2	2	generalized:2	Analysis:1 Probability:1	sin revisar
+Q9391599	tombstone	symbol used in mathematics and typography	2	2	halmo:2	MeasureTheory:2	sin revisar
+Q944228	Hardy's inequality	inequality relating a real number greater than 1 and a sequence of non-negative numbers	2	2	hardy:2	NumberTheory:2	sin revisar
+Q96373175	Barrelled set		2	2	barrelled:2	Analysis:2	sin revisar
+Q96405669	signed set	ordered pair of disjoint sets	2	2	signed:2	Topology:1 Geometry:1	sin revisar
+Q97226587	Leibniz formula for π	alternating series which converges to π/4	1	2	leibniz:1	CategoryTheory:1	sin revisar
+Q109942027	extensionally defined set	in mathematics, a set, whose membership is given by listing all elements	1	1	extensional:1	SetTheory:1	sin revisar
+Q11229	percent	dimensionless unit equivalent to 0.01	1	1	percent:1	Geometry:1	sin revisar
+Q11455	special relativity	physical theory of measurement in an inertial frame of reference proposed in 1905 by Albert Einstein	1	1	str:1	Topology:1	sin revisar
+Q1162538	plaintext	unencrypted information, as opposed to information encrypted for storage or transmission; usually means unencrypted info	1	1	clear:1	Computability:1	sin revisar
+Q1165804	Hall's conjecture	conjecture	1	1	hall:1	Combinatorics:1	sin revisar
+Q12012849	Hopf theorem	topological degree is the only homotopy invariant of continuous maps to spheres	1	1	hopf:1	CategoryTheory:1	sin revisar
+Q130203	promise problem	type of computational problem	1	1	promise:1	Data:1	sin revisar
+Q130343824	domination number	number of vertices in a smallest dominating set	1	1	domination:1	RingTheory:1	sin revisar
+Q131445042	Whitney's theorem on connectivity		1	1	whitney:1	Geometry:1	sin revisar
+Q131581195	binding number	graph connectivity parameter	1	1	binding:1	CategoryTheory:1	sin revisar
+Q1317813	Schur's inequality	inequality in mathematics	1	1	schur:1	GroupTheory:1	sin revisar
+Q1324027	trigonometric equation		1	1	trigonometric:1	Analysis:1	sin revisar
+Q133235	combustion	high-temperature exothermic redox chemical reaction between a fuel (the reductant) and an oxidant, usually atmospheric o	1	1	burn:1	Geometry:1	sin revisar
+Q1361537	st-connectivity	decision problem in graph theory	1	1	gap:1	Order:1	sin revisar
+Q1403155	epsilon numbers	ordinal number that is the fixed point of the exponentiation map	1	1	epsilon:1	SetTheory:1	sin revisar
+Q141500197	inconsistent equation		1	1	inconsistent:1	Control:1	sin revisar
+Q1440989	Hilbert number	positive integer of the form (4n + 1)	1	1	hilbert:1	Analysis:1	sin revisar
+Q17127780	rigidity	type of property of a collection of mathematical objects which are uniquely determined by less information than one woul	1	1	rigidity:1	Topology:1	sin revisar
+Q1783819	coordinate axis	spatial dimension according to which the position of an object can be judged	1	1	axi:1	MeasureTheory:1	sin revisar
+Q18027668	Erdős theorem		1	1	erdo:1	Combinatorics:1	sin revisar
+Q1812503	Legendre's conjecture	conjecture that there is a prime between any two square numbers	1	1	legendre:1	Analysis:1	sin revisar
+Q1900907	Markov number	an integer x, y, or z that can solve the Markov equation x^2 + y^2 + z^2 = 3xyz	1	1	markov:1	CategoryTheory:1	sin revisar
+Q190453	Poisson's ratio	parameter of elastic materials: ratio of transverse strain to axial strain	1	1	poisson:1	Analysis:1	sin revisar
+Q192024	Shattered set	notion in computational learning	1	1	shattered:1	Combinatorics:1	sin revisar
+Q1940759	mean corpuscular hemoglobin	average mass of hemoglobin (Hg) per red blood cell (RBC)	1	1	hcm:1	Algebra:1	sin revisar
+Q2067166	pseudoperfect number	positive integer that equals the sum of some of its proper divisors	1	1	pseudoperfect:1	NumberTheory:1	sin revisar
+Q223722	abundant number	number for which the sum of its proper divisors is greater than the number itself	1	1	abundant:1	NumberTheory:1	sin revisar
+Q2327764	volume element	method for integrating a function with respect to its volume in different coordinate system	1	1	volume:1	Algebra:1	sin revisar
+Q2493651	Bertrand's theorem	theorem that, among central-force potentials with bound orbits, there are only 2 types of central-force scalar potential	1	1	bertrand:1	NumberTheory:1	sin revisar
+Q2623827	self number	a natural number that cannot be written as the sum of any other natural number n and the individual digits of n	1	1	self:1	MeasureTheory:1	sin revisar
+Q2635635	triangulation	subdivision of a planar object into triangles	1	1	triangulation:1	CategoryTheory:1	sin revisar
+Q273167	Hilbert's problems	twenty-three problems in mathematics published in 1900	1	1	hilbert:1	Analysis:1	sin revisar
+Q2739186	Mersenne conjectures	mathematical conjectures about Mersenne primes	1	1	mersenne:1	NumberTheory:1	sin revisar
+Q2915204	dominating set	a set of vertices in a node-link graph such that every vertex is either in the set or adjacent to it	1	1	dominating:1	RingTheory:1	sin revisar
+Q3077635	Machin-like formula	Formulas for pi	1	1	machin:1	Analysis:1	sin revisar
+Q3191171	powerful number	integer where each prime number dividing it can be squared to still divide it	1	1	powerful:1	Algebra:1	sin revisar
+Q3267775	proof that π is irrational	mathematical proof	1	1	irrationality:1	NumberTheory:1	sin revisar
+Q3492668	SSS*	search algorithm	1	1	sss:1	Geometry:1	sin revisar
+Q3527004	BEST theorem	formula used in graph theory	1	1	best:1	Combinatorics:1	sin revisar
+Q35889	parametric equation	parametric system of coordinates	1	1	parametric:1	MeasureTheory:1	sin revisar
+Q3589419	Lagrange equation	equation	1	1	lagrange:1	LinearAlgebra:1	sin revisar
+Q36810	quadrilateral	polygon with four sides	1	1	quadrilateral:1	Analysis:1	sin revisar
+Q388525	Bell's theorem	in quantum physics, the theorem that locally causal hidden-variable theories cannot reproduce correlations predicted by 	1	1	bell:1	Combinatorics:1	sin revisar
+Q41720	game of chicken	model of conflict (games theory)	1	1	chicken:1	NumberTheory:1	sin revisar
+Q4300759	geometric motion	isometry of a metric space	1	1	motion:1	Computability:1	sin revisar
+Q44535	happy number	numbers with a certain property involving recursive summation	1	1	happy:1	Algebra:1	sin revisar
+Q4454956	Kolmogorov's theorem		1	1	kolmogorov:1	Probability:1	sin revisar
+Q4455037	Hardy's theorem	Mathematical theorem	1	1	hardy:1	NumberTheory:1	sin revisar
+Q4516320	Pontryagin number	characteristic number obtained from Pontrjagin classes	1	1	pontryagin:1	Topology:1	sin revisar
+Q485520	Goldbach's conjecture	Conjecture that every even integer greater than 2 is the sum of two primes	1	1	goldbach:1	NumberTheory:1	sin revisar
+Q515591	Cramér's conjecture	conjecture	1	1	cramer:1	LinearAlgebra:1	sin revisar
+Q5164405	constructible function	function whose values can be computed in a number of steps or a number of Turing-machine cells of order given by the fun	1	1	constructible:1	Topology:1	sin revisar
+Q525506	identity of indiscernibles	impossibility for separate objects to have all their properties in common	1	1	leibniz:1	CategoryTheory:1	sin revisar
+Q52643	daytime	period on any given point of the planet's surface during which it experiences natural illumination from sunlight	1	1	day:1	CategoryTheory:1	sin revisar
+Q5349486	Eilenberg's inequality	inequality applying to Lipschitz functions	1	1	eilenberg:1	CategoryTheory:1	sin revisar
+Q625502	parity bit	bit added to a binary string to ensure that the sum of the bit values is even or odd; used as an error detecting code	1	1	parity:1	GroupTheory:1	sin revisar
+Q6402757	Lagrange number	Type of number related to Diophantine approximation	1	1	lagrange:1	LinearAlgebra:1	sin revisar
+Q65063913	Sims conjecture	Conjecture in group theory	1	1	sim:1	Combinatorics:1	sin revisar
+Q6518932	Lehmer number		1	1	lehmer:1	NumberTheory:1	sin revisar
+Q6692699	Lovász number	graph invariant	1	1	lovasz:1	Combinatorics:1	sin revisar
+Q67937253	meridian-parallel intersection	intersection of integer degree standard meridian and parallel	1	1	confluence:1	Logic:1	sin revisar
+Q6889716	modular equation	type of algebraic equation	1	1	modular:1	MeasureTheory:1	sin revisar
+Q7048497	nome	special function q = exp(iτ), where τ=ω₂/ω₁ is the fundamental pair of periods of an elliptic curve	1	1	nome:1	CategoryTheory:1	sin revisar
+Q709149	sigma additivity	mapping function	1	1	additivity:1	MeasureTheory:1	sin revisar
+Q7160160	Peek's law	law of Physics	1	1	peek:1	Computability:1	sin revisar
+Q7245167	principle of permanence	mathematical concept	1	1	permanence:1	Analysis:1	sin revisar
+Q7341043	Robbins' theorem	theorem in graph theory	1	1	robbin:1	Analysis:1	sin revisar
+Q7395295	SYZ conjecture	mathematical conjecture	1	1	syz:1	CategoryTheory:1	sin revisar
+Q7490358	sharp map	mathematical technique	1	1	sharp:1	Analysis:1	sin revisar
+Q7545379	Smith conjecture	The fixed point set of a finite-order 3-sphere diffeomorphism can't be a non-trivial knot	1	1	smith:1	LinearAlgebra:1	sin revisar
+Q7687975	Tate conjecture	conjecture in algebraic geometry	1	1	tate:1	RepresentationTheory:1	sin revisar
+Q803935	Baire function	functions obtained from continuous functions by transfinite iteration of the operation of forming pointwise limits of se	1	1	baire:1	Topology:1	sin revisar
+Q8066611	Zarankiewicz problem	unsolved problem in graph theory	1	1	zarankiewicz:1	Combinatorics:1	sin revisar
+Q85747361	Birkhoff's theorem	theorem in equational logic	1	1	birkhoff:1	Order:1	sin revisar
+Q898249	Rayleigh number	characteristic number of heat transport in fluids	1	1	rayleigh:1	NumberTheory:1	sin revisar
+Q901793	Fourier number for heat transfer	characteristic number for heat transfer into a body	1	1	fourier:1	Analysis:1	sin revisar
+Q902363	arene substitution pattern	distinct arrangement of substituents on aromatic rings	1	1	meta:1	Data:1	sin revisar
+Q97359412	Serre's theorem on a semisimple Lie algebra		1	1	serre:1	NumberTheory:1	sin revisar

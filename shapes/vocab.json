@@ -1,6 +1,6 @@
 {
   "generated_from": "atlas/model.py (core/atlas-core/vocab_gen.py)",
-  "schema_version": 3,
+  "schema_version": 4,
   "entity_types": [
     "concept",
     "definition",
@@ -19,7 +19,9 @@
     "person",
     "resource",
     "experiment",
-    "area"
+    "area",
+    "witness",
+    "note"
   ],
   "relation_types": [
     "depends_on_logically",
@@ -39,7 +41,14 @@
     "counterexample_to",
     "appears_in",
     "authored_by",
-    "member_of_concept"
+    "member_of_concept",
+    "said_equivalent_to",
+    "instance_of",
+    "introduced_in",
+    "copied_by",
+    "edited_by",
+    "translated_by",
+    "explains"
   ],
   "evidence_states": [
     "extracted",
@@ -104,7 +113,8 @@
         "model",
         "problem"
       ],
-      "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)"
+      "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+      "formal_allowed": true
     },
     "proves": {
       "projection": "proof",
@@ -121,7 +131,8 @@
         "conjecture",
         "problem"
       ],
-      "chain_authorizes": "not chainable; a single hop says this proof establishes that statement"
+      "chain_authorizes": "not chainable; a single hop says this proof establishes that statement",
+      "formal_allowed": true
     },
     "prerequisite_for": {
       "projection": "learning",
@@ -142,7 +153,8 @@
         "problem",
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
       "object_types": [
         "concept",
@@ -157,9 +169,11 @@
         "problem",
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
-      "chain_authorizes": "a study order suggestion; never a logical necessity"
+      "chain_authorizes": "a study order suggestion; never a logical necessity",
+      "formal_allowed": true
     },
     "generalizes": {
       "projection": "structure",
@@ -191,7 +205,8 @@
         "model",
         "problem"
       ],
-      "chain_authorizes": "generalization (transitive, same validity domain or wider)"
+      "chain_authorizes": "generalization (transitive, same validity domain or wider)",
+      "formal_allowed": true
     },
     "special_case_of": {
       "projection": "structure",
@@ -223,7 +238,8 @@
         "model",
         "problem"
       ],
-      "chain_authorizes": "specialization (transitive)"
+      "chain_authorizes": "specialization (transitive)",
+      "formal_allowed": true
     },
     "equivalent_to": {
       "projection": "structure",
@@ -255,7 +271,8 @@
         "model",
         "problem"
       ],
-      "chain_authorizes": "equivalence under the intersection of all hops' assumptions"
+      "chain_authorizes": "equivalence under the intersection of all hops' assumptions",
+      "formal_allowed": true
     },
     "analogous_to": {
       "projection": "structure",
@@ -280,7 +297,8 @@
         "source_fragment",
         "resource",
         "experiment",
-        "area"
+        "area",
+        "witness"
       ],
       "object_types": [
         "concept",
@@ -299,9 +317,11 @@
         "source_fragment",
         "resource",
         "experiment",
-        "area"
+        "area",
+        "witness"
       ],
-      "chain_authorizes": "nothing beyond a hypothesis; analogy chains never conclude application or equivalence"
+      "chain_authorizes": "nothing beyond a hypothesis; analogy chains never conclude application or equivalence",
+      "formal_allowed": true
     },
     "applied_in": {
       "projection": "application",
@@ -328,7 +348,8 @@
         "application",
         "experiment"
       ],
-      "chain_authorizes": "single hop: documented use; chained only after equivalence/specialization on the math side"
+      "chain_authorizes": "single hop: documented use; chained only after equivalence/specialization on the math side",
+      "formal_allowed": true
     },
     "models": {
       "projection": "application",
@@ -355,7 +376,8 @@
         "application",
         "experiment"
       ],
-      "chain_authorizes": "single hop: a model of a phenomenon; empirical adequacy needs its own evidence"
+      "chain_authorizes": "single hop: a model of a phenomenon; empirical adequacy needs its own evidence",
+      "formal_allowed": true
     },
     "cites": {
       "projection": "biblio",
@@ -366,14 +388,17 @@
       "subject_types": [
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
       "object_types": [
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
-      "chain_authorizes": "bibliographic reach only; implies neither dependency nor agreement"
+      "chain_authorizes": "bibliographic reach only; implies neither dependency nor agreement",
+      "formal_allowed": false
     },
     "influenced": {
       "projection": "history",
@@ -383,7 +408,8 @@
       "allows_premises": false,
       "subject_types": null,
       "object_types": null,
-      "chain_authorizes": "historical influence; each hop needs its own historical source"
+      "chain_authorizes": "historical influence; each hop needs its own historical source",
+      "formal_allowed": false
     },
     "part_of_area": {
       "projection": "structure",
@@ -408,12 +434,14 @@
         "source_fragment",
         "resource",
         "experiment",
-        "area"
+        "area",
+        "witness"
       ],
       "object_types": [
         "area"
       ],
-      "chain_authorizes": "area membership (area hierarchy is transitive)"
+      "chain_authorizes": "area membership (area hierarchy is transitive)",
+      "formal_allowed": false
     },
     "formalized_as": {
       "projection": "proof",
@@ -446,7 +474,8 @@
         "problem",
         "resource"
       ],
-      "chain_authorizes": "translation to a formal artifact; fidelity is a separate assessment from compilation"
+      "chain_authorizes": "translation to a formal artifact; fidelity is a separate assessment from compilation",
+      "formal_allowed": true
     },
     "named_after": {
       "projection": "history",
@@ -471,12 +500,14 @@
         "source_fragment",
         "resource",
         "experiment",
-        "area"
+        "area",
+        "witness"
       ],
       "object_types": [
         "person"
       ],
-      "chain_authorizes": "naming only; implies no authorship or priority"
+      "chain_authorizes": "naming only; implies no authorship or priority",
+      "formal_allowed": false
     },
     "counterexample_to": {
       "projection": "proof",
@@ -495,7 +526,8 @@
         "statement",
         "conjecture"
       ],
-      "chain_authorizes": "single hop: refutes the target under the stated assumptions"
+      "chain_authorizes": "single hop: refutes the target under the stated assumptions",
+      "formal_allowed": true
     },
     "appears_in": {
       "projection": "biblio",
@@ -520,14 +552,17 @@
         "source_fragment",
         "resource",
         "experiment",
-        "area"
+        "area",
+        "witness"
       ],
       "object_types": [
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
-      "chain_authorizes": "location in literature; not a citation of correctness"
+      "chain_authorizes": "location in literature; not a citation of correctness",
+      "formal_allowed": false
     },
     "authored_by": {
       "projection": "history",
@@ -548,12 +583,14 @@
         "problem",
         "publication",
         "source_fragment",
-        "resource"
+        "resource",
+        "witness"
       ],
       "object_types": [
         "person"
       ],
-      "chain_authorizes": "authorship attribution"
+      "chain_authorizes": "authorship attribution",
+      "formal_allowed": false
     },
     "member_of_concept": {
       "projection": "structure",
@@ -587,9 +624,206 @@
         "problem",
         "area"
       ],
-      "chain_authorizes": "grouping only: the declaration is about the concept; implies no dependency, no equivalence and no formalization"
+      "chain_authorizes": "grouping only: the declaration is about the concept; implies no dependency, no equivalence and no formalization",
+      "formal_allowed": false
+    },
+    "said_equivalent_to": {
+      "projection": "structure",
+      "symmetric": true,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "a source says they may be the same; does not compose",
+      "formal_allowed": true
+    },
+    "instance_of": {
+      "projection": "structure",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+      "formal_allowed": true
+    },
+    "introduced_in": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem"
+      ],
+      "object_types": [
+        "publication",
+        "witness"
+      ],
+      "chain_authorizes": "a historiographic source says it was introduced here; does not chain and implies no proof or prerequisite",
+      "formal_allowed": false
+    },
+    "copied_by": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "witness"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "chain_authorizes": "copied this witness; implies neither authorship nor priority",
+      "formal_allowed": false
+    },
+    "edited_by": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "chain_authorizes": "edited this edition; implies no authorship",
+      "formal_allowed": false
+    },
+    "translated_by": {
+      "projection": "history",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "chain_authorizes": "translated this edition; implies no authorship",
+      "formal_allowed": false
+    },
+    "explains": {
+      "projection": "learning",
+      "symmetric": false,
+      "transitive": false,
+      "inverse": null,
+      "allows_premises": false,
+      "subject_types": [
+        "note"
+      ],
+      "object_types": [
+        "concept",
+        "definition",
+        "theory",
+        "statement",
+        "proof",
+        "conjecture",
+        "counterexample",
+        "algorithm",
+        "model",
+        "problem",
+        "area"
+      ],
+      "chain_authorizes": "text for the reader; does not chain and asserts nothing mathematical beyond itself",
+      "formal_allowed": false
     }
   },
+  "evidence_rank": {
+    "extracted": 2,
+    "model_proposed": 1,
+    "editorially_reviewed": 3,
+    "formally_linked": 4,
+    "disputed": 0
+  },
+  "presentation_scopes": [
+    "map:general",
+    "map:all",
+    "search:default",
+    "concept_layer"
+  ],
+  "curation_kinds": [
+    "exclude_presentation",
+    "presentation_label",
+    "retire_claims",
+    "propose_merge"
+  ],
+  "date_kinds": [
+    "composed",
+    "copied",
+    "published",
+    "edition",
+    "born",
+    "died",
+    "floruit"
+  ],
+  "source_kinds": [
+    "dataset",
+    "editorial",
+    "encyclopedia",
+    "historiography",
+    "library"
+  ],
   "transitions": {
     "extracted": [
       "model_proposed",

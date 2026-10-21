@@ -1,0 +1,247 @@
+{
+ "seed": 20261020,
+ "direct_pool": 1467,
+ "aggregate_pool": 25806,
+ "items": [
+  {
+   "n": "D1",
+   "claim": "c:a16fdadd1d50f7d6",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q7575210",
+    "wd:Q8778429"
+   ]
+  },
+  {
+   "n": "D2",
+   "claim": "c:e5de422355633b2f",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q208237",
+    "wd:Q207348"
+   ]
+  },
+  {
+   "n": "D3",
+   "claim": "c:6e0e69133f48eb1b",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q970141",
+    "wd:Q54935824"
+   ]
+  },
+  {
+   "n": "D4",
+   "claim": "c:4e5a01398529aaea",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q11214",
+    "wd:Q11345"
+   ]
+  },
+  {
+   "n": "D5",
+   "claim": "c:aa48a01f5c3183fe",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q189112",
+    "wd:Q121773562"
+   ]
+  },
+  {
+   "n": "D6",
+   "claim": "c:147bd9f2553c2e98",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q208237",
+    "wd:Q10567583"
+   ]
+  },
+  {
+   "n": "D7",
+   "claim": "c:e5b89ac9302be9e6",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q1319773",
+    "wd:Q3924032"
+   ]
+  },
+  {
+   "n": "D8",
+   "claim": "c:af1b94ffc9c08216",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q170198",
+    "wd:Q218005"
+   ]
+  },
+  {
+   "n": "D9",
+   "claim": "c:1a2b1ea37fd2d64d",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q428290",
+    "wd:Q1047547"
+   ]
+  },
+  {
+   "n": "D10",
+   "claim": "c:34f15fea4bea0e4e",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "ends": [
+    "wd:Q2716519",
+    "wd:Q1625040"
+   ]
+  },
+  {
+   "n": "A1",
+   "from": "wd:Q36161",
+   "to": "wd:Q498186",
+   "total": 153,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     153,
+     "c:9bd978358a961a65"
+    ]
+   ]
+  },
+  {
+   "n": "A2",
+   "from": "wd:Q189569",
+   "to": "wd:Q44382",
+   "total": 4,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     4,
+     "c:da43268bd3359716"
+    ]
+   ]
+  },
+  {
+   "n": "A3",
+   "from": "wd:Q4386723",
+   "to": "wd:Q36161",
+   "total": 5,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     5,
+     "c:bde8f63779b1b21d"
+    ]
+   ]
+  },
+  {
+   "n": "A4",
+   "from": "concept:Mathlib/Algebra/Homology/HomologicalComplex",
+   "to": "wd:Q1347208",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:2b9bbd1fd2fc5211"
+    ]
+   ]
+  },
+  {
+   "n": "A5",
+   "from": "wd:Q189112",
+   "to": "wd:Q6101219",
+   "total": 4,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     4,
+     "c:bfb21e4cfa0be1e9"
+    ]
+   ]
+  },
+  {
+   "n": "A6",
+   "from": "wd:Q19821",
+   "to": "wd:Q25099576",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:953a8d5495746e24"
+    ]
+   ]
+  },
+  {
+   "n": "A7",
+   "from": "wd:Q164",
+   "to": "wd:Q125977",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:4b205f203fedb467"
+    ]
+   ]
+  },
+  {
+   "n": "A8",
+   "from": "wd:Q57605839",
+   "to": "wd:Q868169",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:8f708b1e1e94bd51"
+    ]
+   ]
+  },
+  {
+   "n": "A9",
+   "from": "wd:Q590554",
+   "to": "wd:Q65090820",
+   "total": 2,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     2,
+     "c:da41e963d643d896"
+    ]
+   ]
+  },
+  {
+   "n": "A10",
+   "from": "wd:Q121773562",
+   "to": "wd:Q6086107",
+   "total": 1,
+   "stats": [
+    [
+     "depends_on_logically",
+     "model_proposed",
+     1,
+     "c:9f2c81355dd585a4"
+    ]
+   ]
+  }
+ ]
+}

@@ -156,6 +156,8 @@ async fn entity_detail_resolves_merges_and_labels_participants() {
     assert_eq!(euclid["alternative_group"], "g:pythagoras-proofs");
     assert_eq!(euclid["labels"]["s:sas-congruence"].as_str().map(|s| !s.is_empty()), Some(true), "{euclid}");
     assert!(euclid["provenance"][0].get("quote").is_some());
+    // ADR-0005 §7f: only a formalized_as proposed by name is hidden from explore
+    assert!(claims.iter().all(|c| c["explore_hidden"] == (c["relation"] == "formalized_as" && c["evidence_state"] == "model_proposed")), "{v}");
     // Superseded versions are not current: only the v2 of the cosines claim shows.
     assert!(claims.iter().all(|c| c["id"] != "c:cosines-gen"), "{v}");
     assert!(claims.iter().any(|c| c["id"] == "c:cosines-gen-v2"));

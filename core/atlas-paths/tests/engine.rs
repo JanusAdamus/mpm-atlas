@@ -582,3 +582,34 @@ fn membership_alone_never_authorizes_an_entity_level_conclusion() {
     let r = run("s:x-a2", "s:x-b1");
     assert!(r.abstained, "{:?}", r.paths.first().map(|p| &p.conclusion.kind));
 }
+
+// ---------------------------------------------------------------- ADR-0005 §7b-c (v4 relations)
+
+#[test]
+fn said_equivalence_is_one_hop_and_never_composes() {
+    let r = run("c:x-se1", "c:x-se2");
+    assert!(!r.abstained, "{:?}", r.reason);
+    let c = &r.paths[0].conclusion;
+    assert_eq!((c.kind.as_str(), c.category), ("said_equivalence", "documentary"));
+    assert!(!c.mathematical);
+    // A ~ B and B ~ C do not give A ~ C: no authorized route, only the raw connection
+    let r = run("c:x-se1", "c:x-se3");
+    assert!(r.abstained && r.paths.is_empty(), "{:?}", kinds(&r));
+    assert_eq!(r.exploration.as_ref().map(|e| e.conclusion.kind.as_str()), Some("none"));
+}
+
+#[test]
+fn instance_then_special_cases_is_an_instance_but_two_instances_are_not() {
+    let r = run("c:x-i1", "c:x-i4");
+    assert!(!r.abstained, "{:?}", r.reason);
+    let c = &r.paths[0].conclusion;
+    assert_eq!((c.kind.as_str(), c.category), ("instance", "mathematical"));
+    assert_eq!(claims(&r, 0), ["c:x-i12", "c:x-i23", "c:x-i34"]);
+    // instance_of o instance_of: an example of an example is not an example
+    let r = run("c:x-i0", "c:x-i2");
+    assert!(r.abstained && r.paths.is_empty(), "{:?}", kinds(&r));
+    // walked against the stored direction: B has the example x
+    let r = run("c:x-i4", "c:x-i1");
+    assert!(!r.abstained, "{:?}", r.reason);
+    assert_eq!(r.paths[0].conclusion.kind, "has_instance");
+}

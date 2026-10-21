@@ -554,3 +554,143 @@ La prueba de usuario común no pasa sin contenido revisado.  Tres de las cinco p
 - Servidor del usuario: `atlas.exe` (PID 22172) siguió arriba toda la verificación, porque cargo no tuvo que reemplazar el binario.  `/api/health` = 200 al terminar.
 - En la raíz del repo hay seis archivos sueltos, `log-d2.txt`, `log-d390.txt`, `log-d390d.txt`, `log-ddark.txt`, `log-drm.txt` y `log-drm2.txt` (10:52): son corridas fallidas del crítico (`Cannot find module 'C:\MPM\doors.mjs'`, lanzadas desde la carpeta equivocada).  No sirven y se pueden borrar.
 - No se hizo commit.  Sin versionar: `docs/design/r4/`, `docs/design/codex/r4/`, `bench/runs/2026-10-19-r4-test-integrated/`, los planes de las rondas 4 y 5 y los archivos nuevos de `web/src/` y `web/bench/`.
+
+## 16. Ronda 5 · conexiones de calidad, nombres, fichas y obras (2026-10-19 a 2026-10-21, cierre)
+
+Plan: `docs/plans/2026-10-19-ronda-5-calidad-y-fuentes.md`.  Harness: `docs/plans/r5/harness.md`.  Bitácora por puntos de control: `docs/plans/r5/estado.md` (1–12).  Las reglas se juzgan tal como quedaron fijadas.  Las cifras son de los trabajadores, del integrador o de los jueces, cada una con su archivo.  No se hizo commit desde `b4c6616`.
+
+### 16.1 Snapshot publicado
+
+- `data/snapshot/CURRENT` = `atlas-19c6f7dc19dab3e9`.  Layout `e6ed5eab030b3aec`; cubre hasta el `event_seq` 4,188,644, el último del registro.
+- 321,228 nodos, 2,844,205 afirmaciones y 71,047 aristas entre conceptos.
+- `compile --all`: 112.15 s.
+- Reporte: `data/cache/reports/build-20261020T214520Z.json`.
+
+### 16.2 Qué se hizo
+
+- **Conexiones (2a).**
+  - Eslabón más débil: 71,047 aristas agregadas, 0 más fuertes que su eslabón, todas «candidata».
+  - P460 → `said_equivalent_to`, que no compone (311).
+  - P31 → `instance_of`.
+  - Relaciones en los dos sentidos → `disputed` (8).
+  - 244,933 `part_of_area` pasan de `formally_linked` a `extracted`.
+  - Migración M2 en `atlas/ingest/wikidata_m2.py`.
+  - «Bayes» devuelve primero el teorema.
+- **Nombres y fuentes (2b).**
+  - Curaduría reversible con 10 reglas, entre ellas `homonym-membership/1`: 25,039 pertenencias homónimas retiradas en 43 ítems, con 1,093 ambiguos pendientes en `docs/plans/r5/homonimos-pendientes.tsv`.
+  - Etiquetas en español desde Wikidata y Wiktionary.
+  - Extractos de Wikipedia cortados en límite de oración.
+  - Adaptadores nuevos: listas de temas de Mathlib, PlanetMath y Wiktionary.
+- **Fichas (3).**
+  - Formato `ficha/1` en `atlas/fichas.py`: una afirmación `explains` por frase y revisión solo por una persona.
+  - 20 borradores, 94 frases, importados como `model_proposed`.  Están fuera de la búsqueda, del mapa y de las conexiones.
+- **Obras (2c).**  Piloto en `data/pilot/atlas-pilot-v2.db`, que no entra en el núcleo: 114,736 obras canónicas y 684,593 afirmaciones.  Informe: `docs/plans/r5/piloto-obras.md`.
+- **Evaluación.**
+  - La procedencia sigue la cadena de reemplazos.
+  - Split `v3.1` con registro de cambios ítem por ítem (`bench/manifest/v3.1-changelog.jsonl`), decidido por Adrián el 2026-10-20 (opción A).
+- **Revisión** con agentes de ECC (rust, python, typescript, silent-failure): 1 HIGH y 11 MEDIUM, todos corregidos con prueba; 14 LOW quedan listados (estado §9).
+- **Integrador.**
+  - El servidor, la búsqueda y el vecindario aplican la curaduría.
+  - `i18n.ts` traduce las relaciones de v4 con su verbo inverso.
+  - La web muestra «candidata» y respeta `explore_hidden`.
+
+### 16.3 Compuertas (integrador, snapshot `19c6f7dc`)
+
+| Compuerta | Resultado |
+|---|---|
+| `python -m pytest -q` | 280 passed |
+| `cargo test --workspace --release` | 168 passed, 0 failed |
+| `cargo clippy --workspace --all-targets --release` | 0 advertencias |
+| `npm test` / `npx tsc --noEmit` / `npm run build` | 93/93, 0 errores, ok |
+| `r5_gate.py` | 4/4 PASA |
+| Scripts de diseño (28 corridas, `docs/design/r5/integrador/`) | 0 errores de consola, 0 px de desbordamiento, 0 jerga en Explorar |
+
+AtlasBench v3.1 test por HTTP (`bench/runs/2026-10-20-r5-integrador-v3.1-test`), intervalos de Wilson al 95 %:
+
+| Clase | Resultado |
+|---|---|
+| Respondibles | 244/245 = 0.996 [0.977, 0.999] |
+| Adversariales sin conclusión prohibida | 204/204 [0.982, 1.000] |
+| Procedencia | 3608/3608, 338 a través de una sucesora |
+| Retrieval nDCG@10 | en/text 0.815; es/text 0.895; en/informal_to_formal 0.425 |
+| p95 teselas / búsqueda c1 / búsqueda c8 / ruta | 3.20 / 18.25 / 100.88 [93.70, 108.29] / 8.03 ms |
+
+La única pérdida que no viene de ADR-0005 es `hw:route:038:charpoly-det`, la misma de §15.  Contra v3 (§15) no es una comparación de ítems idénticos: hay 245 respondibles en lugar de 261.
+
+### 16.4 Reglas del plan (dos jueces, `docs/design/r5/acuerdo-ronda-2.md`)
+
+Los jueces A (`data-scientist`) y B (lector común y matemático) trabajaron por separado sobre el snapshot `19c6f7dc` y juzgaron los mismos 20 ítems.  Una regla pasa solo si los dos dicen PASS.
+
+| Regla | A | B | Combinado |
+|---|---|---|---|
+| Aristas agregadas | PASS | PASS | **PASS** |
+| Equivalencias | PASS | PASS | **PASS** |
+| Nombres en español | FAIL | FAIL | **FAIL**: 65.1 % [63.0, 67.2] de 2,041 nodos en z0–z2, contra ≥ 80 %; derivados en z0–z2: 0 |
+| Fuera de dominio | PASS | FAIL | **FAIL**: sigue «trie» (`wd:Q387015`), que está en la lista del diagnóstico |
+| Muestra de 20 conexiones | FAIL | FAIL | **FAIL**: 9/20 [0.258, 0.658] en conjunto; directas 8/10, agregadas 1/10.  κ de Cohen 0.80, con n = 20 |
+| Fichas | FAIL | FAIL | **FAIL**: 0 `editorially_reviewed`; 1,324 conceptos con extracto citado, contra ≥ 1,500 |
+| Usuario común | FAIL | FAIL | **FAIL**: 0/7 [0, 0.354]; «Qué es» se responde en 7/7 |
+| Obras | FAIL | FAIL | **FAIL**: solo el piloto; la ingesta completa quedó fuera de esta entrega (harness) |
+| Escala | NO EVALUABLE | NO EVALUABLE | **NO EVALUABLE**: no existe la escala real; la extrapolación está en `piloto-obras.md` |
+| Licencias | FAIL | FAIL | **Corregida en este cierre** (§16.5).  Los jueces la juzgaron antes de que existiera §16 |
+| Sin regresión | PASS (con reservas) | PASS | **PASS**, con las reservas de A: v3.1 no tiene los mismos ítems que v3, el sealed está pendiente y P279 sigue sin revisión |
+
+Resultado: 3 PASS, 6 FAIL, 1 NO EVALUABLE y la regla de licencias, que este cierre atiende.
+
+Semilla: la tarea usó 20261021 y el protocolo fijaba 20261020.  A juzgó también la muestra del protocolo y dio 11/20 (`juez-A/ronda-2/muestra-20-semilla-20261020.tsv`).  La regla falla con las dos.
+
+### 16.5 Licencias de las fuentes nuevas
+
+Verificadas en su página por los trabajadores; los textos completos están en la tabla `sources` y en `piloto-obras.md` §7.
+
+| Fuente | Licencia | Dónde se usa |
+|---|---|---|
+| Listas de temas de Mathlib (`docs/undergrad.yaml`, `overview.yaml`) | Apache-2.0 | registro |
+| Wikidata (etiquetas, alias, lexemas) | CC0-1.0 | registro |
+| Wiktionary (en) | CC BY-SA 4.0 y GFDL | registro |
+| PlanetMath | el LICENSE del repositorio dice CC BY-SA 3.0 Unported; planetmath.org/about dice CC BY-SA 2.5.  Se registra la del repositorio, 3.0, que es de donde se leen las entradas.  El plan decía 2.5 | registro |
+| zbMATH Open | CC BY-SA 4.0 (términos de la API, junio de 2021), solo metadatos | piloto |
+| OpenAlex | CC0 | piloto |
+| OpenCitations | CC0 | piloto |
+| Crossref | metadatos sin copyright, salvo los resúmenes, que no se leen | piloto |
+| CDLI | reúso académico con mención; uso general no comercial; solo metadatos del catálogo | piloto |
+
+### 16.6 Lo que todavía puede enseñar algo falso
+
+1. **Pertenencias homónimas en las aristas agregadas.**  6 de las 10 de la muestra de B son falsas o van al revés: `Differentiable`→media-f, `Nontrivial`→predicado, `IsNoetherian`→grupo noetheriano, `CoalgCat`→isomorfismo…  Las agregadas dan 1/10 y 2/10 contra 8/10 y 9/10 de las directas.  Es el problema principal de la capa de conceptos.  La cola es `homonimos-pendientes.tsv` (1,093).
+2. **P279 se publica como «caso particular» sin revisión** (14,408 afirmaciones).  Ejemplo: «serie es caso particular de sumatoria».  Opciones en `docs/plans/r5/p279-opciones.md`.
+3. **P31 mal leído en casos puntuales:** «complemento es una instancia de negación lógica».
+4. **Fuera de dominio en la búsqueda:** «Sudáfrica» y «pena de muerte en Sudáfrica»; en la capa, «trie».
+
+Corregidos en esta ronda: pi «lleva el nombre de Ludolph van Ceulen» (C4-06), «integración instance of integral abeliana», derivados en z0–z2, composición transitiva de P460 y «Bayes» (C4-19).
+
+### 16.7 Decisiones de Adrián
+
+1. **P279.**  Recomendación: opción B (`subclass_of` vía M2, con enmienda a ADR-0005).
+2. **Revisar los 20 borradores de fichas** (`docs/plans/r5/fichas/`, con `python -m atlas fichas review … --reviewer adrian`).  Sin eso no pueden pasar ni la regla de fichas ni la de usuario común.
+3. **Ingesta completa de obras** (`piloto-obras.md` §8):
+   - cómo bajar OpenAlex (snapshot de S3 o llave gratuita);
+   - la reducción L1;
+   - zbMATH por OAI-PMH, porque por REST toma unas 54 h contra un tope de 48 h;
+   - una meta de unos 8 M de obras en lugar de 5 M;
+   - 1,357 registros de OpenAlex sin fusionar;
+   - borrar `data/pilot/atlas-pilot.db`.
+4. **Bench:**
+   - si se acepta el reetiquetado mecánico de 29 ítems de sealed;
+   - si v3.1 pasa a ser la versión por omisión (`bench/__main__.py`).
+5. **Las 36 fusiones propuestas** y **la cola de traducción** `docs/plans/r5/cola-traduccion-es.tsv`: faltan unos 304 nodos para llegar al 80 %.
+6. **Piloto del Coherence Map** (`docs/plans/r5/coherence-map-piloto.md`).
+
+### 16.8 Siguiente ronda, por impacto
+
+1. Homónimos en las aristas agregadas: revisar la cola de 1,093 y el emparejamiento por una sola palabra de Mathlib que los produce.  Es lo que tiene la muestra en 9/20.
+2. P279 según la decisión 1.
+3. Contenido revisado para las fichas y prerrequisitos registrados.  «Qué saber antes» está vacía en 7/7.
+4. La búsqueda con 8 clientes está en el límite (p95 100.9 ms [93.7, 108.3]).  Hay que resolverlo antes de crecer el grafo con las obras.
+
+### 16.9 Notas de operación
+
+- La herramienta Workflow se activó el 2026-10-20 (`/config`, «Dynamic workflows»).  La revisión, la integración y los jueces corrieron como workflows `wf_04553a0f-9fb` y `wf_3e8b96b4-5d0`.
+  - El primer integrador interpretó un mensaje de Adrián como si limitara sus tareas y no reconstruyó el snapshot.  Por eso los jueces de la ronda 1 calificaron el snapshot viejo.  Sus veredictos quedan en `docs/design/r5/juez-*/`, como historial.
+- Hooks de ECC en perfil standard, sin GateGuard ni aprendizaje por herramienta.  Conviven con rtk.
+- Dos cortes por límite de uso y un reinicio.  Todo se reanudó desde el registro o desde la caché del workflow.

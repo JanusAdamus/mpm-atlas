@@ -26,9 +26,10 @@ pub mod lexical;
 pub mod router;
 pub mod text;
 pub mod textstore;
+pub mod works;
 
 use ahash::{AHashMap, AHashSet};
-use atlas_core::{EntityType, Error, NodeIx, Result, Role, Snapshot};
+use atlas_core::{CURRENT_STATES_MASK, Dir, EntityType, Error, NodeIx, RelationType, Result, Role, Snapshot};
 use corpus::{Doc, Field};
 use encoder::{Encoder, Lsi};
 use router::{Filters, Lane, Route, RouteKind};
@@ -619,6 +620,9 @@ impl SearchIndex {
                     && self.fold_join(&t.text) == folded_q
             })
         };
+        let label_names = |n: NodeIx| {
+            self.texts.texts(n).iter().any(|t| t.field == Field::Label && self.fold_join(&t.text) == folded_q)
+        };
         // concept lane: only the concepts whose everyday name is the query count
         let (con_hits, con_run) = &mut runs[Lane::Concept as usize];
         con_hits.retain(|&(n, _)| names_query(n, true));
@@ -633,12 +637,16 @@ impl SearchIndex {
                 c.lanes[li] = Some((rank as u32 + 1, s));
             }
         }
-        let mut ranked: Vec<(NodeIx, Cand)> = cands.into_iter().filter(|(n, _)| assume.keep(snap, *n)).collect();
+        // ADR-0005 §5: a node curated out of `search:default` (out-of-domain homonyms) is never a hit
+        let mut ranked: Vec<(NodeIx, Cand)> =
+            cands.into_iter().filter(|(n, _)| assume.keep(snap, *n) && !snap.is_excluded(*n, "search:default")).collect();
         if route.kind != RouteKind::Formula {
             // when a concept bears the query as its everyday name, a Lean short name
             // (`MeasureTheory.integral` has the alias `integral`) is not an exact match
+            let exact: AHashSet<NodeIx> = ranked.iter().filter(|(n, _)| names_query(*n, concept_named)).map(|(n, _)| *n).collect();
+            let bonus = if route.kind == RouteKind::NamedObject { eponym_bonus(snap, &exact, &ranked, &label_names) } else { exact };
             for (n, c) in ranked.iter_mut() {
-                if names_query(*n, concept_named) {
+                if bonus.contains(n) {
                     c.score += EXACT_BONUS;
                 }
             }
@@ -659,7 +667,7 @@ impl SearchIndex {
                 Hit {
                     id: snap.node_id(n).to_string(),
                     entity_type: snap.node_type(n),
-                    label: snap.label(n, &q.lang).to_string(),
+                    label: snap.display_label(n, &q.lang).to_string(),
                     matched: self.best_match(snap, n, &qtoks, &q.lang, formula_led),
                     score: c.score,
                     lanes,
@@ -783,6 +791,38 @@ impl SearchIndex {
             None => Matched { field: "label".into(), lang: lang.into(), text: snap.label(n, lang).to_string() },
         }
     }
+}
+
+/// Who earns the exact-name bonus in a concept query (round 5, plan point 6).  A person whose
+/// alias, but not label, is the query («Bayes» for Thomas Bayes) gives it to the candidates named
+/// after them (`named_after`, current), so «Bayes» finds Bayes' theorem first; a full name
+/// («Thomas Bayes») keeps it on the person, and so does a person with no eponym among the candidates.
+fn eponym_bonus(
+    snap: &Snapshot,
+    exact: &AHashSet<NodeIx>,
+    ranked: &[(NodeIx, Cand)],
+    label_names: &dyn Fn(NodeIx) -> bool,
+) -> AHashSet<NodeIx> {
+    let candidates: AHashSet<NodeIx> = ranked.iter().map(|(n, _)| *n).collect();
+    let mut out = AHashSet::new();
+    for &n in exact {
+        if snap.node_type(n) != EntityType::Person || label_names(n) {
+            out.insert(n);
+            continue;
+        }
+        let eponyms: Vec<NodeIx> = snap
+            .csr(Dir::In)
+            .edges_rel(n, RelationType::NamedAfter)
+            .iter()
+            .filter(|e| CURRENT_STATES_MASK & e.state.bit() != 0 && candidates.contains(&e.nbr))
+            .map(|e| e.nbr)
+            .collect();
+        if eponyms.is_empty() {
+            out.insert(n);
+        }
+        out.extend(eponyms);
+    }
+    out
 }
 
 fn lane_name(l: Lane) -> &'static str {

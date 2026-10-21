@@ -2,7 +2,7 @@
 
 use atlas_core::hashidx::key_hash;
 use atlas_core::{
-    Error, EvidenceState, NONE, Projection, RELATIONS, RelationType, Result, Snapshot,
+    EntityType, Error, EvidenceState, NONE, Projection, RELATIONS, RelationType, Result, Snapshot,
 };
 use rayon::prelude::*;
 use std::collections::BTreeMap;
@@ -90,6 +90,11 @@ pub(crate) fn run(snap: &Snapshot, params: &LayoutParams, opts: &ComputeOptions)
         }
         active.iter_mut().zip(ex).for_each(|(a, &e)| *a &= !e);
     }
+    // A note is one ficha sentence (ADR-0005 §6): text for the panel, never a node of the map.
+    // A node curated out of the whole map (ADR-0005 §5, scope `map:all`) is never laid out either.
+    active.iter_mut().enumerate().for_each(|(v, a)| {
+        *a &= snap.node_type(v as u32) != EntityType::Note && !snap.is_excluded(v as u32, "map:all")
+    });
     let g = Graph::from_snapshot(snap, relation_mask(&params.layers), &active);
     let secs_graph = t0.elapsed().as_secs_f64();
 
@@ -650,7 +655,7 @@ pub(crate) fn tile(
         } else {
             TileNodeKind::Entity
         },
-        label: snap.label(v, lang).to_string(),
+        label: snap.display_label(v, lang).to_string(),
         x: compact_coord(px, z),
         y: compact_coord(py, z),
         size: if snap.concept_index(v).is_some() {

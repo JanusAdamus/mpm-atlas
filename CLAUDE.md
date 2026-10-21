@@ -78,7 +78,7 @@ python -m bench run                        # AtlasBench
 python -m pytest -q ; cargo test --workspace --release   # pruebas
 ```
 
-Rust en Windows: el directorio de compilación debe quedar fuera de OneDrive y con ruta corta, si no el linker falla (LNK1104). Usar `CARGO_TARGET_DIR=C:/Users/AdrianGonzalez/.cargo-target/atlas` para todos, también en paralelo: cargo serializa con su candado y no recompila las partes en C (SQLite y otras), que en Windows abren una ventana de consola por cada archivo.  Un directorio nuevo por agente solo si hay una razón medida. Cargo está en `~/.cargo/bin`; MSVC viene de Visual Studio Build Tools 2026.
+Rust en Windows: el directorio de compilación debe quedar fuera de OneDrive y con ruta corta, si no el linker falla (LNK1104). Usar `CARGO_TARGET_DIR=C:/Users/AdrianGonzalez/.cargo-target/atlas` para todos, también en paralelo: cargo serializa con su candado y no recompila las partes en C (SQLite y otras), que en Windows abren una ventana de consola por cada archivo.  Nunca un directorio nuevo por agente (decisión de Adrián, 2026-10-19): recompila las partes en C y abre una consola por archivo.  Ningún proceso del proyecto debe dejar ventanas de terminal: los hijos se lanzan sin ventana (Python `creationflags=atlas.NO_WINDOW`; Rust `CREATE_NO_WINDOW`, como en `core/atlas-server/tests/cli.rs`), y cada agente mata lo que lanzó al terminar. Cargo está en `~/.cargo/bin`; MSVC viene de Visual Studio Build Tools 2026.
 
 ## Convenciones
 

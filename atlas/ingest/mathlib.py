@@ -9,7 +9,8 @@ Model (docs/SPEC.md):
 - each named declaration is a `statement` (theorem/lemma/axiom), a `definition`
   (def, structure, class, instance, ...) or, inside infrastructure modules, a
   `resource` (software, not mathematics).  Its claim `part_of_area <dir>` is
-  `formally_linked` and names the artifact: FormalArtifact(mathlib4, commit, decl);
+  `extracted` (a file location is not formal verification, ADR-0005 §7e) and still
+  names the artifact: FormalArtifact(mathlib4, commit, decl);
 - statement-level references: a declaration `depends_on_logically` the
   conjunction of the definitions its signature mentions (resolved by name from
   the source text, without elaboration; marked as such in `assumptions`);
@@ -373,7 +374,7 @@ def _write_decls(ctx: _Ctx, results: list[FileResult], names: dict[str, tuple[st
             rep.counters[f"decls:{d.kind}"] += 1
             rep.counters[f"entities:{et.value}"] += 1
             w.claim(binary(stable_id("c", "mathlib", "decl", d.name), RelationType.PART_OF_AREA, decl_id(d.name),
-                           area, ctx.prov(loc), evidence_state=EvidenceState.FORMALLY_LINKED,
+                           area, ctx.prov(loc), evidence_state=EvidenceState.EXTRACTED,  # ADR-0005 §7e
                            formal=ctx.formal(d.name), assumptions=(AXIOMS_NOTE,),
                            extra=(Participant(Role.CONTEXT, module_id(r.module)),)))
             if et is not EntityType.RESOURCE and d.kind != "alias":

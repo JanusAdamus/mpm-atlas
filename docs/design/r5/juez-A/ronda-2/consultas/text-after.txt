@@ -1,0 +1,2 @@
+{'extracts': 31756, 'at_or_over_1500': 44, 'ends_in_ellipsis': 48, 'not_ending_a_sentence': 2821, 'version:wikipedia/1': 3704, 'version:wikipedia/3': 5581, 'version:wikipedia/2': 22471}
+general-layer nodes kept 2041 | with a complete cited Wikipedia extract 1831 | ES 880 | EN only 951 | by type {'area': 285, 'concept': 1324, 'model': 21, 'statement': 182, 'algorithm': 14, 'conjecture': 5}

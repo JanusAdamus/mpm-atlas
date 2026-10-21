@@ -1,0 +1,7 @@
+curadurías activas: [('exclude_presentation', 'derived-out-of-general', 1481), ('exclude_presentation', 'homonym-membership', 22), ('exclude_presentation', 'out-of-domain', 49), ('presentation_label', 'capitalization', 1417), ('presentation_label', 'qualifier', 55), ('presentation_label', 'wiktionary-es', 24), ('propose_merge', 'duplicate-label', 36), ('retire_claims', 'homonym-membership', 43), ('retire_claims', 'named-after', 1), ('retire_claims', 'out-of-domain', 40)]
+disputed: 8
+lotes del piloto: 2781
+PASA  schema v4
+PASA  part_of_area formally_linked = 0
+PASA  hay curaduría activa
+PASA  piloto sin filas de lotes inexistentes

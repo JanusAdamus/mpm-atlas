@@ -1,0 +1,25 @@
+step 0 tiles z  labels 30 unknown 0 overlaps 0 motion []
+step 1 tiles z 3 labels 54 unknown 0 overlaps 0 motion [{"startMs":54,"durMs":30,"frames":2}]
+step 2 tiles z  labels 54 unknown 0 overlaps 0 motion []
+step 3 tiles z 4 labels 54 unknown 0 overlaps 0 motion [{"startMs":22,"durMs":72,"frames":3}]
+step 4 tiles z  labels 54 unknown 0 overlaps 0 motion []
+step 5 tiles z 5 labels 54 unknown 0 overlaps 0 motion [{"startMs":29,"durMs":34,"frames":2}]
+step 6 tiles z 6 labels 54 unknown 1 overlaps 0 motion [{"startMs":24,"durMs":35,"frames":2}]
+step 7 tiles z  labels 49 unknown 0 overlaps 0 motion []
+step 8 tiles z 7 labels 24 unknown 0 overlaps 0 motion [{"startMs":22,"durMs":17,"frames":1}]
+step 9 tiles z  labels 15 unknown 0 overlaps 0 motion []
+arrow [] N []
+search flight [{"startMs":8,"durMs":16,"frames":1}]
+form ends [ 'derivada', 'integración' ] route flight [{"startMs":43,"durMs":304,"frames":18}]
+file:///C:/MPM/web/node_modules/puppeteer-core/lib/puppeteer/cdp/Frame.js:187
+                        ? new Error(`${response.errorText} at ${url}`)
+                          ^
+
+Error: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8765/
+    at navigate (file:///C:/MPM/web/node_modules/puppeteer-core/lib/puppeteer/cdp/Frame.js:187:27)
+    at async Deferred.race (file:///C:/MPM/web/node_modules/puppeteer-core/lib/puppeteer/util/Deferred.js:33:20)
+    at async CdpFrame.goto (file:///C:/MPM/web/node_modules/puppeteer-core/lib/puppeteer/cdp/Frame.js:153:25)
+    at async CdpPage.goto (file:///C:/MPM/web/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:582:20)
+    at async file:///C:/MPM/docs/design/r5/juez-A/ronda-2/scripts/map.mjs:83:3
+
+Node.js v24.19.0

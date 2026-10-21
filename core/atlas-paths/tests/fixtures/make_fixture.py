@@ -13,6 +13,8 @@
     formal:       s:x-f1 generalizes s:x-f3 (extracted) and s:x-f1 -> s:x-f2 -> s:x-f3 (formally_linked)
     coverage:     c:x-lonely has no claims (unknown, not isolated)
     merge:        s:x-dup merged into s:pythagoras
+    said (v4):    c:x-se1 said_equivalent_to c:x-se2 said_equivalent_to c:x-se3 (never composes)
+    instance (v4): c:x-i0 instance_of c:x-i1 instance_of c:x-i2 special_case_of c:x-i3 special_case_of c:x-i4
     history:      s:x-nm1, s:x-nm2, s:x-nm3 named_after per:x-namer; s:x-nm2 depends_on s:x-nm-axiom;
                   s:x-nm3 depends_on s:x-nm-mid depends_on s:x-nm2
     concepts:     member_of_concept groups declarations under c:x-ca, c:x-cb, c:x-cc, c:x-cd;
@@ -88,6 +90,14 @@ ENTITIES = [
     ("s:x-b2", "statement", "B2", "B2"),
     ("s:x-c1", "statement", "C1", "C1"),
     ("s:x-dc1", "statement", "DC1", "DC1"),
+    ("c:x-se1", "concept", "Grafo (dicho igual)", "Graph (said same)"),
+    ("c:x-se2", "concept", "Grafo finito", "Finite graph"),
+    ("c:x-se3", "concept", "Grafo dirigido (dicho igual)", "Directed graph (said same)"),
+    ("c:x-i0", "concept", "Ejemplo de un ejemplo", "Example of an example"),
+    ("c:x-i1", "concept", "Numero aureo", "Golden ratio"),
+    ("c:x-i2", "concept", "Numero construible", "Constructible number"),
+    ("c:x-i3", "concept", "Numero algebraico", "Algebraic number"),
+    ("c:x-i4", "concept", "Numero complejo", "Complex number"),
 ]
 
 # (claim, declaration, concept): the concept cluster's memberships
@@ -125,6 +135,12 @@ BINARY = [
     ("c:x-nm-mid-2", "depends_on_logically", "s:x-nm-mid", "s:x-nm2"),
     ("c:x-a1-b1", "depends_on_logically", "s:x-a1", "s:x-b1"),
     ("c:x-b2-c1", "depends_on_logically", "s:x-b2", "s:x-c1"),
+    ("c:x-se12", "said_equivalent_to", "c:x-se1", "c:x-se2"),
+    ("c:x-se23", "said_equivalent_to", "c:x-se2", "c:x-se3"),
+    ("c:x-i01", "instance_of", "c:x-i0", "c:x-i1"),
+    ("c:x-i12", "instance_of", "c:x-i1", "c:x-i2"),
+    ("c:x-i23", "special_case_of", "c:x-i2", "c:x-i3"),
+    ("c:x-i34", "special_case_of", "c:x-i3", "c:x-i4"),
 ]
 
 

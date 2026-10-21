@@ -63,6 +63,18 @@ class Registry:
         c = self._claim(cid)
         return c is not None and c.evidence_state in CURRENT_STATES
 
+    def live_successor(self, cid: str) -> str | None:
+        """The current claim reached from `cid` along `superseded_by` (cid itself if current; None if the
+        chain is broken, cyclic or ends in a retracted claim)."""
+        seen: set[str] = set()
+        cur = self._claim(cid)
+        while cur is not None and cur.id not in seen:
+            if cur.evidence_state in CURRENT_STATES:
+                return cur.id
+            seen.add(cur.id)
+            cur = self._claim(cur.superseded_by) if cur.superseded_by else None
+        return None
+
     def canonical(self, eid: str) -> str:
         return self.store.resolve(eid)
 

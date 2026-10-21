@@ -41,6 +41,7 @@ from . import resolve as rv
 from .ingest.lean import name_tokens
 from .model import (
     Confidence,
+    CurationKind,
     Entity,
     EntityType,
     EvidenceState,
@@ -190,6 +191,34 @@ class Inputs:
     resolve_cands: Mapping[str, Mapping[str, float]]  # decl -> item -> resolve score
     domains: Mapping[str, frozenset[str]] | None = None  # item -> Mathlib top-level dirs it may take (homonym guard)
     excluded: Mapping[str, str] = field(default_factory=dict)  # Wikidata item -> why it is not a candidate concept
+    # item -> active curation rule that keeps it out of the concept layer (ADR-0005 §5); reversible, so it is
+    # kept apart from `excluded`: the homonym guard does not retract the formalizations of these items
+    curated_out: Mapping[str, str] = field(default_factory=dict)
+
+
+CONCEPT_LAYER_SCOPE = "concept_layer"
+
+
+def curated_out_of_layer(store: Store) -> dict[str, str]:
+    """Items with an active exclude_presentation curation in the concept_layer scope -> its rule."""
+    return {c.target_id: f"{c.rule}/{c.rule_version}"
+            for c in store.curations(kind=CurationKind.EXCLUDE_PRESENTATION)
+            if CONCEPT_LAYER_SCOPE in c.payload.get("scopes", ())}
+
+
+def curated_retired_pairs(store: Store) -> frozenset[tuple[str, str]]:
+    """(declaration, concept) memberships an active retire_claims curation retracted: a re-run of the projection
+    does not assert them again (undoing the curation restores the claims themselves)."""
+    ids = [cid for c in store.curations(kind=CurationKind.RETIRE_CLAIMS) for cid in c.payload["claims"]]
+    roles: dict[str, dict[str, str]] = defaultdict(dict)
+    for i in range(0, len(ids), 900):
+        chunk = ids[i:i + 900]
+        for cid, role, eid in store._conn.execute(
+                "SELECT p.claim_id, p.role, p.entity_id FROM claim_participants p JOIN claims c ON c.id=p.claim_id "
+                f"WHERE c.relation=? AND p.claim_id IN ({','.join('?' * len(chunk))})",
+                (RelationType.MEMBER_OF_CONCEPT.value, *chunk)):
+            roles[cid][role] = eid
+    return frozenset((r["subject"], r["object"]) for r in roles.values() if "subject" in r and "object" in r)
 
 
 def top_dir(module: str) -> str:
@@ -233,9 +262,12 @@ def load(store: Store, *, with_resolve: bool = True) -> Inputs:
             doc = next((d.text for d in e.descriptions if d.lang == "en"), "")
             decls.append(Decl(e.id, name, etype, doc, module, etype is EntityType.RESOURCE))
     curated_items = {item for item, _ in rv.curated_pairs(store)}
+    curated_out = curated_out_of_layer(store)
     items, excluded = {}, {}
     for etype in ITEM_TYPES:
         for e in store.iter_entities(etype):
+            if e.id in curated_out:  # an editor took it out of the layer; undoing the curation brings it back
+                continue
             if e.id.startswith("wd:"):
                 why = rv.entity_non_math_reason(e)
                 if why is not None and e.id not in curated_items:  # a curated Mathlib link makes it mathematical
@@ -263,7 +295,7 @@ def load(store: Store, *, with_resolve: bool = True) -> Inputs:
                 if item_id in items:
                     cands[d][item_id] = max(c.score, cands[d].get(item_id, 0.0))
     return Inputs(tuple(decls), items, {k: tuple(dict.fromkeys(v)) for k, v in premises.items()}, curated,
-                  dict(cands), item_domains(up, items), excluded)
+                  dict(cands), item_domains(up, items), excluded, curated_out)
 
 
 # ---------------------------------------------------------------------- names and docstrings
@@ -928,6 +960,9 @@ def run(store: Store, *, sample_path: Path | None = None, write_claims: bool = T
     evaluation = {s: evaluate(eval_asg, inp.curated, split=s) for s in ("dev", "test")}
     sc = Scorer(inp, use_curated=True, hits=masked.hits)
     asg, derived = assign(inp, scorer=sc)
+    blocked = curated_retired_pairs(store)
+    kept = [a for a in asg if (a.decl, a.concept) not in blocked]
+    curated_retired, asg = len(asg) - len(kept), kept
     report = {"extractor": f"{EXTRACTOR}/{VERSION}", "evaluation_vs_curated": evaluation,
               "coverage": coverage(inp, asg), "derived_concepts": len(derived),
               "parameters": {"TOP_K": TOP_K, "ASSIGN_FLOOR": ASSIGN_FLOOR, "RELATIVE_FLOOR": RELATIVE_FLOOR,
@@ -940,7 +975,9 @@ def run(store: Store, *, sample_path: Path | None = None, write_claims: bool = T
                              "SECONDARY_INDEPENDENT": SECONDARY_INDEPENDENT,
                              "SECONDARY_PROPAGATED": SECONDARY_PROPAGATED}}
     report["excluded_items"] = dict(sorted(Counter(inp.excluded.values()).items()))
+    report["curated_out_of_layer"] = dict(sorted(Counter(inp.curated_out.values()).items()))
     report["secondaries_without_independent_signal"] = len(sc.dropped)
+    report["curated_retired_pairs_skipped"] = curated_retired
     homonyms = homonym_formalizations(store, inp, sc.one_word)
     report["homonym_formalizations"] = len(homonyms)
     if write_claims:

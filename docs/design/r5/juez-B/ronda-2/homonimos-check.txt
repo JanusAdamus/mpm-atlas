@@ -1,0 +1,27 @@
+mathlib:Disjoint
+mathlib:sq
+mathlib:IsIso
+mathlib:Finite
+    ('c:cf67813508c15c2b', 'model_proposed', 'wd:Q180907', 'función biyectiva', 'bijection', 'concept-projection', 'mathlib:Finite -> wd:Q180907')
+mathlib:Differentiable
+    ('c:7797c01442634e0c', 'model_proposed', 'wd:Q44946', 'punto', 'point', 'concept-projection', 'mathlib:Differentiable -> wd:Q44946')
+    ('c:ab6f22d26ac47026', 'model_proposed', 'wd:Q583095', 'media-f generalizada', 'quasi-arithmetic mean', 'concept-projection', 'mathlib:Differentiable -> wd:Q583095')
+mathlib:IsNoetherian
+    ('c:0fd450187d24d855', 'model_proposed', 'wd:Q2444982', 'módulo noetheriano', 'Noetherian module', 'concept-projection', 'mathlib:IsNoetherian -> wd:Q2444982')
+    ('c:1c69991b4feb7911', 'model_proposed', 'wd:Q115623452', None, 'Noetherian group', 'concept-projection', 'mathlib:IsNoetherian -> wd:Q115623452')
+    ('c:cb263561c9f6004e', 'model_proposed', 'wd:Q590554', 'espacio topológico noetheriano', 'noetherian topological space', 'concept-projection', 'mathlib:IsNoetherian -> wd:Q590554')
+mathlib:Nontrivial
+    ('c:4476250d662f5f64', 'model_proposed', 'wd:Q655288', 'elemento de un conjunto', 'is an element of', 'concept-projection', 'mathlib:Nontrivial -> wd:Q655288')
+    ('c:553e66d552e7834b', 'model_proposed', 'wd:Q1144319', 'predicado', 'predicate', 'concept-projection', 'mathlib:Nontrivial -> wd:Q1144319')
+    ('c:d1762551a460861c', 'model_proposed', 'wd:Q379825', 'elemento', 'element', 'concept-projection', 'mathlib:Nontrivial -> wd:Q379825')
+mathlib:CoalgCat
+    ('c:2663105905935a9f', 'model_proposed', 'wd:Q189112', 'isomorfismo', 'isomorphism', 'concept-projection', 'mathlib:CoalgCat -> wd:Q189112')
+mathlib:Module.Flat.exists_factorization_of_apply_eq_zero_of_free
+    ('c:23f4015b43757ba0', 'model_proposed', 'wd:Q188804', 'factorización', 'factorization', 'concept-projection', 'mathlib:Module.Flat.exists_factorization_of_apply_eq_zero_of_free -> wd:Q188804')
+    ('c:306d59e84c1551dd', 'model_proposed', 'wd:Q1426191', 'módulo plano', 'flat module', 'concept-projection', 'mathlib:Module.Flat.exists_factorization_of_apply_eq_zero_of_free -> wd:Q1426191')
+mathlib:CoalgCat.of
+    ('c:0e55b75fb9a56149', 'model_proposed', 'wd:Q745116', None, 'associated elements', 'concept-projection', 'mathlib:CoalgCat.of -> wd:Q745116')
+    ('c:6e98505fcef24942', 'model_proposed', 'wd:Q10340026', None, 'object of a category', 'concept-projection', 'mathlib:CoalgCat.of -> wd:Q10340026')
+mathlib:Subalgebra.multiset_prod_mem
+    ('c:3eedfc219b60bb18', 'model_proposed', 'wd:Q629933', 'subálgebra', 'subalgebra', 'concept-projection', 'mathlib:Subalgebra.multiset_prod_mem -> wd:Q629933')
+    ('c:feb90e2de4797fd6', 'model_proposed', 'wd:Q864377', 'multiconjunto', 'multiset', 'concept-projection', 'mathlib:Subalgebra.multiset_prod_mem -> wd:Q864377')

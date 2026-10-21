@@ -1,0 +1,3993 @@
+[
+ {
+  "n": "D1",
+  "claim": "c:a16fdadd1d50f7d6",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q7575210",
+   "wd:Q8778429"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q7575210",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "spectral space"
+    },
+    "descriptions": {
+     "en": "topological space isomorphic to the prime spectrum of a commutative ring"
+    },
+    "aliases": [
+     [
+      "en",
+      "coherent space"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q8778429",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "sober space",
+     "es": "espacio sobrio"
+    },
+    "descriptions": {
+     "en": "topological space whose topology is fully captured by its lattice of open sets",
+     "es": "espacio topológico cuya topología está completamente capturada por su red de conjuntos abiertos"
+    },
+    "aliases": [
+     [
+      "en",
+      "sober topological space"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:a16fdadd1d50f7d6",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q7575210",
+     0
+    ],
+    [
+     "object",
+     "wd:Q8778429",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:a16fdadd1d50f7d6",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q7575210#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:45+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D2",
+  "claim": "c:e5de422355633b2f",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q208237",
+   "wd:Q207348"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q208237",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "monoid",
+     "es": "monoide"
+    },
+    "descriptions": {
+     "en": "algebraic structure with an associative operation and an identity element",
+     "es": "estructura algebraica"
+    },
+    "aliases": [
+     [
+      "en",
+      "homomorphism"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q207348",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "semigroup",
+     "es": "semigrupo"
+    },
+    "descriptions": {
+     "en": "algebraic structure with an associative binary operation",
+     "es": "estructura algebraica con una operación binaria asociativa"
+    },
+    "aliases": [
+     [
+      "en",
+      "associative magma"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:e5de422355633b2f",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q208237",
+     0
+    ],
+    [
+     "object",
+     "wd:Q207348",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:e5de422355633b2f",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q208237#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:23+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D3",
+  "claim": "c:6e0e69133f48eb1b",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q970141",
+   "wd:Q54935824"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q970141",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "combination",
+     "es": "combinación"
+    },
+    "descriptions": {
+     "en": "in chess, a sequence of moves, often initiated by a sacrifice, which leaves the opponent few options and results in tangible gain",
+     "es": "una secuencia relativamente larga de movimientos, a menudo iniciada con un sacrificio, que deja al oponente pocas opciones y un resultado prácticamente ganador"
+    },
+    "aliases": [
+     [
+      "es",
+      "Combinacion"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q54935824",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "chess move",
+     "es": "Movimiento de ajedrez"
+    },
+    "descriptions": {
+     "en": "series of two plies, or turns, taken by each player",
+     "es": "serie de dos capas, o turnos, tomados por cada jugador"
+    },
+    "aliases": [
+     [
+      "en",
+      "moves"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:6e0e69133f48eb1b",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q970141",
+     0
+    ],
+    [
+     "object",
+     "wd:Q54935824",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:6e0e69133f48eb1b",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q970141#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:10:20+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D4",
+  "claim": "c:4e5a01398529aaea",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q11214",
+   "wd:Q11345"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q11214",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "differential equation",
+     "es": "ecuación diferencial"
+    },
+    "descriptions": {
+     "en": "mathematical equation involving derivatives of an unknown function",
+     "es": "ecuación que incluye expresiones o términos que involucran a una función matemática incógnita y sus derivadas"
+    },
+    "aliases": [
+     [
+      "en",
+      "diff eq"
+     ],
+     [
+      "en",
+      "diff eq'n"
+     ],
+     [
+      "en",
+      "diffeq"
+     ],
+     [
+      "en",
+      "differential equation (elementary mathematics)"
+     ],
+     [
+      "en",
+      "differential equations"
+     ],
+     [
+      "en",
+      "diffyEq"
+     ],
+     [
+      "es",
+      "ecuacion diferencial"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q11345",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "equation",
+     "es": "ecuación"
+    },
+    "descriptions": {
+     "en": "mathematical statement that asserts the equality of two expressions",
+     "es": "igualdad entre dos expresiones matemáticas"
+    },
+    "aliases": [
+     [
+      "en",
+      "equation (mathematics)"
+     ],
+     [
+      "en",
+      "math equations"
+     ],
+     [
+      "en",
+      "mathematical equation"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:4e5a01398529aaea",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q11214",
+     0
+    ],
+    [
+     "object",
+     "wd:Q11345",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:4e5a01398529aaea",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q11214#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:20+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D5",
+  "claim": "c:aa48a01f5c3183fe",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q189112",
+   "wd:Q121773562"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q189112",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "isomorphism",
+     "es": "isomorfismo"
+    },
+    "descriptions": {
+     "en": "in mathematics, invertible morphism",
+     "es": "homomorfismo (o más generalmente un morfismo) que admite un inverso"
+    },
+    "aliases": [
+     [
+      "en",
+      "bijective morphism"
+     ],
+     [
+      "es",
+      "isomorfico"
+     ],
+     [
+      "es",
+      "isomorfismos"
+     ],
+     [
+      "es",
+      "isomorfo"
+     ],
+     [
+      "es",
+      "isomorfos"
+     ],
+     [
+      "es",
+      "isomórfico"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q121773562",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "split monomorphism"
+    },
+    "descriptions": {
+     "en": "morphism with a left inverse"
+    },
+    "aliases": null
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:aa48a01f5c3183fe",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q189112",
+     0
+    ],
+    [
+     "object",
+     "wd:Q121773562",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:aa48a01f5c3183fe",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q189112#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:23+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D6",
+  "claim": "c:147bd9f2553c2e98",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q208237",
+   "wd:Q10567583"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q208237",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "monoid",
+     "es": "monoide"
+    },
+    "descriptions": {
+     "en": "algebraic structure with an associative operation and an identity element",
+     "es": "estructura algebraica"
+    },
+    "aliases": [
+     [
+      "en",
+      "homomorphism"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q10567583",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "small category",
+     "es": "categoría pequeña"
+    },
+    "descriptions": {
+     "en": "category whose objects and morphisms both form sets"
+    },
+    "aliases": null
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:147bd9f2553c2e98",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q208237",
+     0
+    ],
+    [
+     "object",
+     "wd:Q10567583",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:147bd9f2553c2e98",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q208237#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:23+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D7",
+  "claim": "c:e5b89ac9302be9e6",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q1319773",
+   "wd:Q3924032"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q1319773",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "consistency",
+     "es": "consistencia"
+    },
+    "descriptions": {
+     "en": "in logic, property of a theory that does not contain a contradiction",
+     "es": "propiedad que tiene un sistema formal cuando no es posible deducir ninguna contradicción entre los contenidos de sus proposiciones"
+    },
+    "aliases": [
+     [
+      "en",
+      "agreement"
+     ],
+     [
+      "en",
+      "compatibility"
+     ],
+     [
+      "en",
+      "concord"
+     ],
+     [
+      "es",
+      "coherencia"
+     ],
+     [
+      "es",
+      "concordia"
+     ],
+     [
+      "es",
+      "consistencia logica"
+     ],
+     [
+      "es",
+      "consistencia lógica"
+     ],
+     [
+      "es",
+      "consistentes"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q3924032",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "mathematical property",
+     "es": "propiedad matemática"
+    },
+    "descriptions": {
+     "en": "mathematical concept"
+    },
+    "aliases": [
+     [
+      "en",
+      "property"
+     ],
+     [
+      "en",
+      "attribute"
+     ],
+     [
+      "en",
+      "propositional function"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:e5b89ac9302be9e6",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q1319773",
+     0
+    ],
+    [
+     "object",
+     "wd:Q3924032",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:e5b89ac9302be9e6",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q1319773#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:35+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D8",
+  "claim": "c:af1b94ffc9c08216",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q170198",
+   "wd:Q218005"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q170198",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "series",
+     "es": "serie matemática"
+    },
+    "descriptions": {
+     "en": "infinite sum",
+     "es": "suma de los términos de una sucesión infinita"
+    },
+    "aliases": [
+     [
+      "en",
+      "infinite sum"
+     ],
+     [
+      "en",
+      "mathematical series"
+     ],
+     [
+      "es",
+      "serie"
+     ],
+     [
+      "es",
+      "serie infinita"
+     ],
+     [
+      "es",
+      "serie matematica"
+     ],
+     [
+      "es",
+      "series infinitas"
+     ],
+     [
+      "es",
+      "series matematicas"
+     ],
+     [
+      "es",
+      "series matemáticas"
+     ],
+     [
+      "es",
+      "series y sucesiones"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q218005",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "sum",
+     "es": "sumatoria"
+    },
+    "descriptions": {
+     "en": "addition of a sequence of numbers",
+     "es": "resultado de la adición de una secuencia de números"
+    },
+    "aliases": [
+     [
+      "en",
+      "sigma notation"
+     ],
+     [
+      "en",
+      "sum of a sequence"
+     ],
+     [
+      "en",
+      "sumif"
+     ],
+     [
+      "en",
+      "summation"
+     ],
+     [
+      "en",
+      "total"
+     ],
+     [
+      "es",
+      "notación sigma"
+     ],
+     [
+      "es",
+      "operación de suma"
+     ],
+     [
+      "es",
+      "suma"
+     ],
+     [
+      "es",
+      "sumatorio"
+     ]
+    ]
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:af1b94ffc9c08216",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q170198",
+     0
+    ],
+    [
+     "object",
+     "wd:Q218005",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:af1b94ffc9c08216",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q170198#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:23+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D9",
+  "claim": "c:1a2b1ea37fd2d64d",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q428290",
+   "wd:Q1047547"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q428290",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "algebraic closure",
+     "es": "clausura algebraica"
+    },
+    "descriptions": {
+     "en": "algebraic field extension"
+    },
+    "aliases": [
+     [
+      "en",
+      "algebraic closure of a field"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q1047547",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "algebraically closed field",
+     "es": "cuerpo algebraicamente cerrado"
+    },
+    "descriptions": {
+     "en": "field in which every polynomial is factorizable into monomials"
+    },
+    "aliases": null
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:1a2b1ea37fd2d64d",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q428290",
+     0
+    ],
+    [
+     "object",
+     "wd:Q1047547",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:1a2b1ea37fd2d64d",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q428290#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:26+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "D10",
+  "claim": "c:34f15fea4bea0e4e",
+  "relation": "special_case_of",
+  "state": "extracted",
+  "ends": [
+   "wd:Q2716519",
+   "wd:Q1625040"
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q2716519",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "injective module",
+     "es": "módulo inyectivo"
+    },
+    "descriptions": {
+     "en": "module that makes certain exact sequences split"
+    },
+    "aliases": [
+     [
+      "es",
+      "modulo inyectivo"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q1625040",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "injective object",
+     "es": "objeto inyectivo"
+    },
+    "descriptions": {
+     "en": "object 𝑋 in an abelian category such that hom(–,𝑋) is an exact functor to the opposite category of the category of abelian groups"
+    },
+    "aliases": null
+   }
+  ],
+  "witness": {
+   "claim": [
+    "c:34f15fea4bea0e4e",
+    "special_case_of",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "wd:Q2716519",
+     0
+    ],
+    [
+     "object",
+     "wd:Q1625040",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:34f15fea4bea0e4e",
+     "entity_id": null,
+     "source_id": "src:wikidata",
+     "locator": "https://www.wikidata.org/wiki/Q2716519#P279",
+     "extractor": "atlas.ingest.wikidata",
+     "extractor_version": "wd-map/2",
+     "license": "CC0-1.0",
+     "retrieved_at": "2026-10-16T23:09:38+00:00",
+     "quote": null
+    }
+   ]
+  }
+ },
+ {
+  "n": "A1",
+  "from": "wd:Q36161",
+  "to": "wd:Q498186",
+  "total": 153,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    153,
+    "c:9bd978358a961a65"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q36161",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "set",
+     "es": "conjunto"
+    },
+    "descriptions": {
+     "en": "well-defined mathematical collection of distinct objects",
+     "es": "agrupación de objetos considerada como un objeto en sí"
+    },
+    "aliases": [
+     [
+      "en",
+      "mathematical set"
+     ],
+     [
+      "en",
+      "sets (mathematics)"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q498186",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "exclusive or",
+     "es": "disyunción exclusiva"
+    },
+    "descriptions": {
+     "en": "true when either but not both inputs are true",
+     "es": "operador lógico, xor"
+    },
+    "aliases": [
+     [
+      "en",
+      "EOR"
+     ],
+     [
+      "en",
+      "EXOR"
+     ],
+     [
+      "en",
+      "XOR"
+     ],
+     [
+      "en",
+      "disjoint"
+     ],
+     [
+      "en",
+      "exclusive disjunction"
+     ],
+     [
+      "en",
+      "↮"
+     ],
+     [
+      "en",
+      "≢"
+     ],
+     [
+      "en",
+      "⊕c"
+     ],
+     [
+      "en",
+      "⊻"
+     ],
+     [
+      "es",
+      "disyuncion exclusiva"
+     ],
+     [
+      "es",
+      "operador XOR"
+     ]
+    ]
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q498186",
+    "label": "disyunción exclusiva",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 153,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:9bd978358a961a65",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 153
+  },
+  "witness": {
+   "claim": [
+    "c:9bd978358a961a65",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:Set.disjoint_smul_set_left",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:Disjoint",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:9bd978358a961a65",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Algebra/Group/Action/Pointwise/Set/Basic.lean:354 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Set.disjoint_smul_set_left",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "Set.disjoint_smul_set_left"
+    },
+    "descriptions": null,
+    "aliases": [
+     [
+      "und",
+      "disjoint_smul_set_left"
+     ]
+    ],
+    "statements": {
+     "und": "lemma Set.disjoint_smul_set_left : Disjoint (a • s) t ↔ Disjoint s (a⁻¹ • t)"
+    }
+   },
+   {
+    "id": "mathlib:Disjoint",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Disjoint"
+    },
+    "descriptions": {
+     "en": "Two elements of a lattice are disjoint if their inf is the bottom element. (This generalizes disjoint sets, viewed as members of the subset lattice.) Note that we define this without reference to `⊓`, as this allows us to talk about orders where the infimum is not unique, or where implementing `Inf` would require additional `Decidable` arguments."
+    },
+    "aliases": null,
+    "statements": {
+     "und": "def Disjoint (a b : α) : Prop"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:Set.disjoint_smul_set_left": [
+    [
+     {
+      "claim": "c:5f3dede0e15799a0",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:5f3dede0e15799a0",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Set.disjoint_smul_set_left -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Set\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:839b5c9db01d9ef8",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:839b5c9db01d9ef8",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Set.disjoint_smul_set_left -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Set\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "claim": "c:08930a370942f1ed",
+      "state": "retracted",
+      "provenance": [
+       {
+        "claim_id": "c:08930a370942f1ed",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Set.disjoint_smul_set_left -> wd:Q498186",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'disjoint'\", \"rank\": 2}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:Disjoint": [
+    [],
+    [
+     {
+      "claim": "c:6095b60252183318",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:6095b60252183318",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Disjoint -> wd:Q498186",
+        "extractor": "concept-projection",
+        "extractor_version": "9",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-19T09:19:46-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/4 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:8fc84dfc95c3dc37",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:8fc84dfc95c3dc37",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Disjoint -> wd:Q498186",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:e6de57f088e0b6bf",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:e6de57f088e0b6bf",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Disjoint -> wd:Q498186",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/3 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:fd4bc11ee3f1092f",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:fd4bc11ee3f1092f",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Disjoint -> wd:Q498186",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A2",
+  "from": "wd:Q189569",
+  "to": "wd:Q44382",
+  "total": 4,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    4,
+    "c:da43268bd3359716"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q189569",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "basis",
+     "es": "base"
+    },
+    "descriptions": {
+     "en": "subset of a vector space that allows defining coordinates"
+    },
+    "aliases": [
+     [
+      "en",
+      "Hamel basis"
+     ],
+     [
+      "en",
+      "algebraic basis"
+     ],
+     [
+      "en",
+      "base"
+     ],
+     [
+      "en",
+      "basis of a vector space"
+     ],
+     [
+      "en",
+      "vector basis"
+     ],
+     [
+      "es",
+      "base vectorial"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q44382",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "principal ideal",
+     "es": "ideal principal"
+    },
+    "descriptions": {
+     "en": "ideal generated by one element"
+    },
+    "aliases": null
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q44382",
+    "label": "ideal principal",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 4,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:da43268bd3359716",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 4
+  },
+  "witness": {
+   "claim": [
+    "c:da43268bd3359716",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:eq_bot_of_generator_maximal_map_eq_zero",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:Module.Basis",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:Submodule",
+     2
+    ],
+    [
+     "premise",
+     "mathlib:Submodule.IsPrincipal.generator",
+     3
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:da43268bd3359716",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/LinearAlgebra/FreeModule/PID.lean:62 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:eq_bot_of_generator_maximal_map_eq_zero",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "eq_bot_of_generator_maximal_map_eq_zero"
+    },
+    "descriptions": null,
+    "aliases": null,
+    "statements": {
+     "und": "theorem eq_bot_of_generator_maximal_map_eq_zero (b : Basis ι R M) {N : Submodule R M} {ϕ : M →ₗ[R] R} (hϕ : ∀ ψ : M →ₗ[R] R, ¬N.map ϕ < N.map ψ) [(N.map ϕ).IsPrincipal] (hgen : generator (N.map ϕ) = (0 : R)) : N = ⊥"
+    }
+   },
+   {
+    "id": "mathlib:Module.Basis",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Module.Basis"
+    },
+    "descriptions": {
+     "en": "A `Basis ι R M` for a module `M` is the type of `ι`-indexed `R`-bases of `M`. The basis vectors are available as `DFunLike.coe (b : Basis ι R M) : ι → M`. To turn a linear independent family of vectors spanning `M` into a basis, use `Basis.mk`. They are internally represented as linear equivs `M ≃ₗ[R] (ι →₀ R)`, available as `Basis.repr`."
+    },
+    "aliases": [
+     [
+      "und",
+      "Basis"
+     ],
+     [
+      "en",
+      "basis"
+     ],
+     [
+      "en",
+      "bases"
+     ]
+    ],
+    "statements": {
+     "und": "structure Module.Basis"
+    }
+   },
+   {
+    "id": "mathlib:Submodule",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Submodule"
+    },
+    "descriptions": {
+     "en": "A submodule of a module is one which is closed under vector operations. This is a sufficient condition for the subset of vectors in the submodule to themselves form a module."
+    },
+    "aliases": null,
+    "statements": {
+     "und": "structure Submodule (R : Type u) (M : Type v) [Semiring R] [AddCommMonoid M] [Module R M] : Type v extends AddSubmonoid M, SubMulAction R M add_decl_doc Submodule.toAddSubmonoid add_decl_doc Submodule.toSubMulAction namespace Submodule variable [Semiring R] [AddCommMonoid M] [Module R M]"
+    }
+   },
+   {
+    "id": "mathlib:Submodule.IsPrincipal.generator",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Submodule.IsPrincipal.generator"
+    },
+    "descriptions": {
+     "en": "`generator I`, if `I` is a principal submodule, is an `x ∈ M` such that `span R {x} = I`"
+    },
+    "aliases": [
+     [
+      "und",
+      "generator"
+     ]
+    ],
+    "statements": {
+     "und": "def Submodule.IsPrincipal.generator (S : Submodule R M) [S.IsPrincipal] : M"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:eq_bot_of_generator_maximal_map_eq_zero": [
+    [
+     {
+      "claim": "c:1d95eada3b43a3dd",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:1d95eada3b43a3dd",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:eq_bot_of_generator_maximal_map_eq_zero -> wd:Q189569",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"signature\", \"evidence\": \"signature mentions mathlib:Module.Basis\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:2dd305a324dbd1c8",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:2dd305a324dbd1c8",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:eq_bot_of_generator_maximal_map_eq_zero -> wd:Q189569",
+        "extractor": "concept-projection",
+        "extractor_version": "2",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T23:13:01-06:00",
+        "quote": "{\"signal\": \"signature\", \"evidence\": \"signature mentions mathlib:Module.Basis\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:Module.Basis": [
+    [
+     {
+      "claim": "c:4286c87a282c7bbc",
+      "state": "extracted",
+      "provenance": [
+       {
+        "claim_id": "c:4286c87a282c7bbc",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Module.Basis -> wd:Q189569",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"curated\", \"evidence\": \"formalized_as (curated link)\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:Submodule": [
+    [],
+    []
+   ],
+   "mathlib:Submodule.IsPrincipal.generator": [
+    [],
+    [
+     {
+      "claim": "c:7ed49cd63f5a102b",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:7ed49cd63f5a102b",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Submodule.IsPrincipal.generator -> wd:Q44382",
+        "extractor": "concept-projection",
+        "extractor_version": "2",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T23:13:01-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Submodule.IsPrincipal\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:85a78c3ac280a023",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:85a78c3ac280a023",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Submodule.IsPrincipal.generator -> wd:Q44382",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Submodule.IsPrincipal\", \"rank\": 1}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A3",
+  "from": "wd:Q4386723",
+  "to": "wd:Q36161",
+  "total": 5,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    5,
+    "c:bde8f63779b1b21d"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q4386723",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "index set"
+    },
+    "descriptions": {
+     "en": "classes of partial recursive functions, specifically they give all indices of functions in that class according to a fixed enumeration of partial recursive functions"
+    },
+    "aliases": null
+   },
+   {
+    "id": "wd:Q36161",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "set",
+     "es": "conjunto"
+    },
+    "descriptions": {
+     "en": "well-defined mathematical collection of distinct objects",
+     "es": "agrupación de objetos considerada como un objeto en sí"
+    },
+    "aliases": [
+     [
+      "en",
+      "mathematical set"
+     ],
+     [
+      "en",
+      "sets (mathematics)"
+     ]
+    ]
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q36161",
+    "label": "conjunto",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 5,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:bde8f63779b1b21d",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 5
+  },
+  "witness": {
+   "claim": [
+    "c:bde8f63779b1b21d",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:Finset.expect_inv_index",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:InvolutiveInv",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:Finset",
+     2
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:bde8f63779b1b21d",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Algebra/BigOperators/Expect.lean:279 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Finset.expect_inv_index",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "Finset.expect_inv_index"
+    },
+    "descriptions": null,
+    "aliases": [
+     [
+      "und",
+      "expect_inv_index"
+     ]
+    ],
+    "statements": {
+     "und": "lemma Finset.expect_inv_index [DecidableEq ι] [InvolutiveInv ι] (s : Finset ι) (f : ι → M) : 𝔼 i ∈ s⁻¹, f i = 𝔼 i ∈ s, f i⁻¹"
+    }
+   },
+   {
+    "id": "mathlib:InvolutiveInv",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "InvolutiveInv"
+    },
+    "descriptions": {
+     "en": "Auxiliary typeclass for types with an involutive `Inv`."
+    },
+    "aliases": null,
+    "statements": {
+     "und": "class InvolutiveInv (G : Type*) extends Inv G"
+    }
+   },
+   {
+    "id": "mathlib:Finset",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Finset"
+    },
+    "descriptions": {
+     "en": "`Finset α` is the type of finite sets of elements of `α`. It is implemented as a multiset (a list up to permutation) which has no duplicate elements."
+    },
+    "aliases": [
+     [
+      "en",
+      "finite set"
+     ]
+    ],
+    "statements": {
+     "und": "structure Finset (α : Type*)"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:Finset.expect_inv_index": [
+    [
+     {
+      "claim": "c:41ed5f4365a7145e",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:41ed5f4365a7145e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset.expect_inv_index -> wd:Q4386723",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact 'index set'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:6afb5ebb58e7b7ac",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:6afb5ebb58e7b7ac",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset.expect_inv_index -> wd:Q4386723",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact 'index set'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "claim": "c:188b7bb7a20d6b5a",
+      "state": "retracted",
+      "provenance": [
+       {
+        "claim_id": "c:188b7bb7a20d6b5a",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset.expect_inv_index -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Finset\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:4656401dd2384144",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:4656401dd2384144",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset.expect_inv_index -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Finset\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:cf95aa231c5c4a2a",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:cf95aa231c5c4a2a",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset.expect_inv_index -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:Finset\", \"rank\": 1}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:InvolutiveInv": [
+    [],
+    []
+   ],
+   "mathlib:Finset": [
+    [],
+    [
+     {
+      "claim": "c:6f9cc2a0b8c24638",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:6f9cc2a0b8c24638",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:8a8351a2ba993f0e",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:8a8351a2ba993f0e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "9",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-19T09:19:46-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/4 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:989471ca542848f0",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:989471ca542848f0",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/3 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:a7061947f2f67340",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:a7061947f2f67340",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finset -> wd:Q36161",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A4",
+  "from": "concept:Mathlib/Algebra/Homology/HomologicalComplex",
+  "to": "wd:Q1347208",
+  "total": 1,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    1,
+    "c:2b9bbd1fd2fc5211"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "concept:Mathlib/Algebra/Homology/HomologicalComplex",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "homology › homological complex (Mathlib, derived)",
+     "es": "homology › homological complex (Mathlib, derivado)"
+    },
+    "descriptions": {
+     "en": "Derived concept: the Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex, which has no Wikidata concept of its own.",
+     "es": "Concepto derivado: la zona Mathlib/Algebra/Homology/HomologicalComplex de Mathlib, sin concepto propio en Wikidata."
+    },
+    "aliases": null
+   },
+   {
+    "id": "wd:Q1347208",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "epimorphism",
+     "es": "epimorfismo"
+    },
+    "descriptions": {
+     "en": "right-cancellative morphism",
+     "es": "morfismo sobreyectivo"
+    },
+    "aliases": [
+     [
+      "en",
+      "epi"
+     ],
+     [
+      "en",
+      "epic"
+     ],
+     [
+      "en",
+      "epic morphism"
+     ]
+    ]
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q1347208",
+    "label": "epimorfismo",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 1,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:2b9bbd1fd2fc5211",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 1
+  },
+  "witness": {
+   "claim": [
+    "c:2b9bbd1fd2fc5211",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:HomologicalComplex.epi_of_epi_f",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:HomologicalComplex",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Epi",
+     2
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:2b9bbd1fd2fc5211",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Algebra/Homology/HomologicalComplex.lean:324 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:HomologicalComplex.epi_of_epi_f",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "HomologicalComplex.epi_of_epi_f"
+    },
+    "descriptions": null,
+    "aliases": [
+     [
+      "und",
+      "epi_of_epi_f"
+     ]
+    ],
+    "statements": {
+     "und": "lemma HomologicalComplex.epi_of_epi_f {K L : HomologicalComplex V c} (φ : K ⟶ L) (hφ : ∀ i, Epi (φ.f i)) : Epi φ"
+    }
+   },
+   {
+    "id": "mathlib:HomologicalComplex",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "HomologicalComplex"
+    },
+    "descriptions": {
+     "en": "A `HomologicalComplex V c` with a \"shape\" controlled by `c : ComplexShape ι` has chain groups `X i` (objects in `V`) indexed by `i : ι`, and a differential `d i j` whenever `c.Rel i j`. We in fact ask for differentials `d i j` for all `i j : ι`, but have a field `shape` requiring that these are zero when not allowed by `c`. This avoids a lot of dependent type theory hell! The composite of any two differentials `d i j ≫ d j k` must be zero."
+    },
+    "aliases": null,
+    "statements": {
+     "und": "structure HomologicalComplex (c : ComplexShape ι)"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.Epi",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.Epi"
+    },
+    "descriptions": {
+     "en": "A morphism `f` is an epimorphism if it can be cancelled when precomposed: `f ≫ g = f ≫ h` implies `g = h`."
+    },
+    "aliases": [
+     [
+      "und",
+      "Epi"
+     ]
+    ],
+    "statements": {
+     "und": "class CategoryTheory.Epi (f : X ⟶ Y) : Prop"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:HomologicalComplex.epi_of_epi_f": [
+    [
+     {
+      "claim": "c:128cfe31df69e03b",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:128cfe31df69e03b",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:HomologicalComplex.epi_of_epi_f -> concept:Mathlib/Algebra/Homology/HomologicalComplex",
+        "extractor": "concept-projection",
+        "extractor_version": "2",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T23:13:01-06:00",
+        "quote": "{\"signal\": \"zone_derived\", \"evidence\": \"Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex (module Mathlib/Algebra/Homology/HomologicalComplex)\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:7c60048607678276",
+      "state": "extracted",
+      "provenance": [
+       {
+        "claim_id": "c:7c60048607678276",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:HomologicalComplex.epi_of_epi_f -> concept:Mathlib/Algebra/Homology/HomologicalComplex",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"zone_derived\", \"evidence\": \"Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex (module Mathlib/Algebra/Homology/HomologicalComplex)\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "claim": "c:eaa7cc844c74a59f",
+      "state": "retracted",
+      "provenance": [
+       {
+        "claim_id": "c:eaa7cc844c74a59f",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:HomologicalComplex.epi_of_epi_f -> wd:Q1347208",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'epi'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:HomologicalComplex": [
+    [
+     {
+      "claim": "c:60a74f4a30699873",
+      "state": "extracted",
+      "provenance": [
+       {
+        "claim_id": "c:60a74f4a30699873",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:HomologicalComplex -> concept:Mathlib/Algebra/Homology/HomologicalComplex",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"zone_derived\", \"evidence\": \"Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex (module Mathlib/Algebra/Homology/HomologicalComplex)\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:bcc2c805d4b0f76e",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:bcc2c805d4b0f76e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:HomologicalComplex -> concept:Mathlib/Algebra/Homology/HomologicalComplex",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"zone_derived\", \"evidence\": \"Mathlib zone Mathlib/Algebra/Homology/HomologicalComplex (module Mathlib/Algebra/Homology/HomologicalComplex)\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:CategoryTheory.Epi": [
+    [],
+    [
+     {
+      "claim": "c:2f63341b469b0714",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:2f63341b469b0714",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Epi -> wd:Q1347208",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'epi'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:51bd9c5bf9262443",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:51bd9c5bf9262443",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Epi -> wd:Q1347208",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'epimorphism'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A5",
+  "from": "wd:Q189112",
+  "to": "wd:Q6101219",
+  "total": 4,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    4,
+    "c:bfb21e4cfa0be1e9"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q189112",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "isomorphism",
+     "es": "isomorfismo"
+    },
+    "descriptions": {
+     "en": "in mathematics, invertible morphism",
+     "es": "homomorfismo (o más generalmente un morfismo) que admite un inverso"
+    },
+    "aliases": [
+     [
+      "en",
+      "bijective morphism"
+     ],
+     [
+      "es",
+      "isomorfico"
+     ],
+     [
+      "es",
+      "isomorfismos"
+     ],
+     [
+      "es",
+      "isomorfo"
+     ],
+     [
+      "es",
+      "isomorfos"
+     ],
+     [
+      "es",
+      "isomórfico"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q6101219",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "reflective subcategory",
+     "es": "subcategoría reflexiva"
+    },
+    "descriptions": {
+     "en": "full subcategory whose inclusion functor has a left adjoint"
+    },
+    "aliases": [
+     [
+      "en",
+      "coreflective"
+     ],
+     [
+      "en",
+      "reflective"
+     ],
+     [
+      "es",
+      "subcategoria reflectiva"
+     ],
+     [
+      "es",
+      "subcategoria reflexiva"
+     ],
+     [
+      "es",
+      "subcategoría reflectiva"
+     ]
+    ]
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q6101219",
+    "label": "subcategoría reflexiva",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 4,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:bfb21e4cfa0be1e9",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 4
+  },
+  "witness": {
+   "claim": [
+    "c:bfb21e4cfa0be1e9",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:009c14b9a1fe553d",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Reflective",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.IsIso",
+     2
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.reflectorAdjunction",
+     3
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:bfb21e4cfa0be1e9",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/CategoryTheory/Monad/Adjunction.lean:317 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:009c14b9a1fe553d",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.μ_iso_of_reflective"
+    },
+    "descriptions": null,
+    "aliases": [
+     [
+      "und",
+      "μ_iso_of_reflective"
+     ]
+    ],
+    "statements": {
+     "und": "instance CategoryTheory.μ_iso_of_reflective [Reflective R] : IsIso (reflectorAdjunction R).toMonad.μ"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.Reflective",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.Reflective"
+    },
+    "descriptions": {
+     "en": "A functor is *reflective*, or *a reflective inclusion*, if it is fully faithful and right adjoint."
+    },
+    "aliases": [
+     [
+      "und",
+      "Reflective"
+     ]
+    ],
+    "statements": {
+     "und": "class CategoryTheory.Reflective (R : D ⥤ C) extends R.Full, R.Faithful"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.IsIso",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.IsIso"
+    },
+    "descriptions": {
+     "en": "The `IsIso` typeclass expresses that a morphism is invertible. Given a morphism `f` with `IsIso f`, one can view `f` as an isomorphism via `asIso f` and get the inverse using `inv f`."
+    },
+    "aliases": [
+     [
+      "und",
+      "IsIso"
+     ]
+    ],
+    "statements": {
+     "und": "class CategoryTheory.IsIso (f : X ⟶ Y) : Prop"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.reflectorAdjunction",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.reflectorAdjunction"
+    },
+    "descriptions": {
+     "en": "The adjunction `reflector i ⊣ i` when `i` is reflective."
+    },
+    "aliases": [
+     [
+      "und",
+      "reflectorAdjunction"
+     ]
+    ],
+    "statements": {
+     "und": "def CategoryTheory.reflectorAdjunction [Reflective i] : reflector i ⊣ i"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:009c14b9a1fe553d": [
+    [
+     {
+      "claim": "c:ad84008db69d73a8",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:ad84008db69d73a8",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:009c14b9a1fe553d -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'isomorphism'\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:cfcca321c5e37fc2",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:cfcca321c5e37fc2",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:009c14b9a1fe553d -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'isomorphism'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "claim": "c:77cb4cc774062e50",
+      "state": "retracted",
+      "provenance": [
+       {
+        "claim_id": "c:77cb4cc774062e50",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:009c14b9a1fe553d -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'reflective'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:b1664c3f68c1a352",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:b1664c3f68c1a352",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:009c14b9a1fe553d -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'reflective'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:CategoryTheory.Reflective": [
+    [],
+    [
+     {
+      "claim": "c:32f7a852c92670a3",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:32f7a852c92670a3",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Reflective -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'reflective'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:775a888289a1976e",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:775a888289a1976e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Reflective -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"bold:exact:alias 'reflective'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:CategoryTheory.IsIso": [
+    [
+     {
+      "claim": "c:07535a7eba7dcf45",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:07535a7eba7dcf45",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:42058606037878b8",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:42058606037878b8",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/3 item_candidates\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:7ff6fe7afc190607",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:7ff6fe7afc190607",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/2 item_candidates\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:eae13b35148d72e3",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:eae13b35148d72e3",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q189112",
+        "extractor": "concept-projection",
+        "extractor_version": "9",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-19T09:19:46-06:00",
+        "quote": "{\"signal\": \"resolve\", \"evidence\": \"resolve/4 item_candidates\", \"rank\": 1}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:CategoryTheory.reflectorAdjunction": [
+    [],
+    [
+     {
+      "claim": "c:07d4a8b3e66e97ec",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:07d4a8b3e66e97ec",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.reflectorAdjunction -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"signature\", \"evidence\": \"signature mentions mathlib:CategoryTheory.Reflective\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:9f0dc6ab0b95b817",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:9f0dc6ab0b95b817",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.reflectorAdjunction -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact:alias 'reflective'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:d3d2edcfe97a1f68",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:d3d2edcfe97a1f68",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.reflectorAdjunction -> wd:Q6101219",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"signature\", \"evidence\": \"signature mentions mathlib:CategoryTheory.Reflective\", \"rank\": 1}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A6",
+  "from": "wd:Q19821",
+  "to": "wd:Q25099576",
+  "total": 1,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    1,
+    "c:953a8d5495746e24"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q19821",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "triangle",
+     "es": "triángulo"
+    },
+    "descriptions": {
+     "en": "basic three-sided shape of geometry",
+     "es": "polígono de tres lados"
+    },
+    "aliases": [
+     [
+      "en",
+      "2-simplex"
+     ],
+     [
+      "en",
+      "3-gon"
+     ],
+     [
+      "es",
+      "triángulos"
+     ],
+     [
+      "es",
+      "trígono"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q25099576",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "indexed category"
+    },
+    "descriptions": null,
+    "aliases": null
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q25099576",
+    "label": "indexed category",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 1,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:953a8d5495746e24",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 1
+  },
+  "witness": {
+   "claim": [
+    "c:953a8d5495746e24",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.Triangulated.SpectralObject.triangleMap",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Triangulated.SpectralObject",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:953a8d5495746e24",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:231 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.Triangulated.SpectralObject.triangleMap",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.Triangulated.SpectralObject.triangleMap"
+    },
+    "descriptions": {
+     "en": "If `φ : X ⟶ Y` is a morphism of spectral objects indexed by `ι` in a triangulated category, this is the induced morphism of distinguished triangles `X.triangle f g ⟶ Y.triangle f g` associated to two composable morphisms `f` and `g` in `ι`."
+    },
+    "aliases": [
+     [
+      "und",
+      "triangleMap"
+     ]
+    ],
+    "statements": {
+     "und": "def CategoryTheory.Triangulated.SpectralObject.triangleMap {Y : SpectralObject C ι} (φ : X ⟶ Y) {i j k : ι} (f : i ⟶ j) (g : j ⟶ k) : X.triangle f g ⟶ Y.triangle f g"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.Triangulated.SpectralObject",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.Triangulated.SpectralObject"
+    },
+    "descriptions": {
+     "en": "A spectral object in a pretriangulated category `C` indexed by a category `ι` consists of a functor `ω₁ : ComposableArrows ι 1 ⥤ C`, and a functorial distinguished triangle from the category `ComposableArrows ι 2`, which must be of the form `ω₁.obj (mk₁ f) ⟶ ω₁.obj (mk₁ (f ≫ g)) ⟶ ω₁.obj (mk₁ g) ⟶ ...` when evaluated on `mk₂ f g : ComposableArrows ι 2`."
+    },
+    "aliases": [
+     [
+      "und",
+      "SpectralObject"
+     ]
+    ],
+    "statements": {
+     "und": "structure CategoryTheory.Triangulated.SpectralObject"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:CategoryTheory.Triangulated.SpectralObject.triangleMap": [
+    [
+     {
+      "claim": "c:344ead77d75f387c",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:344ead77d75f387c",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Triangulated.SpectralObject.triangleMap -> wd:Q19821",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'triangle'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:CategoryTheory.Triangulated.SpectralObject": [
+    [],
+    [
+     {
+      "claim": "c:409b867edfb8e201",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:409b867edfb8e201",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Triangulated.SpectralObject -> wd:Q25099576",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'indexed category'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:b3e73ed75ba07c9c",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:b3e73ed75ba07c9c",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Triangulated.SpectralObject -> wd:Q25099576",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'indexed category'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A7",
+  "from": "wd:Q164",
+  "to": "wd:Q125977",
+  "total": 1,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    1,
+    "c:4b205f203fedb467"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q164",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "square",
+     "es": "cuadrado"
+    },
+    "descriptions": {
+     "en": "regular quadrilateral",
+     "es": "paralelogramo con 4 lados y 4 ángulos rectos iguales"
+    },
+    "aliases": [
+     [
+      "en",
+      "2-cross-polytope"
+     ],
+     [
+      "en",
+      "2-cube"
+     ],
+     [
+      "en",
+      "2-orthoplex"
+     ],
+     [
+      "en",
+      "bicross"
+     ],
+     [
+      "en",
+      "regular quadrilateral"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q125977",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "vector space",
+     "es": "espacio vectorial"
+    },
+    "descriptions": {
+     "en": "the basic algebraic structure of linear algebra; a module over a field, such that its elements can be added together or scaled by elements of the field",
+     "es": "estructura algebraica creada a partir de un conjunto no vacío, una operación interna y una operación externa"
+    },
+    "aliases": [
+     [
+      "en",
+      "linear space"
+     ],
+     [
+      "en",
+      "vectors in space"
+     ],
+     [
+      "es",
+      "espacio lineal"
+     ],
+     [
+      "es",
+      "espacios vectoriales"
+     ]
+    ]
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q125977",
+    "label": "espacio vectorial",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 1,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:4b205f203fedb467",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 1
+  },
+  "witness": {
+   "claim": [
+    "c:4b205f203fedb467",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:LinearMap.normDet_sq",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:FiniteDimensional",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:4b205f203fedb467",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Analysis/InnerProductSpace/NormDet.lean:294 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:LinearMap.normDet_sq",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "LinearMap.normDet_sq"
+    },
+    "descriptions": {
+     "en": "The square of `f.normDet` equals the determinant of `f.adjoint ∘ₗ f` when the codomain is finite dimensional."
+    },
+    "aliases": [
+     [
+      "und",
+      "normDet_sq"
+     ]
+    ],
+    "statements": {
+     "und": "theorem LinearMap.normDet_sq [FiniteDimensional 𝕜 V] (f : U →ₗ[𝕜] V) : ↑(f.normDet ^ 2) = (f.adjoint ∘ₗ f).det"
+    }
+   },
+   {
+    "id": "mathlib:FiniteDimensional",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "FiniteDimensional"
+    },
+    "descriptions": {
+     "en": "`FiniteDimensional` vector spaces are defined to be finite modules. Use `Module.Basis.finiteDimensional_of_finite` to prove finite dimension from another definition."
+    },
+    "aliases": [
+     [
+      "en",
+      "finite-dimensionality"
+     ]
+    ],
+    "statements": {
+     "und": "abbrev FiniteDimensional (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:LinearMap.normDet_sq": [
+    [
+     {
+      "claim": "c:124a79cebffea585",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:124a79cebffea585",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:LinearMap.normDet_sq -> wd:Q164",
+        "extractor": "concept-projection",
+        "extractor_version": "2",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T23:13:01-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'square'\", \"rank\": 1}"
+       }
+      ]
+     },
+     {
+      "claim": "c:5ffc2f0754bb853d",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:5ffc2f0754bb853d",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:LinearMap.normDet_sq -> wd:Q164",
+        "extractor": "concept-projection",
+        "extractor_version": "5",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T09:42:09-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'square'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:77c402b83f7b2e6a",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:77c402b83f7b2e6a",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:LinearMap.normDet_sq -> wd:Q164",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'square'\", \"rank\": 2}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:FiniteDimensional": [
+    [],
+    [
+     {
+      "claim": "c:366f713cc1bbc0f0",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:366f713cc1bbc0f0",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:FiniteDimensional -> wd:Q125977",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'vector space'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:42556830a4acd8be",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:42556830a4acd8be",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:FiniteDimensional -> wd:Q125977",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'vector space'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:fd0444f5f038dfca",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:fd0444f5f038dfca",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:FiniteDimensional -> wd:Q125977",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'vector space'\", \"rank\": 1}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A8",
+  "from": "wd:Q57605839",
+  "to": "wd:Q868169",
+  "total": 1,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    1,
+    "c:8f708b1e1e94bd51"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q57605839",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "retraction"
+    },
+    "descriptions": {
+     "en": "left inverse of a morphism"
+    },
+    "aliases": [
+     [
+      "en",
+      "co-section"
+     ],
+     [
+      "en",
+      "cosection"
+     ],
+     [
+      "en",
+      "left inverse"
+     ],
+     [
+      "en",
+      "left inverse morphism"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q868169",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "group homomorphism",
+     "es": "homomorfismo de grupos"
+    },
+    "descriptions": {
+     "en": "function between groups that preserves multiplication structure"
+    },
+    "aliases": null
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q868169",
+    "label": "homomorfismo de grupos",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 1,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:8f708b1e1e94bd51",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 1
+  },
+  "witness": {
+   "claim": [
+    "c:8f708b1e1e94bd51",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:0ee3320d60932224",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:MonoidHom.mrange",
+     1
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:8f708b1e1e94bd51",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Algebra/Group/Submonoid/Operations.lean:1117 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:0ee3320d60932224",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "MulEquiv.ofLeftInverse'"
+    },
+    "descriptions": {
+     "en": "A monoid homomorphism `f : M →* N` with a left-inverse `g : N → M` defines a multiplicative equivalence between `M` and `f.mrange`. This is a bidirectional version of `MonoidHom.mrangeRestrict`."
+    },
+    "aliases": [
+     [
+      "und",
+      "ofLeftInverse'"
+     ]
+    ],
+    "statements": {
+     "und": "def MulEquiv.ofLeftInverse' (f : M →* N) {g : N → M} (h : Function.LeftInverse g f) : M ≃* MonoidHom.mrange f"
+    }
+   },
+   {
+    "id": "mathlib:MonoidHom.mrange",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "MonoidHom.mrange"
+    },
+    "descriptions": {
+     "en": "The range of a `MonoidHom` is a `Submonoid`. See Note [range copy pattern]."
+    },
+    "aliases": [
+     [
+      "und",
+      "mrange"
+     ]
+    ],
+    "statements": {
+     "und": "def MonoidHom.mrange (f : F) : Submonoid N"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:0ee3320d60932224": [
+    [
+     {
+      "claim": "c:02b800177a54531e",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:02b800177a54531e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:0ee3320d60932224 -> wd:Q57605839",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'left inverse'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:ccef5ddd174ec099",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:ccef5ddd174ec099",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:0ee3320d60932224 -> wd:Q57605839",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'left inverse'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:MonoidHom.mrange": [
+    [],
+    [
+     {
+      "claim": "c:135340030d7b8f85",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:135340030d7b8f85",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:MonoidHom.mrange -> wd:Q868169",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"namespace\", \"evidence\": \"namespace head mathlib:MonoidHom\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A9",
+  "from": "wd:Q590554",
+  "to": "wd:Q65090820",
+  "total": 2,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    2,
+    "c:da41e963d643d896"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q590554",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "noetherian topological space",
+     "es": "espacio topológico noetheriano"
+    },
+    "descriptions": {
+     "en": "topological space with no infinite strictly ascending sequence of closed subsets"
+    },
+    "aliases": [
+     [
+      "en",
+      "Noetherian space"
+     ],
+     [
+      "es",
+      "espacio noetheriano"
+     ]
+    ]
+   },
+   {
+    "id": "wd:Q65090820",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "correspondence",
+     "es": "correspondencia"
+    },
+    "descriptions": {
+     "en": "binary relation between varieties defined by polynomials; a subvariety of the product of two varieties"
+    },
+    "aliases": null
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q65090820",
+    "label": "correspondencia",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 2,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:da41e963d643d896",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 2
+  },
+  "witness": {
+   "claim": [
+    "c:da41e963d643d896",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:TopologicalSpace.NoetherianSpace.finite",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:TopologicalSpace.NoetherianSpace",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:T2Space",
+     2
+    ],
+    [
+     "premise",
+     "mathlib:Finite",
+     3
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:da41e963d643d896",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/Topology/NoetherianSpace.lean:145 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:TopologicalSpace.NoetherianSpace.finite",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "TopologicalSpace.NoetherianSpace.finite"
+    },
+    "descriptions": {
+     "en": "Spaces that are both Noetherian and Hausdorff are finite."
+    },
+    "aliases": [
+     [
+      "und",
+      "finite"
+     ]
+    ],
+    "statements": {
+     "und": "theorem TopologicalSpace.NoetherianSpace.finite [NoetherianSpace α] [T2Space α] : Finite α"
+    }
+   },
+   {
+    "id": "mathlib:TopologicalSpace.NoetherianSpace",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "TopologicalSpace.NoetherianSpace"
+    },
+    "descriptions": {
+     "en": "Type class for Noetherian spaces. It is defined to be spaces whose open sets satisfies ACC."
+    },
+    "aliases": [
+     [
+      "und",
+      "NoetherianSpace"
+     ]
+    ],
+    "statements": {
+     "und": "abbrev TopologicalSpace.NoetherianSpace : Prop"
+    }
+   },
+   {
+    "id": "mathlib:T2Space",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "T2Space"
+    },
+    "descriptions": {
+     "en": "A T₂ space, also known as a Hausdorff space, is one in which for every `x ≠ y` there exists disjoint open sets around `x` and `y`. This is the most widely used of the separation axioms."
+    },
+    "aliases": [
+     [
+      "en",
+      "Hausdorff space"
+     ]
+    ],
+    "statements": {
+     "und": "class T2Space (X : Type u) [TopologicalSpace X] : Prop"
+    }
+   },
+   {
+    "id": "mathlib:Finite",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "Finite"
+    },
+    "descriptions": {
+     "en": "A type is `Finite` if it is in bijective correspondence to some `Fin n`. This is similar to `Fintype`, but `Finite` is a proposition rather than data. A particular benefit to this is that `Finite` instances are definitionally equal to one another (due to proof irrelevance) rather than being merely propositionally equal, and, furthermore, `Finite` instances generally avoid the need for `Decidable` instances. One other notable difference is that `Finite` allows there to be `Finite p` instances for all `p : Prop`, which is not allowed by `Fintype` due to universe constraints. An application of this is that `Finite (x ∈ s → β x)` follows from the general instance for pi types, assuming `[∀ x, Finite (β x)]`. Implementation note: this is a reason `Finite α` is not defined as `Nonempty (Fintype α)`. Every `Fintype` instance provides a `Finite` instance via `Finite.of_fintype`. Conversely, one can noncomputably create a `Fintype` instance from a `Finite` instance via `Fintype.ofFinite`. In a proof one might write ```lean have := Fintype.ofFinite α ``` to obtain such an instance. Do not write noncomputable `Fintype` instances; instead write `Finite` instances and use this `Fintype.ofFinite` interface. The `Fintype` instances should be relied upon to be computable for evaluation purposes. Theorems should use `Finite` instead of `Fintype`, unless definitions in the theorem statement require `Fintype`. Definitions should prefer `Finite` as well, unless it is important that the definitions are meant to be computable in the reduction or `#eval` sense."
+    },
+    "aliases": null,
+    "statements": {
+     "und": "class inductive Finite (α : Sort*) : Prop"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:TopologicalSpace.NoetherianSpace.finite": [
+    [
+     {
+      "claim": "c:8b083505dd63b113",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:8b083505dd63b113",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:TopologicalSpace.NoetherianSpace.finite -> wd:Q590554",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact:alias 'noetherian space'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:eff2d64839db0dd0",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:eff2d64839db0dd0",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:TopologicalSpace.NoetherianSpace.finite -> wd:Q590554",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact:alias 'noetherian space'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:TopologicalSpace.NoetherianSpace": [
+    [
+     {
+      "claim": "c:3d4a2d4c24866ffe",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:3d4a2d4c24866ffe",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:TopologicalSpace.NoetherianSpace -> wd:Q590554",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact:alias 'noetherian space'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:T2Space": [
+    [],
+    []
+   ],
+   "mathlib:Finite": [
+    [],
+    [
+     {
+      "claim": "c:0ec25362585c0922",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:0ec25362585c0922",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finite -> wd:Q65090820",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'correspondence'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:66edd843fde07a42",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:66edd843fde07a42",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finite -> wd:Q65090820",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'correspondence'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:eac71d39359ade59",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:eac71d39359ade59",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:Finite -> wd:Q65090820",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"first:exact 'correspondence'\", \"rank\": 2}"
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ },
+ {
+  "n": "A10",
+  "from": "wd:Q121773562",
+  "to": "wd:Q6086107",
+  "total": 1,
+  "stats": [
+   [
+    "depends_on_logically",
+    "model_proposed",
+    1,
+    "c:9f2c81355dd585a4"
+   ]
+  ],
+  "ends_detail": [
+   {
+    "id": "wd:Q121773562",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "split monomorphism"
+    },
+    "descriptions": {
+     "en": "morphism with a left inverse"
+    },
+    "aliases": null
+   },
+   {
+    "id": "wd:Q6086107",
+    "merged_into": null,
+    "type": "concept",
+    "labels": {
+     "en": "isomorphism of categories",
+     "es": "Isomorfismo de categorías"
+    },
+    "descriptions": {
+     "en": "relation of categories in category theory"
+    },
+    "aliases": null
+   }
+  ],
+  "api_edge": {
+   "candidate": true,
+   "concept": {
+    "derived": false,
+    "id": "wd:Q6086107",
+    "label": "Isomorfismo de categorías",
+    "type": "concept"
+   },
+   "stats": [
+    {
+     "count": 1,
+     "evidence_state": "model_proposed",
+     "example_claim": "c:9f2c81355dd585a4",
+     "relation": "depends_on_logically"
+    }
+   ],
+   "total": 1
+  },
+  "witness": {
+   "claim": [
+    "c:9f2c81355dd585a4",
+    "depends_on_logically",
+    "extracted"
+   ],
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.Monad.isSplitMono_iff_isIso_unit",
+     0
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Monad",
+     1
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.IsIso",
+     2
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.IsSplitMono",
+     3
+    ]
+   ],
+   "provenance": [
+    {
+     "claim_id": "c:9f2c81355dd585a4",
+     "entity_id": null,
+     "source_id": "src:mathlib4",
+     "locator": "Mathlib/CategoryTheory/Monad/Basic.lean:366 (signature)",
+     "extractor": "atlas.ingest.mathlib",
+     "extractor_version": "mathlib/1+lean-src/1",
+     "license": "Apache-2.0",
+     "retrieved_at": "2026-10-16T18:32:53+00:00",
+     "quote": null
+    }
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.Monad.isSplitMono_iff_isIso_unit",
+    "merged_into": null,
+    "type": "statement",
+    "labels": {
+     "und": "CategoryTheory.Monad.isSplitMono_iff_isIso_unit"
+    },
+    "descriptions": null,
+    "aliases": [
+     [
+      "und",
+      "isSplitMono_iff_isIso_unit"
+     ]
+    ],
+    "statements": {
+     "und": "lemma CategoryTheory.Monad.isSplitMono_iff_isIso_unit (T : Monad C) (X : C) [IsIso T.μ] : IsSplitMono (T.η.app X) ↔ IsIso (T.η.app X)"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.Monad",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.Monad"
+    },
+    "descriptions": {
+     "en": "The data of a monad on C consists of an endofunctor T together with natural transformations `η : 𝟭 C ⟶ T` and `μ : T ⋙ T ⟶ T` satisfying three equations: - `T μ_X ≫ μ_X = μ_(TX) ≫ μ_X` (associativity) - `η_(TX) ≫ μ_X = 1_X` (left unit) - `Tη_X ≫ μ_X = 1_X` (right unit)"
+    },
+    "aliases": [
+     [
+      "und",
+      "Monad"
+     ],
+     [
+      "en",
+      "monad"
+     ]
+    ],
+    "statements": {
+     "und": "structure CategoryTheory.Monad extends C ⥤ C"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.IsIso",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.IsIso"
+    },
+    "descriptions": {
+     "en": "The `IsIso` typeclass expresses that a morphism is invertible. Given a morphism `f` with `IsIso f`, one can view `f` as an isomorphism via `asIso f` and get the inverse using `inv f`."
+    },
+    "aliases": [
+     [
+      "und",
+      "IsIso"
+     ]
+    ],
+    "statements": {
+     "und": "class CategoryTheory.IsIso (f : X ⟶ Y) : Prop"
+    }
+   },
+   {
+    "id": "mathlib:CategoryTheory.IsSplitMono",
+    "merged_into": null,
+    "type": "definition",
+    "labels": {
+     "und": "CategoryTheory.IsSplitMono"
+    },
+    "descriptions": {
+     "en": "`IsSplitMono f` is the assertion that `f` admits a retraction"
+    },
+    "aliases": [
+     [
+      "und",
+      "IsSplitMono"
+     ]
+    ],
+    "statements": {
+     "und": "class CategoryTheory.IsSplitMono {X Y : C} (f : X ⟶ Y) : Prop"
+    }
+   }
+  ],
+  "witness_memberships": {
+   "mathlib:CategoryTheory.Monad.isSplitMono_iff_isIso_unit": [
+    [
+     {
+      "claim": "c:2cb3de909188db0c",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:2cb3de909188db0c",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.Monad.isSplitMono_iff_isIso_unit -> wd:Q121773562",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'split monomorphism'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ],
+   "mathlib:CategoryTheory.Monad": [
+    [],
+    []
+   ],
+   "mathlib:CategoryTheory.IsIso": [
+    [],
+    [
+     {
+      "claim": "c:03bfc62ced2dfe83",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:03bfc62ced2dfe83",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q6086107",
+        "extractor": "concept-projection",
+        "extractor_version": "1",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-17T22:07:22-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact 'isomorphism category'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:c084c6b88d2b023e",
+      "state": "superseded",
+      "provenance": [
+       {
+        "claim_id": "c:c084c6b88d2b023e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q6086107",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact 'isomorphism category'\", \"rank\": 0}"
+       }
+      ]
+     },
+     {
+      "claim": "c:d41be1b416052c77",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:d41be1b416052c77",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsIso -> wd:Q6086107",
+        "extractor": "concept-projection",
+        "extractor_version": "7",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T20:33:56-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_rev:exact 'isomorphism category'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ]
+   ],
+   "mathlib:CategoryTheory.IsSplitMono": [
+    [
+     {
+      "claim": "c:6f44d8fd13226c4e",
+      "state": "model_proposed",
+      "provenance": [
+       {
+        "claim_id": "c:6f44d8fd13226c4e",
+        "entity_id": null,
+        "source_id": "src:concept-projection",
+        "locator": "mathlib:CategoryTheory.IsSplitMono -> wd:Q121773562",
+        "extractor": "concept-projection",
+        "extractor_version": "6",
+        "license": "CC0-1.0",
+        "retrieved_at": "2026-10-18T14:40:07-06:00",
+        "quote": "{\"signal\": \"name_doc\", \"evidence\": \"name_last:exact 'split monomorphism'\", \"rank\": 0}"
+       }
+      ]
+     }
+    ],
+    []
+   ]
+  }
+ }
+]

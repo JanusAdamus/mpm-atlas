@@ -1,0 +1,549 @@
+{
+ "extracted_aggregate_stats": 29,
+ "candidate_false": 0,
+ "stronger_than_weakest_link": 0,
+ "rows": [
+  {
+   "from": "wd:Q1065966",
+   "to": "wd:Q466109",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:3f344c11b5218765",
+   "src_memberships": {
+    "mathlib:QuotientGroup.quotientInfEquivProdNormalQuotient": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Subgroup": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1283623",
+   "to": "wd:Q163875",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:b62c7ab9bb0e708d",
+   "src_memberships": {
+    "mathlib:Order.cof": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Cardinal": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1491995",
+   "to": "wd:Q179899",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:c2b40c963e3a7dd0",
+   "src_memberships": {
+    "mathlib:ConnectedSpace": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ],
+    "mathlib:PreconnectedSpace": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1572357",
+   "to": "wd:Q179899",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:fed3415bebbce857",
+   "src_memberships": {
+    "mathlib:LocallyConvexSpace": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Semiring": [],
+    "mathlib:PartialOrder": [],
+    "mathlib:AddCommMonoid": [],
+    "mathlib:Module": [],
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1755242",
+   "to": "wd:Q83478",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:099e7dd0e47afeca",
+   "src_memberships": {
+    "mathlib:Group.IsNilpotent": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Group": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1780743",
+   "to": "wd:Q179899",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:2a279c70378a5bd2",
+   "src_memberships": {
+    "mathlib:IsCompactOperator": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q180953",
+   "to": "wd:Q1397059",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:27c3336e9ed0071b",
+   "src_memberships": {
+    "mathlib:MetricSpace": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:PseudoMetricSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q181296",
+   "to": "wd:Q83478",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:3ba485d2e0cb2458",
+   "src_memberships": {
+    "mathlib:CommGroup": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Group": [
+     "extracted"
+    ],
+    "mathlib:CommMonoid": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q189112",
+   "to": "wd:Q719395",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:6a61a274a185392b",
+   "src_memberships": {
+    "mathlib:CategoryTheory.Iso": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:CategoryTheory.Category": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q1945014",
+   "to": "wd:Q719395",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:4a733d6b272da226",
+   "src_memberships": {
+    "mathlib:CategoryTheory.MonoidalCategory": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:CategoryTheory.Category": [
+     "extracted"
+    ],
+    "mathlib:CategoryTheory.MonoidalCategoryStruct": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q25378068",
+   "to": "wd:Q3058218",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:59658903572c03b7",
+   "src_memberships": {
+    "mathlib:StandardBorelSpace": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:MeasurableSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q258374",
+   "to": "wd:Q3058218",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:4e322f085b803cf8",
+   "src_memberships": {
+    "mathlib:MeasureTheory.OuterMeasure.caratheodory": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:MeasurableSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q3054889",
+   "to": "wd:Q3058218",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:4e2b3e41cb35d8c3",
+   "src_memberships": {
+    "mathlib:MeasurableSet": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:MeasurableSpace": [
+     "extracted"
+    ],
+    "mathlib:Set": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q438814",
+   "to": "wd:Q466109",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:f2c672c86d3e9033",
+   "src_memberships": {
+    "mathlib:alternatingGroup": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Subgroup": [
+     "extracted"
+    ],
+    "mathlib:Equiv.Perm": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q45715",
+   "to": "wd:Q141488",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:9d51042b349c969f",
+   "src_memberships": {
+    "mathlib:SimpleGraph.completeGraph": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:SimpleGraph": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q466109",
+   "to": "wd:Q83478",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:ec42faccb7c03af4",
+   "src_memberships": {
+    "mathlib:Subgroup": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Group": [
+     "extracted"
+    ],
+    "mathlib:Submonoid": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q516776",
+   "to": "wd:Q3058218",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:0b81f8fa489946bb",
+   "src_memberships": {
+    "mathlib:Measurable": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:MeasurableSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q619436",
+   "to": "wd:Q161172",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:f25e9347cf6b2501",
+   "src_memberships": {
+    "mathlib:Ideal.Quotient.ring": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Ideal": [],
+    "mathlib:Ring": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q768074",
+   "to": "wd:Q466109",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:ebde84fc0a0c08aa",
+   "src_memberships": {
+    "mathlib:RootPairing.weylGroup": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Subgroup": [
+     "extracted"
+    ],
+    "mathlib:RootPairing.Aut": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q77613467",
+   "to": "wd:Q179899",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:7cddf57f4fbc04a8",
+   "src_memberships": {
+    "mathlib:instTopologicalSpaceSubtype": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q791663",
+   "to": "wd:Q607728",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:539ba13c5fb535de",
+   "src_memberships": {
+    "mathlib:Irrational.beattySeq_symmDiff_beattySeq_pos": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Irrational": [
+     "extracted"
+    ],
+    "mathlib:beattySeq": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q847073",
+   "to": "wd:Q17295",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:a88332f4f9a40598",
+   "src_memberships": {
+    "mathlib:EuclideanSpace.dist_eq": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:RCLike": [],
+    "mathlib:Fintype": [],
+    "mathlib:EuclideanSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q848569",
+   "to": "wd:Q652446",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:87cc7f937af8faa0",
+   "src_memberships": {
+    "mathlib:CompleteSpace": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:UniformSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q858656",
+   "to": "wd:Q161172",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:db04fbacfef36195",
+   "src_memberships": {
+    "mathlib:CommRing": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:Ring": [
+     "extracted"
+    ],
+    "mathlib:CommMonoid": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q864475",
+   "to": "wd:Q719395",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:7e845dc617d11f60",
+   "src_memberships": {
+    "mathlib:CategoryTheory.Functor": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:CategoryTheory.Category": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q867345",
+   "to": "wd:Q858656",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:ce8b473b410554d7",
+   "src_memberships": {
+    "mathlib:EuclideanDomain": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:CommRing": [
+     "extracted"
+    ],
+    "mathlib:Nontrivial": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q91578938",
+   "to": "wd:Q3058218",
+   "count": 2,
+   "candidate": true,
+   "example_claim": "c:022628ddac130310",
+   "src_memberships": {
+    "mathlib:borel": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [],
+    "mathlib:MeasurableSpace": [
+     "extracted"
+    ]
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q91578938",
+   "to": "wd:Q179899",
+   "count": 2,
+   "candidate": true,
+   "example_claim": "c:022628ddac130310",
+   "src_memberships": {
+    "mathlib:borel": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ],
+    "mathlib:MeasurableSpace": []
+   },
+   "stronger_than_weakest": false
+  },
+  {
+   "from": "wd:Q97623888",
+   "to": "wd:Q179899",
+   "count": 1,
+   "candidate": true,
+   "example_claim": "c:644b8862e0ee4dd0",
+   "src_memberships": {
+    "mathlib:residual": [
+     "extracted"
+    ]
+   },
+   "dst_memberships": {
+    "mathlib:TopologicalSpace": [
+     "extracted"
+    ],
+    "mathlib:Filter": []
+   },
+   "stronger_than_weakest": false
+  }
+ ]
+}

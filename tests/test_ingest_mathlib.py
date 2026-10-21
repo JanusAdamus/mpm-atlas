@@ -122,10 +122,10 @@ def test_mathlib_entities_and_types(ingested) -> None:
     assert store.coverage()["unknown_by_type"] == {}  # every entity has at least one claim
 
 
-def test_declaration_claims_are_formally_linked_to_the_commit(ingested) -> None:
+def test_declaration_claims_name_the_commit_but_are_not_formal(ingested) -> None:
     store, _, _ = ingested
     (c,) = store.claims_for("mathlib:Nat.Prime", roles=[Role.SUBJECT], relations=[RelationType.PART_OF_AREA])
-    assert c.evidence_state is EvidenceState.FORMALLY_LINKED
+    assert c.evidence_state is EvidenceState.EXTRACTED  # a file location is not formal verification (ADR-0005 §7e)
     assert (c.formal.library, c.formal.version, c.formal.declaration) == ("mathlib4", COMMIT, "Nat.Prime")
     assert c.targets == ("mathlib-dir:Mathlib/Data/Nat/Prime",)
     assert c.ids(Role.CONTEXT) == ("mathlib-mod:Mathlib.Data.Nat.Prime.Defs",)

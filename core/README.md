@@ -50,7 +50,8 @@ El header lleva magic `ATLSNAP\0`, versión de formato, versión de esquema del 
 
 | Grupo | Secciones | Contenido |
 |---|---|---|
-| Cadenas | `StrOffsets`, `StrBytes` | tabla de cadenas UTF-8 (ids, etiquetas ES/EN, supuestos, localizadores, licencias) |
+| Cadenas | `StrOffsets`, `StrBytes` | tabla de cadenas UTF-8 (ids, etiquetas ES/EN, supuestos, localizadores, licencias); desde el formato v3 los desplazamientos son `u64` |
+| Presentación (v3) | `NodeFlags`, `NodeShowEs`, `NodeShowEn` | curaduría activa (ADR-0005 §5): bits de exclusión por alcance y rótulos de presentación |
 | Nodos | `NodeId`, `NodeType`, `NodeCanon`, `NodeLabelEs`, `NodeLabelEn`, `NodeArea`, `NodeClaimCount`, `NodeStateMask`, `NodeHash`, `MergedNodes` | una fila por entidad; fusiones como redirección (`NodeCanon`); `NodeLabelEn` cae a la primera etiqueta, igual que `Entity.label`; `NodeClaimCount = 0` es cobertura "desconocida" |
 | Afirmaciones | `ClaimId`, `ClaimRel`, `ClaimState`, `ClaimSubject`, `ClaimGroup`, `ClaimTgtOff/ClaimTgt`, `ClaimCtxOff/ClaimCtxNode/ClaimCtxRole`, `ClaimAsmOff/ClaimAsm`, `ClaimValidity`, `ClaimHash` | todas las afirmaciones, en cualquier estado; `ClaimTgt` es el objeto o el conjunto de premisas (nodo AND) |
 | Grupos | `GroupId`, `GroupOff`, `GroupClaims` | alternativas (nodo OR), ordenadas por id |
@@ -66,7 +67,7 @@ Integridad: `Snapshot::open` revisa header, tabla, longitudes y extremos de cada
 ## API pública de `atlas-core`
 
 ```rust
-compile(&CompileOptions { db, out_dir, threads, chunks_per_thread }) -> Result<CompileReport>
+compile(&CompileOptions { db, out_dir, threads, chunks_per_thread, core_content_hash }) -> Result<CompileReport>
 CompileOptions::new(db, out_dir); current_snapshot(dir) -> Result<PathBuf>
 Snapshot::open(file_or_dir) -> Result<Snapshot>;  .verify(); .verify_hash(); .stats() -> SnapshotStats
   .header() .path() .file_len() .content_hash_hex() .num_nodes() .num_claims() .num_edges() .num_groups() .num_sources()

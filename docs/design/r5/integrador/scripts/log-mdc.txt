@@ -1,0 +1,1 @@
+{"door":"door_calculus","before":{"y":-376,"bottom":-21,"visible":false},"canvas":{"y":182,"w":390,"h":354},"stops":[{"n":"1","x":305,"y":114},{"n":"2","x":85,"y":241}]}

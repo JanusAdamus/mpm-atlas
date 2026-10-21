@@ -1,0 +1,5 @@
+atlas: serving http://127.0.0.1:56191 (snapshot 19c6f7dc19dab3e925d9f1d0f64af7ba416621ad3cf23a10558f9e653c108d3e)
+atlas:   layout: ok: e6ed5eab030b3aec
+atlas:   paths: ok
+atlas:   registry: ok: data/atlas.db
+atlas:   search: ok: atlas-search

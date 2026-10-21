@@ -128,6 +128,11 @@ async fn drill_down_recounts_each_aggregated_edge() {
         let (_, v) = json(&format!("/api/concept?id={a}")).await;
         for e in v["edges_out"].as_array().unwrap() {
             assert_eq!(e["concept"]["id"], b);
+            // ADR-0005 §7a: aggregated, so a candidate, and never stronger than a model_proposed membership
+            assert_eq!(e["candidate"], true, "{e}");
+            for st in e["stats"].as_array().unwrap() {
+                assert_eq!(st["evidence_state"], "model_proposed", "weakest link: {e}");
+            }
             let (s, d) = json(&format!("/api/concept/edges?from={a}&to={b}&limit=200")).await;
             assert_eq!(s, StatusCode::OK);
             assert_eq!(d["total"], e["total"], "{a} -> {b}");

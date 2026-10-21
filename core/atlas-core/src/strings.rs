@@ -10,13 +10,13 @@ use crate::error::{Error, Result};
 #[derive(Default, Debug)]
 pub(crate) struct StrVec {
     bytes: Vec<u8>,
-    ends: Vec<u32>,
+    ends: Vec<u64>,
 }
 
 impl StrVec {
     pub fn push(&mut self, s: &str) -> u32 {
         self.bytes.extend_from_slice(s.as_bytes());
-        self.ends.push(self.bytes.len() as u32);
+        self.ends.push(self.bytes.len() as u64);
         (self.ends.len() - 1) as u32
     }
 
@@ -53,9 +53,10 @@ impl DedupStrVec {
     }
 }
 
-/// The snapshot string table: `offsets` has n+1 entries.
+/// The snapshot string table: `offsets` has n+1 entries.  Byte offsets are u64 (format v3): the
+/// works layer is estimated at 3.3-4.4 GB of strings (ADR-0005 §8.2); string ids stay u32.
 pub(crate) struct StrTable {
-    pub offsets: Vec<u32>,
+    pub offsets: Vec<u64>,
     pub bytes: Vec<u8>,
     dedup: HashMap<String, u32, RandomState>,
 }
@@ -77,30 +78,28 @@ impl StrTable {
         self.offsets.len() - 1
     }
 
-    fn check(&self) -> Result<()> {
-        if self.bytes.len() > u32::MAX as usize || self.offsets.len() > u32::MAX as usize {
-            return Err(Error::Registry("string table exceeds 4 GiB / 2^32 strings (format v1 limit)".into()));
+    /// String ids are u32 and NONE (u32::MAX) is reserved.
+    fn check(&self, extra: usize) -> Result<()> {
+        if self.offsets.len() + extra > u32::MAX as usize {
+            return Err(Error::Registry("string table exceeds 2^32 - 1 strings (u32 string ids)".into()));
         }
         Ok(())
     }
 
     pub fn push(&mut self, s: &str) -> Result<u32> {
+        self.check(1)?;
         self.bytes.extend_from_slice(s.as_bytes());
-        self.check()?;
-        self.offsets.push(self.bytes.len() as u32);
+        self.offsets.push(self.bytes.len() as u64);
         Ok((self.offsets.len() - 2) as u32)
     }
 
     /// Push every string of `v`; they get consecutive ids starting at the returned base.
     pub fn append(&mut self, v: &StrVec) -> Result<u32> {
+        self.check(v.len())?;
         let base = self.len() as u32;
         let shift = self.bytes.len() as u64;
-        if shift + v.bytes.len() as u64 > u32::MAX as u64 {
-            return Err(Error::Registry("string table exceeds 4 GiB (format v1 limit)".into()));
-        }
         self.bytes.extend_from_slice(&v.bytes);
-        self.offsets.extend(v.ends.iter().map(|e| e + shift as u32));
-        self.check()?;
+        self.offsets.extend(v.ends.iter().map(|e| e + shift));
         Ok(base)
     }
 
@@ -136,6 +135,8 @@ mod tests {
         assert_eq!((first, base), (0, 1));
         assert_eq!([t.get(1), t.get(2), t.get(3)], ["ab", "", "ñ"]);
         assert_eq!(t.intern("x").unwrap(), 0);
+        let _: &Vec<u64> = &t.offsets; // format v3: byte offsets are u64
+        assert_eq!(t.offsets, [0, 1, 3, 3, 5]);
         let mut d = DedupStrVec::default();
         assert_eq!((d.intern("a"), d.intern("b"), d.intern("a")), (0, 1, 0));
     }

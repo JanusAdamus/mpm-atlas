@@ -1,0 +1,13 @@
+   Compiling libsqlite3-sys v0.38.2
+   Compiling rusqlite v0.40.2
+   Compiling atlas-core v0.1.0 (C:\MPM\core\atlas-core)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1m 22s
+     Running tests\weakest_link_real.rs (C:/Users/AdrianGonzalez/.cargo-target/atlas\release\deps\weakest_link_real-67daf4ae87fd3dec.exe)
+
+running 1 test
+checked 71047 aggregated edges, 71149 (relation, state) counts; declaration-level edges by state: {Extracted: 898, ModelProposed: 291003}
+test aggregated_edges_are_never_stronger_than_their_weakest_link ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+wl exit 0

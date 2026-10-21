@@ -1,0 +1,26 @@
+distinct current claims touching G 271132
+  member_of_concept      model_proposed     220496
+  member_of_concept      extracted          25471
+  instance_of            extracted          8054
+  special_case_of        extracted          6652
+  part_of_area           extracted          5672
+  appears_in             extracted          3145
+  named_after            extracted          381
+  formalized_as          extracted          353
+  formalized_as          model_proposed     309
+  said_equivalent_to     extracted          146
+  authored_by            extracted          129
+  prerequisite_for       extracted          110
+  part_of_area           model_proposed     70
+  explains               model_proposed     67
+  generalizes            extracted          44
+  applied_in             extracted          22
+  generalizes            disputed           5
+  influenced             extracted          5
+  special_case_of        disputed           1
+ficha view (first 200 by id), by category {'area/grouping': 126006, 'doc': 2904, 'math': 6152, 'other': 3684, 'formal': 569, 'history': 500} total 139815
+ficha view by relation [('member_of_concept', 120848), ('special_case_of', 5956), ('part_of_area', 5158), ('instance_of', 3486), ('appears_in', 2904), ('formalized_as', 569), ('named_after', 376), ('said_equivalent_to', 152), ('authored_by', 119), ('prerequisite_for', 117), ('generalizes', 58), ('explains', 46), ('applied_in', 21), ('influenced', 5)]
+G 3202 concept-type 2613 derived concept: 1157
+G entities with zero direct math claims: 1910 | concept-type: 1386 | wd concept-type: 229
+claims with >=2 distinct G endpoints: 2684 [('special_case_of', 1233), ('part_of_area', 1166), ('instance_of', 208), ('said_equivalent_to', 41), ('prerequisite_for', 22), ('generalizes', 13), ('influenced', 1)]
+concept-type with no aggregate concept edge: 68 | no direct math claim AND no aggregate edge: 44 | of which wd: 10

@@ -1,0 +1,1634 @@
+[
+ {
+  "n": "D1",
+  "from": {
+   "id": "wd:Q24743362",
+   "labels": {
+    "en": "induced subgraph",
+    "es": "subgrafo inducido"
+   },
+   "descriptions": {
+    "en": "another graph, formed from a subset of the vertices of the graph and all of the edges connecting pairs of vertices in that subset"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q7631151",
+   "labels": {
+    "en": "subgraph",
+    "es": "subgrafo"
+   },
+   "descriptions": {
+    "en": "graph formed from a subset of the vertices and edges of another graph"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:a152af344ac3608a",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q24743362"
+    ],
+    [
+     "object",
+     "wd:Q7631151"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q24743362#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D2",
+  "from": {
+   "id": "wd:Q142140",
+   "labels": {
+    "en": "finitely generated abelian group",
+    "es": "grupo abeliano de tipo finito"
+   },
+   "descriptions": {
+    "en": "A commutative group where every element is the sum of elements from one finite subset"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q181296",
+   "labels": {
+    "en": "abelian group",
+    "es": "grupo abeliano"
+   },
+   "descriptions": {
+    "en": "group whose group operation is commutative",
+    "es": "concepto en álgebra abstracta"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:e4e9996db0602c5f",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q142140"
+    ],
+    [
+     "object",
+     "wd:Q181296"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q142140#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D3",
+  "from": {
+   "id": "wd:Q52241637",
+   "labels": {
+    "en": "symplectic Lie algebra",
+    "es": "álgebra de Lie simpléctica"
+   },
+   "descriptions": {
+    "en": "Lie algebra associated to the symplectic group"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q2366896",
+   "labels": {
+    "en": "semisimple Lie algebra",
+    "es": "álgebra de Lie semisimple"
+   },
+   "descriptions": {
+    "en": "direct sum of simple Lie algebras",
+    "es": "Suma directa de álgebras de Lie simple"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:6df597b84bb95556",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q52241637"
+    ],
+    [
+     "object",
+     "wd:Q2366896"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q52241637#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D4",
+  "from": {
+   "id": "wd:Q934367",
+   "labels": {
+    "en": "function space",
+    "es": "espacio funcional"
+   },
+   "descriptions": {
+    "en": "set of functions of a given kind from a set X to a set Y; it is called a space because in many applications it is a topological space (including metric spaces), a vector space, or both"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q472971",
+   "labels": {
+    "en": "space",
+    "es": "espacio"
+   },
+   "descriptions": {
+    "en": "mathematical structure of geometric nature",
+    "es": "concepto matemático para definir un conjunto con una estructura adicional"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:4e2da5f0bee389c4",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q934367"
+    ],
+    [
+     "object",
+     "wd:Q472971"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q934367#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D5",
+  "from": {
+   "id": "wd:Q168817",
+   "labels": {
+    "en": "algebraic number",
+    "es": "número algebraico"
+   },
+   "descriptions": {
+    "en": "complex number that is a root of a non-zero polynomial in one variable with rational coefficients",
+    "es": "número complejo que es raíz de un polinomio de una variable con coeficientes racionales"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q11567",
+   "labels": {
+    "en": "complex number",
+    "es": "número complejo"
+   },
+   "descriptions": {
+    "en": "number that can be put in the form a + bi, where a and b are real numbers and i is called the imaginary unit",
+    "es": "par ordenado de números reales"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:aa0411eb9550a2d9",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q168817"
+    ],
+    [
+     "object",
+     "wd:Q11567"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q168817#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D6",
+  "from": {
+   "id": "wd:Q4953691",
+   "labels": {
+    "en": "bracket ring"
+   },
+   "descriptions": {},
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q161172",
+   "labels": {
+    "en": "ring",
+    "es": "anillo"
+   },
+   "descriptions": {
+    "en": "algebraic structure that has compatible structures of an abelian group and a monoid, in particular having multiplicative identity",
+    "es": "estructura algebraica"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:14761b5afaff6bdb",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q4953691"
+    ],
+    [
+     "object",
+     "wd:Q161172"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q4953691#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D7",
+  "from": {
+   "id": "wd:Q844980",
+   "labels": {
+    "en": "Leibniz algebra",
+    "es": "álgebra de Leibniz"
+   },
+   "descriptions": {
+    "en": "module over a commutative ring with a bilinear product [–, –] such that for any element x, [–, x] is a derivation"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q18848",
+   "labels": {
+    "en": "module",
+    "es": "módulo"
+   },
+   "descriptions": {
+    "en": "generalization of vector space, with scalars in a ring instead of a field",
+    "es": "estructura algebraica; una generalización de la noción de espacio vectorial, donde los escalares son un anillo arbitrario y donde está definida una multiplicación (a la izquierda o la derecha) entre el anillo y el módulo"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:e3cd99f57bd9118b",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q844980"
+    ],
+    [
+     "object",
+     "wd:Q18848"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q844980#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D8",
+  "from": {
+   "id": "wd:Q4723980",
+   "labels": {
+    "en": "algebra representation"
+   },
+   "descriptions": {
+    "en": "linear representation of an associative algebra"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q77978698",
+   "labels": {
+    "en": "linear representation"
+   },
+   "descriptions": {
+    "en": "mathematical notion, most commonly - group representation"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "special_case_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:ae46ea83dc55db12",
+   "relation": "special_case_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q4723980"
+    ],
+    [
+     "object",
+     "wd:Q77978698"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q4723980#P279",
+     "atlas.ingest.wikidata",
+     "wd-map/2"
+    ]
+   ]
+  },
+  "chain_authorizes": "specialization (transitive)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D9",
+  "from": {
+   "id": "wd:Q980329",
+   "labels": {
+    "en": "orthogonal projection",
+    "es": "proyección ortogonal"
+   },
+   "descriptions": {
+    "en": "form of parallel projection in which all the projection lines are orthogonal to the projection plane"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q11348",
+   "labels": {
+    "en": "function",
+    "es": "función"
+   },
+   "descriptions": {
+    "en": "association of a single output to each input",
+    "es": "concepto en matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:1a2a4b391bd38f72",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q980329"
+    ],
+    [
+     "object",
+     "wd:Q11348"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q980329#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "D10",
+  "from": {
+   "id": "wd:Q1956793",
+   "labels": {
+    "en": "category of abelian groups",
+    "es": "categoría de grupos abelianos"
+   },
+   "descriptions": {
+    "en": "category in mathematics"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q318737",
+   "labels": {
+    "en": "abelian category",
+    "es": "categoría abeliana"
+   },
+   "descriptions": {
+    "en": "preadditive category with a zero object and all binary biproducts, kernels and cokernels in which all monomorphisms and epimorphisms are normal",
+    "es": "una categoría en la cual los morfismos tienen estructura de grupo abeliano, existen tanto núcleos y conúcleos y tienen propiedades deseables"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "instance_of",
+  "state_shown": "extracted",
+  "candidate": false,
+  "witness": {
+   "id": "c:3492ae048f2ecaf1",
+   "relation": "instance_of",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "wd:Q1956793"
+    ],
+    [
+     "object",
+     "wd:Q318737"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:wikidata",
+     "https://www.wikidata.org/wiki/Q1956793#P31",
+     "atlas.ingest.wikidata",
+     "wd-map/3"
+    ]
+   ]
+  },
+  "chain_authorizes": "x is an example of B; only instance_of then special_case_of* composes (to instance_of)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A1",
+  "from": {
+   "id": "wd:Q80091",
+   "labels": {
+    "en": "integral",
+    "es": "integración"
+   },
+   "descriptions": {
+    "en": "operation in mathematical calculus",
+    "es": "operación en cálculo"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q36161",
+   "labels": {
+    "en": "set",
+    "es": "conjunto"
+   },
+   "descriptions": {
+    "en": "well-defined mathematical collection of distinct objects",
+    "es": "agrupación de objetos considerada como un objeto en sí"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 192,
+  "witness": {
+   "id": "c:e2c50fe42feaa820",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:BoxIntegral.integralSum_congr"
+    ],
+    [
+     "premise",
+     "mathlib:Set.EqOn"
+    ],
+    [
+     "premise",
+     "mathlib:BoxIntegral.integralSum"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Analysis/BoxIntegral/Basic.lean:82 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:BoxIntegral.integralSum_congr",
+    "labels": {
+     "und": "BoxIntegral.integralSum_congr"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Set.EqOn",
+    "labels": {
+     "und": "Set.EqOn"
+    },
+    "descriptions": {
+     "en": "Two functions `f₁ f₂ : α → β` are equal on `s` if `f₁ x = f₂ x` for all `x ∈ s`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:05aea2ddec399174",
+     "model_proposed",
+     "mathlib:BoxIntegral.integralSum_congr -> wd:Q80091",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:0542b147af092a79",
+     "model_proposed",
+     "mathlib:Set.EqOn -> wd:Q36161",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A2",
+  "from": {
+   "id": "wd:Q3360627",
+   "labels": {
+    "en": "topological pair"
+   },
+   "descriptions": {
+    "en": "inclusion of topological spaces"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q179899",
+   "labels": {
+    "en": "topological space",
+    "es": "espacio topológico"
+   },
+   "descriptions": {
+    "en": "set of points and set of neighborhoods that satisfy axioms relating those points to those neighborhoods",
+    "es": "conjunto de puntos y conjunto de vecindarios que satisfacen axiomas que relacionan esos puntos con esos vecindarios"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 7,
+  "witness": {
+   "id": "c:2291c955cad06132",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:TopPair.of"
+    ],
+    [
+     "premise",
+     "mathlib:TopCat"
+    ],
+    [
+     "premise",
+     "mathlib:Topology.IsEmbedding"
+    ],
+    [
+     "premise",
+     "mathlib:TopPair"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Topology/Category/TopPair.lean:50 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:TopPair.of",
+    "labels": {
+     "und": "TopPair.of"
+    },
+    "descriptions": {
+     "en": "Construct a topological pair from its components."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Topology.IsEmbedding",
+    "labels": {
+     "und": "Topology.IsEmbedding"
+    },
+    "descriptions": {
+     "en": "A function between topological spaces is an embedding if it is injective, and for all `s : Set X`, `s` is open iff it is the preimage of an open set."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:771f6697ea562f28",
+     "model_proposed",
+     "mathlib:TopPair.of -> wd:Q3360627",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:b90b80c3cf1bf4e7",
+     "model_proposed",
+     "mathlib:Topology.IsEmbedding -> wd:Q179899",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A3",
+  "from": {
+   "id": "wd:Q864377",
+   "labels": {
+    "en": "multiset",
+    "es": "multiconjunto"
+   },
+   "descriptions": {
+    "en": "set (in mathematics) with repetitions allowed",
+    "es": "conjunto matemático que permite repeticiones"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q192439",
+   "labels": {
+    "en": "domain of a function",
+    "es": "dominio de definición"
+   },
+   "descriptions": {
+    "en": "set of \"input\" or argument values for which a function is defined",
+    "es": "conjunto de los valores en los cuales una función está definida"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:9f175a32ce1f5c30",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Ideal.multiset_prod_eq_bot"
+    ],
+    [
+     "premise",
+     "mathlib:CommSemiring"
+    ],
+    [
+     "premise",
+     "mathlib:IsDomain"
+    ],
+    [
+     "premise",
+     "mathlib:Multiset"
+    ],
+    [
+     "premise",
+     "mathlib:Ideal"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/RingTheory/Ideal/Operations.lean:709 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Ideal.multiset_prod_eq_bot",
+    "labels": {
+     "und": "Ideal.multiset_prod_eq_bot"
+    },
+    "descriptions": {
+     "en": "A product of ideals in an integral domain is zero if and only if one of the terms is zero."
+    },
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:IsDomain",
+    "labels": {
+     "und": "IsDomain"
+    },
+    "descriptions": {
+     "en": "A domain is a nontrivial semiring such that multiplication by a nonzero element is cancellative on both sides. In other words, a nontrivial semiring `R` satisfying `∀ {a b c : R}, a ≠ 0 → a * b = a * c → b = c` and `∀ {a b c : R}, b ≠ 0 → a * b = c * b → a = c`. This is implemented as a mixin for `Semiring α`. To obtain an integral domain use `[CommRing α] [IsDomain α]`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:6b906d187d218266",
+     "model_proposed",
+     "mathlib:Ideal.multiset_prod_eq_bot -> wd:Q864377",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:498fb056ed6c12b1",
+     "model_proposed",
+     "mathlib:IsDomain -> wd:Q192439",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A4",
+  "from": {
+   "id": "wd:Q1052692",
+   "labels": {
+    "en": "filter",
+    "es": "filtro"
+   },
+   "descriptions": {
+    "en": "in order theory, a nonempty, downward‐directed, upward‐closed subset of a preordered set",
+    "es": "Concepto matemático"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q215111",
+   "labels": {
+    "en": "homomorphism",
+    "es": "homomorfismo"
+   },
+   "descriptions": {
+    "en": "structure-preserving map between two (algebraic, relational or mixed) structures of the same signature",
+    "es": "función matemática"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 5,
+  "witness": {
+   "id": "c:c2ee33749347f76e",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Filter.coe_pureOneHom"
+    ],
+    [
+     "premise",
+     "mathlib:Filter.pureOneHom"
+    ],
+    [
+     "premise",
+     "mathlib:Filter"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Order/Filter/Pointwise.lean:153 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Filter.coe_pureOneHom",
+    "labels": {
+     "und": "Filter.coe_pureOneHom"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Filter.pureOneHom",
+    "labels": {
+     "und": "Filter.pureOneHom"
+    },
+    "descriptions": {
+     "en": "`pure` as a `OneHom`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:bd1944745ee42f10",
+     "model_proposed",
+     "mathlib:Filter.coe_pureOneHom -> wd:Q1052692",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:3002e21dfc6cd3ba",
+     "model_proposed",
+     "mathlib:Filter.pureOneHom -> wd:Q215111",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A5",
+  "from": {
+   "id": "wd:Q326908",
+   "labels": {
+    "en": "Hausdorff space",
+    "es": "espacio de Hausdorff"
+   },
+   "descriptions": {
+    "en": "topological space in which distinct points have disjoint neighbourhoods",
+    "es": "espacio topológico en el que distintos puntos tienen vecindades disjuntas"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q36161",
+   "labels": {
+    "en": "set",
+    "es": "conjunto"
+   },
+   "descriptions": {
+    "en": "well-defined mathematical collection of distinct objects",
+    "es": "agrupación de objetos considerada como un objeto en sí"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 11,
+  "witness": {
+   "id": "c:b2682da024248d72",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:AlgebraicGeometry.quasiSeparatedSpace_iff_forall_affineOpens"
+    ],
+    [
+     "premise",
+     "mathlib:AlgebraicGeometry.Scheme"
+    ],
+    [
+     "premise",
+     "mathlib:QuasiSeparatedSpace"
+    ],
+    [
+     "premise",
+     "mathlib:IsCompact"
+    ],
+    [
+     "premise",
+     "mathlib:Set"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/AlgebraicGeometry/Morphisms/QuasiSeparated.lean:54 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:AlgebraicGeometry.quasiSeparatedSpace_iff_forall_affineOpens",
+    "labels": {
+     "und": "AlgebraicGeometry.quasiSeparatedSpace_iff_forall_affineOpens"
+    },
+    "descriptions": {},
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Set",
+    "labels": {
+     "und": "Set"
+    },
+    "descriptions": {
+     "en": "A set is a collection of elements of some type `α`. To build a set (an element of `Set α`) out of a predicate `p : α → Prop`, use the set builder notation `{a | p a}`. To get a predicate `α → Prop` from a set `s : Set α`, use the `∈` notation, as in `a ∈ s` or `(· ∈ s)`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:c1a3349f2adde07a",
+     "model_proposed",
+     "mathlib:AlgebraicGeometry.quasiSeparatedSpace_iff_forall_affineOpens -> wd:Q326908",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:21010fff50d1e31a",
+     "model_proposed",
+     "mathlib:Set -> wd:Q36161",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A6",
+  "from": {
+   "id": "wd:Q379825",
+   "labels": {
+    "en": "element",
+    "es": "elemento"
+   },
+   "descriptions": {
+    "en": "any one of the distinct objects that make up a set in set theory",
+    "es": "objeto matemático que forma parte de un conjunto o familia"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q66707394",
+   "labels": {
+    "en": "countable set",
+    "es": "conjunto numerable"
+   },
+   "descriptions": {
+    "en": "set with the same cardinality as some subset of the set of natural numbers",
+    "es": "conjunto con la misma cardinalidad que algún subconjunto del conjunto de los números naturales"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 2,
+  "witness": {
+   "id": "c:680b73bef82cc574",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Unique.encodable"
+    ],
+    [
+     "premise",
+     "mathlib:Unique"
+    ],
+    [
+     "premise",
+     "mathlib:Encodable"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Logic/Encodable/Basic.lean:221 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Unique.encodable",
+    "labels": {
+     "und": "Unique.encodable"
+    },
+    "descriptions": {
+     "en": "A type with unique element is encodable. This is not an instance to avoid diamonds."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Encodable",
+    "labels": {
+     "und": "Encodable"
+    },
+    "descriptions": {
+     "en": "Constructively countable type. Made from an explicit injection `encode : α → ℕ` and a partial inverse `decode : ℕ → Option α`. Note that finite types *are* countable. See `Denumerable` if you wish to enforce infiniteness."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:8317649b86b202d7",
+     "model_proposed",
+     "mathlib:Unique.encodable -> wd:Q379825",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:6da7652c8d91eccc",
+     "model_proposed",
+     "mathlib:Encodable -> wd:Q66707394",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A7",
+  "from": {
+   "id": "wd:Q2421905",
+   "labels": {
+    "en": "Mayer–Vietoris sequence",
+    "es": "sucesión de Mayer-Vietoris"
+   },
+   "descriptions": {
+    "en": "long exact sequence describing how the (co)homology of a space relates to that of two subspaces whose interiors cover the total space"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q179899",
+   "labels": {
+    "en": "topological space",
+    "es": "espacio topológico"
+   },
+   "descriptions": {
+    "en": "set of points and set of neighborhoods that satisfy axioms relating those points to those neighborhoods",
+    "es": "conjunto de puntos y conjunto de vecindarios que satisfacen axiomas que relacionan esos puntos con esos vecindarios"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 2,
+  "witness": {
+   "id": "c:c28ba3494fb1c23e",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:a809afa1a631f9c1"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Square"
+    ],
+    [
+     "premise",
+     "mathlib:TopologicalSpace.Opens"
+    ],
+    [
+     "premise",
+     "mathlib:Opens.grothendieckTopology"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Topology/Sheaves/MayerVietoris.lean:38 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:a809afa1a631f9c1",
+    "labels": {
+     "und": "Opens.mayerVietorisSquare'"
+    },
+    "descriptions": {
+     "en": "A square consisting of opens `X₂ ⊓ X₃`, `X₂`, `X₃` and `X₂ ⊔ X₃` is a Mayer-Vietoris square."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:TopologicalSpace.Opens",
+    "labels": {
+     "und": "TopologicalSpace.Opens"
+    },
+    "descriptions": {
+     "en": "The type of open subsets of a topological space."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:610cb38eb28a392a",
+     "model_proposed",
+     "mathlib:a809afa1a631f9c1 -> wd:Q2421905",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:62ac187f06c0ceec",
+     "model_proposed",
+     "mathlib:TopologicalSpace.Opens -> wd:Q179899",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A8",
+  "from": {
+   "id": "wd:Q189112",
+   "labels": {
+    "en": "isomorphism",
+    "es": "isomorfismo"
+   },
+   "descriptions": {
+    "en": "in mathematics, invertible morphism",
+    "es": "homomorfismo (o más generalmente un morfismo) que admite un inverso"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q36161",
+   "labels": {
+    "en": "set",
+    "es": "conjunto"
+   },
+   "descriptions": {
+    "en": "well-defined mathematical collection of distinct objects",
+    "es": "agrupación de objetos considerada como un objeto en sí"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 3,
+  "witness": {
+   "id": "c:72bb59b1190f51a4",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.Limits.CoproductsFromFiniteFiltered.liftToFinsetEvaluationIso"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Limits.HasFiniteCoproducts"
+    ],
+    [
+     "premise",
+     "mathlib:Finset"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Discrete"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Limits.CoproductsFromFiniteFiltered.liftToFinset"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.evaluation"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Functor.whiskeringLeft"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Discrete.functor"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/CategoryTheory/Limits/Constructions/Filtered.lean:174 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.Limits.CoproductsFromFiniteFiltered.liftToFinsetEvaluationIso",
+    "labels": {
+     "und": "CategoryTheory.Limits.CoproductsFromFiniteFiltered.liftToFinsetEvaluationIso"
+    },
+    "descriptions": {
+     "en": "`liftToFinset`, when composed with the evaluation functor, results in the whiskering composed with `colim`."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Finset",
+    "labels": {
+     "und": "Finset"
+    },
+    "descriptions": {
+     "en": "`Finset α` is the type of finite sets of elements of `α`. It is implemented as a multiset (a list up to permutation) which has no duplicate elements."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:5edab9fcc196deb0",
+     "model_proposed",
+     "mathlib:CategoryTheory.Limits.CoproductsFromFiniteFiltered.liftToFinsetEvaluationIso -> wd:Q189112",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:8a8351a2ba993f0e",
+     "model_proposed",
+     "mathlib:Finset -> wd:Q36161",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A9",
+  "from": {
+   "id": "wd:Q595298",
+   "labels": {
+    "en": "sheaf",
+    "es": "haz"
+   },
+   "descriptions": {
+    "en": "collection of objects associated to subsets of a space in a manner admitting gluing and restriction"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q1948412",
+   "labels": {
+    "en": "morphism",
+    "es": "morfismo"
+   },
+   "descriptions": {
+    "en": "map (arrow) between two objects of a category",
+    "es": "concepto en teoría de categorías"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 1,
+  "witness": {
+   "id": "c:9ca52d22ce6b04f0",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:CategoryTheory.Sheaf.locallySurjective"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.MorphismProperty"
+    ],
+    [
+     "premise",
+     "mathlib:CategoryTheory.Sheaf"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/CategoryTheory/Sites/EpiMono.lean:44 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:CategoryTheory.Sheaf.locallySurjective",
+    "labels": {
+     "und": "CategoryTheory.Sheaf.locallySurjective"
+    },
+    "descriptions": {
+     "en": "The class of locally surjective morphisms of sheaves, see `Sheaf.IsLocallySurjective`."
+    },
+    "type": "definition",
+    "derived": null
+   },
+   {
+    "id": "mathlib:CategoryTheory.MorphismProperty",
+    "labels": {
+     "und": "CategoryTheory.MorphismProperty"
+    },
+    "descriptions": {
+     "en": "A `MorphismProperty C` is a class of morphisms between objects in `C`."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:9c09415321e4f616",
+     "model_proposed",
+     "mathlib:CategoryTheory.Sheaf.locallySurjective -> wd:Q595298",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:fa4229334a8573e3",
+     "model_proposed",
+     "mathlib:CategoryTheory.MorphismProperty -> wd:Q1948412",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ },
+ {
+  "n": "A10",
+  "from": {
+   "id": "wd:Q37105",
+   "labels": {
+    "en": "line",
+    "es": "recta"
+   },
+   "descriptions": {
+    "en": "one-dimensional infinite non-curved geometric object",
+    "es": "objeto geométrico que se extiende en una misma dirección en una sola dimensión"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "to": {
+   "id": "wd:Q4049983",
+   "labels": {
+    "en": "cardinality",
+    "es": "cardinalidad"
+   },
+   "descriptions": {
+    "en": "measure of the “number of elements of the set”, either as a cardinal number or as the equivalence class of sets admitting bijections to this set",
+    "es": "medida del \"número de elementos del conjunto\", ya sea como un número cardinal o como la clase de equivalencia de conjuntos que admiten biyecciones a este conjunto"
+   },
+   "type": "concept",
+   "derived": false
+  },
+  "relation": "depends_on_logically",
+  "state_shown": "model_proposed",
+  "candidate": true,
+  "total": 4,
+  "witness": {
+   "id": "c:14b05347594e3628",
+   "relation": "depends_on_logically",
+   "state": "extracted",
+   "participants": [
+    [
+     "subject",
+     "mathlib:Configuration.HasLines.card_le"
+    ],
+    [
+     "premise",
+     "mathlib:Configuration.HasLines"
+    ],
+    [
+     "premise",
+     "mathlib:Fintype"
+    ],
+    [
+     "premise",
+     "mathlib:Fintype.card"
+    ]
+   ],
+   "provenance": [
+    [
+     "src:mathlib4",
+     "Mathlib/Combinatorics/Configuration.lean:216 (signature)",
+     "atlas.ingest.mathlib",
+     "mathlib/1+lean-src/1"
+    ]
+   ]
+  },
+  "witness_decls": [
+   {
+    "id": "mathlib:Configuration.HasLines.card_le",
+    "labels": {
+     "und": "Configuration.HasLines.card_le"
+    },
+    "descriptions": {
+     "en": "If a nondegenerate configuration has a unique line through any two points, then `|P| ≤ |L|`."
+    },
+    "type": "statement",
+    "derived": null
+   },
+   {
+    "id": "mathlib:Fintype.card",
+    "labels": {
+     "und": "Fintype.card"
+    },
+    "descriptions": {
+     "en": "`card α` is the number of elements in `α`, defined when `α` is a fintype."
+    },
+    "type": "definition",
+    "derived": null
+   }
+  ],
+  "memberships": [
+   [
+    [
+     "c:ac33f2908e352b86",
+     "model_proposed",
+     "mathlib:Configuration.HasLines.card_le -> wd:Q37105",
+     "concept-projection"
+    ]
+   ],
+   [
+    [
+     "c:ef0705f6028812e8",
+     "model_proposed",
+     "mathlib:Fintype.card -> wd:Q4049983",
+     "concept-projection"
+    ]
+   ]
+  ],
+  "chain_authorizes": "logical dependency; assumptions of every hop accumulate (union)",
+  "relation_labels": {}
+ }
+]

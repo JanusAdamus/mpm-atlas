@@ -4,8 +4,9 @@ Indexes (FTS5), layouts and embeddings are derived and rebuildable.  One Store
 object per thread; open extra read-only Stores for concurrent readers (WAL).
 
 Over the 800-line soft ceiling on purpose: this file is the whole persistence
-contract (DDL, writes, reads, merges, FTS, JSON-LD + its validator) and only the
-architect edits it.  Split JSON-LD out first if it grows.
+contract (DDL, writes, reads, merges, curation, batches, FTS, JSON-LD + its
+validator) and only the architect edits it.  Next split: JSON-LD (export and
+validator) into its own module.
 """
 
 from __future__ import annotations
@@ -16,17 +17,21 @@ import sqlite3
 from collections import deque
 from contextlib import contextmanager
 from dataclasses import replace
-from datetime import datetime
+from itertools import batched
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping, Sequence
-from urllib.parse import quote
 
+from .jsonld import CONTEXT_PATH, SHACL_PATH, _claim_ld, _entity_ld, _iri, validate_jsonld
 from .model import (
     CURRENT_STATES,
+    PRESENTATION_SCOPES,
     RELATIONS,
     SCHEMA_VERSION,
     TRANSITIONS,
     Claim,
+    CoverageCell,
+    Curation,
+    CurationKind,
     Edge,
     Entity,
     EntityType,
@@ -34,17 +39,19 @@ from .model import (
     EventKind,
     EvidenceState,
     FormalArtifact,
+    LangString,
     Merge,
+    Provenance,
     RelationType,
     Role,
     SearchHit,
     Source,
     ValidationError,
+    check_state_allowed,
     now_iso,
+    stable_id,
 )
 
-CONTEXT_PATH = Path(__file__).resolve().parent.parent / "shapes" / "context.jsonld"
-SHACL_PATH = Path(__file__).resolve().parent.parent / "shapes" / "atlas.shacl.ttl"
 FTS_SLOTS = 1024  # max FTS rows per entity; fts rowid = entity_rowid * FTS_SLOTS + k
 FIELD_WEIGHT = {"label": 3.0, "alias": 2.0, "external_id": 2.0, "description": 1.0, "statement": 1.0}
 CACHE_KIB = 256 * 1024  # page cache per connection; index inserts thrash with the 2 MiB default
@@ -112,8 +119,49 @@ _DDL_V2 = _endpoint_rows(RelationType.MEMBER_OF_CONCEPT)
 # v3 (2026-10-17): member_of_concept also takes areas as objects (Wikidata areas are concept candidates).
 _DDL_V3 = _endpoint_rows(RelationType.MEMBER_OF_CONCEPT)
 
+# v4 (2026-10-19): ADR-0005.  Additive only: no existing row is rewritten or deleted.
+_DDL_V4 = """
+CREATE TABLE ingest_batches(
+  id INTEGER PRIMARY KEY,
+  source_id TEXT NOT NULL REFERENCES sources(id),
+  run TEXT NOT NULL, batch_key TEXT NOT NULL, input_sha256 TEXT NOT NULL, stats TEXT NOT NULL,
+  actor TEXT NOT NULL, finished_at TEXT NOT NULL,
+  UNIQUE(source_id, run, batch_key));
+ALTER TABLE entities ADD COLUMN ingest_batch INTEGER REFERENCES ingest_batches(id);
+ALTER TABLE claims ADD COLUMN ingest_batch INTEGER REFERENCES ingest_batches(id);
+CREATE INDEX claims_batch ON claims(ingest_batch) WHERE ingest_batch IS NOT NULL;
+CREATE INDEX entities_batch ON entities(ingest_batch) WHERE ingest_batch IS NOT NULL;
+CREATE TABLE curation(
+  id INTEGER PRIMARY KEY,
+  kind TEXT NOT NULL CHECK (kind IN ('exclude_presentation','presentation_label','retire_claims','propose_merge')),
+  target_id TEXT NOT NULL, rule TEXT NOT NULL, rule_version TEXT NOT NULL, payload TEXT NOT NULL,
+  actor TEXT NOT NULL, reason TEXT NOT NULL, created_at TEXT NOT NULL,
+  undone_at TEXT, undone_by TEXT, undo_reason TEXT);
+CREATE INDEX curation_target ON curation(target_id) WHERE undone_at IS NULL;
+CREATE UNIQUE INDEX curation_active ON curation(kind, target_id, rule, rule_version) WHERE undone_at IS NULL;
+CREATE TABLE entity_dates(
+  entity_id TEXT NOT NULL REFERENCES entities(id), position INTEGER NOT NULL,
+  kind TEXT NOT NULL, edtf TEXT NOT NULL, lo INTEGER, hi INTEGER,
+  source_id TEXT NOT NULL REFERENCES sources(id),
+  PRIMARY KEY(entity_id, position)) WITHOUT ROWID;
+CREATE INDEX entity_dates_span ON entity_dates(kind, lo, hi);
+CREATE INDEX external_ids_entity ON external_ids(entity_id);
+CREATE TABLE coverage_cells(
+  source_id TEXT NOT NULL REFERENCES sources(id), source_version TEXT NOT NULL,
+  period TEXT NOT NULL, area TEXT NOT NULL,
+  indexed INTEGER, indexed_method TEXT NOT NULL,
+  ingested INTEGER NOT NULL, cutoff TEXT NOT NULL, measured_at TEXT NOT NULL,
+  PRIMARY KEY(source_id, source_version, period, area, measured_at)) WITHOUT ROWID;
+CREATE TRIGGER coverage_no_update BEFORE UPDATE ON coverage_cells BEGIN SELECT RAISE(ABORT, 'coverage_cells is append-only'); END;
+CREATE TRIGGER coverage_no_delete BEFORE DELETE ON coverage_cells BEGIN SELECT RAISE(ABORT, 'coverage_cells is append-only'); END;
+""" + "\n".join(_endpoint_rows(r) for r in RelationType if RELATIONS[r].subject_types or RELATIONS[r].object_types)
+
 # version -> DDL applied when upgrading from version-1.  Append, never edit.
-MIGRATIONS: dict[int, str] = {1: _DDL_V1, 2: _DDL_V2, 3: _DDL_V3}
+MIGRATIONS: dict[int, str] = {1: _DDL_V1, 2: _DDL_V2, 3: _DDL_V3, 4: _DDL_V4}
+
+CURATION_SOURCE = Source("src:atlas-curation", "Atlas curation decisions (registry table `curation`)", "CC0-1.0",
+                         kind="editorial")
+_SCOPES = frozenset(PRESENTATION_SCOPES)
 
 
 def _dumps(obj: Any) -> str:
@@ -267,24 +315,33 @@ class Store:
             total += self._insert_entities(batch, actor, on_conflict)
         return total
 
-    def _insert_entities(self, batch: list[Entity], actor: str, on_conflict: str) -> int:
+    def _insert_entities(self, batch: list[Entity], actor: str, on_conflict: str,
+                         ingest_batch: int | None = None) -> int:
+        """Insert/replace one chunk.  With `ingest_batch`, rows are tagged and no per-entity event is
+        written (the batch_ingested event covers them)."""
         ts = now_iso()
         with self.transaction():
-            existing: dict[str, tuple[int, str]] = {}
+            existing: dict[str, tuple[int, str, str]] = {}
             if on_conflict != "error":
                 for part in _chunks([e.id for e in batch]):
-                    q = f"SELECT id, rowid, type FROM entities WHERE id IN ({','.join('?' * len(part))})"
-                    existing.update({i: (r, t) for i, r, t in self._conn.execute(q, part)})
+                    q = f"SELECT id, rowid, type, data FROM entities WHERE id IN ({','.join('?' * len(part))})"
+                    existing.update({i: (r, t, d) for i, r, t, d in self._conn.execute(q, part)})
             new = [e for e in batch if e.id not in existing]
-            repl = [e for e in batch if e.id in existing] if on_conflict == "replace" else []
-            for e in repl:
+            repl: list[Entity] = []
+            for e in batch if on_conflict == "replace" else ():
+                if e.id not in existing:
+                    continue
                 if existing[e.id][1] != e.type.value:
                     raise ValidationError(f"entity {e.id}: replace cannot change type {existing[e.id][1]} -> {e.type}")
+                if e.type is EntityType.NOTE:
+                    raise ValidationError(f"note {e.id} is immutable: write a new note and supersede its claim")
+                if _dumps(_compact(e.to_json())) != existing[e.id][2]:  # an identical replace does nothing
+                    repl.append(e)
             lo = self._conn.execute("SELECT COALESCE(MAX(rowid), 0) FROM entities").fetchone()[0]
             try:
                 self._conn.executemany(
-                    "INSERT INTO entities(id, type, data, created_at) VALUES (?,?,?,?)",
-                    ((e.id, e.type.value, _dumps(_compact(e.to_json())), ts) for e in new))
+                    "INSERT INTO entities(id, type, data, created_at, ingest_batch) VALUES (?,?,?,?,?)",
+                    ((e.id, e.type.value, _dumps(_compact(e.to_json())), ts, ingest_batch) for e in new))
             except sqlite3.IntegrityError as exc:
                 raise ValidationError(f"entity insert failed: {exc}") from exc
             self._conn.executemany("UPDATE entities SET data=? WHERE id=?",
@@ -295,17 +352,29 @@ class Store:
                 ids = [e.id for e in repl]
                 self._conn.executemany("DELETE FROM fts WHERE rowid BETWEEN ? AND ?",
                                        ((rowids[i] * FTS_SLOTS, rowids[i] * FTS_SLOTS + FTS_SLOTS - 1) for i in ids))
-                self._conn.executemany("DELETE FROM external_ids WHERE entity_id=?", ((i,) for i in ids))
-                self._conn.executemany("DELETE FROM provenance WHERE entity_id=?", ((i,) for i in ids))
+                for table in ("external_ids", "provenance", "entity_dates"):
+                    self._conn.executemany(f"DELETE FROM {table} WHERE entity_id=?", ((i,) for i in ids))
             touched = new + repl
             self._conn.executemany("INSERT INTO fts(rowid, target_id, field, lang, text) VALUES (?,?,?,?,?)",
                                    (row for e in touched for row in _fts_rows(e, rowids[e.id])))
             self._conn.executemany("INSERT OR IGNORE INTO external_ids VALUES (?,?,?)",
                                    ((s, v, e.id) for e in touched for s, v in e.external_ids))
             self._insert_provenance((("entity", e.id, p) for e in touched for p in e.provenance))
-            self._log([(EventKind.ENTITY_ADDED, e.id, {"type": e.type.value}) for e in new]
-                      + [(EventKind.ENTITY_REPLACED, e.id, {}) for e in repl], actor)
+            self._insert_dates(touched)
+            events = [(EventKind.ENTITY_REPLACED, e.id, {"previous": json.loads(existing[e.id][2])}) for e in repl]
+            if ingest_batch is None:
+                events = [(EventKind.ENTITY_ADDED, e.id, {"type": e.type.value}) for e in new] + events
+            self._log(events, actor)
         return len(touched)
+
+    def _insert_dates(self, entities: Iterable[Entity]) -> None:
+        try:
+            self._conn.executemany(
+                "INSERT INTO entity_dates VALUES (?,?,?,?,?,?,?)",
+                ((e.id, i, d.kind.value, d.edtf, *d.span, d.provenance.source_id)
+                 for e in entities for i, d in enumerate(e.dates)))
+        except sqlite3.IntegrityError as exc:
+            raise ValidationError(f"date provenance refers to an unregistered source ({exc})") from exc
 
     def _insert_provenance(self, rows: Iterable[tuple[str, str, Any]]) -> None:
         try:
@@ -357,20 +426,23 @@ class Store:
             total += self._insert_claims(batch, actor)
         return total
 
-    def _insert_claims(self, batch: list[Claim], actor: str, *, allow_supersedes: bool = False) -> int:
+    def _insert_claims(self, batch: list[Claim], actor: str, *, allow_supersedes: bool = False,
+                       ingest_batch: int | None = None) -> int:
         for c in batch:
             if c.supersedes is not None and not allow_supersedes:
                 raise ValidationError(f"claim {c.id}: use Store.supersede() to create a new version")
             if c.evidence_state in (EvidenceState.SUPERSEDED, EvidenceState.RETRACTED):
                 raise ValidationError(f"claim {c.id}: cannot be inserted as {c.evidence_state}")
+            check_state_allowed(c.relation, c.evidence_state)
         ts = now_iso()
         with self.transaction():
             lo = self._conn.execute("SELECT COALESCE(MAX(rowid), 0) FROM claims").fetchone()[0]
             try:
                 self._conn.executemany(
-                    "INSERT INTO claims VALUES (?,?,?,?,?,NULL,?,?,?)",
+                    "INSERT INTO claims VALUES (?,?,?,?,?,NULL,?,?,?,?)",
                     ((c.id, c.relation.value, c.evidence_state.value, c.alternative_group, c.supersedes,
-                      None if c.formal is None else _dumps(_formal_json(c.formal)), _dumps(_compact(c.to_json())), ts)
+                      None if c.formal is None else _dumps(_formal_json(c.formal)), _dumps(_compact(c.to_json())), ts,
+                      ingest_batch)
                      for c in batch))
                 self._conn.executemany(
                     "INSERT INTO claim_participants VALUES (?,?,?,?)",
@@ -379,7 +451,8 @@ class Store:
                 raise ValidationError(f"claim insert failed (duplicate id or unknown entity): {exc}") from exc
             self._insert_provenance((("claim", c.id, p) for c in batch for p in c.provenance))
             self._check_batch(lo)
-            self._log(((EventKind.CLAIM_ADDED, c.id, {}) for c in batch), actor)
+            if ingest_batch is None:
+                self._log(((EventKind.CLAIM_ADDED, c.id, {}) for c in batch), actor)
         return len(batch)
 
     def _check_batch(self, lo: int) -> None:
@@ -409,6 +482,14 @@ class Store:
         if mixed:
             raise ValidationError("alternative_group must share subject and relation: "
                                   + ", ".join(r[0] for r in mixed))
+        unsourced = self._conn.execute(
+            """SELECT c.id FROM claims c WHERE c.rowid > ? AND c.relation = 'introduced_in'
+               AND NOT EXISTS (SELECT 1 FROM provenance p JOIN sources s ON s.id = p.source_id
+                               WHERE p.claim_id = c.id AND json_extract(s.data, '$.kind') = 'historiography')
+               LIMIT 5""", (lo,)).fetchall()
+        if unsourced:
+            raise ValidationError("introduced_in needs a provenance from a source of kind 'historiography': "
+                                  + ", ".join(r[0] for r in unsourced))
 
     def existing_claim_ids(self, ids: Iterable[str]) -> set[str]:
         """The subset of `ids` already in the registry (any state), in chunked IN queries."""
@@ -497,9 +578,11 @@ class Store:
         if state is EvidenceState.EDITORIALLY_REVIEWED and actor in ("", "system"):
             raise ValidationError("editorial review needs an identified reviewer as actor")
         with self.transaction():
-            row = self._conn.execute("SELECT evidence_state, formal FROM claims WHERE id=?", (claim_id,)).fetchone()
+            row = self._conn.execute("SELECT evidence_state, formal, relation FROM claims WHERE id=?",
+                                     (claim_id,)).fetchone()
             if row is None:
                 raise ValidationError(f"unknown claim {claim_id}")
+            check_state_allowed(row[2], state)
             current = EvidenceState(row[0])
             if state not in TRANSITIONS[current]:
                 raise ValidationError(f"transition {current} -> {state} not allowed")
@@ -548,29 +631,45 @@ class Store:
     def merge(self, survivor_id: str, merged_id: str, *, actor: str, reason: str,
               evidence: str | None = None) -> Merge:
         """Redirect `merged_id` to `survivor_id`.  Participants keep their original ids; reads resolve."""
-        if survivor_id == merged_id:
+        return self.merge_many([(survivor_id, merged_id, evidence)], actor=actor, reason=reason)[0]
+
+    def merge_many(self, items: Iterable[tuple[str, str, str | None]], *, actor: str, reason: str) -> list[Merge]:
+        """Atomic batch of merges (survivor, merged, evidence): all or none.  One merge row and one MERGE
+        event each, so every merge is undone on its own with `undo_merge`."""
+        items = [(s, m, ev) for s, m, ev in items]
+        if any(s == m for s, m, _ in items):
             raise ValidationError("cannot merge an entity with itself")
         if not reason.strip() or actor in ("", "system"):
             raise ValidationError("a merge needs an identified actor and a reason")
+        merged = [m for _, m, _ in items]
+        if len(set(merged)) != len(merged):
+            raise ValidationError("an entity can be merged only once per call")
+        if set(merged) & {s for s, _, _ in items}:
+            raise ValidationError("a survivor of this call cannot be merged in the same call")
         with self.transaction():
-            rows = {i: (t, m) for i, t, m in self._conn.execute(
-                "SELECT id, type, merged_into FROM entities WHERE id IN (?,?)", (survivor_id, merged_id))}
-            for i in (survivor_id, merged_id):
-                if i not in rows:
-                    raise ValidationError(f"unknown entity {i}")
-                if rows[i][1] is not None:
-                    raise ValidationError(f"entity {i} is already merged into {rows[i][1]}")
-            if rows[survivor_id][0] != rows[merged_id][0]:
-                raise ValidationError(f"type mismatch: {rows[survivor_id][0]} vs {rows[merged_id][0]}")
+            rows: dict[str, tuple[str, str | None]] = {}
+            for part in _chunks(list({i for s, m, _ in items for i in (s, m)})):
+                rows.update({i: (t, m) for i, t, m in self._conn.execute(
+                    f"SELECT id, type, merged_into FROM entities WHERE id IN ({','.join('?' * len(part))})", part)})
+            for s, m, _ in items:
+                for i in (s, m):
+                    if i not in rows:
+                        raise ValidationError(f"unknown entity {i}")
+                    if rows[i][1] is not None:
+                        raise ValidationError(f"entity {i} is already merged into {rows[i][1]}")
+                if rows[s][0] != rows[m][0]:
+                    raise ValidationError(f"type mismatch: {rows[s][0]} vs {rows[m][0]}")
             ts = now_iso()
-            self._conn.execute("UPDATE entities SET merged_into=? WHERE id=?", (survivor_id, merged_id))
-            mid = self._conn.execute(
-                "INSERT INTO merges(survivor_id, merged_id, actor, reason, evidence, created_at) "
-                "VALUES (?,?,?,?,?,?)", (survivor_id, merged_id, actor, reason, evidence, ts)).lastrowid
-            self._log([(EventKind.MERGE, merged_id, {"merge_id": mid, "into": survivor_id, "reason": reason,
-                                                     "evidence": evidence})], actor)
+            lo = self._conn.execute("SELECT COALESCE(MAX(id), 0) FROM merges").fetchone()[0]
+            self._conn.executemany("UPDATE entities SET merged_into=? WHERE id=?", ((s, m) for s, m, _ in items))
+            self._conn.executemany(
+                "INSERT INTO merges(survivor_id, merged_id, actor, reason, evidence, created_at) VALUES (?,?,?,?,?,?)",
+                ((s, m, actor, reason, ev, ts) for s, m, ev in items))
+            out = [Merge(*r) for r in self._conn.execute("SELECT * FROM merges WHERE id > ? ORDER BY id", (lo,))]
+            self._log([(EventKind.MERGE, x.merged_id, {"merge_id": x.id, "into": x.survivor_id, "reason": reason,
+                                                       "evidence": x.evidence}) for x in out], actor)
             self._redirect_cache = None
-        return self.get_merge(mid)  # type: ignore[arg-type,return-value]
+        return out
 
     def undo_merge(self, merge_id: int, *, actor: str, reason: str) -> Merge:
         if not reason.strip():
@@ -597,7 +696,215 @@ class Store:
         sql = "SELECT * FROM merges" + (" WHERE undone_at IS NULL" if active_only else "") + " ORDER BY id"
         return [Merge(*r) for r in self._conn.execute(sql)]
 
+    # ------------------------------------------------------------------ curation (v4, ADR-0005 §5)
+    def add_curation(self, kind: CurationKind | str, target_id: str, *, rule: str, rule_version: str,
+                     payload: Mapping[str, Any], actor: str, reason: str) -> Curation:
+        """Record one reversible decision.  Re-running a rule is idempotent: an active row with the same
+        (kind, target, rule, version) and payload is returned as is; a different payload must undo it first."""
+        kind = CurationKind(kind)
+        _check_actor(actor, "a curation")
+        for name, value in (("reason", reason), ("rule", rule), ("rule_version", rule_version)):
+            if not isinstance(value, str) or not value.strip():
+                raise ValidationError(f"a curation needs a {name}")
+        body = self._curation_payload(kind, payload)
+        with self.transaction():
+            if not self._conn.execute("SELECT 1 FROM entities WHERE id=?", (target_id,)).fetchone():
+                raise ValidationError(f"unknown entity {target_id}")
+            row = self._conn.execute(
+                "SELECT * FROM curation WHERE kind=? AND target_id=? AND rule=? AND rule_version=? AND undone_at IS NULL",
+                (kind.value, target_id, rule, rule_version)).fetchone()
+            if row is not None:
+                if json.loads(row[5]) != body:
+                    raise ValidationError(f"curation {row[0]} is active with another payload; undo it first")
+                return _curation_from_row(row)
+            cid = self._conn.execute(
+                "INSERT INTO curation(kind, target_id, rule, rule_version, payload, actor, reason, created_at) "
+                "VALUES (?,?,?,?,?,?,?,?)",
+                (kind.value, target_id, rule, rule_version, _dumps(body), actor, reason, now_iso())).lastrowid
+            if kind is CurationKind.RETIRE_CLAIMS:
+                for claim_id in body["claims"]:
+                    st = self._conn.execute("SELECT evidence_state FROM claims WHERE id=?", (claim_id,)).fetchone()
+                    if st is None or EvidenceState(st[0]) not in CURRENT_STATES:
+                        raise ValidationError(f"retire_claims: {claim_id} is not a current claim")
+                    self.set_evidence_state(claim_id, EvidenceState.RETRACTED, actor=actor, reason=f"curation:{cid}")
+            self._log([(EventKind.CURATION_DECIDED, target_id, {"curation_id": cid, "kind": kind.value, "rule": rule,
+                                                                "rule_version": rule_version, "payload": body})], actor)
+        return self.get_curation(cid)  # type: ignore[arg-type,return-value]
+
+    def _curation_payload(self, kind: CurationKind, payload: Mapping[str, Any]) -> dict[str, Any]:
+        p = dict(payload)
+        if kind is CurationKind.EXCLUDE_PRESENTATION:
+            scopes = p.get("scopes")
+            if not isinstance(scopes, list) or not scopes or not set(scopes) <= _SCOPES:
+                raise ValidationError(f"exclude_presentation needs scopes from {list(PRESENTATION_SCOPES)}")
+            return {"scopes": [s for s in PRESENTATION_SCOPES if s in scopes]}
+        if kind is CurationKind.PRESENTATION_LABEL:
+            label = LangString(p.get("text", ""), p.get("lang", ""))
+            prov = Provenance(**p.get("provenance") or {})
+            if self.get_source(prov.source_id) is None:
+                raise ValidationError(f"presentation_label provenance refers to an unregistered source {prov.source_id}")
+            return {"lang": label.lang, "text": label.text, "provenance": dict(prov.__dict__)}
+        if kind is CurationKind.RETIRE_CLAIMS:
+            claims = p.get("claims")
+            if not isinstance(claims, list) or not claims or not all(isinstance(c, str) for c in claims):
+                raise ValidationError("retire_claims needs a non-empty list of claim ids")
+            return {"claims": list(dict.fromkeys(claims))}
+        survivor, merged = p.get("survivor"), p.get("merged")
+        if not isinstance(survivor, str) or not isinstance(merged, str) or survivor == merged:
+            raise ValidationError("propose_merge needs distinct survivor and merged ids")
+        if len(self._types([survivor, merged])) != 2:
+            raise ValidationError("propose_merge refers to an unknown entity")
+        return {"survivor": survivor, "merged": merged, "evidence": p.get("evidence")}
+
+    def undo_curation(self, curation_id: int, *, actor: str, reason: str) -> Curation:
+        """Undo (or reject, for propose_merge) a curation.  retire_claims cannot reopen a retracted claim
+        (terminal): it inserts restored copies stable_id("restored", claim, curation) and lists them."""
+        _check_actor(actor, "undoing a curation")
+        if not reason.strip():
+            raise ValidationError("a reason is required to undo a curation")
+        with self.transaction():
+            cur = self.get_curation(curation_id)
+            if cur is None:
+                raise ValidationError(f"unknown curation {curation_id}")
+            if cur.undone_at is not None:
+                raise ValidationError(f"curation {curation_id} was already undone")
+            restored: list[str] = []
+            if cur.kind is CurationKind.RETIRE_CLAIMS:
+                restored = self._restore_retired(cur, actor)
+            if cur.kind is CurationKind.PROPOSE_MERGE and self._conn.execute(
+                    "SELECT 1 FROM merges WHERE evidence=? AND undone_at IS NULL", (f"curation:{cur.id}",)).fetchone():
+                raise ValidationError(f"proposal {cur.id} was accepted; undo that merge first")
+            self._conn.execute("UPDATE curation SET undone_at=?, undone_by=?, undo_reason=? WHERE id=?",
+                               (now_iso(), actor, reason, curation_id))
+            self._log([(EventKind.CURATION_UNDONE, cur.target_id, {"curation_id": cur.id, "kind": cur.kind.value,
+                                                                   "reason": reason, "restored": restored})], actor)
+        return self.get_curation(curation_id)  # type: ignore[return-value]
+
+    def _restore_retired(self, cur: Curation, actor: str) -> list[str]:
+        if self.get_source(CURATION_SOURCE.id) is None:
+            self.add_source(CURATION_SOURCE, actor=actor)
+        prov = Provenance(CURATION_SOURCE.id, f"curation:{cur.id}", f"curation:{cur.rule}", cur.rule_version,
+                          CURATION_SOURCE.license, now_iso())
+        copies = []
+        for claim_id in cur.payload["claims"]:
+            old = self.get_claim(claim_id)
+            before = [e.payload["from"] for e in self.events(claim_id, kinds=[EventKind.EVIDENCE_CHANGED])
+                      if e.payload.get("reason") == f"curation:{cur.id}"]
+            if old is None or not before:
+                raise ValidationError(f"curation {cur.id}: no retirement record for {claim_id}")
+            copies.append(replace(old, id=stable_id("restored", claim_id, str(cur.id)),
+                                  evidence_state=EvidenceState(before[-1]), superseded_by=None, supersedes=None,
+                                  provenance=old.provenance + (prov,)))
+        self._insert_claims(copies, actor)
+        return [c.id for c in copies]
+
+    def accept_merge_proposal(self, curation_id: int, *, actor: str, reason: str) -> Merge:
+        """Accept an active propose_merge: Store.merge with evidence "curation:<id>"."""
+        cur = self.get_curation(curation_id)
+        if cur is None or cur.kind is not CurationKind.PROPOSE_MERGE or cur.undone_at is not None:
+            raise ValidationError(f"{curation_id} is not an active merge proposal")
+        return self.merge(cur.payload["survivor"], cur.payload["merged"], actor=actor, reason=reason,
+                          evidence=f"curation:{cur.id}")
+
+    def get_curation(self, curation_id: int) -> Curation | None:
+        row = self._conn.execute("SELECT * FROM curation WHERE id=?", (curation_id,)).fetchone()
+        return _curation_from_row(row) if row else None
+
+    def curations(self, *, target_id: str | None = None, kind: CurationKind | str | None = None,
+                  active_only: bool = True) -> list[Curation]:
+        sql, args = "SELECT * FROM curation WHERE 1=1", []
+        if target_id is not None:
+            sql += " AND target_id=?"
+            args.append(target_id)
+        if kind is not None:
+            sql += " AND kind=?"
+            args.append(CurationKind(kind).value)
+        if active_only:
+            sql += " AND undone_at IS NULL"
+        return [_curation_from_row(r) for r in self._conn.execute(sql + " ORDER BY id", args)]
+
+    # ------------------------------------------------------------------ ingest batches (v4, ADR-0005 §8.5)
+    def ingest_batch(self, *, source_id: str, run: str, batch_key: str, input_sha256: str, actor: str,
+                     entities: Iterable[Entity] = (), claims: Iterable[Claim] = (),
+                     stats: Mapping[str, Any] | None = None, chunk: int = 20_000) -> int | None:
+        """One batch = one transaction: entities (existing ids kept), claims (existing ids skipped), the
+        ingest_batches row and ONE batch_ingested event.  Returns the batch id, or None (nothing written)
+        when (source_id, run, batch_key) was already ingested.  An exception leaves nothing behind."""
+        _check_actor(actor, "a batch")
+        with self.transaction():
+            if self._conn.execute("SELECT 1 FROM ingest_batches WHERE source_id=? AND run=? AND batch_key=?",
+                                  (source_id, run, batch_key)).fetchone():
+                return None
+            try:
+                bid = self._conn.execute(
+                    "INSERT INTO ingest_batches(source_id, run, batch_key, input_sha256, stats, actor, finished_at) "
+                    "VALUES (?,?,?,?,'{}',?,?)", (source_id, run, batch_key, input_sha256, actor, now_iso())).lastrowid
+            except sqlite3.IntegrityError as exc:
+                raise ValidationError(f"batch refers to an unregistered source {source_id}") from exc
+            top = "SELECT COALESCE(MAX(rowid), 0) FROM {}"
+            e0, c0 = (self._conn.execute(top.format(t)).fetchone()[0] for t in ("entities", "claims"))
+            n_e = sum(self._insert_entities(list(part), actor, "ignore", ingest_batch=bid)
+                      for part in batched(entities, chunk))
+            n_c = 0
+            for part in batched(claims, chunk):
+                seen = self.existing_claim_ids(c.id for c in part)
+                fresh = [c for c in part if c.id not in seen]
+                n_c += self._insert_claims(fresh, actor, ingest_batch=bid) if fresh else 0
+            e1, c1 = (self._conn.execute(top.format(t)).fetchone()[0] for t in ("entities", "claims"))
+            full = {**(stats or {}), "entities_inserted": n_e, "claims_inserted": n_c}
+            self._conn.execute("UPDATE ingest_batches SET stats=? WHERE id=?", (_dumps(full), bid))
+            self._log([(EventKind.BATCH_INGESTED, f"batch:{bid}", {
+                "batch_id": bid, "source_id": source_id, "run": run, "batch_key": batch_key, "stats": full,
+                "entity_rowids": [e0 + 1, e1] if e1 > e0 else None,
+                "claim_rowids": [c0 + 1, c1] if c1 > c0 else None})], actor)
+        return bid
+
+    # ------------------------------------------------------------------ dates and coverage cells (v4)
+    def rebuild_entity_dates(self) -> int:
+        """Drop and rebuild the derived table entity_dates from entities.data.dates."""
+        with self.transaction():
+            self._conn.execute("DELETE FROM entity_dates")
+            n = 0
+            cur = self._conn.execute("SELECT data FROM entities WHERE json_extract(data, '$.dates') IS NOT NULL")
+            while rows := cur.fetchmany(5000):
+                ents = [Entity.from_json(json.loads(r[0])) for r in rows]
+                self._insert_dates(ents)
+                n += sum(len(e.dates) for e in ents)
+        return n
+
+    def dated_entities(self, lo: int | None, hi: int | None, *, kinds: Iterable[str] | None = None) -> list[str]:
+        """Entities with a date overlapping the astronomical years [lo, hi] (None = unbounded)."""
+        sql = ("SELECT DISTINCT entity_id FROM entity_dates WHERE (? IS NULL OR hi IS NULL OR hi >= ?) "
+               "AND (? IS NULL OR lo IS NULL OR lo <= ?)")
+        args: list[Any] = [lo, lo, hi, hi]
+        if kinds is not None:
+            ks = list(kinds)
+            sql += f" AND kind IN ({','.join('?' * len(ks))})"
+            args += ks
+        return [r[0] for r in self._conn.execute(sql + " ORDER BY entity_id", args)]
+
+    def add_coverage_cells(self, cells: Iterable[CoverageCell], *, actor: str) -> int:
+        """Append measurements (the table is append-only: measuring again is a new measured_at)."""
+        rows = [(c.source_id, c.source_version, c.period, c.area, c.indexed, c.indexed_method, c.ingested, c.cutoff,
+                 c.measured_at) for c in cells]
+        with self.transaction():
+            try:
+                self._conn.executemany("INSERT INTO coverage_cells VALUES (?,?,?,?,?,?,?,?,?)", rows)
+            except sqlite3.IntegrityError as exc:
+                raise ValidationError(f"coverage cell rejected (duplicate or unregistered source): {exc}") from exc
+            self._log([(EventKind.COVERAGE_MEASURED, "coverage", {
+                "cells": len(rows), "sources": sorted({r[0] for r in rows})})], actor)
+        return len(rows)
+
+    def coverage_cells(self, source_id: str | None = None) -> list[CoverageCell]:
+        sql, args = "SELECT * FROM coverage_cells", []
+        if source_id is not None:
+            sql, args = sql + " WHERE source_id=?", [source_id]
+        return [CoverageCell(*r) for r in self._conn.execute(sql + " ORDER BY source_id, period, area, measured_at",
+                                                             args)]
+
     def _redirects(self) -> dict[str, str]:
+        """Every redirect in one dict: only for full scans (iter_edges); point lookups use SQL."""
         # data_version changes when another connection commits, so readers see merges made elsewhere
         version = self._conn.execute("PRAGMA data_version").fetchone()[0]
         if self._redirect_cache is None or version != self._redirect_version:
@@ -607,14 +914,23 @@ class Store:
         return self._redirect_cache
 
     def resolve(self, entity_id: str) -> str:
-        """Canonical id after following merges."""
-        return _follow(self._redirects(), entity_id)
+        """Canonical id after following merges (primary-key lookups; no table load)."""
+        # ponytail: no LRU; a PK lookup per hop measured well under 1 ms (test_resolve_scales_with_sql)
+        eid = entity_id
+        for _ in range(65):
+            row = self._conn.execute("SELECT merged_into FROM entities WHERE id=?", (eid,)).fetchone()
+            if row is None or row[0] is None:
+                return eid
+            eid = row[0]
+        raise ValidationError("merge redirect cycle")
 
     def merged_ids(self, entity_id: str) -> list[str]:
-        """The canonical id plus every id that resolves to it."""
-        red = self._redirects()
-        canon = _follow(red, entity_id)
-        return [canon] + sorted(i for i in red if _follow(red, i) == canon)
+        """The canonical id plus every id that resolves to it (recursive query on entities_merged)."""
+        canon = self.resolve(entity_id)
+        rows = self._conn.execute(
+            "WITH RECURSIVE m(id) AS (SELECT ? UNION SELECT e.id FROM entities e JOIN m ON e.merged_into = m.id) "
+            "SELECT id FROM m", (canon,))
+        return [canon] + sorted(r[0] for r in rows if r[0] != canon)
 
     # ------------------------------------------------------------------ search
     def search(self, query: str, *, lang: str | None = None, limit: int = 20,
@@ -730,7 +1046,8 @@ class Store:
             s = self.get_source(sid)
             if s is not None:
                 graph.append({"@id": _iri(s.id), "@type": "Source", "title": s.title, "license": s.license,
-                              **({"uri": s.uri} if s.uri else {}), **({"version": s.version} if s.version else {})})
+                              **({"uri": s.uri} if s.uri else {}), **({"version": s.version} if s.version else {}),
+                              **({"sourceKind": s.kind} if s.kind else {})})
         context = json.loads(CONTEXT_PATH.read_text(encoding="utf-8"))["@context"]
         return {"@context": context, "@graph": graph}
 
@@ -772,7 +1089,20 @@ def _follow(red: Mapping[str, str], eid: str) -> str:
     return eid
 
 
+def _check_actor(actor: str, what: str) -> None:
+    if not isinstance(actor, str) or actor.strip() in ("", "system"):
+        raise ValidationError(f"{what} needs an identified actor (a program signs as 'curation:<rule>/<version>')")
+
+
+def _curation_from_row(row: Sequence[Any]) -> Curation:
+    cid, kind, target, rule, version, payload, actor, reason, created, undone, undone_by, undo_reason = row
+    return Curation(cid, CurationKind(kind), target, rule, version, json.loads(payload), actor, reason, created,
+                    undone, undone_by, undo_reason)
+
+
 def _fts_rows(e: Entity, rowid: int) -> Iterator[tuple[int, str, str, str, str]]:
+    if e.type is EntityType.NOTE:  # unreviewed ficha drafts must not show up in search
+        return
     fields = ([("label", l.lang, l.text) for l in e.labels] + [("alias", a.lang, a.text) for a in e.aliases]
               + [("description", d.lang, d.text) for d in e.descriptions]
               + [("statement", s.lang, s.text) for s in e.statements]
@@ -799,127 +1129,3 @@ def _claim_from_row(row: Sequence[Any]) -> Claim:
     d = json.loads(data)
     d.update(evidence_state=state, superseded_by=sup_by, formal=json.loads(formal) if formal else d.get("formal"))
     return Claim.from_json(d)
-
-
-def _iri(atlas_id: str) -> str:
-    return "aid:" + quote(atlas_id, safe="")
-
-
-def _lang_map(items: Iterable[Any]) -> dict[str, Any]:
-    out: dict[str, Any] = {}
-    for x in items:
-        out.setdefault(x.lang, []).append(x.text)
-    return {k: v[0] if len(v) == 1 else v for k, v in out.items()}
-
-
-def _entity_ld(e: Entity, merged_from: list[str]) -> dict[str, Any]:
-    node: dict[str, Any] = {"@id": _iri(e.id), "@type": "".join(w.capitalize() for w in e.type.value.split("_")),
-                            "atlasId": e.id, "label": _lang_map(e.labels)}
-    if e.aliases:
-        node["altLabel"] = _lang_map(e.aliases)
-    if e.descriptions:
-        node["description"] = _lang_map(e.descriptions)
-    if e.statements:
-        node["statementText"] = _lang_map(e.statements)
-    if e.formula:
-        node["formula"] = e.formula
-    if e.external_ids:
-        node["externalId"] = [f"{s}:{v}" for s, v in e.external_ids]
-    if merged_from:
-        node["mergedFrom"] = [_iri(m) for m in merged_from]
-    if e.provenance:
-        node["provenance"] = [_prov_ld(p) for p in e.provenance]
-    return node
-
-
-def _prov_ld(p: Any) -> dict[str, Any]:
-    node = {"source": _iri(p.source_id), "locator": p.locator, "extractor": p.extractor,
-            "extractorVersion": p.extractor_version, "license": p.license, "retrievedAt": p.retrieved_at}
-    if p.quote:
-        node["quote"] = p.quote
-    return node
-
-
-def _claim_ld(c: Claim, resolve: Any) -> dict[str, Any]:
-    node: dict[str, Any] = {
-        "@id": _iri(c.id), "@type": "Claim", "atlasId": c.id, "relation": c.relation.value,
-        "evidenceState": c.evidence_state.value,
-        "participant": [{"role": p.role.value, "entity": _iri(resolve(p.entity_id))} for p in c.participants],
-        "provenance": [_prov_ld(p) for p in c.provenance],
-    }
-    optional = {
-        "assumption": list(c.assumptions) or None, "validityDomain": c.validity_domain,
-        "alternativeGroup": c.alternative_group, "supersedes": c.supersedes and _iri(c.supersedes),
-        "supersededBy": c.superseded_by and _iri(c.superseded_by),
-        "formalArtifact": c.formal and {"library": c.formal.library, "version": c.formal.version,
-                                        "declaration": c.formal.declaration, "axiom": list(c.formal.axioms)},
-        "confidence": c.confidence and {"value": c.confidence.value, "estimates": c.confidence.estimates,
-                                        "calibration": c.confidence.calibration},
-        "historicalDate": c.historical_date,
-        "explanation": _lang_map(c.explanation) or None,
-        "disagreement": list(c.disagreements) or None,
-    }
-    node.update({k: v for k, v in optional.items() if v})
-    return node
-
-
-# ---------------------------------------------------------------------- JSON-LD validator (mirrors SHACL)
-
-_PROV_FIELDS = ("source", "locator", "extractor", "extractorVersion", "license", "retrievedAt")
-
-
-def validate_jsonld(doc: Mapping[str, Any]) -> list[str]:
-    """Pure-Python check of an exported graph against the rules in shapes/atlas.shacl.ttl.
-    Returns a list of violations (empty = conforms)."""
-    errors: list[str] = []
-    nodes = doc.get("@graph", [])
-    ids = {n.get("@id") for n in nodes}
-    rel_values = {r.value for r in RelationType}
-    state_values = {s.value for s in EvidenceState}
-    for n in nodes:
-        if n.get("@type") != "Claim":
-            if n.get("@type") not in ("Source",) and not n.get("label"):
-                errors.append(f"{n.get('@id')}: entity without label")
-            continue
-        cid = n.get("@id")
-        rel, state = n.get("relation"), n.get("evidenceState")
-        if rel not in rel_values:
-            errors.append(f"{cid}: relation {rel!r} not in vocabulary")
-        if state not in state_values:
-            errors.append(f"{cid}: evidenceState {state!r} not in vocabulary")
-        parts = n.get("participant", [])
-        roles = [p.get("role") for p in parts]
-        if roles.count("subject") != 1:
-            errors.append(f"{cid}: needs exactly one subject participant")
-        n_obj, n_prem = roles.count("object"), roles.count("premise")
-        if n_prem and (n_obj or rel not in rel_values or not RELATIONS[RelationType(rel)].allows_premises):
-            errors.append(f"{cid}: premises only without object and on relations that allow them")
-        if not n_prem and n_obj != 1:
-            errors.append(f"{cid}: needs exactly one object or a premise set")
-        for p in parts:
-            if p.get("role") not in {r.value for r in Role}:
-                errors.append(f"{cid}: unknown role {p.get('role')!r}")
-            if not isinstance(p.get("entity"), str) or p["entity"] not in ids:
-                errors.append(f"{cid}: participant entity {p.get('entity')!r} missing from graph")
-        provs = n.get("provenance", [])
-        if not provs:
-            errors.append(f"{cid}: no provenance")
-        for p in provs:
-            for f in _PROV_FIELDS:
-                if not isinstance(p.get(f), str) or not p[f].strip():
-                    errors.append(f"{cid}: provenance.{f} missing")
-            try:
-                datetime.fromisoformat(p.get("retrievedAt", ""))
-            except (TypeError, ValueError):
-                errors.append(f"{cid}: provenance.retrievedAt is not a dateTime")
-        if state == "formally_linked":
-            fa = n.get("formalArtifact") or {}
-            if not all(fa.get(k) for k in ("library", "version", "declaration")):
-                errors.append(f"{cid}: formally_linked requires formalArtifact(library, version, declaration)")
-        if state == "superseded" and not n.get("supersededBy"):
-            errors.append(f"{cid}: superseded requires supersededBy")
-        conf = n.get("confidence")
-        if conf is not None and not (isinstance(conf.get("value"), (int, float)) and 0 <= conf["value"] <= 1
-                                     and conf.get("estimates") and conf.get("calibration")):
-            errors.append(f"{cid}: confidence needs value in [0,1], estimates and calibration")
-    return errors

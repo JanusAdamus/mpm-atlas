@@ -1,0 +1,9 @@
+    Checking libsqlite3-sys v0.38.2
+    Checking rusqlite v0.40.2
+    Checking atlas-core v0.1.0 (C:\MPM\core\atlas-core)
+    Checking atlas-layout v0.1.0 (C:\MPM\core\atlas-layout)
+    Checking atlas-paths v0.1.0 (C:\MPM\core\atlas-paths)
+    Checking atlas-search v0.1.0 (C:\MPM\core\atlas-search)
+    Checking atlas-server v0.1.0 (C:\MPM\core\atlas-server)
+    Finished `release` profile [optimized + debuginfo] target(s) in 5.16s
+exit 0

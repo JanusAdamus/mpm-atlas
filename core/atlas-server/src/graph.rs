@@ -108,7 +108,12 @@ impl Engine {
         let center = snap.resolve(&q.id).ok_or_else(|| Error::NotFound(format!("entity {}", q.id)))?;
         let rel_mask = mask(&q.relations, RelationType::bit, u32::MAX);
         let state_mask = mask(&q.states, EvidenceState::bit, CURRENT_STATES_MASK);
-        let pass = |e: &EdgeRef| rel_mask & e.relation.bit() != 0 && state_mask & e.state.bit() != 0;
+        // a note (one ficha sentence) is panel text, never a connection: its explains count as hidden;
+        // a node curated off the map (ADR-0005 §5, `map:all`) is not drawn here either
+        let pass = |e: &EdgeRef| {
+            rel_mask & e.relation.bit() != 0 && state_mask & e.state.bit() != 0 && snap.node_type(e.nbr) != EntityType::Note
+                && !snap.is_excluded(e.nbr, "map:all")
+        };
         let (out, inn) = (snap.csr(Dir::Out), snap.csr(Dir::In));
 
         let mut index: HashSet<NodeIx> = HashSet::from([center]);
@@ -165,7 +170,7 @@ impl Engine {
             .map(|&n| Node {
                 id: snap.node_id(n),
                 entity_type: snap.node_type(n),
-                label: snap.label(n, &q.lang),
+                label: snap.display_label(n, &q.lang),
                 coverage: if snap.evidence(n).is_unknown() { "unknown" } else { "known" },
                 degree: out.degree(n) + inn.degree(n),
             })

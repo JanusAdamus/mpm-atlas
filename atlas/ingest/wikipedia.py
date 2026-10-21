@@ -30,20 +30,22 @@ from __future__ import annotations
 import gzip
 import json
 import logging
+import re
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from urllib.parse import quote
 
-from ..model import EntityType, EvidenceState, LangString, Provenance, RelationType, Source, Entity, binary, now_iso, stable_id
+from ..model import (EntityType, EvidenceState, LangString, Provenance, RelationType, Role, Source, Entity, binary,
+                     now_iso, stable_id)
 from ..store import Store
 from .common import IngestReport, Timer, Writer, batched, ensure_source
 from .http import CachedClient, OfflineMiss, has_contact
 
 LICENSE = "CC-BY-SA-4.0"
 EXTRACTOR = "atlas.ingest.wikipedia"
-ADAPTER_VERSION = "wikipedia/2"
+ADAPTER_VERSION = "wikipedia/3"  # 3: extract cut at a sentence boundary, not mid-sentence
 TITLES_PER_REQUEST = 50
 MAX_EXTRACT = 1500
 # non-article namespaces that appear in `outgoing_link` (EN and ES names)
@@ -86,6 +88,37 @@ class Page:
     redirects: list[str] = field(default_factory=list)
     fetched_at: str = ""
     missing: bool = False
+
+
+# words that end in "." without ending a sentence (ES and EN); single letters (initials) are handled apart
+ABBREVIATIONS = frozenset({"p", "ej", "etc", "e.g", "i.e", "cf", "vs", "sr", "sra", "dr", "dra", "st", "no", "núm",
+                           "art", "fig", "aprox", "approx", "ca", "c", "s", "ss", "op", "cit", "vol", "pp", "ed",
+                           "al", "mr", "mrs", "ms", "prof", "jr", "inc", "ltd", "a.c", "d.c"})
+_SENTENCE_END = re.compile(r"[.!?…](?:[\"»”')\]]*)(?=\s+[\"«“¿¡(\[]?[A-ZÁÉÍÓÚÜÑ0-9])")
+MIN_SENTENCE_CUT = 0.25  # a boundary before 25 % of the limit would throw away most of the text
+
+
+def cut_at_sentence(text: str, limit: int = MAX_EXTRACT) -> str:
+    """Whitespace-normalized `text`, cut at the last sentence end that fits in `limit` characters.
+
+    wikipedia/2 cut at exactly `limit` characters, mid-sentence (diagnóstico r5 §3.1: 5,625 of 31,976
+    extracts).  Without a usable boundary the text is cut at a word and ends in " …", so it never looks
+    like a complete sentence."""
+    text = " ".join(text.split())
+    if len(text) <= limit:
+        return text
+    window = text[: limit + 8]  # the look-ahead needs the start of the next sentence
+    ends = [m.end() for m in _SENTENCE_END.finditer(window) if m.end() <= limit and not _abbreviation(text, m.start())]
+    if ends and ends[-1] >= limit * MIN_SENTENCE_CUT:
+        return text[: ends[-1]]
+    return text[: limit - 2].rsplit(" ", 1)[0].rstrip(",;:") + " …"
+
+
+def _abbreviation(text: str, dot: int) -> bool:
+    if text[dot] != ".":
+        return False
+    word = re.split(r"[\s(]", text[:dot])[-1].lower()
+    return len(word) == 1 or word in ABBREVIATIONS or text[max(0, dot - 5):dot].lower() in ("p. ej", " a. c", " d. c")
 
 
 def _accept(body: bytes) -> bool:
@@ -335,7 +368,7 @@ def _write_pages(store: Store, writer: Writer, st: _LangState, titles: list[str]
         fid = fragment_id(lang, page.title)
         prov = _prov(lang, page_url(lang, page.title, page.revid), page)
         if page.title not in st.fetched:
-            text = " ".join(page.extract.split())[:MAX_EXTRACT]
+            text = cut_at_sentence(page.extract)
             if page.title not in st.by_final:
                 report.counters[f"{lang}:fragments"] += 1
                 report.counters[f"{lang}:with_extract"] += bool(text)
@@ -373,3 +406,84 @@ def _write_links(writer: Writer, st: _LangState, report: IngestReport) -> None:
                                    fid, tid, prov, evidence_state=EvidenceState.MODEL_PROPOSED,
                                    explanation=(LangString(LINK_NOTE["en"], "en"), LangString(LINK_NOTE["es"], "es")))):
                 report.counters[f"{lang}:cites_candidates"] += 1
+
+
+# ---------------------------------------------------------------------- r5: repair extracts cut mid-sentence
+
+_OLDID = re.compile(r"[?&]oldid=(\d+)")
+
+
+def cached_texts(client: CachedClient, lang: str) -> dict[tuple[str, int], str]:
+    """(title, revision id) -> full lead text, from every cached response of `lang`.  Keyed by revision so a
+    repaired extract is always the text of the revision its provenance cites."""
+    prefix = api_url(lang) + "?"
+    out: dict[tuple[str, int], str] = {}
+    for path in sorted(client.cache_dir.glob("*/*.gz")):
+        with gzip.open(path, "rb") as fh:
+            if not json.loads(fh.readline()).get("url", "").startswith(prefix):
+                continue
+            try:
+                data = json.loads(fh.read())
+            except ValueError:
+                continue
+        for p in data.get("query", {}).get("pages", []):
+            rev = p.get("lastrevid")
+            text = p.get("extract") or next((d.get("source", {}).get("opening_text") for d in p.get("cirrusdoc", [])
+                                             if d.get("source", {}).get("opening_text")), None)
+            if rev and text:
+                out.setdefault((p["title"], rev), text)
+    return out
+
+
+def repair_extracts(store: Store, client: CachedClient, *, langs: tuple[str, ...] = LANGS,
+                    report: IngestReport | None = None) -> IngestReport:
+    """Re-cut every stored extract that reached the old 1,500-character cap at a sentence boundary, from the
+    cached text of the same revision.  Each change is an `entity_replaced` event with the previous data; the
+    provenance (revision URL, licence, retrieval date) is kept and its extractor version becomes this one."""
+    report = report or IngestReport("wikipedia-repair")
+    for lang in langs:
+        texts = cached_texts(client, lang)
+        prefix = f"Wikipedia ({lang}): "
+        fixed: list[Entity] = []
+        for e in store.iter_entities(EntityType.SOURCE_FRAGMENT):
+            label = e.labels[0].text if e.labels else ""
+            desc = next((d.text for d in e.descriptions if d.lang == lang), None)
+            if not label.startswith(prefix) or desc is None or len(desc) < MAX_EXTRACT:
+                continue
+            report.counters[f"{lang}:at_cap"] += 1
+            m = _OLDID.search(e.provenance[0].locator) if e.provenance else None
+            full = texts.get((label[len(prefix):], int(m.group(1)))) if m else None
+            if full is None:  # the stored text is a prefix of the cited revision: cut inside it
+                report.counters[f"{lang}:no_cached_revision"] += 1
+                text = cut_at_sentence(desc, limit=len(desc) - 1)
+            else:
+                text = cut_at_sentence(full)
+            if text == desc:
+                report.counters[f"{lang}:unchanged"] += 1
+                continue
+            report.counters[f"{lang}:sentence_cut" if not text.endswith(" …") else f"{lang}:word_cut"] += 1
+            prov = tuple(replace(p, extractor_version=ADAPTER_VERSION) if p.extractor == EXTRACTOR else p
+                         for p in e.provenance)
+            fixed.append(replace(e, descriptions=tuple(LangString(text, lang) if d.lang == lang else d
+                                                       for d in e.descriptions), provenance=prov))
+        for part in batched(fixed, 500):  # short transactions: another worker writes too
+            report.counters[f"{lang}:replaced"] += store.add_entities(part, actor=f"{EXTRACTOR}/{ADAPTER_VERSION}",
+                                                                      on_conflict="replace")
+    return report
+
+
+def lead_extract(store: Store, item_id: str, lang: str) -> dict | None:
+    """What a ficha needs to quote the Wikipedia lead of an item: text (ends at a sentence or in " …"),
+    revision URL, licence and attribution line.  None when the item has no article in `lang`."""
+    for c in store.claims_for(item_id, roles=[Role.SUBJECT], relations=[RelationType.APPEARS_IN]):
+        if not c.provenance or c.provenance[0].source_id != source_id(lang):
+            continue
+        frag = store.get_entity(c.targets[0])
+        if frag is None or not frag.descriptions:
+            return None
+        p = frag.provenance[0]
+        title = frag.labels[0].text.split(": ", 1)[-1]
+        return {"text": frag.descriptions[0].text, "url": p.locator, "license": p.license,
+                "complete": not frag.descriptions[0].text.endswith(" …"), "fragment_id": frag.id,
+                "attribution": f"Wikipedia ({lang}), «{title}», {p.locator}; texto de sus autores bajo {p.license}"}
+    return None

@@ -28,6 +28,7 @@ mod paths;
 mod registry;
 mod search;
 mod tiles;
+pub mod works;
 
 pub use coverage::now_utc;
 pub use http::ApiError;
@@ -78,6 +79,8 @@ pub struct ServerConfig {
     pub cors_origin: Option<String>,
     /// Concurrent heavy requests (search, entity, path, tiles); 0 = 2 × cores.
     pub heavy_permits: usize,
+    /// Works layer directory written by `works::compile` (ADR-0005 §8.4); `None` = no works layer.
+    pub works_dir: Option<PathBuf>,
 }
 
 impl ServerConfig {
@@ -91,6 +94,7 @@ impl ServerConfig {
             composition: None,
             cors_origin: None,
             heavy_permits: 0,
+            works_dir: None,
         }
     }
 
@@ -127,6 +131,7 @@ pub struct Engine {
     pub search: Option<atlas_search::SearchIndex>,
     pub paths: Option<atlas_paths::PathEngine<'static>>,
     pub layout: Option<atlas_layout::Layout>,
+    pub works: Option<works::Works>,
     /// Component -> "ok: …" or "unavailable: …", for `/api/health`.
     pub components: BTreeMap<&'static str, String>,
     pub coverage: serde_json::Value,
@@ -197,8 +202,18 @@ impl AppState {
         if let Some(l) = &layout {
             comp.insert("layout", format!("ok: {}", l.version));
         }
+        let works = match &cfg.works_dir {
+            None => None,
+            Some(d) => optional(&mut comp, "works", works::open(d, snap)).map(|(w, status)| {
+                comp.insert("works", status);
+                w
+            }),
+        };
         let mut seed = blake3::Hasher::new();
         seed.update(snap.content_hash_hex().as_bytes());
+        if let Some(w) = &works {
+            seed.update(w.snap.content_hash_hex().as_bytes());
+        }
         seed.update(layout.as_ref().map_or("", |l| l.version.as_str()).as_bytes());
         let started_at = now_utc();
         let permits = cfg.permits();
@@ -213,6 +228,7 @@ impl AppState {
             search,
             paths,
             layout,
+            works,
             components: comp,
             started_at,
             etag_seed: *seed.finalize().as_bytes(),
@@ -229,6 +245,7 @@ pub fn router(state: AppState) -> Router {
         .route("/api/path", get(paths::handler))
         .route("/api/map/tiles", get(tiles::by_query))
         .route("/api/map/tiles/{z}/{x}/{y}", get(tiles::by_path))
+        .route("/api/map/tiles/works/{z}/{x}/{y}", get(works::tile))
         .route("/api/map/locate", get(tiles::locate))
         .route("/api/coverage", get(coverage::coverage))
         .route_layer(from_fn_with_state(state.clone(), http::etag));
@@ -245,6 +262,7 @@ pub fn router(state: AppState) -> Router {
         .route("/api/entity/{id}", get(entity::handler))
         .route("/api/concept", get(concept::handler))
         .route("/api/concept/edges", get(concept::edges))
+        .route("/api/works/search", get(works::search))
         .merge(cached)
         .route("/api/{*rest}", get(http::api_not_found))
         .fallback_service(web)

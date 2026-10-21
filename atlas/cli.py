@@ -7,6 +7,7 @@
     search QUERY        hybrid search, same response as GET /api/search
     path FROM TO        typed paths, same response as GET /api/path
     stats               snapshot counts (+ --verify) and registry coverage
+    fichas [...]        reader's cards: import editorial markdown, render, review (atlas/fichas.py)
 
 Every Rust call runs with cwd = project root so the binary's `data/...` defaults resolve.
 `--json` prints one JSON value (what scripts should read); without it the output is indented.
@@ -261,6 +262,10 @@ def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv[:1] == ["ingest"]:
         return cmd_ingest(argv[1:])
+    if argv[:1] == ["fichas"]:
+        from .fichas import main as fichas_main
+
+        return fichas_main(argv[1:])
     a = _parser().parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
     try:

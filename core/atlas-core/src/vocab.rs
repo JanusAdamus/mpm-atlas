@@ -93,6 +93,9 @@ str_enum!(
         Resource = "resource",
         Experiment = "experiment",
         Area = "area",
+        // v4 (ADR-0005): new codes go at the end; no existing code changes
+        Witness = "witness",
+        Note = "note",
     }
 );
 
@@ -117,6 +120,14 @@ str_enum!(
         AppearsIn = "appears_in",
         AuthoredBy = "authored_by",
         MemberOfConcept = "member_of_concept",
+        // v4 (ADR-0005)
+        SaidEquivalentTo = "said_equivalent_to",
+        InstanceOf = "instance_of",
+        IntroducedIn = "introduced_in",
+        CopiedBy = "copied_by",
+        EditedBy = "edited_by",
+        TranslatedBy = "translated_by",
+        Explains = "explains",
     }
 );
 
@@ -162,6 +173,33 @@ impl EvidenceState {
     pub const fn is_current(self) -> bool {
         !matches!(self, EvidenceState::Superseded | EvidenceState::Retracted)
     }
+
+    /// `atlas.model.EVIDENCE_RANK`: formally_linked 4 > editorially_reviewed 3 > extracted 2 >
+    /// model_proposed 1 > disputed 0; `None` for states that are not current.
+    pub const fn rank(self) -> Option<u8> {
+        match self {
+            EvidenceState::FormallyLinked => Some(4),
+            EvidenceState::EditoriallyReviewed => Some(3),
+            EvidenceState::Extracted => Some(2),
+            EvidenceState::ModelProposed => Some(1),
+            EvidenceState::Disputed => Some(0),
+            EvidenceState::Superseded | EvidenceState::Retracted => None,
+        }
+    }
+
+    /// The weaker of two current states (ADR-0005 §7a: an aggregate is as strong as its weakest link).
+    pub fn weakest(self, other: EvidenceState) -> EvidenceState {
+        if other.rank() < self.rank() { other } else { self }
+    }
+}
+
+/// `atlas.model.PRESENTATION_SCOPES`: scopes of an `exclude_presentation` curation.  The position is
+/// the bit of the scope in the snapshot's `NodeFlags` section.
+pub const PRESENTATION_SCOPES: [&str; 4] = ["map:general", "map:all", "search:default", "concept_layer"];
+
+/// Bit of a presentation scope in `NodeFlags`, if the scope is known.
+pub fn scope_bit(scope: &str) -> Option<u8> {
+    PRESENTATION_SCOPES.iter().position(|s| *s == scope).map(|i| 1u8 << i)
 }
 
 // Node state masks are u8; relation/type masks are u32.
@@ -180,6 +218,8 @@ pub struct RelationSpec {
     pub transitive: bool,
     pub inverse: Option<RelationType>,
     pub allows_premises: bool,
+    /// v4: may a claim of this relation be `formally_linked`?
+    pub formal_allowed: bool,
 }
 
 const fn spec(
@@ -189,8 +229,9 @@ const fn spec(
     transitive: bool,
     inverse: Option<RelationType>,
     allows_premises: bool,
+    formal_allowed: bool,
 ) -> RelationSpec {
-    RelationSpec { relation, projection, symmetric, transitive, inverse, allows_premises }
+    RelationSpec { relation, projection, symmetric, transitive, inverse, allows_premises, formal_allowed }
 }
 
 use Projection as P;
@@ -198,24 +239,31 @@ use RelationType as R;
 
 /// Indexed by `RelationType::code()`.
 pub const RELATIONS: [RelationSpec; RelationType::COUNT] = [
-    spec(R::DependsOnLogically, P::Proof, false, true, None, true),
-    spec(R::Proves, P::Proof, false, false, None, false),
-    spec(R::PrerequisiteFor, P::Learning, false, true, None, false),
-    spec(R::Generalizes, P::Structure, false, true, Some(R::SpecialCaseOf), false),
-    spec(R::SpecialCaseOf, P::Structure, false, true, Some(R::Generalizes), false),
-    spec(R::EquivalentTo, P::Structure, true, true, None, false),
-    spec(R::AnalogousTo, P::Structure, true, false, None, false),
-    spec(R::AppliedIn, P::Application, false, false, None, false),
-    spec(R::Models, P::Application, false, false, None, false),
-    spec(R::Cites, P::Biblio, false, false, None, false),
-    spec(R::Influenced, P::History, false, false, None, false),
-    spec(R::PartOfArea, P::Structure, false, true, None, false),
-    spec(R::FormalizedAs, P::Proof, false, false, None, false),
-    spec(R::NamedAfter, P::History, false, false, None, false),
-    spec(R::CounterexampleTo, P::Proof, false, false, None, false),
-    spec(R::AppearsIn, P::Biblio, false, false, None, false),
-    spec(R::AuthoredBy, P::History, false, false, None, false),
-    spec(R::MemberOfConcept, P::Structure, false, false, None, false),
+    spec(R::DependsOnLogically, P::Proof, false, true, None, true, true),
+    spec(R::Proves, P::Proof, false, false, None, false, true),
+    spec(R::PrerequisiteFor, P::Learning, false, true, None, false, true),
+    spec(R::Generalizes, P::Structure, false, true, Some(R::SpecialCaseOf), false, true),
+    spec(R::SpecialCaseOf, P::Structure, false, true, Some(R::Generalizes), false, true),
+    spec(R::EquivalentTo, P::Structure, true, true, None, false, true),
+    spec(R::AnalogousTo, P::Structure, true, false, None, false, true),
+    spec(R::AppliedIn, P::Application, false, false, None, false, true),
+    spec(R::Models, P::Application, false, false, None, false, true),
+    spec(R::Cites, P::Biblio, false, false, None, false, false),
+    spec(R::Influenced, P::History, false, false, None, false, false),
+    spec(R::PartOfArea, P::Structure, false, true, None, false, false),
+    spec(R::FormalizedAs, P::Proof, false, false, None, false, true),
+    spec(R::NamedAfter, P::History, false, false, None, false, false),
+    spec(R::CounterexampleTo, P::Proof, false, false, None, false, true),
+    spec(R::AppearsIn, P::Biblio, false, false, None, false, false),
+    spec(R::AuthoredBy, P::History, false, false, None, false, false),
+    spec(R::MemberOfConcept, P::Structure, false, false, None, false, false),
+    spec(R::SaidEquivalentTo, P::Structure, true, false, None, false, true),
+    spec(R::InstanceOf, P::Structure, false, false, None, false, true),
+    spec(R::IntroducedIn, P::History, false, false, None, false, false),
+    spec(R::CopiedBy, P::History, false, false, None, false, false),
+    spec(R::EditedBy, P::History, false, false, None, false, false),
+    spec(R::TranslatedBy, P::History, false, false, None, false, false),
+    spec(R::Explains, P::Learning, false, false, None, false, false),
 ];
 
 impl RelationType {
@@ -239,6 +287,7 @@ pub fn vocab_hash() -> [u8; 16] {
     feed("relation_types", &mut RelationType::ALL.iter().map(|v| v.as_str()));
     feed("evidence_states", &mut EvidenceState::ALL.iter().map(|v| v.as_str()));
     feed("roles", &mut Role::ALL.iter().map(|v| v.as_str()));
+    feed("presentation_scopes", &mut PRESENTATION_SCOPES.iter().copied());
     let mut out = [0u8; 16];
     out.copy_from_slice(&h.finalize().as_bytes()[..16]);
     out
@@ -258,6 +307,16 @@ mod tests {
         assert!("nope".parse::<EvidenceState>().is_err());
         let mask: u32 = EvidenceState::ALL.iter().filter(|s| s.is_current()).map(|s| s.bit()).sum();
         assert_eq!(mask, CURRENT_STATES_MASK);
+    }
+
+    #[test]
+    fn weakest_link_follows_the_rank() {
+        use EvidenceState as S;
+        assert_eq!(S::Extracted.weakest(S::ModelProposed), S::ModelProposed);
+        assert_eq!(S::FormallyLinked.weakest(S::EditoriallyReviewed), S::EditoriallyReviewed);
+        assert_eq!(S::Disputed.weakest(S::FormallyLinked), S::Disputed);
+        assert!(EvidenceState::ALL.iter().all(|s| s.rank().is_some() == s.is_current()));
+        assert_eq!((scope_bit("map:general"), scope_bit("concept_layer"), scope_bit("x")), (Some(1), Some(8), None));
     }
 
 }

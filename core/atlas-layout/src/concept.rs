@@ -30,7 +30,7 @@ pub(crate) fn primary_concepts(snap: &Snapshot, active: &[bool]) -> Vec<u32> {
                 return NONE;
             }
             match snap.primary_concept(v).map(|c| snap.canonical(c)) {
-                Some(c) if c != v && active[c as usize] => c,
+                Some(c) if c != v && active[c as usize] && !snap.is_excluded(c, "concept_layer") => c,
                 _ => NONE,
             }
         })
@@ -52,6 +52,10 @@ fn general_tier(id: &str, primary_members: Option<usize>, is_area: bool) -> Opti
 /// documents and their fragments, people, infrastructure (round 3 plan, «capa general»).
 const NOT_GENERAL: [EntityType; 4] =
     [EntityType::SourceFragment, EntityType::Publication, EntityType::Person, EntityType::Resource];
+
+/// Curation scopes (ADR-0005 §5) that keep a node out of the general zooms: the general layer
+/// itself (`derived-out-of-general`), the whole map and the concept layer (`out-of-domain`, homonyms).
+const OUT_OF_GENERAL: [&str; 3] = ["map:general", "map:all", "concept_layer"];
 
 /// A label that is only a number («10», «1105», «1,728»): a Wikidata number item, not a
 /// concept to study.  ponytail: dates, years and other non-mathematical items need the
@@ -82,7 +86,9 @@ pub(crate) fn general_set(
     }
     let tier = |v: u32| {
         let t = snap.node_type(v);
-        if !general_kind(t, [snap.label(v, "es"), snap.label(v, "en")]) {
+        if OUT_OF_GENERAL.iter().any(|sc| snap.is_excluded(v, sc))
+            || !general_kind(t, [snap.label(v, "es"), snap.label(v, "en")])
+        {
             return None;
         }
         let members = snap.concept_index(v).map(|_| snap.concept_members(v).len());

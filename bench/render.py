@@ -60,7 +60,8 @@ def markdown(rep: dict[str, Any]) -> str:
     lines += [f"- corroboradas por otra fuente, familia `{f}`: {_ci(v)}"
               for f, v in rel["corroborated_by_another_source"].items()]
     lines += ["", "## Procedencia", ""]
-    lines += [f"- `{b}`: completa y coincidente {_ci(v['complete_and_matching'])}; problemas {v['problems']}"
+    lines += [f"- `{b}`: completa y coincidente {_ci(v['complete_and_matching'])}; problemas {v['problems']}; "
+              f"vía sucesora vigente (misma fuente y localizador) {v.get('via_successor')}"
               for b, v in s["sourced"]["by_backend"].items()]
     lines += ["", "## Latencia (ms)", "", "| Serie | n | p50 | p95 | IC p95 | p99 |", "|---|---|---|---|---|---|"]
     for k, v in s["latency_ms"].items():

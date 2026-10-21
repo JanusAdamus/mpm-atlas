@@ -207,7 +207,7 @@ def relations(items: Sequence[Item], reg: Registry) -> dict:
     return out
 
 
-def sourced(items: Sequence[Item], backends: Sequence[Any]) -> dict:
+def sourced(items: Sequence[Item], backends: Sequence[Any], reg: Registry | None = None) -> dict:
     out: dict[str, Any] = {"records": [], "missing": {}}
     live = list(backends)
     for it in items:
@@ -224,24 +224,30 @@ def sourced(items: Sequence[Item], backends: Sequence[Any]) -> dict:
             except BackendError as exc:
                 rec["by_backend"][b.name] = {"ok": False, "problem": f"error: {exc}"}
                 continue
-            rec["by_backend"][b.name] = {**_check_provenance(t.value, p), "ms": t.ms}
+            rec["by_backend"][b.name] = {**_check_provenance(t.value, p, reg), "ms": t.ms}
         out["records"].append(rec)
     return out
 
 
-def _check_provenance(resp: dict, p: dict) -> dict:
-    claim = next((c for c in resp.get("claims", []) if c.get("id") == p["claim_id"]), None)
+def _check_provenance(resp: dict, p: dict, reg: Registry | None = None) -> dict:
+    """A superseded claim is checked through its live successor in the registry (Store.supersede chain):
+    the successor must be served and carry every expected (source_id, locator); anything else fails."""
+    served = {c.get("id"): c for c in resp.get("claims", [])}
+    cid = p["claim_id"]
+    succ = reg.live_successor(cid) if reg is not None and cid not in served else None
+    via = succ if succ is not None and succ != cid else None
+    claim = served.get(via or cid)
     if claim is None:  # absent from a truncated page = not served, so not a provenance defect; counted apart
         if resp.get("truncated"):
-            return {"ok": None, "problem": "not_served_truncated"}
-        return {"ok": False, "problem": "claim_missing"}
+            return {"ok": None, "problem": "not_served_truncated", "via": via}
+        return {"ok": False, "problem": "successor_missing" if via else "claim_missing", "via": via}
     provs = claim.get("provenance") or []
     if not provs or any(not pr.get(f) for pr in provs for f in PROV_FIELDS) or not claim.get("evidence_state"):
-        return {"ok": False, "problem": "field_missing"}
+        return {"ok": False, "problem": "field_missing", "via": via}
     have = {(pr["source_id"], pr["locator"]) for pr in provs}
     if not all((e["source_id"], e["locator"]) in have for e in p["expected"]):
-        return {"ok": False, "problem": "mismatch"}
-    return {"ok": True, "problem": None}
+        return {"ok": False, "problem": "successor_mismatch" if via else "mismatch", "via": via}
+    return {"ok": True, "problem": None, "via": via}
 
 
 def by_task(items: Iterable[Item]) -> dict[str, list[Item]]:

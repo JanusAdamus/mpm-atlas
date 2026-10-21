@@ -2,6 +2,7 @@
 //! shapes/vocab.json (generated from it); shapes/composition.json may only name
 //! known relations, states and conclusions.
 
+use atlas_core::vocab::PRESENTATION_SCOPES;
 use atlas_core::{EntityType, EvidenceState, Projection, RelationType, Role};
 use serde_json::Value;
 use std::path::PathBuf;
@@ -56,6 +57,7 @@ fn relation_specs_match_model_py() {
         assert_eq!(spec.symmetric, call.contains("sym=True"), "{name} symmetric");
         assert_eq!(spec.transitive, call.contains("trans=True"), "{name} transitive");
         assert_eq!(spec.allows_premises, call.contains("premises=True"), "{name} premises");
+        assert_eq!(spec.formal_allowed, !call.contains("formal=False"), "{name} formal_allowed");
         let inv = call.split("inv=R.").nth(1).map(|s| s.split(',').next().unwrap().trim().to_lowercase());
         assert_eq!(spec.inverse.map(|r| r.as_str().to_owned()), inv, "{name} inverse");
     }
@@ -84,7 +86,12 @@ fn vocab_json_matches_rust() {
         assert_eq!(j["transitive"], s.transitive, "{r}");
         assert_eq!(j["allows_premises"], s.allows_premises, "{r}");
         assert_eq!(j["inverse"].as_str(), s.inverse.map(RelationType::as_str), "{r}");
+        assert_eq!(j["formal_allowed"], s.formal_allowed, "{r}");
     }
+    for st in EvidenceState::ALL {
+        assert_eq!(v["evidence_rank"][st.as_str()].as_u64(), st.rank().map(u64::from), "rank of {st}");
+    }
+    assert_eq!(names(&v["presentation_scopes"]), PRESENTATION_SCOPES.map(str::to_owned).to_vec());
 }
 
 #[test]

@@ -1,0 +1,720 @@
+id	tipo	etiqueta_en	descripcion_en
+wd:Q10326443	concept	bounded lattice	algebraic structure, lattice with top and bottom element
+wd:Q10340026	concept	object of a category	constituent element of the mathematical notion of category
+wd:Q10359539	area	unitary representation	continuous group homomorphism from some topological group to the topological group of unitary transformations on a Hilbert space
+wd:Q10380344	area	manifold theory	
+wd:Q1047307	concept	bundle	generalization of a fiber bundle dropping the condition of a local product structure
+wd:Q104822849	area	stable matching theory	field of market economics
+wd:Q104841236	concept	unitary element	mathematical concept
+wd:Q104866035	concept	basis of a matroid	maximal independent set of a matroid
+wd:Q1052674	concept	symmetric algebra	algebra of all possible symmetric tensors over a vector space or ring module
+wd:Q1055879	statement	law of total variance	theorem
+wd:Q10564851	concept	closure operator	mathematical operator
+wd:Q106671513	concept	Ultrafilter	maximal proper filter
+wd:Q107303302	concept	symplectic map	a broader concept than an area-preserving map
+wd:Q108101819	area	tautness	mathematical concept in algebraic topology
+wd:Q1088998	concept	position fix	in navigation, knowledge of position derived from measurements relative to external reference points
+wd:Q1095056	concept	singular homology	homology of the chain complex of singular chains (integer linear combinations of maps from simplexes into a given topological space)
+wd:Q110535159	concept	tangent map	concept in differential geometry
+wd:Q110571086	concept	K-matrix	mathematical concept
+wd:Q110571247	concept	normed ring	ring with a submultiplicative norm fulfilling the triangle inequality
+wd:Q110679812	concept	finite graph	graph with a finite number of edges and vertices
+wd:Q110745661	concept	Regular open set	
+wd:Q110765082	concept	ground atom	atomic formula without variables
+wd:Q11077412	concept	strict order	irreflexive transitive relation
+wd:Q110956944	area	spatial geometry	geometry in more than two dimensions
+wd:Q111485852	concept	unital magma	algebraic structure
+wd:Q1119050	statement	Fodor's lemma	lemma
+wd:Q1121027	statement	Krylov–Bogolyubov theorem	theorem
+wd:Q112160790	concept	Dedekind-finite ring	ring in which left inverses are always right inverses
+wd:Q1128678	concept	Grothendieck group	Abelian group constructed universally from a commutative monoid
+wd:Q112927	concept	rank of a group	minimal cardinality of a generating set of the group
+wd:Q11352023	statement	vitali convergence theorem	mathematical theorem
+wd:Q113579989	statement	Lévy’s inequality	inequality in probability theory
+wd:Q114682712	area	theory of algebraic curves	
+wd:Q114682716	area	theory of algebraic field extensions	
+wd:Q114702083	area	theory of differentiable maps between manifolds	
+wd:Q114702107	area	theory of differentiable manifolds	
+wd:Q114702204	area	theory of eigenspaces	
+wd:Q114702279	area	elliptic curve theory	mathematical theory
+wd:Q114703089	area	theory of finite fields	
+wd:Q114703799	area	theory of entire functions	
+wd:Q114704266	area	theory of graded commutative rings	
+wd:Q114704819	area	theory of principal ideal rings	
+wd:Q114705197	area	theory of commutative rings	branch of mathematics
+wd:Q114705767	area	theory of local regular rings	
+wd:Q114705886	area	theory of monoids	branch of mathematics
+wd:Q114715748	area	theory of schemes	
+wd:Q114722688	area	ideal theory (commutative algebra)	
+wd:Q114722746	area	module theory	theory of modules over a ring
+wd:Q114722748	area	theory of modules over a commutative ring	
+wd:Q115119800	area	Foundations of the Theory of Groupoids and Groups	1974 English translation of Grundlagen der Gruppoid und Gruppentheorie by O. Borůvka
+wd:Q115517529	concept	oper	principal connection with a reduction of the structure group to a Borel subgroup
+wd:Q115623452	concept	Noetherian group	group whose subgroups satisfy the ascending chain condition
+wd:Q115857977	statement	∂∂̄ lemma	in complex geometry, the lemma that a closed differential form on a compact Kähler manifold is d‐exact iff it is ∂∂̄‐exact
+wd:Q115988076	concept	set-valued function	function whose values are sets (mathematics)
+wd:Q11650583	concept	alternate angles	
+wd:Q1166643	concept	algebra extension	mathematical construction in ring theory
+wd:Q117184219	statement	Hölder's inequality for sums	
+wd:Q11722674	statement	Takens' theorem	Delay embedding theorem of attractor reconstruction
+wd:Q117922447	concept	perfectly normal space	topological space in which every two disjoint closed sets can be precisely separated by a function
+wd:Q118110536	concept	the hat	aperiodic monotile
+wd:Q118175843	statement	Kleitman's lemma	
+wd:Q118527858	concept	even cycle	cycle graph of even length
+wd:Q1187196	statement	Degen's eight-square identity	theorem
+wd:Q119143608	concept	topological division ring	
+wd:Q1191709	statement	Egorov's theorem	theorem
+wd:Q119692675	concept	left adjoint	first of a pair of adjoint functors
+wd:Q119751219	concept	refinement	finer cover in topology
+wd:Q120066210	concept	upper semicontinuous function	function continuous when the codomain is endowed with the lower topology
+wd:Q1200755	area	descriptive complexity theory	branch of mathematical logic
+wd:Q1201165	area	determinacy	subfield of set theory,that examines the conditions under which one or the other player of a game has a winning strategy, and the consequences of the existence of such strategies; (alternatively) property of a game whereby such a strategy exists
+wd:Q12050589	concept	intersecting line	lines which intersect
+wd:Q120721906	concept	fully faithful functor	functor that is both full and faithful
+wd:Q121070525	concept	proper group action	continuous group action whose shear map is a proper function
+wd:Q121074575	concept	faithful group action	group action such that every nontrivial group element moves at least one point
+wd:Q121088344	concept	pseudometrizable space	topological space that is homeomorphic to a pseudometric space
+wd:Q121217200	concept	base ring	ring of scalars of a given module
+wd:Q121484797	concept	conjugate subgroup	image of the subgroup under an inner automorphism
+wd:Q121499459	concept	submonoid	subset of a monoid containing the identity and closed under the monoid operation
+wd:Q121504773	concept	finitely cocomplete category	category with all finite colimits
+wd:Q121546687	concept	right adjoint	second of a pair of adjoint functors
+wd:Q121771058	concept	locally small category	category whose morphisms between every two objects form a set
+wd:Q121773562	concept	split monomorphism	morphism with a left inverse
+wd:Q122350815	concept	inverse morphism	morphism that is both a left inverse and a right inverse of a given morphism
+wd:Q1224342	concept	difference list	list data structure
+wd:Q122446519	concept	class of all ordinals	class in set theory
+wd:Q122475046	statement	Suslin's theorem	subset of R is Borel iff analytic and co-analytic
+wd:Q122860624	concept	locally Noetherian scheme	scheme admitting a cover by affine Noetherian schemes
+wd:Q122889481	concept	A-Integrable	mathematical concept
+wd:Q122889656	concept	Abundancy	mathematical concept
+wd:Q122897542	statement	AAS Theorem	theorem that two triangles with two congruent angles and one congruent side are congruent
+wd:Q123015498	concept	locally presentable category	(co)complete accessible category
+wd:Q123172161	concept	open subscheme	open subset of a scheme imbued with structure sheaf that is a restriction of that of the ambient scheme
+wd:Q123172485	concept	closed subscheme	closed subset of a scheme defined by the support of a quasicoherent sheaf together with a structure sheaf that is the restriction of the quotient of the structure sheaf of the ambient scheme by the quasicoherent sheaf
+wd:Q123410660	concept	geometric measure	size and related notions in geometry
+wd:Q123472283	concept	triple point	singularity on a curve
+wd:Q123472440	concept	trivial fiber bundle	
+wd:Q123508622	concept	reduced scheme	scheme whose local rings lack nonzero nilpotents
+wd:Q123916004	algorithm	inverse reinforcement learning	
+wd:Q124246880	concept	vertex coloring	coloring of a graph's vertices
+wd:Q124247078	concept	vertex set	set of all vertices in a graph
+wd:Q1243340	concept	doubly stochastic matrix	a square matrix
+wd:Q124407607	concept	zero ideal	ideal {0} in a ring
+wd:Q124579556	concept	finitely presented group	group which admits a presentation with finitely many generators and finitely many relations
+wd:Q124633554	concept	compact metric space	
+wd:Q124663039	concept	separated scheme	scheme whose canonical morphism to Spec(ℤ) is separated
+wd:Q124681045	concept	coordinate ring	ring of regular functions on an algebraic variety
+wd:Q124684348	concept	birational map	
+wd:Q124684455	concept	critical line	Re(z) = 1/2 in the complex plane
+wd:Q124690848	area	projective geometric algebra	geometric algebra with homogeneous coordinates
+wd:Q12525525	concept	computation	any type of calculation or use of computing technology in information processing
+wd:Q1255240	statement	Vitali's convergence theorem	theorem
+wd:Q127508598	concept	complete multipartite graph	k-partite graph with maximum number of edges
+wd:Q12776184	concept	walk	sequence of edges connecting a sequence of vertices in a graph, possibly with repeated vertices and/or edges
+wd:Q128099246	concept	category of Markov kernels	topic in measure theory
+wd:Q129167027	concept	integer interval	set of (possibly infinitely many) consecutive integers
+wd:Q130311670	area	summability theory	part of analysis (the branch of mathematics dealing with limits and related theories) that generalizes the concept of convergence to all sequences--even nonconvergent ones
+wd:Q130344267	concept	positive-semidefinite matrix	type of symmetric matrix
+wd:Q130377926	concept	spanning subgraph	subgraph that includes all vertices
+wd:Q13050646	concept	Abelian	family
+wd:Q130619523	area	Finsler geometry	subfield of differential geometry studying Finsler manifolds
+wd:Q1308502	statement	Church–Rosser theorem	theorem that, when applying reduction rules to terms in some variants of the lambda calculus, the ordering in which the reductions are chosen does not make a difference to the eventual result
+wd:Q1309100	area	altimetry	determination and measurement of altitude
+wd:Q1309836	concept	semifield	concept from projective geometry or from ring theory
+wd:Q131077085	concept	sheaf of abelian groups	
+wd:Q131350632	concept	first-order language	set of symbols for the first-order logic
+wd:Q1332313	concept	number of edges	graph property
+wd:Q1333611	concept	manifold with boundary	topological space locally isomorphic to either Euclidean space or to Euclidean half-space
+wd:Q1340572	concept	finitely generated module	In algebra, a module that has a finite generating set
+wd:Q134574613	statement	Joyal's theorem	
+wd:Q13512116	concept	nonassociative ring	generalization of a ring that does not require multiplication to be associative
+wd:Q135271240	model	neural field	a neural field is a type of neural network that models a mathematical field in a continuous and differentiable way
+wd:Q135538270	area	computational evolutionary biology	the use of computational methods and algorithms to analyze and model evolutionary processes, including phylogenetics, molecular evolution, and population genetics
+wd:Q135974169	concept	induced cycle	cycle that is an induced subgraph
+wd:Q135996254	concept	tripartite graph	3-colorable graph
+wd:Q136039715	concept	cycle complement graph	graph complement of a cycle
+wd:Q136089025	statement	Hindman's theorem	
+wd:Q1361526	concept	reachability	whether one vertex can be reached from another in a graph
+wd:Q137042915	area	mathematical writing	the use of complete sentences to blend precise mathematical language, symbols, and calculations to communicate complex ideas clearly
+wd:Q138638494	concept	half-line	semi-infinite line
+wd:Q1387602	concept	transcendence degree	cardinality of a maximal algebraically independent set of a given field extension
+wd:Q139306668	statement	Tarski–Vaught test	necessary and sufficient condition for an elementary substructure
+wd:Q139677780	concept	decomposition	concept in mathematics
+wd:Q139882694	concept	center of a category	monoid of endomorphisms of the identity functor
+wd:Q1399751	statement	Nakayama lemma	lemma
+wd:Q140092311	concept	tail	
+wd:Q140092320	concept	head	
+wd:Q140156619	concept	continuous functor	functor which preserves small limits
+wd:Q140167529	concept	left exact functor	functor that preserves left short exact sequences
+wd:Q140167530	concept	right exact functor	functor that preserves right short exact sequences
+wd:Q140175744	concept	total function	
+wd:Q140283	concept	essentially surjective functor	functor for which all objects of the codomain are isomorphic to some images
+wd:Q140442241	area	global class field theory	the study of abelian extensions of global fields
+wd:Q140469307	statement	Side-angle-side theorem	
+wd:Q140469308	statement	Side-side-side theorem	
+wd:Q1405695	concept	simple algebra	
+wd:Q140914670	concept	monadic functor	right adjoint whose comparison functor is an equivalence of categories
+wd:Q140984140	concept	bounded from above	
+wd:Q140984148	concept	bounded from below	
+wd:Q141085682	concept	set of natural numbers	
+wd:Q141108322	concept	tangent line	
+wd:Q141133828	concept	polynomial term	
+wd:Q141145064	concept	polynomial quotient	
+wd:Q141150044	concept	cubic polynomial	
+wd:Q141150061	concept	rational polynomial	
+wd:Q141176280	concept	monotonic sequence	
+wd:Q141269953	concept	integer division	
+wd:Q141280173	concept	integer exponent	
+wd:Q141332768	concept	real root	
+wd:Q141488365	concept	universal sentence	
+wd:Q141498999	concept	partial denominator	
+wd:Q141499009	concept	simple continued fraction	
+wd:Q141499021	concept	partial numerator	
+wd:Q141499243	concept	reducible set	
+wd:Q141500197	concept	inconsistent equation	
+wd:Q141500538	concept	k-subset	
+wd:Q141504792	concept	bivariate	
+wd:Q141504884	concept	conditional statement	
+wd:Q141542471	concept	complex division	
+wd:Q141680330	concept	inverse of a complex number	
+wd:Q1422682	concept	Hadamard matrix	real square matrix whose all columns (rows) are mutually orthogonal and which only 1 or −1 as entries
+wd:Q1424012	concept	nerve of a covering	simplicial complex associated to an open cover of a topological space
+wd:Q1425564	statement	Gibbs' inequality	theorem
+wd:Q1432554	concept	quotient module	algebraic construction
+wd:Q1453551	concept	parent pointer tree	tree data structure in which each node has a pointer to its parent node
+wd:Q14823962	concept	regular ordinal	limit ordinal which is not the limit of a set of smaller ordinals which set has order type less than it
+wd:Q1482452	concept	Sylvester matrix	square matrix associated to two univariate polynomials with coefficients in a field or a commutative ring
+wd:Q1493740	concept	integral element	mathematical element
+wd:Q1520825	concept	arborescence	rooted tree with edges oriented out of the root node
+wd:Q1522579	concept	substitution	concept in logic; syntactic transformation on formal expressions
+wd:Q1530275	concept	uniform integrability	mathematical concept
+wd:Q1532424	concept	quotient mapping	map onto quotient, sending every element to its equivalence class
+wd:Q1535225	concept	ultraproduct	quotient of the direct product of a family of structures by an ultrafilter
+wd:Q1544261	concept	totally disconnected space	topological space in which all connected components are singletons
+wd:Q1550629	algorithm	summed-area table	Type of data structure algorithm
+wd:Q15534632	concept	graded ring	graded module, where the grading has the structure of a monoid, in which ring multiplication respects the grading
+wd:Q1566341	concept	IP set	Set of natural numbers
+wd:Q1568811	statement	Hahn decomposition theorem	theorem
+wd:Q1571916	concept	Hall subgroup	subgroup whose order is coprime to its index
+wd:Q15806879	statement	Krull's intersection theorem	
+wd:Q15809744	statement	Lawvere's fixed-point theorem	theorem in category theory
+wd:Q1582003	statement	bounding lemma	lemma stating that, in a vector space generated by n vectors, any set of n+1 vectors is linearly dependent
+wd:Q15831518	statement	Carathéodory's theorem (measure theory)	
+wd:Q15838309	concept	simple graph	mathematical graph without loops and parallel edges
+wd:Q15838312	concept	simple pseudograph	pseudograph permitted to contain loops but no parallel edges
+wd:Q1597436	concept	coercive function	mathematical function that "grows rapidly" at the extremes of the space on which it is defined
+wd:Q1607573	concept	Henselian ring	local ring in which Hensel’s lemma holds
+wd:Q1609490	concept	Kähler differential	algebraically defined notion of differential form on an algebra over a ring or on a scheme
+wd:Q1633079	concept	pushout	category-theoretic colimit of a diagram of the form 𝑋←𝑍→𝑌
+wd:Q16523358	statement	Titu's lemma	form of Cauchy–Schwarz inequality
+wd:Q16708615	concept	half-closed interval	interval in which one endpoint is included but not the other
+wd:Q1673406	concept	universal enveloping algebra	Hopf algebra associated to a Lie algebra
+wd:Q16908668	area	equivariant stable homotopy theory	the study of equivariant spectra, i.e. spectra equipped with G-actions, so that they can be evaluated on G-representations, and such that the equivariant homotopy group is RO(G)-graded (where RO(G) is the representation ring)
+wd:Q1691827	area	Subdirect product	
+wd:Q1691962	concept	self-mapping	function that maps a set into itself
+wd:Q16920337	concept	Locally finite space	topological space in which each point has a finite neighborhood
+wd:Q16958142	area	chromatic homotopy theory	Branch of mathematics
+wd:Q16979425	concept	invertible module	module over commutative ring with an inverse under tensor product
+wd:Q17001823	concept	adhesive category	
+wd:Q17003697	concept	Bousfield localization	
+wd:Q17005777	area	continuum percolation theory	Branch of mathematics in probability theory
+wd:Q17029637	area	higher-dimensional algebra	study of categorified structures
+wd:Q1703592	statement	Jordan's inequality	
+wd:Q17045118	concept	quotient type	algebraic data type
+wd:Q17047365	algorithm	Floyd–Rivest algorithm	selection algorithm
+wd:Q17077830	concept	groupoid object	generalization of a groupoid and a group objects
+wd:Q17086290	concept	matroid minor	a matroid obtained from a bigger matroid by a sequence of restriction and contraction operations
+wd:Q17092426	concept	inductive type	class of coinductive types in intuitionistic type theories
+wd:Q17093903	statement	slice theorem	theorem in differential geometry
+wd:Q17097924	concept	G-ring	Noetherian commutative ring such that the map of any of its local rings to the completion is regular
+wd:Q17098001	statement	Riesz–Markov–Kakutani representation theorem	statement about linear functionals and measures
+wd:Q17098012	statement	Vitali–Carathéodory theorem	
+wd:Q17098198	concept	irreducible ideal	proper ideal of a commutative ring that is not the intersection of two strictly larger ideals
+wd:Q17098298	statement	Jacobson density theorem	mathematical theorem
+wd:Q17099189	concept	multiplicative character	group homomorphism to the multiplicative group of a field
+wd:Q17101022	concept	clique graph	graph representing structure of another graph's cliques
+wd:Q17103642	concept	stalk	stalk of a sheaf in mathematics
+wd:Q17103860	concept	symmetric monoidal category	monoidal category where A ⊗ B is naturally equivalent to B ⊗ A
+wd:Q17138781	concept	twist	differential geometry term
+wd:Q17141967	area	geometric complexity theory	research program in computational complexity theory to use geometric invariant theory to prove lower bounds for problems
+wd:Q17156650	statement	Sauer–Shelah lemma	notion in combinatorics
+wd:Q17176291	concept	circuit	in graph theory, non-empty trail in which the first and last vertices are equal
+wd:Q172298	statement	primary decomposition	in algebra, expression of an ideal as the intersection of ideals of a specific type
+wd:Q1738274	concept	compactly generated space	topological space
+wd:Q17455228	concept	trail	sequence of edges connecting a sequence of vertices in a graph, possibly with repeated vertices, but with no repeating edges
+wd:Q17536981	concept	The Cross	listed obelisk in Richmond
+wd:Q17548110	area	uniqueness	philosophical category, opposite of multiplicity; state or condition wherein something is unlike anything else in comparison
+wd:Q1759397	concept	well equidistributed long-period linear	family of pseudorandom number generators
+wd:Q176244	concept	Frattini subgroup	intersection of all maximal proper subgroups
+wd:Q1766814	statement	sₘₙ theorem	theorem
+wd:Q176977	concept	real-valued continuous function of a real variable	continuous function whose domain and range are a subset of the real numbers
+wd:Q1773982	concept	Kleisli category	Category theory
+wd:Q1784730	statement	FKG inequality	correlation inequality
+wd:Q1786292	statement	Schur's theorem	One of several theorems in different areas of mathematics
+wd:Q18192466	concept	semisimple ring	
+wd:Q18207102	concept	final functor	
+wd:Q18209559	concept	arrangement	decomposition of the d-dimensional linear, affine, or projective space into connected open cells of lower dimensions, induced by a finite collection of geometric objects
+wd:Q18345526	concept	lax functor	morphism between bicategories
+wd:Q18533485	area	lattice theory	branch of mathematics that studies order-theoretic lattices
+wd:Q1855669	area	invariant theory	mathematical study of invariants under symmetries
+wd:Q18694550	area	semigroup theory	branch of mathematics
+wd:Q18695611	concept	sheaf of modules	sheaf of abelian groups, whose sections are modules over a sheaf of rings
+wd:Q1872826	statement	Lubell–Yamamoto–Meshalkin inequality	inequality of sizes of sets in the Sperner family
+wd:Q1933521	statement	Kleene's recursion theorem	Theorem in computability theory
+wd:Q1935689	statement	Dynkin system	Family closed under complements and countable unions of disjoint sets
+wd:Q19360789	statement	Alexander's theorem	
+wd:Q19369206	concept	monomial ideal	torus action
+wd:Q1940482	concept	opposite ring	Mathematical concept
+wd:Q1944434	concept	Monge point	mathematical concept
+wd:Q1945005	concept	monoid ring	algebraic structure
+wd:Q1952404	concept	multilinear map	from two vector spaces to a third one
+wd:Q1969054	concept	essential supremum	notions of infimum and supremum
+wd:Q1971708	concept	natural norm	mathematical concept
+wd:Q1973616	area	Galois geometry	branch of finite geometry
+wd:Q19856468	concept	integer-valued function	function that ranges over the integers
+wd:Q1992074	model	bit array	array data structure that compactly stores bits
+wd:Q2004761	concept	zero vector space	vector space that contains only zero
+wd:Q2008549	statement	Hilbert's theorem	
+wd:Q2033899	concept	Stone–Čech compactification	a universal map from a topological space X to a compact Hausdorff space βX, such that any map from X to a compact Hausdorff space factors through βX uniquely; if X is Tychonoff, then X is a dense subspace of βX
+wd:Q20524281	concept	isosceles right triangle	triangle in which one angle is a 90-degree angle and two sides are congruent
+wd:Q20819993	concept	infinite graph	graph with infinitely many vertices, edges, or both
+wd:Q20877816	concept	orthogonal set	
+wd:Q20920008	concept	essential infimum	
+wd:Q2099981	concept	preadditive category	mathematical category whose hom sets form Abelian groups
+wd:Q2100018	concept	symmetric bilinear form	bilinear form invariant under exchange of its two arguments
+wd:Q21028313	area	global analysis	branch of mathematics handling global problems of analysis, by generalizing classical geometry and analysis to differential geometry, topology, and functional analysis on non-linear function varieties
+wd:Q21044726	statement	optional sampling theorem	statement in probability theory
+wd:Q2105205	concept	convergence of measures	mathematical concept
+wd:Q21071553	concept	t-structure	a pair of subcategories of a triangulated category satisfying properties similar to those of complexes whose cohomologies vanish in positive/negative degrees
+wd:Q2112467	statement	Hilbert projection theorem	
+wd:Q2112483	concept	resolution	in algebra, an exact sequence which is used to describe the structure of an object
+wd:Q2136937	concept	locally finite measure	measure in which every set contains a neighborhood of finite measure
+wd:Q2141963	concept	retract	continuous mapping from a topological space into a subspace that preserves the position of all points in that subspace
+wd:Q2143407	concept	lexical token	in lexical analysis, atomic string with an assigned and thus identified meaning; can be either word, bi-gram or sentence
+wd:Q21651992	concept	digraph	combination of two characters used as a synonym for certain ASCII characters in Pascal, C or C++
+wd:Q219448	concept	projective set	in descriptive set theory, a subset of a Polish space constructible by taking complements and projections of an analytic set
+wd:Q2291918	concept	skeleton	in category theory
+wd:Q2305406	concept	mutually singular measures	
+wd:Q2308818	concept	spectral norm	
+wd:Q2361983	concept	subnormal subgroup	subgroup such that there is a finite chain of subgroups of the group, each one normal in the next, from the original subgroup to the entire group
+wd:Q2379132	statement	Going up and going down	concepts in commutative algebra
+wd:Q2386260	concept	Bézout domain	integral domain in which the sum of two principal ideals is again a principal ideal
+wd:Q2397775	statement	Krull's theorem	theorem stating that a nonzero ring has a maximal left (or right) ideal
+wd:Q2410467	statement	Azuma's inequality	probabilistic inequality applying to martingales with bounded differences
+wd:Q24107961	concept	completely positive map	C*-algebra mapping preserving positive elements
+wd:Q245457	concept	circulant matrix	matrix in which each row is rotated one position to the right from the previous row
+wd:Q2499534	concept	indecomposable module	
+wd:Q25098565	concept	semimodule	algebraic structure
+wd:Q25098802	concept	topological monoid	Concept in mathematics
+wd:Q25098862	concept	torsion abelian group	abelian group in which every element has finite order
+wd:Q25098928	concept	simplicial homotopy	analog of a homotopy between topological spaces for simplicial sets
+wd:Q25099576	concept	indexed category	
+wd:Q25103668	concept	subterminal object	
+wd:Q25303635	statement	Łoś–Vaught test	
+wd:Q25304046	concept	lax natural transformation	
+wd:Q25304059	concept	2-functor	morphism between 2-categories (in the 3-category of 2-categories)
+wd:Q25304305	concept	Class of groups	Collection of groups
+wd:Q25377495	statement	strong law of large numbers	theorem
+wd:Q25378060	statement	McShane's lemma	
+wd:Q25378068	concept	standard Borel space	mathematical construction in topology
+wd:Q25378679	concept	Euler's homogeneous function theorem	mathematical concept
+wd:Q25378690	statement	Ionescu-Tulcea theorem	probability theorem
+wd:Q25450717	concept	center of circle	point that together with the radius defines a circle
+wd:Q2574032	model	Post–Turing machine	abstract calculator
+wd:Q2631152	statement	Carathéodory's extension theorem	theorem extending pre-measures to measures
+wd:Q2634506	concept	Kleene algebra	idempotent semiring endowed with a closure operator
+wd:Q2645980	statement	nine lemma	category theory lemma about commutative diagrams
+wd:Q2649292	concept	universal class	the class of all sets, necessarily a proper class
+wd:Q2649475	area	everyday mathematics	
+wd:Q2654418	concept	unique prime	prime 𝑝 such that there is no other prime 𝑞 such that the period length of the decimal expansion of 1⁄𝑝 equals that of 1⁄𝑞
+wd:Q2672873	concept	filter	higher-order function that selects elements from a data structure based on a predicate function
+wd:Q2713292	concept	subtyping	a form of type polymorphism
+wd:Q2731964	concept	irreducible matrix	special property of a matrix
+wd:Q2740469	concept	sequential space	topological space homeomorphic to a quotient of a metric space
+wd:Q2789884	concept	uniform isomorphism	uniformly continuous homeomorphism
+wd:Q280116	statement	odd number theorem	theorem in strong gravitational lensing stating that the number of multiple images produced by a bounded transparent lens must be odd
+wd:Q2835968	concept	finitely generated algebra	algebra over a ring that has a finite set of algebra generators
+wd:Q2844249	concept	regular category	kind of category that has similarities to both Abelian categories and to the category of sets
+wd:Q28455762	concept	monotone matrix	
+wd:Q28458034	area	topological Galois theory	
+wd:Q28458059	concept	graded-commutative ring	(ℤ/2)-graded ring in which even elements commute among themselves, odd elements anticommute among themselves, and even and odd elements commute
+wd:Q2872559	concept	Self-dual	
+wd:Q289093	concept	localization of a ring	construction of a ring of fractions, in commutative algebra
+wd:Q2894153	concept	well-quasi-ordering	preorder in which every infinite sequence has an increasing or equivalent pair of consecutive values
+wd:Q2896709	concept	endomorphism ring	endomorphism algebra of an abelian group
+wd:Q2899409	concept	almost sure convergence	
+wd:Q2905043	concept	principal ideal ring	ring in which every ideal is principal
+wd:Q2905069	concept	zero morphism	bi-universal property in category theory
+wd:Q2916484	concept	matrix of ones	matrix where every element is equal to one
+wd:Q2933833	concept	block diagonal matrix	
+wd:Q2943034	concept	braided monoidal category	monoidal category with a commutativity constraint that need not be symmetric
+wd:Q2963975	area	surgery theory	techniques in topology used to produce one finite-dimensional manifold from another
+wd:Q29791667	concept	full binary tree	binary tree data structure in which each node has exactly zero or two children
+wd:Q2989713	concept	commutant	
+wd:Q2993338	conjecture	Union-closed sets conjecture	1979 conjecture in combinatorics
+wd:Q3007384	statement	Post's theorem	Theorem in computability theory
+wd:Q3054915	concept	pointed set	a set equipped with a choice of a specific element
+wd:Q30587585	concept	Stone space	type of space in topology (branch of mathematics)
+wd:Q30588174	concept	prestack	fibered category satisfying full and faithful (but not necessarily effective) descent
+wd:Q30589103	area	Reduction Operator	computer science concept
+wd:Q3064613	concept	injective sheaf	mathematical object in sheaf cohomology
+wd:Q306560	concept	mapping cone	topological construction
+wd:Q306564	concept	degree of a continuous mapping	generalization of winding number
+wd:Q307169	concept	SL2(R)	group of real 2×2 matrices with unit determinant
+wd:Q30749910	statement	Blichfeldt's theorem	
+wd:Q3077645	statement	Lie product formula	formula of matrix exponentials
+wd:Q3117606	concept	finite abelian group	finite group whose group operation is commutative
+wd:Q318767	statement	Abel's theorem	theorem
+wd:Q3229338	statement	Fitting lemma	statement in algebra
+wd:Q3229340	statement	Higman's lemma	
+wd:Q3229345	statement	Schreier's lemma	lemma about the generating set of a subgroup
+wd:Q3269980	concept	Boolean domain	set consisting of exactly two elements, interpretable as false and true
+wd:Q3277121	concept	weak operator topology	weak topology on function spaces
+wd:Q3290922	concept	parametrization	choice of the parameters of a scientific model or a geometric object
+wd:Q3324325	concept	flat morphism	scheme morphism such that the induced map on every stalk is a flat map of rings
+wd:Q3341881	concept	nilradical of a ring	set of the nilpotent elements of a ring
+wd:Q3345678	concept	reproducing kernel Hilbert space	Hilbert space of functions in which point evaluation is a continuous linear functional
+wd:Q3360627	concept	topological pair	inclusion of topological spaces
+wd:Q3403615	area	large deviations theory	branch of probability theory
+wd:Q3406705	area	Crossed product	basic method of constructing a new von Neumann algebra
+wd:Q3406712	concept	ring direct product	ring built from other rings (mathematics)
+wd:Q3406761	concept	tensor product of modules	operation that pairs a left and a right 𝑅‐module into an abelian group
+wd:Q3475665	concept	integral scheme	scheme that is reduced and irreducible
+wd:Q3478415	concept	Semisimple	Mathematical property
+wd:Q3502010	area	variety (universal algebra)	class of algebraic structures that is closed under subalgebras, homomorphic images and direct products
+wd:Q3511558	statement	axiom of global choice	axiom in set theory that asserts that every class of non-empty sets has a choice function
+wd:Q3526736	area	combinatorial group theory	theory of free groups, and the concept of a presentation of a group by generators and relations.
+wd:Q3526829	area	local class field theory	the study of abelian extensions of local fields
+wd:Q3527115	statement	Lüroth's theorem	subfield of K(X) is isomorphic to K(X)
+wd:Q3527189	statement	correspondence theorem	theorem in mathematical group theory
+wd:Q3527205	statement	dimension theorem for vector spaces	all bases of a vector space have equally many elements
+wd:Q3527218	statement	lifting theorem	
+wd:Q3527241	statement	Krull's principal ideal theorem	mathematical theorem of dimensional theory
+wd:Q3527263	statement	Kleene fixed-point theorem	Theorem in order theory
+wd:Q353285	concept	additive functor	concept
+wd:Q3538826	concept	Product σ-algebra	
+wd:Q357300	area	Lie theory	study of Lie groups, Lie algebras and differential equations
+wd:Q357852	concept	adjoining an identity element	operation that transforms a non-unital ring into unital ring
+wd:Q359309	concept	detour	diversion on a route
+wd:Q3611543	concept	graded Lie algebra	Lie algebra equipped with a grading compatible with the Lie bracket
+wd:Q3711848	statement	Sobolev inequality	theorem about inclusions between Sobolev spaces: if 1≤r≤s<∞ and 1/r − k/n = 1/s − l/n, then Wᵏʳ(ℝⁿ) ⊆ Wˡˢ(ℝⁿ)
+wd:Q374268	concept	infinite group	group, of which the underlying set contains an infinite number of elements
+wd:Q3754518	concept	G-function	mathematical concept
+wd:Q3777935	concept	residually finite group	type of mathematical group
+wd:Q3796691	concept	Order embedding	type of monotone function
+wd:Q3799068	concept	inradius	radius of the inscribed circle of a triangle
+wd:Q380576	area	Quasiconformal mapping	homeomorphism between plane domains
+wd:Q3828633	concept	Conics	geometrical text by Apollonius of Perga
+wd:Q3855711	concept	induced metric	submanifold metric tensor
+wd:Q3882299	concept	algebra homomorphism	ring homomorphism preserving scalar multiplication
+wd:Q39045406	area	categorical algebra	
+wd:Q3930077	concept	rank of a Lie algebra	dimension of any Cartan subalgebra of specified Lie algebra
+wd:Q3984015	statement	Kuratowski embedding	mathematical embedding in Banach spaces
+wd:Q3984069	statement	Fredholm's theorem	
+wd:Q3984090	concept	design theory	branch of combinatorics in mathematics
+wd:Q3984091	area	formal language theory	field of mathematical logic, theoretical linguistics, and theoretical computer science
+wd:Q4025690	concept	Strictly positive measure	type of measure in measure theory
+wd:Q4129836	concept	top type	the universal type, sometimes called the universal supertype as all other types in any given type system are subtypes of top; the type which contains every possible object in the type system of interest
+wd:Q4138793	conjecture	Zariski's conjecture	conjecture about polynomial rings
+wd:Q4200951	concept	pullback bundle	fiber bundle induced by a map of its base space
+wd:Q420714	statement	Akra–Bazzi method	on divide and conquer algorithms where the sub-problems have substantially different sizes
+wd:Q421945	concept	Lévy–Prokhorov metric	certain metric on space of finite measures
+wd:Q4230787	concept	finitely generated ideal	
+wd:Q4299465	concept	regular ideal	kind of algebraic structure
+wd:Q43148722	area	(0,1,−1)-matrix	matrix whose elements consist only of the numbers −1, 0, or 1
+wd:Q4321370	concept	nilpotent ideal	ideal such that a sufficiently high power of it is zero
+wd:Q43304380	concept	lower semicontinuous function	function continuous when the codomain is endowed with the upper topology
+wd:Q4386723	concept	index set	classes of partial recursive functions, specifically they give all indices of functions in that class according to a fixed enumeration of partial recursive functions
+wd:Q4391173	concept	exponential object	categorical generalization of a function space in set theory
+wd:Q4392123	concept	Fσ set	countable union of closed sets
+wd:Q44177250	concept	zero module	module that only contains 0
+wd:Q4454958	statement	Min-max theorem	variational characterization of eigenvalues of compact Hermitian operators on Hilbert spaces
+wd:Q4454972	statement	Lindelöf's theorem	theorem about convex polytopes
+wd:Q4461560	concept	Poncelet point	point defined in a quadrangle
+wd:Q4474437	concept	countably generated space	topological space in which the topology is determined by its countable subsets
+wd:Q4493451	concept	Morse function	
+wd:Q453275	concept	nil ideal	ideal consisting solely of nilpotent elements
+wd:Q4596935	concept	strict 2-category	Generalization of category
+wd:Q4666687	area	abelian von Neumann algebra	von Neumann algebra in which all elements commute
+wd:Q4672496	concept	accessible category	
+wd:Q4677173	concept	action algebra	
+wd:Q4683809	concept	admissible set	in mathematical logic, a transitive set satisfying the axioms of Kripke-Platek set theory
+wd:Q4695203	statement	Ahlswede–Daykin inequality	correlation-type inequality for four functions on a finite distributive lattice
+wd:Q4723980	concept	algebra representation	linear representation of an associative algebra
+wd:Q4723996	concept	algebraic cycle	concept from algebraic geometry
+wd:Q4724000	concept	algebraic function field	finitely generated extension field of positive transcendence degree
+wd:Q4739384	concept	amalgamation property	property of a class of models in universal algebra and model theory
+wd:Q47457983	area	sublime calculation	
+wd:Q4783822	area	Arakelov theory	mathematical theory
+wd:Q4830725	statement	Ax–Grothendieck theorem	an injective polynomial function from an n-dim complex vector space to itself is bijective
+wd:Q4833212	area	A¹ homotopy theory	application of homotopy to algebraic varieties
+wd:Q4841293	concept	Baer group	number group
+wd:Q485312	concept	analytic set	subset of a Polish space that is the continuous image of a Polish space
+wd:Q4874466	area	Bayesian econometrics	branch of econometrics
+wd:Q48970630	area	opetope	geometric shape used in one formalization of ∞-categories
+wd:Q48971638	concept	strong monomorphism	
+wd:Q48998319	statement	Frobenius reciprocity	duality between the process of restricting and inducting in representation theory
+wd:Q48999781	concept	bouquet graph	graph
+wd:Q49000648	concept	strong epimorphism	
+wd:Q4901411	statement	Bhatia–Davis inequality	
+wd:Q4913049	statement	Dieudonné's theorem	
+wd:Q4914489	statement	Binomial inverse theorem	
+wd:Q4915506	concept	biproduct	in category theory, an object that is both product and coproduct in compatible ways
+wd:Q4936241	statement	Bochner identity	an identity concerning harmonic maps between Riemannian manifolds
+wd:Q493941	concept	fibration	continuous mapping satisfying the homotopy lifting property with respect to any space
+wd:Q4949986	concept	bounded quantifier	logical quantification that ranges over a subset of the universe of discourse
+wd:Q4950096	statement	Bourbaki–Witt theorem	fixed-point theorem
+wd:Q4953691	concept	bracket ring	
+wd:Q5043655	conjecture	Carmichael's totient function conjecture	mathematics concept
+wd:Q5047039	statement	Cartan's lemma	Mathematical Lemma
+wd:Q5048330	statement	Case analysis	Wikimedia disambiguation page
+wd:Q5051814	area	categorical quantum mechanics	quantum mechanics posed in terms of category theory
+wd:Q5051844	concept	category of elements	concept in mathematical category theory
+wd:Q5051857	concept	category of modules	category in mathematics
+wd:Q5062139	concept	central product	quotient of the direct product of the two groups sharing an isomorphic centre by the diagonal of their centres
+wd:Q5062155	concept	central subgroup	subgroup lying inside the center of the group
+wd:Q5062222	concept	center	braided monoidal category corresponding to a given monoidal category
+wd:Q5064229	area	Cerf theory	study of smooth real-valued functions on manifold and their singularities
+wd:Q5104040	concept	choice sequence	
+wd:Q5121633	concept	circulant graph	undirected graph acted on by a vertex-transitive cyclic group of symmetries
+wd:Q5135329	concept	closed category	category with an internal hom functor
+wd:Q5135342	concept	closed immersion	morphism of schemes f: X → Y such that the induced morphism from the structure sheaf of Y to its pullback onto Y is surjective; equivalently, one that can be defined by a quasicoherent sheaf of ideals
+wd:Q5135347	concept	closed monoidal category	type of category in mathematics
+wd:Q5141341	concept	Mac Lane's coherence theorem	theorem in category theory
+wd:Q5155090	statement	Commutation theorem	identifies the commutant of a specific von Neumann algebra acting on a Hilbert space
+wd:Q5155306	concept	compact element	those elements of a partially ordered set that cannot be subsumed by a supremum of any directed set that does not already contain them
+wd:Q5156434	concept	complemented lattice	bound lattice in which every element has a complement
+wd:Q5156447	concept	complete Boolean algebra	concept from mathematics
+wd:Q5156470	concept	complete Heyting algebra	algebraic structure
+wd:Q5156529	concept	completely distributive lattice	
+wd:Q5156801	concept	composition ring	algebraic structure
+wd:Q5158394	concept	concept class	computational learning theory
+wd:Q5159395	concept	conductor	modulus describing the ramification in an abelian extension of local or global fields
+wd:Q5165492	statement	Continuous Mapping Theorem	probability theorem
+wd:Q5170200	concept	core model	definable inner model of the universe of all sets
+wd:Q5177154	concept	counting problem	notion in computational complexity theory
+wd:Q5179256	statement	Covering lemma	
+wd:Q5249756	concept	Dedekind–MacNeille completion	extension of a partially ordered set
+wd:Q5251085	concept	default argument	argument to a function that a programmer is not required to specify
+wd:Q5259310	concept	dense submodule	
+wd:Q5262620	concept	derivative algebra	algebraic structure
+wd:Q5275270	area	Difference algebra	
+wd:Q5277265	area	dimension theory	study of dimension in algebraic geometry
+wd:Q5280404	area	Directed Algebraic Topology	
+wd:Q5282247	statement	Disintegration theorem	theorem in measure theory
+wd:Q5284037	concept	divided power structure	concept in commutative algebra
+wd:Q5289813	area	domain decomposition methods	type of numerical methods
+wd:Q5299981	statement	Double centralizer theorem	
+wd:Q5310216	concept	dual matroid	abstract algebraic and combinatorial construction
+wd:Q5332931	area	Eckmann–Hilton duality	theory in algebraic topology
+wd:Q5379515	concept	enriched category	category whose hom sets have additional structure
+wd:Q5418703	area	evolutionary graph theory	approach to studying how topology affects evolution of a population
+wd:Q54246577	concept	ambiguous	mathematical concept whose definition does not assign it a unique interpretation or value
+wd:Q54290810	area	Strong solution	
+wd:Q5445112	statement	Fernique's theorem	a result about Gaussian measures on Banach spaces
+wd:Q54504866	concept	inductive step	part of proof by induction
+wd:Q54505027	concept	induction hypothesis	part of proof by induction
+wd:Q54506667	statement	principle of complete induction	mathematical axiom
+wd:Q546145	concept	compactification	embedding a topological space into a compact space as a dense subset
+wd:Q54806746	concept	infinite cyclic group	cyclic group with an infinite number of elements
+wd:Q5494135	statement	Fraïssé's theorem	
+wd:Q5505100	concept	Frobenius algebra	finite-dimensional unital associative algebra with a compatible bilinear form
+wd:Q5507285	statement	Fuglede's theorem	Theorem
+wd:Q5508778	concept	function type	
+wd:Q5532675	concept	generic filter	in set theory, given a collection of dense open subsets of a poset, a filter that meets all sets in that collection
+wd:Q5532678	concept	generic property	formal definition of a property shared by almost all objects of a specific type
+wd:Q5535491	area	geometric invariant theory	concept in algebraic geometry
+wd:Q55611299	concept	extensive category	Type of category in mathematics
+wd:Q55613030	concept	group functor	functor from the category of commutative rings to the category of groups
+wd:Q55643041	concept	Frobenius formula	
+wd:Q55643396	area	Subfield of an algebra	
+wd:Q55921903	area	Galois Theory for Beginners: A Historical Perspective	book by Jörg Bewersdorff about Galois theory and history of abstract algebra
+wd:Q5593569	statement	Gram's theorem	in algebraic geometry
+wd:Q5597075	concept	graph center	set of all vertices of minimum eccentricity
+wd:Q5610719	area	Grothendieck's Galois theory	Abstract approach to algebraic geometry
+wd:Q5610722	concept	Grothendieck construction	construction of a fibered category from a functorially indexed family of categories
+wd:Q5610731	statement	Grothendieck inequality	Theorem in functional analysis
+wd:Q5611270	concept	group scheme	group object in the category of schemes
+wd:Q5628959	algorithm	HAS-V	cryptographic hash function
+wd:Q56289856	area	Coherent algebra	algebra of complex square matrices
+wd:Q56313053	area	additive combinatorics	area of combinatorics in mathematics
+wd:Q5659257	concept	harmonic map	smooth map that is a critical point of the Dirichlet energy functional
+wd:Q57510	conjecture	Fundamental lemma of Langlands and Shelstad	theorem relating orbital integrals on a reductive group over a local field to stable orbital integrals on its endoscopic groups, conjectured by Langlands and proven by Ngô
+wd:Q5758318	area	higher category theory	generalization of category theory for higher-order morphisms
+wd:Q57605839	concept	retraction	left inverse of a morphism
+wd:Q5761182	concept	Hilbert C*-module	complex module E over a C*-algebra A equipped with an A-sesquilinear and complex-sesquilinear map ⟨–,–⟩: E×E→A that is nonnegative nondegenerate and satisfies the Cauchy–Schwartz inequality
+wd:Q5872687	concept	hitting time	aspect of stochastic processes
+wd:Q5876398	statement	Hoeffding's lemma	inequality in probability theory
+wd:Q5891810	area	homotopical algebra	branch of mathematics
+wd:Q5961083	area	canonical quantization	process of converting a classical physical theory into one compatible with quantum mechanics
+wd:Q6029845	concept	infinite dihedral group	Type of mathematical group
+wd:Q6035652	concept	Inner measure	
+wd:Q6035657	area	inner model theory	branch of set theory
+wd:Q6042601	concept	integer matrix	matrix whose entries are integers
+wd:Q606254	statement	Farkas' lemma	theorem
+wd:Q6073577	concept	irreducible ring	
+wd:Q6073624	concept	irrelevant ideal	mathematical term
+wd:Q60791880	area	idempotent analysis	study of idempotent semirings, such as the tropical semiring
+wd:Q60791881	area	tropical analysis	the study of the tropical semiring
+wd:Q6085547	concept	Isocrystal	
+wd:Q6094414	area	Iterative learning control	
+wd:Q6100701	concept	Iwasawa algebra	topological structure in number theory
+wd:Q6100707	concept	Iwasawa group	mathematical group whose lattice of subgroups is modular
+wd:Q615541	algorithm	eager evaluation	evaluation strategy that fully evaluates arguments before calling a function
+wd:Q617388	statement	Little's Law	theorem in queueing theory
+wd:Q6206757	area	job-shop scheduling	branch of discrete mathematics
+wd:Q62096480	area	Theory of Sets	first book of "The Elements of Mathematics" by Bourbaki
+wd:Q631561	statement	closed range theorem	theorem
+wd:Q63203307	concept	bounded sequence	sequence with an upper and lower bound
+wd:Q6322838	area	K-homology	
+wd:Q6506713	concept	underlying undirected graph	
+wd:Q6543832	concept	Lie subgroup	
+wd:Q6575256	concept	sum-product number	A number equal to the product of the sum and product of its digits
+wd:Q6586607	concept	scalar matrix	
+wd:Q660799	statement	Darboux's theorem	theorem in real analysis
+wd:Q6705124	statement	Lusin's separation theorem	For 2 disjoint analytic subsets of Polish space, there is a Borel set containing only one
+wd:Q67474638	concept	invertible element	element admitting an inverse
+wd:Q6783821	statement	Mason–Stothers theorem	theorem about polynomials, analogous to the abc conjecture for integers
+wd:Q6787895	concept	matrix unit	matrix where a single element is one and the rest of the elements are zeroes
+wd:Q6813106	statement	Mellin inversion theorem	Theorem in complex analysis
+wd:Q6824326	concept	Metric outer measure	
+wd:Q686291	concept	affine group	Group of all affine transformations of an affine space
+wd:Q6865325	area	minimal model program	branch of birational geometry aiming to construct the simplest birational model of a projective variety
+wd:Q6888319	concept	model complete theory	Concept in model theory
+wd:Q6889739	area	modular representation theory	subfield of representation theory that studies linear representations of finite groups over a field of positive characteristic
+wd:Q6901641	concept	monoidal adjunction	
+wd:Q692823	concept	strongly regular graph	graph in which the number of shared neighbors of two vertices depends only on whether they are adjacent
+wd:Q6935015	concept	multiplier algebra	largest unital C*-algebra that contains a given C*-algebra as an ideal in a nondegenerate way
+wd:Q6951483	concept	N-group	finite group all of whose local subgroups are solvable
+wd:Q6951496	concept	N-monoid	
+wd:Q70467272	concept	maximization	process of seeking to make a value as large as possible
+wd:Q7078836	concept	of the form	mathematical phrase
+wd:Q7081688	statement	Oka's lemma	Theorem in mathematics about plurisubharmonic functions
+wd:Q7097841	area	operator space	in functional analysis, a space that can be embedded into the space of bounded operators
+wd:Q7106411	concept	oscillation	amount of variation between extrema of a function or sequence
+wd:Q720469	statement	Chevalley–Warning theorem	theorem in number theory
+wd:Q7205565	area	plurisubharmonic function	type of function in complex analysis
+wd:Q7208500	statement	Poisson limit theorem	probability theory
+wd:Q72096383	concept	divisor class group	group of Weil divisors
+wd:Q72221057	concept	discreteness	quality of consisting of distinct, discontinuous elements without overlap
+wd:Q722659	concept	graph property	isomorphism-invariant property of graphs
+wd:Q7229466	statement	Popoviciu's inequality on variances	Probability theory upper bound
+wd:Q7233031	concept	thin category	category in which there are one or less morphism between every two objects
+wd:Q7243044	concept	primal ideal	proper ideal of a commutative ring such that the elements not prime to it form an ideal
+wd:Q7249479	concept	projectivization	mathematics procedure
+wd:Q7249519	statement	Prokhorov's theorem	relates tightness of measures to relative compactness in the space of probability measures
+wd:Q7250176	concept	proper morphism	in algebraic geometry, an analogue of a proper map for algebraic varieties
+wd:Q7254426	concept	pseudo-abelian category	preadditive category such that every idempotent has a kernel
+wd:Q7268354	area	quadratic algebra	a filtered algebra generated by degree one elements, with defining relations of degree 2
+wd:Q7272004	statement	Quillen–Suslin theorem	theorem in commutative algebra that every finitely generated projective module over a polynomial ring is free
+wd:Q7309604	concept	regular map	function between varieties that is given locally by polynomials
+wd:Q7314231	area	representation theory of the symmetric group	Theory in mathematics
+wd:Q7315530	concept	residue field	field arising from a quotient ring by a maximal ideal
+wd:Q7333804	concept	rigid category	
+wd:Q7366570	concept	root complex	controller that connects the CPU to the PCI Express bus
+wd:Q7391081	algorithm	SMASH	cryptographic hash function
+wd:Q7432915	statement	Schröder–Bernstein theorem for measurable spaces	theorem
+wd:Q7433182	statement	Schwartz–Zippel lemma	tool used in probabilistic polynomial identity testing
+wd:Q745116	concept	associated elements	equivalence relation on elements of a ring, where two elements are associated to each other if one is the product of the other and a unit
+wd:Q7456758	concept	setoid	a set equipped with an equivalence relation in constructive mathematics
+wd:Q747027	concept	characteristic subgroup	subgroup invariant under automorphisms of the parent group
+wd:Q7489245	area	shape theory	branch of topology
+wd:Q7489282	statement	Shapiro's lemma	Mathematical relation in abstract algrebra
+wd:Q7496253	concept	shift space	set of infinite words that is closed with respect to the natural product topology and invariant under the shift operator
+wd:Q7511782	concept	sieve	concept used in defining a Grothendieck topology; generalization of the collection of open subsets of an open set
+wd:Q7533433	area	size theory	theory of properties of topological spaces endowed with certain ℝᵏ-valued functions
+wd:Q7538329	concept	sl₂-triple	triple of elements of a Lie algebra that satisfy the commutation relations between the standard generators of the special linear Lie algebra sl₂
+wd:Q7543576	concept	small set	an element of a specified universe of sets
+wd:Q7545384	concept	Smith normal form	normal form for a matrix with values in a principal ideal domain
+wd:Q7546409	concept	smooth algebra	
+wd:Q7573053	concept	span	in category theory, a generalization of the notion of relation between two objects of a category
+wd:Q7574831	concept	special linear Lie algebra	Lie algebra of traceless linear transformations; Lie algebra of the special linear group
+wd:Q7575210	concept	spectral space	topological space isomorphic to the prime spectrum of a commutative ring
+wd:Q7595767	area	stable homotopy theory	the study of spectra
+wd:Q7605885	concept	Steenrod homology	
+wd:Q7625047	area	structural proof theory	subdiscipline of proof theory that studies proof calculi that support a notion of analytic proof
+wd:Q7625098	concept	structure constants	coefficients specifying products of basis vectors as linear combinations of other basis vectors, sufficient to construct a (non-unital) algebra over a field from any vector space
+wd:Q7631142	concept	subfunctor	
+wd:Q764287	statement	Van der Waerden's theorem	theorem on arithmetic progressions
+wd:Q7660749	statement	Weinstein–Aronszajn identity	For two suitable matrices, A and B, I+AB and I+BA have the same determinate
+wd:Q7667825	concept	T-Model	connects fundamentals with investment return
+wd:Q7687974	concept	Tate cohomology group	
+wd:Q7712345	concept	map coloring	differentiating different features of a map using different colours
+wd:Q77613467	concept	topological subspace	
+wd:Q77873528	concept	linear isomorphism	bijective linear map between vector spaces
+wd:Q77887	concept	von Neumann universe	in set theory, the collection of sets obtained by transfinite recursion using the powerset operation
+wd:Q77978698	concept	linear representation	mathematical notion, most commonly - group representation
+wd:Q77987985	area	categorical topology	
+wd:Q78082099	concept	transposition	action in which the positions of pairs of items are switched with one another
+wd:Q781415	concept	volume form	top-dimensional differential form that can be defined on orientable manifolds
+wd:Q7820874	statement	Tonelli's theorem	theorem
+wd:Q7827200	concept	torsion-free module	module over a ring such that zero is the only element annihilated by a regular element of the ring
+wd:Q78323458	concept	cycle	mathematical concept: chain that is closed
+wd:Q78323465	concept	boundary	in homological algebra, a chain that is in the image of the differential
+wd:Q78338964	concept	smooth manifold	infinitely differentiable real manifold
+wd:Q78351921	concept	real vector bundle	
+wd:Q784038	statement	Rado’s selection principle	theorem
+wd:Q7849339	area	Tsallis statistics	statistics using Tsallis distributions
+wd:Q78498942	concept	projective special linear group	
+wd:Q78502423	concept	Lie subalgebra	linear subspace of a Lie algebra closed under the Lie bracket
+wd:Q78507138	concept	deck transformation group	
+wd:Q78649322	concept	integral extension	
+wd:Q78650261	concept	integral closure	
+wd:Q7885107	statement	uniform limit theorem	theorem that the uniform limit of a sequence of continuous functions is continuous
+wd:Q7885144	concept	uniformly Cauchy sequence	sequence of functions
+wd:Q7977954	concept	weak inverse	mathematical term
+wd:Q8028383	concept	witness	in logic, value which shows that an existential statement is true
+wd:Q8028529	statement	Witt's theorem	basic result in the algebraic theory of quadratic forms, on extending isometries
+wd:Q803936	concept	Baire space	the Cartesian product of countably infinitely many copies of the set of natural numbers with the product topology
+wd:Q8066795	statement	Zariski's main theorem	theorem of algebraic geometry and commutative algebra
+wd:Q8078427	concept	étale topology	Grothendieck topology on the category of schemes, whose covering families are jointly surjective families of étale morphisms
+wd:Q81376506	concept	semisimple representation	a representation of a group or algebra that is a direct sum of simple representations
+wd:Q81425608	area	Digital Divide	doctoral dissertation (first edition)
+wd:Q830486	concept	open formula	formula that contains at least one free variable
+wd:Q841816	concept	inductive dimension	topologically invariant definition of the dimension of a space
+wd:Q842217	concept	Bayes estimator	estimator or decision rule that minimizes the posterior expected value of a loss function
+wd:Q842953	statement	Lebesgue's density theorem	theorem that, the density of a Lebesgue measurable set in Euclidean space is exists and is 0 or 1 almost everywhere
+wd:Q85739412	concept	Abelian Lie group	
+wd:Q85747361	concept	Birkhoff's theorem	theorem in equational logic
+wd:Q85755931	concept	Day convolution	
+wd:Q85760939	concept	Finite algebra	algebra over a ring that is finitely generated as a module over the ring
+wd:Q85789394	area	nonabelian algebraic topology	aspect of algebraic topology that involves (inevitably noncommutative) higher-dimensional algebras
+wd:Q85808992	statement	Theorem of transition	theorem about commutative rings and subrings
+wd:Q860530	concept	image	term in category theory
+wd:Q869647	statement	Szpilrajn extension theorem	theorem
+wd:Q872088	statement	Boolean prime ideal theorem	theorem
+wd:Q895815	concept	Scott continuity	for functions between posets
+wd:Q900456	concept	Brauer group	abelian group related to division algebras
+wd:Q909517	statement	Feit–Thompson theorem	theorem that every finite group of odd order is solvable
+wd:Q91049928	concept	supergraph	graph formed by adding vertices, edges, or both to a given graph
+wd:Q91264225	statement	portmanteau theorem	theorem about the equivalence of different characterisations of weak convergence of a sequence of measures
+wd:Q91264859	concept	convergence in mean	
+wd:Q91327913	concept	subfield	mathematical concept
+wd:Q91330389	concept	inseparable extension	
+wd:Q913721	concept	sequence	immediate restatement of a motif at a higher or lower pitch in the same voice
+wd:Q91435439	concept	constant morphism	morphism such that composing with it is constant on the right
+wd:Q91435997	concept	affine scheme	locally ringed space associated to a commutative ring
+wd:Q91439979	concept	graded module	module decomposed into a direct sum of numbered submodules
+wd:Q91578938	concept	Borel space	topological space equipped with Borel sigma-algebra
+wd:Q91773244	concept	homotopy class	equivalence class of continuous maps up to homotopy
+wd:Q91783803	concept	Weil divisor	formal sum of codimension-1 subvarieties
+wd:Q929536	concept	subring	subset of a ring that forms a ring itself
+wd:Q9346061	concept	maximum vertex degree	maximum number of edges that a vertex is incident to
+wd:Q93598414	concept	maximal clique	graph clique that is not a subset of any other clique
+wd:Q93598415	concept	maximum clique	graph clique of maximal size
+wd:Q9363325	statement	partition of unity	
+wd:Q9382514	concept	homotopy extension property	property in algebraic topology
+wd:Q942557	concept	maximum cut	cut of a graph whose size is at least the size of any other cut
+wd:Q956273	concept	regular ring	ring such that all its localizations have Krull dimension equal to the minimal number of generators of the maximal ideal
+wd:Q95674594	statement	vertically opposite angle theorem	mathematical theorem: opposite angles between a pair of intersecting lines are always equal in angle
+wd:Q96378800	concept	Fréchet–Urysohn space	topological space
+wd:Q966837	statement	Cramér–Wold theorem	theorem in measure theory
+wd:Q96694917	concept	neighborhood basis	
+wd:Q97356881	area	gauge theory	study of vector bundles, principle bundles, and fibre bundles
+wd:Q97621521	statement	McCoy's Theorem	theorem providing a sufficient condition for simultaneous triangularisability of two matrices
+wd:Q97623888	concept	comeagre set	subset of a topological space whose complement is meagre
+wd:Q976375	concept	inner regular measure	borel measure which its value on a borel set is determined as the infimum of the measure of its open superset
+wd:Q98668944	statement	Teichmüller's Theorem	
+wd:Q987226	area	rational mapping	kind of partial function between algebraic varieties
+wd:Q99567093	concept	perfect matching	matching that covers every vertex of the graph

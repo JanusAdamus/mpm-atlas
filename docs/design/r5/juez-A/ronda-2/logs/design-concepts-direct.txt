@@ -1,0 +1,8 @@
+integral wd:Q80091 | q5: what,why,before,links,check
+derivada wd:Q29175 | q5: what,why,before,links,check
+teorema de Pitágoras wd:Q11518 | q5: what,why,before,links,check
+teorema de Bayes wd:Q182505 | q5: what,why,before,links,check
+número primo wd:Q49008 | q5: what,why,before,links,check
+pi wd:Q167 | q5: what,why,before,links,check
+matriz wd:Q44337 | q5: what,why,before,links,check
+errors []

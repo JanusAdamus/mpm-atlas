@@ -1,0 +1,2389 @@
+{
+ "pairs_two_hops": 130,
+ "results": [
+  {
+   "from": "wd:Q107083970",
+   "to": "wd:Q11061460",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1077462",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q11011074",
+   "to": "wd:Q18449438",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q11061289",
+   "to": "wd:Q29792340",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q11061460",
+   "to": "wd:Q107083970",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q110679812",
+   "to": "wd:Q15838309",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q110679812",
+   "to": "wd:Q17104046",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q110679812",
+   "to": "wd:Q3115587",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q110679812",
+   "to": "wd:Q3498041",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1137014",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q115988076",
+   "to": "wd:Q54940067",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q117307909",
+   "to": "wd:Q18762468",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1174982",
+   "to": "wd:Q35689",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1174982",
+   "to": "wd:Q37105",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q12403462",
+   "to": "wd:Q786903",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q1457052",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q15838309",
+   "to": "wd:Q110679812",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q15838309",
+   "to": "wd:Q17104046",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q15838309",
+   "to": "wd:Q3115587",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q15838309",
+   "to": "wd:Q3498041",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q16317911",
+   "to": "wd:Q28920052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q16751793",
+   "to": "wd:Q6139783",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q16751793",
+   "to": "wd:Q713113",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q16751793",
+   "to": "wd:Q73026",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q168698",
+   "to": "wd:Q33456",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q17104046",
+   "to": "wd:Q110679812",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q17104046",
+   "to": "wd:Q15838309",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q17104046",
+   "to": "wd:Q3115587",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q17104046",
+   "to": "wd:Q3498041",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of",
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q18449438",
+   "to": "wd:Q11011074",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q18762468",
+   "to": "wd:Q117307909",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q207961",
+   "to": "wd:Q211548",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q211548",
+   "to": "wd:Q207961",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q217675",
+   "to": "wd:Q5432619",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2397775",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2634401",
+   "to": "wd:Q30587585",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2634401",
+   "to": "wd:Q7341067",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "conexion historica; cada salto necesita su propia fuente",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "historical",
+      "category": "historical",
+      "strength": 0,
+      "mathematical": false,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": [
+       "Conexion historica: no es dependencia matematica, prerrequisito ni aplicacion; solo hay esta conexion."
+      ]
+     },
+     "relations": [
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q277987",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q28920052",
+   "to": "wd:Q16317911",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q29018101",
+   "to": "wd:Q29018102",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q29018102",
+   "to": "wd:Q29018101",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q290810",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "conexion historica; cada salto necesita su propia fuente",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "historical",
+      "category": "historical",
+      "strength": 0,
+      "mathematical": false,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": [
+       "Conexion historica: no es dependencia matematica, prerrequisito ni aplicacion; solo hay esta conexion."
+      ]
+     },
+     "relations": [
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after",
+      "named_after"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q2908743",
+   "to": "wd:Q738328",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q29792340",
+   "to": "wd:Q11061289",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q30587585",
+   "to": "wd:Q2634401",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q30587585",
+   "to": "wd:Q7341067",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q3115587",
+   "to": "wd:Q110679812",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q3115587",
+   "to": "wd:Q15838309",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q3115587",
+   "to": "wd:Q17104046",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q3115587",
+   "to": "wd:Q3498041",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "generalizacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "generalization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q33456",
+   "to": "wd:Q168698",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "ruta de estudio sugerida; nunca necesidad logica",
+      "assumptions": [
+       "Wikidata P2283 'uses' read as a study-order suggestion (used item first), not a logical dependency"
+      ],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "study_route",
+      "category": "pedagogical",
+      "strength": 2,
+      "mathematical": false,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "prerequisite_for"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q3498041",
+   "to": "wd:Q110679812",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q3498041",
+   "to": "wd:Q15838309",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q3498041",
+   "to": "wd:Q17104046",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of",
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q3498041",
+   "to": "wd:Q3115587",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": [
+    {
+     "conclusion": {
+      "authorizes": "especializacion",
+      "assumptions": [],
+      "weakest_evidence": "extracted",
+      "is_hypothesis": false,
+      "kind": "specialization",
+      "category": "mathematical",
+      "strength": 4,
+      "mathematical": true,
+      "complete": true,
+      "missing_premises": [],
+      "caveats": []
+     },
+     "relations": [
+      "special_case_of"
+     ]
+    }
+   ]
+  },
+  {
+   "from": "wd:Q35689",
+   "to": "wd:Q1174982",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q35689",
+   "to": "wd:Q37105",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q37105",
+   "to": "wd:Q1174982",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q37105",
+   "to": "wd:Q35689",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q4370006",
+   "to": "wd:Q7306612",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q5432619",
+   "to": "wd:Q217675",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q54940067",
+   "to": "wd:Q115988076",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q6139783",
+   "to": "wd:Q16751793",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q6139783",
+   "to": "wd:Q713113",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q6139783",
+   "to": "wd:Q73026",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q63344712",
+   "to": "wd:Q815741",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q713113",
+   "to": "wd:Q16751793",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q713113",
+   "to": "wd:Q6139783",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q713113",
+   "to": "wd:Q73026",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q73026",
+   "to": "wd:Q16751793",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q73026",
+   "to": "wd:Q6139783",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q73026",
+   "to": "wd:Q713113",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q7306612",
+   "to": "wd:Q4370006",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q7341067",
+   "to": "wd:Q2634401",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q7341067",
+   "to": "wd:Q30587585",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q1077462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q1137014",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q1457052",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q2397775",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q277987",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q290810",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q738328",
+   "to": "wd:Q2908743",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q7449306",
+   "to": "wd:Q848539",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q786903",
+   "to": "wd:Q12403462",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q815741",
+   "to": "wd:Q63344712",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q847073",
+   "to": "wd:Q912925",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q848539",
+   "to": "wd:Q7449306",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  },
+  {
+   "from": "wd:Q912925",
+   "to": "wd:Q847073",
+   "status": 200,
+   "keys": [
+    "abstained",
+    "abstention",
+    "composition_version",
+    "concepts",
+    "exploration",
+    "from",
+    "objective",
+    "paths"
+   ],
+   "paths": []
+  }
+ ],
+ "transitive_P460_conclusions": 0
+}

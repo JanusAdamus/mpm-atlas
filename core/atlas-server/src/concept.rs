@@ -96,7 +96,7 @@ fn concept_node(snap: &Snapshot, id: &str) -> atlas_core::Result<NodeIx> {
 fn node_ref(snap: &Snapshot, n: NodeIx, lang: &str) -> Value {
     json!({
         "id": snap.node_id(n),
-        "label": snap.label(n, lang),
+        "label": snap.display_label(n, lang),
         "type": snap.node_type(n),
         "derived": snap.is_derived_concept(n),
     })
@@ -113,7 +113,9 @@ fn edge_json(snap: &Snapshot, other: NodeIx, e: &atlas_core::ConceptEdge<'_>, la
             })
         })
         .collect();
-    json!({"concept": node_ref(snap, other, lang), "total": e.total(), "stats": stats})
+    // ADR-0005 §7a: every aggregated edge is a candidate (weakest-link state, never in the beginner
+    // summary nor with a strength)
+    json!({"concept": node_ref(snap, other, lang), "total": e.total(), "stats": stats, "candidate": e.is_candidate()})
 }
 
 /// Membership evidence from the registry: claim id -> (signal, evidence, rank, score, provenance).
@@ -181,7 +183,7 @@ impl Engine {
         let ms = snap.concept_memberships(c);
         let mut rows: Vec<(bool, EvidenceState, &str, NodeIx, u32)> = ms
             .iter()
-            .map(|e| (snap.primary_concept(e.nbr) == Some(c), e.state, snap.label(e.nbr, lang), e.nbr, e.claim))
+            .map(|e| (snap.primary_concept(e.nbr) == Some(c), e.state, snap.display_label(e.nbr, lang), e.nbr, e.claim))
             .collect();
         rows.sort_by(|a, b| b.0.cmp(&a.0).then(a.1.cmp(&b.1)).then(a.2.cmp(b.2)).then(a.3.cmp(&b.3)));
         let mut states: BTreeMap<EvidenceState, usize> = BTreeMap::new();

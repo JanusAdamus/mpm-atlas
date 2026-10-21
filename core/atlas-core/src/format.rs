@@ -14,9 +14,11 @@ compile_error!("the snapshot format is little-endian and is mapped in place");
 
 pub const MAGIC: [u8; 8] = *b"ATLSNAP\0";
 /// Bump on any change to sections or their meaning.
-pub const FORMAT_VERSION: u32 = 2;
+/// v3 (ADR-0005): u64 string offsets, NodeFlags, presentation labels, `core_content_hash`,
+/// ConceptStatState = weakest link.
+pub const FORMAT_VERSION: u32 = 3;
 /// Highest registry `PRAGMA user_version` the compiler understands.
-pub const SUPPORTED_SCHEMA: u32 = 3;
+pub const SUPPORTED_SCHEMA: u32 = 4;
 pub const SECTION_ALIGN: u64 = 64;
 /// "No value" in any u32 column (no label, no area, no group, ...).
 pub const NONE: u32 = u32::MAX;
@@ -41,7 +43,10 @@ pub struct Header {
     pub num_sources: u32,
     pub num_strings: u32,
     pub num_prov: u32,
-    pub reserved: [u64; 19],
+    /// v3: zero in a core snapshot; in a layer snapshot (works), the `content_hash` of the core
+    /// snapshot whose node indexes it refers to.  `Snapshot::open_layer` rejects a mismatch.
+    pub core_content_hash: [u8; 32],
+    pub reserved: [u64; 15],
 }
 
 pub const HEADER_SIZE: usize = std::mem::size_of::<Header>();
@@ -83,7 +88,7 @@ macro_rules! sections {
 }
 
 sections! {
-    StrOffsets = 1: u32, "string table: n+1 byte offsets into StrBytes";
+    StrOffsets = 1: u64, "string table: n+1 byte offsets into StrBytes (u64 since format v3)";
     StrBytes = 2: u8, "string table: UTF-8 bytes";
 
     NodeId = 10: u32, "node -> string id of the entity id";
@@ -96,6 +101,10 @@ sections! {
     NodeStateMask = 17: u8, "node -> bitmask of EvidenceState bits of those claims";
     NodeHash = 18: u32, "id -> node hash table (see hashidx.rs)";
     MergedNodes = 19: u32, "nodes with NodeCanon != self, ascending";
+    // v3: presentation curation (ADR-0005 §5), from active `curation` rows; the registry labels are untouched
+    NodeFlags = 20: u8, "node -> bits of excluded presentation scopes (vocab::PRESENTATION_SCOPES order)";
+    NodeShowEs = 21: u32, "node -> string id of the active `es` presentation label, or NONE";
+    NodeShowEn = 22: u32, "node -> string id of the active `en` presentation label, or NONE";
 
     ClaimId = 30: u32, "claim -> string id";
     ClaimRel = 31: u8, "claim -> RelationType code";
@@ -145,7 +154,7 @@ sections! {
     ConceptEdgeDst = 105: u32, "target concept node of each aggregated edge, ascending per concept";
     ConceptStatOff = 106: u32, "aggregated edge -> range in ConceptStat* (E+1)";
     ConceptStatRel = 107: u8, "RelationType code of each (relation, state) count";
-    ConceptStatState = 108: u8, "EvidenceState code of each count";
+    ConceptStatState = 108: u8, "weakest EvidenceState of edge, source membership and target membership (v3)";
     ConceptStatCount = 109: u32, "declaration-level edges behind each (relation, state)";
     ConceptStatExample = 110: u32, "smallest claim behind each (relation, state): a traceable example";
 }

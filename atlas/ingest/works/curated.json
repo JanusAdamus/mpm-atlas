@@ -1,0 +1,40 @@
+{
+  "version": "curated-witnesses/1",
+  "note": "Ancient and non-European works and witnesses (ADR-0005 §2, papers-historia.md §6.2). Dates are NOT written here: they are read from each item's source (Wikidata JSON, CDLI) at ingest time. 'copied_by' and 'introduced_in' need a historiography quote checked on the cited page (MacTutor, CC BY-SA 4.0, read 2026-10-19).",
+  "items": [
+    {"qid": "Q1470425", "role": "witness", "label": "Plimpton 322"},
+    {"qid": "Q2178529", "role": "witness", "label": "YBC 7289"},
+    {"qid": "Q213540", "role": "witness", "label": "Rhind Mathematical Papyrus"},
+    {"qid": "Q926547", "role": "witness", "label": "Moscow Mathematical Papyrus"},
+    {"qid": "Q115690", "role": "witness", "label": "Bakhshali manuscript"},
+    {"qid": "Q172891", "role": "work", "label": "Elements (Euclid)"},
+    {"qid": "Q2717459", "role": "work", "label": "On the Sphere and Cylinder (Archimedes)"},
+    {"qid": "Q511915", "role": "work", "label": "Measurement of a Circle (Archimedes)"},
+    {"qid": "Q3080148", "role": "work", "label": "The Method of Mechanical Theorems (Archimedes)"},
+    {"qid": "Q668560", "role": "work", "label": "Arithmetica (Diophantus)"},
+    {"qid": "Q155952", "role": "work", "label": "Almagest (Ptolemy)"},
+    {"qid": "Q657057", "role": "work", "label": "The Nine Chapters on the Mathematical Art"},
+    {"qid": "Q7762765", "role": "work", "label": "The Sea Island Mathematical Manual (Liu Hui)"},
+    {"qid": "Q84052", "role": "work", "label": "Shulba Sutras"},
+    {"qid": "Q3518429", "role": "work", "label": "Aryabhatiya"},
+    {"qid": "Q1290001", "role": "work", "label": "Brahmasphutasiddhanta"},
+    {"qid": "Q3289114", "role": "work", "label": "Lilavati (Bhaskara II)"},
+    {"qid": "Q8369", "role": "work", "label": "Al-Jabr (al-Khwarizmi)"},
+    {"qid": "Q135901116", "role": "edition", "edition_of": "Q8369", "label": "Rosen's 1830 edition and translation of al-Jabr"},
+    {"qid": "Q2044496", "role": "work", "label": "Liber Abaci (Fibonacci)"},
+    {"qid": "Q510675", "role": "work", "label": "Disquisitiones Arithmeticae (Gauss)"}
+  ],
+  "copied_by": [
+    {"witness": "Q213540", "person": "Q1073335",
+     "source": "mactutor", "locator": "https://mathshistory.st-andrews.ac.uk/Biographies/Ahmes/",
+     "quote": "Ahmes claims not to be the author of the work, being, he claims, only a scribe."}
+  ],
+  "introduced_in": [
+    {"subject": "Q47577", "work": "Q2044496", "source": "mactutor",
+     "locator": "https://mathshistory.st-andrews.ac.uk/Biographies/Fibonacci/",
+     "quote": "A problem in the third section of Liber abaci ( Book of the abacus ) led to the introduction of the Fibonacci numbers and the Fibonacci sequence for which Fibonacci is best remembered today"},
+    {"subject": "Q3059346", "work": "Q2044496", "source": "mactutor", "validity_domain": "introduction into Europe (not invention)",
+     "locator": "https://mathshistory.st-andrews.ac.uk/Biographies/Fibonacci/",
+     "quote": "Liber abaci introduced the Hindu-Arabic place-valued decimal system and the use of Arabic numerals into Europe."}
+  ]
+}

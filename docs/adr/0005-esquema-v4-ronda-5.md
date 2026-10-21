@@ -1,6 +1,6 @@
 # ADR-0005 · Esquema v4 (ronda 5): fechas históricas, obras, curaduría, fichas y escala
 
-Fecha: 2026-10-19.  Autor: arquitecto (dueño de `atlas/model.py`, `atlas/store.py`, `docs/SPEC.md`).  Estado: **propuesto**; se implementa cuando cierre la ronda 4 (otro agente corre pruebas sobre el contrato).  Plan que lo pide: `docs/plans/2026-10-19-ronda-5-calidad-y-fuentes.md` (aprobado por Adrián, con la decisión del 2026-10-19 de ingerir todas las obras).
+Fecha: 2026-10-19.  Autor: arquitecto (dueño de `atlas/model.py`, `atlas/store.py`, `docs/SPEC.md`).  Estado: **aceptado** (2026-10-19; paso 1 implementado con sus pruebas en verde; ver «Estado» al final).  Plan que lo pide: `docs/plans/2026-10-19-ronda-5-calidad-y-fuentes.md` (aprobado por Adrián, con la decisión del 2026-10-19 de ingerir todas las obras).
 
 Numeración: no existen ADR 0001–0004 como archivos.  Las decisiones de los esquemas v1–v3 están en `docs/SPEC.md` §12.  Este ADR usa el número 0005 por indicación del orquestador; los siguientes continúan desde aquí.
 
@@ -470,4 +470,4 @@ Cambios de contrato en Python (sin DDL):
 
 ## Estado
 
-Propuesto, 2026-10-19.  Pasa a «aceptado» cuando se implemente el paso 1 con sus pruebas en verde.
+Propuesto, 2026-10-19.  **Aceptado, 2026-10-19**: el paso 1 (contrato Python, store v4, SPEC, shapes, `vocab.rs`, `format.rs` v3, `SUPPORTED_SCHEMA = 4`) está implementado y `python -m pytest -q`, `cargo test --workspace --release` y `cargo clippy --workspace --all-targets --release` pasan.  La migración del registro real (M1 sobre `data/atlas.db`) la hace el integrador después del respaldo; M2 la hacen los trabajadores del paso 2.

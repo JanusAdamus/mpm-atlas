@@ -167,7 +167,7 @@ function othersOf(c: ClaimJson, selfIds: Set<string>): { entity: string; role: s
 
 /** A claim the explore mode leaves to the technical one: code records and concept groupings. */
 export const isTechnicalClaim = (c: ClaimJson): boolean =>
-  c.relation === "member_of_concept" || c.participants.some((p) => isCodeId(p.entity) || jargonIn(c.labels[p.entity] ?? "").length > 0);
+  c.relation === "member_of_concept" || c.explore_hidden === true || c.participants.some((p) => isCodeId(p.entity) || jargonIn(c.labels[p.entity] ?? "").length > 0);
 
 /** The relation read from the entity's side, an inverse pair folded into one name: «A
  *  generaliza B» seen from B is «B es un caso particular de A». */
@@ -296,7 +296,8 @@ export function cleanExtract(text: string, max = 420): string {
     }
     out += text[i];
   }
-  out = out.replace(/[​‎‏]/g, "").replace(/\s+([,.;:)])/g, "$1").replace(/\s+/g, " ").trim();
+  // `&&&&&010007.&&&&&0` is the hidden sort key of MediaWiki's {{nts}} before the visible number.
+  out = out.replace(/&+\d+\.&+0/g, "").replace(/[​‎‏]/g, "").replace(/\s+([,.;:)])/g, "$1").replace(/\s+/g, " ").trim();
   if (out.length <= max) return out;
   const sentences = out.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [];
   let kept = "";
@@ -355,23 +356,73 @@ function whatIs(r: EntityResponse, actions: PanelActions): HTMLElement {
     body.push(host);
     found.then(async (wiki) => {
       if (!wiki) return host.remove();
-      const text = localized((await extract(wiki.id)).entity.descriptions);
+      const frag = (await extract(wiki.id)).entity;
+      const text = localized(frag.descriptions);
       if (!text) return host.remove();
+      // The whole stored lead (cut at a sentence by the importer), with the licence and revision it was read from.
+      const prov = frag.provenance[0];
       host.replaceChildren(
-        h("p", { class: "source-label" }, `${t("wikipediaExtract")} (${wiki.lang})`),
-        h("p", { lang: text.lang }, cleanExtract(text.text)),
-        h("p", { class: "small" }, safeLink(wiki.url, t("readWikipedia")), h("span", { class: "license" }, " · CC BY-SA 4.0")));
+        h("p", { class: "source-label" }, `${t("wikipediaExtract")} (${wiki.lang}) · ${fichaText("unreviewedSource")}`),
+        h("p", { lang: text.lang }, cleanExtract(text.text, Infinity)),
+        h("p", { class: "small" }, safeLink(prov?.locator ?? wiki.url, t("readWikipedia")),
+          prov?.license ? h("span", { class: "license" }, ` · ${licenceName(prov.license)}`) : null));
     }).catch(() => host.remove());
   }
-  // Nothing here is a reviewed explanation: say so, above whatever the sources give.
-  return question("what", emptyState(t("noReviewed")), ...body);
+  return question("what", ...fichaBlock(r, "que_es"), ...body);
+}
+
+// ---- ficha sentences (ADR-0005 §6) ------------------------------------------------------
+
+// ponytail: local strings until i18n.ts (not this role's file) takes them.
+const FICHA_TEXT: Record<string, Record<string, string>> = {
+  es: { draft: "Borrador editorial, sin revisar", draftNote: "Frases propuestas a partir de las fuentes citadas; nadie las ha revisado todavía.", unreviewedSource: "texto de la fuente, sin revisar", source: "Fuente" },
+  en: { draft: "Editorial draft, not reviewed", draftNote: "Sentences proposed from the cited sources; nobody has reviewed them yet.", unreviewedSource: "source text, not reviewed", source: "Source" },
+};
+const fichaText = (k: string): string => FICHA_TEXT[getLang()]?.[k] ?? FICHA_TEXT.es[k];
+
+/** SPDX id as a reader writes it: CC-BY-SA-4.0 → CC BY-SA 4.0. */
+export const licenceName = (spdx: string): string => spdx.replace(/^CC-/, "CC ").replace(/-(\d)/, " $1");
+
+const selfIdsOf = (r: EntityResponse): Set<string> => new Set([r.canonical_id, ...r.merged_from]);
+
+/** One sentence of the entity's ficha: an `explains` claim from a note to the entity.  The note
+ *  id carries its section (`note:<section>:<hash>`, atlas/fichas.py `note_id`). */
+export function fichaSentences(r: EntityResponse, section: string): { reviewed: ClaimJson[]; drafts: ClaimJson[] } {
+  const selfIds = selfIdsOf(r);
+  const mine = r.claims.filter((c) => c.relation === "explains" && roleOf(c, selfIds) === "object"
+    && c.participants.some((p) => p.role === "subject" && p.entity.split(":")[1] === section));
+  const isDone = (c: ClaimJson): boolean => c.evidence_state === "editorially_reviewed";
+  return { reviewed: mine.filter(isDone), drafts: mine.filter((c) => !isDone(c) && c.evidence_state !== "retracted" && c.evidence_state !== "superseded") };
+}
+
+function sentenceOf(c: ClaimJson, r: EntityResponse): HTMLElement {
+  const note = c.participants.find((p) => p.role === "subject")?.entity ?? "";
+  const p = c.provenance[0];
+  return h("li", { class: "ficha-sentence" }, h("span", { lang: "es" }, c.labels[note] ?? ""), " ",
+    p ? h("span", { class: "muted small" }, `(${fichaText("source")}: `, safeLink(p.locator, sourceName(r, p.source_id)), ")") : null);
+}
+
+/** Reviewed sentences answer the question; the rest only on request, under «Borrador editorial, sin revisar». */
+function fichaBlock(r: EntityResponse, section: string): HTMLElement[] {
+  const { reviewed, drafts } = fichaSentences(r, section);
+  const out: HTMLElement[] = reviewed.length
+    ? [h("ul", { class: "ficha" }, reviewed.map((c) => sentenceOf(c, r)))]
+    : [emptyState(t("noReviewed"))];
+  if (drafts.length) {
+    out.push(h("details", { class: "ficha-draft" },
+      h("summary", {}, fichaText("draft"), " ", h("span", { class: "count" }, `${drafts.length}`)),
+      h("p", { class: "muted small" }, fichaText("draftNote")),
+      h("ul", { class: "ficha" }, drafts.map((c) => sentenceOf(c, r)))));
+  }
+  return out;
 }
 
 /** «Por qué importa»: documented uses (applied in, models), each with its seal. */
 function whyMatters(r: EntityResponse, selfIds: Set<string>, actions: PanelActions): HTMLElement {
   const uses = r.claims.filter((c) => (c.relation === "applied_in" || c.relation === "models") && roleOf(c, selfIds) === "subject" && !(isExplore() && isTechnicalClaim(c)));
-  if (!uses.length) return question("why", emptyState(t("noReviewed")));
-  return question("why", emptyState(t("noReviewed")), h("p", { class: "small" }, t("whyUses")),
+  const ficha = fichaBlock(r, "por_que_importa");
+  if (!uses.length) return question("why", ...ficha);
+  return question("why", ...ficha, h("p", { class: "small" }, t("whyUses")),
     h("ul", { class: "claims" }, dedupRows(uses, selfIds).map((row) => sentenceRow(row, r, actions))));
 }
 
@@ -399,7 +450,9 @@ const capitalize = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1)
 function connectsTo(r: EntityResponse, selfIds: Set<string>, actions: PanelActions): HTMLElement {
   const sec = question("links");
   const explore = isExplore();
-  const claims = explore ? r.claims.filter((c) => !isTechnicalClaim(c)) : r.claims;
+  // Ficha sentences are text for the reader, never a connection (ADR-0005 §6).
+  const own = r.claims.filter((c) => c.relation !== "explains");
+  const claims = explore ? own.filter((c) => !isTechnicalClaim(c)) : own;
   const conflicts = conflictingClaims(claims, selfIds);
   const rest = claims.filter((c) => !conflicts.has(c.id));
   const established = rest.filter((c) => !isCandidate(c));
@@ -454,8 +507,13 @@ function connectsTo(r: EntityResponse, selfIds: Set<string>, actions: PanelActio
   return sec;
 }
 
-/** «Cómo compruebo que lo entendí»: there is no reviewed exercise in the registry yet. */
-const checkUnderstanding = (): HTMLElement => question("check", emptyState(t("noReviewed")), h("p", { class: "muted small" }, t("checkEmpty")));
+/** «Cómo compruebo que lo entendí»: reviewed exercises of the ficha, else the honest empty state. */
+function checkUnderstanding(r: EntityResponse): HTMLElement {
+  const ficha = fichaBlock(r, "compruebo");
+  return fichaSentences(r, "compruebo").reviewed.length
+    ? question("check", ...ficha)
+    : question("check", ...ficha, h("p", { class: "muted small" }, t("checkEmpty")));
+}
 
 export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElement {
   const e = r.entity;
@@ -476,7 +534,7 @@ export function renderEntity(r: EntityResponse, actions: PanelActions): HTMLElem
   );
   if (r.coverage === "unknown") root.append(h("p", { class: "notice unknown-note", role: "note" }, t("coverageUnknown")));
   // The five questions, always present and always in this order.
-  root.append(whatIs(r, actions), whyMatters(r, selfIds, actions), knowBefore(r, selfIds, actions), connectsTo(r, selfIds, actions), checkUnderstanding());
+  root.append(whatIs(r, actions), whyMatters(r, selfIds, actions), knowBefore(r, selfIds, actions), connectsTo(r, selfIds, actions), checkUnderstanding(r));
 
   const ci = r.concept;
   if (ci?.as_concept) {

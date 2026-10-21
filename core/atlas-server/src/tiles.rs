@@ -90,6 +90,14 @@ fn parse(p: Params, zxy: Option<(u32, u32, u32)>) -> Result<TileQuery, ApiError>
 }
 
 pub async fn by_query(st: State<AppState>, Q(p): Q<Params>) -> Result<Response, ApiError> {
+    if p.layer.as_deref() == Some("works") {
+        let (Some(z), Some(x), Some(y)) = (p.z, p.x, p.y) else {
+            return Err(ApiError::bad_request("z, x and y are required"));
+        };
+        let lang = p.lang.unwrap_or_else(|| "es".into());
+        check_lang(&lang)?;
+        return crate::works::tile_json(st, z, x, y, lang).await;
+    }
     serve(st, parse(p, None)?).await
 }
 

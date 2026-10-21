@@ -1,0 +1,19 @@
+{
+ "user_version": 4,
+ "max_event_seq": 4163538,
+ "equivalent_to_current_from_P460": 0,
+ "special_case_of_current_from_P31": 0,
+ "part_of_area_formally_linked": 0,
+ "said_equivalent_to_current": 311,
+ "instance_of_current": 14422,
+ "special_case_of_current_from_P279": 14408,
+ "bidirectional_claims": 8,
+ "bidirectional_claims_not_disputed": 0,
+ "disputed_total": 8,
+ "events_by_m2_actor": {
+  "atlas.ingest.wikidata_m2 claim_added": 14733,
+  "atlas.ingest.wikidata_m2 claim_superseded": 14733,
+  "atlas.ingest.wikidata_m2 evidence_changed": 244933,
+  "curation:bidirectional/1 evidence_changed": 8
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "layout_version": "e6ed5eab030b3aec",
+ "total": 2041,
+ "classes": {
+  "es_registry": 1212,
+  "en": 713,
+  "es_curated": 116
+ },
+ "share_es_strict": 0.5938,
+ "share_es_with_curated": 0.6507,
+ "share_es_upper_bound_incl_other": 0.6507,
+ "other": []
+}

@@ -24,7 +24,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import Any, Callable, Iterable, Mapping
 
 from ..model import (
     MATH,
@@ -35,7 +35,9 @@ from ..model import (
     Provenance,
     RelationType,
     Source,
+    ValidationError,
     binary,
+    parse_edtf,
     stable_id,
 )
 from ..store import Store
@@ -46,7 +48,7 @@ ENDPOINT = "https://query.wikidata.org/sparql"
 SOURCE_ID = "src:wikidata"
 LICENSE = "CC0-1.0"
 EXTRACTOR = "atlas.ingest.wikidata"
-MAPPING_VERSION = "wd-map/2"
+MAPPING_VERSION = "wd-map/3"  # v3 (ADR-0005 §7b-c): P31 -> instance_of, P460 -> said_equivalent_to
 BATCH = 200
 WORKERS = 4  # WDQS allows 5 concurrent queries per client
 LANGS = ("en", "es")
@@ -147,7 +149,7 @@ PROPERTY_MAP: tuple[PropRule, ...] = (
     PropRule("P279", "subclass of", R.PART_OF_AREA, False, AREA_ONLY),
     PropRule("P279", "subclass of", R.SPECIAL_CASE_OF, False, MATH_NOT_AREA),
     PropRule("P31", "instance of", R.PART_OF_AREA, False, AREA_ONLY),
-    PropRule("P31", "instance of", R.SPECIAL_CASE_OF, False, MATH_NOT_AREA),
+    PropRule("P31", "instance of", R.INSTANCE_OF, False, MATH_NOT_AREA),  # an example, not a subclass
     PropRule("P361", "part of", R.PART_OF_AREA, False, AREA_ONLY),
     PropRule("P1269", "facet of", R.PART_OF_AREA, False, AREA_ONLY),
     PropRule("P2579", "studied by", R.PART_OF_AREA, False, AREA_ONLY),
@@ -160,7 +162,7 @@ PROPERTY_MAP: tuple[PropRule, ...] = (
              "Wikidata P2283 'uses' read as a study-order suggestion (used item first), not a logical dependency"),
     PropRule("P366", "has use", R.APPLIED_IN, False, WORLD),
     PropRule("P1535", "used by", R.APPLIED_IN, False, WORLD),
-    PropRule("P460", "said to be the same as", R.EQUIVALENT_TO, False, None,
+    PropRule("P460", "said to be the same as", R.SAID_EQUIVALENT_TO, False, None,
              "Wikidata P460 'said to be the same as': sameness is asserted, possibly uncertain or disputed"),
     PropRule("P737", "influenced by", R.INFLUENCED, True),
 )
@@ -171,6 +173,17 @@ for _r in PROPERTY_MAP:
 
 def entity_id(qid: str) -> str:
     return "wd:" + qid
+
+
+# Relations whose claims got a new id in wd-map/3: the wd-map/2 claim with the old id (same statement,
+# other relation) is superseded by atlas.ingest.wikidata_m2, and re-ingest must not collide with it.
+V3_RELATIONS = frozenset({R.SAID_EQUIVALENT_TO, R.INSTANCE_OF})
+
+
+def claim_id(qid: str, pid: str, obj: str, relation: RelationType) -> str:
+    """Deterministic id of the claim for statement (qid, pid, obj) mapped to `relation`."""
+    parts = ("c", "wikidata", qid, pid, obj) + ((relation.value,) if relation in V3_RELATIONS else ())
+    return stable_id(*parts)
 
 
 def _qid(uri: str) -> str:
@@ -577,7 +590,7 @@ def _write_claims(store: Store, writer: Writer, items: dict[str, ItemData], type
                 continue
             prov = (Provenance(SOURCE_ID, f"https://www.wikidata.org/wiki/{it.qid}#{pid}", EXTRACTOR,
                                MAPPING_VERSION, LICENSE, it.fetched_at),)
-            ok = writer.claim(binary(stable_id("c", "wikidata", it.qid, pid, o), rule.relation, entity_id(subj),
+            ok = writer.claim(binary(claim_id(it.qid, pid, o, rule.relation), rule.relation, entity_id(subj),
                                      entity_id(obj), prov, assumptions=(rule.note,) if rule.note else ()))
             if ok:
                 report.counters[f"mapped:{pid}->{rule.relation.value}"] += 1
@@ -608,5 +621,85 @@ def mapping_table() -> list[dict]:
              "note": r.note, "version": MAPPING_VERSION} for r in PROPERTY_MAP]
 
 
+# ---------------------------------------------------------------------- dates (ADR-0005 §1)
+
+CIRCA_QID, PRESUMABLY_QID = "Q5727902", "Q18122778"  # P1480 sourcing circumstances
+JULIAN_QID, GREGORIAN_QID = "Q1985786", "Q1985727"
+_WD_TIME = re.compile(r"^([+-])(\d{1,16})-(\d{2})-(\d{2})T")
+
+
+@dataclass(frozen=True)
+class WikidataDate:
+    edtf: str  # ADR-0005 §1 subset, astronomical numbering
+    calendar: str  # gregorian | julian | unknown; never converted
+    raw: str  # the source value, for HistoricalDate.raw
+
+
+def _astro_text(hist: int) -> str:
+    """Historical year (no year 0) -> EDTF year in astronomical numbering."""
+    y = hist + 1 if hist < 0 else hist
+    if abs(y) > 9999:
+        raise ValidationError(f"year {hist} is outside the 4-digit EDTF subset")
+    return f"{y:04d}" if y >= 0 else f"-{-y:04d}"
+
+
+def _wd_span(time: str, precision: int, channel: str) -> tuple[str, str]:
+    """Earliest and latest EDTF endpoint (no qualifier) of one Wikidata time value."""
+    m = _WD_TIME.match(time)
+    if not m:
+        raise ValidationError(f"not a Wikidata time value: {time!r}")
+    sign, ys, mo, dd = m.groups()
+    year = -int(ys) if sign == "-" else int(ys)
+    if channel == "json":  # historical numbering: -300 is 300 BC, there is no year 0
+        if year == 0:
+            raise ValidationError(f"Wikidata JSON has no year 0: {time!r}")
+        hist = year
+    elif channel == "wdqs":  # NV: assumed astronomical (0 = 1 BC); the pilot checks it with Elements (Q172891)
+        hist = year - 1 if year <= 0 else year
+    else:
+        raise ValidationError(f"channel must be 'json' or 'wdqs', got {channel!r}")
+    if precision >= 9:
+        text = _astro_text(hist)
+        if precision >= 10 and mo != "00":
+            text += f"-{mo}"
+            if precision >= 11 and dd != "00":
+                text += f"-{dd}"
+        return text, text
+    if precision == 8:  # decade: 1950s = 1950..1959; 300s BC = 309..300 BC
+        d = abs(hist) // 10 * 10
+        lo, hi = (max(d, 1), d + 9) if hist > 0 else (-(d + 9), -max(d, 1))
+    else:  # century (7), millennium (6), ... : 3rd century BC = 300..201 BC; 19th century = 1801..1900
+        span = 10 ** (9 - precision)
+        k = max(1, -(-abs(hist) // span))
+        lo, hi = ((k - 1) * span + 1, k * span) if hist > 0 else (-(k * span), -((k - 1) * span + 1))
+    return _astro_text(lo), _astro_text(hi)
+
+
+def edtf_from_wikidata(time: str, precision: int, calendar_qid: str | None = None,
+                       qualifiers: Mapping[str, Any] | None = None, channel: str = "json") -> WikidataDate:
+    """The one conversion of a Wikidata time value to the EDTF subset of ADR-0005 §1.
+
+    `qualifiers`: optional {"P1480": qid or [qids], "P1319": (time, precision), "P1326": (time, precision)};
+    circa -> "~", presumably -> "?", both -> "%"; P1319/P1326 are the interval ends.  Coarser than
+    a year becomes an explicit interval (never X digits in negative years)."""
+    q = dict(qualifiers or {})
+    circ = q.get("P1480") or ()
+    circ = {circ} if isinstance(circ, str) else set(circ)
+    mark = {(True, False): "~", (False, True): "?", (True, True): "%"}.get(
+        (CIRCA_QID in circ, PRESUMABLY_QID in circ), "")
+    lo, hi = _wd_span(time, precision, channel)
+    if "P1319" in q:
+        lo = _wd_span(*q["P1319"], channel)[0]
+    if "P1326" in q:
+        hi = _wd_span(*q["P1326"], channel)[1]
+    edtf = f"{lo}{mark}" if lo == hi else f"{lo}{mark}/{hi}{mark}"
+    calendar = {JULIAN_QID: "julian", GREGORIAN_QID: "gregorian", None: "gregorian"}.get(calendar_qid, "unknown")
+    raw = f"{time}/{precision}" + (f" {calendar_qid}" if calendar_qid else "")
+    if q:
+        raw += " " + json.dumps(q, sort_keys=True, default=list)
+    parse_edtf(edtf, calendar)
+    return WikidataDate(edtf, calendar, raw)
+
+
 __all__ = ["ingest", "discover", "fetch_details", "map_statement", "mapping_table", "PROPERTY_MAP", "SEEDS",
-           "MAPPING_VERSION", "entity_id"]
+           "MAPPING_VERSION", "entity_id", "claim_id", "V3_RELATIONS", "edtf_from_wikidata", "WikidataDate"]
